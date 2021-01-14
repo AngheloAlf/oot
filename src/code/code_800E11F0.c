@@ -93,7 +93,23 @@ s32 func_800E2768(s32 arg1, s32 bankId) {
 
 
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E27A4.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E27A4.s")
+
+void *func_800E27A4(s32 poolIdx, s32 id) {
+    void *temp_ret;
+
+    temp_ret = func_800E04E8(poolIdx, id);
+    if (temp_ret != 0) {
+        return temp_ret;
+    }
+    temp_ret = func_800DF074(poolIdx, 2, id);
+    if (temp_ret != 0) {
+        return temp_ret;
+    }
+
+    return NULL;
+}
+
 
 //#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E27F8.s")
 
