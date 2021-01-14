@@ -9,7 +9,22 @@
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1618.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/Audio_IsBankLoadComplete.s")
+// #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/Audio_IsBankLoadComplete.s")
+
+s32 Audio_IsBankLoadComplete(s32 bankId) {
+    if (bankId == 0xFF) {
+        return 1;
+    }
+    if ( gAudioContext.gBankLoadStatus[bankId] >= 2) {
+        return 1;
+    }
+    if ( gAudioContext.gBankLoadStatus[func_800E2768(1, bankId)] >= 2) {
+        return 1;
+
+    }
+    return 0;
+}
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/Audio_IsSeqLoadComplete.s")
 
