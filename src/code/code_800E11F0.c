@@ -78,7 +78,20 @@ s32 Audio_IsBankLoadComplete(s32 bankId) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E2558.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E2768.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E2768.s")
+
+s32 func_800E2768(s32 arg1, s32 bankId) {
+    s8 *temp_v1;
+
+    temp_v1 = func_800E27F8(arg1) + (bankId * 0x10);
+    if (*(s32*)&temp_v1[0x14] == 0) {
+        bankId = *(s32*)&temp_v1[0x10];
+    }
+
+    return bankId;
+}
+
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E27A4.s")
 

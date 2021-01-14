@@ -2082,7 +2082,7 @@ void Audio_SetSeqLoadStatus(s32 seqId, u8 status);
 // ? func_800E2558(?);
 s32 func_800E2768(s32 arg1, s32 bankId);
 // ? func_800E27A4(?);
-// ? func_800E27F8(?);
+s8 *func_800E27F8(s32 arg0);
 // ? func_800E283C(?);
 // ? func_800E2AA8(?);
 // ? func_800E2BCC(?);
