@@ -95,7 +95,27 @@ s32 func_800E2768(s32 arg1, s32 bankId) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E27A4.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E27F8.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E27F8.s")
+
+s8 *func_800E27F8(s32 arg0) {
+    void* v1;
+
+    switch(arg0){
+    case 0:
+        v1 = gAudioContext.unk_2830;
+        break;
+    case 1:
+        v1 = gAudioContext.unk_2834;
+        break;
+    case 2:
+        v1 = gAudioContext.unk_2838;
+        break;
+    default:
+        v1 = NULL;
+        break;
+    }
+    return v1;
+}
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E283C.s")
 

@@ -668,7 +668,8 @@ typedef struct {
     /* 0x176C */ s32 unk_176C;
     /* 0x1770 */ char unk_1770[0xEB0];
     /* 0x2620 */ s32 gSampleDmaNumListItems;
-    /* 0x2624 */ char unk_2624[0x210];
+    /* 0x2624 */ char unk_2624[0x20C];
+    /* 0x2630 */ s8* unk_2830;
     /* 0x2834 */ s16* unk_2834;
     /* 0x2838 */ ManyStruct_800E0E0C_2* unk_2838;
     /* 0x283C */ char unk_283C[0x8];
