@@ -221,7 +221,12 @@ s8 *func_800E27F8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E4FB0.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E4FE0.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E4FE0.s")
+
+void func_800E4FE0(void) {
+    func_800E5000();
+}
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E5000.s")
 
@@ -235,9 +240,34 @@ s8 *func_800E27F8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E5A8C.s")
 
+/*void *func_800E5A8C(s32 arg0, void *arg1) {
+    s32 temp_v1;
+    u8 temp_t1;
+    void *temp_v0;
+    void *temp_v0_2;
+
+    temp_v0_2 = &gAudioContext + (gAudioContext.unk5BD8 * 8);
+    temp_v0_2->unk5C50 = arg0;
+    temp_v0 = temp_v0_2 + 0x5C50;
+    temp_v0->unk4 = (s32) *arg1;
+    temp_t1 = gAudioContext.unk5BD8 + 1;
+    temp_v1 = temp_t1 & 0xFF;
+    gAudioContext.unk5BD8 = temp_t1;
+    if (gAudioContext.unk5BD9 == temp_v1) {
+        gAudioContext.unk5BD8 = (u8) (temp_v1 - 1);
+    }
+    return temp_v0;
+}*/
+
+
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E5AD8.s")
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E5AFC.s")
+
+/*void func_800E5AFC(s32 arg0, ? arg1) {
+    func_800E5A8C(arg0, (void *) &arg1);
+}*/
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E5B20.s")
 
@@ -282,6 +312,11 @@ s8 *func_800E27F8(s32 arg0) {
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E64F8.s")
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E651C.s")
+/*
+void func_800E651C(s32 arg0, s32 arg1) {
+    func_800E5AFC((arg1 & 0xFF) | 0xFD000000, arg0, arg1);
+}
+*/
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E6550.s")
 
