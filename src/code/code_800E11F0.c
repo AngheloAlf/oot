@@ -295,4 +295,8 @@ s8 *func_800E27F8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/Audio_NextRandom.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E6818.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E6818.s")
+
+void func_800E6818(void) {
+    func_800E59F4();
+}
