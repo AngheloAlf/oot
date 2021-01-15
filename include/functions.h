@@ -2056,6 +2056,7 @@ void func_800E1148(void);
 void func_800E1618(s32 arg0);
 s32 Audio_IsBankLoadComplete(s32 bankId);
 s32 Audio_IsSeqLoadComplete(s32 seqId);
+s32 func_800E19A0(s32 bankId);
 void Audio_SetBankLoadStatus(s32 bankId, u8 status);
 void Audio_SetSeqLoadStatus(s32 seqId, u8 status);
 // ? func_800E1A78(?);
