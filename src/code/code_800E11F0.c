@@ -287,7 +287,11 @@ s8 *func_800E27F8(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E6590.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E6680.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E6680.s")
+
+void func_800E6680(void) {
+    func_800E66C0(0);
+}
 
 //#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E66A0.s")
 
