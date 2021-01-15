@@ -26,7 +26,21 @@ s32 Audio_IsBankLoadComplete(s32 bankId) {
 }
 
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/Audio_IsSeqLoadComplete.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/Audio_IsSeqLoadComplete.s")
+
+s32 Audio_IsSeqLoadComplete(s32 seqId) {
+    if (seqId == 0xFF) {
+        return 1;
+    }
+    if (gAudioContext.gSeqLoadStatus[seqId] >= 2) {
+        return 1;
+    }
+    if (gAudioContext.gSeqLoadStatus[func_800E2768(0, seqId)] >= 2) {
+        return 1;
+    }
+    return 0;
+}
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E19A0.s")
 
