@@ -95,7 +95,26 @@ s32 func_800E1B68(s32 arg0, s32 *arg1) {
     return sp28;
 }
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1C18.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1C18.s")
+
+void func_800E1C18(s32 arg0, s32 arg1) {
+    s32 aux;
+    s32 ptr_ignored;
+
+    if (arg0 >= gAudioContext.unk_2840) {
+        return;
+    }
+
+    aux = (arg1 & 2);
+    if (aux != 0) {
+        func_800E1B68(arg0, &ptr_ignored);
+    }
+    aux = (arg1 & 1);
+    if (aux != 0) {
+        func_800E22C4(arg0);
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1C78.s")
 
