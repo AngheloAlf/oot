@@ -120,7 +120,14 @@ void func_800E1C18(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1D64.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1E34.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1E34.s")
+
+void func_800E1E34(s32 arg0, s32 arg1, s32 arg2, s32 arg3, OSMesgQueue *arg4) {
+    if (func_800E2CE0(arg0, arg1, arg2, arg3, arg4) == 0) {
+        osSendMesg(arg4, (void *)-1, 0);
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1E6C.s")
 
