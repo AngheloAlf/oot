@@ -2086,7 +2086,7 @@ void *func_800E27A4(s32 arg0, s32 arg1);
 s8 *func_800E27F8(s32 arg0);
 // ? func_800E283C(?);
 // ? func_800E2AA8(?);
-// ? func_800E2BCC(?);
+void func_800E2BCC(void *arg0, void *arg1, void *arg2, void *arg3);
 // ? func_800E2BE0(?);
 // ? func_800E2CE0(?);
 // ? func_800E2FEC(?);
