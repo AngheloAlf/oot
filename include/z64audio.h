@@ -654,6 +654,11 @@ typedef struct {
     /* 0x10 */ s32 unk_10;
 } AudioStruct0D68; // size = 0x14
 
+typedef union {
+    u8 *ptr_u8;
+    u16 *ptr_u16;
+} AudioUnion283C;
+
 typedef struct {
     /* 0x0000 */ char unk_0000;
     /* 0x0001 */ s8 gNumSynthesisReverbs;
@@ -672,7 +677,9 @@ typedef struct {
     /* 0x2630 */ s8* unk_2830;
     /* 0x2834 */ s16* unk_2834;
     /* 0x2838 */ ManyStruct_800E0E0C_2* unk_2838;
-    /* 0x283C */ char unk_283C[0x8];
+    /* 0x283C */ AudioUnion283C unk_283C;
+    /* 0x2840 */ u16 unk_2840;
+    /* 0x2842 */ char unk_2842[0x2];
     /* 0x2844 */ CtlEntry* gCtlEntries;
     /* 0x2848 */ AudioBufferParameters gAudioBufferParameters;
     /* 0x2870 */ f32 unk_2870;

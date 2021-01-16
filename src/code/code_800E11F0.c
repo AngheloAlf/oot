@@ -68,7 +68,32 @@ s32 func_800E19A0(s32 bankId) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1B08.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1B68.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1B68.s")
+
+s32 func_800E1B68(s32 arg0, s32 *arg1) {
+    s32 i;
+
+    u32 s0;
+    u8 s2;
+    s32 sp28;
+
+    if(gAudioContext.unk_2840 <= arg0){
+        return 0;
+    }
+
+    s2 = 0xFF;
+
+    s0 = gAudioContext.unk_283C.ptr_u16[arg0];
+
+    i = gAudioContext.unk_283C.ptr_u8[s0++];
+    for(; i > 0; i--){
+        s2 = (gAudioContext.unk_283C.ptr_u8)[s0++];
+        sp28 = func_800E2454(s2);
+    }
+
+    *arg1 = s2;
+    return sp28;
+}
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E1C18.s")
 
