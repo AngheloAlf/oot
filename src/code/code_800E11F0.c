@@ -140,7 +140,21 @@ void func_800E1C18(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E217C.s")
 
-#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E22C4.s")
+//#pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E22C4.s")
+
+s8 *func_800E22C4(s32 arg0) {
+    s8 *retval;
+    s32 ptr_ignored;
+    s32 seqId;
+
+    seqId = func_800E2768(0, arg0);
+    if (gAudioContext.gSeqLoadStatus[seqId] == 1) {
+        return NULL;
+    }
+    retval = func_800E2558(0, arg0, &ptr_ignored);
+    return retval;
+}
+
 
 #pragma GLOBAL_ASM("asm/non_matchings/code/code_800E11F0/func_800E2318.s")
 
