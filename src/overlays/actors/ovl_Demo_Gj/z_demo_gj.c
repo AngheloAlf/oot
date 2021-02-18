@@ -27,6 +27,12 @@ extern CollisionHeader gGanonsCastleRubble7Col;
 extern Gfx gGanonsCastleRubble8DL[];
 extern CollisionHeader gGanonsCastleRubble8Col;
 
+
+extern s32 gShouldDraw[11];
+extern s32 gSpecialNumber[11];
+extern s32 gSpecialNumber2[11];
+static s32 sCounter[11];
+
 static ColliderCylinderInitType1 sCylinderInit1 = {
     {
         COLTYPE_HIT0,
@@ -122,6 +128,55 @@ s32 DemoGj_HitByExplosion(DemoGj* this, GlobalContext* globalCtx, ColliderCylind
 }
 
 void DemoGj_DestroyCylinder(DemoGj* this, GlobalContext* globalCtx) {
+
+    switch (DemoGj_GetType(this)) {
+        case DEMOGJ_TYPE_AROUNDARENA:
+            sCounter[0] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_08:
+            sCounter[1] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_09:
+            sCounter[2] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_10:
+            sCounter[3] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_11:
+            sCounter[4] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_12:
+            sCounter[5] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_13:
+            sCounter[6] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_14:
+            sCounter[7] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_16:
+            sCounter[8] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_17:
+            sCounter[9] -= 1;
+            break;
+
+        case DEMOGJ_TYPE_22:
+            sCounter[10] -= 1;
+            break;
+    }
+
+
+
     switch (DemoGj_GetType(this)) {
         case DEMOGJ_TYPE_16:
             Collider_DestroyCylinder(globalCtx, &this->cylinders[0]);
@@ -938,6 +993,10 @@ void DemoGj_UpdateRubbleAroundArena(DemoGj* this, GlobalContext* globalCtx) {
     func_8097A07C(this, globalCtx);
     func_8097A2B4(this, globalCtx);
     func_8097AC30(this, globalCtx);
+    gSpecialNumber[0] = !this->flag1;
+    gSpecialNumber[1] = globalCtx->gameplayFrames % 3;
+    gShouldDraw[0] = true;
+    gShouldDraw[1] = true;
 }
 
 void DemoGj_DrawRubbleAroundArena(DemoGj* this, GlobalContext* globalCtx) {
@@ -1284,12 +1343,17 @@ static DemoGjUpdateFunc sUpdateFuncs[] = {
 
 void DemoGj_Update(Actor* thisx, GlobalContext* globalCtx) {
     DemoGj* this = THIS;
+    int i;
 
     if (this->updateMode < 0 || this->updateMode >= ARRAY_COUNT(sUpdateFuncs) ||
         sUpdateFuncs[this->updateMode] == NULL) {
         // The main mode is abnormal!!!!!!!!!!!!!!!!!!!!!!!!!
         osSyncPrintf(VT_FGCOL(RED) "メインモードがおかしい!!!!!!!!!!!!!!!!!!!!!!!!!\n" VT_RST);
         return;
+    }
+
+    for (i = 0; i < ARRAY_COUNT(sCounter); i++) {
+        gSpecialNumber[i] = sCounter[i];
     }
 
     sUpdateFuncs[this->updateMode](this, globalCtx);
@@ -1300,46 +1364,68 @@ void DemoGj_Init(Actor* thisx, GlobalContext* globalCtx) {
 
     switch (DemoGj_GetType(this)) {
         case DEMOGJ_TYPE_AROUNDARENA:
+            sCounter[0] += 1;
+            //gShouldDraw[0] = true;
             func_8097ADC0(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_08:
+            sCounter[1] += 1;
+            //gShouldDraw[1] = true;
             func_80979FD0(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_09:
+            sCounter[2] += 1;
+            //gShouldDraw[2] = true;
             func_8097A208(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_10:
+            sCounter[3] += 1;
+            //gShouldDraw[3] = true;
             func_8097A444(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_11:
+            sCounter[4] += 1;
+            //gShouldDraw[4] = true;
             func_8097A614(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_12:
+            sCounter[5] += 1;
+            //gShouldDraw[5] = true;
             func_8097A7E4(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_13:
+            sCounter[6] += 1;
+            //gShouldDraw[6] = true;
             func_8097A9B4(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_14:
+            sCounter[7] += 1;
+            //gShouldDraw[7] = true;
             func_8097AB84(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_16:
+            sCounter[8] += 1;
+            //gShouldDraw[8] = true;
             func_8097AE5C(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_17:
+            sCounter[9] += 1;
+            //gShouldDraw[9] = true;
             func_8097B3C4(this, globalCtx);
             return;
 
         case DEMOGJ_TYPE_22:
+            sCounter[10] += 1;
+            //gShouldDraw[10] = true;
             func_8097B8E8(this, globalCtx);
             return;
 

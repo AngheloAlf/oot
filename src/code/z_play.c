@@ -1047,6 +1047,32 @@ void Gameplay_DrawOverlayElements(GlobalContext* globalCtx) {
     }
 }
 
+
+s32 gShouldDraw[11];
+s32 gSpecialNumber[11];
+s32 gSpecialNumber2[11];
+void Handle_DrawCOUNT(GlobalContext* globalCtx, Gfx **gfxP)
+{
+    GfxPrint printer;
+    int i;
+    GfxPrint_Init(&printer);
+    GfxPrint_Open(&printer, *gfxP);
+    for (i = 0; i < ARRAY_COUNT(gShouldDraw); ++i) {
+        if (!gShouldDraw[i]){
+            continue;
+        }
+        GfxPrint_SetPos(&printer, 3, 7 + i);
+        GfxPrint_SetColor(&printer, 255, 255, 55, 32);
+        GfxPrint_Printf(&printer, "%02i: ", i);
+        GfxPrint_SetColor(&printer, 255, 255, 55, 32);
+        GfxPrint_Printf(&printer, "%02i ", gSpecialNumber[i]);
+        //GfxPrint_Printf(&printer, "%02i ", gSpecialNumber2[i]);
+    }
+    *gfxP = GfxPrint_Close(&printer);
+    GfxPrint_Destroy(&printer);
+}
+
+
 void Gameplay_Draw(GlobalContext* globalCtx) {
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
     Lights* sp228;
@@ -1301,6 +1327,17 @@ void Gameplay_Draw(GlobalContext* globalCtx) {
     }
 
     Camera_Finish(ACTIVE_CAM);
+
+    // Added debug print.
+    {
+        Gfx* prevDisplayList = POLY_OPA_DISP;
+        Gfx* gfxP = Graph_GfxPlusOne(POLY_OPA_DISP);
+        gSPDisplayList(OVERLAY_DISP++, gfxP);
+        Handle_DrawCOUNT(globalCtx, &gfxP);
+        gSPEndDisplayList(gfxP++);
+        Graph_BranchDlist(prevDisplayList, gfxP);
+        POLY_OPA_DISP = gfxP;
+    }
 
     CLOSE_DISPS(gfxCtx, "../z_play.c", 4508);
 }
