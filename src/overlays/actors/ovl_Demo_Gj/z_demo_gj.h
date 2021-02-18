@@ -20,6 +20,7 @@ typedef struct DemoGj {
     /* 0x0184 */ ColliderCylinder cylinders[3];
     /* 0x0268 */ s32 flag3; // This actor never sets this flag, but it reads it. If set to `true` and the actor type is DEMOGJ_TYPE_16, DEMOGJ_TYPE_17 or DEMOGJ_TYPE_22, then the actor will be killed and will drop the specified amount of collectibles.
     /* 0x026C */ Vec3f unk_26C; // This actor never sets this. Specifies which direction will this actor explode when killed using `flag3`.
+    s32 paramIndex;
 } DemoGj; // size = 0x0278
 
 extern const ActorInit Demo_Gj_InitVars;

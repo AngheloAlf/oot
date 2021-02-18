@@ -1048,6 +1048,14 @@ void Gameplay_DrawOverlayElements(GlobalContext* globalCtx) {
 }
 
 
+struct NumbersPrint {
+    s32 shouldDraw;
+    s32 key;
+    s32 value;
+};
+
+struct NumbersPrint gMapPrint[11];
+
 s32 gShouldDraw[11];
 s32 gSpecialNumber[11];
 s32 gSpecialNumber2[11];
@@ -1055,18 +1063,19 @@ void Handle_DrawCOUNT(GlobalContext* globalCtx, Gfx **gfxP)
 {
     GfxPrint printer;
     int i;
+    int j = 0;
     GfxPrint_Init(&printer);
     GfxPrint_Open(&printer, *gfxP);
-    for (i = 0; i < ARRAY_COUNT(gShouldDraw); ++i) {
-        if (!gShouldDraw[i]){
+    for (i = 0; i < ARRAY_COUNT(gMapPrint); ++i) {
+        if (!gMapPrint[i].shouldDraw){
             continue;
         }
-        GfxPrint_SetPos(&printer, 3, 7 + i);
+        GfxPrint_SetPos(&printer, 3, 7 + j);
         GfxPrint_SetColor(&printer, 255, 255, 55, 32);
-        GfxPrint_Printf(&printer, "%02i: ", i);
+        GfxPrint_Printf(&printer, "%02i: ", gMapPrint[i].key);
         GfxPrint_SetColor(&printer, 255, 255, 55, 32);
-        GfxPrint_Printf(&printer, "%02i ", gSpecialNumber[i]);
-        //GfxPrint_Printf(&printer, "%02i ", gSpecialNumber2[i]);
+        GfxPrint_Printf(&printer, "%02i ", gMapPrint[i].value);
+        j++
     }
     *gfxP = GfxPrint_Close(&printer);
     GfxPrint_Destroy(&printer);

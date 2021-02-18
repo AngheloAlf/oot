@@ -27,10 +27,13 @@ extern CollisionHeader gGanonsCastleRubble7Col;
 extern Gfx gGanonsCastleRubble8DL[];
 extern CollisionHeader gGanonsCastleRubble8Col;
 
+struct NumbersPrint {
+    s32 shouldDraw;
+    s32 key;
+    s32 value;
+};
 
-extern s32 gShouldDraw[11];
-extern s32 gSpecialNumber[11];
-extern s32 gSpecialNumber2[11];
+extern struct NumbersPrint gMapPrint[11];
 static s32 sCounter[11];
 
 static ColliderCylinderInitType1 sCylinderInit1 = {
@@ -128,6 +131,31 @@ s32 DemoGj_HitByExplosion(DemoGj* this, GlobalContext* globalCtx, ColliderCylind
 }
 
 void DemoGj_DestroyCylinder(DemoGj* this, GlobalContext* globalCtx) {
+    switch (DemoGj_GetType(this)) {
+        case DEMOGJ_TYPE_16:
+            Collider_DestroyCylinder(globalCtx, &this->cylinders[0]);
+            Collider_DestroyCylinder(globalCtx, &this->cylinders[1]);
+            Collider_DestroyCylinder(globalCtx, &this->cylinders[2]);
+            break;
+
+        case DEMOGJ_TYPE_17:
+            Collider_DestroyCylinder(globalCtx, &this->cylinders[0]);
+            Collider_DestroyCylinder(globalCtx, &this->cylinders[1]);
+            Collider_DestroyCylinder(globalCtx, &this->cylinders[2]);
+            return;
+
+        case DEMOGJ_TYPE_22:
+            Collider_DestroyCylinder(globalCtx, &this->cylinders[0]);
+            return;
+    }
+}
+
+void DemoGj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+    DemoGj* this = THIS;
+
+
+    DemoGj_DestroyCylinder(this, globalCtx);
+    DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 
     switch (DemoGj_GetType(this)) {
         case DEMOGJ_TYPE_AROUNDARENA:
@@ -174,33 +202,6 @@ void DemoGj_DestroyCylinder(DemoGj* this, GlobalContext* globalCtx) {
             sCounter[10] -= 1;
             break;
     }
-
-
-
-    switch (DemoGj_GetType(this)) {
-        case DEMOGJ_TYPE_16:
-            Collider_DestroyCylinder(globalCtx, &this->cylinders[0]);
-            Collider_DestroyCylinder(globalCtx, &this->cylinders[1]);
-            Collider_DestroyCylinder(globalCtx, &this->cylinders[2]);
-            break;
-
-        case DEMOGJ_TYPE_17:
-            Collider_DestroyCylinder(globalCtx, &this->cylinders[0]);
-            Collider_DestroyCylinder(globalCtx, &this->cylinders[1]);
-            Collider_DestroyCylinder(globalCtx, &this->cylinders[2]);
-            return;
-
-        case DEMOGJ_TYPE_22:
-            Collider_DestroyCylinder(globalCtx, &this->cylinders[0]);
-            return;
-    }
-}
-
-void DemoGj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
-    DemoGj* this = THIS;
-
-    DemoGj_DestroyCylinder(this, globalCtx);
-    DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
 void DemoGj_PlayExplosionSfx(DemoGj* this, GlobalContext* globalCtx) {
@@ -993,10 +994,14 @@ void DemoGj_UpdateRubbleAroundArena(DemoGj* this, GlobalContext* globalCtx) {
     func_8097A07C(this, globalCtx);
     func_8097A2B4(this, globalCtx);
     func_8097AC30(this, globalCtx);
-    gSpecialNumber[0] = !this->flag1;
-    gSpecialNumber[1] = globalCtx->gameplayFrames % 3;
-    gShouldDraw[0] = true;
-    gShouldDraw[1] = true;
+    /*
+    gMapPrint[0].key = 0;
+    gMapPrint[1].key = 1;
+    gMapPrint[0].value = !this->flag1;
+    gMapPrint[1].value = globalCtx->gameplayFrames % 3;
+    gMapPrint[0].shouldDraw = true;
+    gMapPrint[1].shouldDraw = true;
+    */
 }
 
 void DemoGj_DrawRubbleAroundArena(DemoGj* this, GlobalContext* globalCtx) {
@@ -1353,7 +1358,7 @@ void DemoGj_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 
     for (i = 0; i < ARRAY_COUNT(sCounter); i++) {
-        gSpecialNumber[i] = sCounter[i];
+        gMapPrint[i].value = sCounter[i];
     }
 
     sUpdateFuncs[this->updateMode](this, globalCtx);
