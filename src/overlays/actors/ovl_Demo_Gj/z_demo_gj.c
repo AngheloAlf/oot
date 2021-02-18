@@ -33,8 +33,8 @@ struct NumbersPrint {
     s32 value;
 };
 
-extern struct NumbersPrint gMapPrint[11];
-static s32 sCounter[11];
+extern struct NumbersPrint gMapPrint[32];
+static s32 sCounter[32];
 
 static ColliderCylinderInitType1 sCylinderInit1 = {
     {
@@ -152,55 +152,14 @@ void DemoGj_DestroyCylinder(DemoGj* this, GlobalContext* globalCtx) {
 
 void DemoGj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     DemoGj* this = THIS;
-
+    s32 type = DemoGj_GetType(this);
 
     DemoGj_DestroyCylinder(this, globalCtx);
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 
-    switch (DemoGj_GetType(this)) {
-        case DEMOGJ_TYPE_AROUNDARENA:
-            sCounter[0] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_08:
-            sCounter[1] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_09:
-            sCounter[2] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_10:
-            sCounter[3] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_11:
-            sCounter[4] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_12:
-            sCounter[5] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_13:
-            sCounter[6] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_14:
-            sCounter[7] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_16:
-            sCounter[8] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_17:
-            sCounter[9] -= 1;
-            break;
-
-        case DEMOGJ_TYPE_22:
-            sCounter[10] -= 1;
-            break;
+    sCounter[type]--;
+    if (sCounter[type] == 0) {
+        gMapPrint[type].shouldDraw = false;
     }
 }
 
@@ -1348,7 +1307,7 @@ static DemoGjUpdateFunc sUpdateFuncs[] = {
 
 void DemoGj_Update(Actor* thisx, GlobalContext* globalCtx) {
     DemoGj* this = THIS;
-    int i;
+    s32 type = DemoGj_GetType(this);
 
     if (this->updateMode < 0 || this->updateMode >= ARRAY_COUNT(sUpdateFuncs) ||
         sUpdateFuncs[this->updateMode] == NULL) {
@@ -1357,82 +1316,63 @@ void DemoGj_Update(Actor* thisx, GlobalContext* globalCtx) {
         return;
     }
 
-    for (i = 0; i < ARRAY_COUNT(sCounter); i++) {
-        gMapPrint[i].value = sCounter[i];
-    }
-
+    gMapPrint[type].value = sCounter[type];
     sUpdateFuncs[this->updateMode](this, globalCtx);
 }
 
 void DemoGj_Init(Actor* thisx, GlobalContext* globalCtx) {
     DemoGj* this = THIS;
+    s32 type = DemoGj_GetType(this);
+
+    sCounter[type]++;
+    gMapPrint[type].shouldDraw = true;
+    gMapPrint[type].key = type;
+    gMapPrint[type].value = sCounter[type];
 
     switch (DemoGj_GetType(this)) {
         case DEMOGJ_TYPE_AROUNDARENA:
-            sCounter[0] += 1;
-            //gShouldDraw[0] = true;
             func_8097ADC0(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_08:
-            sCounter[1] += 1;
-            //gShouldDraw[1] = true;
             func_80979FD0(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_09:
-            sCounter[2] += 1;
-            //gShouldDraw[2] = true;
             func_8097A208(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_10:
-            sCounter[3] += 1;
-            //gShouldDraw[3] = true;
             func_8097A444(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_11:
-            sCounter[4] += 1;
-            //gShouldDraw[4] = true;
             func_8097A614(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_12:
-            sCounter[5] += 1;
-            //gShouldDraw[5] = true;
             func_8097A7E4(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_13:
-            sCounter[6] += 1;
-            //gShouldDraw[6] = true;
             func_8097A9B4(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_14:
-            sCounter[7] += 1;
-            //gShouldDraw[7] = true;
             func_8097AB84(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_16:
-            sCounter[8] += 1;
-            //gShouldDraw[8] = true;
             func_8097AE5C(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_17:
-            sCounter[9] += 1;
-            //gShouldDraw[9] = true;
             func_8097B3C4(this, globalCtx);
-            return;
+            break;
 
         case DEMOGJ_TYPE_22:
-            sCounter[10] += 1;
-            //gShouldDraw[10] = true;
             func_8097B8E8(this, globalCtx);
-            return;
+            break;
 
         default:
             // Demo_Gj_Actor_ct There is no such argument!!!!!!!!!!!!!!!!!!!!!!
