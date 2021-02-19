@@ -31,6 +31,8 @@ struct NumbersPrint {
     s32 shouldDraw;
     s32 key;
     s32 value;
+    char* strKey;
+    s32 mode;
 };
 
 extern struct NumbersPrint gMapPrint[32];
@@ -444,6 +446,13 @@ void DemoGj_Reflect(DemoGj* this, GlobalContext* globalCtx) {
 
 s32 func_809797E4(DemoGj* this, u8 arg1) {
     BossGanon2* ganon = this->ganon;
+
+    if (ganon != NULL) {
+        gMapPrint[0].shouldDraw = true;
+        gMapPrint[0].mode = 1;
+        gMapPrint[0].strKey = "ganon->unk_314";
+        gMapPrint[0].value = ganon->unk_314;
+    }
 
     if ((ganon != NULL) && (ganon->unk_314 == arg1)) {
         return true;

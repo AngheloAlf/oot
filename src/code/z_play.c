@@ -1052,6 +1052,8 @@ struct NumbersPrint {
     s32 shouldDraw;
     s32 key;
     s32 value;
+    char* strKey;
+    s32 mode;
 };
 
 struct NumbersPrint gMapPrint[32];
@@ -1069,7 +1071,11 @@ void Handle_DrawCOUNT(GlobalContext* globalCtx, Gfx **gfxP)
         }
         GfxPrint_SetPos(&printer, 3, 7 + j);
         GfxPrint_SetColor(&printer, 255, 255, 55, 32);
-        GfxPrint_Printf(&printer, "%02i: ", gMapPrint[i].key);
+        if (gMapPrint[i].mode == 1 && gMapPrint[i].strKey != NULL) {
+            GfxPrint_Printf(&printer, "%s: ", gMapPrint[i].strKey);
+        } else {
+            GfxPrint_Printf(&printer, "%02i: ", gMapPrint[i].key);
+        }
         GfxPrint_SetColor(&printer, 255, 255, 55, 32);
         GfxPrint_Printf(&printer, "%02i ", gMapPrint[i].value);
         j++;
