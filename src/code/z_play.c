@@ -1344,6 +1344,12 @@ void Gameplay_Draw(GlobalContext* globalCtx) {
     {
         Gfx* prevDisplayList = POLY_OPA_DISP;
         Gfx* gfxP = Graph_GfxPlusOne(POLY_OPA_DISP);
+
+        gMapPrint[1].shouldDraw = true;
+        gMapPrint[1].mode = 1;
+        gMapPrint[1].strKey = "sceneSetupIndex";
+        gMapPrint[1].value = gSaveContext.sceneSetupIndex;
+
         gSPDisplayList(OVERLAY_DISP++, gfxP);
         Handle_DrawCOUNT(globalCtx, &gfxP);
         gSPEndDisplayList(gfxP++);

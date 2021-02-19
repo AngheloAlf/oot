@@ -167,7 +167,15 @@ void DemoGj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
 
     sCounter[type]--;
     if (sCounter[type] == 0) {
+        int i;
         gMapPrint[type].shouldDraw = false;
+
+        for (i = 0; i < ARRAY_COUNT(sCounter); ++i) {
+            if (sCounter[i] > 0) {
+                return;
+            }
+        }
+        gMapPrint[0].shouldDraw = false;
     }
 }
 
