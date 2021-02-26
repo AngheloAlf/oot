@@ -15,6 +15,18 @@ void EnJsjutan_Destroy(Actor* thisx, GlobalContext* globalCtx);
 void EnJsjutan_Update(Actor* thisx, GlobalContext* globalCtx);
 void EnJsjutan_Draw(Actor* thisx, GlobalContext* globalCtx);
 
+
+struct NumbersPrint {
+    s32 shouldDraw;
+    s32 key;
+    s32 value;
+    char* strKey;
+    s32 mode;
+};
+
+extern struct NumbersPrint gMapPrint[32];
+
+
 const ActorInit En_Jsjutan_InitVars = {
     ACTOR_EN_JSJUTAN,
     ACTORCAT_NPC,
@@ -52,6 +64,11 @@ void EnJsjutan_Init(Actor* thisx, GlobalContext* globalCtx) {
     s32 pad;
     CollisionHeader* header = NULL;
 
+    gMapPrint[0].shouldDraw = true;
+    gMapPrint[0].mode = 1;
+    gMapPrint[0].strKey = "params";
+    gMapPrint[0].value = this->dyna.actor.params;
+
     this->dyna.actor.flags = this->dyna.actor.flags & ~1;
     DynaPolyActor_Init(&this->dyna, DPM_UNK);
     CollisionHeader_GetVirtual(&D_80A8E400, &header);
@@ -63,6 +80,11 @@ void EnJsjutan_Init(Actor* thisx, GlobalContext* globalCtx) {
 
 void EnJsjutan_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     EnJsjutan* this = THIS;
+    s32 i;
+
+    for (i = 0; i < 7; i++) {
+        gMapPrint[i].shouldDraw = false;
+    }
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
@@ -94,7 +116,7 @@ void func_80A89860(EnJsjutan* this, GlobalContext* globalCtx) {
     }
 }
 
-#ifdef NON_MATCHING
+#if 1
 void func_80A89A6C(EnJsjutan* this, GlobalContext* globalCtx) {
     u8 isPlayerOnTop;
     s16 i;
@@ -416,6 +438,31 @@ void func_80A89A6C(EnJsjutan* this, GlobalContext* globalCtx);
 
 void EnJsjutan_Update(Actor* thisx, GlobalContext* globalCtx) {
     EnJsjutan* this = THIS;
+    s32 i;
+
+    for (i = 1; i < 7; i++){
+        gMapPrint[i].shouldDraw = true;
+        gMapPrint[i].mode = 1;
+    }
+
+    gMapPrint[1].strKey = "unk_164";
+    gMapPrint[1].value = this->unk_164;
+
+    gMapPrint[2].strKey = "actorYPos_168";
+    gMapPrint[2].value = this->unk_168;
+
+    gMapPrint[3].strKey = "shadowAlpha";
+    gMapPrint[3].value = this->shadowAlpha;
+
+    gMapPrint[4].strKey = "unk_170";
+    gMapPrint[4].value = this->unk_170;
+
+    gMapPrint[5].strKey = "unk_174";
+    gMapPrint[5].value = this->unk_174;
+
+    gMapPrint[6].strKey = "unk_175";
+    gMapPrint[6].value = this->unk_175;
+
 
     this->dyna.actor.shape.rot.x = Math_SinS(globalCtx->gameplayFrames * 3000) * 300.0f;
     this->dyna.actor.shape.rot.z = Math_CosS(globalCtx->gameplayFrames * 3500) * 300.0f;

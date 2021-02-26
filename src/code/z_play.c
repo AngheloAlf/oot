@@ -1047,6 +1047,45 @@ void Gameplay_DrawOverlayElements(GlobalContext* globalCtx) {
     }
 }
 
+
+
+struct NumbersPrint {
+    s32 shouldDraw;
+    s32 key;
+    s32 value;
+    char* strKey;
+    s32 mode;
+};
+
+struct NumbersPrint gMapPrint[32];
+
+void Handle_DrawCOUNT(GlobalContext* globalCtx, Gfx **gfxP)
+{
+    GfxPrint printer;
+    int i;
+    int j = 0;
+    GfxPrint_Init(&printer);
+    GfxPrint_Open(&printer, *gfxP);
+    for (i = 0; i < ARRAY_COUNT(gMapPrint); ++i) {
+        if (!gMapPrint[i].shouldDraw){
+            continue;
+        }
+        GfxPrint_SetPos(&printer, 3, 7 + j);
+        GfxPrint_SetColor(&printer, 255, 255, 55, 32);
+        if (gMapPrint[i].mode == 1 && gMapPrint[i].strKey != NULL) {
+            GfxPrint_Printf(&printer, "%s: ", gMapPrint[i].strKey);
+        } else {
+            GfxPrint_Printf(&printer, "%02i: ", gMapPrint[i].key);
+        }
+        GfxPrint_SetColor(&printer, 255, 255, 55, 32);
+        GfxPrint_Printf(&printer, "%02i ", gMapPrint[i].value);
+        j++;
+    }
+    *gfxP = GfxPrint_Close(&printer);
+    GfxPrint_Destroy(&printer);
+}
+
+
 void Gameplay_Draw(GlobalContext* globalCtx) {
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
     Lights* sp228;
@@ -1301,6 +1340,25 @@ void Gameplay_Draw(GlobalContext* globalCtx) {
     }
 
     Camera_Finish(ACTIVE_CAM);
+
+    // Added debug print.
+    {
+        Gfx* prevDisplayList = POLY_OPA_DISP;
+        Gfx* gfxP = Graph_GfxPlusOne(POLY_OPA_DISP);
+
+        /*
+        gMapPrint[1].shouldDraw = true;
+        gMapPrint[1].mode = 1;
+        gMapPrint[1].strKey = "sceneSetupIndex";
+        gMapPrint[1].value = gSaveContext.sceneSetupIndex;
+        */
+
+        gSPDisplayList(OVERLAY_DISP++, gfxP);
+        Handle_DrawCOUNT(globalCtx, &gfxP);
+        gSPEndDisplayList(gfxP++);
+        Graph_BranchDlist(prevDisplayList, gfxP);
+        POLY_OPA_DISP = gfxP;
+    }
 
     CLOSE_DISPS(gfxCtx, "../z_play.c", 4508);
 }
