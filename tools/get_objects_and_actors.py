@@ -70,23 +70,29 @@ def get_objects_id(mode):
 def get_every_initvars(mode):
     actors = {}
 
+    paths = []
     for actor_folder in os.listdir(src_actors_dir):
-        initvars_found = False
+        overlay = []
         actor_path = src_actors_dir + "/" + actor_folder
         for filename in os.listdir(actor_path):
-            actor_name, actor_data = find_initvars_in_file(actor_path + "/" + filename)
+            overlay.append(actor_path + "/" + filename)
+        paths.append(overlay)
+
+    overlay = []
+    for filename in actors_in_code[mode]:
+        overlay.append(src_code_dir + "/" + filename)
+    paths.append(overlay)
+
+    for actor_folder in paths:
+        initvars_found = False
+        for filepath in actor_folder:
+            actor_name, actor_data = find_initvars_in_file(filepath)
             if actor_name is not None:
                 actors[actor_name] = actor_data
                 initvars_found = True
         if not initvars_found:
             #print(actor_path)
             pass
-
-    if mode is not None:
-        for filename in actors_in_code[mode]:
-            actor_name, actor_data = find_initvars_in_file(src_code_dir + "/" + filename)
-            if actor_name is not None:
-                actors[actor_name] = actor_data
 
     return actors
 
@@ -105,30 +111,27 @@ def print_list_as_csv(lis):
 
 
 def main():
-    #description = "Collects actor's functions sizes, and print them in csv format."
     description = "Parse actor's InitVars to get the main object of each actor. The output is printed in csv format."
 
-    #epilog = """\
-#To make a .csv with the data, simply redirect the output. For example:
-#    ./tools/get_actor_sizes.py > results.csv
+    epilog = """\
+To make a .csv with the data, simply redirect the output. For example:
+    ./tools/get_objects_and_actors.py > results.csv
 
-#Flags can be mixed to produce a customized result:
-#    ./tools/get_actor_sizes.py --function-lines --non-matching > status.csv
-#    ./tools/get_actor_sizes.py --non-matching --ignore pull_request.csv > non_matching.csv
-#    ./tools/get_actor_sizes.py --non-matching --function-lines --include-only my_reserved.csv > my_status.csv
-#    """
-    epilog = "epilog"
+To extract actors from MM, use the 'mode' parameter:
+    ./tools/get_objects_and_actors.py --mode mm > results_mm.csv
+    """
     parser = argparse.ArgumentParser(description=description, epilog=epilog, formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("--mode", help="", choices=["oot", "mm"], default="oot")
+    parser.add_argument("--mode", help="Enable some hardcoded fixes for oot or mm. Default: oot", choices=["oot", "mm"], default="oot")
     args = parser.parse_args()
 
-    #objs = find_objects_in_actors(args.mode)
     actors_ids = get_actors_id(args.mode)
     objects_ids = get_objects_id(args.mode)
     actors_vars = get_every_initvars(args.mode)
 
     result = []
     ids_found = set()
+
+    header = ["Actor id", "Actor name", "Overlay name", "Object id", "Object name"]
 
     for actor_name, actor_vars in actors_vars.items():
         actor_id = actor_vars[0]
@@ -140,14 +143,13 @@ def main():
         result.append([actor_id_hex, actor_id, actor_name, object_id_hex, object_id])
         ids_found.add(actor_id)
 
+    # Add missing actors
     for id_name, id_hex in actors_ids.items():
         if id_name not in ids_found:
             result.append([id_hex, id_name, "", "", ""])
-    
-    header = ["Actor id", "Actor name", "Overlay name", "Object id", "Object name"]
-    print(",".join(header))
 
     result.sort()
+    result.insert(0, header)
     print_list_as_csv(result)
 
 
