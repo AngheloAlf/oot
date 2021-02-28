@@ -15,8 +15,12 @@ def ExtractScene(xmlPath, outputPath):
 def ExtractFile(xmlPath, outputPath, genSrcFile, incFilePrefix):
 	execStr = "tools/ZAPD/ZAPD.out e -eh -i %s -b baserom/ -o %s -gsf %i -ifp %i -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt" % (xmlPath, outputPath, genSrcFile, incFilePrefix)
 
-	print(execStr)
-	os.system(execStr)
+	print(execStr, flush=True)
+	exit_code = os.system(execStr)
+	if exit_code != 0:
+		# TODO: uncomment when i figure out why the errors happen
+		# exit(exit_code)
+		pass
 
 def ExtractFunc(fullPath):
 	outPath = ("assets/" + fullPath.split("assets/xml/")[1]).split(".xml")[0]

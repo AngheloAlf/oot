@@ -195,7 +195,19 @@ tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_geldb.xml -b baserom/ -o 
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_redead_mask.xml -b baserom/ -o assets/objects/object_gi_redead_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_soul.xml -b baserom/ -o assets/objects/object_gi_soul -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_butterfly.xml -b baserom/ -o assets/objects/object_gi_butterfly -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_insect.xml -b baserom/ -o assets/objects/object_gi_insect -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txtWARNING: Intersection detected from 0x002310:0x002320, conflicts with 0x002318
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_insect.xml -b baserom/ -o assets/objects/object_gi_insect -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_scale.xml -b baserom/ -o assets/objects/object_gi_scale -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_stick.xml -b baserom/ -o assets/objects/object_gi_stick -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_longsword.xml -b baserom/ -o assets/objects/object_gi_longsword -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ki_tan_mask.xml -b baserom/ -o assets/objects/object_gi_ki_tan_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_boomerang.xml -b baserom/ -o assets/objects/object_gi_boomerang -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_jewel.xml -b baserom/ -o assets/objects/object_gi_jewel -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_map.xml -b baserom/ -o assets/objects/object_gi_map -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hoverboots.xml -b baserom/ -o assets/objects/object_gi_hoverboots -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_egg.xml -b baserom/ -o assets/objects/object_gi_egg -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ticketstone.xml -b baserom/ -o assets/objects/object_gi_ticketstone -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/gameplay_keep.xml -b baserom/ -o assets/objects/gameplay_keep -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+WARNING: Intersection detected from 0x002310:0x002320, conflicts with 0x002318
 WARNING: Intersection detected from 0x002318:0x002328, conflicts with 0x002320
 WARNING: Intersection detected from 0x002320:0x002330, conflicts with 0x002328
 WARNING: Intersection detected from 0x002328:0x002338, conflicts with 0x002330
@@ -768,18 +780,6 @@ WARNING: Intersection detected from 0x0034D8:0x0034E8, conflicts with 0x0034E0
 WARNING: Intersection detected from 0x0034E0:0x0034F0, conflicts with 0x0034E8
 WARNING: Intersection detected from 0x0034E8:0x0034F8, conflicts with 0x0034F0
 WARNING: Intersection detected from 0x0034F0:0x003500, conflicts with 0x0034F8
-
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_scale.xml -b baserom/ -o assets/objects/object_gi_scale -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_stick.xml -b baserom/ -o assets/objects/object_gi_stick -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_longsword.xml -b baserom/ -o assets/objects/object_gi_longsword -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ki_tan_mask.xml -b baserom/ -o assets/objects/object_gi_ki_tan_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_boomerang.xml -b baserom/ -o assets/objects/object_gi_boomerang -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_jewel.xml -b baserom/ -o assets/objects/object_gi_jewel -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_map.xml -b baserom/ -o assets/objects/object_gi_map -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hoverboots.xml -b baserom/ -o assets/objects/object_gi_hoverboots -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_egg.xml -b baserom/ -o assets/objects/object_gi_egg -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ticketstone.xml -b baserom/ -o assets/objects/object_gi_ticketstone -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/gameplay_keep.xml -b baserom/ -o assets/objects/gameplay_keep -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_m_arrow.xml -b baserom/ -o assets/objects/object_gi_m_arrow -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_soldout.xml -b baserom/ -o assets/objects/object_gi_soldout -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_zl4.xml -b baserom/ -o assets/objects/object_zl4 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
