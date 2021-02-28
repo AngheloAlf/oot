@@ -47,8 +47,11 @@ def main():
 
         numCores = cpu_count()
         print("Extracting assets with " + str(numCores) + " CPU cores.")
+        # TODO: undo this
         p = Pool(numCores)
-        p.map(ExtractFunc, xmlFiles)
+        #p.map(ExtractFunc, xmlFiles)
+        for xml in xmlFiles:
+            ExtractFunc(xml)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,801 @@
+Extracting assets with 4 CPU cores.
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_field_static.xml -b baserom/ -o assets/textures/icon_item_field_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/do_action_static.xml -b baserom/ -o assets/textures/do_action_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_24_static.xml -b baserom/ -o assets/textures/icon_item_24_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/message_static.xml -b baserom/ -o assets/textures/message_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/parameter_static.xml -b baserom/ -o assets/textures/parameter_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/item_name_static.xml -b baserom/ -o assets/textures/item_name_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_nes_static.xml -b baserom/ -o assets/textures/icon_item_nes_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/nes_font_static.xml -b baserom/ -o assets/textures/nes_font_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/map_name_static.xml -b baserom/ -o assets/textures/map_name_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_dungeon_static.xml -b baserom/ -o assets/textures/icon_item_dungeon_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_gameover_static.xml -b baserom/ -o assets/textures/icon_item_gameover_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/map_grand_static.xml -b baserom/ -o assets/textures/map_grand_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/nintendo_rogo_static.xml -b baserom/ -o assets/textures/nintendo_rogo_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/message_texture_static.xml -b baserom/ -o assets/textures/message_texture_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/title_static.xml -b baserom/ -o assets/textures/title_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/map_i_static.xml -b baserom/ -o assets/textures/map_i_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_static.xml -b baserom/ -o assets/textures/icon_item_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/besitu.xml -b baserom/ -o assets/scenes/test_levels/besitu -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/syotes2.xml -b baserom/ -o assets/scenes/test_levels/syotes2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/syotes.xml -b baserom/ -o assets/scenes/test_levels/syotes -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/sasatest.xml -b baserom/ -o assets/scenes/test_levels/sasatest -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/testroom.xml -b baserom/ -o assets/scenes/test_levels/testroom -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/depth_test.xml -b baserom/ -o assets/scenes/test_levels/depth_test -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/test01.xml -b baserom/ -o assets/scenes/test_levels/test01 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/sutaru.xml -b baserom/ -o assets/scenes/test_levels/sutaru -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot16.xml -b baserom/ -o assets/scenes/overworld/spot16 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot17.xml -b baserom/ -o assets/scenes/overworld/spot17 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot10.xml -b baserom/ -o assets/scenes/overworld/spot10 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot01.xml -b baserom/ -o assets/scenes/overworld/spot01 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot02.xml -b baserom/ -o assets/scenes/overworld/spot02 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/souko.xml -b baserom/ -o assets/scenes/overworld/souko -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot06.xml -b baserom/ -o assets/scenes/overworld/spot06 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot07.xml -b baserom/ -o assets/scenes/overworld/spot07 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot20.xml -b baserom/ -o assets/scenes/overworld/spot20 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot03.xml -b baserom/ -o assets/scenes/overworld/spot03 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot15.xml -b baserom/ -o assets/scenes/overworld/spot15 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot04.xml -b baserom/ -o assets/scenes/overworld/spot04 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot11.xml -b baserom/ -o assets/scenes/overworld/spot11 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot13.xml -b baserom/ -o assets/scenes/overworld/spot13 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot09.xml -b baserom/ -o assets/scenes/overworld/spot09 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot18.xml -b baserom/ -o assets/scenes/overworld/spot18 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot08.xml -b baserom/ -o assets/scenes/overworld/spot08 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/entra.xml -b baserom/ -o assets/scenes/overworld/entra -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot12.xml -b baserom/ -o assets/scenes/overworld/spot12 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot00.xml -b baserom/ -o assets/scenes/overworld/spot00 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot05.xml -b baserom/ -o assets/scenes/overworld/spot05 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hairal_niwa_n.xml -b baserom/ -o assets/scenes/indoors/hairal_niwa_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/tent.xml -b baserom/ -o assets/scenes/indoors/tent -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/tokinoma.xml -b baserom/ -o assets/scenes/indoors/tokinoma -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/labo.xml -b baserom/ -o assets/scenes/indoors/labo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home.xml -b baserom/ -o assets/scenes/indoors/kokiri_home -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hairal_niwa.xml -b baserom/ -o assets/scenes/indoors/hairal_niwa -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/bowling.xml -b baserom/ -o assets/scenes/indoors/bowling -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hut.xml -b baserom/ -o assets/scenes/indoors/hut -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/malon_stable.xml -b baserom/ -o assets/scenes/indoors/malon_stable -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/mahouya.xml -b baserom/ -o assets/scenes/indoors/mahouya -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kakariko.xml -b baserom/ -o assets/scenes/indoors/kakariko -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/yousei_izumi_yoko.xml -b baserom/ -o assets/scenes/indoors/yousei_izumi_yoko -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/takaraya.xml -b baserom/ -o assets/scenes/indoors/takaraya -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home3.xml -b baserom/ -o assets/scenes/indoors/kokiri_home3 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hairal_niwa2.xml -b baserom/ -o assets/scenes/indoors/hairal_niwa2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kenjyanoma.xml -b baserom/ -o assets/scenes/indoors/kenjyanoma -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/syatekijyou.xml -b baserom/ -o assets/scenes/indoors/syatekijyou -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home4.xml -b baserom/ -o assets/scenes/indoors/kokiri_home4 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/impa.xml -b baserom/ -o assets/scenes/indoors/impa -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hakasitarelay.xml -b baserom/ -o assets/scenes/indoors/hakasitarelay -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hylia_labo.xml -b baserom/ -o assets/scenes/indoors/hylia_labo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/miharigoya.xml -b baserom/ -o assets/scenes/indoors/miharigoya -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/yousei_izumi_tate.xml -b baserom/ -o assets/scenes/indoors/yousei_izumi_tate -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home5.xml -b baserom/ -o assets/scenes/indoors/kokiri_home5 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/daiyousei_izumi.xml -b baserom/ -o assets/scenes/indoors/daiyousei_izumi -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/link_home.xml -b baserom/ -o assets/scenes/indoors/link_home -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/nakaniwa.xml -b baserom/ -o assets/scenes/indoors/nakaniwa -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/night_shop.xml -b baserom/ -o assets/scenes/shops/night_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/face_shop.xml -b baserom/ -o assets/scenes/shops/face_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/alley_shop.xml -b baserom/ -o assets/scenes/shops/alley_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/zoora.xml -b baserom/ -o assets/scenes/shops/zoora -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/golon.xml -b baserom/ -o assets/scenes/shops/golon -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/kokiri_shop.xml -b baserom/ -o assets/scenes/shops/kokiri_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/drag.xml -b baserom/ -o assets/scenes/shops/drag -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/shop1.xml -b baserom/ -o assets/scenes/shops/shop1 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/gerudoway.xml -b baserom/ -o assets/scenes/dungeons/gerudoway -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HAKAdan.xml -b baserom/ -o assets/scenes/dungeons/HAKAdan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/Bmori1.xml -b baserom/ -o assets/scenes/dungeons/Bmori1 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/jyasinboss.xml -b baserom/ -o assets/scenes/dungeons/jyasinboss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/men.xml -b baserom/ -o assets/scenes/dungeons/men -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_sonogo.xml -b baserom/ -o assets/scenes/dungeons/ganon_sonogo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_boss.xml -b baserom/ -o assets/scenes/dungeons/ganon_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HIDAN.xml -b baserom/ -o assets/scenes/dungeons/HIDAN -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/bdan_boss.xml -b baserom/ -o assets/scenes/dungeons/bdan_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_tou.xml -b baserom/ -o assets/scenes/dungeons/ganon_tou -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon.xml -b baserom/ -o assets/scenes/dungeons/ganon -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ddan.xml -b baserom/ -o assets/scenes/dungeons/ddan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/jyasinzou.xml -b baserom/ -o assets/scenes/dungeons/jyasinzou -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/bdan.xml -b baserom/ -o assets/scenes/dungeons/bdan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganontika.xml -b baserom/ -o assets/scenes/dungeons/ganontika -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ydan.xml -b baserom/ -o assets/scenes/dungeons/ydan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_demo.xml -b baserom/ -o assets/scenes/dungeons/ganon_demo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/moribossroom.xml -b baserom/ -o assets/scenes/dungeons/moribossroom -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/MIZUsin_bs.xml -b baserom/ -o assets/scenes/dungeons/MIZUsin_bs -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_final.xml -b baserom/ -o assets/scenes/dungeons/ganon_final -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/FIRE_bs.xml -b baserom/ -o assets/scenes/dungeons/FIRE_bs -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ice_doukutu.xml -b baserom/ -o assets/scenes/dungeons/ice_doukutu -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganontikasonogo.xml -b baserom/ -o assets/scenes/dungeons/ganontikasonogo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/MIZUsin.xml -b baserom/ -o assets/scenes/dungeons/MIZUsin -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HAKAdan_bs.xml -b baserom/ -o assets/scenes/dungeons/HAKAdan_bs -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HAKAdanCH.xml -b baserom/ -o assets/scenes/dungeons/HAKAdanCH -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ydan_boss.xml -b baserom/ -o assets/scenes/dungeons/ydan_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ddan_boss.xml -b baserom/ -o assets/scenes/dungeons/ddan_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_day.xml -b baserom/ -o assets/scenes/misc/market_day -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_alley.xml -b baserom/ -o assets/scenes/misc/market_alley -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hiral_demo.xml -b baserom/ -o assets/scenes/misc/hiral_demo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/enrui.xml -b baserom/ -o assets/scenes/misc/enrui -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/kakariko3.xml -b baserom/ -o assets/scenes/misc/kakariko3 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hakaana_ouke.xml -b baserom/ -o assets/scenes/misc/hakaana_ouke -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/kakusiana.xml -b baserom/ -o assets/scenes/misc/kakusiana -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hakaana2.xml -b baserom/ -o assets/scenes/misc/hakaana2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/entra_n.xml -b baserom/ -o assets/scenes/misc/entra_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_ruins.xml -b baserom/ -o assets/scenes/misc/market_ruins -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_night.xml -b baserom/ -o assets/scenes/misc/market_night -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hakaana.xml -b baserom/ -o assets/scenes/misc/hakaana -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/shrine_r.xml -b baserom/ -o assets/scenes/misc/shrine_r -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/shrine_n.xml -b baserom/ -o assets/scenes/misc/shrine_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_alley_n.xml -b baserom/ -o assets/scenes/misc/market_alley_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/kinsuta.xml -b baserom/ -o assets/scenes/misc/kinsuta -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/shrine.xml -b baserom/ -o assets/scenes/misc/shrine -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/turibori.xml -b baserom/ -o assets/scenes/misc/turibori -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/overlays/ovl_Magic_Dark.xml -b baserom/ -o assets/overlays/ovl_Magic_Dark -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_shield_1.xml -b baserom/ -o assets/objects/object_gi_shield_1 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_gerudomask.xml -b baserom/ -o assets/objects/object_gi_gerudomask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_key.xml -b baserom/ -o assets/objects/object_gi_key -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_jya_iron.xml -b baserom/ -o assets/objects/object_jya_iron -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hearts.xml -b baserom/ -o assets/objects/object_gi_hearts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_niwatori.xml -b baserom/ -o assets/objects/object_gi_niwatori -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_goddess.xml -b baserom/ -o assets/objects/object_gi_goddess -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_spot09_obj.xml -b baserom/ -o assets/objects/object_spot09_obj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_shield_3.xml -b baserom/ -o assets/objects/object_gi_shield_3 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_arrowcase.xml -b baserom/ -o assets/objects/object_gi_arrowcase -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_boots_2.xml -b baserom/ -o assets/objects/object_gi_boots_2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_eye_lotion.xml -b baserom/ -o assets/objects/object_gi_eye_lotion -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_syokudai.xml -b baserom/ -o assets/objects/object_syokudai -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_frog.xml -b baserom/ -o assets/objects/object_gi_frog -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_shield_2.xml -b baserom/ -o assets/objects/object_gi_shield_2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_zoramask.xml -b baserom/ -o assets/objects/object_gi_zoramask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bean.xml -b baserom/ -o assets/objects/object_gi_bean -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_sutaru.xml -b baserom/ -o assets/objects/object_gi_sutaru -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_am.xml -b baserom/ -o assets/objects/object_am -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bombpouch.xml -b baserom/ -o assets/objects/object_gi_bombpouch -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_saw.xml -b baserom/ -o assets/objects/object_gi_saw -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_ny.xml -b baserom/ -o assets/objects/object_ny -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_letter.xml -b baserom/ -o assets/objects/object_gi_letter -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_milk.xml -b baserom/ -o assets/objects/object_gi_milk -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/gameplay_dangeon_keep.xml -b baserom/ -o assets/objects/gameplay_dangeon_keep -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_spot11_obj.xml -b baserom/ -o assets/objects/object_spot11_obj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_pachinko.xml -b baserom/ -o assets/objects/object_gi_pachinko -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_fish.xml -b baserom/ -o assets/objects/object_gi_fish -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ocarina_0.xml -b baserom/ -o assets/objects/object_gi_ocarina_0 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_mushroom.xml -b baserom/ -o assets/objects/object_gi_mushroom -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hookshot.xml -b baserom/ -o assets/objects/object_gi_hookshot -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_clothes.xml -b baserom/ -o assets/objects/object_gi_clothes -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bomb_1.xml -b baserom/ -o assets/objects/object_gi_bomb_1 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_vase.xml -b baserom/ -o assets/objects/object_vase -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_melody.xml -b baserom/ -o assets/objects/object_gi_melody -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_dekunuts.xml -b baserom/ -o assets/objects/object_dekunuts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_blkobj.xml -b baserom/ -o assets/objects/object_blkobj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_sword_1.xml -b baserom/ -o assets/objects/object_gi_sword_1 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_sk2.xml -b baserom/ -o assets/objects/object_sk2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_fire.xml -b baserom/ -o assets/objects/object_gi_fire -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_medal.xml -b baserom/ -o assets/objects/object_gi_medal -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_truth_mask.xml -b baserom/ -o assets/objects/object_gi_truth_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bottle.xml -b baserom/ -o assets/objects/object_gi_bottle -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_nuts.xml -b baserom/ -o assets/objects/object_gi_nuts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_prescription.xml -b baserom/ -o assets/objects/object_gi_prescription -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_skj_mask.xml -b baserom/ -o assets/objects/object_gi_skj_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_dekupouch.xml -b baserom/ -o assets/objects/object_gi_dekupouch -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_spot17_obj.xml -b baserom/ -o assets/objects/object_spot17_obj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_rabit_mask.xml -b baserom/ -o assets/objects/object_gi_rabit_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_ydan_objects.xml -b baserom/ -o assets/objects/object_ydan_objects -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_purse.xml -b baserom/ -o assets/objects/object_gi_purse -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_liquid.xml -b baserom/ -o assets/objects/object_gi_liquid -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_powder.xml -b baserom/ -o assets/objects/object_gi_powder -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_seed.xml -b baserom/ -o assets/objects/object_gi_seed -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ocarina.xml -b baserom/ -o assets/objects/object_gi_ocarina -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_glasses.xml -b baserom/ -o assets/objects/object_gi_glasses -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_gerudo.xml -b baserom/ -o assets/objects/object_gi_gerudo -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ghost.xml -b baserom/ -o assets/objects/object_gi_ghost -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_rupy.xml -b baserom/ -o assets/objects/object_gi_rupy -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_dns.xml -b baserom/ -o assets/objects/object_dns -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_gloves.xml -b baserom/ -o assets/objects/object_gi_gloves -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hammer.xml -b baserom/ -o assets/objects/object_gi_hammer -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bow.xml -b baserom/ -o assets/objects/object_gi_bow -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_brokensword.xml -b baserom/ -o assets/objects/object_gi_brokensword -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_geldb.xml -b baserom/ -o assets/objects/object_geldb -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_redead_mask.xml -b baserom/ -o assets/objects/object_gi_redead_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_soul.xml -b baserom/ -o assets/objects/object_gi_soul -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_butterfly.xml -b baserom/ -o assets/objects/object_gi_butterfly -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_insect.xml -b baserom/ -o assets/objects/object_gi_insect -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txtWARNING: Intersection detected from 0x002310:0x002320, conflicts with 0x002318
+WARNING: Intersection detected from 0x002318:0x002328, conflicts with 0x002320
+WARNING: Intersection detected from 0x002320:0x002330, conflicts with 0x002328
+WARNING: Intersection detected from 0x002328:0x002338, conflicts with 0x002330
+WARNING: Intersection detected from 0x002330:0x002340, conflicts with 0x002338
+WARNING: Intersection detected from 0x002338:0x002348, conflicts with 0x002340
+WARNING: Intersection detected from 0x002340:0x002350, conflicts with 0x002348
+WARNING: Intersection detected from 0x002348:0x002358, conflicts with 0x002350
+WARNING: Intersection detected from 0x002350:0x002360, conflicts with 0x002358
+WARNING: Intersection detected from 0x002358:0x002368, conflicts with 0x002360
+WARNING: Intersection detected from 0x002360:0x002370, conflicts with 0x002368
+WARNING: Intersection detected from 0x002368:0x002378, conflicts with 0x002370
+WARNING: Intersection detected from 0x002370:0x002380, conflicts with 0x002378
+WARNING: Intersection detected from 0x002378:0x002388, conflicts with 0x002380
+WARNING: Intersection detected from 0x002380:0x002390, conflicts with 0x002388
+WARNING: Intersection detected from 0x002388:0x002398, conflicts with 0x002390
+WARNING: Intersection detected from 0x002390:0x0023A0, conflicts with 0x002398
+WARNING: Intersection detected from 0x002398:0x0023A8, conflicts with 0x0023A0
+WARNING: Intersection detected from 0x0023A0:0x0023B0, conflicts with 0x0023A8
+WARNING: Intersection detected from 0x0023A8:0x0023B8, conflicts with 0x0023B0
+WARNING: Intersection detected from 0x0023B0:0x0023C0, conflicts with 0x0023B8
+WARNING: Intersection detected from 0x0023B8:0x0023C8, conflicts with 0x0023C0
+WARNING: Intersection detected from 0x0023C0:0x0023D0, conflicts with 0x0023C8
+WARNING: Intersection detected from 0x0023C8:0x0023D8, conflicts with 0x0023D0
+WARNING: Intersection detected from 0x0023D0:0x0023E0, conflicts with 0x0023D8
+WARNING: Intersection detected from 0x0023D8:0x0023E8, conflicts with 0x0023E0
+WARNING: Intersection detected from 0x0023E0:0x0023F0, conflicts with 0x0023E8
+WARNING: Intersection detected from 0x0023E8:0x0023F8, conflicts with 0x0023F0
+WARNING: Intersection detected from 0x0023F0:0x002400, conflicts with 0x0023F8
+WARNING: Intersection detected from 0x0023F8:0x002408, conflicts with 0x002400
+WARNING: Intersection detected from 0x002400:0x002410, conflicts with 0x002408
+WARNING: Intersection detected from 0x002408:0x002418, conflicts with 0x002410
+WARNING: Intersection detected from 0x002410:0x002420, conflicts with 0x002418
+WARNING: Intersection detected from 0x002418:0x002428, conflicts with 0x002420
+WARNING: Intersection detected from 0x002420:0x002430, conflicts with 0x002428
+WARNING: Intersection detected from 0x002428:0x002438, conflicts with 0x002430
+WARNING: Intersection detected from 0x002430:0x002440, conflicts with 0x002438
+WARNING: Intersection detected from 0x002438:0x002448, conflicts with 0x002440
+WARNING: Intersection detected from 0x002440:0x002450, conflicts with 0x002448
+WARNING: Intersection detected from 0x002448:0x002458, conflicts with 0x002450
+WARNING: Intersection detected from 0x002450:0x002460, conflicts with 0x002458
+WARNING: Intersection detected from 0x002458:0x002468, conflicts with 0x002460
+WARNING: Intersection detected from 0x002460:0x002470, conflicts with 0x002468
+WARNING: Intersection detected from 0x002468:0x002478, conflicts with 0x002470
+WARNING: Intersection detected from 0x002470:0x002480, conflicts with 0x002478
+WARNING: Intersection detected from 0x002478:0x002488, conflicts with 0x002480
+WARNING: Intersection detected from 0x002480:0x002490, conflicts with 0x002488
+WARNING: Intersection detected from 0x002488:0x002498, conflicts with 0x002490
+WARNING: Intersection detected from 0x002490:0x0024A0, conflicts with 0x002498
+WARNING: Intersection detected from 0x002498:0x0024A8, conflicts with 0x0024A0
+WARNING: Intersection detected from 0x0024A0:0x0024B0, conflicts with 0x0024A8
+WARNING: Intersection detected from 0x0024A8:0x0024B8, conflicts with 0x0024B0
+WARNING: Intersection detected from 0x0024B0:0x0024C0, conflicts with 0x0024B8
+WARNING: Intersection detected from 0x0024B8:0x0024C8, conflicts with 0x0024C0
+WARNING: Intersection detected from 0x0024C0:0x0024D0, conflicts with 0x0024C8
+WARNING: Intersection detected from 0x0024C8:0x0024D8, conflicts with 0x0024D0
+WARNING: Intersection detected from 0x0024D0:0x0024E0, conflicts with 0x0024D8
+WARNING: Intersection detected from 0x0024D8:0x0024E8, conflicts with 0x0024E0
+WARNING: Intersection detected from 0x0024E0:0x0024F0, conflicts with 0x0024E8
+WARNING: Intersection detected from 0x0024E8:0x0024F8, conflicts with 0x0024F0
+WARNING: Intersection detected from 0x0024F0:0x002500, conflicts with 0x0024F8
+WARNING: Intersection detected from 0x0024F8:0x002508, conflicts with 0x002500
+WARNING: Intersection detected from 0x002500:0x002510, conflicts with 0x002508
+WARNING: Intersection detected from 0x002508:0x002518, conflicts with 0x002510
+WARNING: Intersection detected from 0x002510:0x002520, conflicts with 0x002518
+WARNING: Intersection detected from 0x002518:0x002528, conflicts with 0x002520
+WARNING: Intersection detected from 0x002520:0x002530, conflicts with 0x002528
+WARNING: Intersection detected from 0x002528:0x002538, conflicts with 0x002530
+WARNING: Intersection detected from 0x002530:0x002540, conflicts with 0x002538
+WARNING: Intersection detected from 0x002538:0x002548, conflicts with 0x002540
+WARNING: Intersection detected from 0x002540:0x002550, conflicts with 0x002548
+WARNING: Intersection detected from 0x002548:0x002558, conflicts with 0x002550
+WARNING: Intersection detected from 0x002550:0x002560, conflicts with 0x002558
+WARNING: Intersection detected from 0x002558:0x002568, conflicts with 0x002560
+WARNING: Intersection detected from 0x002560:0x002570, conflicts with 0x002568
+WARNING: Intersection detected from 0x002568:0x002578, conflicts with 0x002570
+WARNING: Intersection detected from 0x002570:0x002580, conflicts with 0x002578
+WARNING: Intersection detected from 0x002578:0x002588, conflicts with 0x002580
+WARNING: Intersection detected from 0x002580:0x002590, conflicts with 0x002588
+WARNING: Intersection detected from 0x002588:0x002598, conflicts with 0x002590
+WARNING: Intersection detected from 0x002590:0x0025A0, conflicts with 0x002598
+WARNING: Intersection detected from 0x002598:0x0025A8, conflicts with 0x0025A0
+WARNING: Intersection detected from 0x0025A0:0x0025B0, conflicts with 0x0025A8
+WARNING: Intersection detected from 0x0025A8:0x0025B8, conflicts with 0x0025B0
+WARNING: Intersection detected from 0x0025B0:0x0025C0, conflicts with 0x0025B8
+WARNING: Intersection detected from 0x0025B8:0x0025C8, conflicts with 0x0025C0
+WARNING: Intersection detected from 0x0025C0:0x0025D0, conflicts with 0x0025C8
+WARNING: Intersection detected from 0x0025C8:0x0025D8, conflicts with 0x0025D0
+WARNING: Intersection detected from 0x0025D0:0x0025E0, conflicts with 0x0025D8
+WARNING: Intersection detected from 0x0025D8:0x0025E8, conflicts with 0x0025E0
+WARNING: Intersection detected from 0x0025E0:0x0025F0, conflicts with 0x0025E8
+WARNING: Intersection detected from 0x0025E8:0x0025F8, conflicts with 0x0025F0
+WARNING: Intersection detected from 0x0025F0:0x002600, conflicts with 0x0025F8
+WARNING: Intersection detected from 0x0025F8:0x002608, conflicts with 0x002600
+WARNING: Intersection detected from 0x002600:0x002610, conflicts with 0x002608
+WARNING: Intersection detected from 0x002608:0x002618, conflicts with 0x002610
+WARNING: Intersection detected from 0x002610:0x002620, conflicts with 0x002618
+WARNING: Intersection detected from 0x002618:0x002628, conflicts with 0x002620
+WARNING: Intersection detected from 0x002620:0x002630, conflicts with 0x002628
+WARNING: Intersection detected from 0x002628:0x002638, conflicts with 0x002630
+WARNING: Intersection detected from 0x002630:0x002640, conflicts with 0x002638
+WARNING: Intersection detected from 0x002638:0x002648, conflicts with 0x002640
+WARNING: Intersection detected from 0x002640:0x002650, conflicts with 0x002648
+WARNING: Intersection detected from 0x002648:0x002658, conflicts with 0x002650
+WARNING: Intersection detected from 0x002650:0x002660, conflicts with 0x002658
+WARNING: Intersection detected from 0x002658:0x002668, conflicts with 0x002660
+WARNING: Intersection detected from 0x002660:0x002670, conflicts with 0x002668
+WARNING: Intersection detected from 0x002668:0x002678, conflicts with 0x002670
+WARNING: Intersection detected from 0x002670:0x002680, conflicts with 0x002678
+WARNING: Intersection detected from 0x002678:0x002688, conflicts with 0x002680
+WARNING: Intersection detected from 0x002680:0x002690, conflicts with 0x002688
+WARNING: Intersection detected from 0x002688:0x002698, conflicts with 0x002690
+WARNING: Intersection detected from 0x002690:0x0026A0, conflicts with 0x002698
+WARNING: Intersection detected from 0x002698:0x0026A8, conflicts with 0x0026A0
+WARNING: Intersection detected from 0x0026A0:0x0026B0, conflicts with 0x0026A8
+WARNING: Intersection detected from 0x0026A8:0x0026B8, conflicts with 0x0026B0
+WARNING: Intersection detected from 0x0026B0:0x0026C0, conflicts with 0x0026B8
+WARNING: Intersection detected from 0x0026B8:0x0026C8, conflicts with 0x0026C0
+WARNING: Intersection detected from 0x0026C0:0x0026D0, conflicts with 0x0026C8
+WARNING: Intersection detected from 0x0026C8:0x0026D8, conflicts with 0x0026D0
+WARNING: Intersection detected from 0x0026D0:0x0026E0, conflicts with 0x0026D8
+WARNING: Intersection detected from 0x0026D8:0x0026E8, conflicts with 0x0026E0
+WARNING: Intersection detected from 0x0026E0:0x0026F0, conflicts with 0x0026E8
+WARNING: Intersection detected from 0x0026E8:0x0026F8, conflicts with 0x0026F0
+WARNING: Intersection detected from 0x0026F0:0x002700, conflicts with 0x0026F8
+WARNING: Intersection detected from 0x0026F8:0x002708, conflicts with 0x002700
+WARNING: Intersection detected from 0x002700:0x002710, conflicts with 0x002708
+WARNING: Intersection detected from 0x002708:0x002718, conflicts with 0x002710
+WARNING: Intersection detected from 0x002710:0x002720, conflicts with 0x002718
+WARNING: Intersection detected from 0x002718:0x002728, conflicts with 0x002720
+WARNING: Intersection detected from 0x002720:0x002730, conflicts with 0x002728
+WARNING: Intersection detected from 0x002728:0x002738, conflicts with 0x002730
+WARNING: Intersection detected from 0x002730:0x002740, conflicts with 0x002738
+WARNING: Intersection detected from 0x002738:0x002748, conflicts with 0x002740
+WARNING: Intersection detected from 0x002740:0x002750, conflicts with 0x002748
+WARNING: Intersection detected from 0x002748:0x002758, conflicts with 0x002750
+WARNING: Intersection detected from 0x002750:0x002760, conflicts with 0x002758
+WARNING: Intersection detected from 0x002758:0x002768, conflicts with 0x002760
+WARNING: Intersection detected from 0x002760:0x002770, conflicts with 0x002768
+WARNING: Intersection detected from 0x002768:0x002778, conflicts with 0x002770
+WARNING: Intersection detected from 0x002770:0x002780, conflicts with 0x002778
+WARNING: Intersection detected from 0x002778:0x002788, conflicts with 0x002780
+WARNING: Intersection detected from 0x002780:0x002790, conflicts with 0x002788
+WARNING: Intersection detected from 0x002788:0x002798, conflicts with 0x002790
+WARNING: Intersection detected from 0x002790:0x0027A0, conflicts with 0x002798
+WARNING: Intersection detected from 0x002798:0x0027A8, conflicts with 0x0027A0
+WARNING: Intersection detected from 0x0027A0:0x0027B0, conflicts with 0x0027A8
+WARNING: Intersection detected from 0x0027A8:0x0027B8, conflicts with 0x0027B0
+WARNING: Intersection detected from 0x0027B0:0x0027C0, conflicts with 0x0027B8
+WARNING: Intersection detected from 0x0027B8:0x0027C8, conflicts with 0x0027C0
+WARNING: Intersection detected from 0x0027C0:0x0027D0, conflicts with 0x0027C8
+WARNING: Intersection detected from 0x0027C8:0x0027D8, conflicts with 0x0027D0
+WARNING: Intersection detected from 0x0027D0:0x0027E0, conflicts with 0x0027D8
+WARNING: Intersection detected from 0x0027D8:0x0027E8, conflicts with 0x0027E0
+WARNING: Intersection detected from 0x0027E0:0x0027F0, conflicts with 0x0027E8
+WARNING: Intersection detected from 0x0027E8:0x0027F8, conflicts with 0x0027F0
+WARNING: Intersection detected from 0x0027F0:0x002800, conflicts with 0x0027F8
+WARNING: Intersection detected from 0x0027F8:0x002808, conflicts with 0x002800
+WARNING: Intersection detected from 0x002800:0x002810, conflicts with 0x002808
+WARNING: Intersection detected from 0x002808:0x002818, conflicts with 0x002810
+WARNING: Intersection detected from 0x002810:0x002820, conflicts with 0x002818
+WARNING: Intersection detected from 0x002818:0x002828, conflicts with 0x002820
+WARNING: Intersection detected from 0x002820:0x002830, conflicts with 0x002828
+WARNING: Intersection detected from 0x002828:0x002838, conflicts with 0x002830
+WARNING: Intersection detected from 0x002830:0x002840, conflicts with 0x002838
+WARNING: Intersection detected from 0x002838:0x002848, conflicts with 0x002840
+WARNING: Intersection detected from 0x002840:0x002850, conflicts with 0x002848
+WARNING: Intersection detected from 0x002848:0x002858, conflicts with 0x002850
+WARNING: Intersection detected from 0x002850:0x002860, conflicts with 0x002858
+WARNING: Intersection detected from 0x002858:0x002868, conflicts with 0x002860
+WARNING: Intersection detected from 0x002860:0x002870, conflicts with 0x002868
+WARNING: Intersection detected from 0x002868:0x002878, conflicts with 0x002870
+WARNING: Intersection detected from 0x002870:0x002880, conflicts with 0x002878
+WARNING: Intersection detected from 0x002878:0x002888, conflicts with 0x002880
+WARNING: Intersection detected from 0x002880:0x002890, conflicts with 0x002888
+WARNING: Intersection detected from 0x002888:0x002898, conflicts with 0x002890
+WARNING: Intersection detected from 0x002890:0x0028A0, conflicts with 0x002898
+WARNING: Intersection detected from 0x002898:0x0028A8, conflicts with 0x0028A0
+WARNING: Intersection detected from 0x0028A0:0x0028B0, conflicts with 0x0028A8
+WARNING: Intersection detected from 0x0028A8:0x0028B8, conflicts with 0x0028B0
+WARNING: Intersection detected from 0x0028B0:0x0028C0, conflicts with 0x0028B8
+WARNING: Intersection detected from 0x0028B8:0x0028C8, conflicts with 0x0028C0
+WARNING: Intersection detected from 0x0028C0:0x0028D0, conflicts with 0x0028C8
+WARNING: Intersection detected from 0x0028C8:0x0028D8, conflicts with 0x0028D0
+WARNING: Intersection detected from 0x0028D0:0x0028E0, conflicts with 0x0028D8
+WARNING: Intersection detected from 0x0028D8:0x0028E8, conflicts with 0x0028E0
+WARNING: Intersection detected from 0x0028E0:0x0028F0, conflicts with 0x0028E8
+WARNING: Intersection detected from 0x0028E8:0x0028F8, conflicts with 0x0028F0
+WARNING: Intersection detected from 0x0028F0:0x002900, conflicts with 0x0028F8
+WARNING: Intersection detected from 0x0028F8:0x002908, conflicts with 0x002900
+WARNING: Intersection detected from 0x002900:0x002910, conflicts with 0x002908
+WARNING: Intersection detected from 0x002908:0x002918, conflicts with 0x002910
+WARNING: Intersection detected from 0x002910:0x002920, conflicts with 0x002918
+WARNING: Intersection detected from 0x002918:0x002928, conflicts with 0x002920
+WARNING: Intersection detected from 0x002920:0x002930, conflicts with 0x002928
+WARNING: Intersection detected from 0x002928:0x002938, conflicts with 0x002930
+WARNING: Intersection detected from 0x002930:0x002940, conflicts with 0x002938
+WARNING: Intersection detected from 0x002938:0x002948, conflicts with 0x002940
+WARNING: Intersection detected from 0x002940:0x002950, conflicts with 0x002948
+WARNING: Intersection detected from 0x002948:0x002958, conflicts with 0x002950
+WARNING: Intersection detected from 0x002950:0x002960, conflicts with 0x002958
+WARNING: Intersection detected from 0x002958:0x002968, conflicts with 0x002960
+WARNING: Intersection detected from 0x002960:0x002970, conflicts with 0x002968
+WARNING: Intersection detected from 0x002968:0x002978, conflicts with 0x002970
+WARNING: Intersection detected from 0x002970:0x002980, conflicts with 0x002978
+WARNING: Intersection detected from 0x002978:0x002988, conflicts with 0x002980
+WARNING: Intersection detected from 0x002980:0x002990, conflicts with 0x002988
+WARNING: Intersection detected from 0x002988:0x002998, conflicts with 0x002990
+WARNING: Intersection detected from 0x002990:0x0029A0, conflicts with 0x002998
+WARNING: Intersection detected from 0x002998:0x0029A8, conflicts with 0x0029A0
+WARNING: Intersection detected from 0x0029A0:0x0029B0, conflicts with 0x0029A8
+WARNING: Intersection detected from 0x0029A8:0x0029B8, conflicts with 0x0029B0
+WARNING: Intersection detected from 0x0029B0:0x0029C0, conflicts with 0x0029B8
+WARNING: Intersection detected from 0x0029B8:0x0029C8, conflicts with 0x0029C0
+WARNING: Intersection detected from 0x0029C0:0x0029D0, conflicts with 0x0029C8
+WARNING: Intersection detected from 0x0029C8:0x0029D8, conflicts with 0x0029D0
+WARNING: Intersection detected from 0x0029D0:0x0029E0, conflicts with 0x0029D8
+WARNING: Intersection detected from 0x0029D8:0x0029E8, conflicts with 0x0029E0
+WARNING: Intersection detected from 0x0029E0:0x0029F0, conflicts with 0x0029E8
+WARNING: Intersection detected from 0x0029E8:0x0029F8, conflicts with 0x0029F0
+WARNING: Intersection detected from 0x0029F0:0x002A00, conflicts with 0x0029F8
+WARNING: Intersection detected from 0x0029F8:0x002A08, conflicts with 0x002A00
+WARNING: Intersection detected from 0x002A00:0x002A10, conflicts with 0x002A08
+WARNING: Intersection detected from 0x002A08:0x002A18, conflicts with 0x002A10
+WARNING: Intersection detected from 0x002A10:0x002A20, conflicts with 0x002A18
+WARNING: Intersection detected from 0x002A18:0x002A28, conflicts with 0x002A20
+WARNING: Intersection detected from 0x002A20:0x002A30, conflicts with 0x002A28
+WARNING: Intersection detected from 0x002A28:0x002A38, conflicts with 0x002A30
+WARNING: Intersection detected from 0x002A30:0x002A40, conflicts with 0x002A38
+WARNING: Intersection detected from 0x002A38:0x002A48, conflicts with 0x002A40
+WARNING: Intersection detected from 0x002A40:0x002A50, conflicts with 0x002A48
+WARNING: Intersection detected from 0x002A48:0x002A58, conflicts with 0x002A50
+WARNING: Intersection detected from 0x002A50:0x002A60, conflicts with 0x002A58
+WARNING: Intersection detected from 0x002A58:0x002A68, conflicts with 0x002A60
+WARNING: Intersection detected from 0x002A60:0x002A70, conflicts with 0x002A68
+WARNING: Intersection detected from 0x002A68:0x002A78, conflicts with 0x002A70
+WARNING: Intersection detected from 0x002A70:0x002A80, conflicts with 0x002A78
+WARNING: Intersection detected from 0x002A78:0x002A88, conflicts with 0x002A80
+WARNING: Intersection detected from 0x002A80:0x002A90, conflicts with 0x002A88
+WARNING: Intersection detected from 0x002A88:0x002A98, conflicts with 0x002A90
+WARNING: Intersection detected from 0x002A90:0x002AA0, conflicts with 0x002A98
+WARNING: Intersection detected from 0x002A98:0x002AA8, conflicts with 0x002AA0
+WARNING: Intersection detected from 0x002AA0:0x002AB0, conflicts with 0x002AA8
+WARNING: Intersection detected from 0x002AA8:0x002AB8, conflicts with 0x002AB0
+WARNING: Intersection detected from 0x002AB0:0x002AC0, conflicts with 0x002AB8
+WARNING: Intersection detected from 0x002AB8:0x002AC8, conflicts with 0x002AC0
+WARNING: Intersection detected from 0x002AC0:0x002AD0, conflicts with 0x002AC8
+WARNING: Intersection detected from 0x002AC8:0x002AD8, conflicts with 0x002AD0
+WARNING: Intersection detected from 0x002AD0:0x002AE0, conflicts with 0x002AD8
+WARNING: Intersection detected from 0x002AD8:0x002AE8, conflicts with 0x002AE0
+WARNING: Intersection detected from 0x002AE0:0x002AF0, conflicts with 0x002AE8
+WARNING: Intersection detected from 0x002AE8:0x002AF8, conflicts with 0x002AF0
+WARNING: Intersection detected from 0x002AF0:0x002B00, conflicts with 0x002AF8
+WARNING: Intersection detected from 0x002AF8:0x002B08, conflicts with 0x002B00
+WARNING: Intersection detected from 0x002B00:0x002B10, conflicts with 0x002B08
+WARNING: Intersection detected from 0x002B08:0x002B18, conflicts with 0x002B10
+WARNING: Intersection detected from 0x002B10:0x002B20, conflicts with 0x002B18
+WARNING: Intersection detected from 0x002B18:0x002B28, conflicts with 0x002B20
+WARNING: Intersection detected from 0x002B20:0x002B30, conflicts with 0x002B28
+WARNING: Intersection detected from 0x002B28:0x002B38, conflicts with 0x002B30
+WARNING: Intersection detected from 0x002B30:0x002B40, conflicts with 0x002B38
+WARNING: Intersection detected from 0x002B38:0x002B48, conflicts with 0x002B40
+WARNING: Intersection detected from 0x002B40:0x002B50, conflicts with 0x002B48
+WARNING: Intersection detected from 0x002B48:0x002B58, conflicts with 0x002B50
+WARNING: Intersection detected from 0x002B50:0x002B60, conflicts with 0x002B58
+WARNING: Intersection detected from 0x002B58:0x002B68, conflicts with 0x002B60
+WARNING: Intersection detected from 0x002B60:0x002B70, conflicts with 0x002B68
+WARNING: Intersection detected from 0x002B68:0x002B78, conflicts with 0x002B70
+WARNING: Intersection detected from 0x002B70:0x002B80, conflicts with 0x002B78
+WARNING: Intersection detected from 0x002B78:0x002B88, conflicts with 0x002B80
+WARNING: Intersection detected from 0x002B80:0x002B90, conflicts with 0x002B88
+WARNING: Intersection detected from 0x002B88:0x002B98, conflicts with 0x002B90
+WARNING: Intersection detected from 0x002B90:0x002BA0, conflicts with 0x002B98
+WARNING: Intersection detected from 0x002B98:0x002BA8, conflicts with 0x002BA0
+WARNING: Intersection detected from 0x002BA0:0x002BB0, conflicts with 0x002BA8
+WARNING: Intersection detected from 0x002BA8:0x002BB8, conflicts with 0x002BB0
+WARNING: Intersection detected from 0x002BB0:0x002BC0, conflicts with 0x002BB8
+WARNING: Intersection detected from 0x002BB8:0x002BC8, conflicts with 0x002BC0
+WARNING: Intersection detected from 0x002BC0:0x002BD0, conflicts with 0x002BC8
+WARNING: Intersection detected from 0x002BC8:0x002BD8, conflicts with 0x002BD0
+WARNING: Intersection detected from 0x002BD0:0x002BE0, conflicts with 0x002BD8
+WARNING: Intersection detected from 0x002BD8:0x002BE8, conflicts with 0x002BE0
+WARNING: Intersection detected from 0x002BE0:0x002BF0, conflicts with 0x002BE8
+WARNING: Intersection detected from 0x002BE8:0x002BF8, conflicts with 0x002BF0
+WARNING: Intersection detected from 0x002BF0:0x002C00, conflicts with 0x002BF8
+WARNING: Intersection detected from 0x002BF8:0x002C08, conflicts with 0x002C00
+WARNING: Intersection detected from 0x002C00:0x002C10, conflicts with 0x002C08
+WARNING: Intersection detected from 0x002C08:0x002C18, conflicts with 0x002C10
+WARNING: Intersection detected from 0x002C10:0x002C20, conflicts with 0x002C18
+WARNING: Intersection detected from 0x002C18:0x002C28, conflicts with 0x002C20
+WARNING: Intersection detected from 0x002C20:0x002C30, conflicts with 0x002C28
+WARNING: Intersection detected from 0x002C28:0x002C38, conflicts with 0x002C30
+WARNING: Intersection detected from 0x002C30:0x002C40, conflicts with 0x002C38
+WARNING: Intersection detected from 0x002C38:0x002C48, conflicts with 0x002C40
+WARNING: Intersection detected from 0x002C40:0x002C50, conflicts with 0x002C48
+WARNING: Intersection detected from 0x002C48:0x002C58, conflicts with 0x002C50
+WARNING: Intersection detected from 0x002C50:0x002C60, conflicts with 0x002C58
+WARNING: Intersection detected from 0x002C58:0x002C68, conflicts with 0x002C60
+WARNING: Intersection detected from 0x002C60:0x002C70, conflicts with 0x002C68
+WARNING: Intersection detected from 0x002C68:0x002C78, conflicts with 0x002C70
+WARNING: Intersection detected from 0x002C70:0x002C80, conflicts with 0x002C78
+WARNING: Intersection detected from 0x002C78:0x002C88, conflicts with 0x002C80
+WARNING: Intersection detected from 0x002C80:0x002C90, conflicts with 0x002C88
+WARNING: Intersection detected from 0x002C88:0x002C98, conflicts with 0x002C90
+WARNING: Intersection detected from 0x002C90:0x002CA0, conflicts with 0x002C98
+WARNING: Intersection detected from 0x002C98:0x002CA8, conflicts with 0x002CA0
+WARNING: Intersection detected from 0x002CA0:0x002CB0, conflicts with 0x002CA8
+WARNING: Intersection detected from 0x002CA8:0x002CB8, conflicts with 0x002CB0
+WARNING: Intersection detected from 0x002CB0:0x002CC0, conflicts with 0x002CB8
+WARNING: Intersection detected from 0x002CB8:0x002CC8, conflicts with 0x002CC0
+WARNING: Intersection detected from 0x002CC0:0x002CD0, conflicts with 0x002CC8
+WARNING: Intersection detected from 0x002CC8:0x002CD8, conflicts with 0x002CD0
+WARNING: Intersection detected from 0x002CD0:0x002CE0, conflicts with 0x002CD8
+WARNING: Intersection detected from 0x002CD8:0x002CE8, conflicts with 0x002CE0
+WARNING: Intersection detected from 0x002CE0:0x002CF0, conflicts with 0x002CE8
+WARNING: Intersection detected from 0x002CE8:0x002CF8, conflicts with 0x002CF0
+WARNING: Intersection detected from 0x002CF0:0x002D00, conflicts with 0x002CF8
+WARNING: Intersection detected from 0x002CF8:0x002D08, conflicts with 0x002D00
+WARNING: Intersection detected from 0x002D00:0x002D10, conflicts with 0x002D08
+WARNING: Intersection detected from 0x002D08:0x002D18, conflicts with 0x002D10
+WARNING: Intersection detected from 0x002D10:0x002D20, conflicts with 0x002D18
+WARNING: Intersection detected from 0x002D18:0x002D28, conflicts with 0x002D20
+WARNING: Intersection detected from 0x002D20:0x002D30, conflicts with 0x002D28
+WARNING: Intersection detected from 0x002D28:0x002D38, conflicts with 0x002D30
+WARNING: Intersection detected from 0x002D30:0x002D40, conflicts with 0x002D38
+WARNING: Intersection detected from 0x002D38:0x002D48, conflicts with 0x002D40
+WARNING: Intersection detected from 0x002D40:0x002D50, conflicts with 0x002D48
+WARNING: Intersection detected from 0x002D48:0x002D58, conflicts with 0x002D50
+WARNING: Intersection detected from 0x002D50:0x002D60, conflicts with 0x002D58
+WARNING: Intersection detected from 0x002D58:0x002D68, conflicts with 0x002D60
+WARNING: Intersection detected from 0x002D60:0x002D70, conflicts with 0x002D68
+WARNING: Intersection detected from 0x002D68:0x002D78, conflicts with 0x002D70
+WARNING: Intersection detected from 0x002D70:0x002D80, conflicts with 0x002D78
+WARNING: Intersection detected from 0x002D78:0x002D88, conflicts with 0x002D80
+WARNING: Intersection detected from 0x002D80:0x002D90, conflicts with 0x002D88
+WARNING: Intersection detected from 0x002D88:0x002D98, conflicts with 0x002D90
+WARNING: Intersection detected from 0x002D90:0x002DA0, conflicts with 0x002D98
+WARNING: Intersection detected from 0x002D98:0x002DA8, conflicts with 0x002DA0
+WARNING: Intersection detected from 0x002DA0:0x002DB0, conflicts with 0x002DA8
+WARNING: Intersection detected from 0x002DA8:0x002DB8, conflicts with 0x002DB0
+WARNING: Intersection detected from 0x002DB0:0x002DC0, conflicts with 0x002DB8
+WARNING: Intersection detected from 0x002DB8:0x002DC8, conflicts with 0x002DC0
+WARNING: Intersection detected from 0x002DC0:0x002DD0, conflicts with 0x002DC8
+WARNING: Intersection detected from 0x002DC8:0x002DD8, conflicts with 0x002DD0
+WARNING: Intersection detected from 0x002DD0:0x002DE0, conflicts with 0x002DD8
+WARNING: Intersection detected from 0x002DD8:0x002DE8, conflicts with 0x002DE0
+WARNING: Intersection detected from 0x002DE0:0x002DF0, conflicts with 0x002DE8
+WARNING: Intersection detected from 0x002DE8:0x002DF8, conflicts with 0x002DF0
+WARNING: Intersection detected from 0x002DF0:0x002E00, conflicts with 0x002DF8
+WARNING: Intersection detected from 0x002DF8:0x002E08, conflicts with 0x002E00
+WARNING: Intersection detected from 0x002E00:0x002E10, conflicts with 0x002E08
+WARNING: Intersection detected from 0x002E08:0x002E18, conflicts with 0x002E10
+WARNING: Intersection detected from 0x002E10:0x002E20, conflicts with 0x002E18
+WARNING: Intersection detected from 0x002E18:0x002E28, conflicts with 0x002E20
+WARNING: Intersection detected from 0x002E20:0x002E30, conflicts with 0x002E28
+WARNING: Intersection detected from 0x002E28:0x002E38, conflicts with 0x002E30
+WARNING: Intersection detected from 0x002E30:0x002E40, conflicts with 0x002E38
+WARNING: Intersection detected from 0x002E38:0x002E48, conflicts with 0x002E40
+WARNING: Intersection detected from 0x002E40:0x002E50, conflicts with 0x002E48
+WARNING: Intersection detected from 0x002E48:0x002E58, conflicts with 0x002E50
+WARNING: Intersection detected from 0x002E50:0x002E60, conflicts with 0x002E58
+WARNING: Intersection detected from 0x002E58:0x002E68, conflicts with 0x002E60
+WARNING: Intersection detected from 0x002E60:0x002E70, conflicts with 0x002E68
+WARNING: Intersection detected from 0x002E68:0x002E78, conflicts with 0x002E70
+WARNING: Intersection detected from 0x002E70:0x002E80, conflicts with 0x002E78
+WARNING: Intersection detected from 0x002E78:0x002E88, conflicts with 0x002E80
+WARNING: Intersection detected from 0x002E80:0x002E90, conflicts with 0x002E88
+WARNING: Intersection detected from 0x002E88:0x002E98, conflicts with 0x002E90
+WARNING: Intersection detected from 0x002E90:0x002EA0, conflicts with 0x002E98
+WARNING: Intersection detected from 0x002E98:0x002EA8, conflicts with 0x002EA0
+WARNING: Intersection detected from 0x002EA0:0x002EB0, conflicts with 0x002EA8
+WARNING: Intersection detected from 0x002EA8:0x002EB8, conflicts with 0x002EB0
+WARNING: Intersection detected from 0x002EB0:0x002EC0, conflicts with 0x002EB8
+WARNING: Intersection detected from 0x002EB8:0x002EC8, conflicts with 0x002EC0
+WARNING: Intersection detected from 0x002EC0:0x002ED0, conflicts with 0x002EC8
+WARNING: Intersection detected from 0x002EC8:0x002ED8, conflicts with 0x002ED0
+WARNING: Intersection detected from 0x002ED0:0x002EE0, conflicts with 0x002ED8
+WARNING: Intersection detected from 0x002ED8:0x002EE8, conflicts with 0x002EE0
+WARNING: Intersection detected from 0x002EE0:0x002EF0, conflicts with 0x002EE8
+WARNING: Intersection detected from 0x002EE8:0x002EF8, conflicts with 0x002EF0
+WARNING: Intersection detected from 0x002EF0:0x002F00, conflicts with 0x002EF8
+WARNING: Intersection detected from 0x002EF8:0x002F08, conflicts with 0x002F00
+WARNING: Intersection detected from 0x002F00:0x002F10, conflicts with 0x002F08
+WARNING: Intersection detected from 0x002F08:0x002F18, conflicts with 0x002F10
+WARNING: Intersection detected from 0x002F10:0x002F20, conflicts with 0x002F18
+WARNING: Intersection detected from 0x002F18:0x002F28, conflicts with 0x002F20
+WARNING: Intersection detected from 0x002F20:0x002F30, conflicts with 0x002F28
+WARNING: Intersection detected from 0x002F28:0x002F38, conflicts with 0x002F30
+WARNING: Intersection detected from 0x002F30:0x002F40, conflicts with 0x002F38
+WARNING: Intersection detected from 0x002F38:0x002F48, conflicts with 0x002F40
+WARNING: Intersection detected from 0x002F40:0x002F50, conflicts with 0x002F48
+WARNING: Intersection detected from 0x002F48:0x002F58, conflicts with 0x002F50
+WARNING: Intersection detected from 0x002F50:0x002F60, conflicts with 0x002F58
+WARNING: Intersection detected from 0x002F58:0x002F68, conflicts with 0x002F60
+WARNING: Intersection detected from 0x002F60:0x002F70, conflicts with 0x002F68
+WARNING: Intersection detected from 0x002F68:0x002F78, conflicts with 0x002F70
+WARNING: Intersection detected from 0x002F70:0x002F80, conflicts with 0x002F78
+WARNING: Intersection detected from 0x002F78:0x002F88, conflicts with 0x002F80
+WARNING: Intersection detected from 0x002F80:0x002F90, conflicts with 0x002F88
+WARNING: Intersection detected from 0x002F88:0x002F98, conflicts with 0x002F90
+WARNING: Intersection detected from 0x002F90:0x002FA0, conflicts with 0x002F98
+WARNING: Intersection detected from 0x002F98:0x002FA8, conflicts with 0x002FA0
+WARNING: Intersection detected from 0x002FA0:0x002FB0, conflicts with 0x002FA8
+WARNING: Intersection detected from 0x002FA8:0x002FB8, conflicts with 0x002FB0
+WARNING: Intersection detected from 0x002FB0:0x002FC0, conflicts with 0x002FB8
+WARNING: Intersection detected from 0x002FB8:0x002FC8, conflicts with 0x002FC0
+WARNING: Intersection detected from 0x002FC0:0x002FD0, conflicts with 0x002FC8
+WARNING: Intersection detected from 0x002FC8:0x002FD8, conflicts with 0x002FD0
+WARNING: Intersection detected from 0x002FD0:0x002FE0, conflicts with 0x002FD8
+WARNING: Intersection detected from 0x002FD8:0x002FE8, conflicts with 0x002FE0
+WARNING: Intersection detected from 0x002FE0:0x002FF0, conflicts with 0x002FE8
+WARNING: Intersection detected from 0x002FE8:0x002FF8, conflicts with 0x002FF0
+WARNING: Intersection detected from 0x002FF0:0x003000, conflicts with 0x002FF8
+WARNING: Intersection detected from 0x002FF8:0x003008, conflicts with 0x003000
+WARNING: Intersection detected from 0x003000:0x003010, conflicts with 0x003008
+WARNING: Intersection detected from 0x003008:0x003018, conflicts with 0x003010
+WARNING: Intersection detected from 0x003010:0x003020, conflicts with 0x003018
+WARNING: Intersection detected from 0x003018:0x003028, conflicts with 0x003020
+WARNING: Intersection detected from 0x003020:0x003030, conflicts with 0x003028
+WARNING: Intersection detected from 0x003028:0x003038, conflicts with 0x003030
+WARNING: Intersection detected from 0x003030:0x003040, conflicts with 0x003038
+WARNING: Intersection detected from 0x003038:0x003048, conflicts with 0x003040
+WARNING: Intersection detected from 0x003040:0x003050, conflicts with 0x003048
+WARNING: Intersection detected from 0x003048:0x003058, conflicts with 0x003050
+WARNING: Intersection detected from 0x003050:0x003060, conflicts with 0x003058
+WARNING: Intersection detected from 0x003058:0x003068, conflicts with 0x003060
+WARNING: Intersection detected from 0x003060:0x003070, conflicts with 0x003068
+WARNING: Intersection detected from 0x003068:0x003078, conflicts with 0x003070
+WARNING: Intersection detected from 0x003070:0x003080, conflicts with 0x003078
+WARNING: Intersection detected from 0x003078:0x003088, conflicts with 0x003080
+WARNING: Intersection detected from 0x003080:0x003090, conflicts with 0x003088
+WARNING: Intersection detected from 0x003088:0x003098, conflicts with 0x003090
+WARNING: Intersection detected from 0x003090:0x0030A0, conflicts with 0x003098
+WARNING: Intersection detected from 0x003098:0x0030A8, conflicts with 0x0030A0
+WARNING: Intersection detected from 0x0030A0:0x0030B0, conflicts with 0x0030A8
+WARNING: Intersection detected from 0x0030A8:0x0030B8, conflicts with 0x0030B0
+WARNING: Intersection detected from 0x0030B0:0x0030C0, conflicts with 0x0030B8
+WARNING: Intersection detected from 0x0030B8:0x0030C8, conflicts with 0x0030C0
+WARNING: Intersection detected from 0x0030C0:0x0030D0, conflicts with 0x0030C8
+WARNING: Intersection detected from 0x0030C8:0x0030D8, conflicts with 0x0030D0
+WARNING: Intersection detected from 0x0030D0:0x0030E0, conflicts with 0x0030D8
+WARNING: Intersection detected from 0x0030D8:0x0030E8, conflicts with 0x0030E0
+WARNING: Intersection detected from 0x0030E0:0x0030F0, conflicts with 0x0030E8
+WARNING: Intersection detected from 0x0030E8:0x0030F8, conflicts with 0x0030F0
+WARNING: Intersection detected from 0x0030F0:0x003100, conflicts with 0x0030F8
+WARNING: Intersection detected from 0x0030F8:0x003108, conflicts with 0x003100
+WARNING: Intersection detected from 0x003100:0x003110, conflicts with 0x003108
+WARNING: Intersection detected from 0x003108:0x003118, conflicts with 0x003110
+WARNING: Intersection detected from 0x003110:0x003120, conflicts with 0x003118
+WARNING: Intersection detected from 0x003118:0x003128, conflicts with 0x003120
+WARNING: Intersection detected from 0x003120:0x003130, conflicts with 0x003128
+WARNING: Intersection detected from 0x003128:0x003138, conflicts with 0x003130
+WARNING: Intersection detected from 0x003130:0x003140, conflicts with 0x003138
+WARNING: Intersection detected from 0x003138:0x003148, conflicts with 0x003140
+WARNING: Intersection detected from 0x003140:0x003150, conflicts with 0x003148
+WARNING: Intersection detected from 0x003148:0x003158, conflicts with 0x003150
+WARNING: Intersection detected from 0x003150:0x003160, conflicts with 0x003158
+WARNING: Intersection detected from 0x003158:0x003168, conflicts with 0x003160
+WARNING: Intersection detected from 0x003160:0x003170, conflicts with 0x003168
+WARNING: Intersection detected from 0x003168:0x003178, conflicts with 0x003170
+WARNING: Intersection detected from 0x003170:0x003180, conflicts with 0x003178
+WARNING: Intersection detected from 0x003178:0x003188, conflicts with 0x003180
+WARNING: Intersection detected from 0x003180:0x003190, conflicts with 0x003188
+WARNING: Intersection detected from 0x003188:0x003198, conflicts with 0x003190
+WARNING: Intersection detected from 0x003190:0x0031A0, conflicts with 0x003198
+WARNING: Intersection detected from 0x003198:0x0031A8, conflicts with 0x0031A0
+WARNING: Intersection detected from 0x0031A0:0x0031B0, conflicts with 0x0031A8
+WARNING: Intersection detected from 0x0031A8:0x0031B8, conflicts with 0x0031B0
+WARNING: Intersection detected from 0x0031B0:0x0031C0, conflicts with 0x0031B8
+WARNING: Intersection detected from 0x0031B8:0x0031C8, conflicts with 0x0031C0
+WARNING: Intersection detected from 0x0031C0:0x0031D0, conflicts with 0x0031C8
+WARNING: Intersection detected from 0x0031C8:0x0031D8, conflicts with 0x0031D0
+WARNING: Intersection detected from 0x0031D0:0x0031E0, conflicts with 0x0031D8
+WARNING: Intersection detected from 0x0031D8:0x0031E8, conflicts with 0x0031E0
+WARNING: Intersection detected from 0x0031E0:0x0031F0, conflicts with 0x0031E8
+WARNING: Intersection detected from 0x0031E8:0x0031F8, conflicts with 0x0031F0
+WARNING: Intersection detected from 0x0031F0:0x003200, conflicts with 0x0031F8
+WARNING: Intersection detected from 0x0031F8:0x003208, conflicts with 0x003200
+WARNING: Intersection detected from 0x003200:0x003210, conflicts with 0x003208
+WARNING: Intersection detected from 0x003208:0x003218, conflicts with 0x003210
+WARNING: Intersection detected from 0x003210:0x003220, conflicts with 0x003218
+WARNING: Intersection detected from 0x003218:0x003228, conflicts with 0x003220
+WARNING: Intersection detected from 0x003220:0x003230, conflicts with 0x003228
+WARNING: Intersection detected from 0x003228:0x003238, conflicts with 0x003230
+WARNING: Intersection detected from 0x003230:0x003240, conflicts with 0x003238
+WARNING: Intersection detected from 0x003238:0x003248, conflicts with 0x003240
+WARNING: Intersection detected from 0x003240:0x003250, conflicts with 0x003248
+WARNING: Intersection detected from 0x003248:0x003258, conflicts with 0x003250
+WARNING: Intersection detected from 0x003250:0x003260, conflicts with 0x003258
+WARNING: Intersection detected from 0x003258:0x003268, conflicts with 0x003260
+WARNING: Intersection detected from 0x003260:0x003270, conflicts with 0x003268
+WARNING: Intersection detected from 0x003268:0x003278, conflicts with 0x003270
+WARNING: Intersection detected from 0x003270:0x003280, conflicts with 0x003278
+WARNING: Intersection detected from 0x003278:0x003288, conflicts with 0x003280
+WARNING: Intersection detected from 0x003280:0x003290, conflicts with 0x003288
+WARNING: Intersection detected from 0x003288:0x003298, conflicts with 0x003290
+WARNING: Intersection detected from 0x003290:0x0032A0, conflicts with 0x003298
+WARNING: Intersection detected from 0x003298:0x0032A8, conflicts with 0x0032A0
+WARNING: Intersection detected from 0x0032A0:0x0032B0, conflicts with 0x0032A8
+WARNING: Intersection detected from 0x0032A8:0x0032B8, conflicts with 0x0032B0
+WARNING: Intersection detected from 0x0032B0:0x0032C0, conflicts with 0x0032B8
+WARNING: Intersection detected from 0x0032B8:0x0032C8, conflicts with 0x0032C0
+WARNING: Intersection detected from 0x0032C0:0x0032D0, conflicts with 0x0032C8
+WARNING: Intersection detected from 0x0032C8:0x0032D8, conflicts with 0x0032D0
+WARNING: Intersection detected from 0x0032D0:0x0032E0, conflicts with 0x0032D8
+WARNING: Intersection detected from 0x0032D8:0x0032E8, conflicts with 0x0032E0
+WARNING: Intersection detected from 0x0032E0:0x0032F0, conflicts with 0x0032E8
+WARNING: Intersection detected from 0x0032E8:0x0032F8, conflicts with 0x0032F0
+WARNING: Intersection detected from 0x0032F0:0x003300, conflicts with 0x0032F8
+WARNING: Intersection detected from 0x0032F8:0x003308, conflicts with 0x003300
+WARNING: Intersection detected from 0x003300:0x003310, conflicts with 0x003308
+WARNING: Intersection detected from 0x003308:0x003318, conflicts with 0x003310
+WARNING: Intersection detected from 0x003310:0x003320, conflicts with 0x003318
+WARNING: Intersection detected from 0x003318:0x003328, conflicts with 0x003320
+WARNING: Intersection detected from 0x003320:0x003330, conflicts with 0x003328
+WARNING: Intersection detected from 0x003328:0x003338, conflicts with 0x003330
+WARNING: Intersection detected from 0x003330:0x003340, conflicts with 0x003338
+WARNING: Intersection detected from 0x003338:0x003348, conflicts with 0x003340
+WARNING: Intersection detected from 0x003340:0x003350, conflicts with 0x003348
+WARNING: Intersection detected from 0x003348:0x003358, conflicts with 0x003350
+WARNING: Intersection detected from 0x003350:0x003360, conflicts with 0x003358
+WARNING: Intersection detected from 0x003358:0x003368, conflicts with 0x003360
+WARNING: Intersection detected from 0x003360:0x003370, conflicts with 0x003368
+WARNING: Intersection detected from 0x003368:0x003378, conflicts with 0x003370
+WARNING: Intersection detected from 0x003370:0x003380, conflicts with 0x003378
+WARNING: Intersection detected from 0x003378:0x003388, conflicts with 0x003380
+WARNING: Intersection detected from 0x003380:0x003390, conflicts with 0x003388
+WARNING: Intersection detected from 0x003388:0x003398, conflicts with 0x003390
+WARNING: Intersection detected from 0x003390:0x0033A0, conflicts with 0x003398
+WARNING: Intersection detected from 0x003398:0x0033A8, conflicts with 0x0033A0
+WARNING: Intersection detected from 0x0033A0:0x0033B0, conflicts with 0x0033A8
+WARNING: Intersection detected from 0x0033A8:0x0033B8, conflicts with 0x0033B0
+WARNING: Intersection detected from 0x0033B0:0x0033C0, conflicts with 0x0033B8
+WARNING: Intersection detected from 0x0033B8:0x0033C8, conflicts with 0x0033C0
+WARNING: Intersection detected from 0x0033C0:0x0033D0, conflicts with 0x0033C8
+WARNING: Intersection detected from 0x0033C8:0x0033D8, conflicts with 0x0033D0
+WARNING: Intersection detected from 0x0033D0:0x0033E0, conflicts with 0x0033D8
+WARNING: Intersection detected from 0x0033D8:0x0033E8, conflicts with 0x0033E0
+WARNING: Intersection detected from 0x0033E0:0x0033F0, conflicts with 0x0033E8
+WARNING: Intersection detected from 0x0033E8:0x0033F8, conflicts with 0x0033F0
+WARNING: Intersection detected from 0x0033F0:0x003400, conflicts with 0x0033F8
+WARNING: Intersection detected from 0x0033F8:0x003408, conflicts with 0x003400
+WARNING: Intersection detected from 0x003400:0x003410, conflicts with 0x003408
+WARNING: Intersection detected from 0x003408:0x003418, conflicts with 0x003410
+WARNING: Intersection detected from 0x003410:0x003420, conflicts with 0x003418
+WARNING: Intersection detected from 0x003418:0x003428, conflicts with 0x003420
+WARNING: Intersection detected from 0x003420:0x003430, conflicts with 0x003428
+WARNING: Intersection detected from 0x003428:0x003438, conflicts with 0x003430
+WARNING: Intersection detected from 0x003430:0x003440, conflicts with 0x003438
+WARNING: Intersection detected from 0x003438:0x003448, conflicts with 0x003440
+WARNING: Intersection detected from 0x003440:0x003450, conflicts with 0x003448
+WARNING: Intersection detected from 0x003448:0x003458, conflicts with 0x003450
+WARNING: Intersection detected from 0x003450:0x003460, conflicts with 0x003458
+WARNING: Intersection detected from 0x003458:0x003468, conflicts with 0x003460
+WARNING: Intersection detected from 0x003460:0x003470, conflicts with 0x003468
+WARNING: Intersection detected from 0x003468:0x003478, conflicts with 0x003470
+WARNING: Intersection detected from 0x003470:0x003480, conflicts with 0x003478
+WARNING: Intersection detected from 0x003478:0x003488, conflicts with 0x003480
+WARNING: Intersection detected from 0x003480:0x003490, conflicts with 0x003488
+WARNING: Intersection detected from 0x003488:0x003498, conflicts with 0x003490
+WARNING: Intersection detected from 0x003490:0x0034A0, conflicts with 0x003498
+WARNING: Intersection detected from 0x003498:0x0034A8, conflicts with 0x0034A0
+WARNING: Intersection detected from 0x0034A0:0x0034B0, conflicts with 0x0034A8
+WARNING: Intersection detected from 0x0034A8:0x0034B8, conflicts with 0x0034B0
+WARNING: Intersection detected from 0x0034B0:0x0034C0, conflicts with 0x0034B8
+WARNING: Intersection detected from 0x0034B8:0x0034C8, conflicts with 0x0034C0
+WARNING: Intersection detected from 0x0034C0:0x0034D0, conflicts with 0x0034C8
+WARNING: Intersection detected from 0x0034C8:0x0034D8, conflicts with 0x0034D0
+WARNING: Intersection detected from 0x0034D0:0x0034E0, conflicts with 0x0034D8
+WARNING: Intersection detected from 0x0034D8:0x0034E8, conflicts with 0x0034E0
+WARNING: Intersection detected from 0x0034E0:0x0034F0, conflicts with 0x0034E8
+WARNING: Intersection detected from 0x0034E8:0x0034F8, conflicts with 0x0034F0
+WARNING: Intersection detected from 0x0034F0:0x003500, conflicts with 0x0034F8
+
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_scale.xml -b baserom/ -o assets/objects/object_gi_scale -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_stick.xml -b baserom/ -o assets/objects/object_gi_stick -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_longsword.xml -b baserom/ -o assets/objects/object_gi_longsword -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ki_tan_mask.xml -b baserom/ -o assets/objects/object_gi_ki_tan_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_boomerang.xml -b baserom/ -o assets/objects/object_gi_boomerang -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_jewel.xml -b baserom/ -o assets/objects/object_gi_jewel -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_map.xml -b baserom/ -o assets/objects/object_gi_map -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hoverboots.xml -b baserom/ -o assets/objects/object_gi_hoverboots -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_egg.xml -b baserom/ -o assets/objects/object_gi_egg -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ticketstone.xml -b baserom/ -o assets/objects/object_gi_ticketstone -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/gameplay_keep.xml -b baserom/ -o assets/objects/gameplay_keep -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_m_arrow.xml -b baserom/ -o assets/objects/object_gi_m_arrow -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_soldout.xml -b baserom/ -o assets/objects/object_gi_soldout -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_zl4.xml -b baserom/ -o assets/objects/object_zl4 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bracelet.xml -b baserom/ -o assets/objects/object_gi_bracelet -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_heart.xml -b baserom/ -o assets/objects/object_gi_heart -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bosskey.xml -b baserom/ -o assets/objects/object_gi_bosskey -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_dnk.xml -b baserom/ -o assets/objects/object_dnk -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bomb_2.xml -b baserom/ -o assets/objects/object_gi_bomb_2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_hintnuts.xml -b baserom/ -o assets/objects/object_hintnuts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_coin.xml -b baserom/ -o assets/objects/object_gi_coin -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_grass.xml -b baserom/ -o assets/objects/object_gi_grass -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_compass.xml -b baserom/ -o assets/objects/object_gi_compass -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_demo_kekkai.xml -b baserom/ -o assets/objects/object_demo_kekkai -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_golonmask.xml -b baserom/ -o assets/objects/object_gi_golonmask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_pu_box.xml -b baserom/ -o assets/objects/object_pu_box -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_arrow.xml -b baserom/ -o assets/objects/object_gi_arrow -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_torch2.xml -b baserom/ -o assets/objects/object_torch2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_magicpot.xml -b baserom/ -o assets/objects/object_gi_magicpot -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bottle_letter.xml -b baserom/ -o assets/objects/object_gi_bottle_letter -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
