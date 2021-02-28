@@ -14,6 +14,18 @@ echo "> python3 tools/compare_extracted_baseroms.py ../oot_master/baserom > logs
 python3 tools/compare_extracted_baseroms.py ../oot_master/baserom > logs/log_compare_extracted_baseroms_pal_mq_vs_pal_mq_dbg.txt 2>&1
 
 echo ""
+echo "> python3 tools/compare_extracted_baseroms.py ../oot_master/baserom --print equals > logs/log_compare_extracted_baseroms_equals_pal_mq_vs_pal_mq_dbg.txt 2>&1"
+python3 tools/compare_extracted_baseroms.py ../oot_master/baserom --print equals > logs/log_compare_extracted_baseroms_equals_pal_mq_vs_pal_mq_dbg.txt 2>&1
+
+echo ""
+echo "> python3 tools/compare_extracted_baseroms.py ../oot_master/baserom --print diffs > logs/log_compare_extracted_baseroms_diffs_pal_mq_vs_pal_mq_dbg.txt 2>&1"
+python3 tools/compare_extracted_baseroms.py ../oot_master/baserom --print diffs > logs/log_compare_extracted_baseroms_diffs_pal_mq_vs_pal_mq_dbg.txt 2>&1
+
+echo ""
+echo "> python3 tools/compare_extracted_baseroms.py ../oot_master/baserom --print missing > logs/log_compare_extracted_baseroms_missing_pal_mq_vs_pal_mq_dbg.txt 2>&1"
+python3 tools/compare_extracted_baseroms.py ../oot_master/baserom --print missing > logs/log_compare_extracted_baseroms_missing_pal_mq_vs_pal_mq_dbg.txt 2>&1
+
+echo ""
 echo "> make all > logs/log_make_all_pal_mq.txt 2>&1"
 make all > logs/log_make_all_pal_mq.txt 2>&1
 
