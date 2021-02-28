@@ -1601,8 +1601,11 @@ def main():
     # extract files
     num_cores = cpu_count()
     print("Extracting baserom with " + str(num_cores) + " CPU cores.")
-    with Pool(num_cores, initialize_worker, (rom_data,)) as p:
-        p.map(ExtractFunc, range(len(FILE_NAMES)))
+    # TODO: undo this
+    #with Pool(num_cores, initialize_worker, (rom_data,)) as p:
+    #    p.map(ExtractFunc, range(len(FILE_NAMES)))
+    initialize_worker(rom_data)
+    list(map(ExtractFunc, list(range(len(FILE_NAMES)))))
 
 if __name__ == "__main__":
     main()
