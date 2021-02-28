@@ -6,9 +6,13 @@ import struct
 from multiprocessing import Pool, cpu_count
 
 
-ROM_FILE_NAME = 'baserom.z64'
-FILE_TABLE_OFFSET = 0x12F70
+ROM_FILE_NAME = 'baserom_pal_mq.z64'
+FILE_TABLE_OFFSET = {
+    "PAL MQ Debug": 0x12F70,
+    "PAL MQ": 0x7170
+}
 
+# File list
 FILE_NAMES = [
     'makerom',
     'boot',
@@ -1560,10 +1564,11 @@ def write_output_file(name, offset, size):
             f.write(romData[offset:offset+size])
     except IOError:
         print('failed to write file ' + name)
+        sys.exit(1)
 
 def ExtractFunc(i):
     filename = 'baserom/' + FILE_NAMES[i]
-    entryOffset = FILE_TABLE_OFFSET + 16 * i
+    entryOffset = FILE_TABLE_OFFSET["PAL MQ"] + 16 * i
 
     virtStart = read_uint32_be(entryOffset + 0)
     virtEnd   = read_uint32_be(entryOffset + 4)
@@ -1580,7 +1585,9 @@ def ExtractFunc(i):
     print('extracting ' + filename + " (0x%08X, 0x%08X)" % (virtStart, virtEnd))
     write_output_file(filename, physStart, size)
     if compressed:
-        os.system('tools/yaz0 -d ' + filename + ' ' + filename)
+        exit_code = os.system('tools/yaz0 -d ' + filename + ' ' + filename)
+        if exit_code != 0:
+            exit(exit_code)
 
 #####################################################################
 
@@ -1605,7 +1612,8 @@ def main():
     #with Pool(num_cores, initialize_worker, (rom_data,)) as p:
     #    p.map(ExtractFunc, range(len(FILE_NAMES)))
     initialize_worker(rom_data)
-    list(map(ExtractFunc, list(range(len(FILE_NAMES)))))
+    for i in range(len(FILE_NAMES)):
+        ExtractFunc(i)
 
 if __name__ == "__main__":
     main()
