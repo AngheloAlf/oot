@@ -194,6 +194,9 @@ build/undefined_syms.txt: undefined_syms.txt
 clean:
 	$(RM) -r $(ROM) $(ELF) build
 
+clean_assets:
+	@$(RM) -r $(TEXTURE_BIN_DIRS)
+
 setup:
 	$(MAKE) -C tools -j
 	python3 fixbaserom.py
@@ -204,7 +207,7 @@ resources: $(ASSET_FILES_OUT)
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
 
-.PHONY: all clean setup test
+.PHONY: all clean setup test clean_assets
 
 #### Various Recipes ####
 

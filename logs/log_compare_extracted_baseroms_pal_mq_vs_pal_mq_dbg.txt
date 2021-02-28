@@ -224,8 +224,6 @@ ovl_Demo_Go not OK
 	Size don't match: 3408 vs 3584 (x0.951)
 ovl_En_Stream not OK
 	Size don't match: 1424 vs 1552 (x0.918)
-testroom_room_1 not OK
-	Size don't match: 199824 vs 9200 (x21.72)
 object_gi_purse OK
 jyasinzou_room_19 OK
 tokinoma_room_1 OK
@@ -249,8 +247,6 @@ ovl_Bg_Spot16_Bombstone not OK
 spot18_room_0 OK
 MIZUsin_room_15 OK
 HIDAN_room_25 OK
-hairal_niwa2_scene not OK
-	Size don't match: 53392 vs 11536 (x4.628)
 object_ane OK
 ovl_En_Fu not OK
 	Size don't match: 3392 vs 3456 (x0.981)
@@ -336,8 +332,6 @@ ovl_Demo_Ext not OK
 	Size don't match: 2384 vs 2736 (x0.871)
 hiral_demo_scene not OK
 	Size matches.
-sasatest_room_0 not OK
-	Size don't match: 222736 vs 13904 (x16.02)
 vr_MDVR_pal_static OK
 ovl_En_Fire_Rock not OK
 	Size don't match: 4368 vs 5200 (x0.84)
@@ -378,11 +372,7 @@ ganon_sonogo_room_1 OK
 HAKAdan_room_1 OK
 ovl_Bg_Jya_Kanaami not OK
 	Size don't match: 944 vs 1120 (x0.843)
-sutaru_scene not OK
-	Size don't match: 18144 vs 2992 (x6.064)
 object_bowl OK
-test01_scene not OK
-	Size don't match: 0 vs 15904 (x0.0)
 ganontika_room_0 OK
 object_gi_brokensword OK
 spot04_room_0 OK
@@ -500,8 +490,6 @@ ovl_Effect_Ss_Stick not OK
 	Size don't match: 928 vs 1072 (x0.866)
 ovl_En_Insect not OK
 	Size don't match: 9504 vs 9792 (x0.971)
-sasatest_scene not OK
-	Size don't match: 6048 vs 11040 (x0.548)
 HAKAdan_room_10 OK
 Audiotable OK
 hakasitarelay_room_4 OK
@@ -729,8 +717,6 @@ object_mjin_dark OK
 hakasitarelay_room_6 OK
 ovl_En_Anubice_Tag not OK
 	Size don't match: 720 vs 976 (x0.738)
-testroom_room_0 not OK
-	Size don't match: 2432 vs 17920 (x0.136)
 ovl_En_Kakasi2 not OK
 	Size don't match: 1824 vs 3344 (x0.545)
 bdan_boss_scene not OK
@@ -890,8 +876,6 @@ ovl_Effect_Ss_Hahen not OK
 	Size don't match: 1600 vs 1888 (x0.847)
 vr_TTVR_pal_static OK
 HAKAdan_room_0 OK
-testroom_room_2 not OK
-	Size don't match: 3264 vs 12928 (x0.252)
 ovl_Bg_Spot00_Hanebasi not OK
 	Size don't match: 4368 vs 4672 (x0.935)
 jyasinzou_room_22 OK
@@ -1103,8 +1087,6 @@ ovl_En_Tr not OK
 anime_model_3_static OK
 men_scene not OK
 	Size matches.
-testroom_scene not OK
-	Size don't match: 162944 vs 16896 (x9.644)
 ovl_En_Shopnuts not OK
 	Size don't match: 3856 vs 3952 (x0.976)
 spot13_room_1 OK
@@ -1243,8 +1225,6 @@ Bmori1_room_9 OK
 vr_K4VR_pal_static OK
 ganon_sonogo_room_0 OK
 HIDAN_room_7 OK
-besitu_room_0 not OK
-	Size don't match: 16 vs 21728 (x0.001)
 spot09_scene not OK
 	Size matches.
 HAKAdan_room_2 OK
@@ -1260,8 +1240,6 @@ ovl_En_Dha not OK
 	Size don't match: 4096 vs 4080 (x1.004)
 Bmori1_room_15 OK
 object_bxa OK
-testroom_room_4 not OK
-	Size don't match: 55328 vs 768 (x72.042)
 drag_room_0 OK
 ovl_Oceff_Wipe4 not OK
 	Size don't match: 4064 vs 4272 (x0.951)
@@ -1292,8 +1270,6 @@ spot20_scene not OK
 	Size matches.
 gerudoway_room_2 OK
 g_pn_16 OK
-syotes_scene not OK
-	Size don't match: 55840 vs 7168 (x7.79)
 HAKAdan_room_20 OK
 alley_shop_room_0 OK
 object_gi_hookshot OK
@@ -1372,8 +1348,6 @@ HIDAN_room_2 OK
 object_crow OK
 g_pn_29 OK
 object_okuta OK
-depth_test_room_0 not OK
-	Size don't match: 19504 vs 155376 (x0.126)
 ydan_room_8 OK
 ice_doukutu_room_9 OK
 object_spot05_objects OK
@@ -1413,8 +1387,6 @@ ovl_En_Horse_Link_Child not OK
 	Size don't match: 7680 vs 7808 (x0.984)
 takaraya_room_2 OK
 MIZUsin_room_1 OK
-hairal_niwa2_room_0 not OK
-	Size don't match: 26640 vs 97280 (x0.274)
 ovl_En_Wf not OK
 	Size don't match: 17168 vs 17328 (x0.991)
 ovl_Elf_Msg2 not OK
@@ -1500,8 +1472,6 @@ ovl_En_Okarina_Tag not OK
 	Size don't match: 5376 vs 6464 (x0.832)
 kakusiana_room_9 OK
 object_masterzoora OK
-testroom_room_3 not OK
-	Size don't match: 179248 vs 14880 (x12.046)
 ice_doukutu_room_0 OK
 object_tr OK
 g_pn_23 OK
@@ -1546,8 +1516,6 @@ ovl_Bg_Po_Event not OK
 object_mjin_oka OK
 g_pn_01 OK
 g_pn_33 OK
-test01_room_0 not OK
-	Size don't match: 0 vs 39152 (x0.0)
 vr_KKRVR_static OK
 ddan_room_15 OK
 object_spot16_obj OK
@@ -1562,8 +1530,6 @@ ovl_Bg_Spot00_Break not OK
 jyasinzou_room_28 OK
 zoora_scene not OK
 	Size matches.
-syotes2_room_0 not OK
-	Size don't match: 24368 vs 40704 (x0.599)
 object_oA1 OK
 object_spot11_obj OK
 men_room_5 OK
@@ -1617,8 +1583,6 @@ object_xc OK
 object_bdoor OK
 entra_scene not OK
 	Size matches.
-besitu_scene not OK
-	Size don't match: 16 vs 1200 (x0.013)
 ovl_En_Test not OK
 	Size matches.
 ovl_En_Ma3 not OK
@@ -1830,8 +1794,6 @@ ovl_Effect_Ss_Kakera not OK
 object_ganon OK
 ovl_Bg_Jya_Haheniron not OK
 	Size don't match: 2032 vs 2016 (x1.008)
-depth_test_scene not OK
-	Size don't match: 82352 vs 768 (x107.229)
 object_spot01_objects OK
 ovl_En_Rd not OK
 	Size don't match: 10432 vs 10448 (x0.998)
@@ -1875,8 +1837,6 @@ vr_cloud1_pal_static OK
 ovl_En_Bom_Bowl_Man not OK
 	Size don't match: 5440 vs 6160 (x0.883)
 vr_cloud2_static OK
-sutaru_room_0 not OK
-	Size don't match: 23152 vs 29424 (x0.787)
 ovl_En_Niw not OK
 	Size don't match: 13104 vs 14336 (x0.914)
 Bmori1_room_0 OK
@@ -2074,8 +2034,6 @@ HIDAN_room_16 OK
 ovl_Arms_Hook not OK
 	Size don't match: 3440 vs 3600 (x0.956)
 g_pn_28 OK
-syotes2_scene not OK
-	Size don't match: 16896 vs 9392 (x1.799)
 vr_SP1a_pal_static OK
 object_medal OK
 HIDAN_room_8 OK
@@ -2116,8 +2074,6 @@ ovl_En_Ex_Ruppy not OK
 icon_item_dungeon_static OK
 ovl_En_Kz not OK
 	Size don't match: 5536 vs 5616 (x0.986)
-syotes_room_0 not OK
-	Size don't match: 86864 vs 53120 (x1.635)
 object_zl1 OK
 jyasinboss_scene not OK
 	Size matches.
@@ -2136,6 +2092,6 @@ ovl_En_Fw not OK
 	Size don't match: 6080 vs 6176 (x0.984)
 object_oA5 OK
 
-Equals:     927/1532 (60.51%)
-Differents: 605/1532 (39.49%)
-Mising:     0/1532 (0.0%)
+Equals:     927/1510 (61.39%)
+Differents: 583/1510 (38.61%)
+Mising:     0/1510 (0.0%)

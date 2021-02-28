@@ -17,154 +17,29 @@ tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/title_static.xml -b baserom/ -o
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/map_i_static.xml -b baserom/ -o assets/textures/map_i_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_static.xml -b baserom/ -o assets/textures/icon_item_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/besitu.xml -b baserom/ -o assets/scenes/test_levels/besitu -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x55ea490cff30]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7fa100bd0950]
-tools/ZAPD/ZAPD.out(_ZN15ActorSpawnEntryC1ESt6vectorIhSaIhEEi+0xa)[0x55ea4912780a]
-tools/ZAPD/ZAPD.out(_ZN20SetStartPositionListC2EP5ZRoomSt6vectorIhSaIhEEi+0x1c4)[0x55ea49136494]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0x141)[0x55ea49120161]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93)[0x55ea49122173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3)[0x55ea49123753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x55ea490f25ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x55ea490f368a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x55ea490d1c82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x55ea490d27ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7fa100bb7cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e)[0x55ea490cc90e]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7fa100bd0950]
-tools/ZAPD/ZAPD.out(_ZN15ActorSpawnEntryC1ESt6vectorIhSaIhEEi+0xa) [0x55ea4912780a]
-tools/ZAPD/ZAPD.out(_ZN20SetStartPositionListC2EP5ZRoomSt6vectorIhSaIhEEi+0x1c4) [0x55ea49136494]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0x141) [0x55ea49120161]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93) [0x55ea49122173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3) [0x55ea49123753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x55ea490f25ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x55ea490f368a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x55ea490d1c82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x55ea490d27ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7fa100bb7cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e) [0x55ea490cc90e]
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/syotes2.xml -b baserom/ -o assets/scenes/test_levels/syotes2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x5628add7df30]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f576d292950]
-/lib/x86_64-linux-gnu/libc.so.6(+0x1852f0)[0x7f576d3d62f0]
-tools/ZAPD/ZAPD.out(_ZN8ZTexture10FromBinaryE11TextureTypeSt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEii+0x15c)[0x5628addc775c]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckESt6vectorIhSaIhEERSt3mapIjP8ZTextureSt4lessIjESaISt4pairIKjS5_EEEP5ZRoomP5ZFileNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEjjjj16F3DZEXTexFormats14F3DZEXTexSizesbb+0x352)[0x5628add94702]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1ab)[0x5628add94c3b]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList17Opcode_G_LOADTLUTEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xcf)[0x5628add9558f]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x32c)[0x5628add95a3c]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x5628add996d4]
-tools/ZAPD/ZAPD.out(_ZN7SetMesh20GenDListDeclarationsESt6vectorIhSaIhEEP12ZDisplayList+0x203)[0x5628adddc803]
-tools/ZAPD/ZAPD.out(_ZN7SetMeshC2EP5ZRoomSt6vectorIhSaIhEEii+0x1bcb)[0x5628adddf12b]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0xe1c)[0x5628addcee3c]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93)[0x5628addd0173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3)[0x5628addd1753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x5628adda05ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x5628adda168a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x5628add7fc82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x5628add807ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f576d279cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e)[0x5628add7a90e]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f576d292950]
-/lib/x86_64-linux-gnu/libc.so.6(+0x1852f0) [0x7f576d3d62f0]
-tools/ZAPD/ZAPD.out(_ZN8ZTexture10FromBinaryE11TextureTypeSt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEii+0x15c) [0x5628addc775c]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckESt6vectorIhSaIhEERSt3mapIjP8ZTextureSt4lessIjESaISt4pairIKjS5_EEEP5ZRoomP5ZFileNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEjjjj16F3DZEXTexFormats14F3DZEXTexSizesbb+0x352) [0x5628add94702]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1ab) [0x5628add94c3b]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList17Opcode_G_LOADTLUTEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xcf) [0x5628add9558f]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x32c) [0x5628add95a3c]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x5628add996d4]
-tools/ZAPD/ZAPD.out(_ZN7SetMesh20GenDListDeclarationsESt6vectorIhSaIhEEP12ZDisplayList+0x203) [0x5628adddc803]
-tools/ZAPD/ZAPD.out(_ZN7SetMeshC2EP5ZRoomSt6vectorIhSaIhEEii+0x1bcb) [0x5628adddf12b]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0xe1c) [0x5628addcee3c]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93) [0x5628addd0173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3) [0x5628addd1753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x5628adda05ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x5628adda168a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x5628add7fc82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x5628add807ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f576d279cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e) [0x5628add7a90e]
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/syotes.xml -b baserom/ -o assets/scenes/test_levels/syotes -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x55a3f5405f30]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f86320ba950]
-tools/ZAPD/ZAPD.out(_ZN7SetMesh15GenerateExternsB5cxx11Ev+0x3f)[0x55a3f5463f0f]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom21GetSourceOutputHeaderERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x7c)[0x55a3f5454f0c]
-tools/ZAPD/ZAPD.out(_ZN5ZFile19GenerateSourceFilesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0xdd7)[0x55a3f542e627]
-tools/ZAPD/ZAPD.out(_ZN5ZFile16ExtractResourcesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x22e)[0x55a3f542f27e]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x3a5)[0x55a3f5407e85]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x55a3f54087ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f86320a1cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e)[0x55a3f540290e]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f86320ba950]
-tools/ZAPD/ZAPD.out(_ZN7SetMesh15GenerateExternsB5cxx11Ev+0x3f) [0x55a3f5463f0f]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom21GetSourceOutputHeaderERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x7c) [0x55a3f5454f0c]
-tools/ZAPD/ZAPD.out(_ZN5ZFile19GenerateSourceFilesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0xdd7) [0x55a3f542e627]
-tools/ZAPD/ZAPD.out(_ZN5ZFile16ExtractResourcesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x22e) [0x55a3f542f27e]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x3a5) [0x55a3f5407e85]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x55a3f54087ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f86320a1cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e) [0x55a3f540290e]
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/sasatest.xml -b baserom/ -o assets/scenes/test_levels/sasatest -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/testroom.xml -b baserom/ -o assets/scenes/test_levels/testroom -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/depth_test.xml -b baserom/ -o assets/scenes/test_levels/depth_test -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/test01.xml -b baserom/ -o assets/scenes/test_levels/test01 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x562428c0ff30]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f6647ccf950]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0x77)[0x562428c60097]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93)[0x562428c62173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3)[0x562428c63753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x562428c325ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x562428c3368a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x562428c11c82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x562428c127ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f6647cb6cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e)[0x562428c0c90e]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f6647ccf950]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0x77) [0x562428c60097]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93) [0x562428c62173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3) [0x562428c63753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x562428c325ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x562428c3368a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x562428c11c82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x562428c127ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f6647cb6cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e) [0x562428c0c90e]
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/sutaru.xml -b baserom/ -o assets/scenes/test_levels/sutaru -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
-tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x561f4942ff30]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f42007ff950]
-/lib/x86_64-linux-gnu/libc.so.6(+0x1851d3)[0x7f42009431d3]
-tools/ZAPD/ZAPD.out(_ZN8ZTexture10FromBinaryE11TextureTypeSt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEii+0x15c)[0x561f4947975c]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckESt6vectorIhSaIhEERSt3mapIjP8ZTextureSt4lessIjESaISt4pairIKjS5_EEEP5ZRoomP5ZFileNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEjjjj16F3DZEXTexFormats14F3DZEXTexSizesbb+0x352)[0x561f49446702]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1ab)[0x561f49446c3b]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList34OptimizationCheck_LoadTextureBlockEiRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_+0x7a9)[0x561f494492c9]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x170)[0x561f49449b20]
-tools/ZAPD/ZAPD.out(_ZN7SetMesh20GenDListDeclarationsESt6vectorIhSaIhEEP12ZDisplayList+0x203)[0x561f4948e803]
-tools/ZAPD/ZAPD.out(_ZN7SetMeshC2EP5ZRoomSt6vectorIhSaIhEEii+0x1840)[0x561f49490da0]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0xe1c)[0x561f49480e3c]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93)[0x561f49482173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3)[0x561f49483753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x561f494525ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x561f4945368a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x561f49431c82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x561f494327ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f42007e6cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e)[0x561f4942c90e]
-/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f42007ff950]
-/lib/x86_64-linux-gnu/libc.so.6(+0x1851d3) [0x7f42009431d3]
-tools/ZAPD/ZAPD.out(_ZN8ZTexture10FromBinaryE11TextureTypeSt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEii+0x15c) [0x561f4947975c]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckESt6vectorIhSaIhEERSt3mapIjP8ZTextureSt4lessIjESaISt4pairIKjS5_EEEP5ZRoomP5ZFileNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEjjjj16F3DZEXTexFormats14F3DZEXTexSizesbb+0x352) [0x561f49446702]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList15TextureGenCheckENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1ab) [0x561f49446c3b]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList34OptimizationCheck_LoadTextureBlockEiRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_+0x7a9) [0x561f494492c9]
-tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x170) [0x561f49449b20]
-tools/ZAPD/ZAPD.out(_ZN7SetMesh20GenDListDeclarationsESt6vectorIhSaIhEEP12ZDisplayList+0x203) [0x561f4948e803]
-tools/ZAPD/ZAPD.out(_ZN7SetMeshC2EP5ZRoomSt6vectorIhSaIhEEii+0x1840) [0x561f49490da0]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom13ParseCommandsERSt6vectorIP12ZRoomCommandSaIS2_EE10CommandSet+0xe1c) [0x561f49480e3c]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom18ProcessCommandSetsEv+0x93) [0x561f49482173]
-tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0xbe3) [0x561f49483753]
-tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x561f494525ff]
-tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x561f4945368a]
-tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x561f49431c82]
-tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x561f494327ec]
-/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f42007e6cb2]
-tools/ZAPD/ZAPD.out(_start+0x2e) [0x561f4942c90e]
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot16.xml -b baserom/ -o assets/scenes/overworld/spot16 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot17.xml -b baserom/ -o assets/scenes/overworld/spot17 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot10.xml -b baserom/ -o assets/scenes/overworld/spot10 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
@@ -201,6 +76,8 @@ tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/yousei_izumi_yoko.xml -b 
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/takaraya.xml -b baserom/ -o assets/scenes/indoors/takaraya -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home3.xml -b baserom/ -o assets/scenes/indoors/kokiri_home3 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hairal_niwa2.xml -b baserom/ -o assets/scenes/indoors/hairal_niwa2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kenjyanoma.xml -b baserom/ -o assets/scenes/indoors/kenjyanoma -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/syatekijyou.xml -b baserom/ -o assets/scenes/indoors/syatekijyou -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
 tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home4.xml -b baserom/ -o assets/scenes/indoors/kokiri_home4 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
