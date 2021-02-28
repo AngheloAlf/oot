@@ -8,10 +8,22 @@ from multiprocessing import Pool, cpu_count
 
 ROM_FILE_NAME = 'baserom_pal_mq.z64'
 FILE_TABLE_OFFSET = {
-    "PAL MQ Debug": 0x12F70,
-    "PAL MQ":       0x07170,
+    "NTSC 1.0 RC":  0x07430, # a.k.a. 0.9
     "NTSC 1.0":     0x07430,
     "NTSC 1.1":     0x07430,
+    "PAL 1.0":      0x07950,
+    "NTSC 1.2":     0x07960,
+    "PAL 1.1":      0x07950,
+    "JAP GC":       0x07170,
+    "JAP MQ":       0x07170,
+    "USA GC":       0x07170,
+    "USA MQ":       0x07170,
+    "PAL GC Debug": 0x0,
+    "PAL MQ Debug": 0x12F70,
+    "PAL GC Debug2":0x0,
+    "PAL GC":       0x07170,
+    "PAL MQ":       0x07170,
+    "JAP GC 2":     0x0, # Zelda collection
     "CHI iQue":     0x0B7A0,
     "TCHI iQue":    0x0B240
 }
