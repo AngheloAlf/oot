@@ -197,6 +197,9 @@ clean:
 clean_assets:
 	@$(RM) -r $(TEXTURE_BIN_DIRS)
 
+clean_baserom:
+	$(RM) -r baserom/
+
 setup:
 	$(MAKE) -C tools -j
 	python3 fixbaserom.py
@@ -207,7 +210,7 @@ resources: $(ASSET_FILES_OUT)
 test: $(ROM)
 	$(EMULATOR) $(EMU_FLAGS) $<
 
-.PHONY: all clean setup test clean_assets
+.PHONY: all clean setup test clean_assets clean_baserom
 
 #### Various Recipes ####
 

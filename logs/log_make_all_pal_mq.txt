@@ -5289,4 +5289,4 @@ iconv --from UTF-8 --to EUC-JP data/z_vr_box.data.s | mips-linux-gnu-as -march=v
 iconv --from UTF-8 --to EUC-JP data/overlays/gamestates/z_file_choose.reloc.s | mips-linux-gnu-as -march=vr4300 -32 -Iinclude -o build/data/overlays/gamestates/z_file_choose.reloc.o
 {standard input}: Assembler messages:
 {standard input}:13: Error: skip (62176) or count (2016) invalid for file size (60432)
-make: *** [Makefile:221: build/data/overlays/gamestates/z_file_choose.reloc.o] Error 1
+make: *** [Makefile:224: build/data/overlays/gamestates/z_file_choose.reloc.o] Error 1

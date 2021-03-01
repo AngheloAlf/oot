@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
+import argparse
 import os
 import sys
 import struct
 from multiprocessing import Pool, cpu_count
 
 
-ROM_FILE_NAME = 'baserom_pal_mq.z64'
+ROM_FILE_NAME = 'baserom.z64'
+ROM_FILE_NAME_V = 'baserom_{}.z64'
 FILE_TABLE_OFFSET = {
     "NTSC 1.0 RC":  0x07430, # a.k.a. 0.9
     "NTSC 1.0":     0x07430,
@@ -18,15 +20,20 @@ FILE_TABLE_OFFSET = {
     "JAP MQ":       0x07170,
     "USA GC":       0x07170,
     "USA MQ":       0x07170,
-    "PAL GC Debug": 0x0,
-    "PAL MQ Debug": 0x12F70,
-    "PAL GC Debug2":0x0,
+    "PAL GC DBG":   0x0,
+    "PAL MQ DBG":   0x12F70,
+    "PAL GC DBG2":  0x0,
     "PAL GC":       0x07170,
     "PAL MQ":       0x07170,
     "JAP GC 2":     0x0, # Zelda collection
-    "CHI iQue":     0x0B7A0,
-    "TCHI iQue":    0x0B240
+    "CHI IQUE":     0x0B7A0,
+    "TCHI IQUE":    0x0B240
 }
+FILE_TABLE_OFFSET["NTSC J 1.0 RC"]  = FILE_TABLE_OFFSET["NTSC 1.0 RC"]
+FILE_TABLE_OFFSET["NTSC J 1.0"]     = FILE_TABLE_OFFSET["NTSC 1.0"]
+FILE_TABLE_OFFSET["NTSC J 1.1"]     = FILE_TABLE_OFFSET["NTSC 1.1"]
+FILE_TABLE_OFFSET["NTSC J 1.2"]     = FILE_TABLE_OFFSET["NTSC 1.2"]
+FILE_TABLE_OFFSET["PAL WII 1.1"]    = FILE_TABLE_OFFSET["PAL 1.1"]
 
 # Files list
 FILES_CODE_PAL_MQ_DEBUG = [
@@ -3104,12 +3111,41 @@ FILES_STATIC_MISC = [
 FILE_NAMES_PAL_MQ_DEBUG     = FILES_CODE_PAL_MQ_DEBUG       + FILES_ACTORS_PAL_MQ           + FILES_OBJECTS + FILES_TEXTURES + FILES_SCENES_PAL_MQ_DEBUG        + FILES_STATIC_MISC
 FILE_NAMES_PAL_MQ_VANILLA   = FILES_CODE_PAL_MQ_VANILLA     + FILES_ACTORS_PAL_MQ           + FILES_OBJECTS + FILES_TEXTURES + FILES_SCENES_PAL_MQ_VANILLA      + FILES_STATIC_MISC
 FILE_NAMES_NTSC_1_0_VANILLA = FILES_CODE_NTSC_1_0_VANILLA   + FILES_ACTORS_NTSC_1_0_VANILLA + FILES_OBJECTS + FILES_TEXTURES + FILES_SCENES_NTSC_1_0_VANILLA    + FILES_STATIC_MISC
+FILE_NAMES = {
+    "NTSC 1.0 RC":  FILE_NAMES_NTSC_1_0_VANILLA, # needs testing
+    "NTSC 1.0":     FILE_NAMES_NTSC_1_0_VANILLA,
+    "NTSC 1.1":     FILE_NAMES_NTSC_1_0_VANILLA, # needs testing
+    "PAL 1.0":      None,
+    "NTSC 1.2":     FILE_NAMES_NTSC_1_0_VANILLA, # needs testing
+    "PAL 1.1":      None,
+    "JAP GC":       None,
+    "JAP MQ":       None,
+    "USA GC":       None,
+    "USA MQ":       None,
+    "PAL GC DBG":   None,
+    "PAL MQ DBG":   FILE_NAMES_PAL_MQ_DEBUG,
+    "PAL GC DBG2":  None,
+    "PAL GC":       None,
+    "PAL MQ":       FILE_NAMES_PAL_MQ_VANILLA,
+    "JAP GC 2":     None, # Zelda collection
+    "CHI IQUE":     None,
+    "TCHI IQUE":    None
+}
+FILE_NAMES["NTSC J 1.0 RC"]  = FILE_NAMES["NTSC 1.0 RC"]
+FILE_NAMES["NTSC J 1.0"]     = FILE_NAMES["NTSC 1.0"]
+FILE_NAMES["NTSC J 1.1"]     = FILE_NAMES["NTSC 1.1"]
+FILE_NAMES["NTSC J 1.2"]     = FILE_NAMES["NTSC 1.2"]
+FILE_NAMES["PAL WII 1.1"]    = FILE_NAMES["PAL 1.1"]
+
 romData = None
+Version = ""
 
 
-def initialize_worker(rom_data):
+def initialize_worker(rom_data, version):
     global romData
+    global Version
     romData = rom_data
+    Version = version
 
 def read_uint32_be(offset):
     return struct.unpack('>I', romData[offset:offset+4])[0]
@@ -3124,8 +3160,8 @@ def write_output_file(name, offset, size):
 
 def ExtractFunc(i):
     # TODO: don't hardcode this
-    filename = 'baserom/' + FILE_NAMES_PAL_MQ_VANILLA[i]
-    entryOffset = FILE_TABLE_OFFSET["PAL MQ"] + 16 * i
+    filename = 'baserom/' + FILE_NAMES[Version][i]
+    entryOffset = FILE_TABLE_OFFSET[Version] + 16 * i
 
     virtStart = read_uint32_be(entryOffset + 0)
     virtEnd   = read_uint32_be(entryOffset + 4)
@@ -3148,30 +3184,51 @@ def ExtractFunc(i):
 
 #####################################################################
 
-def main():
+def extract_rom(edition):
+    version = edition.upper().replace("_", " ")
+
+    file_names_table = FILE_NAMES[version]
+    if file_names_table is None:
+        print(f"'{edition}' is not supported yet.")
+        sys.exit(2)
+
     try:
         os.mkdir('baserom')
     except:
         pass
 
+    filename = ROM_FILE_NAME_V.format(edition)
+    if not os.path.exists(filename):
+        print(f"{filename} not found. Defaulting to {ROM_FILE_NAME}")
+        filename = ROM_FILE_NAME
+
     # read baserom data
     try:
-        with open(ROM_FILE_NAME, 'rb') as f:
+        with open(filename, 'rb') as f:
             rom_data = f.read()
     except IOError:
-        print('failed to read file' + ROM_FILE_NAME)
+        print('Failed to read file' + filename)
         sys.exit(1)
 
     # extract files
     num_cores = cpu_count()
     print("Extracting baserom with " + str(num_cores) + " CPU cores.")
     # TODO: undo this
-    #with Pool(num_cores, initialize_worker, (rom_data,)) as p:
+    #with Pool(num_cores, initialize_worker, (rom_data, file_names_table)) as p:
     #    p.map(ExtractFunc, range(len(FILE_NAMES)))
-    initialize_worker(rom_data)
-    # TODO: don't hardcode
-    for i in range(len(FILE_NAMES_PAL_MQ_VANILLA)):
+    initialize_worker(rom_data, version)
+    for i in range(len(file_names_table)):
         ExtractFunc(i)
+
+def main():
+    description = "Extracts files from the rom. Will try to read the rom 'baserom_version.z64', or 'baserom.z64' if that doesn't exists."
+
+    parser = argparse.ArgumentParser(description=description, formatter_class=argparse.RawTextHelpFormatter)
+    choices = [x.lower().replace(" ", "_") for x in FILE_TABLE_OFFSET]
+    parser.add_argument("edition", help="Select the version of the game to extract.", choices=choices, default="pal_mq_dbg", nargs='?')
+    args = parser.parse_args()
+
+    extract_rom(args.edition)
 
 if __name__ == "__main__":
     main()

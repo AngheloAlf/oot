@@ -1,9 +1,9 @@
-echo "$ make clean clean_assets"
-make clean clean_assets
+echo "$ make clean clean_assets clean_baserom"
+make clean clean_assets clean_baserom
 
 echo ""
-echo "$ python3 extract_baserom.py"
-python3 extract_baserom.py > logs/log_extract_baserom_pal_mq.txt 2>&1
+echo "$ python3 extract_baserom.py pal_mq"
+python3 extract_baserom.py pal_mq > logs/log_extract_baserom_pal_mq.txt 2>&1
 
 echo ""
 echo "$ python3 extract_assets.py"
