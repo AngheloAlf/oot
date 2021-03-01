@@ -8,6 +8,8 @@ COMPARE ?= 1
 NON_MATCHING ?= 0
 # If ORIG_COMPILER is 1, compile with QEMU_IRIX and the original compiler
 ORIG_COMPILER ?= 0
+# 
+VERSION ?= pal_mq_dbg
 
 ifeq ($(NON_MATCHING),1)
   CFLAGS := -DNON_MATCHING
@@ -90,7 +92,7 @@ endif
 #### Files ####
 
 # ROM image
-ROM := zelda_ocarina_mq_dbg.z64
+ROM := zelda_ocarina_$(VERSION).z64
 ELF := $(ROM:.z64=.elf)
 # description of ROM segments
 SPEC := spec
@@ -203,7 +205,7 @@ clean_baserom:
 setup:
 	$(MAKE) -C tools -j
 	python3 fixbaserom.py
-	python3 extract_baserom.py
+	python3 extract_baserom.py $(VERSION) -j
 	python3 extract_assets.py
 
 resources: $(ASSET_FILES_OUT)

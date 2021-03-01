@@ -3159,7 +3159,6 @@ def write_output_file(name, offset, size):
         sys.exit(1)
 
 def ExtractFunc(i):
-    # TODO: don't hardcode this
     filename = 'baserom/' + FILE_NAMES[Version][i]
     entryOffset = FILE_TABLE_OFFSET[Version] + 16 * i
 
@@ -3184,7 +3183,7 @@ def ExtractFunc(i):
 
 #####################################################################
 
-def extract_rom(edition):
+def extract_rom(edition, j):
     version = edition.upper().replace("_", " ")
 
     file_names_table = FILE_NAMES[version]
@@ -3211,14 +3210,15 @@ def extract_rom(edition):
         sys.exit(1)
 
     # extract files
-    num_cores = cpu_count()
-    print("Extracting baserom with " + str(num_cores) + " CPU cores.")
-    # TODO: undo this
-    #with Pool(num_cores, initialize_worker, (rom_data, file_names_table)) as p:
-    #    p.map(ExtractFunc, range(len(FILE_NAMES)))
-    initialize_worker(rom_data, version)
-    for i in range(len(file_names_table)):
-        ExtractFunc(i)
+    if j:
+        num_cores = cpu_count()
+        print("Extracting baserom with " + str(num_cores) + " CPU cores.")
+        with Pool(num_cores, initialize_worker, (rom_data, version)) as p:
+            p.map(ExtractFunc, range(len(file_names_table)))
+    else:
+        initialize_worker(rom_data, version)
+        for i in range(len(file_names_table)):
+            ExtractFunc(i)
 
 def main():
     description = "Extracts files from the rom. Will try to read the rom 'baserom_version.z64', or 'baserom.z64' if that doesn't exists."
@@ -3226,9 +3226,10 @@ def main():
     parser = argparse.ArgumentParser(description=description, formatter_class=argparse.RawTextHelpFormatter)
     choices = [x.lower().replace(" ", "_") for x in FILE_TABLE_OFFSET]
     parser.add_argument("edition", help="Select the version of the game to extract.", choices=choices, default="pal_mq_dbg", nargs='?')
+    parser.add_argument("-j", help="Enables multiprocessing.", action="store_true")
     args = parser.parse_args()
 
-    extract_rom(args.edition)
+    extract_rom(args.edition, args.j)
 
 if __name__ == "__main__":
     main()
