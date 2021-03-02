@@ -3206,7 +3206,7 @@ def extract_rom(edition, j):
         with open(filename, 'rb') as f:
             rom_data = f.read()
     except IOError:
-        print('Failed to read file' + filename)
+        print('Failed to read file ' + filename)
         sys.exit(1)
 
     # extract files

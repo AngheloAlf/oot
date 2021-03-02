@@ -1,0 +1,29 @@
+File icon_item_ger_static does not exists in baserom.
+File icon_item_fra_static does not exists in baserom.
+File ger_message_data_static does not exists in baserom.
+File fra_message_data_static does not exists in baserom.
+File syotes_scene does not exists in baserom.
+File syotes_room_0 does not exists in baserom.
+File syotes2_scene does not exists in baserom.
+File syotes2_room_0 does not exists in baserom.
+File depth_test_scene does not exists in baserom.
+File depth_test_room_0 does not exists in baserom.
+File testroom_scene does not exists in baserom.
+File testroom_room_0 does not exists in baserom.
+File testroom_room_1 does not exists in baserom.
+File testroom_room_2 does not exists in baserom.
+File testroom_room_3 does not exists in baserom.
+File testroom_room_4 does not exists in baserom.
+File sutaru_scene does not exists in baserom.
+File sutaru_room_0 does not exists in baserom.
+File sasatest_scene does not exists in baserom.
+File sasatest_room_0 does not exists in baserom.
+File hairal_niwa2_scene does not exists in baserom.
+File hairal_niwa2_room_0 does not exists in baserom.
+File besitu_scene does not exists in baserom.
+File besitu_room_0 does not exists in baserom.
+File test01_scene does not exists in baserom.
+File test01_room_0 does not exists in baserom.
+
+Missing:    26/1532 (1.7%)
+Missing 2:  0

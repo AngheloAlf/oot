@@ -1,0 +1,481 @@
+Extracting assets with 4 CPU cores.
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_field_static.xml -b baserom/ -o assets/textures/icon_item_field_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/do_action_static.xml -b baserom/ -o assets/textures/do_action_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_24_static.xml -b baserom/ -o assets/textures/icon_item_24_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/message_static.xml -b baserom/ -o assets/textures/message_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/parameter_static.xml -b baserom/ -o assets/textures/parameter_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/item_name_static.xml -b baserom/ -o assets/textures/item_name_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_nes_static.xml -b baserom/ -o assets/textures/icon_item_nes_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/nes_font_static.xml -b baserom/ -o assets/textures/nes_font_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/map_name_static.xml -b baserom/ -o assets/textures/map_name_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_dungeon_static.xml -b baserom/ -o assets/textures/icon_item_dungeon_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_gameover_static.xml -b baserom/ -o assets/textures/icon_item_gameover_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/map_grand_static.xml -b baserom/ -o assets/textures/map_grand_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/nintendo_rogo_static.xml -b baserom/ -o assets/textures/nintendo_rogo_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x559037f0af30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7fa1be304950]
+tools/ZAPD/ZAPD.out(_ZN6VertexC1ESt6vectorIhSaIhEEi+0xa)[0x559037f1dc0a]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x2ef)[0x559037f20fdf]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x559037f22994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x559037f266d4]
+tools/ZAPD/ZAPD.out(_ZN5ZFile19GenerateSourceFilesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x24c)[0x559037f32a9c]
+tools/ZAPD/ZAPD.out(_ZN5ZFile16ExtractResourcesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x22e)[0x559037f3427e]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x3a5)[0x559037f0ce85]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x559037f0d7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7fa1be2ebcb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x559037f0790e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7fa1be304950]
+tools/ZAPD/ZAPD.out(_ZN6VertexC1ESt6vectorIhSaIhEEi+0xa) [0x559037f1dc0a]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x2ef) [0x559037f20fdf]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x559037f22994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x559037f266d4]
+tools/ZAPD/ZAPD.out(_ZN5ZFile19GenerateSourceFilesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x24c) [0x559037f32a9c]
+tools/ZAPD/ZAPD.out(_ZN5ZFile16ExtractResourcesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x22e) [0x559037f3427e]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x3a5) [0x559037f0ce85]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x559037f0d7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7fa1be2ebcb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x559037f0790e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/message_texture_static.xml -b baserom/ -o assets/textures/message_texture_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/title_static.xml -b baserom/ -o assets/textures/title_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/map_i_static.xml -b baserom/ -o assets/textures/map_i_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/textures/icon_item_static.xml -b baserom/ -o assets/textures/icon_item_static -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x55f00f6e7f30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f0410b9a950]
+tools/ZAPD/ZAPD.out(_ZN6VertexC1ESt6vectorIhSaIhEEi+0xa)[0x55f00f6fac0a]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x2ef)[0x55f00f6fdfdf]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x55f00f6ff994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x55f00f7036d4]
+tools/ZAPD/ZAPD.out(_ZN5ZFile19GenerateSourceFilesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x24c)[0x55f00f70fa9c]
+tools/ZAPD/ZAPD.out(_ZN5ZFile16ExtractResourcesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x22e)[0x55f00f71127e]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x3a5)[0x55f00f6e9e85]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x55f00f6ea7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f0410b81cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x55f00f6e490e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f0410b9a950]
+tools/ZAPD/ZAPD.out(_ZN6VertexC1ESt6vectorIhSaIhEEi+0xa) [0x55f00f6fac0a]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x2ef) [0x55f00f6fdfdf]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x55f00f6ff994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x55f00f7036d4]
+tools/ZAPD/ZAPD.out(_ZN5ZFile19GenerateSourceFilesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x24c) [0x55f00f70fa9c]
+tools/ZAPD/ZAPD.out(_ZN5ZFile16ExtractResourcesENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x22e) [0x55f00f71127e]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x3a5) [0x55f00f6e9e85]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x55f00f6ea7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f0410b81cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x55f00f6e490e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/besitu.xml -b baserom/ -o assets/scenes/test_levels/besitu -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/syotes2.xml -b baserom/ -o assets/scenes/test_levels/syotes2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/syotes.xml -b baserom/ -o assets/scenes/test_levels/syotes -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/sasatest.xml -b baserom/ -o assets/scenes/test_levels/sasatest -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/testroom.xml -b baserom/ -o assets/scenes/test_levels/testroom -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/depth_test.xml -b baserom/ -o assets/scenes/test_levels/depth_test -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/test01.xml -b baserom/ -o assets/scenes/test_levels/test01 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/test_levels/sutaru.xml -b baserom/ -o assets/scenes/test_levels/sutaru -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot16.xml -b baserom/ -o assets/scenes/overworld/spot16 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot17.xml -b baserom/ -o assets/scenes/overworld/spot17 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot10.xml -b baserom/ -o assets/scenes/overworld/spot10 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot01.xml -b baserom/ -o assets/scenes/overworld/spot01 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x555b30749f30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7fc430cc6950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11)[0x555b30768eb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0)[0x555b3075fde0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x555b30761994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x555b307656d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2)[0x555b3079d432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x555b3076c5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x555b3076d68a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x555b3074bc82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x555b3074c7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7fc430cadcb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x555b3074690e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7fc430cc6950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11) [0x555b30768eb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0) [0x555b3075fde0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x555b30761994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x555b307656d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2) [0x555b3079d432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x555b3076c5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x555b3076d68a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x555b3074bc82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x555b3074c7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7fc430cadcb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x555b3074690e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot02.xml -b baserom/ -o assets/scenes/overworld/spot02 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x561d65be8f30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f4a97492950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11)[0x561d65c07eb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0)[0x561d65bfede0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x561d65c00994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x561d65c046d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2)[0x561d65c3c432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x561d65c0b5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x561d65c0c68a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x561d65beac82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x561d65beb7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f4a97479cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x561d65be590e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f4a97492950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11) [0x561d65c07eb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0) [0x561d65bfede0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x561d65c00994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x561d65c046d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2) [0x561d65c3c432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x561d65c0b5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x561d65c0c68a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x561d65beac82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x561d65beb7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f4a97479cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x561d65be590e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/souko.xml -b baserom/ -o assets/scenes/overworld/souko -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot06.xml -b baserom/ -o assets/scenes/overworld/spot06 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot07.xml -b baserom/ -o assets/scenes/overworld/spot07 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot20.xml -b baserom/ -o assets/scenes/overworld/spot20 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot03.xml -b baserom/ -o assets/scenes/overworld/spot03 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x55b5f5b7cf30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f5af3cca950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11)[0x55b5f5b9beb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0)[0x55b5f5b92de0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x55b5f5b94994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x55b5f5b986d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2)[0x55b5f5bd0432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x55b5f5b9f5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x55b5f5ba068a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x55b5f5b7ec82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x55b5f5b7f7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f5af3cb1cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x55b5f5b7990e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f5af3cca950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11) [0x55b5f5b9beb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0) [0x55b5f5b92de0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x55b5f5b94994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x55b5f5b986d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2) [0x55b5f5bd0432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x55b5f5b9f5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x55b5f5ba068a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x55b5f5b7ec82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x55b5f5b7f7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f5af3cb1cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x55b5f5b7990e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot15.xml -b baserom/ -o assets/scenes/overworld/spot15 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot04.xml -b baserom/ -o assets/scenes/overworld/spot04 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x55d9772bcf30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f1af8355950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11)[0x55d9772dbeb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0)[0x55d9772d2de0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x55d9772d4994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x55d9772d86d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2)[0x55d977310432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x55d9772df5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x55d9772e068a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x55d9772bec82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x55d9772bf7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f1af833ccb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x55d9772b990e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f1af8355950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11) [0x55d9772dbeb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0) [0x55d9772d2de0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x55d9772d4994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x55d9772d86d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2) [0x55d977310432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x55d9772df5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x55d9772e068a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x55d9772bec82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x55d9772bf7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f1af833ccb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x55d9772b990e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot11.xml -b baserom/ -o assets/scenes/overworld/spot11 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot13.xml -b baserom/ -o assets/scenes/overworld/spot13 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot09.xml -b baserom/ -o assets/scenes/overworld/spot09 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x557cef164f30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7fa3530bf950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11)[0x557cef183eb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0)[0x557cef17ade0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x557cef17c994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x557cef1806d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2)[0x557cef1b8432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x557cef1875ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x557cef18868a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x557cef166c82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x557cef1677ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7fa3530a6cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x557cef16190e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7fa3530bf950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11) [0x557cef183eb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0) [0x557cef17ade0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x557cef17c994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x557cef1806d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2) [0x557cef1b8432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x557cef1875ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x557cef18868a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x557cef166c82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x557cef1677ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7fa3530a6cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x557cef16190e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot18.xml -b baserom/ -o assets/scenes/overworld/spot18 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot08.xml -b baserom/ -o assets/scenes/overworld/spot08 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/entra.xml -b baserom/ -o assets/scenes/overworld/entra -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot12.xml -b baserom/ -o assets/scenes/overworld/spot12 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot00.xml -b baserom/ -o assets/scenes/overworld/spot00 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/overworld/spot05.xml -b baserom/ -o assets/scenes/overworld/spot05 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hairal_niwa_n.xml -b baserom/ -o assets/scenes/indoors/hairal_niwa_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/tent.xml -b baserom/ -o assets/scenes/indoors/tent -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/tokinoma.xml -b baserom/ -o assets/scenes/indoors/tokinoma -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/labo.xml -b baserom/ -o assets/scenes/indoors/labo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home.xml -b baserom/ -o assets/scenes/indoors/kokiri_home -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hairal_niwa.xml -b baserom/ -o assets/scenes/indoors/hairal_niwa -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/bowling.xml -b baserom/ -o assets/scenes/indoors/bowling -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hut.xml -b baserom/ -o assets/scenes/indoors/hut -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/malon_stable.xml -b baserom/ -o assets/scenes/indoors/malon_stable -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/mahouya.xml -b baserom/ -o assets/scenes/indoors/mahouya -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kakariko.xml -b baserom/ -o assets/scenes/indoors/kakariko -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/yousei_izumi_yoko.xml -b baserom/ -o assets/scenes/indoors/yousei_izumi_yoko -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/takaraya.xml -b baserom/ -o assets/scenes/indoors/takaraya -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home3.xml -b baserom/ -o assets/scenes/indoors/kokiri_home3 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hairal_niwa2.xml -b baserom/ -o assets/scenes/indoors/hairal_niwa2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+terminate called after throwing an instance of 'std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >'
+Aborted (core dumped)
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kenjyanoma.xml -b baserom/ -o assets/scenes/indoors/kenjyanoma -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/syatekijyou.xml -b baserom/ -o assets/scenes/indoors/syatekijyou -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home4.xml -b baserom/ -o assets/scenes/indoors/kokiri_home4 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/impa.xml -b baserom/ -o assets/scenes/indoors/impa -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hakasitarelay.xml -b baserom/ -o assets/scenes/indoors/hakasitarelay -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/hylia_labo.xml -b baserom/ -o assets/scenes/indoors/hylia_labo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/miharigoya.xml -b baserom/ -o assets/scenes/indoors/miharigoya -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/yousei_izumi_tate.xml -b baserom/ -o assets/scenes/indoors/yousei_izumi_tate -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/kokiri_home5.xml -b baserom/ -o assets/scenes/indoors/kokiri_home5 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/daiyousei_izumi.xml -b baserom/ -o assets/scenes/indoors/daiyousei_izumi -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/link_home.xml -b baserom/ -o assets/scenes/indoors/link_home -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/indoors/nakaniwa.xml -b baserom/ -o assets/scenes/indoors/nakaniwa -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/night_shop.xml -b baserom/ -o assets/scenes/shops/night_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/face_shop.xml -b baserom/ -o assets/scenes/shops/face_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/alley_shop.xml -b baserom/ -o assets/scenes/shops/alley_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/zoora.xml -b baserom/ -o assets/scenes/shops/zoora -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/golon.xml -b baserom/ -o assets/scenes/shops/golon -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/kokiri_shop.xml -b baserom/ -o assets/scenes/shops/kokiri_shop -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/drag.xml -b baserom/ -o assets/scenes/shops/drag -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/shops/shop1.xml -b baserom/ -o assets/scenes/shops/shop1 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/gerudoway.xml -b baserom/ -o assets/scenes/dungeons/gerudoway -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HAKAdan.xml -b baserom/ -o assets/scenes/dungeons/HAKAdan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/Bmori1.xml -b baserom/ -o assets/scenes/dungeons/Bmori1 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/jyasinboss.xml -b baserom/ -o assets/scenes/dungeons/jyasinboss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/men.xml -b baserom/ -o assets/scenes/dungeons/men -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x56516e87ff30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f1210795950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11)[0x56516e89eeb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0)[0x56516e895de0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284)[0x56516e897994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24)[0x56516e89b6d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2)[0x56516e8d3432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x56516e8a25ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x56516e8a368a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x56516e881c82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x56516e8827ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f121077ccb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x56516e87c90e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f1210795950]
+tools/ZAPD/ZAPD.out(_ZN5ZFile20GetDeclarationRangedEj+0x11) [0x56516e89eeb1]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList12Opcode_G_VTXEmiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0xf0) [0x56516e895de0]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList11ParseF3DZEXE12F3DZEXOpcodemiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPc+0x284) [0x56516e897994]
+tools/ZAPD/ZAPD.out(_ZN12ZDisplayList19GetSourceOutputCodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0x1d24) [0x56516e89b6d4]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x8c2) [0x56516e8d3432]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x56516e8a25ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x56516e8a368a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x56516e881c82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x56516e8827ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f121077ccb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x56516e87c90e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_sonogo.xml -b baserom/ -o assets/scenes/dungeons/ganon_sonogo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_boss.xml -b baserom/ -o assets/scenes/dungeons/ganon_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HIDAN.xml -b baserom/ -o assets/scenes/dungeons/HIDAN -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/bdan_boss.xml -b baserom/ -o assets/scenes/dungeons/bdan_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_tou.xml -b baserom/ -o assets/scenes/dungeons/ganon_tou -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon.xml -b baserom/ -o assets/scenes/dungeons/ganon -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ddan.xml -b baserom/ -o assets/scenes/dungeons/ddan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/jyasinzou.xml -b baserom/ -o assets/scenes/dungeons/jyasinzou -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/bdan.xml -b baserom/ -o assets/scenes/dungeons/bdan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganontika.xml -b baserom/ -o assets/scenes/dungeons/ganontika -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x55d2ca34af30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7f5832a11950]
+tools/ZAPD/ZAPD.out(_ZN9ZCutsceneC2ESt6vectorIhSaIhEEii+0x242)[0x55d2ca359532]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x19b7)[0x55d2ca39f527]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff)[0x55d2ca36d5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x55d2ca36e68a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x55d2ca34cc82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x55d2ca34d7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7f58329f8cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x55d2ca34790e]
+WARNING: Could not identify cutscene command ID 0x15550000
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7f5832a11950]
+tools/ZAPD/ZAPD.out(_ZN9ZCutsceneC2ESt6vectorIhSaIhEEii+0x242) [0x55d2ca359532]
+tools/ZAPD/ZAPD.out(_ZN5ZRoom14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEP5ZFilePS_+0x19b7) [0x55d2ca39f527]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x21ff) [0x55d2ca36d5ff]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x55d2ca36e68a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x55d2ca34cc82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x55d2ca34d7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7f58329f8cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x55d2ca34790e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ydan.xml -b baserom/ -o assets/scenes/dungeons/ydan -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_demo.xml -b baserom/ -o assets/scenes/dungeons/ganon_demo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/moribossroom.xml -b baserom/ -o assets/scenes/dungeons/moribossroom -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/MIZUsin_bs.xml -b baserom/ -o assets/scenes/dungeons/MIZUsin_bs -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganon_final.xml -b baserom/ -o assets/scenes/dungeons/ganon_final -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/FIRE_bs.xml -b baserom/ -o assets/scenes/dungeons/FIRE_bs -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ice_doukutu.xml -b baserom/ -o assets/scenes/dungeons/ice_doukutu -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ganontikasonogo.xml -b baserom/ -o assets/scenes/dungeons/ganontikasonogo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/MIZUsin.xml -b baserom/ -o assets/scenes/dungeons/MIZUsin -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HAKAdan_bs.xml -b baserom/ -o assets/scenes/dungeons/HAKAdan_bs -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/HAKAdanCH.xml -b baserom/ -o assets/scenes/dungeons/HAKAdanCH -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ydan_boss.xml -b baserom/ -o assets/scenes/dungeons/ydan_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/dungeons/ddan_boss.xml -b baserom/ -o assets/scenes/dungeons/ddan_boss -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_day.xml -b baserom/ -o assets/scenes/misc/market_day -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_alley.xml -b baserom/ -o assets/scenes/misc/market_alley -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hiral_demo.xml -b baserom/ -o assets/scenes/misc/hiral_demo -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/enrui.xml -b baserom/ -o assets/scenes/misc/enrui -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/kakariko3.xml -b baserom/ -o assets/scenes/misc/kakariko3 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hakaana_ouke.xml -b baserom/ -o assets/scenes/misc/hakaana_ouke -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/kakusiana.xml -b baserom/ -o assets/scenes/misc/kakusiana -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hakaana2.xml -b baserom/ -o assets/scenes/misc/hakaana2 -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/entra_n.xml -b baserom/ -o assets/scenes/misc/entra_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_ruins.xml -b baserom/ -o assets/scenes/misc/market_ruins -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_night.xml -b baserom/ -o assets/scenes/misc/market_night -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/hakaana.xml -b baserom/ -o assets/scenes/misc/hakaana -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/shrine_r.xml -b baserom/ -o assets/scenes/misc/shrine_r -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/shrine_n.xml -b baserom/ -o assets/scenes/misc/shrine_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/market_alley_n.xml -b baserom/ -o assets/scenes/misc/market_alley_n -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/kinsuta.xml -b baserom/ -o assets/scenes/misc/kinsuta -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/shrine.xml -b baserom/ -o assets/scenes/misc/shrine -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/scenes/misc/turibori.xml -b baserom/ -o assets/scenes/misc/turibori -gsf 1 -ifp 1 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/overlays/ovl_Magic_Dark.xml -b baserom/ -o assets/overlays/ovl_Magic_Dark -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_shield_1.xml -b baserom/ -o assets/objects/object_gi_shield_1 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_gerudomask.xml -b baserom/ -o assets/objects/object_gi_gerudomask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_key.xml -b baserom/ -o assets/objects/object_gi_key -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_jya_iron.xml -b baserom/ -o assets/objects/object_jya_iron -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hearts.xml -b baserom/ -o assets/objects/object_gi_hearts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_niwatori.xml -b baserom/ -o assets/objects/object_gi_niwatori -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_goddess.xml -b baserom/ -o assets/objects/object_gi_goddess -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_spot09_obj.xml -b baserom/ -o assets/objects/object_spot09_obj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_shield_3.xml -b baserom/ -o assets/objects/object_gi_shield_3 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_arrowcase.xml -b baserom/ -o assets/objects/object_gi_arrowcase -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_boots_2.xml -b baserom/ -o assets/objects/object_gi_boots_2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_eye_lotion.xml -b baserom/ -o assets/objects/object_gi_eye_lotion -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_syokudai.xml -b baserom/ -o assets/objects/object_syokudai -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_frog.xml -b baserom/ -o assets/objects/object_gi_frog -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_shield_2.xml -b baserom/ -o assets/objects/object_gi_shield_2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_zoramask.xml -b baserom/ -o assets/objects/object_gi_zoramask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bean.xml -b baserom/ -o assets/objects/object_gi_bean -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_sutaru.xml -b baserom/ -o assets/objects/object_gi_sutaru -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_am.xml -b baserom/ -o assets/objects/object_am -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bombpouch.xml -b baserom/ -o assets/objects/object_gi_bombpouch -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_saw.xml -b baserom/ -o assets/objects/object_gi_saw -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_ny.xml -b baserom/ -o assets/objects/object_ny -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_letter.xml -b baserom/ -o assets/objects/object_gi_letter -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_milk.xml -b baserom/ -o assets/objects/object_gi_milk -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/gameplay_dangeon_keep.xml -b baserom/ -o assets/objects/gameplay_dangeon_keep -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_spot11_obj.xml -b baserom/ -o assets/objects/object_spot11_obj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_pachinko.xml -b baserom/ -o assets/objects/object_gi_pachinko -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_fish.xml -b baserom/ -o assets/objects/object_gi_fish -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ocarina_0.xml -b baserom/ -o assets/objects/object_gi_ocarina_0 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_mushroom.xml -b baserom/ -o assets/objects/object_gi_mushroom -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hookshot.xml -b baserom/ -o assets/objects/object_gi_hookshot -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_clothes.xml -b baserom/ -o assets/objects/object_gi_clothes -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bomb_1.xml -b baserom/ -o assets/objects/object_gi_bomb_1 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_vase.xml -b baserom/ -o assets/objects/object_vase -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_melody.xml -b baserom/ -o assets/objects/object_gi_melody -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_dekunuts.xml -b baserom/ -o assets/objects/object_dekunuts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_blkobj.xml -b baserom/ -o assets/objects/object_blkobj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_sword_1.xml -b baserom/ -o assets/objects/object_gi_sword_1 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_sk2.xml -b baserom/ -o assets/objects/object_sk2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_fire.xml -b baserom/ -o assets/objects/object_gi_fire -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_medal.xml -b baserom/ -o assets/objects/object_gi_medal -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_truth_mask.xml -b baserom/ -o assets/objects/object_gi_truth_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bottle.xml -b baserom/ -o assets/objects/object_gi_bottle -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_nuts.xml -b baserom/ -o assets/objects/object_gi_nuts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_prescription.xml -b baserom/ -o assets/objects/object_gi_prescription -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_skj_mask.xml -b baserom/ -o assets/objects/object_gi_skj_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_dekupouch.xml -b baserom/ -o assets/objects/object_gi_dekupouch -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_spot17_obj.xml -b baserom/ -o assets/objects/object_spot17_obj -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_rabit_mask.xml -b baserom/ -o assets/objects/object_gi_rabit_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_ydan_objects.xml -b baserom/ -o assets/objects/object_ydan_objects -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_purse.xml -b baserom/ -o assets/objects/object_gi_purse -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_liquid.xml -b baserom/ -o assets/objects/object_gi_liquid -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_powder.xml -b baserom/ -o assets/objects/object_gi_powder -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_seed.xml -b baserom/ -o assets/objects/object_gi_seed -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ocarina.xml -b baserom/ -o assets/objects/object_gi_ocarina -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_glasses.xml -b baserom/ -o assets/objects/object_gi_glasses -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_gerudo.xml -b baserom/ -o assets/objects/object_gi_gerudo -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ghost.xml -b baserom/ -o assets/objects/object_gi_ghost -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_rupy.xml -b baserom/ -o assets/objects/object_gi_rupy -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_dns.xml -b baserom/ -o assets/objects/object_dns -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_gloves.xml -b baserom/ -o assets/objects/object_gi_gloves -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hammer.xml -b baserom/ -o assets/objects/object_gi_hammer -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bow.xml -b baserom/ -o assets/objects/object_gi_bow -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_brokensword.xml -b baserom/ -o assets/objects/object_gi_brokensword -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_geldb.xml -b baserom/ -o assets/objects/object_geldb -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_redead_mask.xml -b baserom/ -o assets/objects/object_gi_redead_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_soul.xml -b baserom/ -o assets/objects/object_gi_soul -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_butterfly.xml -b baserom/ -o assets/objects/object_gi_butterfly -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_insect.xml -b baserom/ -o assets/objects/object_gi_insect -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_scale.xml -b baserom/ -o assets/objects/object_gi_scale -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_stick.xml -b baserom/ -o assets/objects/object_gi_stick -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_longsword.xml -b baserom/ -o assets/objects/object_gi_longsword -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ki_tan_mask.xml -b baserom/ -o assets/objects/object_gi_ki_tan_mask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_boomerang.xml -b baserom/ -o assets/objects/object_gi_boomerang -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_jewel.xml -b baserom/ -o assets/objects/object_gi_jewel -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_map.xml -b baserom/ -o assets/objects/object_gi_map -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_hoverboots.xml -b baserom/ -o assets/objects/object_gi_hoverboots -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_egg.xml -b baserom/ -o assets/objects/object_gi_egg -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_ticketstone.xml -b baserom/ -o assets/objects/object_gi_ticketstone -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/gameplay_keep.xml -b baserom/ -o assets/objects/gameplay_keep -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out(_Z12ErrorHandleri+0x50)[0x56535a70cf30]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950)[0x7fe725021950]
+tools/ZAPD/ZAPD.out(_ZN16ZNormalAnimation12ParseRawDataEv+0x137)[0x56535a711df7]
+tools/ZAPD/ZAPD.out(_ZN16ZNormalAnimation14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0xad)[0x56535a71210d]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x201c)[0x56535a72f41c]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa)[0x56535a73068a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2)[0x56535a70ec82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec)[0x56535a70f7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2)[0x7fe725008cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e)[0x56535a70990e]
+/lib/x86_64-linux-gnu/libc.so.6(+0x41950) [0x7fe725021950]
+tools/ZAPD/ZAPD.out(_ZN16ZNormalAnimation12ParseRawDataEv+0x137) [0x56535a711df7]
+tools/ZAPD/ZAPD.out(_ZN16ZNormalAnimation14ExtractFromXMLEPN8tinyxml210XMLElementESt6vectorIhSaIhEEiRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE+0xad) [0x56535a71210d]
+tools/ZAPD/ZAPD.out(_ZN5ZFile8ParseXMLE9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb+0x201c) [0x56535a72f41c]
+tools/ZAPD/ZAPD.out(_ZN5ZFileC1E9ZFileModePN8tinyxml210XMLElementENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_S9_b+0x2aa) [0x56535a73068a]
+tools/ZAPD/ZAPD.out(_Z5ParseRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES6_S6_9ZFileMode+0x1a2) [0x56535a70ec82]
+tools/ZAPD/ZAPD.out(_Z7NewMainiPPc+0x5ec) [0x56535a70f7ec]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0xf2) [0x7fe725008cb2]
+tools/ZAPD/ZAPD.out(_start+0x2e) [0x56535a70990e]
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_m_arrow.xml -b baserom/ -o assets/objects/object_gi_m_arrow -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_soldout.xml -b baserom/ -o assets/objects/object_gi_soldout -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_zl4.xml -b baserom/ -o assets/objects/object_zl4 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bracelet.xml -b baserom/ -o assets/objects/object_gi_bracelet -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_heart.xml -b baserom/ -o assets/objects/object_gi_heart -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bosskey.xml -b baserom/ -o assets/objects/object_gi_bosskey -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_dnk.xml -b baserom/ -o assets/objects/object_dnk -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bomb_2.xml -b baserom/ -o assets/objects/object_gi_bomb_2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_hintnuts.xml -b baserom/ -o assets/objects/object_hintnuts -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_coin.xml -b baserom/ -o assets/objects/object_gi_coin -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_grass.xml -b baserom/ -o assets/objects/object_gi_grass -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_compass.xml -b baserom/ -o assets/objects/object_gi_compass -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_demo_kekkai.xml -b baserom/ -o assets/objects/object_demo_kekkai -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_golonmask.xml -b baserom/ -o assets/objects/object_gi_golonmask -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_pu_box.xml -b baserom/ -o assets/objects/object_pu_box -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_arrow.xml -b baserom/ -o assets/objects/object_gi_arrow -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_torch2.xml -b baserom/ -o assets/objects/object_torch2 -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_magicpot.xml -b baserom/ -o assets/objects/object_gi_magicpot -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
+tools/ZAPD/ZAPD.out e -eh -i assets/xml/objects/object_gi_bottle_letter.xml -b baserom/ -o assets/objects/object_gi_bottle_letter -gsf 1 -ifp 0 -sm tools/ZAPD/SymbolMap_OoTMqDbg.txt
