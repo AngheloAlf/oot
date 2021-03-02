@@ -28,7 +28,14 @@ def compare_files(filepath_one, filepath_two):
     are_equal = get_str_hash(file_one) == get_str_hash(file_two)
     len_one = len(file_one)
     len_two = len(file_two)
-    return are_equal, len_one, len_two
+    diff_bytes = 0
+
+    if not are_equal:
+        for i in range(min(len_one, len_two)):
+            if file_one[i] != file_two[i]:
+                diff_bytes += 1
+
+    return are_equal, len_one, len_two, diff_bytes
 
 
 def compare_baseroms(second_baserom_path, filelist, print_type):
@@ -66,7 +73,7 @@ def compare_baseroms(second_baserom_path, filelist, print_type):
         if is_missing:
             continue
 
-        are_equal, len_one, len_two = compare_files(filepath_one, filepath_two)
+        are_equal, len_one, len_two, diff_bytes = compare_files(filepath_one, filepath_two)
         if are_equal:
             equals += 1
             if print_type in ("all", "equals"):
@@ -82,6 +89,7 @@ def compare_baseroms(second_baserom_path, filelist, print_type):
                     print(f"\tSize doesn't match: {len_one} vs {len_two} (x{div}) ({len_one-len_two})")
                 else:
                     print("\tSize matches.")
+                print(f"\tThere are at least {diff_bytes} bytes different.")
 
     total = len(filelist)
     if total > 0:
@@ -103,13 +111,17 @@ def compare_to_csv(second_baserom_path, filelist, print_type):
     missing_in_one = set()
     missing_in_two = set()
 
-    print("File,Are equals,Size in baserom,Size in other_baserom,Size proportion,Size difference")
+    index = -1
+
+    print("Index,File,Are equals,Size in baserom,Size in other_baserom,Size proportion,Size difference,Bytes different")
 
     for filename in filelist:
         filepath_one = os.path.join(baserom_path, filename)
         filepath_two = os.path.join(second_baserom_path, filename)
         is_missing_in_one = False
         is_missing_in_two = False
+
+        index += 1
 
         if os.path.exists(filepath_one):
             files_baserom_one.add(filename)
@@ -131,10 +143,10 @@ def compare_to_csv(second_baserom_path, filelist, print_type):
                     len_one = str(len(read_file_as_bytearray(filepath_one)))
                 if not is_missing_in_two:
                     len_one = str(len(read_file_as_bytearray(filepath_two)))
-                print(f"{filename},,{len_one},{len_two},,")
+                print(f"{index},{filename},,{len_one},{len_two},,,")
             continue
 
-        are_equal, len_one, len_two = compare_files(filepath_one, filepath_two)
+        are_equal, len_one, len_two, diff_bytes = compare_files(filepath_one, filepath_two)
         div = 0
         if len_two != 0:
             div = round(len_one/len_two, 3)
@@ -142,7 +154,7 @@ def compare_to_csv(second_baserom_path, filelist, print_type):
             continue
         if not are_equal and print_type not in ("all", "diffs"):
             continue
-        print(f"{filename},{are_equal},{len_one},{len_two},{div},{len_one-len_two}")
+        print(f"{index},{filename},{are_equal},{len_one},{len_two},{div},{len_one-len_two},{diff_bytes}")
 
 def main():
     description = ""
