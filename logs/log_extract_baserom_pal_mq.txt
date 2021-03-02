@@ -1,4 +1,3 @@
-Extracting baserom with 4 CPU cores.
 extracting baserom/makerom (0x00000000, 0x00001060)
 extracting baserom/boot (0x00001060, 0x00007170)
 extracting baserom/dmadata (0x00007170, 0x0000D0D0)

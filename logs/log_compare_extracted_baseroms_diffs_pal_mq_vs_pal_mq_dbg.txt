@@ -1,1168 +1,1168 @@
-ovl_En_Zl2 not OK
-	Size doesn't match: 18176 vs 18976 (x0.958) (-800)
-ovl_Obj_Switch not OK
-	Size doesn't match: 7648 vs 8352 (x0.916) (-704)
-ovl_Bg_Spot01_Fusya not OK
-	Size doesn't match: 672 vs 800 (x0.84) (-128)
-ovl_Obj_Syokudai not OK
-	Size doesn't match: 3136 vs 3296 (x0.951) (-160)
-boot not OK
-	Size doesn't match: 24848 vs 73488 (x0.338) (-48640)
-ovl_En_Fish not OK
-	Size doesn't match: 8464 vs 8848 (x0.957) (-384)
-ovl_Effect_Ss_Stone1 not OK
-	Size doesn't match: 896 vs 1056 (x0.848) (-160)
-ovl_En_Clear_Tag not OK
-	Size doesn't match: 35696 vs 36384 (x0.981) (-688)
-kokiri_shop_scene not OK
-	Size matches.
-ovl_Object_Kankyo not OK
-	Size doesn't match: 12928 vs 13776 (x0.938) (-848)
-ovl_En_Wonder_Item not OK
-	Size doesn't match: 3152 vs 4016 (x0.785) (-864)
-HAKAdanCH_scene not OK
-	Size matches.
-ovl_Bg_Mori_Elevator not OK
-	Size doesn't match: 2800 vs 3424 (x0.818) (-624)
-ovl_Demo_Geff not OK
-	Size doesn't match: 2080 vs 2800 (x0.743) (-720)
-spot15_scene not OK
-	Size matches.
-ovl_En_Elf not OK
-	Size doesn't match: 18880 vs 19184 (x0.984) (-304)
-ovl_Bg_Hidan_Hamstep not OK
-	Size doesn't match: 3760 vs 4336 (x0.867) (-576)
-ovl_En_Heishi1 not OK
-	Size doesn't match: 5392 vs 7120 (x0.757) (-1728)
-ovl_Item_Inbox not OK
-	Size doesn't match: 352 vs 336 (x1.048) (16)
-ovl_select not OK
-	Size doesn't match: 11392 vs 12384 (x0.92) (-992)
-ovl_Bg_Haka_Water not OK
-	Size doesn't match: 2048 vs 2240 (x0.914) (-192)
-ovl_Bg_Umajump not OK
-	Size doesn't match: 400 vs 384 (x1.042) (16)
-ovl_Bg_Toki_Swd not OK
-	Size doesn't match: 5712 vs 5824 (x0.981) (-112)
-ovl_En_Honotrap not OK
-	Size doesn't match: 5472 vs 5824 (x0.94) (-352)
-ydan_boss_scene not OK
-	Size matches.
-spot06_scene not OK
-	Size matches.
-ovl_Bg_Mori_Hashigo not OK
-	Size doesn't match: 2240 vs 2816 (x0.795) (-576)
-ovl_En_Ganon_Mant not OK
-	Size doesn't match: 16944 vs 17056 (x0.993) (-112)
-market_night_scene not OK
-	Size matches.
-ovl_Item_Shield not OK
-	Size doesn't match: 2576 vs 2736 (x0.942) (-160)
-ovl_En_Dodongo not OK
-	Size doesn't match: 11680 vs 11648 (x1.003) (32)
-ovl_En_Wall_Tubo not OK
-	Size doesn't match: 1264 vs 1840 (x0.687) (-576)
-ganontika_scene not OK
-	Size matches.
-ovl_Bg_Hidan_Rock not OK
-	Size doesn't match: 4352 vs 4480 (x0.971) (-128)
-ovl_Bg_Spot17_Bakudankabe not OK
-	Size doesn't match: 1776 vs 2112 (x0.841) (-336)
-ovl_En_Syateki_Itm not OK
-	Size doesn't match: 3488 vs 4544 (x0.768) (-1056)
-ovl_En_Butte not OK
-	Size doesn't match: 5584 vs 5744 (x0.972) (-160)
-ovl_Effect_Ss_Fire_Tail not OK
-	Size doesn't match: 1792 vs 1936 (x0.926) (-144)
-ovl_En_Dnt_Jiji not OK
-	Size doesn't match: 5408 vs 6112 (x0.885) (-704)
-ovl_Bg_Spot01_Idomizu not OK
-	Size doesn't match: 800 vs 928 (x0.862) (-128)
-ovl_Bg_Jya_Amishutter not OK
-	Size doesn't match: 912 vs 1056 (x0.864) (-144)
-ovl_En_Boom not OK
-	Size doesn't match: 2256 vs 2368 (x0.953) (-112)
-ovl_Effect_Ss_Bomb not OK
-	Size doesn't match: 1072 vs 1184 (x0.905) (-112)
-ovl_kaleido_scope not OK
-	Size doesn't match: 117184 vs 125312 (x0.935) (-8128)
-ovl_Bg_Gnd_Firemeiro not OK
-	Size doesn't match: 1360 vs 1504 (x0.904) (-144)
-ovl_Bg_Ice_Objects not OK
-	Size doesn't match: 3904 vs 3888 (x1.004) (16)
-ovl_Boss_Tw not OK
-	Size doesn't match: 78160 vs 80752 (x0.968) (-2592)
-ovl_Obj_Roomtimer not OK
-	Size doesn't match: 592 vs 576 (x1.028) (16)
-spot11_scene not OK
-	Size matches.
-ovl_Obj_Lift not OK
-	Size doesn't match: 2592 vs 2768 (x0.936) (-176)
-ovl_Demo_Gj not OK
-	Size doesn't match: 15536 vs 16192 (x0.959) (-656)
-ovl_Bg_Spot11_Oasis not OK
-	Size doesn't match: 1840 vs 1952 (x0.943) (-112)
-ovl_En_Po_Field not OK
-	Size doesn't match: 14848 vs 15280 (x0.972) (-432)
-ovl_En_Wallmas not OK
-	Size doesn't match: 6672 vs 6912 (x0.965) (-240)
-ovl_Bg_Menkuri_Kaiten not OK
-	Size doesn't match: 400 vs 384 (x1.042) (16)
-ovl_En_Ik not OK
-	Size doesn't match: 18000 vs 19600 (x0.918) (-1600)
-ovl_En_Ma1 not OK
-	Size doesn't match: 4832 vs 4880 (x0.99) (-48)
-ovl_Bg_Treemouth not OK
-	Size doesn't match: 5728 vs 5856 (x0.978) (-128)
-ovl_Obj_Makekinsuta not OK
-	Size doesn't match: 336 vs 672 (x0.5) (-336)
-ovl_Obj_Tsubo not OK
-	Size doesn't match: 4080 vs 4240 (x0.962) (-160)
-ovl_Bg_Spot08_Iceblock not OK
-	Size doesn't match: 4160 vs 4480 (x0.929) (-320)
-spot08_scene not OK
-	Size matches.
-spot13_scene not OK
-	Size matches.
-HIDAN_scene not OK
-	Size matches.
-ovl_En_Viewer not OK
-	Size doesn't match: 11936 vs 12864 (x0.928) (-928)
-ovl_En_Ice_Hono not OK
-	Size doesn't match: 4592 vs 4896 (x0.938) (-304)
-ovl_En_G_Switch not OK
-	Size doesn't match: 6176 vs 7840 (x0.788) (-1664)
-ovl_En_Bb not OK
-	Size doesn't match: 15584 vs 15696 (x0.993) (-112)
-bdan_room_12 not OK
-	Size matches.
-ovl_En_Diving_Game not OK
-	Size doesn't match: 6576 vs 6880 (x0.956) (-304)
-ovl_Demo_Go not OK
-	Size doesn't match: 3408 vs 3584 (x0.951) (-176)
-ovl_En_Stream not OK
-	Size doesn't match: 1424 vs 1552 (x0.918) (-128)
-impa_scene not OK
-	Size matches.
-ovl_Bg_Haka not OK
-	Size doesn't match: 1728 vs 1856 (x0.931) (-128)
-miharigoya_scene not OK
-	Size matches.
-ovl_En_M_Thunder not OK
-	Size doesn't match: 5632 vs 5808 (x0.97) (-176)
-ovl_Obj_Lightswitch not OK
-	Size doesn't match: 5168 vs 5840 (x0.885) (-672)
-ovl_Bg_Spot16_Bombstone not OK
-	Size doesn't match: 5456 vs 6160 (x0.886) (-704)
-ovl_En_Fu not OK
-	Size doesn't match: 3392 vs 3456 (x0.981) (-64)
-ovl_Demo_6K not OK
-	Size doesn't match: 11616 vs 12672 (x0.917) (-1056)
-ovl_En_Md not OK
-	Size doesn't match: 9840 vs 9904 (x0.994) (-64)
-ovl_Boss_Ganon2 not OK
-	Size doesn't match: 70480 vs 72672 (x0.97) (-2192)
-ovl_En_Holl not OK
-	Size doesn't match: 4048 vs 4128 (x0.981) (-80)
-entra_n_scene not OK
-	Size matches.
-ovl_Door_Ana not OK
-	Size doesn't match: 1648 vs 1776 (x0.928) (-128)
-ovl_En_Torch not OK
-	Size matches.
-ovl_Bg_Jya_Goroiwa not OK
-	Size doesn't match: 1920 vs 1872 (x1.026) (48)
-bowling_scene not OK
-	Size matches.
-ovl_Bg_Ydan_Maruta not OK
-	Size doesn't match: 1760 vs 1744 (x1.009) (16)
-ovl_Bg_Haka_Megane not OK
-	Size doesn't match: 1024 vs 1008 (x1.016) (16)
-ovl_Obj_Hamishi not OK
-	Size doesn't match: 2128 vs 2256 (x0.943) (-128)
-ganon_demo_scene not OK
-	Size matches.
-ovl_En_Niw_Lady not OK
-	Size doesn't match: 6400 vs 7696 (x0.832) (-1296)
-ovl_Bg_Spot05_Soko not OK
-	Size doesn't match: 800 vs 784 (x1.02) (16)
-ovl_En_Am not OK
-	Size doesn't match: 9216 vs 9296 (x0.991) (-80)
-ovl_Bg_Sst_Floor not OK
-	Size doesn't match: 1376 vs 1520 (x0.905) (-144)
-ovl_Effect_Ss_Dust not OK
-	Size doesn't match: 2112 vs 2192 (x0.964) (-80)
-ovl_Boss_Mo not OK
-	Size doesn't match: 47824 vs 49088 (x0.974) (-1264)
-ovl_En_Encount1 not OK
-	Size doesn't match: 2912 vs 4720 (x0.617) (-1808)
-ovl_Bg_Mizu_Movebg not OK
-	Size doesn't match: 4480 vs 4624 (x0.969) (-144)
-ovl_Obj_Mure2 not OK
-	Size doesn't match: 2592 vs 2704 (x0.959) (-112)
-ovl_Oceff_Spot not OK
-	Size doesn't match: 3888 vs 4208 (x0.924) (-320)
-ovl_Demo_Ext not OK
-	Size doesn't match: 2384 vs 2736 (x0.871) (-352)
-hiral_demo_scene not OK
-	Size matches.
-ovl_En_Fire_Rock not OK
-	Size doesn't match: 4368 vs 5200 (x0.84) (-832)
-spot10_scene not OK
-	Size matches.
-ovl_Bg_Jya_Lift not OK
-	Size doesn't match: 1360 vs 1424 (x0.955) (-64)
-ice_doukutu_scene not OK
-	Size matches.
-ovl_Shot_Sun not OK
-	Size doesn't match: 1728 vs 1856 (x0.931) (-128)
-ovl_Obj_Comb not OK
-	Size doesn't match: 2144 vs 2240 (x0.957) (-96)
-ovl_Item_Ocarina not OK
-	Size doesn't match: 2000 vs 2032 (x0.984) (-32)
-ovl_Bg_Jya_Kanaami not OK
-	Size doesn't match: 944 vs 1120 (x0.843) (-176)
-kinsuta_scene not OK
-	Size matches.
-ovl_Bg_Spot18_Basket not OK
-	Size doesn't match: 4080 vs 4208 (x0.97) (-128)
-ovl_Bg_Spot03_Taki not OK
-	Size doesn't match: 2336 vs 2448 (x0.954) (-112)
-ovl_En_Scene_Change not OK
-	Size doesn't match: 304 vs 432 (x0.704) (-128)
-ovl_En_Zl1 not OK
-	Size doesn't match: 15888 vs 15952 (x0.996) (-64)
-ovl_Bg_Hidan_Firewall not OK
-	Size doesn't match: 1888 vs 2016 (x0.937) (-128)
-ovl_En_Hs2 not OK
-	Size doesn't match: 1504 vs 1552 (x0.969) (-48)
-ovl_En_Ru2 not OK
-	Size doesn't match: 11648 vs 12304 (x0.947) (-656)
-ovl_En_Gm not OK
-	Size doesn't match: 3376 vs 3728 (x0.906) (-352)
-ovl_Bg_Hidan_Rsekizou not OK
-	Size doesn't match: 3040 vs 3264 (x0.931) (-224)
-ovl_Effect_Ss_Dt_Bubble not OK
-	Size doesn't match: 1424 vs 1568 (x0.908) (-144)
-yousei_izumi_tate_scene not OK
-	Size matches.
-ovl_Bg_Jya_Zurerukabe not OK
-	Size doesn't match: 1712 vs 2096 (x0.817) (-384)
-ovl_Bg_Spot18_Obj not OK
-	Size doesn't match: 2256 vs 2752 (x0.82) (-496)
-ovl_En_In not OK
-	Size doesn't match: 11680 vs 11888 (x0.983) (-208)
-ovl_En_Mu not OK
-	Size doesn't match: 2336 vs 2416 (x0.967) (-80)
-spot03_scene not OK
-	Size matches.
-ovl_Oceff_Wipe not OK
-	Size doesn't match: 3456 vs 3616 (x0.956) (-160)
-ovl_En_Anubice not OK
-	Size doesn't match: 4784 vs 5248 (x0.912) (-464)
-ovl_En_Takara_Man not OK
-	Size doesn't match: 2240 vs 2512 (x0.892) (-272)
-ovl_Effect_Ss_Sibuki2 not OK
-	Size doesn't match: 816 vs 976 (x0.836) (-160)
-ovl_En_Skj not OK
-	Size doesn't match: 14656 vs 15344 (x0.955) (-688)
-ovl_Effect_Ss_Fhg_Flash not OK
-	Size doesn't match: 3968 vs 4320 (x0.919) (-352)
-ovl_Obj_Oshihiki not OK
-	Size doesn't match: 6832 vs 7760 (x0.88) (-928)
-ovl_En_Du not OK
-	Size doesn't match: 6800 vs 6848 (x0.993) (-48)
-ovl_Demo_Du not OK
-	Size doesn't match: 14304 vs 14816 (x0.965) (-512)
-ovl_En_Tana not OK
-	Size doesn't match: 688 vs 1072 (x0.642) (-384)
-ovl_Bg_Pushbox not OK
-	Size doesn't match: 768 vs 880 (x0.873) (-112)
-ovl_Bg_Mizu_Bwall not OK
-	Size doesn't match: 5328 vs 6064 (x0.879) (-736)
-ovl_Obj_Mure3 not OK
-	Size doesn't match: 2000 vs 1968 (x1.016) (32)
-alley_shop_scene not OK
-	Size matches.
-ovl_Effect_Ss_Stick not OK
-	Size doesn't match: 928 vs 1072 (x0.866) (-144)
-ovl_En_Insect not OK
-	Size doesn't match: 9504 vs 9792 (x0.971) (-288)
-ovl_En_Po_Desert not OK
-	Size doesn't match: 3520 vs 3664 (x0.961) (-144)
-takaraya_scene not OK
-	Size matches.
-market_day_scene not OK
-	Size matches.
-ovl_Bg_Haka_Huta not OK
-	Size doesn't match: 2720 vs 2688 (x1.012) (32)
-ovl_En_Kanban not OK
-	Size doesn't match: 12624 vs 13232 (x0.954) (-608)
-ovl_Bg_Haka_Trap not OK
-	Size doesn't match: 5584 vs 5552 (x1.006) (32)
-ovl_Bg_Spot08_Bakudankabe not OK
-	Size doesn't match: 1696 vs 1680 (x1.01) (16)
-ovl_Bg_Hidan_Dalm not OK
-	Size doesn't match: 2128 vs 2112 (x1.008) (16)
-ovl_En_Si not OK
-	Size doesn't match: 1280 vs 1264 (x1.013) (16)
-ovl_Effect_Ss_G_Ripple not OK
-	Size doesn't match: 1376 vs 1488 (x0.925) (-112)
-ovl_En_Ge3 not OK
-	Size doesn't match: 3136 vs 3312 (x0.947) (-176)
-ovl_Bg_Mizu_Shutter not OK
-	Size doesn't match: 2048 vs 2192 (x0.934) (-144)
-ovl_En_Ishi not OK
-	Size doesn't match: 37200 vs 37408 (x0.994) (-208)
-ovl_En_Anubice_Fire not OK
-	Size doesn't match: 3520 vs 3680 (x0.957) (-160)
-kokiri_home5_scene not OK
-	Size matches.
-ovl_En_Ge1 not OK
-	Size doesn't match: 8240 vs 8800 (x0.936) (-560)
-ovl_Obj_Elevator not OK
-	Size doesn't match: 960 vs 1168 (x0.822) (-208)
-ovl_En_Trap not OK
-	Size doesn't match: 4768 vs 4752 (x1.003) (16)
-ovl_En_Sth not OK
-	Size doesn't match: 16576 vs 16992 (x0.976) (-416)
-spot17_scene not OK
-	Size matches.
-ovl_En_Heishi3 not OK
-	Size doesn't match: 2512 vs 2704 (x0.929) (-192)
-ovl_Mir_Ray not OK
-	Size doesn't match: 6320 vs 6704 (x0.943) (-384)
-ovl_Effect_Ss_G_Magma not OK
-	Size doesn't match: 608 vs 592 (x1.027) (16)
-ovl_En_Kakasi not OK
-	Size doesn't match: 3392 vs 3744 (x0.906) (-352)
-ovl_Effect_Ss_G_Magma2 not OK
-	Size doesn't match: 1296 vs 1472 (x0.88) (-176)
-ovl_En_Ko not OK
-	Size doesn't match: 16704 vs 16880 (x0.99) (-176)
-ovl_Bg_Ice_Turara not OK
-	Size doesn't match: 2096 vs 2080 (x1.008) (16)
-ovl_Bg_Mizu_Water not OK
-	Size doesn't match: 3280 vs 3792 (x0.865) (-512)
-ovl_En_Ssh not OK
-	Size doesn't match: 9712 vs 9760 (x0.995) (-48)
-ovl_Bg_Bom_Guard not OK
-	Size doesn't match: 544 vs 640 (x0.85) (-96)
-ovl_En_Dekunuts not OK
-	Size doesn't match: 6144 vs 6112 (x1.005) (32)
-ovl_Bg_Gnd_Darkmeiro not OK
-	Size doesn't match: 1984 vs 2192 (x0.905) (-208)
-ovl_Bg_Jya_Bombiwa not OK
-	Size doesn't match: 1472 vs 1872 (x0.786) (-400)
-ovl_En_Ge2 not OK
-	Size doesn't match: 6560 vs 6736 (x0.974) (-176)
-ovl_En_Js not OK
-	Size doesn't match: 2512 vs 2448 (x1.026) (64)
-hairal_niwa_scene not OK
-	Size matches.
-spot05_scene not OK
-	Size matches.
-spot07_scene not OK
-	Size matches.
-ovl_Obj_Hana not OK
-	Size doesn't match: 784 vs 768 (x1.021) (16)
-night_shop_scene not OK
-	Size matches.
-spot12_scene not OK
-	Size matches.
-ovl_En_Bombf not OK
-	Size doesn't match: 5264 vs 5408 (x0.973) (-144)
-ovl_En_Horse_Normal not OK
-	Size doesn't match: 9760 vs 9856 (x0.99) (-96)
-ovl_Effect_Ss_K_Fire not OK
-	Size doesn't match: 1088 vs 1232 (x0.883) (-144)
-ovl_Effect_Ss_En_Ice not OK
-	Size doesn't match: 2240 vs 2448 (x0.915) (-208)
-ovl_Effect_Ss_KiraKira not OK
-	Size doesn't match: 1648 vs 1760 (x0.936) (-112)
-shrine_n_scene not OK
-	Size matches.
-ovl_Door_Shutter not OK
-	Size doesn't match: 8896 vs 9088 (x0.979) (-192)
-kokiri_home_scene not OK
-	Size matches.
-ovl_Demo_Ik not OK
-	Size doesn't match: 5392 vs 6368 (x0.847) (-976)
-ovl_En_Weiyer not OK
-	Size doesn't match: 6656 vs 6688 (x0.995) (-32)
-ovl_En_GeldB not OK
-	Size doesn't match: 21424 vs 21568 (x0.993) (-144)
-ovl_Bg_Mjin not OK
-	Size doesn't match: 1008 vs 1088 (x0.926) (-80)
-ovl_En_Okuta not OK
-	Size doesn't match: 9696 vs 9792 (x0.99) (-96)
-ovl_file_choose not OK
-	Size doesn't match: 60432 vs 64192 (x0.941) (-3760)
-ovl_En_Anubice_Tag not OK
-	Size doesn't match: 720 vs 976 (x0.738) (-256)
-ovl_En_Kakasi2 not OK
-	Size doesn't match: 1824 vs 3344 (x0.545) (-1520)
-bdan_boss_scene not OK
-	Size matches.
-ovl_En_Go2 not OK
-	Size doesn't match: 24640 vs 24976 (x0.987) (-336)
-ovl_Obj_Kibako not OK
-	Size doesn't match: 3328 vs 3376 (x0.986) (-48)
-ovl_En_Fd_Fire not OK
-	Size doesn't match: 3344 vs 3504 (x0.954) (-160)
-ovl_En_Syateki_Man not OK
-	Size doesn't match: 3520 vs 4224 (x0.833) (-704)
-ydan_scene not OK
-	Size matches.
-ovl_Arrow_Ice not OK
-	Size doesn't match: 7936 vs 8160 (x0.973) (-224)
-ovl_En_Mk not OK
-	Size doesn't match: 3728 vs 3696 (x1.009) (32)
-kakusiana_scene not OK
-	Size matches.
-ovl_Effect_Ss_D_Fire not OK
-	Size doesn't match: 1264 vs 1360 (x0.929) (-96)
-hylia_labo_scene not OK
-	Size matches.
-ovl_En_Tk not OK
-	Size doesn't match: 7728 vs 8080 (x0.956) (-352)
-ovl_En_Okarina_Effect not OK
-	Size doesn't match: 960 vs 1472 (x0.652) (-512)
-bdan_boss_room_1 not OK
-	Size matches.
-ovl_En_Yukabyun not OK
-	Size doesn't match: 1552 vs 1680 (x0.924) (-128)
-ovl_Demo_Effect not OK
-	Size doesn't match: 23456 vs 25664 (x0.914) (-2208)
-ovl_Obj_Makeoshihiki not OK
-	Size doesn't match: 1168 vs 1424 (x0.82) (-256)
-ovl_Bg_Jya_Megami not OK
-	Size doesn't match: 4592 vs 4880 (x0.941) (-288)
-gerudoway_scene not OK
-	Size matches.
-hut_scene not OK
-	Size matches.
-enrui_scene not OK
-	Size matches.
-ovl_En_Door not OK
-	Size doesn't match: 3648 vs 3680 (x0.991) (-32)
-ovl_En_Po_Sisters not OK
-	Size doesn't match: 19696 vs 19904 (x0.99) (-208)
-ovl_Bg_Bdan_Switch not OK
-	Size doesn't match: 5168 vs 5440 (x0.95) (-272)
-hakaana_scene not OK
-	Size matches.
-kenjyanoma_scene not OK
-	Size matches.
-MIZUsin_scene not OK
-	Size matches.
-ovl_En_Ma2 not OK
-	Size doesn't match: 4192 vs 4352 (x0.963) (-160)
-ovl_Bg_Spot15_Saku not OK
-	Size doesn't match: 832 vs 992 (x0.839) (-160)
-ovl_Bg_Ingate not OK
-	Size doesn't match: 912 vs 1056 (x0.864) (-144)
-ovl_En_Mb not OK
-	Size doesn't match: 16944 vs 16896 (x1.003) (48)
-HAKAdan_bs_scene not OK
-	Size matches.
-ovl_Bg_Dodoago not OK
-	Size doesn't match: 3392 vs 3520 (x0.964) (-128)
-FIRE_bs_scene not OK
-	Size matches.
-ovl_En_Nwc not OK
-	Size doesn't match: 2592 vs 2768 (x0.936) (-176)
-ovl_Door_Toki not OK
-	Size matches.
-ovl_Bg_Jya_Bigmirror not OK
-	Size doesn't match: 2128 vs 2752 (x0.773) (-624)
-ovl_Bg_Toki_Hikari not OK
-	Size doesn't match: 3488 vs 3904 (x0.893) (-416)
-ovl_Bg_Dy_Yoseizo not OK
-	Size doesn't match: 11760 vs 12528 (x0.939) (-768)
-ovl_En_OE2 not OK
-	Size doesn't match: 224 vs 192 (x1.167) (32)
-ovl_En_Nutsball not OK
-	Size doesn't match: 1568 vs 1680 (x0.933) (-112)
-ddan_boss_scene not OK
-	Size matches.
-ovl_Effect_Ss_En_Fire not OK
-	Size doesn't match: 1872 vs 2000 (x0.936) (-128)
-ovl_Effect_Ss_Lightning not OK
-	Size doesn't match: 1744 vs 1856 (x0.94) (-112)
-ovl_En_M_Fire1 not OK
-	Size matches.
-ovl_En_Brob not OK
-	Size matches.
-ovl_Item_B_Heart not OK
-	Size doesn't match: 1040 vs 1184 (x0.878) (-144)
-ovl_Effect_Ss_Hahen not OK
-	Size doesn't match: 1600 vs 1888 (x0.847) (-288)
-ovl_Bg_Spot00_Hanebasi not OK
-	Size doesn't match: 4368 vs 4672 (x0.935) (-304)
-ovl_Bg_Spot06_Objects not OK
-	Size doesn't match: 5120 vs 5296 (x0.967) (-176)
-bdan_room_9 not OK
-	Size matches.
-ovl_Bg_Ydan_Sp not OK
-	Size doesn't match: 5920 vs 6160 (x0.961) (-240)
-ovl_Bg_Gnd_Soulmeiro not OK
-	Size doesn't match: 2144 vs 2288 (x0.937) (-144)
-ovl_En_Gb not OK
-	Size doesn't match: 5936 vs 6128 (x0.969) (-192)
-ovl_En_Dekubaba not OK
-	Size doesn't match: 15024 vs 15760 (x0.953) (-736)
-ovl_Bg_Menkuri_Eye not OK
-	Size doesn't match: 1168 vs 1328 (x0.88) (-160)
-Bmori1_scene not OK
-	Size matches.
-ovl_Boss_Fd not OK
-	Size doesn't match: 29536 vs 30896 (x0.956) (-1360)
-ovl_Bg_Spot02_Objects not OK
-	Size doesn't match: 4960 vs 5248 (x0.945) (-288)
-syatekijyou_scene not OK
-	Size matches.
-golon_scene not OK
-	Size matches.
-ovl_En_Niw_Girl not OK
-	Size doesn't match: 2768 vs 3264 (x0.848) (-496)
-ovl_En_Goroiwa not OK
-	Size doesn't match: 9152 vs 9856 (x0.929) (-704)
-ovl_En_Po_Relay not OK
-	Size doesn't match: 5904 vs 6224 (x0.949) (-320)
 makerom not OK
 	Size matches.
-ovl_En_Gs not OK
-	Size doesn't match: 7792 vs 7936 (x0.982) (-144)
-MIZUsin_bs_scene not OK
-	Size matches.
-ganon_tou_scene not OK
-	Size matches.
-ovl_Item_Etcetera not OK
-	Size doesn't match: 2256 vs 2544 (x0.887) (-288)
-ganon_scene not OK
-	Size matches.
-ovl_Effect_Ss_Dead_Dd not OK
-	Size doesn't match: 1424 vs 1584 (x0.899) (-160)
-ovl_En_Dnt_Demo not OK
-	Size doesn't match: 3360 vs 4608 (x0.729) (-1248)
-ovl_En_Daiku_Kakariko not OK
-	Size doesn't match: 5056 vs 5296 (x0.955) (-240)
-ovl_Bg_Bombwall not OK
-	Size doesn't match: 2240 vs 2448 (x0.915) (-208)
-ovl_Bg_Mori_Bigst not OK
-	Size doesn't match: 2352 vs 3136 (x0.75) (-784)
-ovl_Bg_Po_Syokudai not OK
-	Size doesn't match: 2416 vs 2608 (x0.926) (-192)
-ovl_Bg_Vb_Sima not OK
-	Size doesn't match: 1824 vs 1952 (x0.934) (-128)
-ovl_En_Wonder_Talk not OK
-	Size doesn't match: 1680 vs 3552 (x0.473) (-1872)
-ovl_Bg_Haka_MeganeBG not OK
-	Size doesn't match: 1728 vs 1712 (x1.009) (16)
-ovl_En_Siofuki not OK
-	Size doesn't match: 3504 vs 3616 (x0.969) (-112)
-kakariko_scene not OK
-	Size matches.
-ovl_En_Heishi4 not OK
-	Size doesn't match: 3840 vs 4400 (x0.873) (-560)
-ovl_Bg_Mori_Hashira4 not OK
-	Size doesn't match: 1408 vs 1888 (x0.746) (-480)
-ovl_Bg_Spot09_Obj not OK
-	Size doesn't match: 1312 vs 1696 (x0.774) (-384)
-ovl_Oceff_Wipe3 not OK
-	Size doesn't match: 5968 vs 6176 (x0.966) (-208)
-ovl_title not OK
-	Size doesn't match: 2128 vs 2960 (x0.719) (-832)
-ovl_En_Vali not OK
-	Size doesn't match: 9920 vs 10240 (x0.969) (-320)
-ovl_Elf_Msg not OK
-	Size doesn't match: 1520 vs 3040 (x0.5) (-1520)
-ovl_En_Go not OK
-	Size doesn't match: 17984 vs 18368 (x0.979) (-384)
-ovl_En_Crow not OK
-	Size doesn't match: 5792 vs 5744 (x1.008) (48)
-ovl_Boss_Sst not OK
-	Size doesn't match: 50576 vs 50880 (x0.994) (-304)
-ovl_Magic_Dark not OK
-	Size doesn't match: 6224 vs 6560 (x0.949) (-336)
-ovl_Obj_Dekujr not OK
-	Size doesn't match: 1600 vs 1760 (x0.909) (-160)
-ovl_En_Skjneedle not OK
-	Size doesn't match: 784 vs 960 (x0.817) (-176)
-ovl_Boss_Fd2 not OK
-	Size doesn't match: 15664 vs 16896 (x0.927) (-1232)
-ovl_En_Dy_Extra not OK
-	Size doesn't match: 1440 vs 1696 (x0.849) (-256)
-ovl_Efc_Erupc not OK
-	Size doesn't match: 2800 vs 3104 (x0.902) (-304)
-ovl_Bg_Ydan_Hasi not OK
-	Size doesn't match: 1968 vs 2112 (x0.932) (-144)
-ovl_Effect_Ss_HitMark not OK
-	Size doesn't match: 1360 vs 1456 (x0.934) (-96)
-ovl_Demo_Kankyo not OK
-	Size doesn't match: 15520 vs 16640 (x0.933) (-1120)
-ganon_final_scene not OK
-	Size matches.
-ovl_Bg_Mori_Kaitenkabe not OK
-	Size doesn't match: 1648 vs 1968 (x0.837) (-320)
-ovl_En_Ny not OK
-	Size doesn't match: 6464 vs 6896 (x0.937) (-432)
-ovl_En_Pu_box not OK
-	Size matches.
-souko_scene not OK
-	Size matches.
-market_alley_scene not OK
-	Size matches.
-ovl_Bg_Jya_Bombchuiwa not OK
-	Size doesn't match: 2880 vs 3328 (x0.865) (-448)
-ovl_En_Ru1 not OK
-	Size doesn't match: 30368 vs 31040 (x0.978) (-672)
-ovl_En_Tr not OK
-	Size doesn't match: 6400 vs 6512 (x0.983) (-112)
-men_scene not OK
-	Size matches.
-ovl_En_Shopnuts not OK
-	Size doesn't match: 3856 vs 3952 (x0.976) (-96)
-ovl_Boss_Goma not OK
-	Size doesn't match: 24480 vs 24816 (x0.986) (-336)
-ovl_opening not OK
-	Size doesn't match: 352 vs 336 (x1.048) (16)
-ovl_En_Sa not OK
-	Size doesn't match: 8816 vs 8848 (x0.996) (-32)
-ovl_Demo_Sa not OK
-	Size doesn't match: 11040 vs 11728 (x0.941) (-688)
-kokiri_home4_scene not OK
-	Size matches.
-ovl_Effect_Ss_Extra not OK
-	Size doesn't match: 960 vs 1120 (x0.857) (-160)
-ovl_Bg_Haka_Sgami not OK
-	Size matches.
-ovl_Magic_Wind not OK
-	Size doesn't match: 7424 vs 8016 (x0.926) (-592)
-ovl_Bg_Spot01_Idohashira not OK
-	Size doesn't match: 3072 vs 3584 (x0.857) (-512)
-ovl_En_Bigokuta not OK
-	Size doesn't match: 11008 vs 11328 (x0.972) (-320)
+boot not OK
+	Size doesn't match: 24848 vs 73488 (x0.338) (-48640)
 dmadata not OK
 	Size doesn't match: 24416 vs 24768 (x0.986) (-352)
-spot00_scene not OK
-	Size matches.
-ovl_Bg_Hidan_Sekizou not OK
-	Size doesn't match: 5200 vs 5392 (x0.964) (-192)
-shrine_scene not OK
-	Size matches.
-ovl_Bg_Mori_Hineri not OK
-	Size doesn't match: 3408 vs 3696 (x0.922) (-288)
-ovl_Boss_Ganon not OK
-	Size doesn't match: 139952 vs 142160 (x0.984) (-2208)
-ovl_Bg_Ice_Shutter not OK
-	Size doesn't match: 1136 vs 1120 (x1.014) (16)
-hairal_niwa_n_scene not OK
-	Size matches.
-ovl_Effect_Ss_Fcircle not OK
-	Size doesn't match: 1200 vs 1344 (x0.893) (-144)
-ovl_En_Firefly not OK
-	Size doesn't match: 8560 vs 8720 (x0.982) (-160)
-tent_scene not OK
-	Size matches.
-ovl_En_Rl not OK
-	Size doesn't match: 3808 vs 4496 (x0.847) (-688)
-ovl_En_Zl3 not OK
-	Size doesn't match: 32336 vs 33792 (x0.957) (-1456)
-ovl_En_Skb not OK
-	Size doesn't match: 6384 vs 6416 (x0.995) (-32)
-ovl_En_Ganon_Organ not OK
-	Size doesn't match: 28736 vs 29056 (x0.989) (-320)
-hakaana_ouke_scene not OK
-	Size matches.
-spot16_scene not OK
-	Size matches.
-ovl_Bg_Jya_Block not OK
-	Size doesn't match: 624 vs 768 (x0.812) (-144)
-ovl_Bg_Spot15_Rrbox not OK
-	Size doesn't match: 3552 vs 3824 (x0.929) (-272)
-ovl_En_Zl4 not OK
-	Size doesn't match: 18992 vs 19056 (x0.997) (-64)
-ovl_En_River_Sound not OK
-	Size doesn't match: 2448 vs 2432 (x1.007) (16)
-bdan_scene not OK
-	Size matches.
-ovl_Bg_Hidan_Sima not OK
-	Size doesn't match: 3840 vs 4080 (x0.941) (-240)
-ovl_En_Torch2 not OK
-	Size doesn't match: 10080 vs 10160 (x0.992) (-80)
-ovl_Bg_Haka_Ship not OK
-	Size doesn't match: 2640 vs 2976 (x0.887) (-336)
-spot09_scene not OK
-	Size matches.
-ovl_Obj_Warp2block not OK
-	Size doesn't match: 2864 vs 3248 (x0.882) (-384)
-ovl_End_Title not OK
-	Size doesn't match: 16672 vs 17024 (x0.979) (-352)
-ovl_En_Dha not OK
-	Size doesn't match: 4096 vs 4080 (x1.004) (16)
-ovl_Oceff_Wipe4 not OK
-	Size doesn't match: 4064 vs 4272 (x0.951) (-208)
-ovl_En_Nb not OK
-	Size doesn't match: 17872 vs 18928 (x0.944) (-1056)
-ovl_Bg_Spot01_Idosoko not OK
-	Size doesn't match: 528 vs 704 (x0.75) (-176)
-ovl_Bg_Spot07_Taki not OK
-	Size doesn't match: 1520 vs 1696 (x0.896) (-176)
-code not OK
-	Size doesn't match: 1057328 vs 1290032 (x0.82) (-232704)
-spot20_scene not OK
-	Size matches.
-ovl_Bg_Hidan_Curtain not OK
-	Size doesn't match: 2720 vs 3200 (x0.85) (-480)
-market_alley_n_scene not OK
-	Size matches.
-ovl_Bg_Hidan_Fslift not OK
-	Size doesn't match: 1232 vs 1200 (x1.027) (32)
-ovl_En_Guest not OK
-	Size doesn't match: 2464 vs 2864 (x0.86) (-400)
-hakaana2_scene not OK
-	Size matches.
-ovl_Bg_Ddan_Kd not OK
-	Size doesn't match: 2288 vs 2320 (x0.986) (-32)
-kokiri_home3_scene not OK
-	Size matches.
-HAKAdan_scene not OK
-	Size matches.
-ovl_En_Dog not OK
-	Size doesn't match: 4528 vs 4608 (x0.983) (-80)
-ovl_Boss_Ganondrof not OK
-	Size doesn't match: 19856 vs 21456 (x0.925) (-1600)
-ovl_Bg_Hidan_Hrock not OK
-	Size matches.
-ovl_En_Eg not OK
-	Size doesn't match: 432 vs 528 (x0.818) (-96)
-ovl_Bg_Zg not OK
-	Size doesn't match: 1104 vs 1392 (x0.793) (-288)
-ovl_En_Bom not OK
-	Size doesn't match: 3792 vs 3936 (x0.963) (-144)
-bdan_room_8 not OK
-	Size matches.
-ovl_En_Sb not OK
-	Size doesn't match: 5184 vs 5248 (x0.988) (-64)
-ovl_Door_Killer not OK
-	Size doesn't match: 5488 vs 5712 (x0.961) (-224)
-ovl_En_Sda not OK
-	Size doesn't match: 5680 vs 6208 (x0.915) (-528)
-ovl_En_Horse_Game_Check not OK
-	Size doesn't match: 4304 vs 4368 (x0.985) (-64)
-ovl_Obj_Ice_Poly not OK
-	Size doesn't match: 2480 vs 2624 (x0.945) (-144)
-daiyousei_izumi_scene not OK
-	Size matches.
-ovl_En_Light not OK
-	Size doesn't match: 3584 vs 3728 (x0.961) (-144)
-ovl_Bg_Mori_Idomizu not OK
-	Size doesn't match: 1600 vs 1920 (x0.833) (-320)
-ovl_Bg_Gnd_Nisekabe not OK
-	Size matches.
-ovl_Demo_Ec not OK
-	Size doesn't match: 14432 vs 15008 (x0.962) (-576)
-ovl_Bg_Mizu_Uzu not OK
-	Size matches.
-ovl_Bg_Heavy_Block not OK
-	Size doesn't match: 6384 vs 6672 (x0.957) (-288)
-ovl_Bg_Gate_Shutter not OK
-	Size doesn't match: 1168 vs 1376 (x0.849) (-208)
-ovl_Bg_Jya_Cobra not OK
-	Size doesn't match: 7488 vs 8320 (x0.9) (-832)
-ovl_En_Toryo not OK
-	Size doesn't match: 3216 vs 3184 (x1.01) (32)
-ovl_Oceff_Wipe2 not OK
-	Size doesn't match: 6000 vs 6208 (x0.966) (-208)
-ovl_En_Horse_Link_Child not OK
-	Size doesn't match: 7680 vs 7808 (x0.984) (-128)
-ovl_En_Wf not OK
-	Size doesn't match: 17168 vs 17328 (x0.991) (-160)
-ovl_Elf_Msg2 not OK
-	Size doesn't match: 1136 vs 2080 (x0.546) (-944)
-ovl_En_Ani not OK
-	Size doesn't match: 3440 vs 3504 (x0.982) (-64)
-ovl_Bg_Haka_Zou not OK
-	Size doesn't match: 4592 vs 4560 (x1.007) (32)
-ovl_En_Peehat not OK
-	Size doesn't match: 14080 vs 14352 (x0.981) (-272)
-ovl_En_Ds not OK
-	Size doesn't match: 3104 vs 3072 (x1.01) (32)
-ovl_En_Eiyer not OK
-	Size doesn't match: 7264 vs 7312 (x0.993) (-48)
-ovl_Bg_Bowl_Wall not OK
-	Size doesn't match: 2432 vs 2688 (x0.905) (-256)
-ovl_En_Bird not OK
-	Size doesn't match: 1216 vs 1200 (x1.013) (16)
-ovl_En_Mag not OK
-	Size doesn't match: 9504 vs 9552 (x0.995) (-48)
-ovl_En_Dnt_Nomal not OK
-	Size doesn't match: 11776 vs 12544 (x0.939) (-768)
-ovl_En_Horse not OK
-	Size matches.
-ovl_En_Xc not OK
-	Size doesn't match: 26464 vs 27568 (x0.96) (-1104)
-ovl_En_Lightbox not OK
-	Size doesn't match: 1152 vs 1136 (x1.014) (16)
-ovl_Fishing not OK
-	Size doesn't match: 80544 vs 83664 (x0.963) (-3120)
-ovl_En_Syateki_Niw not OK
-	Size doesn't match: 8336 vs 8624 (x0.967) (-288)
-ovl_En_Bw not OK
-	Size doesn't match: 13200 vs 13312 (x0.992) (-112)
-ovl_Demo_Kekkai not OK
-	Size doesn't match: 4848 vs 5264 (x0.921) (-416)
-ganontikasonogo_scene not OK
-	Size matches.
-ovl_En_Jj not OK
-	Size doesn't match: 5584 vs 5648 (x0.989) (-64)
-ovl_En_GirlA not OK
-	Size doesn't match: 10528 vs 12176 (x0.865) (-1648)
 nes_font_static not OK
 	Size matches.
-bdan_room_11 not OK
-	Size matches.
-ovl_En_Attack_Niw not OK
-	Size doesn't match: 4704 vs 4688 (x1.003) (16)
-ovl_En_Okarina_Tag not OK
-	Size doesn't match: 5376 vs 6464 (x0.832) (-1088)
-ovl_En_Changer not OK
-	Size doesn't match: 2528 vs 3872 (x0.653) (-1344)
-hakasitarelay_scene not OK
-	Size matches.
-ovl_Bg_Spot16_Doughnut not OK
-	Size doesn't match: 1472 vs 1920 (x0.767) (-448)
-ovl_Bg_Ganon_Otyuka not OK
-	Size doesn't match: 9792 vs 10304 (x0.95) (-512)
-ovl_Bg_Hidan_Kousi not OK
-	Size doesn't match: 1424 vs 1728 (x0.824) (-304)
-face_shop_scene not OK
-	Size matches.
-ovl_En_Ossan not OK
-	Size doesn't match: 26080 vs 29312 (x0.89) (-3232)
+nes_message_data_static not OK
+	Size doesn't match: 229504 vs 229664 (x0.999) (-160)
+code not OK
+	Size doesn't match: 1057328 vs 1290032 (x0.82) (-232704)
+ovl_title not OK
+	Size doesn't match: 2128 vs 2960 (x0.719) (-832)
+ovl_select not OK
+	Size doesn't match: 11392 vs 12384 (x0.92) (-992)
+ovl_opening not OK
+	Size doesn't match: 352 vs 336 (x1.048) (16)
+ovl_file_choose not OK
+	Size doesn't match: 60432 vs 64192 (x0.941) (-3760)
+ovl_kaleido_scope not OK
+	Size doesn't match: 117184 vs 125312 (x0.935) (-8128)
 ovl_player_actor not OK
 	Size doesn't match: 157456 vs 157840 (x0.998) (-384)
-ovl_Bg_Po_Event not OK
-	Size doesn't match: 7728 vs 7824 (x0.988) (-96)
-shrine_r_scene not OK
-	Size matches.
-ovl_Bg_Spot00_Break not OK
-	Size matches.
-zoora_scene not OK
-	Size matches.
-market_ruins_scene not OK
-	Size matches.
-ovl_En_Floormas not OK
-	Size doesn't match: 13280 vs 13456 (x0.987) (-176)
-ovl_En_Bx not OK
-	Size doesn't match: 2816 vs 2992 (x0.941) (-176)
-ovl_Obj_Timeblock not OK
-	Size doesn't match: 3152 vs 3520 (x0.895) (-368)
-ovl_En_Hs not OK
-	Size doesn't match: 2976 vs 3072 (x0.969) (-96)
-ovl_En_Encount2 not OK
-	Size doesn't match: 4656 vs 5392 (x0.864) (-736)
-ovl_Effect_Ss_Dead_Db not OK
-	Size doesn't match: 1248 vs 1344 (x0.929) (-96)
-ovl_En_Yabusame_Mark not OK
-	Size doesn't match: 1744 vs 3072 (x0.568) (-1328)
-ovl_Bg_Haka_Gate not OK
-	Size doesn't match: 4240 vs 4544 (x0.933) (-304)
-ovl_En_Bom_Chu not OK
-	Size doesn't match: 5792 vs 5936 (x0.976) (-144)
-bdan_room_10 not OK
-	Size matches.
-ovl_En_Ex_Item not OK
-	Size doesn't match: 4480 vs 5488 (x0.816) (-1008)
-entra_scene not OK
+ovl_map_mark_data not OK
 	Size matches.
 ovl_En_Test not OK
 	Size matches.
-ovl_En_Ma3 not OK
-	Size doesn't match: 4016 vs 4192 (x0.958) (-176)
-labo_scene not OK
-	Size matches.
-ovl_Effect_Ss_Blast not OK
-	Size doesn't match: 912 vs 1024 (x0.891) (-112)
-ovl_Demo_Shd not OK
-	Size doesn't match: 9232 vs 9360 (x0.986) (-128)
-bdan_room_2 not OK
-	Size matches.
-ovl_En_Jsjutan not OK
-	Size doesn't match: 19920 vs 20080 (x0.992) (-160)
-ovl_Bg_Jya_1flift not OK
-	Size doesn't match: 1680 vs 1888 (x0.89) (-208)
+ovl_Arms_Hook not OK
+	Size doesn't match: 3440 vs 3600 (x0.956) (-160)
+ovl_Arrow_Fire not OK
+	Size doesn't match: 7904 vs 8128 (x0.972) (-224)
+ovl_Arrow_Ice not OK
+	Size doesn't match: 7936 vs 8160 (x0.973) (-224)
 ovl_Arrow_Light not OK
 	Size doesn't match: 7952 vs 8176 (x0.973) (-224)
-ovl_En_Rr not OK
-	Size doesn't match: 9520 vs 10192 (x0.934) (-672)
-ovl_Effect_Ss_G_Splash not OK
+ovl_Bg_Bdan_Objects not OK
+	Size doesn't match: 4816 vs 4976 (x0.968) (-160)
+ovl_Bg_Bdan_Switch not OK
+	Size doesn't match: 5168 vs 5440 (x0.95) (-272)
+ovl_Bg_Bom_Guard not OK
+	Size doesn't match: 544 vs 640 (x0.85) (-96)
+ovl_Bg_Bombwall not OK
+	Size doesn't match: 2240 vs 2448 (x0.915) (-208)
+ovl_Bg_Bowl_Wall not OK
+	Size doesn't match: 2432 vs 2688 (x0.905) (-256)
+ovl_Bg_Breakwall not OK
+	Size doesn't match: 3696 vs 3792 (x0.975) (-96)
+ovl_Bg_Ddan_Jd not OK
+	Size doesn't match: 1616 vs 1600 (x1.01) (16)
+ovl_Bg_Ddan_Kd not OK
+	Size doesn't match: 2288 vs 2320 (x0.986) (-32)
+ovl_Bg_Dodoago not OK
+	Size doesn't match: 3392 vs 3520 (x0.964) (-128)
+ovl_Bg_Dy_Yoseizo not OK
+	Size doesn't match: 11760 vs 12528 (x0.939) (-768)
+ovl_Bg_Ganon_Otyuka not OK
+	Size doesn't match: 9792 vs 10304 (x0.95) (-512)
+ovl_Bg_Gate_Shutter not OK
+	Size doesn't match: 1168 vs 1376 (x0.849) (-208)
+ovl_Bg_Gjyo_Bridge not OK
+	Size doesn't match: 1264 vs 1392 (x0.908) (-128)
+ovl_Bg_Gnd_Darkmeiro not OK
+	Size doesn't match: 1984 vs 2192 (x0.905) (-208)
+ovl_Bg_Gnd_Firemeiro not OK
+	Size doesn't match: 1360 vs 1504 (x0.904) (-144)
+ovl_Bg_Gnd_Iceblock not OK
+	Size doesn't match: 4336 vs 4512 (x0.961) (-176)
+ovl_Bg_Gnd_Nisekabe not OK
 	Size matches.
-ovl_Obj_Blockstop not OK
-	Size doesn't match: 416 vs 400 (x1.04) (16)
-spot04_scene not OK
+ovl_Bg_Gnd_Soulmeiro not OK
+	Size doesn't match: 2144 vs 2288 (x0.937) (-144)
+ovl_Bg_Haka not OK
+	Size doesn't match: 1728 vs 1856 (x0.931) (-128)
+ovl_Bg_Haka_Gate not OK
+	Size doesn't match: 4240 vs 4544 (x0.933) (-304)
+ovl_Bg_Haka_Huta not OK
+	Size doesn't match: 2720 vs 2688 (x1.012) (32)
+ovl_Bg_Haka_Megane not OK
+	Size doesn't match: 1024 vs 1008 (x1.016) (16)
+ovl_Bg_Haka_MeganeBG not OK
+	Size doesn't match: 1728 vs 1712 (x1.009) (16)
+ovl_Bg_Haka_Sgami not OK
 	Size matches.
-ovl_En_Mm2 not OK
-	Size doesn't match: 3520 vs 3792 (x0.928) (-272)
-ovl_En_Tg not OK
-	Size doesn't match: 1760 vs 1824 (x0.965) (-64)
-ganon_boss_scene not OK
+ovl_Bg_Haka_Ship not OK
+	Size doesn't match: 2640 vs 2976 (x0.887) (-336)
+ovl_Bg_Haka_Trap not OK
+	Size doesn't match: 5584 vs 5552 (x1.006) (32)
+ovl_Bg_Haka_Tubo not OK
+	Size doesn't match: 2592 vs 2736 (x0.947) (-144)
+ovl_Bg_Haka_Water not OK
+	Size doesn't match: 2048 vs 2240 (x0.914) (-192)
+ovl_Bg_Haka_Zou not OK
+	Size doesn't match: 4592 vs 4560 (x1.007) (32)
+ovl_Bg_Heavy_Block not OK
+	Size doesn't match: 6384 vs 6672 (x0.957) (-288)
+ovl_Bg_Hidan_Curtain not OK
+	Size doesn't match: 2720 vs 3200 (x0.85) (-480)
+ovl_Bg_Hidan_Dalm not OK
+	Size doesn't match: 2128 vs 2112 (x1.008) (16)
+ovl_Bg_Hidan_Firewall not OK
+	Size doesn't match: 1888 vs 2016 (x0.937) (-128)
+ovl_Bg_Hidan_Fslift not OK
+	Size doesn't match: 1232 vs 1200 (x1.027) (32)
+ovl_Bg_Hidan_Fwbig not OK
+	Size doesn't match: 3296 vs 3408 (x0.967) (-112)
+ovl_Bg_Hidan_Hamstep not OK
+	Size doesn't match: 3760 vs 4336 (x0.867) (-576)
+ovl_Bg_Hidan_Hrock not OK
 	Size matches.
-ovl_Effect_Ss_Sibuki not OK
-	Size doesn't match: 1744 vs 1840 (x0.948) (-96)
-ovl_En_Poh not OK
-	Size doesn't match: 16880 vs 17264 (x0.978) (-384)
-turibori_scene not OK
-	Size matches.
-ovl_En_Goma not OK
-	Size doesn't match: 11440 vs 11744 (x0.974) (-304)
-ovl_En_Dodojr not OK
-	Size doesn't match: 7840 vs 7824 (x1.002) (16)
-ovl_Door_Warp1 not OK
-	Size doesn't match: 17152 vs 17696 (x0.969) (-544)
-ovl_Demo_Gt not OK
-	Size doesn't match: 22032 vs 23696 (x0.93) (-1664)
-shop1_scene not OK
-	Size matches.
-ovl_En_Vm not OK
-	Size doesn't match: 6336 vs 6544 (x0.968) (-208)
-ovl_En_Hy not OK
-	Size doesn't match: 14656 vs 14912 (x0.983) (-256)
-ovl_Effect_Ss_Ice_Piece not OK
-	Size doesn't match: 1088 vs 1264 (x0.861) (-176)
-ovl_Effect_Ss_Dead_Sound not OK
-	Size doesn't match: 320 vs 384 (x0.833) (-64)
-ovl_En_Horse_Zelda not OK
-	Size doesn't match: 2800 vs 2768 (x1.012) (32)
-ovl_Bg_Spot18_Shutter not OK
-	Size doesn't match: 1360 vs 1344 (x1.012) (16)
-ovl_En_Ba not OK
-	Size doesn't match: 7888 vs 8080 (x0.976) (-192)
-ovl_Obj_Bean not OK
-	Size doesn't match: 10128 vs 10720 (x0.945) (-592)
-mahouya_scene not OK
-	Size matches.
-ovl_En_Reeba not OK
-	Size doesn't match: 6768 vs 7264 (x0.932) (-496)
-ovl_En_Fr not OK
-	Size doesn't match: 10896 vs 11888 (x0.917) (-992)
-ovl_En_Karebaba not OK
-	Size doesn't match: 6384 vs 6752 (x0.945) (-368)
-ovl_En_Weather_Tag not OK
-	Size doesn't match: 3824 vs 4720 (x0.81) (-896)
-ovl_En_Bili not OK
-	Size doesn't match: 8912 vs 8976 (x0.993) (-64)
-ovl_Oceff_Storm not OK
-	Size doesn't match: 7088 vs 7344 (x0.965) (-256)
-spot01_scene not OK
-	Size matches.
-ovl_En_Cs not OK
-	Size doesn't match: 4656 vs 4736 (x0.983) (-80)
-ovl_Effect_Ss_Bomb2 not OK
-	Size doesn't match: 2304 vs 2544 (x0.906) (-240)
-ovl_En_Kusa not OK
-	Size doesn't match: 5344 vs 5552 (x0.963) (-208)
-ovl_En_Fd not OK
-	Size doesn't match: 11424 vs 11760 (x0.971) (-336)
-ovl_En_Fhg_Fire not OK
-	Size doesn't match: 9888 vs 10688 (x0.925) (-800)
-ovl_En_Bubble not OK
-	Size doesn't match: 5152 vs 5232 (x0.985) (-80)
+ovl_Bg_Hidan_Kousi not OK
+	Size doesn't match: 1424 vs 1728 (x0.824) (-304)
+ovl_Bg_Hidan_Kowarerukabe not OK
+	Size doesn't match: 3808 vs 4192 (x0.908) (-384)
+ovl_Bg_Hidan_Rock not OK
+	Size doesn't match: 4352 vs 4480 (x0.971) (-128)
+ovl_Bg_Hidan_Rsekizou not OK
+	Size doesn't match: 3040 vs 3264 (x0.931) (-224)
+ovl_Bg_Hidan_Sekizou not OK
+	Size doesn't match: 5200 vs 5392 (x0.964) (-192)
+ovl_Bg_Hidan_Sima not OK
+	Size doesn't match: 3840 vs 4080 (x0.941) (-240)
+ovl_Bg_Hidan_Syoku not OK
+	Size doesn't match: 1120 vs 1104 (x1.014) (16)
+ovl_Bg_Ice_Objects not OK
+	Size doesn't match: 3904 vs 3888 (x1.004) (16)
+ovl_Bg_Ice_Shelter not OK
+	Size doesn't match: 4672 vs 4992 (x0.936) (-320)
+ovl_Bg_Ice_Shutter not OK
+	Size doesn't match: 1136 vs 1120 (x1.014) (16)
+ovl_Bg_Ice_Turara not OK
+	Size doesn't match: 2096 vs 2080 (x1.008) (16)
+ovl_Bg_Ingate not OK
+	Size doesn't match: 912 vs 1056 (x0.864) (-144)
+ovl_Bg_Jya_1flift not OK
+	Size doesn't match: 1680 vs 1888 (x0.89) (-208)
+ovl_Bg_Jya_Amishutter not OK
+	Size doesn't match: 912 vs 1056 (x0.864) (-144)
+ovl_Bg_Jya_Bigmirror not OK
+	Size doesn't match: 2128 vs 2752 (x0.773) (-624)
+ovl_Bg_Jya_Block not OK
+	Size doesn't match: 624 vs 768 (x0.812) (-144)
+ovl_Bg_Jya_Bombchuiwa not OK
+	Size doesn't match: 2880 vs 3328 (x0.865) (-448)
+ovl_Bg_Jya_Bombiwa not OK
+	Size doesn't match: 1472 vs 1872 (x0.786) (-400)
+ovl_Bg_Jya_Cobra not OK
+	Size doesn't match: 7488 vs 8320 (x0.9) (-832)
+ovl_Bg_Jya_Goroiwa not OK
+	Size doesn't match: 1920 vs 1872 (x1.026) (48)
+ovl_Bg_Jya_Haheniron not OK
+	Size doesn't match: 2032 vs 2016 (x1.008) (16)
+ovl_Bg_Jya_Ironobj not OK
+	Size doesn't match: 3504 vs 3744 (x0.936) (-240)
+ovl_Bg_Jya_Kanaami not OK
+	Size doesn't match: 944 vs 1120 (x0.843) (-176)
+ovl_Bg_Jya_Lift not OK
+	Size doesn't match: 1360 vs 1424 (x0.955) (-64)
+ovl_Bg_Jya_Megami not OK
+	Size doesn't match: 4592 vs 4880 (x0.941) (-288)
+ovl_Bg_Jya_Zurerukabe not OK
+	Size doesn't match: 1712 vs 2096 (x0.817) (-384)
+ovl_Bg_Menkuri_Eye not OK
+	Size doesn't match: 1168 vs 1328 (x0.88) (-160)
+ovl_Bg_Menkuri_Kaiten not OK
+	Size doesn't match: 400 vs 384 (x1.042) (16)
 ovl_Bg_Menkuri_Nisekabe not OK
 	Size matches.
+ovl_Bg_Mizu_Bwall not OK
+	Size doesn't match: 5328 vs 6064 (x0.879) (-736)
+ovl_Bg_Mizu_Movebg not OK
+	Size doesn't match: 4480 vs 4624 (x0.969) (-144)
+ovl_Bg_Mizu_Shutter not OK
+	Size doesn't match: 2048 vs 2192 (x0.934) (-144)
+ovl_Bg_Mizu_Uzu not OK
+	Size matches.
+ovl_Bg_Mizu_Water not OK
+	Size doesn't match: 3280 vs 3792 (x0.865) (-512)
+ovl_Bg_Mjin not OK
+	Size doesn't match: 1008 vs 1088 (x0.926) (-80)
+ovl_Bg_Mori_Bigst not OK
+	Size doesn't match: 2352 vs 3136 (x0.75) (-784)
+ovl_Bg_Mori_Elevator not OK
+	Size doesn't match: 2800 vs 3424 (x0.818) (-624)
+ovl_Bg_Mori_Hashigo not OK
+	Size doesn't match: 2240 vs 2816 (x0.795) (-576)
+ovl_Bg_Mori_Hashira4 not OK
+	Size doesn't match: 1408 vs 1888 (x0.746) (-480)
+ovl_Bg_Mori_Hineri not OK
+	Size doesn't match: 3408 vs 3696 (x0.922) (-288)
+ovl_Bg_Mori_Idomizu not OK
+	Size doesn't match: 1600 vs 1920 (x0.833) (-320)
+ovl_Bg_Mori_Kaitenkabe not OK
+	Size doesn't match: 1648 vs 1968 (x0.837) (-320)
+ovl_Bg_Mori_Rakkatenjo not OK
+	Size doesn't match: 2432 vs 3232 (x0.752) (-800)
+ovl_Bg_Po_Event not OK
+	Size doesn't match: 7728 vs 7824 (x0.988) (-96)
+ovl_Bg_Po_Syokudai not OK
+	Size doesn't match: 2416 vs 2608 (x0.926) (-192)
+ovl_Bg_Pushbox not OK
+	Size doesn't match: 768 vs 880 (x0.873) (-112)
+ovl_Bg_Relay_Objects not OK
+	Size doesn't match: 1968 vs 1936 (x1.017) (32)
+ovl_Bg_Spot00_Break not OK
+	Size matches.
+ovl_Bg_Spot00_Hanebasi not OK
+	Size doesn't match: 4368 vs 4672 (x0.935) (-304)
+ovl_Bg_Spot01_Fusya not OK
+	Size doesn't match: 672 vs 800 (x0.84) (-128)
+ovl_Bg_Spot01_Idohashira not OK
+	Size doesn't match: 3072 vs 3584 (x0.857) (-512)
+ovl_Bg_Spot01_Idomizu not OK
+	Size doesn't match: 800 vs 928 (x0.862) (-128)
+ovl_Bg_Spot01_Idosoko not OK
+	Size doesn't match: 528 vs 704 (x0.75) (-176)
+ovl_Bg_Spot01_Objects2 not OK
+	Size doesn't match: 1216 vs 1312 (x0.927) (-96)
+ovl_Bg_Spot02_Objects not OK
+	Size doesn't match: 4960 vs 5248 (x0.945) (-288)
+ovl_Bg_Spot03_Taki not OK
+	Size doesn't match: 2336 vs 2448 (x0.954) (-112)
+ovl_Bg_Spot05_Soko not OK
+	Size doesn't match: 800 vs 784 (x1.02) (16)
+ovl_Bg_Spot06_Objects not OK
+	Size doesn't match: 5120 vs 5296 (x0.967) (-176)
+ovl_Bg_Spot07_Taki not OK
+	Size doesn't match: 1520 vs 1696 (x0.896) (-176)
+ovl_Bg_Spot08_Bakudankabe not OK
+	Size doesn't match: 1696 vs 1680 (x1.01) (16)
+ovl_Bg_Spot08_Iceblock not OK
+	Size doesn't match: 4160 vs 4480 (x0.929) (-320)
+ovl_Bg_Spot09_Obj not OK
+	Size doesn't match: 1312 vs 1696 (x0.774) (-384)
+ovl_Bg_Spot11_Bakudankabe not OK
+	Size doesn't match: 1600 vs 1648 (x0.971) (-48)
+ovl_Bg_Spot11_Oasis not OK
+	Size doesn't match: 1840 vs 1952 (x0.943) (-112)
+ovl_Bg_Spot12_Gate not OK
+	Size doesn't match: 1040 vs 1168 (x0.89) (-128)
+ovl_Bg_Spot12_Saku not OK
+	Size doesn't match: 1216 vs 1344 (x0.905) (-128)
+ovl_Bg_Spot15_Rrbox not OK
+	Size doesn't match: 3552 vs 3824 (x0.929) (-272)
+ovl_Bg_Spot15_Saku not OK
+	Size doesn't match: 832 vs 992 (x0.839) (-160)
+ovl_Bg_Spot16_Bombstone not OK
+	Size doesn't match: 5456 vs 6160 (x0.886) (-704)
+ovl_Bg_Spot16_Doughnut not OK
+	Size doesn't match: 1472 vs 1920 (x0.767) (-448)
+ovl_Bg_Spot17_Bakudankabe not OK
+	Size doesn't match: 1776 vs 2112 (x0.841) (-336)
+ovl_Bg_Spot17_Funen not OK
+	Size doesn't match: 592 vs 784 (x0.755) (-192)
+ovl_Bg_Spot18_Basket not OK
+	Size doesn't match: 4080 vs 4208 (x0.97) (-128)
 ovl_Bg_Spot18_Futa not OK
 	Size doesn't match: 416 vs 400 (x1.04) (16)
+ovl_Bg_Spot18_Obj not OK
+	Size doesn't match: 2256 vs 2752 (x0.82) (-496)
+ovl_Bg_Spot18_Shutter not OK
+	Size doesn't match: 1360 vs 1344 (x1.012) (16)
+ovl_Bg_Sst_Floor not OK
+	Size doesn't match: 1376 vs 1520 (x0.905) (-144)
+ovl_Bg_Toki_Hikari not OK
+	Size doesn't match: 3488 vs 3904 (x0.893) (-416)
+ovl_Bg_Toki_Swd not OK
+	Size doesn't match: 5712 vs 5824 (x0.981) (-112)
+ovl_Bg_Treemouth not OK
+	Size doesn't match: 5728 vs 5856 (x0.978) (-128)
+ovl_Bg_Umajump not OK
+	Size doesn't match: 400 vs 384 (x1.042) (16)
+ovl_Bg_Vb_Sima not OK
+	Size doesn't match: 1824 vs 1952 (x0.934) (-128)
+ovl_Bg_Ydan_Hasi not OK
+	Size doesn't match: 1968 vs 2112 (x0.932) (-144)
+ovl_Bg_Ydan_Maruta not OK
+	Size doesn't match: 1760 vs 1744 (x1.009) (16)
+ovl_Bg_Ydan_Sp not OK
+	Size doesn't match: 5920 vs 6160 (x0.961) (-240)
+ovl_Bg_Zg not OK
+	Size doesn't match: 1104 vs 1392 (x0.793) (-288)
+ovl_Boss_Dodongo not OK
+	Size doesn't match: 39680 vs 39984 (x0.992) (-304)
+ovl_Boss_Fd not OK
+	Size doesn't match: 29536 vs 30896 (x0.956) (-1360)
+ovl_Boss_Fd2 not OK
+	Size doesn't match: 15664 vs 16896 (x0.927) (-1232)
+ovl_Boss_Ganon not OK
+	Size doesn't match: 139952 vs 142160 (x0.984) (-2208)
+ovl_Boss_Ganon2 not OK
+	Size doesn't match: 70480 vs 72672 (x0.97) (-2192)
+ovl_Boss_Ganondrof not OK
+	Size doesn't match: 19856 vs 21456 (x0.925) (-1600)
+ovl_Boss_Goma not OK
+	Size doesn't match: 24480 vs 24816 (x0.986) (-336)
+ovl_Boss_Mo not OK
+	Size doesn't match: 47824 vs 49088 (x0.974) (-1264)
+ovl_Boss_Sst not OK
+	Size doesn't match: 50576 vs 50880 (x0.994) (-304)
+ovl_Boss_Tw not OK
+	Size doesn't match: 78160 vs 80752 (x0.968) (-2592)
+ovl_Boss_Va not OK
+	Size doesn't match: 59536 vs 60560 (x0.983) (-1024)
+ovl_Demo_6K not OK
+	Size doesn't match: 11616 vs 12672 (x0.917) (-1056)
+ovl_Demo_Du not OK
+	Size doesn't match: 14304 vs 14816 (x0.965) (-512)
+ovl_Demo_Ec not OK
+	Size doesn't match: 14432 vs 15008 (x0.962) (-576)
+ovl_Demo_Effect not OK
+	Size doesn't match: 23456 vs 25664 (x0.914) (-2208)
+ovl_Demo_Ext not OK
+	Size doesn't match: 2384 vs 2736 (x0.871) (-352)
+ovl_Demo_Geff not OK
+	Size doesn't match: 2080 vs 2800 (x0.743) (-720)
+ovl_Demo_Gj not OK
+	Size doesn't match: 15536 vs 16192 (x0.959) (-656)
+ovl_Demo_Go not OK
+	Size doesn't match: 3408 vs 3584 (x0.951) (-176)
+ovl_Demo_Gt not OK
+	Size doesn't match: 22032 vs 23696 (x0.93) (-1664)
+ovl_Demo_Ik not OK
+	Size doesn't match: 5392 vs 6368 (x0.847) (-976)
+ovl_Demo_Im not OK
+	Size doesn't match: 16240 vs 17056 (x0.952) (-816)
+ovl_Demo_Kankyo not OK
+	Size doesn't match: 15520 vs 16640 (x0.933) (-1120)
+ovl_Demo_Kekkai not OK
+	Size doesn't match: 4848 vs 5264 (x0.921) (-416)
+ovl_Demo_Sa not OK
+	Size doesn't match: 11040 vs 11728 (x0.941) (-688)
+ovl_Demo_Shd not OK
+	Size doesn't match: 9232 vs 9360 (x0.986) (-128)
+ovl_Demo_Tre_Lgt not OK
+	Size doesn't match: 1808 vs 2096 (x0.863) (-288)
+ovl_Door_Ana not OK
+	Size doesn't match: 1648 vs 1776 (x0.928) (-128)
+ovl_Door_Gerudo not OK
+	Size doesn't match: 1520 vs 1648 (x0.922) (-128)
+ovl_Door_Killer not OK
+	Size doesn't match: 5488 vs 5712 (x0.961) (-224)
+ovl_Door_Shutter not OK
+	Size doesn't match: 8896 vs 9088 (x0.979) (-192)
+ovl_Door_Toki not OK
+	Size matches.
+ovl_Door_Warp1 not OK
+	Size doesn't match: 17152 vs 17696 (x0.969) (-544)
+ovl_Efc_Erupc not OK
+	Size doesn't match: 2800 vs 3104 (x0.902) (-304)
+ovl_Eff_Dust not OK
+	Size doesn't match: 5072 vs 5344 (x0.949) (-272)
+ovl_Effect_Ss_Blast not OK
+	Size doesn't match: 912 vs 1024 (x0.891) (-112)
+ovl_Effect_Ss_Bomb not OK
+	Size doesn't match: 1072 vs 1184 (x0.905) (-112)
+ovl_Effect_Ss_Bomb2 not OK
+	Size doesn't match: 2304 vs 2544 (x0.906) (-240)
+ovl_Effect_Ss_Bubble not OK
+	Size doesn't match: 1152 vs 1296 (x0.889) (-144)
+ovl_Effect_Ss_D_Fire not OK
+	Size doesn't match: 1264 vs 1360 (x0.929) (-96)
+ovl_Effect_Ss_Dead_Db not OK
+	Size doesn't match: 1248 vs 1344 (x0.929) (-96)
+ovl_Effect_Ss_Dead_Dd not OK
+	Size doesn't match: 1424 vs 1584 (x0.899) (-160)
+ovl_Effect_Ss_Dead_Ds not OK
+	Size doesn't match: 1152 vs 1312 (x0.878) (-160)
+ovl_Effect_Ss_Dead_Sound not OK
+	Size doesn't match: 320 vs 384 (x0.833) (-64)
+ovl_Effect_Ss_Dt_Bubble not OK
+	Size doesn't match: 1424 vs 1568 (x0.908) (-144)
+ovl_Effect_Ss_Dust not OK
+	Size doesn't match: 2112 vs 2192 (x0.964) (-80)
+ovl_Effect_Ss_En_Fire not OK
+	Size doesn't match: 1872 vs 2000 (x0.936) (-128)
+ovl_Effect_Ss_En_Ice not OK
+	Size doesn't match: 2240 vs 2448 (x0.915) (-208)
+ovl_Effect_Ss_Extra not OK
+	Size doesn't match: 960 vs 1120 (x0.857) (-160)
+ovl_Effect_Ss_Fcircle not OK
+	Size doesn't match: 1200 vs 1344 (x0.893) (-144)
+ovl_Effect_Ss_Fhg_Flash not OK
+	Size doesn't match: 3968 vs 4320 (x0.919) (-352)
+ovl_Effect_Ss_Fire_Tail not OK
+	Size doesn't match: 1792 vs 1936 (x0.926) (-144)
+ovl_Effect_Ss_G_Fire not OK
+	Size doesn't match: 656 vs 640 (x1.025) (16)
+ovl_Effect_Ss_G_Magma not OK
+	Size doesn't match: 608 vs 592 (x1.027) (16)
+ovl_Effect_Ss_G_Magma2 not OK
+	Size doesn't match: 1296 vs 1472 (x0.88) (-176)
+ovl_Effect_Ss_G_Ripple not OK
+	Size doesn't match: 1376 vs 1488 (x0.925) (-112)
+ovl_Effect_Ss_G_Spk not OK
+	Size doesn't match: 1456 vs 1552 (x0.938) (-96)
+ovl_Effect_Ss_G_Splash not OK
+	Size matches.
+ovl_Effect_Ss_Hahen not OK
+	Size doesn't match: 1600 vs 1888 (x0.847) (-288)
+ovl_Effect_Ss_HitMark not OK
+	Size doesn't match: 1360 vs 1456 (x0.934) (-96)
+ovl_Effect_Ss_Ice_Piece not OK
+	Size doesn't match: 1088 vs 1264 (x0.861) (-176)
+ovl_Effect_Ss_Ice_Smoke not OK
+	Size doesn't match: 1248 vs 1472 (x0.848) (-224)
+ovl_Effect_Ss_K_Fire not OK
+	Size doesn't match: 1088 vs 1232 (x0.883) (-144)
+ovl_Effect_Ss_Kakera not OK
+	Size doesn't match: 4240 vs 4496 (x0.943) (-256)
+ovl_Effect_Ss_KiraKira not OK
+	Size doesn't match: 1648 vs 1760 (x0.936) (-112)
+ovl_Effect_Ss_Lightning not OK
+	Size doesn't match: 1744 vs 1856 (x0.94) (-112)
+ovl_Effect_Ss_Sibuki not OK
+	Size doesn't match: 1744 vs 1840 (x0.948) (-96)
+ovl_Effect_Ss_Sibuki2 not OK
+	Size doesn't match: 816 vs 976 (x0.836) (-160)
+ovl_Effect_Ss_Solder_Srch_Ball not OK
+	Size doesn't match: 432 vs 416 (x1.038) (16)
+ovl_Effect_Ss_Stick not OK
+	Size doesn't match: 928 vs 1072 (x0.866) (-144)
+ovl_Effect_Ss_Stone1 not OK
+	Size doesn't match: 896 vs 1056 (x0.848) (-160)
+ovl_Elf_Msg not OK
+	Size doesn't match: 1520 vs 3040 (x0.5) (-1520)
+ovl_Elf_Msg2 not OK
+	Size doesn't match: 1136 vs 2080 (x0.546) (-944)
+ovl_En_Am not OK
+	Size doesn't match: 9216 vs 9296 (x0.991) (-80)
+ovl_En_Ani not OK
+	Size doesn't match: 3440 vs 3504 (x0.982) (-64)
+ovl_En_Anubice not OK
+	Size doesn't match: 4784 vs 5248 (x0.912) (-464)
+ovl_En_Anubice_Fire not OK
+	Size doesn't match: 3520 vs 3680 (x0.957) (-160)
+ovl_En_Anubice_Tag not OK
+	Size doesn't match: 720 vs 976 (x0.738) (-256)
+ovl_En_Arow_Trap not OK
+	Size matches.
+ovl_En_Arrow not OK
+	Size doesn't match: 5888 vs 6112 (x0.963) (-224)
+ovl_En_Attack_Niw not OK
+	Size doesn't match: 4704 vs 4688 (x1.003) (16)
+ovl_En_Ba not OK
+	Size doesn't match: 7888 vs 8080 (x0.976) (-192)
+ovl_En_Bb not OK
+	Size doesn't match: 15584 vs 15696 (x0.993) (-112)
+ovl_En_Bdfire not OK
+	Size doesn't match: 2976 vs 3120 (x0.954) (-144)
+ovl_En_Bigokuta not OK
+	Size doesn't match: 11008 vs 11328 (x0.972) (-320)
+ovl_En_Bili not OK
+	Size doesn't match: 8912 vs 8976 (x0.993) (-64)
+ovl_En_Bird not OK
+	Size doesn't match: 1216 vs 1200 (x1.013) (16)
+ovl_En_Blkobj not OK
+	Size doesn't match: 1376 vs 1648 (x0.835) (-272)
+ovl_En_Bom not OK
+	Size doesn't match: 3792 vs 3936 (x0.963) (-144)
+ovl_En_Bom_Bowl_Man not OK
+	Size doesn't match: 5440 vs 6160 (x0.883) (-720)
+ovl_En_Bom_Bowl_Pit not OK
+	Size doesn't match: 2416 vs 2544 (x0.95) (-128)
+ovl_En_Bom_Chu not OK
+	Size doesn't match: 5792 vs 5936 (x0.976) (-144)
+ovl_En_Bombf not OK
+	Size doesn't match: 5264 vs 5408 (x0.973) (-144)
+ovl_En_Boom not OK
+	Size doesn't match: 2256 vs 2368 (x0.953) (-112)
+ovl_En_Box not OK
+	Size doesn't match: 6992 vs 7488 (x0.934) (-496)
+ovl_En_Brob not OK
+	Size matches.
+ovl_En_Bubble not OK
+	Size doesn't match: 5152 vs 5232 (x0.985) (-80)
+ovl_En_Butte not OK
+	Size doesn't match: 5584 vs 5744 (x0.972) (-160)
+ovl_En_Bw not OK
+	Size doesn't match: 13200 vs 13312 (x0.992) (-112)
+ovl_En_Bx not OK
+	Size doesn't match: 2816 vs 2992 (x0.941) (-176)
+ovl_En_Changer not OK
+	Size doesn't match: 2528 vs 3872 (x0.653) (-1344)
+ovl_En_Clear_Tag not OK
+	Size doesn't match: 35696 vs 36384 (x0.981) (-688)
+ovl_En_Cow not OK
+	Size doesn't match: 5216 vs 5184 (x1.006) (32)
+ovl_En_Crow not OK
+	Size doesn't match: 5792 vs 5744 (x1.008) (48)
+ovl_En_Cs not OK
+	Size doesn't match: 4656 vs 4736 (x0.983) (-80)
+ovl_En_Daiku not OK
+	Size doesn't match: 5952 vs 6128 (x0.971) (-176)
+ovl_En_Daiku_Kakariko not OK
+	Size doesn't match: 5056 vs 5296 (x0.955) (-240)
+ovl_En_Dekubaba not OK
+	Size doesn't match: 15024 vs 15760 (x0.953) (-736)
+ovl_En_Dekunuts not OK
+	Size doesn't match: 6144 vs 6112 (x1.005) (32)
 ovl_En_Dh not OK
 	Size doesn't match: 6880 vs 6976 (x0.986) (-96)
+ovl_En_Dha not OK
+	Size doesn't match: 4096 vs 4080 (x1.004) (16)
+ovl_En_Diving_Game not OK
+	Size doesn't match: 6576 vs 6880 (x0.956) (-304)
+ovl_En_Dns not OK
+	Size doesn't match: 5008 vs 5520 (x0.907) (-512)
+ovl_En_Dnt_Demo not OK
+	Size doesn't match: 3360 vs 4608 (x0.729) (-1248)
+ovl_En_Dnt_Jiji not OK
+	Size doesn't match: 5408 vs 6112 (x0.885) (-704)
+ovl_En_Dnt_Nomal not OK
+	Size doesn't match: 11776 vs 12544 (x0.939) (-768)
+ovl_En_Dodojr not OK
+	Size doesn't match: 7840 vs 7824 (x1.002) (16)
+ovl_En_Dodongo not OK
+	Size doesn't match: 11680 vs 11648 (x1.003) (32)
+ovl_En_Dog not OK
+	Size doesn't match: 4528 vs 4608 (x0.983) (-80)
+ovl_En_Door not OK
+	Size doesn't match: 3648 vs 3680 (x0.991) (-32)
+ovl_En_Ds not OK
+	Size doesn't match: 3104 vs 3072 (x1.01) (32)
+ovl_En_Du not OK
+	Size doesn't match: 6800 vs 6848 (x0.993) (-48)
+ovl_En_Dy_Extra not OK
+	Size doesn't match: 1440 vs 1696 (x0.849) (-256)
+ovl_En_Eg not OK
+	Size doesn't match: 432 vs 528 (x0.818) (-96)
+ovl_En_Eiyer not OK
+	Size doesn't match: 7264 vs 7312 (x0.993) (-48)
+ovl_En_Elf not OK
+	Size doesn't match: 18880 vs 19184 (x0.984) (-304)
+ovl_En_Encount1 not OK
+	Size doesn't match: 2912 vs 4720 (x0.617) (-1808)
+ovl_En_Encount2 not OK
+	Size doesn't match: 4656 vs 5392 (x0.864) (-736)
+ovl_En_Ex_Item not OK
+	Size doesn't match: 4480 vs 5488 (x0.816) (-1008)
+ovl_En_Ex_Ruppy not OK
+	Size doesn't match: 4288 vs 4784 (x0.896) (-496)
+ovl_En_Fd not OK
+	Size doesn't match: 11424 vs 11760 (x0.971) (-336)
+ovl_En_Fd_Fire not OK
+	Size doesn't match: 3344 vs 3504 (x0.954) (-160)
+ovl_En_Fhg_Fire not OK
+	Size doesn't match: 9888 vs 10688 (x0.925) (-800)
+ovl_En_Fire_Rock not OK
+	Size doesn't match: 4368 vs 5200 (x0.84) (-832)
+ovl_En_Firefly not OK
+	Size doesn't match: 8560 vs 8720 (x0.982) (-160)
+ovl_En_Fish not OK
+	Size doesn't match: 8464 vs 8848 (x0.957) (-384)
+ovl_En_Floormas not OK
+	Size doesn't match: 13280 vs 13456 (x0.987) (-176)
+ovl_En_Fr not OK
+	Size doesn't match: 10896 vs 11888 (x0.917) (-992)
+ovl_En_Fu not OK
+	Size doesn't match: 3392 vs 3456 (x0.981) (-64)
+ovl_En_Fw not OK
+	Size doesn't match: 6080 vs 6176 (x0.984) (-96)
+ovl_En_Fz not OK
+	Size doesn't match: 8208 vs 8448 (x0.972) (-240)
+ovl_En_G_Switch not OK
+	Size doesn't match: 6176 vs 7840 (x0.788) (-1664)
+ovl_En_Ganon_Mant not OK
+	Size doesn't match: 16944 vs 17056 (x0.993) (-112)
+ovl_En_Ganon_Organ not OK
+	Size doesn't match: 28736 vs 29056 (x0.989) (-320)
+ovl_En_Gb not OK
+	Size doesn't match: 5936 vs 6128 (x0.969) (-192)
+ovl_En_Ge1 not OK
+	Size doesn't match: 8240 vs 8800 (x0.936) (-560)
+ovl_En_Ge2 not OK
+	Size doesn't match: 6560 vs 6736 (x0.974) (-176)
+ovl_En_Ge3 not OK
+	Size doesn't match: 3136 vs 3312 (x0.947) (-176)
+ovl_En_GeldB not OK
+	Size doesn't match: 21424 vs 21568 (x0.993) (-144)
+ovl_En_GirlA not OK
+	Size doesn't match: 10528 vs 12176 (x0.865) (-1648)
+ovl_En_Gm not OK
+	Size doesn't match: 3376 vs 3728 (x0.906) (-352)
+ovl_En_Go not OK
+	Size doesn't match: 17984 vs 18368 (x0.979) (-384)
+ovl_En_Go2 not OK
+	Size doesn't match: 24640 vs 24976 (x0.987) (-336)
+ovl_En_Goma not OK
+	Size doesn't match: 11440 vs 11744 (x0.974) (-304)
+ovl_En_Goroiwa not OK
+	Size doesn't match: 9152 vs 9856 (x0.929) (-704)
+ovl_En_Gs not OK
+	Size doesn't match: 7792 vs 7936 (x0.982) (-144)
+ovl_En_Guest not OK
+	Size doesn't match: 2464 vs 2864 (x0.86) (-400)
+ovl_En_Hata not OK
+	Size doesn't match: 1424 vs 1408 (x1.011) (16)
+ovl_En_Heishi1 not OK
+	Size doesn't match: 5392 vs 7120 (x0.757) (-1728)
+ovl_En_Heishi2 not OK
+	Size doesn't match: 8704 vs 10144 (x0.858) (-1440)
+ovl_En_Heishi3 not OK
+	Size doesn't match: 2512 vs 2704 (x0.929) (-192)
+ovl_En_Heishi4 not OK
+	Size doesn't match: 3840 vs 4400 (x0.873) (-560)
+ovl_En_Hintnuts not OK
+	Size doesn't match: 6704 vs 6672 (x1.005) (32)
+ovl_En_Holl not OK
+	Size doesn't match: 4048 vs 4128 (x0.981) (-80)
+ovl_En_Honotrap not OK
+	Size doesn't match: 5472 vs 5824 (x0.94) (-352)
+ovl_En_Horse not OK
+	Size matches.
+ovl_En_Horse_Game_Check not OK
+	Size doesn't match: 4304 vs 4368 (x0.985) (-64)
+ovl_En_Horse_Ganon not OK
+	Size doesn't match: 3456 vs 3440 (x1.005) (16)
+ovl_En_Horse_Link_Child not OK
+	Size doesn't match: 7680 vs 7808 (x0.984) (-128)
+ovl_En_Horse_Normal not OK
+	Size doesn't match: 9760 vs 9856 (x0.99) (-96)
+ovl_En_Horse_Zelda not OK
+	Size doesn't match: 2800 vs 2768 (x1.012) (32)
+ovl_En_Hs not OK
+	Size doesn't match: 2976 vs 3072 (x0.969) (-96)
+ovl_En_Hs2 not OK
+	Size doesn't match: 1504 vs 1552 (x0.969) (-48)
+ovl_En_Hy not OK
+	Size doesn't match: 14656 vs 14912 (x0.983) (-256)
+ovl_En_Ice_Hono not OK
+	Size doesn't match: 4592 vs 4896 (x0.938) (-304)
+ovl_En_Ik not OK
+	Size doesn't match: 18000 vs 19600 (x0.918) (-1600)
+ovl_En_In not OK
+	Size doesn't match: 11680 vs 11888 (x0.983) (-208)
+ovl_En_Insect not OK
+	Size doesn't match: 9504 vs 9792 (x0.971) (-288)
+ovl_En_Ishi not OK
+	Size doesn't match: 37200 vs 37408 (x0.994) (-208)
+ovl_En_It not OK
+	Size doesn't match: 400 vs 384 (x1.042) (16)
+ovl_En_Jj not OK
+	Size doesn't match: 5584 vs 5648 (x0.989) (-64)
+ovl_En_Js not OK
+	Size doesn't match: 2512 vs 2448 (x1.026) (64)
+ovl_En_Jsjutan not OK
+	Size doesn't match: 19920 vs 20080 (x0.992) (-160)
+ovl_En_Kakasi not OK
+	Size doesn't match: 3392 vs 3744 (x0.906) (-352)
+ovl_En_Kakasi2 not OK
+	Size doesn't match: 1824 vs 3344 (x0.545) (-1520)
+ovl_En_Kakasi3 not OK
+	Size doesn't match: 4320 vs 4736 (x0.912) (-416)
+ovl_En_Kanban not OK
+	Size doesn't match: 12624 vs 13232 (x0.954) (-608)
+ovl_En_Karebaba not OK
+	Size doesn't match: 6384 vs 6752 (x0.945) (-368)
+ovl_En_Ko not OK
+	Size doesn't match: 16704 vs 16880 (x0.99) (-176)
+ovl_En_Kusa not OK
+	Size doesn't match: 5344 vs 5552 (x0.963) (-208)
+ovl_En_Kz not OK
+	Size doesn't match: 5536 vs 5616 (x0.986) (-80)
+ovl_En_Light not OK
+	Size doesn't match: 3584 vs 3728 (x0.961) (-144)
+ovl_En_Lightbox not OK
+	Size doesn't match: 1152 vs 1136 (x1.014) (16)
+ovl_En_M_Fire1 not OK
+	Size matches.
+ovl_En_M_Thunder not OK
+	Size doesn't match: 5632 vs 5808 (x0.97) (-176)
+ovl_En_Ma1 not OK
+	Size doesn't match: 4832 vs 4880 (x0.99) (-48)
+ovl_En_Ma2 not OK
+	Size doesn't match: 4192 vs 4352 (x0.963) (-160)
+ovl_En_Ma3 not OK
+	Size doesn't match: 4016 vs 4192 (x0.958) (-176)
+ovl_En_Mag not OK
+	Size doesn't match: 9504 vs 9552 (x0.995) (-48)
+ovl_En_Mb not OK
+	Size doesn't match: 16944 vs 16896 (x1.003) (48)
+ovl_En_Md not OK
+	Size doesn't match: 9840 vs 9904 (x0.994) (-64)
+ovl_En_Mk not OK
+	Size doesn't match: 3728 vs 3696 (x1.009) (32)
+ovl_En_Mm not OK
+	Size doesn't match: 5728 vs 5856 (x0.978) (-128)
+ovl_En_Mm2 not OK
+	Size doesn't match: 3520 vs 3792 (x0.928) (-272)
+ovl_En_Ms not OK
+	Size doesn't match: 1776 vs 1792 (x0.991) (-16)
+ovl_En_Mu not OK
+	Size doesn't match: 2336 vs 2416 (x0.967) (-80)
+ovl_En_Nb not OK
+	Size doesn't match: 17872 vs 18928 (x0.944) (-1056)
+ovl_En_Niw not OK
+	Size doesn't match: 13104 vs 14336 (x0.914) (-1232)
+ovl_En_Niw_Girl not OK
+	Size doesn't match: 2768 vs 3264 (x0.848) (-496)
+ovl_En_Niw_Lady not OK
+	Size doesn't match: 6400 vs 7696 (x0.832) (-1296)
+ovl_En_Nutsball not OK
+	Size doesn't match: 1568 vs 1680 (x0.933) (-112)
+ovl_En_Nwc not OK
+	Size doesn't match: 2592 vs 2768 (x0.936) (-176)
+ovl_En_Ny not OK
+	Size doesn't match: 6464 vs 6896 (x0.937) (-432)
+ovl_En_OE2 not OK
+	Size doesn't match: 224 vs 192 (x1.167) (32)
+ovl_En_Okarina_Effect not OK
+	Size doesn't match: 960 vs 1472 (x0.652) (-512)
+ovl_En_Okarina_Tag not OK
+	Size doesn't match: 5376 vs 6464 (x0.832) (-1088)
+ovl_En_Okuta not OK
+	Size doesn't match: 9696 vs 9792 (x0.99) (-96)
+ovl_En_Ossan not OK
+	Size doesn't match: 26080 vs 29312 (x0.89) (-3232)
+ovl_En_Owl not OK
+	Size doesn't match: 15264 vs 16048 (x0.951) (-784)
+ovl_En_Part not OK
+	Size doesn't match: 5728 vs 5840 (x0.981) (-112)
+ovl_En_Peehat not OK
+	Size doesn't match: 14080 vs 14352 (x0.981) (-272)
+ovl_En_Po_Desert not OK
+	Size doesn't match: 3520 vs 3664 (x0.961) (-144)
+ovl_En_Po_Field not OK
+	Size doesn't match: 14848 vs 15280 (x0.972) (-432)
+ovl_En_Po_Relay not OK
+	Size doesn't match: 5904 vs 6224 (x0.949) (-320)
+ovl_En_Po_Sisters not OK
+	Size doesn't match: 19696 vs 19904 (x0.99) (-208)
+ovl_En_Poh not OK
+	Size doesn't match: 16880 vs 17264 (x0.978) (-384)
+ovl_En_Pu_box not OK
+	Size matches.
+ovl_En_Rd not OK
+	Size doesn't match: 10432 vs 10448 (x0.998) (-16)
+ovl_En_Reeba not OK
+	Size doesn't match: 6768 vs 7264 (x0.932) (-496)
+ovl_En_River_Sound not OK
+	Size doesn't match: 2448 vs 2432 (x1.007) (16)
+ovl_En_Rl not OK
+	Size doesn't match: 3808 vs 4496 (x0.847) (-688)
+ovl_En_Rr not OK
+	Size doesn't match: 9520 vs 10192 (x0.934) (-672)
+ovl_En_Ru1 not OK
+	Size doesn't match: 30368 vs 31040 (x0.978) (-672)
+ovl_En_Ru2 not OK
+	Size doesn't match: 11648 vs 12304 (x0.947) (-656)
+ovl_En_Sa not OK
+	Size doesn't match: 8816 vs 8848 (x0.996) (-32)
+ovl_En_Sb not OK
+	Size doesn't match: 5184 vs 5248 (x0.988) (-64)
+ovl_En_Scene_Change not OK
+	Size doesn't match: 304 vs 432 (x0.704) (-128)
+ovl_En_Sda not OK
+	Size doesn't match: 5680 vs 6208 (x0.915) (-528)
+ovl_En_Shopnuts not OK
+	Size doesn't match: 3856 vs 3952 (x0.976) (-96)
+ovl_En_Si not OK
+	Size doesn't match: 1280 vs 1264 (x1.013) (16)
+ovl_En_Siofuki not OK
+	Size doesn't match: 3504 vs 3616 (x0.969) (-112)
+ovl_En_Skb not OK
+	Size doesn't match: 6384 vs 6416 (x0.995) (-32)
+ovl_En_Skj not OK
+	Size doesn't match: 14656 vs 15344 (x0.955) (-688)
+ovl_En_Skjneedle not OK
+	Size doesn't match: 784 vs 960 (x0.817) (-176)
+ovl_En_Ssh not OK
+	Size doesn't match: 9712 vs 9760 (x0.995) (-48)
+ovl_En_St not OK
+	Size doesn't match: 11376 vs 11440 (x0.994) (-64)
+ovl_En_Sth not OK
+	Size doesn't match: 16576 vs 16992 (x0.976) (-416)
+ovl_En_Stream not OK
+	Size doesn't match: 1424 vs 1552 (x0.918) (-128)
+ovl_En_Sw not OK
+	Size doesn't match: 14192 vs 14464 (x0.981) (-272)
+ovl_En_Syateki_Itm not OK
+	Size doesn't match: 3488 vs 4544 (x0.768) (-1056)
+ovl_En_Syateki_Man not OK
+	Size doesn't match: 3520 vs 4224 (x0.833) (-704)
+ovl_En_Syateki_Niw not OK
+	Size doesn't match: 8336 vs 8624 (x0.967) (-288)
+ovl_En_Ta not OK
+	Size doesn't match: 14784 vs 15040 (x0.983) (-256)
+ovl_En_Takara_Man not OK
+	Size doesn't match: 2240 vs 2512 (x0.892) (-272)
+ovl_En_Tana not OK
+	Size doesn't match: 688 vs 1072 (x0.642) (-384)
+ovl_En_Tg not OK
+	Size doesn't match: 1760 vs 1824 (x0.965) (-64)
+ovl_En_Tite not OK
+	Size doesn't match: 11680 vs 11904 (x0.981) (-224)
+ovl_En_Tk not OK
+	Size doesn't match: 7728 vs 8080 (x0.956) (-352)
+ovl_En_Torch not OK
+	Size matches.
+ovl_En_Torch2 not OK
+	Size doesn't match: 10080 vs 10160 (x0.992) (-80)
+ovl_En_Toryo not OK
+	Size doesn't match: 3216 vs 3184 (x1.01) (32)
+ovl_En_Tp not OK
+	Size doesn't match: 7792 vs 7952 (x0.98) (-160)
+ovl_En_Tr not OK
+	Size doesn't match: 6400 vs 6512 (x0.983) (-112)
+ovl_En_Trap not OK
+	Size doesn't match: 4768 vs 4752 (x1.003) (16)
+ovl_En_Tubo_Trap not OK
+	Size doesn't match: 3232 vs 3520 (x0.918) (-288)
+ovl_En_Vali not OK
+	Size doesn't match: 9920 vs 10240 (x0.969) (-320)
+ovl_En_Vase not OK
+	Size doesn't match: 256 vs 240 (x1.067) (16)
+ovl_En_Vb_Ball not OK
+	Size doesn't match: 4528 vs 4704 (x0.963) (-176)
+ovl_En_Viewer not OK
+	Size doesn't match: 11936 vs 12864 (x0.928) (-928)
+ovl_En_Vm not OK
+	Size doesn't match: 6336 vs 6544 (x0.968) (-208)
+ovl_En_Wall_Tubo not OK
+	Size doesn't match: 1264 vs 1840 (x0.687) (-576)
+ovl_En_Wallmas not OK
+	Size doesn't match: 6672 vs 6912 (x0.965) (-240)
+ovl_En_Weather_Tag not OK
+	Size doesn't match: 3824 vs 4720 (x0.81) (-896)
+ovl_En_Weiyer not OK
+	Size doesn't match: 6656 vs 6688 (x0.995) (-32)
+ovl_En_Wf not OK
+	Size doesn't match: 17168 vs 17328 (x0.991) (-160)
+ovl_En_Wonder_Item not OK
+	Size doesn't match: 3152 vs 4016 (x0.785) (-864)
+ovl_En_Wonder_Talk not OK
+	Size doesn't match: 1680 vs 3552 (x0.473) (-1872)
+ovl_En_Wonder_Talk2 not OK
+	Size doesn't match: 1696 vs 4256 (x0.398) (-2560)
+ovl_En_Wood02 not OK
+	Size doesn't match: 4560 vs 4704 (x0.969) (-144)
+ovl_En_Xc not OK
+	Size doesn't match: 26464 vs 27568 (x0.96) (-1104)
+ovl_En_Yabusame_Mark not OK
+	Size doesn't match: 1744 vs 3072 (x0.568) (-1328)
+ovl_En_Yukabyun not OK
+	Size doesn't match: 1552 vs 1680 (x0.924) (-128)
+ovl_En_Zf not OK
+	Size matches.
+ovl_En_Zl1 not OK
+	Size doesn't match: 15888 vs 15952 (x0.996) (-64)
+ovl_En_Zl2 not OK
+	Size doesn't match: 18176 vs 18976 (x0.958) (-800)
+ovl_En_Zl3 not OK
+	Size doesn't match: 32336 vs 33792 (x0.957) (-1456)
+ovl_En_Zl4 not OK
+	Size doesn't match: 18992 vs 19056 (x0.997) (-64)
+ovl_En_Zo not OK
+	Size doesn't match: 9664 vs 10144 (x0.953) (-480)
+ovl_En_fHG not OK
+	Size doesn't match: 10544 vs 11616 (x0.908) (-1072)
+ovl_End_Title not OK
+	Size doesn't match: 16672 vs 17024 (x0.979) (-352)
+ovl_Fishing not OK
+	Size doesn't match: 80544 vs 83664 (x0.963) (-3120)
+ovl_Item_B_Heart not OK
+	Size doesn't match: 1040 vs 1184 (x0.878) (-144)
+ovl_Item_Etcetera not OK
+	Size doesn't match: 2256 vs 2544 (x0.887) (-288)
+ovl_Item_Inbox not OK
+	Size doesn't match: 352 vs 336 (x1.048) (16)
+ovl_Item_Ocarina not OK
+	Size doesn't match: 2000 vs 2032 (x0.984) (-32)
+ovl_Item_Shield not OK
+	Size doesn't match: 2576 vs 2736 (x0.942) (-160)
+ovl_Magic_Dark not OK
+	Size doesn't match: 6224 vs 6560 (x0.949) (-336)
+ovl_Magic_Fire not OK
+	Size doesn't match: 8960 vs 9104 (x0.984) (-144)
+ovl_Magic_Wind not OK
+	Size doesn't match: 7424 vs 8016 (x0.926) (-592)
+ovl_Mir_Ray not OK
+	Size doesn't match: 6320 vs 6704 (x0.943) (-384)
+ovl_Obj_Bean not OK
+	Size doesn't match: 10128 vs 10720 (x0.945) (-592)
+ovl_Obj_Blockstop not OK
+	Size doesn't match: 416 vs 400 (x1.04) (16)
+ovl_Obj_Bombiwa not OK
+	Size matches.
+ovl_Obj_Comb not OK
+	Size doesn't match: 2144 vs 2240 (x0.957) (-96)
+ovl_Obj_Dekujr not OK
+	Size doesn't match: 1600 vs 1760 (x0.909) (-160)
+ovl_Obj_Elevator not OK
+	Size doesn't match: 960 vs 1168 (x0.822) (-208)
+ovl_Obj_Hamishi not OK
+	Size doesn't match: 2128 vs 2256 (x0.943) (-128)
+ovl_Obj_Hana not OK
+	Size doesn't match: 784 vs 768 (x1.021) (16)
+ovl_Obj_Hsblock not OK
+	Size doesn't match: 1488 vs 1792 (x0.83) (-304)
+ovl_Obj_Ice_Poly not OK
+	Size doesn't match: 2480 vs 2624 (x0.945) (-144)
+ovl_Obj_Kibako not OK
+	Size doesn't match: 3328 vs 3376 (x0.986) (-48)
+ovl_Obj_Kibako2 not OK
+	Size doesn't match: 1728 vs 1792 (x0.964) (-64)
+ovl_Obj_Lift not OK
+	Size doesn't match: 2592 vs 2768 (x0.936) (-176)
+ovl_Obj_Lightswitch not OK
+	Size doesn't match: 5168 vs 5840 (x0.885) (-672)
+ovl_Obj_Makekinsuta not OK
+	Size doesn't match: 336 vs 672 (x0.5) (-336)
+ovl_Obj_Makeoshihiki not OK
+	Size doesn't match: 1168 vs 1424 (x0.82) (-256)
+ovl_Obj_Mure not OK
+	Size doesn't match: 4112 vs 5280 (x0.779) (-1168)
+ovl_Obj_Mure2 not OK
+	Size doesn't match: 2592 vs 2704 (x0.959) (-112)
+ovl_Obj_Mure3 not OK
+	Size doesn't match: 2000 vs 1968 (x1.016) (32)
+ovl_Obj_Oshihiki not OK
+	Size doesn't match: 6832 vs 7760 (x0.88) (-928)
+ovl_Obj_Roomtimer not OK
+	Size doesn't match: 592 vs 576 (x1.028) (16)
+ovl_Obj_Switch not OK
+	Size doesn't match: 7648 vs 8352 (x0.916) (-704)
+ovl_Obj_Syokudai not OK
+	Size doesn't match: 3136 vs 3296 (x0.951) (-160)
+ovl_Obj_Timeblock not OK
+	Size doesn't match: 3152 vs 3520 (x0.895) (-368)
+ovl_Obj_Tsubo not OK
+	Size doesn't match: 4080 vs 4240 (x0.962) (-160)
+ovl_Obj_Warp2block not OK
+	Size doesn't match: 2864 vs 3248 (x0.882) (-384)
+ovl_Object_Kankyo not OK
+	Size doesn't match: 12928 vs 13776 (x0.938) (-848)
+ovl_Oceff_Spot not OK
+	Size doesn't match: 3888 vs 4208 (x0.924) (-320)
+ovl_Oceff_Storm not OK
+	Size doesn't match: 7088 vs 7344 (x0.965) (-256)
+ovl_Oceff_Wipe not OK
+	Size doesn't match: 3456 vs 3616 (x0.956) (-160)
+ovl_Oceff_Wipe2 not OK
+	Size doesn't match: 6000 vs 6208 (x0.966) (-208)
+ovl_Oceff_Wipe3 not OK
+	Size doesn't match: 5968 vs 6176 (x0.966) (-208)
+ovl_Oceff_Wipe4 not OK
+	Size doesn't match: 4064 vs 4272 (x0.951) (-208)
+ovl_Shot_Sun not OK
+	Size doesn't match: 1728 vs 1856 (x0.931) (-128)
+spot00_scene not OK
+	Size matches.
+spot01_scene not OK
+	Size matches.
+spot02_scene not OK
+	Size matches.
+spot03_scene not OK
+	Size matches.
+spot04_scene not OK
+	Size matches.
+spot05_scene not OK
+	Size matches.
+spot06_scene not OK
+	Size matches.
+spot07_scene not OK
+	Size matches.
+spot08_scene not OK
+	Size matches.
+spot09_scene not OK
+	Size matches.
+spot10_scene not OK
+	Size matches.
+spot11_scene not OK
+	Size matches.
+spot12_scene not OK
+	Size matches.
+spot13_scene not OK
+	Size matches.
+spot15_scene not OK
+	Size matches.
+spot16_scene not OK
+	Size matches.
+spot17_scene not OK
+	Size matches.
 spot18_scene not OK
+	Size matches.
+ydan_scene not OK
+	Size matches.
+ddan_scene not OK
+	Size matches.
+bdan_scene not OK
+	Size matches.
+bdan_room_2 not OK
+	Size matches.
+bdan_room_8 not OK
+	Size matches.
+bdan_room_9 not OK
+	Size matches.
+bdan_room_10 not OK
+	Size matches.
+bdan_room_11 not OK
+	Size matches.
+bdan_room_12 not OK
+	Size matches.
+Bmori1_scene not OK
+	Size matches.
+HIDAN_scene not OK
+	Size matches.
+MIZUsin_scene not OK
 	Size matches.
 jyasinzou_scene not OK
 	Size matches.
-ovl_Bg_Jya_Ironobj not OK
-	Size doesn't match: 3504 vs 3744 (x0.936) (-240)
-ovl_En_Cow not OK
-	Size doesn't match: 5216 vs 5184 (x1.006) (32)
-ovl_Bg_Gjyo_Bridge not OK
-	Size doesn't match: 1264 vs 1392 (x0.908) (-128)
-ddan_scene not OK
+HAKAdan_scene not OK
 	Size matches.
-ovl_Demo_Tre_Lgt not OK
-	Size doesn't match: 1808 vs 2096 (x0.863) (-288)
-ovl_En_Hata not OK
-	Size doesn't match: 1424 vs 1408 (x1.011) (16)
-ovl_Bg_Bdan_Objects not OK
-	Size doesn't match: 4816 vs 4976 (x0.968) (-160)
-ovl_Effect_Ss_Kakera not OK
-	Size doesn't match: 4240 vs 4496 (x0.943) (-256)
-ovl_Bg_Jya_Haheniron not OK
-	Size doesn't match: 2032 vs 2016 (x1.008) (16)
-ovl_En_Rd not OK
-	Size doesn't match: 10432 vs 10448 (x0.998) (-16)
-ovl_En_It not OK
-	Size doesn't match: 400 vs 384 (x1.042) (16)
-ovl_En_Fz not OK
-	Size doesn't match: 8208 vs 8448 (x0.972) (-240)
-ovl_Bg_Relay_Objects not OK
-	Size doesn't match: 1968 vs 1936 (x1.017) (32)
-ovl_En_Part not OK
-	Size doesn't match: 5728 vs 5840 (x0.981) (-112)
-yousei_izumi_yoko_scene not OK
+HAKAdanCH_scene not OK
 	Size matches.
-ovl_Demo_Im not OK
-	Size doesn't match: 16240 vs 17056 (x0.952) (-816)
-ovl_Bg_Gnd_Iceblock not OK
-	Size doesn't match: 4336 vs 4512 (x0.961) (-176)
-ovl_Bg_Breakwall not OK
-	Size doesn't match: 3696 vs 3792 (x0.975) (-96)
-ovl_En_Bom_Bowl_Man not OK
-	Size doesn't match: 5440 vs 6160 (x0.883) (-720)
-ovl_En_Niw not OK
-	Size doesn't match: 13104 vs 14336 (x0.914) (-1232)
-nes_message_data_static not OK
-	Size doesn't match: 229504 vs 229664 (x0.999) (-160)
-ovl_En_Zf not OK
+ice_doukutu_scene not OK
 	Size matches.
-ovl_En_Hintnuts not OK
-	Size doesn't match: 6704 vs 6672 (x1.005) (32)
-ovl_Boss_Va not OK
-	Size doesn't match: 59536 vs 60560 (x0.983) (-1024)
-ovl_Bg_Ice_Shelter not OK
-	Size doesn't match: 4672 vs 4992 (x0.936) (-320)
-ovl_En_Tubo_Trap not OK
-	Size doesn't match: 3232 vs 3520 (x0.918) (-288)
-ovl_Bg_Hidan_Syoku not OK
-	Size doesn't match: 1120 vs 1104 (x1.014) (16)
-ovl_En_Heishi2 not OK
-	Size doesn't match: 8704 vs 10144 (x0.858) (-1440)
-ovl_Bg_Spot01_Objects2 not OK
-	Size doesn't match: 1216 vs 1312 (x0.927) (-96)
-ovl_En_Sw not OK
-	Size doesn't match: 14192 vs 14464 (x0.981) (-272)
-ovl_En_Mm not OK
-	Size doesn't match: 5728 vs 5856 (x0.978) (-128)
-ovl_En_Bdfire not OK
-	Size doesn't match: 2976 vs 3120 (x0.954) (-144)
-ovl_Eff_Dust not OK
-	Size doesn't match: 5072 vs 5344 (x0.949) (-272)
-ovl_En_Zo not OK
-	Size doesn't match: 9664 vs 10144 (x0.953) (-480)
-ovl_Bg_Mori_Rakkatenjo not OK
-	Size doesn't match: 2432 vs 3232 (x0.752) (-800)
-ovl_Bg_Spot11_Bakudankabe not OK
-	Size doesn't match: 1600 vs 1648 (x0.971) (-48)
-ovl_En_Kakasi3 not OK
-	Size doesn't match: 4320 vs 4736 (x0.912) (-416)
+men_scene not OK
+	Size matches.
+ganontika_scene not OK
+	Size matches.
+market_day_scene not OK
+	Size matches.
+market_night_scene not OK
+	Size matches.
+kenjyanoma_scene not OK
+	Size matches.
 tokinoma_scene not OK
 	Size matches.
-ovl_Effect_Ss_G_Fire not OK
-	Size doesn't match: 656 vs 640 (x1.025) (16)
-ovl_Magic_Fire not OK
-	Size doesn't match: 8960 vs 9104 (x0.984) (-144)
-ovl_En_Ta not OK
-	Size doesn't match: 14784 vs 15040 (x0.983) (-256)
-ovl_En_Box not OK
-	Size doesn't match: 6992 vs 7488 (x0.934) (-496)
-ovl_En_Bom_Bowl_Pit not OK
-	Size doesn't match: 2416 vs 2544 (x0.95) (-128)
-kakariko3_scene not OK
-	Size matches.
-ovl_En_St not OK
-	Size doesn't match: 11376 vs 11440 (x0.994) (-64)
-ovl_Obj_Bombiwa not OK
-	Size matches.
-ovl_En_Horse_Ganon not OK
-	Size doesn't match: 3456 vs 3440 (x1.005) (16)
-ovl_En_Daiku not OK
-	Size doesn't match: 5952 vs 6128 (x0.971) (-176)
-ovl_Obj_Mure not OK
-	Size doesn't match: 4112 vs 5280 (x0.779) (-1168)
-ovl_En_Vase not OK
-	Size doesn't match: 256 vs 240 (x1.067) (16)
-spot02_scene not OK
-	Size matches.
-ovl_En_Wonder_Talk2 not OK
-	Size doesn't match: 1696 vs 4256 (x0.398) (-2560)
-ovl_Effect_Ss_G_Spk not OK
-	Size doesn't match: 1456 vs 1552 (x0.938) (-96)
-ovl_En_Ms not OK
-	Size doesn't match: 1776 vs 1792 (x0.991) (-16)
-ovl_En_Owl not OK
-	Size doesn't match: 15264 vs 16048 (x0.951) (-784)
-ovl_Obj_Hsblock not OK
-	Size doesn't match: 1488 vs 1792 (x0.83) (-304)
-ovl_Effect_Ss_Solder_Srch_Ball not OK
-	Size doesn't match: 432 vs 416 (x1.038) (16)
-ovl_En_Dns not OK
-	Size doesn't match: 5008 vs 5520 (x0.907) (-512)
-ovl_Effect_Ss_Dead_Ds not OK
-	Size doesn't match: 1152 vs 1312 (x0.878) (-160)
-moribossroom_scene not OK
-	Size matches.
-ovl_Bg_Spot12_Gate not OK
-	Size doesn't match: 1040 vs 1168 (x0.89) (-128)
-ovl_Bg_Haka_Tubo not OK
-	Size doesn't match: 2592 vs 2736 (x0.947) (-144)
-ovl_En_Vb_Ball not OK
-	Size doesn't match: 4528 vs 4704 (x0.963) (-176)
-ovl_Arrow_Fire not OK
-	Size doesn't match: 7904 vs 8128 (x0.972) (-224)
-ovl_map_mark_data not OK
-	Size matches.
-ovl_Bg_Ddan_Jd not OK
-	Size doesn't match: 1616 vs 1600 (x1.01) (16)
-nakaniwa_scene not OK
-	Size matches.
-ovl_Effect_Ss_Ice_Smoke not OK
-	Size doesn't match: 1248 vs 1472 (x0.848) (-224)
-ovl_En_Tite not OK
-	Size doesn't match: 11680 vs 11904 (x0.981) (-224)
-ovl_En_Arow_Trap not OK
-	Size matches.
-ovl_Obj_Kibako2 not OK
-	Size doesn't match: 1728 vs 1792 (x0.964) (-64)
-ovl_Bg_Spot12_Saku not OK
-	Size doesn't match: 1216 vs 1344 (x0.905) (-128)
-ovl_Door_Gerudo not OK
-	Size doesn't match: 1520 vs 1648 (x0.922) (-128)
-ovl_En_Arrow not OK
-	Size doesn't match: 5888 vs 6112 (x0.963) (-224)
 link_home_scene not OK
 	Size matches.
-ovl_Effect_Ss_Bubble not OK
-	Size doesn't match: 1152 vs 1296 (x0.889) (-144)
+kokiri_shop_scene not OK
+	Size matches.
+kokiri_home_scene not OK
+	Size matches.
+kakusiana_scene not OK
+	Size matches.
+entra_scene not OK
+	Size matches.
+moribossroom_scene not OK
+	Size matches.
+syatekijyou_scene not OK
+	Size matches.
+shop1_scene not OK
+	Size matches.
+hairal_niwa_scene not OK
+	Size matches.
+ganon_tou_scene not OK
+	Size matches.
+market_alley_scene not OK
+	Size matches.
+spot20_scene not OK
+	Size matches.
+market_ruins_scene not OK
+	Size matches.
+entra_n_scene not OK
+	Size matches.
+enrui_scene not OK
+	Size matches.
+market_alley_n_scene not OK
+	Size matches.
+hiral_demo_scene not OK
+	Size matches.
+kokiri_home3_scene not OK
+	Size matches.
+malon_stable_scene not OK
+	Size matches.
+kakariko_scene not OK
+	Size matches.
+bdan_boss_scene not OK
+	Size matches.
+bdan_boss_room_1 not OK
+	Size matches.
+FIRE_bs_scene not OK
+	Size matches.
+hut_scene not OK
+	Size matches.
+daiyousei_izumi_scene not OK
+	Size matches.
+hakaana_scene not OK
+	Size matches.
+yousei_izumi_tate_scene not OK
+	Size matches.
+yousei_izumi_yoko_scene not OK
+	Size matches.
+golon_scene not OK
+	Size matches.
+zoora_scene not OK
+	Size matches.
 drag_scene not OK
+	Size matches.
+alley_shop_scene not OK
+	Size matches.
+night_shop_scene not OK
+	Size matches.
+impa_scene not OK
+	Size matches.
+labo_scene not OK
+	Size matches.
+tent_scene not OK
+	Size matches.
+nakaniwa_scene not OK
+	Size matches.
+ddan_boss_scene not OK
+	Size matches.
+ydan_boss_scene not OK
+	Size matches.
+HAKAdan_bs_scene not OK
+	Size matches.
+MIZUsin_bs_scene not OK
+	Size matches.
+ganon_scene not OK
+	Size matches.
+ganon_boss_scene not OK
+	Size matches.
+jyasinboss_scene not OK
+	Size matches.
+kokiri_home4_scene not OK
+	Size matches.
+kokiri_home5_scene not OK
+	Size matches.
+ganon_final_scene not OK
+	Size matches.
+kakariko3_scene not OK
+	Size matches.
+hakasitarelay_scene not OK
+	Size matches.
+shrine_scene not OK
+	Size matches.
+turibori_scene not OK
+	Size matches.
+shrine_n_scene not OK
+	Size matches.
+shrine_r_scene not OK
+	Size matches.
+hakaana2_scene not OK
+	Size matches.
+gerudoway_scene not OK
+	Size matches.
+hairal_niwa_n_scene not OK
+	Size matches.
+bowling_scene not OK
+	Size matches.
+hakaana_ouke_scene not OK
+	Size matches.
+hylia_labo_scene not OK
+	Size matches.
+souko_scene not OK
+	Size matches.
+miharigoya_scene not OK
+	Size matches.
+mahouya_scene not OK
+	Size matches.
+takaraya_scene not OK
 	Size matches.
 ganon_sonogo_scene not OK
 	Size matches.
-ovl_Bg_Hidan_Fwbig not OK
-	Size doesn't match: 3296 vs 3408 (x0.967) (-112)
-ovl_Arms_Hook not OK
-	Size doesn't match: 3440 vs 3600 (x0.956) (-160)
-malon_stable_scene not OK
+ganon_demo_scene not OK
 	Size matches.
-ovl_Bg_Hidan_Kowarerukabe not OK
-	Size doesn't match: 3808 vs 4192 (x0.908) (-384)
-ovl_Bg_Spot17_Funen not OK
-	Size doesn't match: 592 vs 784 (x0.755) (-192)
-ovl_Boss_Dodongo not OK
-	Size doesn't match: 39680 vs 39984 (x0.992) (-304)
-ovl_En_Tp not OK
-	Size doesn't match: 7792 vs 7952 (x0.98) (-160)
-ovl_En_fHG not OK
-	Size doesn't match: 10544 vs 11616 (x0.908) (-1072)
-ovl_En_Blkobj not OK
-	Size doesn't match: 1376 vs 1648 (x0.835) (-272)
-ovl_En_Ex_Ruppy not OK
-	Size doesn't match: 4288 vs 4784 (x0.896) (-496)
-ovl_En_Kz not OK
-	Size doesn't match: 5536 vs 5616 (x0.986) (-80)
-jyasinboss_scene not OK
+face_shop_scene not OK
 	Size matches.
-ovl_En_Wood02 not OK
-	Size doesn't match: 4560 vs 4704 (x0.969) (-144)
-ovl_En_Fw not OK
-	Size doesn't match: 6080 vs 6176 (x0.984) (-96)
+kinsuta_scene not OK
+	Size matches.
+ganontikasonogo_scene not OK
+	Size matches.
 
-Differents: 583/1510 (38.61%)
+Differents: 583/1532 (38.05%)

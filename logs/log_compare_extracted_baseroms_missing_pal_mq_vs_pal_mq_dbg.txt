@@ -1,25 +1,25 @@
-File testroom_room_1 from other_baserom does not exists in baserom
-File hairal_niwa2_scene from other_baserom does not exists in baserom
-File sasatest_room_0 from other_baserom does not exists in baserom
-File sutaru_scene from other_baserom does not exists in baserom
-File test01_scene from other_baserom does not exists in baserom
-File sasatest_scene from other_baserom does not exists in baserom
-File testroom_room_0 from other_baserom does not exists in baserom
-File testroom_room_2 from other_baserom does not exists in baserom
-File testroom_scene from other_baserom does not exists in baserom
-File besitu_room_0 from other_baserom does not exists in baserom
-File testroom_room_4 from other_baserom does not exists in baserom
-File syotes_scene from other_baserom does not exists in baserom
-File depth_test_room_0 from other_baserom does not exists in baserom
-File hairal_niwa2_room_0 from other_baserom does not exists in baserom
-File testroom_room_3 from other_baserom does not exists in baserom
-File test01_room_0 from other_baserom does not exists in baserom
-File syotes2_room_0 from other_baserom does not exists in baserom
-File besitu_scene from other_baserom does not exists in baserom
-File depth_test_scene from other_baserom does not exists in baserom
-File sutaru_room_0 from other_baserom does not exists in baserom
-File syotes2_scene from other_baserom does not exists in baserom
-File syotes_room_0 from other_baserom does not exists in baserom
+File syotes_scene does not exists in baserom.
+File syotes_room_0 does not exists in baserom.
+File syotes2_scene does not exists in baserom.
+File syotes2_room_0 does not exists in baserom.
+File depth_test_scene does not exists in baserom.
+File depth_test_room_0 does not exists in baserom.
+File testroom_scene does not exists in baserom.
+File testroom_room_0 does not exists in baserom.
+File testroom_room_1 does not exists in baserom.
+File testroom_room_2 does not exists in baserom.
+File testroom_room_3 does not exists in baserom.
+File testroom_room_4 does not exists in baserom.
+File sutaru_scene does not exists in baserom.
+File sutaru_room_0 does not exists in baserom.
+File sasatest_scene does not exists in baserom.
+File sasatest_room_0 does not exists in baserom.
+File hairal_niwa2_scene does not exists in baserom.
+File hairal_niwa2_room_0 does not exists in baserom.
+File besitu_scene does not exists in baserom.
+File besitu_room_0 does not exists in baserom.
+File test01_scene does not exists in baserom.
+File test01_room_0 does not exists in baserom.
 
-Missing:    0/1510 (0.0%)
-Extras:     22
+Missing:    22/1532 (1.44%)
+Missing 2:  0
