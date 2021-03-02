@@ -1466,1349 +1466,1001 @@ title_static not OK
 	Size doesn't match: 316096 vs 291904 (x1.083) (24192)
 	There are at least 250437 bytes different.
 spot00_scene not OK
-	Size doesn't match: 11552 vs 172576 (x0.067) (-161024)
-	There are at least 11074 bytes different.
+	Size doesn't match: 172608 vs 172576 (x1.0) (32)
+	There are at least 92251 bytes different.
 spot00_room_0 not OK
-	Size doesn't match: 7712 vs 86576 (x0.089) (-78864)
-	There are at least 6932 bytes different.
+	Size matches.
+	There are at least 242 bytes different.
 spot01_scene not OK
-	Size doesn't match: 46256 vs 115024 (x0.402) (-68768)
-	There are at least 42554 bytes different.
+	Size doesn't match: 115056 vs 115024 (x1.0) (32)
+	There are at least 71391 bytes different.
 spot01_room_0 not OK
-	Size doesn't match: 10656 vs 40672 (x0.262) (-30016)
-	There are at least 9986 bytes different.
+	Size matches.
+	There are at least 65 bytes different.
 spot02_scene not OK
-	Size doesn't match: 6400 vs 48256 (x0.133) (-41856)
-	There are at least 5917 bytes different.
-spot02_room_0 not OK
-	Size doesn't match: 24256 vs 9952 (x2.437) (14304)
-	There are at least 8311 bytes different.
-spot02_room_1 not OK
-	Size doesn't match: 55984 vs 122768 (x0.456) (-66784)
-	There are at least 51114 bytes different.
+	Size matches.
+	There are at least 48 bytes different.
 spot03_scene not OK
-	Size doesn't match: 49856 vs 46432 (x1.074) (3424)
-	There are at least 44188 bytes different.
-spot03_room_0 not OK
-	Size doesn't match: 30448 vs 55680 (x0.547) (-25232)
-	There are at least 25336 bytes different.
-spot03_room_1 not OK
-	Size doesn't match: 70960 vs 29952 (x2.369) (41008)
-	There are at least 27414 bytes different.
+	Size matches.
+	There are at least 16 bytes different.
 spot04_scene not OK
-	Size doesn't match: 65424 vs 70208 (x0.932) (-4784)
-	There are at least 61880 bytes different.
+	Size doesn't match: 70256 vs 70208 (x1.001) (48)
+	There are at least 24351 bytes different.
 spot04_room_0 not OK
-	Size doesn't match: 37520 vs 111760 (x0.336) (-74240)
-	There are at least 34586 bytes different.
+	Size matches.
+	There are at least 28 bytes different.
 spot04_room_1 not OK
-	Size doesn't match: 20352 vs 34176 (x0.596) (-13824)
-	There are at least 18056 bytes different.
+	Size matches.
+	There are at least 9 bytes different.
 spot04_room_2 not OK
-	Size doesn't match: 31776 vs 20592 (x1.543) (11184)
-	There are at least 18992 bytes different.
+	Size matches.
+	There are at least 10 bytes different.
 spot05_scene not OK
-	Size doesn't match: 41296 vs 85344 (x0.484) (-44048)
-	There are at least 38833 bytes different.
+	Size doesn't match: 85360 vs 85344 (x1.0) (16)
+	There are at least 58745 bytes different.
 spot05_room_0 not OK
-	Size doesn't match: 20704 vs 40704 (x0.509) (-20000)
-	There are at least 18815 bytes different.
+	Size matches.
+	There are at least 76 bytes different.
 spot06_scene not OK
-	Size doesn't match: 32576 vs 111664 (x0.292) (-79088)
-	There are at least 30855 bytes different.
+	Size doesn't match: 111680 vs 111664 (x1.0) (16)
+	There are at least 73512 bytes different.
 spot06_room_0 not OK
-	Size doesn't match: 33584 vs 42528 (x0.79) (-8944)
-	There are at least 31475 bytes different.
+	Size matches.
+	There are at least 77 bytes different.
 spot07_scene not OK
-	Size doesn't match: 33296 vs 38944 (x0.855) (-5648)
-	There are at least 31086 bytes different.
+	Size doesn't match: 38960 vs 38944 (x1.0) (16)
+	There are at least 21728 bytes different.
 spot07_room_0 not OK
-	Size doesn't match: 14576 vs 25328 (x0.575) (-10752)
-	There are at least 13322 bytes different.
+	Size matches.
+	There are at least 60 bytes different.
 spot07_room_1 not OK
-	Size doesn't match: 23648 vs 51616 (x0.458) (-27968)
-	There are at least 22399 bytes different.
+	Size matches.
+	There are at least 104 bytes different.
 spot08_scene not OK
-	Size doesn't match: 752 vs 71328 (x0.011) (-70576)
-	There are at least 572 bytes different.
-spot08_room_0 not OK
-	Size doesn't match: 169904 vs 33120 (x5.13) (136784)
-	There are at least 28510 bytes different.
+	Size matches.
+	There are at least 24 bytes different.
 spot09_scene not OK
-	Size doesn't match: 70544 vs 69984 (x1.008) (560)
-	There are at least 67015 bytes different.
+	Size doesn't match: 70032 vs 69984 (x1.001) (48)
+	There are at least 53481 bytes different.
 spot09_room_0 not OK
-	Size doesn't match: 43232 vs 34752 (x1.244) (8480)
-	There are at least 29293 bytes different.
+	Size matches.
+	There are at least 90 bytes different.
 spot10_scene not OK
-	Size doesn't match: 19312 vs 66608 (x0.29) (-47296)
-	There are at least 16987 bytes different.
-spot10_room_0 not OK
-	Size doesn't match: 80624 vs 9712 (x8.301) (70912)
-	There are at least 8181 bytes different.
-spot10_room_1 not OK
-	Size doesn't match: 4688 vs 33840 (x0.139) (-29152)
-	There are at least 3725 bytes different.
-spot10_room_2 not OK
-	Size doesn't match: 481024 vs 19440 (x24.744) (461584)
-	There are at least 19182 bytes different.
-spot10_room_3 not OK
-	Size doesn't match: 73248 vs 23216 (x3.155) (50032)
-	There are at least 20895 bytes different.
-spot10_room_4 not OK
-	Size doesn't match: 26320 vs 9424 (x2.793) (16896)
-	There are at least 7520 bytes different.
-spot10_room_5 not OK
-	Size doesn't match: 5680 vs 28656 (x0.198) (-22976)
-	There are at least 4801 bytes different.
-spot10_room_6 not OK
-	Size doesn't match: 10272 vs 15088 (x0.681) (-4816)
-	There are at least 8086 bytes different.
-spot10_room_7 not OK
-	Size doesn't match: 1072 vs 9664 (x0.111) (-8592)
-	There are at least 765 bytes different.
-spot10_room_8 not OK
-	Size doesn't match: 154480 vs 9840 (x15.699) (144640)
-	There are at least 9431 bytes different.
-spot10_room_9 not OK
-	Size doesn't match: 992 vs 15328 (x0.065) (-14336)
-	There are at least 711 bytes different.
+	Size matches.
+	There are at least 120 bytes different.
 spot11_scene not OK
-	Size doesn't match: 154464 vs 103648 (x1.49) (50816)
-	There are at least 99190 bytes different.
+	Size doesn't match: 103664 vs 103648 (x1.0) (16)
+	There are at least 71385 bytes different.
 spot11_room_0 not OK
-	Size doesn't match: 4848 vs 51136 (x0.095) (-46288)
-	There are at least 3900 bytes different.
+	Size matches.
+	There are at least 88 bytes different.
 spot12_scene not OK
-	Size doesn't match: 481008 vs 65152 (x7.383) (415856)
-	There are at least 61734 bytes different.
+	Size doesn't match: 65168 vs 65152 (x1.0) (16)
+	There are at least 37742 bytes different.
 spot12_room_0 not OK
-	Size doesn't match: 15712 vs 71104 (x0.221) (-55392)
-	There are at least 13459 bytes different.
+	Size matches.
+	There are at least 59 bytes different.
 spot12_room_1 not OK
-	Size doesn't match: 1600 vs 49312 (x0.032) (-47712)
-	There are at least 1191 bytes different.
+	Size matches.
+	There are at least 25 bytes different.
 spot13_scene not OK
-	Size doesn't match: 6048 vs 24112 (x0.251) (-18064)
-	There are at least 4912 bytes different.
-spot13_room_0 not OK
-	Size doesn't match: 222736 vs 2320 (x96.007) (220416)
-	There are at least 1492 bytes different.
-spot13_room_1 not OK
-	Size doesn't match: 105280 vs 76352 (x1.379) (28928)
-	There are at least 73669 bytes different.
+	Size matches.
+	There are at least 8 bytes different.
 spot15_scene not OK
-	Size doesn't match: 69440 vs 99584 (x0.697) (-30144)
-	There are at least 66025 bytes different.
-spot15_room_0 not OK
-	Size doesn't match: 37632 vs 53696 (x0.701) (-16064)
-	There are at least 34029 bytes different.
+	Size matches.
+	There are at least 8 bytes different.
 spot16_scene not OK
-	Size doesn't match: 23568 vs 125584 (x0.188) (-102016)
-	There are at least 22260 bytes different.
+	Size doesn't match: 125632 vs 125584 (x1.0) (48)
+	There are at least 92938 bytes different.
 spot16_room_0 not OK
-	Size doesn't match: 15184 vs 44304 (x0.343) (-29120)
-	There are at least 13554 bytes different.
+	Size matches.
+	There are at least 123 bytes different.
 spot17_scene not OK
-	Size doesn't match: 29296 vs 65248 (x0.449) (-35952)
-	There are at least 27695 bytes different.
+	Size doesn't match: 65264 vs 65248 (x1.0) (16)
+	There are at least 39894 bytes different.
 spot17_room_0 not OK
-	Size doesn't match: 98112 vs 26752 (x3.667) (71360)
-	There are at least 23750 bytes different.
+	Size matches.
+	There are at least 66 bytes different.
 spot17_room_1 not OK
-	Size doesn't match: 18432 vs 74592 (x0.247) (-56160)
-	There are at least 16167 bytes different.
+	Size matches.
+	There are at least 184 bytes different.
 spot18_scene not OK
-	Size doesn't match: 21776 vs 42064 (x0.518) (-20288)
-	There are at least 20290 bytes different.
+	Size doesn't match: 41936 vs 42064 (x0.997) (-128)
+	There are at least 9819 bytes different.
 spot18_room_0 not OK
-	Size doesn't match: 32880 vs 75728 (x0.434) (-42848)
-	There are at least 30512 bytes different.
+	Size matches.
+	There are at least 46 bytes different.
 spot18_room_1 not OK
-	Size doesn't match: 24048 vs 25088 (x0.959) (-1040)
-	There are at least 22641 bytes different.
+	Size matches.
+	There are at least 24 bytes different.
 spot18_room_2 not OK
-	Size doesn't match: 33184 vs 72112 (x0.46) (-38928)
-	There are at least 30993 bytes different.
+	Size matches.
+	There are at least 48 bytes different.
 spot18_room_3 not OK
-	Size doesn't match: 4112 vs 122096 (x0.034) (-117984)
-	There are at least 3707 bytes different.
+	Size matches.
+	There are at least 154 bytes different.
 ydan_scene not OK
-	Size doesn't match: 86336 vs 55840 (x1.546) (30496)
-	There are at least 50299 bytes different.
+	Size doesn't match: 55824 vs 55840 (x1.0) (-16)
+	There are at least 48306 bytes different.
 ydan_room_0 not OK
-	Size doesn't match: 112800 vs 86864 (x1.299) (25936)
-	There are at least 81367 bytes different.
+	Size doesn't match: 86768 vs 86864 (x0.999) (-96)
+	There are at least 66501 bytes different.
 ydan_room_1 not OK
-	Size doesn't match: 39680 vs 16896 (x2.348) (22784)
-	There are at least 15634 bytes different.
+	Size doesn't match: 16720 vs 16896 (x0.99) (-176)
+	There are at least 12910 bytes different.
 ydan_room_2 not OK
-	Size doesn't match: 32160 vs 24368 (x1.32) (7792)
-	There are at least 22260 bytes different.
+	Size doesn't match: 24112 vs 24368 (x0.989) (-256)
+	There are at least 20833 bytes different.
 ydan_room_3 not OK
-	Size doesn't match: 56768 vs 82352 (x0.689) (-25584)
-	There are at least 51405 bytes different.
+	Size doesn't match: 82336 vs 82352 (x1.0) (-16)
+	There are at least 60604 bytes different.
 ydan_room_4 not OK
-	Size doesn't match: 38992 vs 19504 (x1.999) (19488)
-	There are at least 17861 bytes different.
+	Size doesn't match: 19408 vs 19504 (x0.995) (-96)
+	There are at least 14334 bytes different.
 ydan_room_5 not OK
-	Size doesn't match: 24288 vs 33680 (x0.721) (-9392)
-	There are at least 21046 bytes different.
+	Size doesn't match: 33568 vs 33680 (x0.997) (-112)
+	There are at least 26567 bytes different.
 ydan_room_6 not OK
-	Size doesn't match: 9216 vs 20224 (x0.456) (-11008)
-	There are at least 8636 bytes different.
+	Size doesn't match: 20160 vs 20224 (x0.997) (-64)
+	There are at least 16546 bytes different.
 ydan_room_7 not OK
-	Size doesn't match: 30416 vs 35488 (x0.857) (-5072)
-	There are at least 27631 bytes different.
+	Size doesn't match: 35088 vs 35488 (x0.989) (-400)
+	There are at least 31251 bytes different.
 ydan_room_8 not OK
-	Size doesn't match: 37888 vs 3472 (x10.912) (34416)
-	There are at least 2925 bytes different.
+	Size doesn't match: 3328 vs 3472 (x0.959) (-144)
+	There are at least 2461 bytes different.
 ydan_room_9 not OK
-	Size doesn't match: 46416 vs 39072 (x1.188) (7344)
-	There are at least 36565 bytes different.
+	Size matches.
+	There are at least 155 bytes different.
 ydan_room_10 not OK
-	Size doesn't match: 32336 vs 19968 (x1.619) (12368)
-	There are at least 18299 bytes different.
+	Size doesn't match: 19840 vs 19968 (x0.994) (-128)
+	There are at least 16438 bytes different.
 ydan_room_11 not OK
-	Size doesn't match: 8320 vs 29040 (x0.287) (-20720)
-	There are at least 7746 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 ddan_scene not OK
-	Size doesn't match: 34608 vs 86336 (x0.401) (-51728)
-	There are at least 32984 bytes different.
+	Size matches.
+	There are at least 65003 bytes different.
 ddan_room_0 not OK
-	Size doesn't match: 9344 vs 112800 (x0.083) (-103456)
-	There are at least 8641 bytes different.
+	Size matches.
+	There are at least 284 bytes different.
 ddan_room_1 not OK
-	Size doesn't match: 9360 vs 39792 (x0.235) (-30432)
-	There are at least 8526 bytes different.
+	Size doesn't match: 39680 vs 39792 (x0.997) (-112)
+	There are at least 30545 bytes different.
 ddan_room_2 not OK
-	Size doesn't match: 10320 vs 32448 (x0.318) (-22128)
-	There are at least 9618 bytes different.
+	Size doesn't match: 32160 vs 32448 (x0.991) (-288)
+	There are at least 25279 bytes different.
 ddan_room_3 not OK
-	Size doesn't match: 21840 vs 56944 (x0.384) (-35104)
-	There are at least 20127 bytes different.
+	Size doesn't match: 56768 vs 56944 (x0.997) (-176)
+	There are at least 42043 bytes different.
 ddan_room_4 not OK
-	Size doesn't match: 172608 vs 39264 (x4.396) (133344)
-	There are at least 37296 bytes different.
+	Size doesn't match: 38992 vs 39264 (x0.993) (-272)
+	There are at least 28567 bytes different.
 ddan_room_5 not OK
-	Size doesn't match: 86576 vs 24256 (x3.569) (62320)
-	There are at least 22261 bytes different.
+	Size doesn't match: 24288 vs 24256 (x1.001) (32)
+	There are at least 17369 bytes different.
 ddan_room_6 not OK
-	Size doesn't match: 115056 vs 9392 (x12.25) (105664)
-	There are at least 8822 bytes different.
+	Size doesn't match: 9216 vs 9392 (x0.981) (-176)
+	There are at least 7684 bytes different.
 ddan_room_7 not OK
-	Size doesn't match: 40672 vs 30464 (x1.335) (10208)
-	There are at least 27527 bytes different.
+	Size doesn't match: 30416 vs 30464 (x0.998) (-48)
+	There are at least 22208 bytes different.
 ddan_room_8 not OK
-	Size doesn't match: 48256 vs 38304 (x1.26) (9952)
-	There are at least 35948 bytes different.
+	Size doesn't match: 37888 vs 38304 (x0.989) (-416)
+	There are at least 31333 bytes different.
 ddan_room_9 not OK
-	Size doesn't match: 9952 vs 46384 (x0.215) (-36432)
-	There are at least 7869 bytes different.
+	Size doesn't match: 46416 vs 46384 (x1.001) (32)
+	There are at least 32356 bytes different.
 ddan_room_10 not OK
-	Size doesn't match: 122768 vs 32528 (x3.774) (90240)
-	There are at least 30152 bytes different.
+	Size doesn't match: 32336 vs 32528 (x0.994) (-192)
+	There are at least 26356 bytes different.
 ddan_room_11 not OK
-	Size doesn't match: 46432 vs 8240 (x5.635) (38192)
-	There are at least 7575 bytes different.
+	Size doesn't match: 8320 vs 8240 (x1.01) (80)
+	There are at least 6374 bytes different.
 ddan_room_12 not OK
-	Size doesn't match: 55680 vs 34688 (x1.605) (20992)
-	There are at least 31731 bytes different.
+	Size doesn't match: 34608 vs 34688 (x0.998) (-80)
+	There are at least 25880 bytes different.
 ddan_room_13 not OK
-	Size doesn't match: 29952 vs 9424 (x3.178) (20528)
-	There are at least 8762 bytes different.
+	Size doesn't match: 9344 vs 9424 (x0.992) (-80)
+	There are at least 7446 bytes different.
 ddan_room_14 not OK
-	Size doesn't match: 70256 vs 9424 (x7.455) (60832)
-	There are at least 9023 bytes different.
+	Size doesn't match: 9360 vs 9424 (x0.993) (-64)
+	There are at least 7376 bytes different.
 ddan_room_15 not OK
-	Size doesn't match: 111760 vs 10544 (x10.599) (101216)
-	There are at least 9781 bytes different.
+	Size doesn't match: 10320 vs 10544 (x0.979) (-224)
+	There are at least 8715 bytes different.
 ddan_room_16 not OK
-	Size doesn't match: 34176 vs 21856 (x1.564) (12320)
-	There are at least 20907 bytes different.
+	Size doesn't match: 21840 vs 21856 (x0.999) (-16)
+	There are at least 16947 bytes different.
 bdan_scene not OK
-	Size doesn't match: 20592 vs 88032 (x0.234) (-67440)
-	There are at least 19122 bytes different.
+	Size doesn't match: 88000 vs 88032 (x1.0) (-32)
+	There are at least 57755 bytes different.
 bdan_room_0 not OK
-	Size doesn't match: 85360 vs 16704 (x5.11) (68656)
-	There are at least 14770 bytes different.
+	Size doesn't match: 16496 vs 16704 (x0.988) (-208)
+	There are at least 12100 bytes different.
 bdan_room_1 not OK
-	Size doesn't match: 40704 vs 24512 (x1.661) (16192)
-	There are at least 21085 bytes different.
+	Size doesn't match: 24208 vs 24512 (x0.988) (-304)
+	There are at least 17611 bytes different.
 bdan_room_2 not OK
-	Size doesn't match: 111680 vs 37440 (x2.983) (74240)
-	There are at least 34647 bytes different.
+	Size doesn't match: 37328 vs 37440 (x0.997) (-112)
+	There are at least 26381 bytes different.
 bdan_room_3 not OK
-	Size doesn't match: 42528 vs 29280 (x1.452) (13248)
-	There are at least 26339 bytes different.
+	Size doesn't match: 29024 vs 29280 (x0.991) (-256)
+	There are at least 22996 bytes different.
 bdan_room_4 not OK
-	Size doesn't match: 38960 vs 16640 (x2.341) (22320)
-	There are at least 15375 bytes different.
+	Size doesn't match: 16464 vs 16640 (x0.989) (-176)
+	There are at least 12434 bytes different.
 bdan_room_5 not OK
-	Size doesn't match: 25328 vs 24720 (x1.025) (608)
-	There are at least 22840 bytes different.
+	Size doesn't match: 24608 vs 24720 (x0.995) (-112)
+	There are at least 18514 bytes different.
 bdan_room_6 not OK
-	Size doesn't match: 51616 vs 16960 (x3.043) (34656)
-	There are at least 14865 bytes different.
+	Size matches.
+	There are at least 146 bytes different.
 bdan_room_7 not OK
-	Size doesn't match: 71328 vs 13520 (x5.276) (57808)
-	There are at least 12643 bytes different.
+	Size doesn't match: 13600 vs 13520 (x1.006) (80)
+	There are at least 8543 bytes different.
 bdan_room_8 not OK
-	Size doesn't match: 33120 vs 14400 (x2.3) (18720)
-	There are at least 11236 bytes different.
+	Size doesn't match: 14464 vs 14400 (x1.004) (64)
+	There are at least 8900 bytes different.
 bdan_room_9 not OK
-	Size doesn't match: 70032 vs 15408 (x4.545) (54624)
-	There are at least 13090 bytes different.
+	Size doesn't match: 15472 vs 15408 (x1.004) (64)
+	There are at least 9979 bytes different.
 bdan_room_10 not OK
-	Size doesn't match: 34752 vs 14368 (x2.419) (20384)
-	There are at least 11462 bytes different.
+	Size doesn't match: 14384 vs 14368 (x1.001) (16)
+	There are at least 7885 bytes different.
 bdan_room_11 not OK
-	Size doesn't match: 66608 vs 14832 (x4.491) (51776)
-	There are at least 12361 bytes different.
+	Size doesn't match: 14336 vs 14832 (x0.967) (-496)
+	There are at least 10693 bytes different.
 bdan_room_12 not OK
-	Size doesn't match: 9712 vs 15584 (x0.623) (-5872)
-	There are at least 7521 bytes different.
+	Size doesn't match: 15568 vs 15584 (x0.999) (-16)
+	There are at least 9013 bytes different.
 bdan_room_13 not OK
-	Size doesn't match: 33840 vs 11136 (x3.039) (22704)
-	There are at least 10155 bytes different.
+	Size doesn't match: 11088 vs 11136 (x0.996) (-48)
+	There are at least 8632 bytes different.
 bdan_room_14 not OK
-	Size doesn't match: 19440 vs 25040 (x0.776) (-5600)
-	There are at least 17992 bytes different.
+	Size doesn't match: 25056 vs 25040 (x1.001) (16)
+	There are at least 16257 bytes different.
 bdan_room_15 not OK
-	Size doesn't match: 23216 vs 9952 (x2.333) (13264)
-	There are at least 8290 bytes different.
+	Size matches.
+	There are at least 30 bytes different.
 Bmori1_scene not OK
-	Size doesn't match: 9424 vs 90000 (x0.105) (-80576)
-	There are at least 8198 bytes different.
+	Size matches.
+	There are at least 130 bytes different.
 Bmori1_room_0 not OK
-	Size doesn't match: 28656 vs 56208 (x0.51) (-27552)
-	There are at least 25997 bytes different.
+	Size doesn't match: 56256 vs 56208 (x1.001) (48)
+	There are at least 42219 bytes different.
 Bmori1_room_1 not OK
-	Size doesn't match: 15088 vs 23408 (x0.645) (-8320)
-	There are at least 14009 bytes different.
+	Size doesn't match: 23392 vs 23408 (x0.999) (-16)
+	There are at least 15203 bytes different.
 Bmori1_room_2 not OK
-	Size doesn't match: 9664 vs 63872 (x0.151) (-54208)
-	There are at least 7863 bytes different.
+	Size doesn't match: 64048 vs 63872 (x1.003) (176)
+	There are at least 46605 bytes different.
 Bmori1_room_3 not OK
-	Size doesn't match: 9840 vs 14816 (x0.664) (-4976)
-	There are at least 8434 bytes different.
+	Size doesn't match: 14864 vs 14816 (x1.003) (48)
+	There are at least 9669 bytes different.
 Bmori1_room_4 not OK
-	Size doesn't match: 15328 vs 12992 (x1.18) (2336)
-	There are at least 11442 bytes different.
+	Size doesn't match: 12976 vs 12992 (x0.999) (-16)
+	There are at least 8308 bytes different.
 Bmori1_room_5 not OK
-	Size doesn't match: 103664 vs 13776 (x7.525) (89888)
-	There are at least 13047 bytes different.
+	Size doesn't match: 13792 vs 13776 (x1.001) (16)
+	There are at least 8465 bytes different.
 Bmori1_room_6 not OK
-	Size doesn't match: 51136 vs 37936 (x1.348) (13200)
-	There are at least 34884 bytes different.
+	Size doesn't match: 38080 vs 37936 (x1.004) (144)
+	There are at least 27314 bytes different.
 Bmori1_room_7 not OK
-	Size doesn't match: 65168 vs 77792 (x0.838) (-12624)
-	There are at least 62159 bytes different.
+	Size doesn't match: 77824 vs 77792 (x1.0) (32)
+	There are at least 52672 bytes different.
 Bmori1_room_8 not OK
-	Size doesn't match: 71104 vs 96944 (x0.733) (-25840)
-	There are at least 64188 bytes different.
+	Size doesn't match: 97136 vs 96944 (x1.002) (192)
+	There are at least 66568 bytes different.
 Bmori1_room_9 not OK
-	Size doesn't match: 49312 vs 41312 (x1.194) (8000)
-	There are at least 38386 bytes different.
+	Size doesn't match: 41360 vs 41312 (x1.001) (48)
+	There are at least 26319 bytes different.
 Bmori1_room_10 not OK
-	Size doesn't match: 24112 vs 21472 (x1.123) (2640)
-	There are at least 20914 bytes different.
+	Size matches.
+	There are at least 76 bytes different.
 Bmori1_room_11 not OK
-	Size doesn't match: 2320 vs 44000 (x0.053) (-41680)
-	There are at least 1971 bytes different.
+	Size doesn't match: 43984 vs 44000 (x1.0) (-16)
+	There are at least 24796 bytes different.
 Bmori1_room_12 not OK
-	Size doesn't match: 76352 vs 33760 (x2.262) (42592)
-	There are at least 30682 bytes different.
+	Size matches.
+	There are at least 113 bytes different.
 Bmori1_room_13 not OK
-	Size doesn't match: 99584 vs 35504 (x2.805) (64080)
-	There are at least 33334 bytes different.
+	Size matches.
+	There are at least 153 bytes different.
 Bmori1_room_14 not OK
-	Size doesn't match: 53696 vs 23408 (x2.294) (30288)
-	There are at least 20688 bytes different.
+	Size doesn't match: 23472 vs 23408 (x1.003) (64)
+	There are at least 15253 bytes different.
 Bmori1_room_15 not OK
-	Size doesn't match: 125632 vs 9952 (x12.624) (115680)
-	There are at least 9348 bytes different.
+	Size doesn't match: 9872 vs 9952 (x0.992) (-80)
+	There are at least 7786 bytes different.
 Bmori1_room_16 not OK
-	Size doesn't match: 44304 vs 20384 (x2.173) (23920)
-	There are at least 18675 bytes different.
+	Size matches.
+	There are at least 19 bytes different.
 Bmori1_room_17 not OK
-	Size doesn't match: 65264 vs 37104 (x1.759) (28160)
-	There are at least 34804 bytes different.
+	Size doesn't match: 37200 vs 37104 (x1.003) (96)
+	There are at least 25354 bytes different.
 Bmori1_room_18 not OK
-	Size doesn't match: 26752 vs 4912 (x5.446) (21840)
-	There are at least 4385 bytes different.
+	Size doesn't match: 4928 vs 4912 (x1.003) (16)
+	There are at least 3324 bytes different.
 Bmori1_room_19 not OK
-	Size doesn't match: 74592 vs 1280 (x58.275) (73312)
-	There are at least 1086 bytes different.
+	Size doesn't match: 1296 vs 1280 (x1.012) (16)
+	There are at least 655 bytes different.
 Bmori1_room_20 not OK
-	Size doesn't match: 41936 vs 4864 (x8.622) (37072)
-	There are at least 4446 bytes different.
+	Size matches.
+	There are at least 22 bytes different.
 Bmori1_room_21 not OK
-	Size doesn't match: 75728 vs 6000 (x12.621) (69728)
-	There are at least 5331 bytes different.
+	Size doesn't match: 6016 vs 6000 (x1.003) (16)
+	There are at least 3951 bytes different.
 Bmori1_room_22 not OK
-	Size doesn't match: 25088 vs 7648 (x3.28) (17440)
-	There are at least 7219 bytes different.
+	Size matches.
+	There are at least 20 bytes different.
 HIDAN_scene not OK
-	Size doesn't match: 72112 vs 108496 (x0.665) (-36384)
-	There are at least 68531 bytes different.
+	Size doesn't match: 108912 vs 108496 (x1.004) (416)
+	There are at least 76606 bytes different.
 HIDAN_room_0 not OK
-	Size doesn't match: 122096 vs 29424 (x4.15) (92672)
-	There are at least 25898 bytes different.
+	Size doesn't match: 29376 vs 29424 (x0.998) (-48)
+	There are at least 19436 bytes different.
 HIDAN_room_1 not OK
-	Size doesn't match: 9840 vs 51504 (x0.191) (-41664)
-	There are at least 8418 bytes different.
+	Size doesn't match: 51680 vs 51504 (x1.003) (176)
+	There are at least 37420 bytes different.
 HIDAN_room_2 not OK
-	Size doesn't match: 22640 vs 65584 (x0.345) (-42944)
-	There are at least 16247 bytes different.
+	Size doesn't match: 65488 vs 65584 (x0.999) (-96)
+	There are at least 47364 bytes different.
 HIDAN_room_3 not OK
-	Size doesn't match: 9776 vs 9424 (x1.037) (352)
-	There are at least 8046 bytes different.
+	Size doesn't match: 9440 vs 9424 (x1.002) (16)
+	There are at least 5839 bytes different.
 HIDAN_room_4 not OK
-	Size doesn't match: 22432 vs 30960 (x0.725) (-8528)
-	There are at least 17188 bytes different.
+	Size doesn't match: 30864 vs 30960 (x0.997) (-96)
+	There are at least 20623 bytes different.
 HIDAN_room_5 not OK
-	Size doesn't match: 108912 vs 41696 (x2.612) (67216)
-	There are at least 37702 bytes different.
+	Size doesn't match: 41520 vs 41696 (x0.996) (-176)
+	There are at least 27844 bytes different.
 HIDAN_room_6 not OK
-	Size doesn't match: 29376 vs 28560 (x1.029) (816)
-	There are at least 25548 bytes different.
+	Size doesn't match: 28576 vs 28560 (x1.001) (16)
+	There are at least 19459 bytes different.
 HIDAN_room_7 not OK
-	Size doesn't match: 51680 vs 14928 (x3.462) (36752)
-	There are at least 13864 bytes different.
+	Size doesn't match: 14816 vs 14928 (x0.992) (-112)
+	There are at least 11168 bytes different.
 HIDAN_room_8 not OK
-	Size doesn't match: 65488 vs 39648 (x1.652) (25840)
-	There are at least 34923 bytes different.
+	Size doesn't match: 39616 vs 39648 (x0.999) (-32)
+	There are at least 28656 bytes different.
 HIDAN_room_9 not OK
-	Size doesn't match: 9440 vs 34672 (x0.272) (-25232)
-	There are at least 7689 bytes different.
+	Size matches.
+	There are at least 94 bytes different.
 HIDAN_room_10 not OK
-	Size doesn't match: 30864 vs 99360 (x0.311) (-68496)
-	There are at least 26661 bytes different.
+	Size doesn't match: 99488 vs 99360 (x1.001) (128)
+	There are at least 64395 bytes different.
 HIDAN_room_11 not OK
-	Size doesn't match: 41520 vs 14304 (x2.903) (27216)
-	There are at least 12574 bytes different.
+	Size doesn't match: 14272 vs 14304 (x0.998) (-32)
+	There are at least 9600 bytes different.
 HIDAN_room_12 not OK
-	Size doesn't match: 28576 vs 11120 (x2.57) (17456)
-	There are at least 9722 bytes different.
+	Size doesn't match: 11136 vs 11120 (x1.001) (16)
+	There are at least 6997 bytes different.
 HIDAN_room_13 not OK
-	Size doesn't match: 14816 vs 52112 (x0.284) (-37296)
-	There are at least 13081 bytes different.
+	Size doesn't match: 52192 vs 52112 (x1.002) (80)
+	There are at least 32690 bytes different.
 HIDAN_room_14 not OK
-	Size doesn't match: 39616 vs 8704 (x4.551) (30912)
-	There are at least 7361 bytes different.
+	Size doesn't match: 8800 vs 8704 (x1.011) (96)
+	There are at least 5948 bytes different.
 HIDAN_room_15 not OK
-	Size doesn't match: 34672 vs 4496 (x7.712) (30176)
-	There are at least 3520 bytes different.
+	Size doesn't match: 4560 vs 4496 (x1.014) (64)
+	There are at least 2863 bytes different.
 HIDAN_room_16 not OK
-	Size doesn't match: 99488 vs 47584 (x2.091) (51904)
-	There are at least 42390 bytes different.
+	Size doesn't match: 47472 vs 47584 (x0.998) (-112)
+	There are at least 35089 bytes different.
 HIDAN_room_17 not OK
-	Size doesn't match: 14272 vs 37232 (x0.383) (-22960)
-	There are at least 12718 bytes different.
+	Size doesn't match: 37184 vs 37232 (x0.999) (-48)
+	There are at least 26454 bytes different.
 HIDAN_room_18 not OK
-	Size doesn't match: 11136 vs 15360 (x0.725) (-4224)
-	There are at least 9425 bytes different.
+	Size doesn't match: 15232 vs 15360 (x0.992) (-128)
+	There are at least 10210 bytes different.
 HIDAN_room_19 not OK
-	Size doesn't match: 52192 vs 16944 (x3.08) (35248)
-	There are at least 14304 bytes different.
+	Size doesn't match: 16864 vs 16944 (x0.995) (-80)
+	There are at least 10584 bytes different.
 HIDAN_room_20 not OK
-	Size doesn't match: 8800 vs 27920 (x0.315) (-19120)
-	There are at least 7174 bytes different.
+	Size matches.
+	There are at least 100 bytes different.
 HIDAN_room_21 not OK
-	Size doesn't match: 4560 vs 33920 (x0.134) (-29360)
-	There are at least 3742 bytes different.
+	Size doesn't match: 33984 vs 33920 (x1.002) (64)
+	There are at least 22638 bytes different.
 HIDAN_room_22 not OK
-	Size doesn't match: 47472 vs 27376 (x1.734) (20096)
-	There are at least 24520 bytes different.
+	Size doesn't match: 27392 vs 27376 (x1.001) (16)
+	There are at least 20603 bytes different.
 HIDAN_room_23 not OK
-	Size doesn't match: 37184 vs 27936 (x1.331) (9248)
-	There are at least 24519 bytes different.
+	Size matches.
+	There are at least 66 bytes different.
 HIDAN_room_24 not OK
-	Size doesn't match: 15232 vs 21824 (x0.698) (-6592)
-	There are at least 12089 bytes different.
+	Size matches.
+	There are at least 156 bytes different.
 HIDAN_room_25 not OK
-	Size doesn't match: 16864 vs 27360 (x0.616) (-10496)
-	There are at least 13520 bytes different.
+	Size matches.
+	There are at least 81 bytes different.
 HIDAN_room_26 not OK
-	Size doesn't match: 27920 vs 26784 (x1.042) (1136)
-	There are at least 23859 bytes different.
+	Size matches.
+	There are at least 91 bytes different.
 MIZUsin_scene not OK
-	Size doesn't match: 33984 vs 89136 (x0.381) (-55152)
-	There are at least 31286 bytes different.
+	Size doesn't match: 89328 vs 89136 (x1.002) (192)
+	There are at least 58443 bytes different.
 MIZUsin_room_0 not OK
-	Size doesn't match: 27392 vs 89136 (x0.307) (-61744)
-	There are at least 24976 bytes different.
+	Size doesn't match: 89216 vs 89136 (x1.001) (80)
+	There are at least 63846 bytes different.
 MIZUsin_room_1 not OK
-	Size doesn't match: 27936 vs 41424 (x0.674) (-13488)
-	There are at least 24787 bytes different.
+	Size doesn't match: 41312 vs 41424 (x0.997) (-112)
+	There are at least 29572 bytes different.
 MIZUsin_room_2 not OK
-	Size doesn't match: 21824 vs 23696 (x0.921) (-1872)
-	There are at least 20138 bytes different.
+	Size doesn't match: 23440 vs 23696 (x0.989) (-256)
+	There are at least 17217 bytes different.
 MIZUsin_room_3 not OK
-	Size doesn't match: 27360 vs 26560 (x1.03) (800)
-	There are at least 24228 bytes different.
+	Size doesn't match: 26384 vs 26560 (x0.993) (-176)
+	There are at least 20163 bytes different.
 MIZUsin_room_4 not OK
-	Size doesn't match: 26784 vs 24608 (x1.088) (2176)
-	There are at least 22612 bytes different.
+	Size doesn't match: 24544 vs 24608 (x0.997) (-64)
+	There are at least 16343 bytes different.
 MIZUsin_room_5 not OK
-	Size doesn't match: 90000 vs 42560 (x2.115) (47440)
-	There are at least 40469 bytes different.
+	Size doesn't match: 42480 vs 42560 (x0.998) (-80)
+	There are at least 32624 bytes different.
 MIZUsin_room_6 not OK
-	Size doesn't match: 56256 vs 45824 (x1.228) (10432)
-	There are at least 42261 bytes different.
+	Size doesn't match: 45760 vs 45824 (x0.999) (-64)
+	There are at least 32147 bytes different.
 MIZUsin_room_7 not OK
-	Size doesn't match: 23392 vs 21856 (x1.07) (1536)
-	There are at least 19772 bytes different.
+	Size doesn't match: 21840 vs 21856 (x0.999) (-16)
+	There are at least 15950 bytes different.
 MIZUsin_room_8 not OK
-	Size doesn't match: 64048 vs 56704 (x1.13) (7344)
-	There are at least 52566 bytes different.
+	Size doesn't match: 56528 vs 56704 (x0.997) (-176)
+	There are at least 45392 bytes different.
 MIZUsin_room_9 not OK
-	Size doesn't match: 14864 vs 32944 (x0.451) (-18080)
-	There are at least 12735 bytes different.
+	Size doesn't match: 32736 vs 32944 (x0.994) (-208)
+	There are at least 26121 bytes different.
 MIZUsin_room_10 not OK
-	Size doesn't match: 12976 vs 24688 (x0.526) (-11712)
-	There are at least 10971 bytes different.
+	Size doesn't match: 24496 vs 24688 (x0.992) (-192)
+	There are at least 17592 bytes different.
 MIZUsin_room_11 not OK
-	Size doesn't match: 13792 vs 18976 (x0.727) (-5184)
-	There are at least 12396 bytes different.
+	Size doesn't match: 18864 vs 18976 (x0.994) (-112)
+	There are at least 13929 bytes different.
 MIZUsin_room_12 not OK
-	Size doesn't match: 38080 vs 28208 (x1.35) (9872)
-	There are at least 24996 bytes different.
-MIZUsin_room_13 not OK
-	Size doesn't match: 77824 vs 2560 (x30.4) (75264)
-	There are at least 2426 bytes different.
+	Size doesn't match: 28048 vs 28208 (x0.994) (-160)
+	There are at least 20038 bytes different.
 MIZUsin_room_14 not OK
-	Size doesn't match: 97136 vs 28288 (x3.434) (68848)
-	There are at least 26937 bytes different.
+	Size doesn't match: 28256 vs 28288 (x0.999) (-32)
+	There are at least 20465 bytes different.
 MIZUsin_room_15 not OK
-	Size doesn't match: 41360 vs 29808 (x1.388) (11552)
-	There are at least 27909 bytes different.
+	Size doesn't match: 29744 vs 29808 (x0.998) (-64)
+	There are at least 20627 bytes different.
 MIZUsin_room_16 not OK
-	Size doesn't match: 21472 vs 15152 (x1.417) (6320)
-	There are at least 13866 bytes different.
+	Size doesn't match: 15056 vs 15152 (x0.994) (-96)
+	There are at least 12062 bytes different.
 MIZUsin_room_17 not OK
-	Size doesn't match: 43984 vs 35504 (x1.239) (8480)
-	There are at least 31926 bytes different.
+	Size doesn't match: 35360 vs 35504 (x0.996) (-144)
+	There are at least 24985 bytes different.
 MIZUsin_room_18 not OK
-	Size doesn't match: 33760 vs 16640 (x2.029) (17120)
-	There are at least 15437 bytes different.
+	Size doesn't match: 16576 vs 16640 (x0.996) (-64)
+	There are at least 11458 bytes different.
 MIZUsin_room_19 not OK
-	Size doesn't match: 35504 vs 14640 (x2.425) (20864)
-	There are at least 13618 bytes different.
+	Size matches.
+	There are at least 65 bytes different.
 MIZUsin_room_20 not OK
-	Size doesn't match: 23472 vs 26688 (x0.879) (-3216)
-	There are at least 21212 bytes different.
+	Size doesn't match: 26432 vs 26688 (x0.99) (-256)
+	There are at least 20767 bytes different.
 MIZUsin_room_21 not OK
-	Size doesn't match: 9872 vs 29856 (x0.331) (-19984)
-	There are at least 8957 bytes different.
+	Size matches.
+	There are at least 270 bytes different.
 MIZUsin_room_22 not OK
-	Size doesn't match: 20384 vs 37104 (x0.549) (-16720)
-	There are at least 17663 bytes different.
+	Size matches.
+	There are at least 8 bytes different.
 jyasinzou_scene not OK
-	Size doesn't match: 37200 vs 105248 (x0.353) (-68048)
-	There are at least 34159 bytes different.
+	Size doesn't match: 105280 vs 105248 (x1.0) (32)
+	There are at least 93581 bytes different.
 jyasinzou_room_0 not OK
-	Size doesn't match: 4928 vs 69616 (x0.071) (-64688)
-	There are at least 4469 bytes different.
+	Size doesn't match: 69440 vs 69616 (x0.997) (-176)
+	There are at least 51331 bytes different.
 jyasinzou_room_1 not OK
-	Size doesn't match: 1296 vs 37712 (x0.034) (-36416)
-	There are at least 970 bytes different.
+	Size doesn't match: 37632 vs 37712 (x0.998) (-80)
+	There are at least 27967 bytes different.
 jyasinzou_room_2 not OK
-	Size doesn't match: 4864 vs 23472 (x0.207) (-18608)
-	There are at least 4304 bytes different.
+	Size doesn't match: 23568 vs 23472 (x1.004) (96)
+	There are at least 15440 bytes different.
 jyasinzou_room_3 not OK
-	Size doesn't match: 6016 vs 15312 (x0.393) (-9296)
-	There are at least 4833 bytes different.
+	Size doesn't match: 15184 vs 15312 (x0.992) (-128)
+	There are at least 11625 bytes different.
 jyasinzou_room_4 not OK
-	Size doesn't match: 7648 vs 29312 (x0.261) (-21664)
-	There are at least 7163 bytes different.
+	Size doesn't match: 29296 vs 29312 (x0.999) (-16)
+	There are at least 21373 bytes different.
 jyasinzou_room_5 not OK
-	Size doesn't match: 55824 vs 98320 (x0.568) (-42496)
-	There are at least 51114 bytes different.
+	Size doesn't match: 98112 vs 98320 (x0.998) (-208)
+	There are at least 76298 bytes different.
 jyasinzou_room_6 not OK
-	Size doesn't match: 86768 vs 18416 (x4.712) (68352)
-	There are at least 16064 bytes different.
+	Size doesn't match: 18432 vs 18416 (x1.001) (16)
+	There are at least 12136 bytes different.
 jyasinzou_room_7 not OK
-	Size doesn't match: 16720 vs 21776 (x0.768) (-5056)
-	There are at least 15840 bytes different.
+	Size matches.
+	There are at least 1070 bytes different.
 jyasinzou_room_8 not OK
-	Size doesn't match: 24112 vs 32944 (x0.732) (-8832)
-	There are at least 22728 bytes different.
+	Size doesn't match: 32880 vs 32944 (x0.998) (-64)
+	There are at least 22344 bytes different.
 jyasinzou_room_9 not OK
-	Size doesn't match: 82336 vs 24016 (x3.428) (58320)
-	There are at least 21963 bytes different.
-jyasinzou_room_10 not OK
-	Size doesn't match: 19408 vs 33184 (x0.585) (-13776)
-	There are at least 18440 bytes different.
-jyasinzou_room_11 not OK
-	Size doesn't match: 33568 vs 4112 (x8.163) (29456)
-	There are at least 3438 bytes different.
-jyasinzou_room_12 not OK
-	Size doesn't match: 20160 vs 8416 (x2.395) (11744)
-	There are at least 7578 bytes different.
-jyasinzou_room_13 not OK
-	Size doesn't match: 35088 vs 22704 (x1.545) (12384)
-	There are at least 20292 bytes different.
-jyasinzou_room_14 not OK
-	Size doesn't match: 3328 vs 19616 (x0.17) (-16288)
-	There are at least 2985 bytes different.
-jyasinzou_room_15 not OK
-	Size doesn't match: 39072 vs 33952 (x1.151) (5120)
-	There are at least 31730 bytes different.
-jyasinzou_room_16 not OK
-	Size doesn't match: 19840 vs 25024 (x0.793) (-5184)
-	There are at least 18523 bytes different.
-jyasinzou_room_17 not OK
-	Size doesn't match: 29040 vs 38480 (x0.755) (-9440)
-	There are at least 26433 bytes different.
-jyasinzou_room_18 not OK
-	Size doesn't match: 14576 vs 23776 (x0.613) (-9200)
-	There are at least 12657 bytes different.
-jyasinzou_room_19 not OK
-	Size doesn't match: 78096 vs 24016 (x3.252) (54080)
-	There are at least 22785 bytes different.
-jyasinzou_room_20 not OK
-	Size doesn't match: 75712 vs 33216 (x2.279) (42496)
-	There are at least 31253 bytes different.
-jyasinzou_room_21 not OK
-	Size doesn't match: 94688 vs 18016 (x5.256) (76672)
-	There are at least 16951 bytes different.
-jyasinzou_room_22 not OK
-	Size doesn't match: 28880 vs 12400 (x2.329) (16480)
-	There are at least 11011 bytes different.
-jyasinzou_room_23 not OK
-	Size doesn't match: 7008 vs 37392 (x0.187) (-30384)
-	There are at least 5399 bytes different.
-jyasinzou_room_24 not OK
-	Size doesn't match: 162944 vs 25808 (x6.314) (137136)
-	There are at least 23418 bytes different.
-jyasinzou_room_25 not OK
-	Size doesn't match: 2432 vs 88992 (x0.027) (-86560)
-	There are at least 1957 bytes different.
-jyasinzou_room_26 not OK
-	Size doesn't match: 199824 vs 51968 (x3.845) (147856)
-	There are at least 45640 bytes different.
-jyasinzou_room_27 not OK
-	Size doesn't match: 89328 vs 22288 (x4.008) (67040)
-	There are at least 19511 bytes different.
-jyasinzou_room_28 not OK
-	Size doesn't match: 89216 vs 35376 (x2.522) (53840)
-	There are at least 32233 bytes different.
-HAKAdan_scene not OK
-	Size doesn't match: 41312 vs 99264 (x0.416) (-57952)
-	There are at least 38444 bytes different.
-HAKAdan_room_0 not OK
-	Size doesn't match: 23440 vs 45392 (x0.516) (-21952)
-	There are at least 22259 bytes different.
-HAKAdan_room_1 not OK
-	Size doesn't match: 26384 vs 6896 (x3.826) (19488)
-	There are at least 5897 bytes different.
-HAKAdan_room_2 not OK
-	Size doesn't match: 24544 vs 43488 (x0.564) (-18944)
-	There are at least 23334 bytes different.
-HAKAdan_room_3 not OK
-	Size doesn't match: 42480 vs 10624 (x3.998) (31856)
-	There are at least 9369 bytes different.
-HAKAdan_room_4 not OK
-	Size doesn't match: 45760 vs 7264 (x6.3) (38496)
-	There are at least 6500 bytes different.
-HAKAdan_room_5 not OK
-	Size doesn't match: 21840 vs 23232 (x0.94) (-1392)
-	There are at least 20647 bytes different.
-HAKAdan_room_6 not OK
-	Size doesn't match: 56528 vs 30192 (x1.872) (26336)
-	There are at least 27242 bytes different.
-HAKAdan_room_7 not OK
-	Size doesn't match: 32736 vs 6880 (x4.758) (25856)
-	There are at least 5998 bytes different.
-HAKAdan_room_8 not OK
-	Size doesn't match: 24496 vs 20640 (x1.187) (3856)
-	There are at least 18505 bytes different.
-HAKAdan_room_9 not OK
-	Size doesn't match: 18864 vs 52368 (x0.36) (-33504)
-	There are at least 18221 bytes different.
-HAKAdan_room_10 not OK
-	Size doesn't match: 28048 vs 30704 (x0.913) (-2656)
-	There are at least 25117 bytes different.
-HAKAdan_room_11 not OK
-	Size doesn't match: 2560 vs 15968 (x0.16) (-13408)
-	There are at least 2408 bytes different.
-HAKAdan_room_12 not OK
-	Size doesn't match: 28256 vs 22352 (x1.264) (5904)
-	There are at least 19429 bytes different.
-HAKAdan_room_13 not OK
-	Size doesn't match: 29744 vs 4128 (x7.205) (25616)
-	There are at least 3623 bytes different.
-HAKAdan_room_14 not OK
-	Size doesn't match: 15056 vs 22784 (x0.661) (-7728)
-	There are at least 14035 bytes different.
-HAKAdan_room_15 not OK
-	Size doesn't match: 35360 vs 29376 (x1.204) (5984)
-	There are at least 25482 bytes different.
-HAKAdan_room_16 not OK
-	Size doesn't match: 16576 vs 10544 (x1.572) (6032)
-	There are at least 9298 bytes different.
-HAKAdan_room_17 not OK
-	Size doesn't match: 14640 vs 11744 (x1.247) (2896)
-	There are at least 10944 bytes different.
-HAKAdan_room_18 not OK
-	Size doesn't match: 26432 vs 54032 (x0.489) (-27600)
-	There are at least 24323 bytes different.
-HAKAdan_room_19 not OK
-	Size doesn't match: 29856 vs 11648 (x2.563) (18208)
-	There are at least 10868 bytes different.
-HAKAdan_room_20 not OK
-	Size doesn't match: 37104 vs 7744 (x4.791) (29360)
-	There are at least 6560 bytes different.
-HAKAdan_room_21 not OK
-	Size doesn't match: 3264 vs 46512 (x0.07) (-43248)
-	There are at least 2730 bytes different.
-HAKAdan_room_22 not OK
-	Size doesn't match: 179248 vs 10672 (x16.796) (168576)
-	There are at least 9583 bytes different.
-HAKAdanCH_scene not OK
-	Size doesn't match: 55328 vs 50576 (x1.094) (4752)
-	There are at least 46849 bytes different.
-HAKAdanCH_room_0 not OK
-	Size doesn't match: 29344 vs 87840 (x0.334) (-58496)
-	There are at least 27239 bytes different.
-HAKAdanCH_room_1 not OK
-	Size doesn't match: 20880 vs 45360 (x0.46) (-24480)
-	There are at least 19578 bytes different.
-HAKAdanCH_room_2 not OK
-	Size doesn't match: 10432 vs 12640 (x0.825) (-2208)
-	There are at least 9209 bytes different.
-HAKAdanCH_room_3 not OK
-	Size doesn't match: 20784 vs 7360 (x2.824) (13424)
-	There are at least 6462 bytes different.
-HAKAdanCH_room_4 not OK
-	Size doesn't match: 31072 vs 9376 (x3.314) (21696)
-	There are at least 8577 bytes different.
-HAKAdanCH_room_5 not OK
-	Size doesn't match: 18144 vs 10640 (x1.705) (7504)
-	There are at least 9798 bytes different.
-HAKAdanCH_room_6 not OK
-	Size doesn't match: 23152 vs 11936 (x1.94) (11216)
-	There are at least 11257 bytes different.
-ice_doukutu_scene not OK
-	Size doesn't match: 16336 vs 71360 (x0.229) (-55024)
-	There are at least 15264 bytes different.
-ice_doukutu_room_0 not OK
-	Size doesn't match: 13872 vs 34432 (x0.403) (-20560)
-	There are at least 12931 bytes different.
-ice_doukutu_room_1 not OK
-	Size doesn't match: 23248 vs 50480 (x0.461) (-27232)
-	There are at least 22081 bytes different.
-ice_doukutu_room_2 not OK
-	Size doesn't match: 23088 vs 23296 (x0.991) (-208)
-	There are at least 21809 bytes different.
-ice_doukutu_room_3 not OK
-	Size doesn't match: 34480 vs 32912 (x1.048) (1568)
-	There are at least 31144 bytes different.
-ice_doukutu_room_4 not OK
-	Size doesn't match: 32336 vs 30288 (x1.068) (2048)
-	There are at least 28922 bytes different.
-ice_doukutu_room_5 not OK
-	Size doesn't match: 28368 vs 34944 (x0.812) (-6576)
-	There are at least 26721 bytes different.
-ice_doukutu_room_6 not OK
-	Size doesn't match: 992 vs 16816 (x0.059) (-15824)
-	There are at least 811 bytes different.
-ice_doukutu_room_7 not OK
-	Size doesn't match: 154480 vs 22768 (x6.785) (131712)
-	There are at least 22432 bytes different.
-ice_doukutu_room_8 not OK
-	Size doesn't match: 88000 vs 6432 (x13.682) (81568)
-	There are at least 5865 bytes different.
-ice_doukutu_room_9 not OK
-	Size doesn't match: 16496 vs 34448 (x0.479) (-17952)
+	Size doesn't match: 24048 vs 24016 (x1.001) (32)
 	There are at least 14881 bytes different.
+jyasinzou_room_10 not OK
+	Size matches.
+	There are at least 4257 bytes different.
+jyasinzou_room_11 not OK
+	Size matches.
+	There are at least 810 bytes different.
+jyasinzou_room_12 not OK
+	Size doesn't match: 8288 vs 8416 (x0.985) (-128)
+	There are at least 6512 bytes different.
+jyasinzou_room_13 not OK
+	Size doesn't match: 22608 vs 22704 (x0.996) (-96)
+	There are at least 17607 bytes different.
+jyasinzou_room_14 not OK
+	Size doesn't match: 19600 vs 19616 (x0.999) (-16)
+	There are at least 13685 bytes different.
+jyasinzou_room_15 not OK
+	Size doesn't match: 33904 vs 33952 (x0.999) (-48)
+	There are at least 23182 bytes different.
+jyasinzou_room_16 not OK
+	Size doesn't match: 24976 vs 25024 (x0.998) (-48)
+	There are at least 17030 bytes different.
+jyasinzou_room_17 not OK
+	Size doesn't match: 38416 vs 38480 (x0.998) (-64)
+	There are at least 24746 bytes different.
+jyasinzou_room_18 not OK
+	Size doesn't match: 23728 vs 23776 (x0.998) (-48)
+	There are at least 16393 bytes different.
+jyasinzou_room_19 not OK
+	Size doesn't match: 24032 vs 24016 (x1.001) (16)
+	There are at least 14541 bytes different.
+jyasinzou_room_20 not OK
+	Size matches.
+	There are at least 4255 bytes different.
+jyasinzou_room_21 not OK
+	Size doesn't match: 18000 vs 18016 (x0.999) (-16)
+	There are at least 11690 bytes different.
+jyasinzou_room_22 not OK
+	Size doesn't match: 12496 vs 12400 (x1.008) (96)
+	There are at least 9532 bytes different.
+jyasinzou_room_23 not OK
+	Size doesn't match: 37264 vs 37392 (x0.997) (-128)
+	There are at least 25393 bytes different.
+jyasinzou_room_24 not OK
+	Size doesn't match: 25776 vs 25808 (x0.999) (-32)
+	There are at least 16411 bytes different.
+jyasinzou_room_25 not OK
+	Size doesn't match: 88944 vs 88992 (x0.999) (-48)
+	There are at least 65560 bytes different.
+jyasinzou_room_26 not OK
+	Size doesn't match: 52000 vs 51968 (x1.001) (32)
+	There are at least 32705 bytes different.
+jyasinzou_room_27 not OK
+	Size doesn't match: 22208 vs 22288 (x0.996) (-80)
+	There are at least 14397 bytes different.
+jyasinzou_room_28 not OK
+	Size doesn't match: 35360 vs 35376 (x1.0) (-16)
+	There are at least 23908 bytes different.
+HAKAdan_scene not OK
+	Size matches.
+	There are at least 140 bytes different.
+HAKAdan_room_0 not OK
+	Size doesn't match: 45248 vs 45392 (x0.997) (-144)
+	There are at least 29422 bytes different.
+HAKAdan_room_1 not OK
+	Size doesn't match: 6848 vs 6896 (x0.993) (-48)
+	There are at least 4602 bytes different.
+HAKAdan_room_2 not OK
+	Size doesn't match: 43280 vs 43488 (x0.995) (-208)
+	There are at least 32258 bytes different.
+HAKAdan_room_3 not OK
+	Size doesn't match: 10560 vs 10624 (x0.994) (-64)
+	There are at least 7533 bytes different.
+HAKAdan_room_4 not OK
+	Size doesn't match: 7232 vs 7264 (x0.996) (-32)
+	There are at least 5003 bytes different.
+HAKAdan_room_5 not OK
+	Size doesn't match: 23136 vs 23232 (x0.996) (-96)
+	There are at least 16206 bytes different.
+HAKAdan_room_6 not OK
+	Size doesn't match: 30064 vs 30192 (x0.996) (-128)
+	There are at least 19305 bytes different.
+HAKAdan_room_7 not OK
+	Size doesn't match: 6832 vs 6880 (x0.993) (-48)
+	There are at least 4647 bytes different.
+HAKAdan_room_8 not OK
+	Size doesn't match: 20576 vs 20640 (x0.997) (-64)
+	There are at least 12000 bytes different.
+HAKAdan_room_9 not OK
+	Size doesn't match: 52064 vs 52368 (x0.994) (-304)
+	There are at least 39202 bytes different.
+HAKAdan_room_10 not OK
+	Size doesn't match: 30624 vs 30704 (x0.997) (-80)
+	There are at least 22827 bytes different.
+HAKAdan_room_11 not OK
+	Size doesn't match: 15680 vs 15968 (x0.982) (-288)
+	There are at least 12966 bytes different.
+HAKAdan_room_12 not OK
+	Size doesn't match: 22304 vs 22352 (x0.998) (-48)
+	There are at least 15483 bytes different.
+HAKAdan_room_13 not OK
+	Size doesn't match: 4016 vs 4128 (x0.973) (-112)
+	There are at least 3257 bytes different.
+HAKAdan_room_14 not OK
+	Size doesn't match: 22848 vs 22784 (x1.003) (64)
+	There are at least 15114 bytes different.
+HAKAdan_room_15 not OK
+	Size doesn't match: 29296 vs 29376 (x0.997) (-80)
+	There are at least 17979 bytes different.
+HAKAdan_room_16 not OK
+	Size doesn't match: 10368 vs 10544 (x0.983) (-176)
+	There are at least 7704 bytes different.
+HAKAdan_room_17 not OK
+	Size doesn't match: 11472 vs 11744 (x0.977) (-272)
+	There are at least 9660 bytes different.
+HAKAdan_room_18 not OK
+	Size doesn't match: 53888 vs 54032 (x0.997) (-144)
+	There are at least 35532 bytes different.
+HAKAdan_room_19 not OK
+	Size doesn't match: 11552 vs 11648 (x0.992) (-96)
+	There are at least 9211 bytes different.
+HAKAdan_room_20 not OK
+	Size doesn't match: 7712 vs 7744 (x0.996) (-32)
+	There are at least 5178 bytes different.
+HAKAdan_room_21 not OK
+	Size doesn't match: 46256 vs 46512 (x0.994) (-256)
+	There are at least 35200 bytes different.
+HAKAdan_room_22 not OK
+	Size doesn't match: 10656 vs 10672 (x0.999) (-16)
+	There are at least 8193 bytes different.
+HAKAdanCH_scene not OK
+	Size doesn't match: 50528 vs 50576 (x0.999) (-48)
+	There are at least 31941 bytes different.
+HAKAdanCH_room_0 not OK
+	Size doesn't match: 87536 vs 87840 (x0.997) (-304)
+	There are at least 67524 bytes different.
+HAKAdanCH_room_1 not OK
+	Size doesn't match: 45776 vs 45360 (x1.009) (416)
+	There are at least 33876 bytes different.
+HAKAdanCH_room_2 not OK
+	Size doesn't match: 12688 vs 12640 (x1.004) (48)
+	There are at least 7162 bytes different.
+HAKAdanCH_room_3 not OK
+	Size doesn't match: 7264 vs 7360 (x0.987) (-96)
+	There are at least 4738 bytes different.
+HAKAdanCH_room_4 not OK
+	Size doesn't match: 9296 vs 9376 (x0.991) (-80)
+	There are at least 7111 bytes different.
+HAKAdanCH_room_5 not OK
+	Size doesn't match: 10592 vs 10640 (x0.995) (-48)
+	There are at least 8152 bytes different.
+HAKAdanCH_room_6 not OK
+	Size doesn't match: 11904 vs 11936 (x0.997) (-32)
+	There are at least 9780 bytes different.
+ice_doukutu_scene not OK
+	Size doesn't match: 71168 vs 71360 (x0.997) (-192)
+	There are at least 53548 bytes different.
+ice_doukutu_room_0 not OK
+	Size doesn't match: 34400 vs 34432 (x0.999) (-32)
+	There are at least 28032 bytes different.
+ice_doukutu_room_1 not OK
+	Size doesn't match: 50496 vs 50480 (x1.0) (16)
+	There are at least 39352 bytes different.
+ice_doukutu_room_2 not OK
+	Size doesn't match: 23280 vs 23296 (x0.999) (-16)
+	There are at least 18590 bytes different.
+ice_doukutu_room_3 not OK
+	Size doesn't match: 32896 vs 32912 (x1.0) (-16)
+	There are at least 24806 bytes different.
+ice_doukutu_room_4 not OK
+	Size doesn't match: 30320 vs 30288 (x1.001) (32)
+	There are at least 22455 bytes different.
+ice_doukutu_room_5 not OK
+	Size doesn't match: 34960 vs 34944 (x1.0) (16)
+	There are at least 25630 bytes different.
+ice_doukutu_room_6 not OK
+	Size doesn't match: 16992 vs 16816 (x1.01) (176)
+	There are at least 13441 bytes different.
+ice_doukutu_room_7 not OK
+	Size matches.
+	There are at least 42 bytes different.
+ice_doukutu_room_8 not OK
+	Size doesn't match: 6480 vs 6432 (x1.007) (48)
+	There are at least 4006 bytes different.
+ice_doukutu_room_9 not OK
+	Size doesn't match: 34384 vs 34448 (x0.998) (-64)
+	There are at least 23507 bytes different.
 ice_doukutu_room_10 not OK
-	Size doesn't match: 24208 vs 17376 (x1.393) (6832)
-	There are at least 15943 bytes different.
+	Size matches.
+	There are at least 23 bytes different.
 ice_doukutu_room_11 not OK
-	Size doesn't match: 37328 vs 22608 (x1.651) (14720)
-	There are at least 21052 bytes different.
+	Size doesn't match: 22784 vs 22608 (x1.008) (176)
+	There are at least 17972 bytes different.
 men_scene not OK
-	Size doesn't match: 29024 vs 70848 (x0.41) (-41824)
-	There are at least 27127 bytes different.
+	Size doesn't match: 70960 vs 70848 (x1.002) (112)
+	There are at least 49207 bytes different.
 men_room_0 not OK
-	Size doesn't match: 16464 vs 65424 (x0.252) (-48960)
-	There are at least 14268 bytes different.
+	Size matches.
+	There are at least 12610 bytes different.
 men_room_1 not OK
-	Size doesn't match: 24608 vs 37488 (x0.656) (-12880)
-	There are at least 22456 bytes different.
+	Size doesn't match: 37520 vs 37488 (x1.001) (32)
+	There are at least 28139 bytes different.
 men_room_2 not OK
-	Size doesn't match: 16960 vs 20560 (x0.825) (-3600)
-	There are at least 15257 bytes different.
+	Size doesn't match: 20352 vs 20560 (x0.99) (-208)
+	There are at least 15818 bytes different.
 men_room_3 not OK
-	Size doesn't match: 13600 vs 31824 (x0.427) (-18224)
-	There are at least 11981 bytes different.
+	Size doesn't match: 31776 vs 31824 (x0.998) (-48)
+	There are at least 24462 bytes different.
 men_room_4 not OK
-	Size doesn't match: 14464 vs 41440 (x0.349) (-26976)
-	There are at least 11986 bytes different.
+	Size doesn't match: 41296 vs 41440 (x0.997) (-144)
+	There are at least 33034 bytes different.
 men_room_5 not OK
-	Size doesn't match: 15472 vs 20512 (x0.754) (-5040)
-	There are at least 13613 bytes different.
+	Size doesn't match: 20704 vs 20512 (x1.009) (192)
+	There are at least 17082 bytes different.
 men_room_6 not OK
-	Size doesn't match: 14384 vs 32640 (x0.441) (-18256)
-	There are at least 11702 bytes different.
+	Size doesn't match: 32576 vs 32640 (x0.998) (-64)
+	There are at least 23472 bytes different.
 men_room_7 not OK
-	Size doesn't match: 14336 vs 33472 (x0.428) (-19136)
-	There are at least 11539 bytes different.
+	Size doesn't match: 33584 vs 33472 (x1.003) (112)
+	There are at least 26989 bytes different.
 men_room_8 not OK
-	Size doesn't match: 15568 vs 33328 (x0.467) (-17760)
-	There are at least 12839 bytes different.
+	Size doesn't match: 33296 vs 33328 (x0.999) (-32)
+	There are at least 20186 bytes different.
 men_room_9 not OK
-	Size doesn't match: 11088 vs 14448 (x0.767) (-3360)
-	There are at least 10231 bytes different.
+	Size doesn't match: 14576 vs 14448 (x1.009) (128)
+	There are at least 10985 bytes different.
 men_room_10 not OK
-	Size doesn't match: 25056 vs 23632 (x1.06) (1424)
-	There are at least 22797 bytes different.
+	Size doesn't match: 23648 vs 23632 (x1.001) (16)
+	There are at least 17990 bytes different.
 ganontika_scene not OK
-	Size doesn't match: 9952 vs 137168 (x0.073) (-127216)
-	There are at least 8735 bytes different.
+	Size doesn't match: 137152 vs 137168 (x1.0) (-16)
+	There are at least 72977 bytes different.
 ganontika_room_0 not OK
-	Size doesn't match: 99264 vs 37392 (x2.655) (61872)
-	There are at least 33315 bytes different.
+	Size doesn't match: 37312 vs 37392 (x0.998) (-80)
+	There are at least 21558 bytes different.
 ganontika_room_1 not OK
-	Size doesn't match: 45248 vs 117200 (x0.386) (-71952)
-	There are at least 39697 bytes different.
+	Size doesn't match: 117168 vs 117200 (x1.0) (-32)
+	There are at least 79726 bytes different.
 ganontika_room_2 not OK
-	Size doesn't match: 6848 vs 30688 (x0.223) (-23840)
-	There are at least 6095 bytes different.
+	Size matches.
+	There are at least 383 bytes different.
 ganontika_room_3 not OK
-	Size doesn't match: 43280 vs 39488 (x1.096) (3792)
-	There are at least 36987 bytes different.
+	Size doesn't match: 39312 vs 39488 (x0.996) (-176)
+	There are at least 31520 bytes different.
 ganontika_room_4 not OK
-	Size doesn't match: 10560 vs 31888 (x0.331) (-21328)
-	There are at least 9354 bytes different.
+	Size matches.
+	There are at least 40 bytes different.
 ganontika_room_5 not OK
-	Size doesn't match: 7232 vs 29984 (x0.241) (-22752)
-	There are at least 6656 bytes different.
+	Size doesn't match: 30016 vs 29984 (x1.001) (32)
+	There are at least 21008 bytes different.
 ganontika_room_6 not OK
-	Size doesn't match: 23136 vs 64608 (x0.358) (-41472)
-	There are at least 20904 bytes different.
+	Size doesn't match: 64496 vs 64608 (x0.998) (-112)
+	There are at least 44483 bytes different.
 ganontika_room_7 not OK
-	Size doesn't match: 30064 vs 31888 (x0.943) (-1824)
-	There are at least 26637 bytes different.
+	Size matches.
+	There are at least 43 bytes different.
 ganontika_room_8 not OK
-	Size doesn't match: 6832 vs 36896 (x0.185) (-30064)
-	There are at least 6051 bytes different.
+	Size doesn't match: 36976 vs 36896 (x1.002) (80)
+	There are at least 26182 bytes different.
 ganontika_room_9 not OK
-	Size doesn't match: 20576 vs 47136 (x0.437) (-26560)
-	There are at least 18296 bytes different.
+	Size doesn't match: 47248 vs 47136 (x1.002) (112)
+	There are at least 29446 bytes different.
 ganontika_room_10 not OK
-	Size doesn't match: 52064 vs 27584 (x1.887) (24480)
-	There are at least 26467 bytes different.
+	Size doesn't match: 27504 vs 27584 (x0.997) (-80)
+	There are at least 18522 bytes different.
 ganontika_room_11 not OK
-	Size doesn't match: 30624 vs 26960 (x1.136) (3664)
-	There are at least 24191 bytes different.
+	Size matches.
+	There are at least 114 bytes different.
 ganontika_room_12 not OK
-	Size doesn't match: 15680 vs 45680 (x0.343) (-30000)
-	There are at least 14749 bytes different.
+	Size doesn't match: 45936 vs 45680 (x1.006) (256)
+	There are at least 32447 bytes different.
 ganontika_room_13 not OK
-	Size doesn't match: 22304 vs 32064 (x0.696) (-9760)
-	There are at least 19829 bytes different.
+	Size matches.
+	There are at least 41 bytes different.
 ganontika_room_14 not OK
-	Size doesn't match: 4016 vs 41424 (x0.097) (-37408)
-	There are at least 3595 bytes different.
+	Size doesn't match: 41376 vs 41424 (x0.999) (-48)
+	There are at least 28132 bytes different.
 ganontika_room_15 not OK
-	Size doesn't match: 22848 vs 32064 (x0.713) (-9216)
-	There are at least 20324 bytes different.
+	Size matches.
+	There are at least 42 bytes different.
 ganontika_room_16 not OK
-	Size doesn't match: 29296 vs 11824 (x2.478) (17472)
-	There are at least 10690 bytes different.
+	Size doesn't match: 11808 vs 11824 (x0.999) (-16)
+	There are at least 7816 bytes different.
 ganontika_room_17 not OK
-	Size doesn't match: 10368 vs 34336 (x0.302) (-23968)
-	There are at least 9091 bytes different.
+	Size doesn't match: 34464 vs 34336 (x1.004) (128)
+	There are at least 18689 bytes different.
 ganontika_room_18 not OK
-	Size doesn't match: 11472 vs 50912 (x0.225) (-39440)
-	There are at least 10340 bytes different.
+	Size doesn't match: 50800 vs 50912 (x0.998) (-112)
+	There are at least 33537 bytes different.
 ganontika_room_19 not OK
-	Size doesn't match: 53888 vs 32064 (x1.681) (21824)
-	There are at least 29347 bytes different.
+	Size matches.
+	There are at least 38 bytes different.
 market_day_scene not OK
-	Size doesn't match: 8288 vs 9840 (x0.842) (-1552)
-	There are at least 7233 bytes different.
-market_day_room_0 not OK
-	Size doesn't match: 22608 vs 22640 (x0.999) (-32)
-	There are at least 19815 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 market_night_scene not OK
-	Size doesn't match: 19600 vs 9776 (x2.005) (9824)
-	There are at least 8360 bytes different.
-market_night_room_0 not OK
-	Size doesn't match: 33904 vs 22432 (x1.511) (11472)
-	There are at least 19101 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 kenjyanoma_scene not OK
-	Size doesn't match: 24976 vs 14576 (x1.714) (10400)
-	There are at least 12394 bytes different.
-kenjyanoma_room_0 not OK
-	Size doesn't match: 38416 vs 78096 (x0.492) (-39680)
-	There are at least 37041 bytes different.
+	Size matches.
+	There are at least 16 bytes different.
 tokinoma_scene not OK
-	Size doesn't match: 23728 vs 75680 (x0.314) (-51952)
-	There are at least 21999 bytes different.
+	Size doesn't match: 75712 vs 75680 (x1.0) (32)
+	There are at least 39867 bytes different.
 tokinoma_room_0 not OK
-	Size doesn't match: 24032 vs 94688 (x0.254) (-70656)
-	There are at least 22006 bytes different.
+	Size matches.
+	There are at least 26 bytes different.
 tokinoma_room_1 not OK
-	Size doesn't match: 33216 vs 28880 (x1.15) (4336)
-	There are at least 26523 bytes different.
+	Size matches.
+	There are at least 23 bytes different.
 link_home_scene not OK
-	Size doesn't match: 18000 vs 7008 (x2.568) (10992)
-	There are at least 5874 bytes different.
-link_home_room_0 not OK
-	Size doesn't match: 12496 vs 162944 (x0.077) (-150448)
-	There are at least 10797 bytes different.
+	Size matches.
+	There are at least 12 bytes different.
 kokiri_shop_scene not OK
-	Size doesn't match: 37264 vs 2432 (x15.322) (34832)
-	There are at least 1958 bytes different.
-kokiri_shop_room_0 not OK
-	Size doesn't match: 25776 vs 199824 (x0.129) (-174048)
-	There are at least 22704 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 kokiri_home_scene not OK
-	Size doesn't match: 88944 vs 3264 (x27.25) (85680)
-	There are at least 2680 bytes different.
-kokiri_home_room_0 not OK
-	Size doesn't match: 52000 vs 179248 (x0.29) (-127248)
-	There are at least 46074 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 kakusiana_scene not OK
-	Size doesn't match: 22208 vs 55328 (x0.401) (-33120)
-	There are at least 20812 bytes different.
-kakusiana_room_0 not OK
-	Size doesn't match: 35360 vs 29344 (x1.205) (6016)
-	There are at least 27835 bytes different.
-kakusiana_room_1 not OK
-	Size doesn't match: 71168 vs 20880 (x3.408) (50288)
-	There are at least 19758 bytes different.
-kakusiana_room_2 not OK
-	Size doesn't match: 34400 vs 10432 (x3.298) (23968)
-	There are at least 9587 bytes different.
-kakusiana_room_3 not OK
-	Size doesn't match: 50496 vs 20784 (x2.43) (29712)
-	There are at least 19064 bytes different.
-kakusiana_room_4 not OK
-	Size doesn't match: 23280 vs 31072 (x0.749) (-7792)
-	There are at least 22323 bytes different.
-kakusiana_room_5 not OK
-	Size doesn't match: 32896 vs 18144 (x1.813) (14752)
-	There are at least 17241 bytes different.
-kakusiana_room_6 not OK
-	Size doesn't match: 30320 vs 23152 (x1.31) (7168)
-	There are at least 21664 bytes different.
-kakusiana_room_7 not OK
-	Size doesn't match: 34960 vs 16336 (x2.14) (18624)
-	There are at least 15195 bytes different.
-kakusiana_room_8 not OK
-	Size doesn't match: 16992 vs 13872 (x1.225) (3120)
-	There are at least 12632 bytes different.
-kakusiana_room_9 not OK
-	Size doesn't match: 22768 vs 23248 (x0.979) (-480)
-	There are at least 21586 bytes different.
-kakusiana_room_10 not OK
-	Size doesn't match: 6480 vs 23088 (x0.281) (-16608)
-	There are at least 5659 bytes different.
-kakusiana_room_11 not OK
-	Size doesn't match: 34384 vs 34480 (x0.997) (-96)
-	There are at least 32441 bytes different.
-kakusiana_room_12 not OK
-	Size doesn't match: 17376 vs 32336 (x0.537) (-14960)
-	There are at least 16478 bytes different.
-kakusiana_room_13 not OK
-	Size doesn't match: 22784 vs 28368 (x0.803) (-5584)
-	There are at least 21304 bytes different.
+	Size matches.
+	There are at least 56 bytes different.
 entra_scene not OK
-	Size doesn't match: 1648 vs 992 (x1.661) (656)
-	There are at least 601 bytes different.
-entra_room_0 not OK
-	Size doesn't match: 189008 vs 154480 (x1.224) (34528)
-	There are at least 50550 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 moribossroom_scene not OK
-	Size doesn't match: 3744 vs 6400 (x0.585) (-2656)
-	There are at least 3085 bytes different.
-moribossroom_room_0 not OK
-	Size doesn't match: 176064 vs 24256 (x7.259) (151808)
-	There are at least 21462 bytes different.
-moribossroom_room_1 not OK
-	Size doesn't match: 3648 vs 55984 (x0.065) (-52336)
-	There are at least 3205 bytes different.
+	Size matches.
+	There are at least 8 bytes different.
 syatekijyou_scene not OK
-	Size doesn't match: 12320 vs 49856 (x0.247) (-37536)
-	There are at least 11202 bytes different.
-syatekijyou_room_0 not OK
-	Size doesn't match: 20672 vs 30448 (x0.679) (-9776)
-	There are at least 17587 bytes different.
+	Size matches.
+	There are at least 16 bytes different.
 shop1_scene not OK
-	Size doesn't match: 19456 vs 752 (x25.872) (18704)
-	There are at least 485 bytes different.
-shop1_room_0 not OK
-	Size doesn't match: 17008 vs 169904 (x0.1) (-152896)
-	There are at least 13004 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 hairal_niwa_scene not OK
-	Size doesn't match: 28640 vs 70544 (x0.406) (-41904)
-	There are at least 26164 bytes different.
-hairal_niwa_room_0 not OK
-	Size doesn't match: 1296 vs 43232 (x0.03) (-41936)
-	There are at least 989 bytes different.
+	Size matches.
+	There are at least 8 bytes different.
 ganon_tou_scene not OK
-	Size doesn't match: 169376 vs 19312 (x8.771) (150064)
-	There are at least 17151 bytes different.
-ganon_tou_room_0 not OK
-	Size doesn't match: 57344 vs 80624 (x0.711) (-23280)
-	There are at least 54025 bytes different.
+	Size matches.
+	There are at least 12 bytes different.
 market_alley_scene not OK
-	Size doesn't match: 14608 vs 4688 (x3.116) (9920)
-	There are at least 3959 bytes different.
-market_alley_room_0 not OK
-	Size doesn't match: 2704 vs 481024 (x0.006) (-478320)
-	There are at least 2579 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 spot20_scene not OK
-	Size doesn't match: 30928 vs 73248 (x0.422) (-42320)
-	There are at least 29029 bytes different.
-spot20_room_0 not OK
-	Size doesn't match: 34832 vs 26320 (x1.323) (8512)
-	There are at least 24207 bytes different.
+	Size matches.
+	There are at least 48 bytes different.
 market_ruins_scene not OK
-	Size doesn't match: 17104 vs 5680 (x3.011) (11424)
-	There are at least 4822 bytes different.
-market_ruins_room_0 not OK
-	Size doesn't match: 52640 vs 10272 (x5.125) (42368)
-	There are at least 7232 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 entra_n_scene not OK
-	Size doesn't match: 16400 vs 1072 (x15.299) (15328)
-	There are at least 762 bytes different.
-entra_n_room_0 not OK
-	Size doesn't match: 928 vs 154480 (x0.006) (-153552)
-	There are at least 666 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 enrui_scene not OK
-	Size doesn't match: 156112 vs 992 (x157.371) (155120)
-	There are at least 722 bytes different.
-enrui_room_0 not OK
-	Size doesn't match: 912 vs 154464 (x0.006) (-153552)
-	There are at least 607 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 market_alley_n_scene not OK
-	Size doesn't match: 156128 vs 4848 (x32.205) (151280)
-	There are at least 4061 bytes different.
-market_alley_n_room_0 not OK
-	Size doesn't match: 1008 vs 481008 (x0.002) (-480000)
-	There are at least 886 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 hiral_demo_scene not OK
-	Size doesn't match: 179808 vs 15696 (x11.456) (164112)
-	There are at least 11373 bytes different.
-hiral_demo_room_0 not OK
-	Size doesn't match: 1456 vs 1600 (x0.91) (-144)
-	There are at least 951 bytes different.
+	Size doesn't match: 15712 vs 15696 (x1.001) (16)
+	There are at least 8034 bytes different.
 kokiri_home3_scene not OK
-	Size doesn't match: 158768 vs 6048 (x26.251) (152720)
-	There are at least 4435 bytes different.
-kokiri_home3_room_0 not OK
-	Size doesn't match: 1648 vs 222736 (x0.007) (-221088)
-	There are at least 904 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 malon_stable_scene not OK
-	Size doesn't match: 166240 vs 1648 (x100.874) (164592)
-	There are at least 983 bytes different.
-malon_stable_room_0 not OK
-	Size doesn't match: 3344 vs 189008 (x0.018) (-185664)
-	There are at least 2260 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 kakariko_scene not OK
-	Size doesn't match: 159648 vs 3744 (x42.641) (155904)
-	There are at least 2490 bytes different.
-kakariko_room_0 not OK
-	Size doesn't match: 3824 vs 176064 (x0.022) (-172240)
-	There are at least 2702 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 bdan_boss_scene not OK
-	Size doesn't match: 182000 vs 3648 (x49.89) (178352)
-	There are at least 2764 bytes different.
-bdan_boss_room_0 not OK
-	Size doesn't match: 1664 vs 12320 (x0.135) (-10656)
-	There are at least 1397 bytes different.
+	Size matches.
+	There are at least 8 bytes different.
 bdan_boss_room_1 not OK
-	Size doesn't match: 210592 vs 20672 (x10.187) (189920)
-	There are at least 16641 bytes different.
+	Size matches.
+	There are at least 24 bytes different.
 FIRE_bs_scene not OK
-	Size doesn't match: 14880 vs 19456 (x0.765) (-4576)
-	There are at least 11784 bytes different.
-FIRE_bs_room_0 not OK
-	Size doesn't match: 97984 vs 17008 (x5.761) (80976)
-	There are at least 14772 bytes different.
-FIRE_bs_room_1 not OK
-	Size doesn't match: 10336 vs 28640 (x0.361) (-18304)
-	There are at least 9700 bytes different.
+	Size matches.
+	There are at least 8 bytes different.
 hut_scene not OK
-	Size doesn't match: 20016 vs 1296 (x15.444) (18720)
-	There are at least 1040 bytes different.
-hut_room_0 not OK
-	Size doesn't match: 15840 vs 169376 (x0.094) (-153536)
-	There are at least 14379 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 daiyousei_izumi_scene not OK
-	Size doesn't match: 5952 vs 57344 (x0.104) (-51392)
-	There are at least 5362 bytes different.
-daiyousei_izumi_room_0 not OK
-	Size doesn't match: 28656 vs 14608 (x1.962) (14048)
-	There are at least 13413 bytes different.
+	Size matches.
+	There are at least 20 bytes different.
 hakaana_scene not OK
-	Size doesn't match: 26608 vs 2704 (x9.84) (23904)
-	There are at least 2330 bytes different.
-hakaana_room_0 not OK
-	Size doesn't match: 10112 vs 30928 (x0.327) (-20816)
-	There are at least 9255 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 yousei_izumi_tate_scene not OK
-	Size doesn't match: 10720 vs 34832 (x0.308) (-24112)
-	There are at least 9675 bytes different.
-yousei_izumi_tate_room_0 not OK
-	Size doesn't match: 24400 vs 17104 (x1.427) (7296)
-	There are at least 14805 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 yousei_izumi_yoko_scene not OK
-	Size doesn't match: 6752 vs 52640 (x0.128) (-45888)
-	There are at least 5132 bytes different.
-yousei_izumi_yoko_room_0 not OK
-	Size doesn't match: 17520 vs 16400 (x1.068) (1120)
-	There are at least 15190 bytes different.
+	Size matches.
+	There are at least 16 bytes different.
 golon_scene not OK
-	Size doesn't match: 45808 vs 928 (x49.362) (44880)
-	There are at least 764 bytes different.
-golon_room_0 not OK
-	Size doesn't match: 67504 vs 156112 (x0.432) (-88608)
-	There are at least 56063 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 zoora_scene not OK
-	Size doesn't match: 32464 vs 912 (x35.596) (31552)
-	There are at least 680 bytes different.
-zoora_room_0 not OK
-	Size doesn't match: 30576 vs 156128 (x0.196) (-125552)
-	There are at least 27968 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 drag_scene not OK
-	Size doesn't match: 30800 vs 1008 (x30.556) (29792)
-	There are at least 774 bytes different.
-drag_room_0 not OK
-	Size doesn't match: 30512 vs 179808 (x0.17) (-149296)
-	There are at least 24961 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 alley_shop_scene not OK
-	Size doesn't match: 37072 vs 1456 (x25.462) (35616)
-	There are at least 1215 bytes different.
-alley_shop_room_0 not OK
-	Size doesn't match: 35600 vs 158768 (x0.224) (-123168)
-	There are at least 32522 bytes different.
+	Size matches.
+	There are at least 5 bytes different.
 night_shop_scene not OK
-	Size doesn't match: 39840 vs 1648 (x24.175) (38192)
-	There are at least 1373 bytes different.
-night_shop_room_0 not OK
-	Size doesn't match: 42912 vs 166240 (x0.258) (-123328)
-	There are at least 36698 bytes different.
+	Size matches.
+	There are at least 6 bytes different.
 impa_scene not OK
-	Size doesn't match: 27616 vs 3344 (x8.258) (24272)
-	There are at least 2855 bytes different.
-impa_room_0 not OK
-	Size doesn't match: 22816 vs 159648 (x0.143) (-136832)
-	There are at least 20160 bytes different.
+	Size matches.
+	There are at least 6 bytes different.
 labo_scene not OK
-	Size doesn't match: 31776 vs 3824 (x8.31) (27952)
-	There are at least 2667 bytes different.
-labo_room_0 not OK
-	Size doesn't match: 24192 vs 182000 (x0.133) (-157808)
-	There are at least 16846 bytes different.
+	Size matches.
+	There are at least 6 bytes different.
 tent_scene not OK
-	Size doesn't match: 36080 vs 1664 (x21.683) (34416)
-	There are at least 1269 bytes different.
-tent_room_0 not OK
-	Size doesn't match: 4048 vs 210592 (x0.019) (-206544)
-	There are at least 3474 bytes different.
+	Size matches.
+	There are at least 6 bytes different.
 nakaniwa_scene not OK
-	Size doesn't match: 32320 vs 14880 (x2.172) (17440)
-	There are at least 12701 bytes different.
-nakaniwa_room_0 not OK
-	Size doesn't match: 15808 vs 97984 (x0.161) (-82176)
-	There are at least 14788 bytes different.
+	Size matches.
+	There are at least 193 bytes different.
 ddan_boss_scene not OK
-	Size doesn't match: 46848 vs 10336 (x4.533) (36512)
-	There are at least 9678 bytes different.
-ddan_boss_room_0 not OK
-	Size doesn't match: 6832 vs 20016 (x0.341) (-13184)
-	There are at least 5901 bytes different.
-ddan_boss_room_1 not OK
-	Size doesn't match: 231760 vs 15840 (x14.631) (215920)
-	There are at least 15624 bytes different.
+	Size matches.
+	There are at least 12 bytes different.
 ydan_boss_scene not OK
-	Size doesn't match: 5136 vs 5952 (x0.863) (-816)
-	There are at least 4354 bytes different.
-ydan_boss_room_0 not OK
-	Size doesn't match: 200544 vs 28656 (x6.998) (171888)
-	There are at least 28403 bytes different.
-ydan_boss_room_1 not OK
-	Size doesn't match: 74112 vs 26608 (x2.785) (47504)
-	There are at least 25674 bytes different.
+	Size matches.
+	There are at least 12 bytes different.
 HAKAdan_bs_scene not OK
-	Size doesn't match: 52912 vs 10112 (x5.233) (42800)
-	There are at least 9512 bytes different.
-HAKAdan_bs_room_0 not OK
-	Size doesn't match: 2112 vs 10720 (x0.197) (-8608)
-	There are at least 1627 bytes different.
-HAKAdan_bs_room_1 not OK
-	Size doesn't match: 173440 vs 24400 (x7.108) (149040)
-	There are at least 21697 bytes different.
+	Size matches.
+	There are at least 12 bytes different.
 MIZUsin_bs_scene not OK
-	Size doesn't match: 57968 vs 6752 (x8.585) (51216)
-	There are at least 4839 bytes different.
-MIZUsin_bs_room_0 not OK
-	Size doesn't match: 29376 vs 17520 (x1.677) (11856)
-	There are at least 16931 bytes different.
-MIZUsin_bs_room_1 not OK
-	Size doesn't match: 26400 vs 45808 (x0.576) (-19408)
-	There are at least 23509 bytes different.
+	Size matches.
+	There are at least 12 bytes different.
 ganon_scene not OK
-	Size doesn't match: 33968 vs 67504 (x0.503) (-33536)
-	There are at least 32585 bytes different.
-ganon_room_0 not OK
-	Size doesn't match: 36064 vs 32464 (x1.111) (3600)
-	There are at least 28511 bytes different.
-ganon_room_1 not OK
-	Size doesn't match: 17536 vs 30576 (x0.574) (-13040)
-	There are at least 15938 bytes different.
-ganon_room_2 not OK
-	Size doesn't match: 17488 vs 30800 (x0.568) (-13312)
-	There are at least 16103 bytes different.
-ganon_room_3 not OK
-	Size doesn't match: 31408 vs 30512 (x1.029) (896)
-	There are at least 27688 bytes different.
-ganon_room_4 not OK
-	Size doesn't match: 5344 vs 37072 (x0.144) (-31728)
-	There are at least 4641 bytes different.
-ganon_room_5 not OK
-	Size doesn't match: 338672 vs 35600 (x9.513) (303072)
-	There are at least 29626 bytes different.
-ganon_room_6 not OK
-	Size doesn't match: 75488 vs 39840 (x1.895) (35648)
-	There are at least 38415 bytes different.
-ganon_room_7 not OK
-	Size doesn't match: 26464 vs 42912 (x0.617) (-16448)
-	There are at least 21567 bytes different.
-ganon_room_8 not OK
-	Size doesn't match: 5376 vs 27616 (x0.195) (-22240)
-	There are at least 4594 bytes different.
-ganon_room_9 not OK
-	Size doesn't match: 338704 vs 22816 (x14.845) (315888)
-	There are at least 19994 bytes different.
+	Size matches.
+	There are at least 60 bytes different.
 ganon_boss_scene not OK
-	Size doesn't match: 5264 vs 31776 (x0.166) (-26512)
-	There are at least 4010 bytes different.
-ganon_boss_room_0 not OK
-	Size doesn't match: 338672 vs 24192 (x13.999) (314480)
-	There are at least 18134 bytes different.
+	Size matches.
+	There are at least 6 bytes different.
 jyasinboss_scene not OK
-	Size doesn't match: 137152 vs 36080 (x3.801) (101072)
-	There are at least 32909 bytes different.
-jyasinboss_room_0 not OK
-	Size doesn't match: 37312 vs 4048 (x9.217) (33264)
-	There are at least 3599 bytes different.
+	Size matches.
+	There are at least 96 bytes different.
 jyasinboss_room_1 not OK
-	Size doesn't match: 117168 vs 32320 (x3.625) (84848)
-	There are at least 29919 bytes different.
-jyasinboss_room_2 not OK
-	Size doesn't match: 30688 vs 15808 (x1.941) (14880)
-	There are at least 14475 bytes different.
+	Size matches.
+	There are at least 1416 bytes different.
 jyasinboss_room_3 not OK
-	Size doesn't match: 39312 vs 46848 (x0.839) (-7536)
-	There are at least 36821 bytes different.
+	Size matches.
+	There are at least 1416 bytes different.
 kokiri_home4_scene not OK
-	Size doesn't match: 31888 vs 6832 (x4.667) (25056)
-	There are at least 5806 bytes different.
-kokiri_home4_room_0 not OK
-	Size doesn't match: 30016 vs 231760 (x0.13) (-201744)
-	There are at least 29744 bytes different.
+	Size matches.
+	There are at least 5 bytes different.
 kokiri_home5_scene not OK
-	Size doesn't match: 64496 vs 5136 (x12.558) (59360)
-	There are at least 4235 bytes different.
-kokiri_home5_room_0 not OK
-	Size doesn't match: 31888 vs 200544 (x0.159) (-168656)
-	There are at least 31608 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 ganon_final_scene not OK
-	Size doesn't match: 36976 vs 74112 (x0.499) (-37136)
-	There are at least 35956 bytes different.
-ganon_final_room_0 not OK
-	Size doesn't match: 47248 vs 52912 (x0.893) (-5664)
-	There are at least 41444 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 kakariko3_scene not OK
-	Size doesn't match: 27504 vs 2112 (x13.023) (25392)
-	There are at least 1711 bytes different.
-kakariko3_room_0 not OK
-	Size doesn't match: 26960 vs 173440 (x0.155) (-146480)
-	There are at least 23051 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 hakasitarelay_scene not OK
-	Size doesn't match: 45936 vs 57968 (x0.792) (-12032)
-	There are at least 43624 bytes different.
-hakasitarelay_room_0 not OK
-	Size doesn't match: 32064 vs 29376 (x1.092) (2688)
-	There are at least 28246 bytes different.
-hakasitarelay_room_1 not OK
-	Size doesn't match: 41376 vs 26400 (x1.567) (14976)
-	There are at least 24232 bytes different.
-hakasitarelay_room_2 not OK
-	Size doesn't match: 32064 vs 33968 (x0.944) (-1904)
-	There are at least 30015 bytes different.
-hakasitarelay_room_3 not OK
-	Size doesn't match: 11808 vs 36064 (x0.327) (-24256)
-	There are at least 11004 bytes different.
-hakasitarelay_room_4 not OK
-	Size doesn't match: 34464 vs 17536 (x1.965) (16928)
-	There are at least 15979 bytes different.
-hakasitarelay_room_5 not OK
-	Size doesn't match: 50800 vs 17488 (x2.905) (33312)
-	There are at least 15986 bytes different.
-hakasitarelay_room_6 not OK
-	Size doesn't match: 32064 vs 31408 (x1.021) (656)
-	There are at least 28612 bytes different.
+	Size matches.
+	There are at least 28 bytes different.
 shrine_scene not OK
-	Size doesn't match: 53392 vs 5344 (x9.991) (48048)
-	There are at least 4546 bytes different.
-shrine_room_0 not OK
-	Size doesn't match: 26640 vs 338672 (x0.079) (-312032)
-	There are at least 20945 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 turibori_scene not OK
-	Size doesn't match: 55584 vs 75488 (x0.736) (-19904)
-	There are at least 53261 bytes different.
-turibori_room_0 not OK
-	Size doesn't match: 19776 vs 26464 (x0.747) (-6688)
-	There are at least 17729 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 shrine_n_scene not OK
-	Size doesn't match: 29360 vs 5376 (x5.461) (23984)
-	There are at least 4578 bytes different.
-shrine_n_room_0 not OK
-	Size doesn't match: 15952 vs 338704 (x0.047) (-322752)
-	There are at least 12982 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 shrine_r_scene not OK
-	Size doesn't match: 45840 vs 5264 (x8.708) (40576)
-	There are at least 4728 bytes different.
-shrine_r_room_0 not OK
-	Size doesn't match: 14624 vs 338672 (x0.043) (-324048)
-	There are at least 11758 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 hakaana2_scene not OK
-	Size doesn't match: 20032 vs 53392 (x0.375) (-33360)
-	There are at least 18398 bytes different.
-hakaana2_room_0 not OK
-	Size doesn't match: 50528 vs 26640 (x1.897) (23888)
-	There are at least 23512 bytes different.
+	Size matches.
+	There are at least 4 bytes different.
 gerudoway_scene not OK
-	Size doesn't match: 87536 vs 55584 (x1.575) (31952)
-	There are at least 51007 bytes different.
-gerudoway_room_0 not OK
-	Size doesn't match: 45776 vs 19776 (x2.315) (26000)
-	There are at least 17918 bytes different.
-gerudoway_room_1 not OK
-	Size doesn't match: 12688 vs 29360 (x0.432) (-16672)
-	There are at least 10788 bytes different.
-gerudoway_room_2 not OK
-	Size doesn't match: 7264 vs 15952 (x0.455) (-8688)
-	There are at least 5946 bytes different.
-gerudoway_room_3 not OK
-	Size doesn't match: 9296 vs 45840 (x0.203) (-36544)
-	There are at least 8315 bytes different.
-gerudoway_room_4 not OK
-	Size doesn't match: 10592 vs 14624 (x0.724) (-4032)
-	There are at least 9941 bytes different.
-gerudoway_room_5 not OK
-	Size doesn't match: 11904 vs 20032 (x0.594) (-8128)
-	There are at least 10974 bytes different.
+	Size matches.
+	There are at least 24 bytes different.
 hairal_niwa_n_scene not OK
 	Size matches.
 	There are at least 4 bytes different.
@@ -2849,4 +2501,4 @@ ganontikasonogo_scene not OK
 	Size matches.
 	There are at least 8 bytes different.
 
-Differents: 950/1532 (62.01%)
+Differents: 834/1532 (54.44%)
