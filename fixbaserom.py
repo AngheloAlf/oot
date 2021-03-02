@@ -13,10 +13,10 @@ VERSIONS_HASHES = {
     "NTSC J 1.0":       None,
     "NTSC 1.1":         None,
     "NTSC J 1.1":       None,
-    "PAL 1.0":          "e040de91a74b61e3201db0e2323f768a", # Need to double check.
+    "PAL 1.0":          "e040de91a74b61e3201db0e2323f768a",
     "NTSC 1.2":         None,
     "NTSC J 1.2":       None,
-    "PAL 1.1":          None,
+    "PAL 1.1":          "d714580dd74c2c033f5e1b6dc0aeac77", # Need to double check.
     "PAL WII 1.1":      None,
     "JAP GC":           None,
     "JAP MQ":           None,

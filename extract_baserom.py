@@ -3141,6 +3141,29 @@ romData = None
 Version = ""
 
 
+def readFile(filepath):
+    with open(filepath) as f:
+        return [x.strip() for x in f.readlines()]
+
+def readFilelists():
+    FILE_NAMES["PAL MQ DBG"] = readFile("filelists/filelist_pal_mq_dbg.txt")
+    FILE_NAMES["PAL MQ"] = readFile("filelists/filelist_pal_mq.txt")
+    FILE_NAMES["NTSC 1.0"] = readFile("filelists/filelist_ntsc_1.0.txt")
+    FILE_NAMES["PAL 1.0"] = readFile("filelists/filelist_pal_1.0.txt") # WIP
+    print(len(FILE_NAMES["PAL 1.0"]))
+
+    # Unconfirmed
+    FILE_NAMES["NTSC 1.0 RC"] = FILE_NAMES["NTSC 1.0"]
+    FILE_NAMES["NTSC 1.1"] = FILE_NAMES["NTSC 1.0"]
+    FILE_NAMES["NTSC 1.2"] = FILE_NAMES["NTSC 1.0"]
+
+    # In theory, those versions should share the same file list.
+    FILE_NAMES["NTSC J 1.0 RC"]  = FILE_NAMES["NTSC 1.0 RC"]
+    FILE_NAMES["NTSC J 1.0"]     = FILE_NAMES["NTSC 1.0"]
+    FILE_NAMES["NTSC J 1.1"]     = FILE_NAMES["NTSC 1.1"]
+    FILE_NAMES["NTSC J 1.2"]     = FILE_NAMES["NTSC 1.2"]
+    FILE_NAMES["PAL WII 1.1"]    = FILE_NAMES["PAL 1.1"]
+
 def initialize_worker(rom_data, version):
     global romData
     global Version
@@ -3185,6 +3208,8 @@ def ExtractFunc(i):
 
 def extract_rom(edition, j):
     version = edition.upper().replace("_", " ")
+
+    readFilelists()
 
     file_names_table = FILE_NAMES[version]
     if file_names_table is None:

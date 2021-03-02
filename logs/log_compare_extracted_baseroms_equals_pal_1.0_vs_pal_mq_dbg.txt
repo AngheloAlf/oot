@@ -1,0 +1,33 @@
+Audiobank OK
+Audiotable OK
+link_animetion OK
+icon_item_24_static OK
+icon_item_field_static OK
+icon_item_dungeon_static OK
+icon_item_gameover_static OK
+icon_item_nes_static OK
+icon_item_ger_static OK
+icon_item_fra_static OK
+item_name_static OK
+map_name_static OK
+do_action_static OK
+message_static OK
+message_texture_static OK
+nes_message_data_static OK
+staff_message_data_static OK
+map_grand_static OK
+map_i_static OK
+map_48x85_static OK
+anime_model_2_static OK
+anime_model_3_static OK
+anime_model_4_static OK
+anime_model_5_static OK
+anime_model_6_static OK
+anime_texture_1_static OK
+anime_texture_2_static OK
+anime_texture_3_static OK
+anime_texture_4_static OK
+anime_texture_5_static OK
+anime_texture_6_static OK
+
+Equals:     31/1532 (2.02%)
