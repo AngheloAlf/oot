@@ -204,7 +204,7 @@ clean_baserom:
 
 setup:
 	$(MAKE) -C tools -j
-	python3 fixbaserom.py
+	python3 fixbaserom.py $(VERSION)
 	python3 extract_baserom.py $(VERSION) -j
 	python3 extract_assets.py
 
