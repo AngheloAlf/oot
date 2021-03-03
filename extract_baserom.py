@@ -3149,7 +3149,7 @@ def readFilelists():
     FILE_NAMES["PAL MQ DBG"] = readFile("filelists/filelist_pal_mq_dbg.txt")
     FILE_NAMES["PAL MQ"] = readFile("filelists/filelist_pal_mq.txt")
     FILE_NAMES["NTSC 1.0"] = readFile("filelists/filelist_ntsc_1.0.txt")
-    FILE_NAMES["PAL 1.0"] = readFile("filelists/filelist_pal_1.0.txt") # WIP
+    FILE_NAMES["PAL 1.0"] = readFile("filelists/filelist_pal_1.0.txt")
 
     # Unconfirmed
     FILE_NAMES["NTSC 1.0 RC"] = FILE_NAMES["NTSC 1.0"]

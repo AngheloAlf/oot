@@ -119,38 +119,6 @@ class Overlay(File):
         return result
 
 
-def compare_files(filepath_one, filepath_two, filetype):
-    file_one = read_file_as_bytearray(filepath_one)
-    file_two = read_file_as_bytearray(filepath_two)
-    are_equal = get_str_hash(file_one) == get_str_hash(file_two)
-    len_one = len(file_one)
-    len_two = len(file_two)
-    diff_bytes = 0
-    diff_words = 0
-
-    if not are_equal:
-        min_len = min(len_one, len_two)
-        for i in range(min_len):
-            if file_one[i] != file_two[i]:
-                diff_bytes += 1
-
-        words = str(min_len//4)
-        big_endian_format = ">" + words + "I"
-        file_one_words = struct.unpack_from(big_endian_format, file_one, 0)
-        file_two_words = struct.unpack_from(big_endian_format, file_two, 0)
-        for i in range(min_len//4):
-            if file_one_words[i] != file_two_words[i]:
-                diff_words += 1
-        
-        if filetype == "Overlay":
-            print(filepath_one)
-            Overlay(file_one)
-            Overlay(file_two)
-            exit(-1)
-
-    return are_equal, len_one, len_two, diff_bytes, diff_words
-
-
 def print_result_different(comparison, indentation=0):
     if comparison['size_one'] != comparison['size_two']:
         div = round(comparison['size_one']/comparison['size_two'], 3)
@@ -285,15 +253,25 @@ def compare_to_csv(args, filelist):
                 print(f"{index},{filename},,{len_one},{len_two},,,")
             continue
 
-        are_equal, len_one, len_two, diff_bytes, diff_words = compare_files(filepath_one, filepath_two, filedata["type"])
-        div = 0
-        if len_two != 0:
-            div = round(len_one/len_two, 3)
-        if are_equal and args.print not in ("all", "equals"):
+
+        file_one_data = read_file_as_bytearray(filepath_one)
+        file_two_data = read_file_as_bytearray(filepath_two)
+
+        if filedata["type"] == "Overlay":
+            file_one = Overlay(file_one_data)
+            file_two = Overlay(file_two_data)
+        else:
+            file_one = File(file_one_data)
+            file_two = File(file_two_data)
+
+        comparison = file_one.compareToFile(file_two)
+
+        if comparison["equal"] and args.print not in ("all", "equals"):
             continue
-        if not are_equal and args.print not in ("all", "diffs"):
+        if not comparison["equal"] and args.print not in ("all", "diffs"):
             continue
-        print(f"{index},{filename},{are_equal},{len_one},{len_two},{div},{len_one-len_two},{diff_bytes},{diff_words}")
+        div = round(comparison["size_one"]/comparison["size_two"], 3)
+        print(f'{index},{filename},{comparison["equal"]},{comparison["size_one"]},{comparison["size_two"]},{div},{comparison["size_one"]-comparison["size_two"]},{comparison["diff_bytes"]},{comparison["diff_words"]}')
 
 
 def main():
