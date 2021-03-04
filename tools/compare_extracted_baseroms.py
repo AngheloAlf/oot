@@ -23,6 +23,8 @@ def readJson(filepath):
         return json.load(f)
 
 def read_file_as_bytearray(filepath):
+    if not os.path.exists(filepath):
+        return bytearray(0)
     with open(filepath, mode="rb") as f:
         return bytearray(f.read())
 
@@ -128,9 +130,6 @@ def print_result_different(comparison, indentation=0):
     print((indentation * "\t") + f"There are at least {comparison['diff_bytes']} bytes different, and {comparison['diff_words']} words different.")
 
 def compare_baseroms(args, filelist):
-    files_baserom_one = set()
-    files_baserom_two = set()
-
     missing_in_one = set()
     missing_in_two = set()
 
@@ -142,25 +141,19 @@ def compare_baseroms(args, filelist):
         filepath_one = os.path.join(baserom_path, filename)
         filepath_two = os.path.join(args.other_baserom, filename)
 
-        is_missing = False
+        if args.filetype != "all" and args.filetype != filedata["type"]:
+            continue
 
-        if os.path.exists(filepath_one):
-            files_baserom_one.add(filename)
-        else:
+        if not os.path.exists(filepath_one):
             missing_in_one.add(filename)
-            is_missing = True
             if args.print in ("all", "missing"):
                 print(f"File {filename} does not exists in baserom.")
+            continue
 
-        if os.path.exists(filepath_two):
-            files_baserom_two.add(filename)
-        else:
+        if not os.path.exists(filepath_two):
             missing_in_two.add(filename)
-            is_missing = True
             if args.print in ("all", "missing"):
                 print(f"File {filename} does not exists in other_baserom.")
-
-        if is_missing:
             continue
 
         file_one_data = read_file_as_bytearray(filepath_one)
@@ -211,67 +204,76 @@ def compare_baseroms(args, filelist):
             print(f"Missing 2:  {len(missing_in_two)}")
 
 def compare_to_csv(args, filelist):
-    files_baserom_one = set()
-    files_baserom_two = set()
-
-    missing_in_one = set()
-    missing_in_two = set()
-
     index = -1
 
-    print(f"Index,File,Are equals,Size in {args.column1},Size in {args.column2},Size proportion,Size difference,Bytes different,Words different")
+    print(f"Index,File,Are equals,Size in {args.column1},Size in {args.column2},Size proportion,Size difference,Bytes different,Words different", end="")
+    if args.filetype == "Overlay":
+        print(f",text: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
+        print(f",data: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
+        print(f",rodata: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
+
+    print()
 
     for filedata in filelist["files"]:
         filename = filedata["name"]
-        filepath_one = os.path.join(baserom_path, filename)
-        filepath_two = os.path.join(args.other_baserom, filename)
-        is_missing_in_one = False
-        is_missing_in_two = False
-
         index += 1
 
-        if os.path.exists(filepath_one):
-            files_baserom_one.add(filename)
-        else:
-            missing_in_one.add(filename)
-            is_missing_in_one = True
+        if args.filetype != "all" and args.filetype != filedata["type"]:
+            continue
 
-        if os.path.exists(filepath_two):
-            files_baserom_two.add(filename)
-        else:
-            missing_in_two.add(filename)
-            is_missing_in_two = True
+        file_one_data = read_file_as_bytearray(os.path.join(baserom_path, filename))
+        file_two_data = read_file_as_bytearray(os.path.join(args.other_baserom, filename))
+
+        equal = ""
+        len_one = ""
+        len_two = ""
+        div = ""
+        size_difference = ""
+        diff_bytes = ""
+        diff_words = ""
+        comparison = dict()
+
+        is_missing_in_one = len(file_one_data) == 0
+        is_missing_in_two = len(file_two_data) == 0
 
         if is_missing_in_one or is_missing_in_two:
-            if args.print in ("all", "missing"):
-                len_one = ""
-                len_two = ""
-                if not is_missing_in_one:
-                    len_one = str(len(read_file_as_bytearray(filepath_one)))
-                if not is_missing_in_two:
-                    len_two = str(len(read_file_as_bytearray(filepath_two)))
-                print(f"{index},{filename},,{len_one},{len_two},,,")
-            continue
+            if args.print not in ("all", "missing"):
+                continue
+            len_one = "" if is_missing_in_one else len(file_one_data)
+            len_two = "" if is_missing_in_two else len(file_two_data)
 
-
-        file_one_data = read_file_as_bytearray(filepath_one)
-        file_two_data = read_file_as_bytearray(filepath_two)
-
-        if filedata["type"] == "Overlay":
-            file_one = Overlay(file_one_data)
-            file_two = Overlay(file_two_data)
         else:
-            file_one = File(file_one_data)
-            file_two = File(file_two_data)
+            if filedata["type"] == "Overlay":
+                file_one = Overlay(file_one_data)
+                file_two = Overlay(file_two_data)
+            else:
+                file_one = File(file_one_data)
+                file_two = File(file_two_data)
 
-        comparison = file_one.compareToFile(file_two)
+            comparison = file_one.compareToFile(file_two)
 
-        if comparison["equal"] and args.print not in ("all", "equals"):
-            continue
-        if not comparison["equal"] and args.print not in ("all", "diffs"):
-            continue
-        div = round(comparison["size_one"]/comparison["size_two"], 3)
-        print(f'{index},{filename},{comparison["equal"]},{comparison["size_one"]},{comparison["size_two"]},{div},{comparison["size_one"]-comparison["size_two"]},{comparison["diff_bytes"]},{comparison["diff_words"]}')
+            if comparison["equal"] and args.print not in ("all", "equals"):
+                continue
+            if not comparison["equal"] and args.print not in ("all", "diffs"):
+                continue
+
+            equal = comparison["equal"]
+            len_one = comparison["size_one"]
+            len_two = comparison["size_two"]
+            div = round(comparison["size_one"]/comparison["size_two"], 3)
+            size_difference = comparison["size_one"]-comparison["size_two"]
+            diff_bytes = comparison["diff_bytes"]
+            diff_words = comparison["diff_words"]
+
+        print(f'{index},{filename},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}', end="")
+        if filedata["type"] == "Overlay" and len(comparison) > 0:
+            for section_name in ["text", "data", "rodata"]:
+                section = comparison["ovl"][section_name]
+                len_one = section["size_one"]
+                len_two = section["size_two"]
+                diff_words = section["diff_words"]
+                print(f',{len_one},{len_two},{len_one-len_two},{diff_words}', end="")
+        print()
 
 
 def main():
@@ -283,6 +285,7 @@ def main():
     parser.add_argument("other_baserom", help="Path to the baserom folder that will be compared against.")
     parser.add_argument("filelist", help="Path to filelist to use.")
     parser.add_argument("--print", help="Select what will be printed for a cleaner output. Default is 'all'.", choices=["all", "equals", "diffs", "missing"], default="all")
+    parser.add_argument("--filetype", help="Filters by filetype. Default: all",  choices=["all", "Unknown", "Overlay", "Object", "Texture", "Room", "Scene", "Other"], default="all")
     parser.add_argument("--csv", help="Print the output in csv format instead.", action="store_true")
     parser.add_argument("--column1", help="Name for column one (baserom) in the csv.", default="baserom")
     parser.add_argument("--column2", help="Name for column two (other_baserom) in the csv.", default="other_baserom")
