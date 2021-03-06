@@ -121,6 +121,9 @@ class Instruction:
     def isLW(self):
         return self.opcode == (0x8C >> 2)
 
+    def sameOpcode(self, other: Instruction):
+        return self.opcode == other.opcode
+
     def sameBaseRegister(self, other: Instruction):
         return self.baseRegister == other.baseRegister
 
@@ -134,6 +137,8 @@ class Instruction:
         if self.isLUI():
             result += "LUI "
         elif self.isADDIU():
+            result += "ADDIU "
+        elif self.isLW():
             result += "ADDIU "
         else:
             result += hex(self.opcode)
@@ -153,6 +158,23 @@ class Text(File):
     @property
     def nInstr(self):
         return len(self.instructions)
+
+    def compareToFile(self, other: File, args):
+        result = super().compareToFile(other, args)
+
+        if isinstance(other, Text):
+            result["text"] = {
+                "diff_opcode": self.countDiffOpcodes(other),
+            }
+
+        return result
+
+    def countDiffOpcodes(self, other: Text) -> int:
+        result = 0
+        for i in range(min(self.nInstr, other.nInstr)):
+            if self.instructions[i].opcode != other.instructions[i].opcode:
+                result += 1
+        return result
 
     def blankOutDifferences(self, other_file: File):
         super().blankOutDifferences(other_file)
@@ -219,7 +241,10 @@ class Reloc(File):
         self.entries: List[RelocEntry] = list()
         for word in self.words:
             self.entries.append(RelocEntry(word))
-        self.nRelocs = len(self.entries)
+
+    @property
+    def nRelocs(self):
+        return len(self.entries)
 
     def compareToFile(self, other_file: File, args):
         result = super().compareToFile(other_file, args)
@@ -402,7 +427,10 @@ def compare_to_csv(args, filelist):
     column1 = args.version1 if args.column1 is None else args.column1
     column2 = args.version2 if args.column2 is None else args.column2
 
-    print(f"Index,File,Are equals,Size in {column1},Size in {column2},Size proportion,Size difference,Bytes different,Words different")
+    print(f"Index,File,Are equals,Size in {column1},Size in {column2},Size proportion,Size difference,Bytes different,Words different", end="")
+    if args.overlays:
+        print(",Opcodes difference", end="")
+    print(flush=True)
 
     for filename in filelist:
         filepath_one = os.path.join(baserom_path + args.version1, filename)
@@ -475,9 +503,15 @@ def compare_to_csv(args, filelist):
                     size_difference = len_two - len_one
                     diff_bytes = section["diff_bytes"]
                     diff_words = section["diff_words"]
-                    print(f'{index},{filename} {section_name},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}')
+                    print(f'{index},{filename} {section_name},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words},', end="")
+                    if "text" in section:
+                        print(section["text"]["diff_opcode"], end="")
+                    print()
         else:
-            print(f'{index},{filename},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}')
+            print(f'{index},{filename},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}', end="")
+            if args.overlays:
+                print(",", end="")
+            print()
 
 
 def main():
