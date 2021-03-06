@@ -133,8 +133,8 @@ class Overlay(File):
 
 def print_result_different(comparison, indentation=0):
     if comparison['size_one'] != comparison['size_two']:
-        div = round(comparison['size_one']/comparison['size_two'], 3)
-        print((indentation * "\t") + f"Size doesn't match: {comparison['size_one']} vs {comparison['size_two']} (x{div}) ({comparison['size_one'] - comparison['size_two']})")
+        div = round(comparison['size_two']/comparison['size_one'], 3)
+        print((indentation * "\t") + f"Size doesn't match: {comparison['size_one']} vs {comparison['size_two']} (x{div}) ({comparison['size_two'] - comparison['size_one']})")
     else:
         print((indentation * "\t") + "Size matches.")
     print((indentation * "\t") + f"There are at least {comparison['diff_bytes']} bytes different, and {comparison['diff_words']} words different.")
@@ -165,12 +165,12 @@ def compare_baseroms(args, filelist):
         file_one_data = read_file_as_bytearray(filepath_one)
         file_two_data = read_file_as_bytearray(filepath_two)
 
-        # if "Overlay":
-        #    file_one = Overlay(file_one_data)
-        #    file_two = Overlay(file_two_data)
-        # else:
-        file_one = File(file_one_data)
-        file_two = File(file_two_data)
+        if filename.startswith("ovl_"):
+            file_one = Overlay(file_one_data)
+            file_two = Overlay(file_two_data)
+        else:
+            file_one = File(file_one_data)
+            file_two = File(file_two_data)
 
         comparison = file_one.compareToFile(file_two, args)
 
@@ -216,12 +216,6 @@ def compare_to_csv(args, filelist):
     column2 = args.version2 if args.column2 is None else args.column2
 
     print(f"Index,File,Are equals,Size in {column1},Size in {column2},Size proportion,Size difference,Bytes different,Words different")
-    #if args.filetype == "Overlay":
-    #    print(f",text: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
-    #    print(f",data: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
-    #    print(f",rodata: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
-
-    print()
 
     for filename in filelist:
         filepath_one = os.path.join(baserom_path + args.version1, filename)
@@ -232,8 +226,8 @@ def compare_to_csv(args, filelist):
         #if args.filetype != "all" and args.filetype != filedata["type"]:
         #    continue
 
-        file_one_data = read_file_as_bytearray(os.path.join(filepath_one, filename))
-        file_two_data = read_file_as_bytearray(os.path.join(filepath_two, filename))
+        file_one_data = read_file_as_bytearray(filepath_one)
+        file_two_data = read_file_as_bytearray(filepath_two)
 
         equal = ""
         len_one = ""
@@ -254,37 +248,47 @@ def compare_to_csv(args, filelist):
             len_two = "" if is_missing_in_two else len(file_two_data)
 
         else:
-            # if "Overlay":
-            #    file_one = Overlay(file_one_data)
-            #    file_two = Overlay(file_two_data)
-            # else:
-            file_one = File(file_one_data)
-            file_two = File(file_two_data)
+            if filename.startswith("ovl_"):
+                file_one = Overlay(file_one_data)
+                file_two = Overlay(file_two_data)
+            else:
+                file_one = File(file_one_data)
+                file_two = File(file_two_data)
 
             comparison = file_one.compareToFile(file_two, args)
-
-            if comparison["equal"] and args.print not in ("all", "equals"):
-                continue
-            if not comparison["equal"] and args.print not in ("all", "diffs"):
-                continue
-
             equal = comparison["equal"]
+
+            if equal and args.print not in ("all", "equals"):
+                continue
+            if not equal and args.print not in ("all", "diffs"):
+                continue
             len_one = comparison["size_one"]
             len_two = comparison["size_two"]
-            div = round(comparison["size_one"]/comparison["size_two"], 3)
-            size_difference = comparison["size_one"]-comparison["size_two"]
+            div = round(len_two/len_one, 3)
+            size_difference = len_two - len_one
             diff_bytes = comparison["diff_bytes"]
             diff_words = comparison["diff_words"]
 
-        print(f'{index},{filename},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}', end="")
-        #if filedata["type"] == "Overlay" and len(comparison) > 0:
-        #    for section_name in ["text", "data", "rodata"]:
-        #        section = comparison["ovl"][section_name]
-        #        len_one = section["size_one"]
-        #        len_two = section["size_two"]
-        #        diff_words = section["diff_words"]
-        #        print(f',{len_one},{len_two},{len_one-len_two},{diff_words}', end="")
-        print()
+        if args.overlays and len(comparison) > 0 and "ovl" in comparison:
+            for section_name in comparison["ovl"]:
+                section = comparison["ovl"][section_name]
+                equal = section["equal"]
+
+                if equal and args.print not in ("all", "equals"):
+                    continue
+                if not equal and args.print not in ("all", "diffs"):
+                    continue
+
+                len_one = section["size_one"]
+                len_two = section["size_two"]
+                if len_one > 0 or len_two > 0:
+                    div = round(len_two/len_one, 3)
+                    size_difference = len_two - len_one
+                    diff_bytes = section["diff_bytes"]
+                    diff_words = section["diff_words"]
+                    print(f'{index},{filename} {section_name},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}')
+        else:
+            print(f'{index},{filename},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}')
 
 
 def main():
@@ -298,11 +302,12 @@ def main():
     parser.add_argument("filelist", help="Path to filelist to use.")
     parser.add_argument("--print", help="Select what will be printed for a cleaner output. Default is 'all'.", choices=["all", "equals", "diffs", "missing"], default="all")
     # parser.add_argument("--filetype", help="Filters by filetype. Default: all",  choices=["all", "Unknown", "Overlay", "Object", "Texture", "Room", "Scene", "Other"], default="all")
+    parser.add_argument("--overlays", help="Treats each section of the overalays as separate files.", action="store_true")
     parser.add_argument("--csv", help="Print the output in csv format instead.", action="store_true")
     parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true")
     parser.add_argument("--ignore06", help="Ignores words differences that starts in 0x06XXXXXX", action="store_true")
-    parser.add_argument("--column1", help="Name for column one (baserom) in the csv.", default="baserom")
-    parser.add_argument("--column2", help="Name for column two (other_baserom) in the csv.", default="other_baserom")
+    parser.add_argument("--column1", help="Name for column one (baserom) in the csv.", default=None)
+    parser.add_argument("--column2", help="Name for column two (other_baserom) in the csv.", default=None)
     args = parser.parse_args()
 
     filelist = readFile(args.filelist)
