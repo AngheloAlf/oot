@@ -114,12 +114,16 @@ class Instruction:
     def instr(self):
         return (self.opcode << 26) | (self.baseRegister << 21) | (self.rt << 16) | (self.immediate)
 
-    def isLUI(self):
+    def isLUI(self) -> bool:
         return self.opcode == (0x3C >> 2)
-    def isADDIU(self):
+    def isADDIU(self) -> bool:
         return self.opcode == (0x24 >> 2)
-    def isLW(self):
+    def isLW(self) -> bool:
         return self.opcode == (0x8C >> 2)
+    def isLWCz(self) -> bool:
+        if self.isLW():
+            return False
+        return (self.opcode & 0x3C) == (0xC0 >> 2)
 
     def sameOpcode(self, other: Instruction):
         return self.opcode == other.opcode
@@ -139,7 +143,9 @@ class Instruction:
         elif self.isADDIU():
             result += "ADDIU "
         elif self.isLW():
-            result += "ADDIU "
+            result += "LW "
+        elif self.isLWCz():
+            result += f"LWC{self.opcode&0x3} "
         else:
             result += hex(self.opcode)
         return f"{result} {hex(self.baseRegister)} {hex(self.rt)} {hex(self.immediate)}"
@@ -207,6 +213,14 @@ class Text(File):
                         lui_found = False
                         was_updated = True
                 elif instr1.isLW() and instr2.isLW():
+                    if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
+                        instr1.blankOut()
+                        instr2.blankOut()
+                        self.instructions[lui_pos].blankOut() # lui
+                        other_file.instructions[lui_pos].blankOut() # lui
+                        lui_found = False
+                        was_updated = True
+                elif instr1.isLWCz():
                     if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
                         instr1.blankOut()
                         instr2.blankOut()
