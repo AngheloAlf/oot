@@ -512,6 +512,15 @@ class Text(File):
                     instr2.blankOut()
                     was_updated = True
 
+            #if (instr1.isADDIU() or instr1.isSB() or instr1.isSW() or instr1.isLWCz() 
+            #    or instr1.isLBU() or instr1.isLH() or instr1.isLW() or instr1.isSWCz() 
+            #    or instr1.isLHU() or instr1.isSH() or instr1.isLB() or instr1.isLUI()
+            #    or instr1.isLDCz()):
+            #    if instr1.sameOpcode(instr2) and instr1.sameBaseRegister(instr2) and instr1.rt == instr2.rt:
+            #        if abs(instr1.immediate - instr2.immediate) == 0x10:
+            #            instr1.blankOut()
+            #            instr2.blankOut()
+
             if not lui_found:
                 if instr1.isLUI() and instr2.isLUI():
                     lui_found = True

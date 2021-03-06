@@ -22,7 +22,7 @@ VERSIONS_HASHES = {
     "PAL WII 1.1":      None,
     "JP GC":            None,
     "JP MQ":            None,
-    "USA GC":           None,
+    "USA GC":           "cd09029edcfb7c097ac01986a0f83d3f",
     "USA MQ":           None,
     "PAL GC DBG":       None,
     "PAL MQ DBG":       "f0b7f35375f9cc8ca1b2d59d78e35405",
