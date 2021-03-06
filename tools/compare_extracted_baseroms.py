@@ -8,6 +8,7 @@ import hashlib
 import json
 import struct
 from typing import List
+import sys
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = script_dir + "/.."
@@ -15,6 +16,8 @@ if not script_dir.endswith("/tools"):
     root_dir = script_dir
 baserom_path = root_dir + "/baserom_"
 
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 def get_str_hash(byte_array):
     return str(hashlib.md5(byte_array).hexdigest())
@@ -33,15 +36,29 @@ def read_file_as_bytearray(filepath):
     with open(filepath, mode="rb") as f:
         return bytearray(f.read())
 
+def bytesToBEWords(array_of_bytes: bytearray) -> List[int]:
+    words = len(array_of_bytes)//4
+    big_endian_format = f">{words}I"
+    return list(struct.unpack_from(big_endian_format, array_of_bytes, 0))
+
+def beWordsToBytes(words_list: List[int], buffer: bytearray) -> bytearray:
+    words = len(words_list)
+    big_endian_format = f">{words}I"
+    struct.pack_into(big_endian_format, buffer, 0, *words_list)
+    return buffer
+
 
 class File:
-    def __init__(self, array_of_bytes):
-        self.bytes = array_of_bytes
-        self.size = len(self.bytes)
-        self.sizew = self.size//4
-        words = str(self.sizew)
-        big_endian_format = ">" + words + "I"
-        self.words = struct.unpack_from(big_endian_format, self.bytes, 0)
+    def __init__(self, array_of_bytes: bytearray):
+        self.bytes: bytearray = array_of_bytes
+        self.words: List[int] = bytesToBEWords(self.bytes)
+
+    @property
+    def size(self):
+        return len(self.bytes)
+    @property
+    def sizew(self):
+        return len(self.words)
 
     def getHash(self):
         return get_str_hash(self.bytes)
@@ -66,7 +83,8 @@ class File:
                 if self.bytes[i] != other_file.bytes[i]:
                     result["diff_bytes"] += 1
 
-            for i in range(min_len//4):
+            min_len = min(self.sizew, other_file.sizew)
+            for i in range(min_len):
                 if self.words[i] != other_file.words[i]:
                     if args.ignore80:
                         if ((self.words[i] >> 24) & 0xFF) == 0x80 and ((other_file.words[i] >> 24) & 0xFF) == 0x80:
@@ -80,6 +98,9 @@ class File:
 
     def blankOutDifferences(self, other_file: File):
         pass
+
+    def updateBytes(self):
+        beWordsToBytes(self.words, self.bytes)
 
 
 class Instruction:
@@ -105,6 +126,19 @@ class Instruction:
 
         self.instr = self.opcode << 26
 
+    def __str__(self) -> str:
+        result = ""
+        if self.isLUI():
+            result += "LUI "
+        elif self.isADDIU():
+            result += "ADDIU "
+        else:
+            result += hex(self.opcode)
+        return f"{result} {hex(self.baseRegister)} {hex(self.rt)} {hex(self.immediate)}"
+
+    def __repr__(self) -> str:
+        return self.__str__()
+
 class Text(File):
     def __init__(self, array_of_bytes):
         super().__init__(array_of_bytes)
@@ -124,10 +158,13 @@ class Text(File):
         if not isinstance(other_file, Text):
             return
 
+        was_updated = False
+
         lui_found = False
         lui_pos = 0
         lui_1_register = 0
         lui_2_register = 0
+
         for i in range(min(self.nInstr, other_file.nInstr)):
             instr1 = self.instructions[i]
             instr2 = other_file.instructions[i]
@@ -144,8 +181,19 @@ class Text(File):
                         instr2.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
                         other_file.instructions[lui_pos].blankOut() # lui
-            if i + 5 > lui_pos:
+                        was_updated = True
+            if i > lui_pos + 5:
                 lui_found = False
+
+        if was_updated:
+            self.updateWords()
+            other_file.updateWords()
+
+    def updateWords(self):
+        self.words = []
+        for instr in self.instructions:
+            self.words.append(instr.instr)
+        self.updateBytes()
 
 
 class RelocEntry:
@@ -201,11 +249,13 @@ class Overlay(File):
 
         start += bss_size
         end += header_size
-        self.header = self.bytes[start:end]
+        self.header = bytesToBEWords(self.bytes[start:end])
 
         start += header_size
         end += reloc_size
         self.reloc = Reloc(self.bytes[start:end])
+
+        self.tail = bytesToBEWords(self.bytes[end:])
 
 
     def compareToFile(self, other_file: File, args):
@@ -227,6 +277,12 @@ class Overlay(File):
         if not isinstance(other_file, Overlay):
             return
         self.text.blankOutDifferences(other_file.text)
+
+        self.words = self.text.words + self.data.words + self.rodata.words + self.bss.words + self.header + self.reloc.words
+        self.updateBytes()
+        
+        other_file.words = other_file.text.words + other_file.data.words  + other_file.rodata.words + other_file.bss.words + other_file.header + other_file.reloc.words
+        other_file.updateBytes()
 
     def relocate(self, allocatedVRamAddress: int, vRamAddress: int):
         allocu32 = allocatedVRamAddress
