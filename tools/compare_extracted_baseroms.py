@@ -105,16 +105,21 @@ class File:
 
 class Instruction:
     def __init__(self, instr: int):
-        self.instr = instr
         self.opcode = (instr >> 26) & 0x3F
         self.baseRegister = (instr >> 21) & 0x1F # rs
         self.rt = (instr >> 16) & 0x1F
-        self.immediate = (instr >> 16) & 0xFFFF
+        self.immediate = (instr) & 0xFFFF
+
+    @property
+    def instr(self):
+        return (self.opcode << 26) | (self.baseRegister << 21) | (self.rt << 16) | (self.immediate)
 
     def isLUI(self):
         return self.opcode == (0x3C >> 2)
     def isADDIU(self):
         return self.opcode == (0x24 >> 2)
+    def isLW(self):
+        return self.opcode == (0x8C >> 2)
 
     def sameBaseRegister(self, other: Instruction):
         return self.baseRegister == other.baseRegister
@@ -123,8 +128,6 @@ class Instruction:
         self.baseRegister = 0
         self.rt = 0
         self.immediate = 0
-
-        self.instr = self.opcode << 26
 
     def __str__(self) -> str:
         result = ""
@@ -146,12 +149,10 @@ class Text(File):
         self.instructions: List[Instruction] = list()
         for word in self.words:
             self.instructions.append(Instruction(word))
-        self.nInstr = len(self.instructions)
 
-    def compareToFile(self, other_file: File, args):
-        result = super().compareToFile(other_file, args)
-        # TODO
-        return result
+    @property
+    def nInstr(self):
+        return len(self.instructions)
 
     def blankOutDifferences(self, other_file: File):
         super().blankOutDifferences(other_file)
@@ -181,6 +182,15 @@ class Text(File):
                         instr2.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
                         other_file.instructions[lui_pos].blankOut() # lui
+                        lui_found = False
+                        was_updated = True
+                elif instr1.isLW() and instr2.isLW():
+                    if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
+                        instr1.blankOut()
+                        instr2.blankOut()
+                        self.instructions[lui_pos].blankOut() # lui
+                        other_file.instructions[lui_pos].blankOut() # lui
+                        lui_found = False
                         was_updated = True
             if i > lui_pos + 5:
                 lui_found = False
@@ -278,10 +288,10 @@ class Overlay(File):
             return
         self.text.blankOutDifferences(other_file.text)
 
-        self.words = self.text.words + self.data.words + self.rodata.words + self.bss.words + self.header + self.reloc.words
+        self.words = self.text.words + self.data.words + self.rodata.words + self.bss.words + self.header + self.reloc.words + self.tail
         self.updateBytes()
         
-        other_file.words = other_file.text.words + other_file.data.words  + other_file.rodata.words + other_file.bss.words + other_file.header + other_file.reloc.words
+        other_file.words = other_file.text.words + other_file.data.words  + other_file.rodata.words + other_file.bss.words + other_file.header + other_file.reloc.words + other_file.tail
         other_file.updateBytes()
 
     def relocate(self, allocatedVRamAddress: int, vRamAddress: int):
