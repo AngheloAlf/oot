@@ -7,6 +7,7 @@ import os
 import hashlib
 import json
 import struct
+from typing import List
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = script_dir + "/.."
@@ -37,7 +38,8 @@ class File:
     def __init__(self, array_of_bytes):
         self.bytes = array_of_bytes
         self.size = len(self.bytes)
-        words = str(self.size//4)
+        self.sizew = self.size//4
+        words = str(self.sizew)
         big_endian_format = ">" + words + "I"
         self.words = struct.unpack_from(big_endian_format, self.bytes, 0)
 
@@ -76,6 +78,95 @@ class File:
 
         return result
 
+    def blankOutDifferences(self, other_file: File):
+        pass
+
+
+class Instruction:
+    def __init__(self, instr: int):
+        self.instr = instr
+        self.opcode = (instr >> 26) & 0x3F
+        self.baseRegister = (instr >> 21) & 0x1F # rs
+        self.rt = (instr >> 16) & 0x1F
+        self.immediate = (instr >> 16) & 0xFFFF
+
+    def isLUI(self):
+        return self.opcode == (0x3C >> 2)
+    def isADDIU(self):
+        return self.opcode == (0x24 >> 2)
+
+    def sameBaseRegister(self, other: Instruction):
+        return self.baseRegister == other.baseRegister
+
+    def blankOut(self):
+        self.baseRegister = 0
+        self.rt = 0
+        self.immediate = 0
+
+        self.instr = self.opcode << 26
+
+class Text(File):
+    def __init__(self, array_of_bytes):
+        super().__init__(array_of_bytes)
+
+        self.instructions: List[Instruction] = list()
+        for word in self.words:
+            self.instructions.append(Instruction(word))
+        self.nInstr = len(self.instructions)
+
+    def compareToFile(self, other_file: File, args):
+        result = super().compareToFile(other_file, args)
+        # TODO
+        return result
+
+    def blankOutDifferences(self, other_file: File):
+        super().blankOutDifferences(other_file)
+        if not isinstance(other_file, Text):
+            return
+
+        lui_found = False
+        lui_pos = 0
+        lui_1_register = 0
+        lui_2_register = 0
+        for i in range(min(self.nInstr, other_file.nInstr)):
+            instr1 = self.instructions[i]
+            instr2 = other_file.instructions[i]
+            if not lui_found:
+                if instr1.isLUI() and instr2.isLUI():
+                    lui_found = True
+                    lui_pos = i
+                    lui_1_register = instr1.rt
+                    lui_2_register = instr2.rt
+            else:
+                if instr1.isADDIU() and instr2.isADDIU():
+                    if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
+                        instr1.blankOut()
+                        instr2.blankOut()
+                        self.instructions[lui_pos].blankOut() # lui
+                        other_file.instructions[lui_pos].blankOut() # lui
+            if i + 5 > lui_pos:
+                lui_found = False
+
+
+class RelocEntry:
+    def __init__(self, entry: int):
+        self.sectionId = entry >> 30
+        self.relocType = (entry >> 24) & 0x3F
+        self.offset = entry & 0x00FFFFFF
+
+class Reloc(File):
+    def __init__(self, array_of_bytes):
+        super().__init__(array_of_bytes)
+
+        self.entries: List[RelocEntry] = list()
+        for word in self.words:
+            self.entries.append(RelocEntry(word))
+        self.nRelocs = len(self.entries)
+
+    def compareToFile(self, other_file: File, args):
+        result = super().compareToFile(other_file, args)
+        # TODO
+        return result
 
 class Overlay(File):
     def __init__(self, array_of_bytes):
@@ -84,7 +175,7 @@ class Overlay(File):
         seekup = self.words[-1]
         self.headerBPos = self.size - seekup
         self.headerWPos = self.headerBPos//4
-        
+
         text_size = self.words[self.headerWPos]
         data_size = self.words[self.headerWPos+1]
         rodata_size = self.words[self.headerWPos+2]
@@ -94,7 +185,7 @@ class Overlay(File):
 
         start = 0
         end = text_size
-        self.text = File(self.bytes[start:end])
+        self.text = Text(self.bytes[start:end])
 
         start += text_size
         end += data_size
@@ -114,7 +205,8 @@ class Overlay(File):
 
         start += header_size
         end += reloc_size
-        self.reloc = File(self.bytes[start:end])
+        self.reloc = Reloc(self.bytes[start:end])
+
 
     def compareToFile(self, other_file: File, args):
         result = super().compareToFile(other_file, args)
@@ -129,6 +221,33 @@ class Overlay(File):
             }
 
         return result
+
+    def blankOutDifferences(self, other_file: File):
+        super().blankOutDifferences(other_file)
+        if not isinstance(other_file, Overlay):
+            return
+        self.text.blankOutDifferences(other_file.text)
+
+    def relocate(self, allocatedVRamAddress: int, vRamAddress: int):
+        allocu32 = allocatedVRamAddress
+
+        sections = [0, 0, 0, 0]
+        sections[0] = 0
+        sections[1] = allocu32
+        sections[2] = allocu32 + self.text.size
+        sections[3] = sections[2] + self.data.size
+
+        for reloc in self.reloc.entries:
+            relocDataPtr = reloc.sectionId
+            # relocData = *relocDataPtr
+            if reloc.relocType == 2:
+                pass
+            elif reloc.relocType == 4:
+                pass
+            elif reloc.relocType == 5:
+                pass
+            elif reloc.relocType == 6:
+                pass
 
 
 def print_result_different(comparison, indentation=0):
@@ -171,6 +290,8 @@ def compare_baseroms(args, filelist):
         else:
             file_one = File(file_one_data)
             file_two = File(file_two_data)
+
+        file_one.blankOutDifferences(file_two)
 
         comparison = file_one.compareToFile(file_two, args)
 
@@ -254,6 +375,8 @@ def compare_to_csv(args, filelist):
             else:
                 file_one = File(file_one_data)
                 file_two = File(file_two_data)
+
+            file_one.blankOutDifferences(file_two)
 
             comparison = file_one.compareToFile(file_two, args)
             equal = comparison["equal"]
