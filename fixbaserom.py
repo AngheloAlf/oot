@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from os import path
 import argparse
 import sys
@@ -11,7 +13,7 @@ VERSIONS_HASHES = {
     "NTSC J 1.0 RC":    None,
     "NTSC 1.0":         "5bd1fe107bf8106b2ab6650abecd54d6", # Need to double check.
     "NTSC J 1.0":       None,
-    "NTSC 1.1":         None,
+    "NTSC 1.1":         "721fdcc6f5f34be55c43a807f2a16af4", # Need to double check.
     "NTSC J 1.1":       None,
     "PAL 1.0":          "e040de91a74b61e3201db0e2323f768a",
     "NTSC 1.2":         None,
