@@ -19,8 +19,8 @@ FILE_TABLE_OFFSET = {
     "PAL 1.0":      0x07950,
     "NTSC 1.2":     0x07960,
     "PAL 1.1":      0x07950,
-    "JAP GC":       0x07170,
-    "JAP MQ":       0x07170,
+    "JP GC":        0x07170,
+    "JP MQ":        0x07170,
     "USA GC":       0x07170,
     "USA MQ":       0x07170,
     "PAL GC DBG":   0x0,
@@ -28,7 +28,7 @@ FILE_TABLE_OFFSET = {
     "PAL GC DBG2":  0x0,
     "PAL GC":       0x07170,
     "PAL MQ":       0x07170,
-    "JAP GC 2":     0x07170, # Zelda collection
+    "JP GC CE":     0x07170, # Zelda collection
     "CHI IQUE":     0x0B7A0,
     "TCHI IQUE":    0x0B240
 }
@@ -45,8 +45,8 @@ FILE_NAMES: Dict[str, List[str] | None] = {
     "PAL 1.0":      None,
     "NTSC 1.2":     None,
     "PAL 1.1":      None,
-    "JAP GC":       None,
-    "JAP MQ":       None,
+    "JP GC":        None,
+    "JP MQ":        None,
     "USA GC":       None,
     "USA MQ":       None,
     "PAL GC DBG":   None,
@@ -54,7 +54,7 @@ FILE_NAMES: Dict[str, List[str] | None] = {
     "PAL GC DBG2":  None,
     "PAL GC":       None,
     "PAL MQ":       None,
-    "JAP CE":       None, # Zelda collector's edition
+    "JP GC CE":     None, # Zelda collector's edition
     "CHI IQUE":     None,
     "TCHI IQUE":    None
 }
@@ -79,8 +79,9 @@ def readFilelists():
     FILE_NAMES["USA MQ"] = readFile("filelists/filelist_usa_mq.txt")
     FILE_NAMES["NTSC 1.0"] = readFile("filelists/filelist_ntsc_1.0.txt")
     FILE_NAMES["PAL 1.0"] = readFile("filelists/filelist_pal_1.0.txt")
+    FILE_NAMES["JP GC CE"] = readFile("filelists/filelist_jp_gc_ce.txt")
 
-    FILE_NAMES["JAP MQ"] = FILE_NAMES["USA MQ"]
+    FILE_NAMES["JP MQ"] = FILE_NAMES["USA MQ"]
 
     # Unconfirmed
     FILE_NAMES["NTSC 1.0 RC"] = FILE_NAMES["NTSC 1.0"]

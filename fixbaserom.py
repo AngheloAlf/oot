@@ -20,8 +20,8 @@ VERSIONS_HASHES = {
     "NTSC J 1.2":       None,
     "PAL 1.1":          "d714580dd74c2c033f5e1b6dc0aeac77", # Need to double check.
     "PAL WII 1.1":      None,
-    "JAP GC":           None,
-    "JAP MQ":           None,
+    "JP GC":            None,
+    "JP MQ":            None,
     "USA GC":           None,
     "USA MQ":           None,
     "PAL GC DBG":       None,
@@ -29,7 +29,7 @@ VERSIONS_HASHES = {
     "PAL GC DBG2":      None,
     "PAL GC":           None,
     "PAL MQ":           "1618403427e4344a57833043db5ce3c3", # I think it's right.
-    "JAP GC 2":         None, # Zelda collection
+    "JP GC CE":         "0c13e0449a28ea5b925cdb8af8d29768", # Zelda collection
     "CHI IQUE":         None,
     "TCHI IQUE":        None
 }
