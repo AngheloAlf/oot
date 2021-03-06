@@ -12,11 +12,15 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 root_dir = script_dir + "/.."
 if not script_dir.endswith("/tools"):
     root_dir = script_dir
-baserom_path = root_dir + "/baserom"
+baserom_path = root_dir + "/baserom_"
 
 
 def get_str_hash(byte_array):
     return str(hashlib.md5(byte_array).hexdigest())
+
+def readFile(filepath):
+    with open(filepath) as f:
+        return [x.strip() for x in f.readlines()]
 
 def readJson(filepath):
     with open(filepath) as f:
@@ -40,7 +44,7 @@ class File:
     def getHash(self):
         return get_str_hash(self.bytes)
 
-    def compareToFile(self, other_file: File):
+    def compareToFile(self, other_file: File, args):
         hash_one = self.getHash()
         hash_two = other_file.getHash()
 
@@ -62,6 +66,12 @@ class File:
 
             for i in range(min_len//4):
                 if self.words[i] != other_file.words[i]:
+                    if args.ignore80:
+                        if ((self.words[i] >> 24) & 0xFF) == 0x80 and ((other_file.words[i] >> 24) & 0xFF) == 0x80:
+                            continue
+                    if args.ignore06:
+                        if ((self.words[i] >> 24) & 0xFF) == 0x06 and ((other_file.words[i] >> 24) & 0xFF) == 0x06:
+                            continue
                     result["diff_words"] += 1
 
         return result
@@ -106,16 +116,16 @@ class Overlay(File):
         end += reloc_size
         self.reloc = File(self.bytes[start:end])
 
-    def compareToFile(self, other_file: File):
-        result = super().compareToFile(other_file)
+    def compareToFile(self, other_file: File, args):
+        result = super().compareToFile(other_file, args)
 
         if isinstance(other_file, Overlay):
             result["ovl"] = {
-                "text": self.text.compareToFile(other_file.text),
-                "data": self.data.compareToFile(other_file.data),
-                "rodata": self.rodata.compareToFile(other_file.rodata),
-                "bss": self.bss.compareToFile(other_file.bss),
-                "reloc": self.reloc.compareToFile(other_file.reloc),
+                "text": self.text.compareToFile(other_file.text, args),
+                "data": self.data.compareToFile(other_file.data, args),
+                "rodata": self.rodata.compareToFile(other_file.rodata, args),
+                "bss": self.bss.compareToFile(other_file.bss, args),
+                "reloc": self.reloc.compareToFile(other_file.reloc, args),
             }
 
         return result
@@ -136,13 +146,9 @@ def compare_baseroms(args, filelist):
     equals = 0
     different = 0
 
-    for filedata in filelist["files"]:
-        filename = filedata["name"]
-        filepath_one = os.path.join(baserom_path, filename)
-        filepath_two = os.path.join(args.other_baserom, filename)
-
-        if args.filetype != "all" and args.filetype != filedata["type"]:
-            continue
+    for filename in filelist:
+        filepath_one = os.path.join(baserom_path + args.version1, filename)
+        filepath_two = os.path.join(baserom_path + args.version2, filename)
 
         if not os.path.exists(filepath_one):
             missing_in_one.add(filename)
@@ -159,14 +165,14 @@ def compare_baseroms(args, filelist):
         file_one_data = read_file_as_bytearray(filepath_one)
         file_two_data = read_file_as_bytearray(filepath_two)
 
-        if filedata["type"] == "Overlay":
-            file_one = Overlay(file_one_data)
-            file_two = Overlay(file_two_data)
-        else:
-            file_one = File(file_one_data)
-            file_two = File(file_two_data)
+        # if "Overlay":
+        #    file_one = Overlay(file_one_data)
+        #    file_two = Overlay(file_two_data)
+        # else:
+        file_one = File(file_one_data)
+        file_two = File(file_two_data)
 
-        comparison = file_one.compareToFile(file_two)
+        comparison = file_one.compareToFile(file_two, args)
 
         if comparison["equal"]:
             equals += 1
@@ -191,7 +197,7 @@ def compare_baseroms(args, filelist):
                             print(f"\t\t{section_name} not OK")
                             print_result_different(section, 3)
 
-    total = len(filelist["files"])
+    total = len(filelist)
     if total > 0:
         print()
         if args.print in ("all", "equals"):
@@ -206,23 +212,28 @@ def compare_baseroms(args, filelist):
 def compare_to_csv(args, filelist):
     index = -1
 
-    print(f"Index,File,Are equals,Size in {args.column1},Size in {args.column2},Size proportion,Size difference,Bytes different,Words different", end="")
-    if args.filetype == "Overlay":
-        print(f",text: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
-        print(f",data: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
-        print(f",rodata: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
+    column1 = args.version1 if args.column1 is None else args.column1
+    column2 = args.version2 if args.column2 is None else args.column2
+
+    print(f"Index,File,Are equals,Size in {column1},Size in {column2},Size proportion,Size difference,Bytes different,Words different")
+    #if args.filetype == "Overlay":
+    #    print(f",text: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
+    #    print(f",data: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
+    #    print(f",rodata: Size in {args.column1},Size in {args.column2},Size difference,Words different", end="")
 
     print()
 
-    for filedata in filelist["files"]:
-        filename = filedata["name"]
+    for filename in filelist:
+        filepath_one = os.path.join(baserom_path + args.version1, filename)
+        filepath_two = os.path.join(baserom_path + args.version2, filename)
+
         index += 1
 
-        if args.filetype != "all" and args.filetype != filedata["type"]:
-            continue
+        #if args.filetype != "all" and args.filetype != filedata["type"]:
+        #    continue
 
-        file_one_data = read_file_as_bytearray(os.path.join(baserom_path, filename))
-        file_two_data = read_file_as_bytearray(os.path.join(args.other_baserom, filename))
+        file_one_data = read_file_as_bytearray(os.path.join(filepath_one, filename))
+        file_two_data = read_file_as_bytearray(os.path.join(filepath_two, filename))
 
         equal = ""
         len_one = ""
@@ -243,14 +254,14 @@ def compare_to_csv(args, filelist):
             len_two = "" if is_missing_in_two else len(file_two_data)
 
         else:
-            if filedata["type"] == "Overlay":
-                file_one = Overlay(file_one_data)
-                file_two = Overlay(file_two_data)
-            else:
-                file_one = File(file_one_data)
-                file_two = File(file_two_data)
+            # if "Overlay":
+            #    file_one = Overlay(file_one_data)
+            #    file_two = Overlay(file_two_data)
+            # else:
+            file_one = File(file_one_data)
+            file_two = File(file_two_data)
 
-            comparison = file_one.compareToFile(file_two)
+            comparison = file_one.compareToFile(file_two, args)
 
             if comparison["equal"] and args.print not in ("all", "equals"):
                 continue
@@ -266,13 +277,13 @@ def compare_to_csv(args, filelist):
             diff_words = comparison["diff_words"]
 
         print(f'{index},{filename},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}', end="")
-        if filedata["type"] == "Overlay" and len(comparison) > 0:
-            for section_name in ["text", "data", "rodata"]:
-                section = comparison["ovl"][section_name]
-                len_one = section["size_one"]
-                len_two = section["size_two"]
-                diff_words = section["diff_words"]
-                print(f',{len_one},{len_two},{len_one-len_two},{diff_words}', end="")
+        #if filedata["type"] == "Overlay" and len(comparison) > 0:
+        #    for section_name in ["text", "data", "rodata"]:
+        #        section = comparison["ovl"][section_name]
+        #        len_one = section["size_one"]
+        #        len_two = section["size_two"]
+        #        diff_words = section["diff_words"]
+        #        print(f',{len_one},{len_two},{len_one-len_two},{diff_words}', end="")
         print()
 
 
@@ -282,16 +293,20 @@ def main():
     epilog = """\
     """
     parser = argparse.ArgumentParser(description=description, epilog=epilog, formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("other_baserom", help="Path to the baserom folder that will be compared against.")
+    parser.add_argument("version1", help="A version of the game to compare. The files will be read from baserom_version1. For example: baserom_pal_mq_dbg")
+    parser.add_argument("version2", help="A version of the game to compare. The files will be read from baserom_version2. For example: baserom_pal_mq")
     parser.add_argument("filelist", help="Path to filelist to use.")
     parser.add_argument("--print", help="Select what will be printed for a cleaner output. Default is 'all'.", choices=["all", "equals", "diffs", "missing"], default="all")
-    parser.add_argument("--filetype", help="Filters by filetype. Default: all",  choices=["all", "Unknown", "Overlay", "Object", "Texture", "Room", "Scene", "Other"], default="all")
+    # parser.add_argument("--filetype", help="Filters by filetype. Default: all",  choices=["all", "Unknown", "Overlay", "Object", "Texture", "Room", "Scene", "Other"], default="all")
     parser.add_argument("--csv", help="Print the output in csv format instead.", action="store_true")
+    parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true")
+    parser.add_argument("--ignore06", help="Ignores words differences that starts in 0x06XXXXXX", action="store_true")
     parser.add_argument("--column1", help="Name for column one (baserom) in the csv.", default="baserom")
     parser.add_argument("--column2", help="Name for column two (other_baserom) in the csv.", default="other_baserom")
     args = parser.parse_args()
 
-    filelist = readJson(args.filelist)
+    filelist = readFile(args.filelist)
+    # filelist = readJson(args.filelist)
 
     if args.csv:
         compare_to_csv(args, filelist)
