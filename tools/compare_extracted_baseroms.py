@@ -87,6 +87,11 @@ class File:
             for i in range(min_len):
                 if self.words[i] != other_file.words[i]:
                     result["diff_words"] += 1
+                    #if isinstance(self, Text) and isinstance(other_file, Text):
+                        #eprint(f"Differing instruction: {self.instructions[i]}")
+                        #eprint(f"Differing instruction: {other_file.instructions[i]}")
+                        #eprint(f"")
+                        #pass
 
         return result
 
@@ -169,6 +174,11 @@ class Instruction:
     # JALR
     # JR
 
+    def isBranch(self) -> bool:
+        return (self.isBEQ() or self.isBEQL() or self.isBLEZ() or self.isBLEZL() 
+                or self.isBGTZ() or self.isBGTZL() or self.isBNE() or self.isBNEL() 
+                or self.isJ() or self.isJAL())
+
     def isLB(self) -> bool: # Load Byte
         return self.opcode == (0x80 >> 2) # 0b100000
     def isLBU(self) -> bool: # Load Byte Insigned
@@ -227,7 +237,7 @@ class Instruction:
     def isSDR(self) -> bool: # Store Doubleword Right
         return self.opcode == (0xB4 >> 2) # 0b101101
 
-    def isCOPz(self) -> bool:
+    def isCOPz(self) -> bool: # Coprocessor OPeration
         if (self.opcode & 0x03) == 0x00:
             return False
         return (self.opcode & 0x3C) == (0x40 >> 2) # 0b0100zz
@@ -475,7 +485,9 @@ class Text(File):
     def countSameOpcodeButDifferentArguments(self, other: Text) -> int:
         result = 0
         for i in range(min(self.nInstr, other.nInstr)):
-            if self.instructions[i].sameOpcodeButDifferentArguments(other.instructions[i]):
+            instr1 = self.instructions[i]
+            instr2 = other.instructions[i]
+            if instr1.sameOpcodeButDifferentArguments(instr2):
                 result += 1
         return result
 
@@ -494,6 +506,12 @@ class Text(File):
         for i in range(min(self.nInstr, other_file.nInstr)):
             instr1 = self.instructions[i]
             instr2 = other_file.instructions[i]
+            if args.ignore_branches:
+                if instr1.isBranch() and instr2.isBranch() and instr1.sameOpcode(instr2):
+                    instr1.blankOut()
+                    instr2.blankOut()
+                    was_updated = True
+
             if not lui_found:
                 if instr1.isLUI() and instr2.isLUI():
                     lui_found = True
@@ -517,7 +535,7 @@ class Text(File):
                         other_file.instructions[lui_pos].blankOut() # lui
                         lui_found = False
                         was_updated = True
-                elif instr1.isLWCz():
+                elif instr1.isLWCz() and instr2.isLWCz():
                     if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
                         instr1.blankOut()
                         instr2.blankOut()
@@ -525,7 +543,7 @@ class Text(File):
                         other_file.instructions[lui_pos].blankOut() # lui
                         lui_found = False
                         was_updated = True
-                elif instr1.isORI():
+                elif instr1.isORI() and instr2.isORI():
                     if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
                         instr1.blankOut()
                         instr2.blankOut()
@@ -858,6 +876,7 @@ def main():
     #parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true")
     parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true", default=True) # temporal?
     parser.add_argument("--ignore06", help="Ignores words differences that starts in 0x06XXXXXX", action="store_true")
+    parser.add_argument("--ignore-branches", help="Ignores the address of every branch, jump and jal.", action="store_true")
     parser.add_argument("--column1", help="Name for column one (baserom) in the csv.", default=None)
     parser.add_argument("--column2", help="Name for column two (other_baserom) in the csv.", default=None)
     args = parser.parse_args()
