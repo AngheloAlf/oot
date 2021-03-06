@@ -86,18 +86,28 @@ class File:
             min_len = min(self.sizew, other_file.sizew)
             for i in range(min_len):
                 if self.words[i] != other_file.words[i]:
-                    if args.ignore80:
-                        if ((self.words[i] >> 24) & 0xFF) == 0x80 and ((other_file.words[i] >> 24) & 0xFF) == 0x80:
-                            continue
-                    if args.ignore06:
-                        if ((self.words[i] >> 24) & 0xFF) == 0x06 and ((other_file.words[i] >> 24) & 0xFF) == 0x06:
-                            continue
                     result["diff_words"] += 1
 
         return result
 
-    def blankOutDifferences(self, other_file: File):
-        pass
+    def blankOutDifferences(self, other: File, args):
+        was_updated = False
+        if args.ignore80 or args.ignore06:
+            min_len = min(self.sizew, other.sizew)
+            for i in range(min_len):
+                if args.ignore80:
+                    if ((self.words[i] >> 24) & 0xFF) == 0x80 and ((other.words[i] >> 24) & 0xFF) == 0x80:
+                        self.words[i] = 0x80000000
+                        other.words[i] = 0x80000000
+                        was_updated = True
+                if args.ignore06:
+                    if ((self.words[i] >> 24) & 0xFF) == 0x06 and ((other.words[i] >> 24) & 0xFF) == 0x06:
+                        self.words[i] = 0x06000000
+                        other.words[i] = 0x06000000
+                        was_updated = True
+        if was_updated:
+            self.updateBytes()
+            other.updateBytes()
 
     def updateBytes(self):
         beWordsToBytes(self.words, self.bytes)
@@ -125,11 +135,16 @@ class Instruction:
             return False
         return (self.opcode & 0x3C) == (0xC0 >> 2)
 
-    def sameOpcode(self, other: Instruction):
+    def sameOpcode(self, other: Instruction) -> bool:
         return self.opcode == other.opcode
 
     def sameBaseRegister(self, other: Instruction):
         return self.baseRegister == other.baseRegister
+
+    def sameOpcodeButDifferentArguments(self, other: Instruction) -> bool:
+        if not self.sameOpcode(other):
+            return False
+        return self.instr != other.instr
 
     def blankOut(self):
         self.baseRegister = 0
@@ -171,6 +186,7 @@ class Text(File):
         if isinstance(other, Text):
             result["text"] = {
                 "diff_opcode": self.countDiffOpcodes(other),
+                "same_opcode_same_args": self.countSameOpcodeButDifferentArguments(other),
             }
 
         return result
@@ -178,12 +194,19 @@ class Text(File):
     def countDiffOpcodes(self, other: Text) -> int:
         result = 0
         for i in range(min(self.nInstr, other.nInstr)):
-            if self.instructions[i].opcode != other.instructions[i].opcode:
+            if not self.instructions[i].sameOpcode(other.instructions[i]):
                 result += 1
         return result
 
-    def blankOutDifferences(self, other_file: File):
-        super().blankOutDifferences(other_file)
+    def countSameOpcodeButDifferentArguments(self, other: Text) -> int:
+        result = 0
+        for i in range(min(self.nInstr, other.nInstr)):
+            if self.instructions[i].sameOpcodeButDifferentArguments(other.instructions[i]):
+                result += 1
+        return result
+
+    def blankOutDifferences(self, other_file: File, args):
+        super().blankOutDifferences(other_file, args)
         if not isinstance(other_file, Text):
             return
 
@@ -321,11 +344,12 @@ class Overlay(File):
 
         return result
 
-    def blankOutDifferences(self, other_file: File):
-        super().blankOutDifferences(other_file)
+    def blankOutDifferences(self, other_file: File, args):
+        super().blankOutDifferences(other_file, args)
         if not isinstance(other_file, Overlay):
             return
-        self.text.blankOutDifferences(other_file.text)
+
+        self.text.blankOutDifferences(other_file.text, args)
 
         self.words = self.text.words + self.data.words + self.rodata.words + self.bss.words + self.header + self.reloc.words + self.tail
         self.updateBytes()
@@ -396,7 +420,7 @@ def compare_baseroms(args, filelist):
             file_one = File(file_one_data)
             file_two = File(file_two_data)
 
-        file_one.blankOutDifferences(file_two)
+        file_one.blankOutDifferences(file_two, args)
 
         comparison = file_one.compareToFile(file_two, args)
 
@@ -443,7 +467,7 @@ def compare_to_csv(args, filelist):
 
     print(f"Index,File,Are equals,Size in {column1},Size in {column2},Size proportion,Size difference,Bytes different,Words different", end="")
     if args.overlays:
-        print(",Opcodes difference", end="")
+        print(",Opcodes difference,Same opcode but different arguments", end="")
     print(flush=True)
 
     for filename in filelist:
@@ -484,7 +508,7 @@ def compare_to_csv(args, filelist):
                 file_one = File(file_one_data)
                 file_two = File(file_two_data)
 
-            file_one.blankOutDifferences(file_two)
+            file_one.blankOutDifferences(file_two, args)
 
             comparison = file_one.compareToFile(file_two, args)
             equal = comparison["equal"]
@@ -495,7 +519,10 @@ def compare_to_csv(args, filelist):
                 continue
             len_one = comparison["size_one"]
             len_two = comparison["size_two"]
-            div = round(len_two/len_one, 3)
+            if len_one > 0:
+                div = round(len_two/len_one, 3)
+            else:
+                div = "Inf"
             size_difference = len_two - len_one
             diff_bytes = comparison["diff_bytes"]
             diff_words = comparison["diff_words"]
@@ -513,18 +540,23 @@ def compare_to_csv(args, filelist):
                 len_one = section["size_one"]
                 len_two = section["size_two"]
                 if len_one > 0 or len_two > 0:
-                    div = round(len_two/len_one, 3)
+                    if len_one > 0:
+                        div = round(len_two/len_one, 3)
+                    else:
+                        div = "Inf"
                     size_difference = len_two - len_one
                     diff_bytes = section["diff_bytes"]
                     diff_words = section["diff_words"]
-                    print(f'{index},{filename} {section_name},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words},', end="")
+                    print(f'{index},{filename} {section_name},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}', end="")
                     if "text" in section:
-                        print(section["text"]["diff_opcode"], end="")
+                        print(f',{section["text"]["diff_opcode"]},{section["text"]["same_opcode_same_args"]}', end="")
+                    else:
+                        print(",,", end="")
                     print()
         else:
             print(f'{index},{filename},{equal},{len_one},{len_two},{div},{size_difference},{diff_bytes},{diff_words}', end="")
             if args.overlays:
-                print(",", end="")
+                print(",,", end="")
             print()
 
 
@@ -541,7 +573,8 @@ def main():
     # parser.add_argument("--filetype", help="Filters by filetype. Default: all",  choices=["all", "Unknown", "Overlay", "Object", "Texture", "Room", "Scene", "Other"], default="all")
     parser.add_argument("--overlays", help="Treats each section of the overalays as separate files.", action="store_true")
     parser.add_argument("--csv", help="Print the output in csv format instead.", action="store_true")
-    parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true")
+    #parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true")
+    parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true", default=True) # temporal?
     parser.add_argument("--ignore06", help="Ignores words differences that starts in 0x06XXXXXX", action="store_true")
     parser.add_argument("--column1", help="Name for column one (baserom) in the csv.", default=None)
     parser.add_argument("--column2", help="Name for column two (other_baserom) in the csv.", default=None)
