@@ -280,13 +280,14 @@ typedef struct {
     /* 0x004 */ s16 y;
     /* 0x006 */ s16 z;
     /* 0x008 */ u8  unk_8;
-} Struct_800A598C_2; // size = 0xA
+    /* 0x00A */ u16  unk_A; // Guessing by alignment.
+} Struct_800A598C_2; // size = 0x0C
 
 typedef struct {
-    /* 0x000 */ u16 unk_0;
+    /* 0x000 */ u16 unk_0; // Length of unk_8
     /* 0x002 */ u16 unk_2;
     /* 0x004 */ u16 unk_4;
-    /* 0x008 */ Struct_800A57C0* unk_8;
+    /* 0x008 */ Struct_800A57C0* unk_8; // Array
     /* 0x00C */ Struct_800A598C_2* unk_C;
 } Struct_800A598C; // size = 0x10
 
