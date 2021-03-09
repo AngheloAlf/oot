@@ -4,7 +4,7 @@
 void func_800A6460(GlobalContext* globalCtx, PSkinAwb* skin, s32 limbIndex) {
     s32 i;
     SkinLimb** skeleton = SEGMENTED_TO_VIRTUAL(skin->skeletonHeader->segment);
-    Struct_800A5E28* temp_v1 = SEGMENTED_TO_VIRTUAL(((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment);
+    Struct_800A5E28* temp_v1 = SEGMENTED_TO_VIRTUAL(((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment.struct_A5E28);
     Struct_800A598C* temp_v0 = SEGMENTED_TO_VIRTUAL(temp_v1->unk_4);
     Struct_800A598C* phi_s0;
     Struct_800A57C0* temp_s1;
@@ -47,13 +47,13 @@ void func_800A663C(GlobalContext* globalCtx, PSkinAwb* skin, SkeletonHeader* ske
         SkinAvb* avbEntry = &skin->avbTbl[i];
         SkinLimb* limb = SEGMENTED_TO_VIRTUAL(skeleton[i]);
 
-        if ((limb->unk_8 != 4) || (limb->segment == NULL)) {
+        if ((limb->unk_8 != 4) || (limb->segment.segment == NULL)) {
             avbEntry->unk_0 = 0;
 
             avbEntry->buf[0] = NULL;
             avbEntry->buf[1] = NULL;
         } else {
-            Struct_800A5E28* temp_s1 = SEGMENTED_TO_VIRTUAL(((void)0, limb->segment));
+            Struct_800A5E28* temp_s1 = SEGMENTED_TO_VIRTUAL(((void)0, limb->segment.struct_A5E28));
 
             avbEntry->unk_0 = 0;
             avbEntry->buf[0] = ZeldaArena_MallocDebug(temp_s1->unk_0 * sizeof(Vtx), "../z_skin_awb.c", 235);

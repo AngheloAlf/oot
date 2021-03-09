@@ -9,6 +9,7 @@ extern u32 link_animetion_segment;
 struct GlobalContext;
 struct Actor;
 struct SkelAnime;
+struct Struct_800A5E28;
 
 #define LINK_ANIMATION_OFFSET(addr, offset) \
     (((u32)&_link_animetionSegmentRomStart) + ((u32)addr) - ((u32)&link_animetion_segment) + ((u32)offset))
@@ -51,7 +52,11 @@ typedef struct {
     /* 0x06 */ u8 child;
     /* 0x07 */ u8 sibling;
     /* 0x08 */ s32 unk_8; // Type of data contained in segment
-    /* 0x0C */ void* segment; // Segment address of data. Currently unclear what.
+    /* 0x0C */ union {
+                   struct Struct_800A5E28* struct_A5E28; // if unk_8 == 4
+                   Gfx* dlist; // if unk_8 == 11
+                   void* segment; // Segment address of data. Currently unclear what.
+               } segment;
 } SkinLimb; // size = 0x10
 
 // Model has limbs with only rigid meshes
@@ -271,7 +276,7 @@ typedef struct {
     /* 0x006 */ s8 unk_6;
     /* 0x007 */ s8 unk_7;
     /* 0x008 */ s8 unk_8;
-    /* 0x009 */ u8 unk_9;
+    /* 0x009 */ u8 unk_9; // Almost always is 0xFF
 } Struct_800A57C0; // size = 0xA
 
 typedef struct {
@@ -280,21 +285,20 @@ typedef struct {
     /* 0x004 */ s16 y;
     /* 0x006 */ s16 z;
     /* 0x008 */ u8  unk_8;
-    /* 0x00A */ u16  unk_A; // Guessing by alignment.
 } Struct_800A598C_2; // size = 0x0C
 
 typedef struct {
     /* 0x000 */ u16 unk_0; // Length of unk_8
-    /* 0x002 */ u16 unk_2;
-    /* 0x004 */ u16 unk_4;
+    /* 0x002 */ u16 unk_2; // Length of unk_C
+    /* 0x004 */ u16 unk_4; // Usually 0 or 1. Need more testing.
     /* 0x008 */ Struct_800A57C0* unk_8; // Array
-    /* 0x00C */ Struct_800A598C_2* unk_C;
+    /* 0x00C */ Struct_800A598C_2* unk_C; // Array
 } Struct_800A598C; // size = 0x10
 
-typedef struct {
+typedef struct Struct_800A5E28 {
     /* 0x000 */ u16 unk_0;
-    /* 0x002 */ u16 unk_2;
-    /* 0x004 */ Struct_800A598C* unk_4;
+    /* 0x002 */ u16 unk_2; // Length of unk_4
+    /* 0x004 */ Struct_800A598C* unk_4; // Array
     /* 0x008 */ Gfx* unk_8;
 } Struct_800A5E28;
 

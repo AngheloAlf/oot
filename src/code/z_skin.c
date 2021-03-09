@@ -56,7 +56,7 @@ void func_800A598C(GraphicsContext* gfxCtx, PSkinAwb* skin, s32 limbIndex, s32 a
     OPEN_DISPS(gfxCtx, "../z_skin.c", 254);
 
     skeleton = (SkinLimb**)SEGMENTED_TO_VIRTUAL(skin->skeletonHeader->segment);
-    data = SEGMENTED_TO_VIRTUAL(((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment);
+    data = SEGMENTED_TO_VIRTUAL(((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment.struct_A5E28);
     temp_2 = (Struct_800A598C*)SEGMENTED_TO_VIRTUAL(data->unk_4);
 
     avb = &skin->avbTbl[limbIndex];
@@ -124,7 +124,7 @@ void func_800A5E28(GraphicsContext* gfxCtx, PSkinAwb* skin, s32 limbIndex, s32 a
 
     OPEN_DISPS(gfxCtx, "../z_skin.c", 364);
     skeleton = SEGMENTED_TO_VIRTUAL(skin->skeletonHeader->segment);
-    temp_t9 = SEGMENTED_TO_VIRTUAL(((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment);
+    temp_t9 = SEGMENTED_TO_VIRTUAL(((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment.struct_A5E28);
     if (!(arg4 & 1)) {
         func_800A598C(gfxCtx, skin, limbIndex, arg3);
     }
@@ -140,7 +140,7 @@ void func_800A5F60(GraphicsContext* gfxCtx, PSkinAwb* skin, s32 limbIndex, Gfx* 
     OPEN_DISPS(gfxCtx, "../z_skin.c", 395);
     skeleton = SEGMENTED_TO_VIRTUAL(skin->skeletonHeader->segment);
     if (arg3 == NULL) {
-        gfx = ((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment;
+        gfx = ((SkinLimb*)SEGMENTED_TO_VIRTUAL(skeleton[limbIndex]))->segment.dlist;
     }
     if (gfx != NULL) {
         Mtx* mtx = SkinMatrix_MtxFToNewMtx(gfxCtx, &D_801600C0[limbIndex]);
