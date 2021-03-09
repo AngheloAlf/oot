@@ -97,7 +97,7 @@ class File:
 
     def blankOutDifferences(self, other: File, args):
         was_updated = False
-        if args.ignore80 or args.ignore06:
+        if args.ignore80 or args.ignore06 or args.ignore04:
             min_len = min(self.sizew, other.sizew)
             for i in range(min_len):
                 if args.ignore80:
@@ -109,6 +109,11 @@ class File:
                     if ((self.words[i] >> 24) & 0xFF) == 0x06 and ((other.words[i] >> 24) & 0xFF) == 0x06:
                         self.words[i] = 0x06000000
                         other.words[i] = 0x06000000
+                        was_updated = True
+                if args.ignore04:
+                    if ((self.words[i] >> 24) & 0xFF) == 0x04 and ((other.words[i] >> 24) & 0xFF) == 0x04:
+                        self.words[i] = 0x04000000
+                        other.words[i] = 0x04000000
                         was_updated = True
         if was_updated:
             self.updateBytes()
@@ -885,6 +890,7 @@ def main():
     #parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true")
     parser.add_argument("--ignore80", help="Ignores words differences that starts in 0x80XXXXXX", action="store_true", default=True) # temporal?
     parser.add_argument("--ignore06", help="Ignores words differences that starts in 0x06XXXXXX", action="store_true")
+    parser.add_argument("--ignore04", help="Ignores words differences that starts in 0x04XXXXXX", action="store_true")
     parser.add_argument("--ignore-branches", help="Ignores the address of every branch, jump and jal.", action="store_true")
     parser.add_argument("--column1", help="Name for column one (baserom) in the csv.", default=None)
     parser.add_argument("--column2", help="Name for column two (other_baserom) in the csv.", default=None)
