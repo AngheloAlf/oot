@@ -285,7 +285,7 @@ typedef struct {
     /* 0x004 */ s16 y;
     /* 0x006 */ s16 z;
     /* 0x008 */ u8  unk_8;
-} Struct_800A598C_2; // size = 0x0C
+} Struct_800A598C_2; // size = 0x0A
 
 typedef struct {
     /* 0x000 */ u16 unk_0; // Length of unk_8
@@ -300,7 +300,7 @@ typedef struct Struct_800A5E28 {
     /* 0x002 */ u16 unk_2; // Length of unk_4
     /* 0x004 */ Struct_800A598C* unk_4; // Array
     /* 0x008 */ Gfx* unk_8;
-} Struct_800A5E28;
+} Struct_800A5E28; // size = 0x0C
 
 typedef struct {
     /* 0x000 */ u8 unk_0;
