@@ -141,11 +141,20 @@ class Instruction:
         self.opcode = (instr >> 26) & 0x3F
         self.baseRegister = (instr >> 21) & 0x1F # rs
         self.rt = (instr >> 16) & 0x1F # usually the destiny of the operation
-        self.immediate = (instr) & 0xFFFF
+        self.rd = (instr >> 11) & 0x1F
+        self.sa = (instr >> 6) & 0x1F
+        self.function = (instr >> 0) & 0x3F
 
     @property
-    def instr(self):
+    def instr(self) -> int:
         return (self.opcode << 26) | (self.baseRegister << 21) | (self.rt << 16) | (self.immediate)
+
+    @property
+    def immediate(self) -> int:
+        return (self.rd << 11) | (self.sa << 6) | (self.function)
+    @property
+    def instr_index(self) -> int:
+        return (self.baseRegister << 21) | (self.rt << 16) | (self.immediate)
 
     def isLUI(self) -> bool: # Load Upper Immediate
         return self.opcode == (0x3C >> 2) # 0b001111
@@ -321,10 +330,11 @@ class Instruction:
     def blankOut(self):
         self.baseRegister = 0
         self.rt = 0
-        self.immediate = 0
+        self.rd = 0
+        self.sa = 0
+        self.function = 0
 
     def getOpcodeName(self) -> str:
-        # TODO: 0x10 (COP0), 
         if self.isLUI():
             return "LUI"
         elif self.isADDIU():
@@ -507,7 +517,7 @@ class Instruction:
         return hex(register)
 
     def __str__(self) -> str:
-        opcode = self.getOpcodeName().lower().ljust(8, ' ')
+        opcode = self.getOpcodeName().lower().ljust(12, ' ')
         baseRegister = (self.getRegisterName(self.baseRegister) + ",").ljust(6, ' ')
         rt = (self.getRegisterName(self.rt) + ",").ljust(6, ' ')
         immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
@@ -517,10 +527,14 @@ class Instruction:
         return self.__str__()
 
 class InstructionSpecial(Instruction):
-    pass
+    def getOpcodeName(self) -> str:
+        opcode = "0x" + hex(self.function).strip("0x").zfill(2)
+        return f"SPECIAL {opcode}"
 
 class InstructionRegimm(Instruction):
-    pass
+    def getOpcodeName(self) -> str:
+        opcode = "0x" + hex(self.rt).strip("0x").zfill(2)
+        return f"REGIMM {opcode}"
 
 def wordToInstruction(word: int) -> Instruction:
     if ((word >> 26) & 0xFF) == 0x00:
