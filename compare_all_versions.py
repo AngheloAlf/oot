@@ -894,9 +894,10 @@ def getHashesOfFiles(args, filesPath: List[str]) -> List[str]:
     hashList = []
     for path in filesPath:
         f = readFileAsBytearray(path)
-        fHash = getStrHash(removePointers(args, f))
-        line = fHash + " " + path # To be consistent with runCommandGetOutput("md5sum", md5arglist)
-        hashList.append(line)
+        if len(f) != 0:
+            fHash = getStrHash(removePointers(args, f))
+            line = fHash + " " + path # To be consistent with runCommandGetOutput("md5sum", md5arglist)
+            hashList.append(line)
     return hashList
 
 def compareFileAcrossVersions(args, versionsList: List[str], filename: str) -> List[str]:
@@ -928,7 +929,7 @@ def compareFileAcrossVersions(args, versionsList: List[str], filename: str) -> L
 
     row = []
     for ver in versionsList:
-        abbr = versions[ver]
+        abbr = versions.get(ver, None)
 
         if abbr in filesHashes:
             fHash = filesHashes[abbr]
@@ -938,8 +939,6 @@ def compareFileAcrossVersions(args, versionsList: List[str], filename: str) -> L
     return row
 
 def compareOverlayAcrossVersions(args, versionsList: List[str], filename: str) -> List[str]:
-    overlays = []
-
     filesHashes = dict() # "NN0": "339614255f179a1e308d954d8f7ffc0a"
     firstFilePerHash = dict() # "339614255f179a1e308d954d8f7ffc0a": "NN0"
 
@@ -947,26 +946,30 @@ def compareOverlayAcrossVersions(args, versionsList: List[str], filename: str) -
     for version in versionsList:
         path = "baserom_" + version + "/" + filename
 
-        ov = Overlay(readFileAsBytearray(path))
-        ov.removePointers()
-        if args.savetofile:
-            new_file_path = os.path.join(args.savetofile, version + "_" + filename)
-            ov.saveToFile(new_file_path)
-        overlays.append(ov)
+        array_of_bytes = readFileAsBytearray(path)
+        if len(array_of_bytes) > 0:
+            if filename.startswith("ovl_"):
+                f = Overlay(array_of_bytes)
+            else:
+                f = File(array_of_bytes)
+            f.removePointers()
+            if args.savetofile:
+                new_file_path = os.path.join(args.savetofile, version + "_" + filename)
+                f.saveToFile(new_file_path)
 
-        abbr = getVersionAbbr(path)
-        filehash = ov.getHash()
+            abbr = getVersionAbbr(path)
+            filehash = f.getHash()
 
-        # Map each abbreviation and its hash.
-        filesHashes[abbr] = filehash
+            # Map each abbreviation to its hash.
+            filesHashes[abbr] = filehash
 
-        # Find out where in which version this hash appeared for first time.
-        if filehash not in firstFilePerHash:
-            firstFilePerHash[filehash] = abbr
+            # Find out where in which version this hash appeared for first time.
+            if filehash not in firstFilePerHash:
+                firstFilePerHash[filehash] = abbr
 
     row = []
-    for ver in versionsList:
-        abbr = versions[ver]
+    for version in versionsList:
+        abbr = versions[version]
 
         if abbr in filesHashes:
             fHash = filesHashes[abbr]
