@@ -154,7 +154,8 @@ class Instruction:
     def isLW(self) -> bool: # Load Word
         return self.opcode == (0x8C >> 2) # 0b100011
     def isLWCz(self) -> bool: # Load Word to Coprocessor
-        if (self.opcode & 0x03) == 0x00:
+        zz = self.opcode & 0x03
+        if zz == 0x00 or zz == 0x03:
             return False
         return (self.opcode & 0x3C) == (0xC0 >> 2) # 0b1100zz
     def isANDI(self) -> bool:
@@ -231,10 +232,10 @@ class Instruction:
         return self.opcode == (0x98 >> 2) # 0b100110
 
     def isLWU(self) -> bool: # Load Word Unsigned
-        return self.opcode == (0x94 >> 2) # 0b100111
+        return self.opcode == (0x9C >> 2) # 0b100111
 
-    # PREF # Prefetch
-    # 0b110011
+    def isPREF(self) -> bool: # Prefetch
+        return self.opcode == (0xCC >> 2) # 0b110011
 
     def isSB(self) -> bool: # Store Byte
         return self.opcode == (0xA0 >> 2) # 0b101000
@@ -256,8 +257,8 @@ class Instruction:
         return self.opcode == (0xB4 >> 2) # 0b101101
 
     def isCOPz(self) -> bool: # Coprocessor OPeration
-        if (self.opcode & 0x03) == 0x00:
-            return False
+        #if (self.opcode & 0x03) == 0x00:
+        #    return False
         return (self.opcode & 0x3C) == (0x40 >> 2) # 0b0100zz
 
     def isSH(self) -> bool: # Store Halfword
@@ -285,7 +286,8 @@ class Instruction:
     def isSW(self) -> bool: # Store Word
         return self.opcode == (0xAC >> 2) # 0b101011
     def isSWCz(self) -> bool: # Store Word from Coprocessor z
-        if (self.opcode & 0x03) == 0x00:
+        zz = self.opcode & 0x03
+        if zz == 0x00 or zz == 0x03:
             return False
         return (self.opcode & 0x3C) == (0xE0 >> 2) # 0b1110zz
 
@@ -304,6 +306,7 @@ class Instruction:
     def isREGIMM(self) -> bool:
         return self.opcode == 0x01 # 0b000001
 
+
     def sameOpcode(self, other: Instruction) -> bool:
         return self.opcode == other.opcode
 
@@ -321,6 +324,7 @@ class Instruction:
         self.immediate = 0
 
     def getOpcodeName(self) -> str:
+        # TODO: 0x10 (COP0), 
         if self.isLUI():
             return "LUI"
         elif self.isADDIU():
@@ -328,7 +332,7 @@ class Instruction:
         elif self.isLW():
             return "LW"
         elif self.isLWCz():
-            return f"LWC{self.opcode&0x3}"
+            return f"LWC{self.opcode&0x03}"
         elif self.isANDI():
             return "ANDI"
         elif self.isORI():
@@ -396,6 +400,9 @@ class Instruction:
         elif self.isLWU():
             return "LWU"
 
+        elif self.isPREF():
+            return "PREF"
+
         elif self.isSB():
             return "SB"
         elif self.isSC():
@@ -406,7 +413,7 @@ class Instruction:
             return "SD"
 
         elif self.isSDCz():
-            return f"SDC{self.opcode&0x3}"
+            return f"SDC{self.opcode&0x03}"
 
         elif self.isSDL():
             return "SDL"
@@ -414,7 +421,10 @@ class Instruction:
             return "SDR"
 
         elif self.isCOPz():
-            return f"COP{self.opcode&0x3}"
+            zz = self.opcode&0x03
+            if zz == 0x03:
+                return "COP1X"
+            return f"COP{zz}"
 
         elif self.isSH():
             return "SH"
@@ -441,7 +451,7 @@ class Instruction:
         elif self.isSW():
             return "SW"
         elif self.isSWCz():
-            return f"SWC{self.opcode&0x3}"
+            return f"SWC{self.opcode&0x03}"
 
         elif self.isSWL():
             return "SWL"
@@ -506,13 +516,27 @@ class Instruction:
     def __repr__(self) -> str:
         return self.__str__()
 
+class InstructionSpecial(Instruction):
+    pass
+
+class InstructionRegimm(Instruction):
+    pass
+
+def wordToInstruction(word: int) -> Instruction:
+    if ((word >> 26) & 0xFF) == 0x00:
+        return InstructionSpecial(word)
+    if ((word >> 26) & 0xFF) == 0x01:
+        return InstructionRegimm(word)
+    return Instruction(word)
+
+
 class Text(File):
     def __init__(self, array_of_bytes):
         super().__init__(array_of_bytes)
 
         self.instructions: List[Instruction] = list()
         for word in self.words:
-            self.instructions.append(Instruction(word))
+            self.instructions.append(wordToInstruction(word))
 
     @property
     def nInstr(self):
