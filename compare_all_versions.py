@@ -571,6 +571,80 @@ class Instruction:
         return self.__str__()
 
 class InstructionSpecial(Instruction):
+    SpecialOpcodes = {
+        0b000_000: "SLL",
+        0b000_001: "MOVCI",
+        0b000_010: "SRL",
+        0b000_011: "SRA",
+        0b000_100: "SLLV",
+        # 0b000_101: "",
+        0b000_110: "SRLV",
+        0b000_111: "SRAV",
+
+        0b001_000: "JR",
+        0b001_001: "JALR",
+        0b001_010: "MOVZ",
+        0b001_011: "MOVN",
+        0b001_100: "SYSCALL",
+        0b001_101: "BREAK",
+        # 0b001_110: "",
+        0b001_111: "SYNC",
+
+        0b010_000: "MFHI",
+        0b010_001: "MTHI",
+        0b010_010: "MFLO",
+        0b010_011: "MTLO",
+        0b010_100: "DSLLV",
+        # 0b010_101: "",
+        0b010_110: "DSRLV",
+        0b010_111: "DSRAV",
+
+        0b011_000: "MULT",
+        0b011_001: "MULTU",
+        0b011_010: "DIV",
+        0b011_011: "DIVU",
+        0b011_100: "DMULT",
+        0b011_101: "DMULTU",
+        0b011_110: "DDIV",
+        0b011_111: "DDIVU",
+
+        0b100_000: "ADD",
+        0b100_001: "ADDU",
+        0b100_010: "SUB",
+        0b100_011: "SUBU",
+        0b100_100: "AND",
+        0b100_101: "OR",
+        0b100_110: "XOR",
+        0b100_111: "NOR",
+
+        # 0b101_000: "",
+        # 0b101_001: "",
+        0b101_010: "SLT",
+        0b101_011: "SLTU",
+        0b101_100: "DADD",
+        0b101_101: "DADDU",
+        0b101_110: "DSUB",
+        0b101_111: "DSUBU",
+
+        0b110_000: "TGE",
+        0b110_001: "TGEU",
+        0b110_010: "TLT",
+        0b110_011: "TLTU",
+        0b110_100: "TEQ",
+        # 0b110_101: "",
+        0b110_110: "TNE",
+        # 0b110_111: "",
+
+        0b111_000: "DSLL",
+        # 0b111_001: "",
+        0b111_010: "DSRL",
+        0b111_011: "DSRA",
+        0b111_100: "DSLL32",
+        # 0b111_101: "",
+        0b111_110: "DSRL32",
+        0b111_111: "DSRA32",
+    }
+
     def isJType(self) -> bool: # OP LABEL
         return False
     def isRType(self) -> bool: # OP rd, rs, rt
@@ -582,7 +656,7 @@ class InstructionSpecial(Instruction):
 
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
-        return f"SPECIAL({opcode})"
+        return InstructionSpecial.SpecialOpcodes.get(self.rt, f"SPECIAL({opcode})")
 
 class InstructionRegimm(Instruction):
     RegimmOpcodes = {
