@@ -320,114 +320,113 @@ class Instruction:
         self.rt = 0
         self.immediate = 0
 
-    def __str__(self) -> str:
-        result = ""
+    def getOpcodeName(self) -> str:
         if self.isLUI():
-            result += "LUI"
+            return "LUI"
         elif self.isADDIU():
-            result += "ADDIU"
+            return "ADDIU"
         elif self.isLW():
-            result += "LW"
+            return "LW"
         elif self.isLWCz():
-            result += f"LWC{self.opcode&0x3}"
+            return f"LWC{self.opcode&0x3}"
         elif self.isANDI():
-            result += "ANDI"
+            return "ANDI"
         elif self.isORI():
-            result += "ORI"
+            return "ORI"
         elif self.isADDI():
-            result += "ADDI"
+            return "ADDI"
         elif self.isDADDI():
-            result += "DADDI"
+            return "DADDI"
         elif self.isDADDIU():
-            result += "DADDIU"
+            return "DADDIU"
 
         elif self.isBEQ():
-            result += "BEQ"
+            return "BEQ"
         elif self.isBEQL():
-            result += "BEQL"
+            return "BEQL"
         elif self.isBLEZ():
-            result += "BLEZ"
+            return "BLEZ"
         elif self.isBLEZL():
-            result += "BLEZL"
+            return "BLEZL"
         elif self.isBGTZ():
-            result += "BGTZ"
+            return "BGTZ"
         elif self.isBGTZL():
-            result += "BGTZL"
+            return "BGTZL"
         elif self.isBNE():
-            result += "BNE"
+            return "BNE"
         elif self.isBNEL():
-            result += "BNEL"
+            return "BNEL"
 
         elif self.isJ():
-            result += "J"
+            return "J"
         elif self.isJAL():
-            result += "JAL"
+            return "JAL"
 
         elif self.isLB():
-            result += "LB"
+            return "LB"
         elif self.isLBU():
-            result += "LBU"
+            return "LBU"
 
         elif self.isLD():
-            result += "LD"
+            return "LD"
 
         elif self.isLDCz():
-            result += f"LDC{self.opcode&0x3}"
+            return f"LDC{self.opcode&0x3}"
 
         elif self.isLDL():
-            result += "LDL"
+            return "LDL"
         elif self.isLDR():
-            result += "LDR"
+            return "LDR"
 
         elif self.isLH():
-            result += "LH"
+            return "LH"
         elif self.isLHU():
-            result += "LHU"
+            return "LHU"
 
         elif self.isLL():
-            result += "LL"
+            return "LL"
         elif self.isLLD():
-            result += "LLD"
+            return "LLD"
 
         elif self.isLWL():
-            result += "LWL"
+            return "LWL"
         elif self.isLWR():
-            result += "LWR"
+            return "LWR"
 
         elif self.isLWU():
-            result += "LWU"
+            return "LWU"
 
         elif self.isSB():
-            result += "SB"
+            return "SB"
         elif self.isSC():
-            result += "SC"
+            return "SC"
         elif self.isSCD():
-            result += "SCD"
+            return "SCD"
         elif self.isSD():
-            result += "SD"
+            return "SD"
 
         elif self.isSDCz():
-            result += f"SDC{self.opcode&0x3}"
+            return f"SDC{self.opcode&0x3}"
 
         elif self.isSDL():
-            result += "SDL"
+            return "SDL"
         elif self.isSDR():
-            result += "SDR"
+            return "SDR"
 
         elif self.isCOPz():
-            result += f"COP{self.opcode&0x3}"
+            return f"COP{self.opcode&0x3}"
 
         elif self.isSH():
-            result += "SH"
+            return "SH"
 
         # SLL # Shift word Left Logical
         # SLLV # Shift word Left Logical Variable
         # SLT # Set on Less Than
 
         elif self.isSLTI():
-            result += "SLTI"
+            return "SLTI"
         elif self.isSLTIU():
-            result += "SLTIU"
+            return "SLTIU"
 
         # SLTU # Set on Less Than Unsigned
 
@@ -440,32 +439,69 @@ class Instruction:
         # SUBU # Subtract Unsigned word
 
         elif self.isSW():
-            result += "SW"
+            return "SW"
         elif self.isSWCz():
-            result += f"SWC{self.opcode&0x3}"
+            return f"SWC{self.opcode&0x3}"
 
         elif self.isSWL():
-            result += "SWL"
+            return "SWL"
         elif self.isSWR():
-            result += "SWR"
+            return "SWR"
 
         # XOR # eXclusive OR
 
         elif self.isXORI():
-            result += "XORI"
+            return "XORI"
 
         elif self.isCOPz():
-            result += f"COP{self.opcode&0x3}"
+            return f"COP{self.opcode&0x3}"
 
         elif self.isSPECIAL():
-            result += "SPECIAL"
+            return "SPECIAL"
         elif self.isREGIMM():
-            result += "REGIMM"
+            return "REGIMM"
 
-        else:
-            result += hex(self.opcode)
-            eprint(f"Unknown opcode: {result}")
-        return f"{result} {hex(self.baseRegister)} {hex(self.rt)} {hex(self.immediate)}"
+        opcode = hex(self.opcode)
+        eprint(f"Unknown opcode: {opcode}")
+        return opcode
+
+    def getRegisterName(self, register: int) -> str:
+        if register == 0:
+            return "$zero"
+        elif register == 1:
+            return "$at"
+        elif 2 <= register <= 3:
+            return "$v" + str(register-2)
+        elif 4 <= register <= 7:
+            return "$a" + str(register-4)
+        elif 8 <= register <= 15:
+            return "$t" + str(register-8)
+        elif 16 <= register <= 23:
+            return "$s" + str(register-16)
+        elif 24 <= register <= 25:
+            return "$t" + str(register-24)
+        elif 26 <= register <= 27:
+            return "$k" + str(register-26)
+        elif register == 28:
+            return "$gp"
+        elif register == 29:
+            return "$sp"
+        elif register == 30:
+            return "$fp"
+        elif register == 31:
+            return "$ra"
+        elif 32 <= register <= 63:
+            return "$f" + str(register-32)
+
+        eprint(f"Unknown register: {register}")
+        return hex(register)
+
+    def __str__(self) -> str:
+        opcode = self.getOpcodeName().lower().ljust(8, ' ')
+        baseRegister = (self.getRegisterName(self.baseRegister) + ",").ljust(6, ' ')
+        rt = (self.getRegisterName(self.rt) + ",").ljust(6, ' ')
+        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
+        return f"{opcode} {baseRegister} {rt} {immediate}"
 
     def __repr__(self) -> str:
         return self.__str__()
