@@ -139,22 +139,25 @@ class File:
 class Instruction:
     def __init__(self, instr: int):
         self.opcode = (instr >> 26) & 0x3F
-        self.baseRegister = (instr >> 21) & 0x1F # rs
+        self.rs = (instr >> 21) & 0x1F # rs
         self.rt = (instr >> 16) & 0x1F # usually the destiny of the operation
-        self.rd = (instr >> 11) & 0x1F
-        self.sa = (instr >> 6) & 0x1F
+        self.rd = (instr >> 11) & 0x1F # destination register in R-Type instructions
+        self.sa = (instr >>  6) & 0x1F
         self.function = (instr >> 0) & 0x3F
 
     @property
     def instr(self) -> int:
-        return (self.opcode << 26) | (self.baseRegister << 21) | (self.rt << 16) | (self.immediate)
+        return (self.opcode << 26) | (self.rs << 21) | (self.rt << 16) | (self.immediate)
 
     @property
     def immediate(self) -> int:
         return (self.rd << 11) | (self.sa << 6) | (self.function)
     @property
     def instr_index(self) -> int:
-        return (self.baseRegister << 21) | (self.rt << 16) | (self.immediate)
+        return (self.rs << 21) | (self.rt << 16) | (self.immediate)
+    @property
+    def baseRegister(self) -> int:
+        return self.rs
 
     def isLUI(self) -> bool: # Load Upper Immediate
         return self.opcode == (0x3C >> 2) # 0b001111
@@ -316,6 +319,20 @@ class Instruction:
         return self.opcode == 0x01 # 0b000001
 
 
+    def isJType(self) -> bool: # OP LABEL
+        return self.isJ() or self.isJAL()
+    def isRType(self) -> bool: # OP rd, rs, rt
+        return False
+    def isIType(self) -> bool: # OP rt, IMM(rs)
+        if self.isJType():
+            return False
+        if self.isRType():
+            return False
+        return True
+    def isIType2(self) -> bool: # OP  rs, rt, IMM
+        return False
+
+
     def sameOpcode(self, other: Instruction) -> bool:
         return self.opcode == other.opcode
 
@@ -328,7 +345,7 @@ class Instruction:
         return self.instr != other.instr
 
     def blankOut(self):
-        self.baseRegister = 0
+        self.rs = 0
         self.rt = 0
         self.rd = 0
         self.sa = 0
@@ -517,11 +534,32 @@ class Instruction:
         return hex(register)
 
     def __str__(self) -> str:
-        opcode = self.getOpcodeName().lower().ljust(12, ' ')
-        baseRegister = (self.getRegisterName(self.baseRegister) + ",").ljust(6, ' ')
-        rt = (self.getRegisterName(self.rt) + ",").ljust(6, ' ')
+        opcode = self.getOpcodeName().lower().ljust(13, ' ')
+        rs = self.getRegisterName(self.rs)
+        rt = self.getRegisterName(self.rt)
         immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
-        return f"{opcode} {baseRegister} {rt} {immediate}"
+
+        if self.isIType():
+            result = f"{opcode} {rt},"
+            result = result.ljust(20, ' ')
+            return f"{result} {immediate}({rs})"
+        elif self.isIType2():
+            result = f"{opcode} {rs},"
+            result = result.ljust(20, ' ')
+            result += f" {rt},"
+            result = result.ljust(25, ' ')
+            return f"{result} {immediate}"
+        elif self.isJType():
+            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7)
+            return f"{opcode} {instr_index}"
+        elif self.isRType():
+            rd = self.getRegisterName(self.rd)
+            result = f"{opcode} {rd},"
+            result = result.ljust(20, ' ')
+            result += f" {rs},"
+            result = result.ljust(25, ' ')
+            return f"{result} {rt}"
+        return "ERROR"
 
     def __repr__(self) -> str:
         return self.__str__()
@@ -529,12 +567,12 @@ class Instruction:
 class InstructionSpecial(Instruction):
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
-        return f"SPECIAL {opcode}"
+        return f"SPECIAL({opcode})"
 
 class InstructionRegimm(Instruction):
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.rt).strip("0x").zfill(2)
-        return f"REGIMM {opcode}"
+        return f"REGIMM({opcode})"
 
 def wordToInstruction(word: int) -> Instruction:
     if ((word >> 26) & 0xFF) == 0x00:
@@ -621,7 +659,7 @@ class Text(File):
                     lui_2_register = instr2.rt
             else:
                 if instr1.isADDIU() and instr2.isADDIU():
-                    if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
+                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
                         instr1.blankOut()
                         instr2.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
@@ -629,7 +667,7 @@ class Text(File):
                         lui_found = False
                         was_updated = True
                 elif instr1.isLW() and instr2.isLW():
-                    if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
+                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
                         instr1.blankOut()
                         instr2.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
@@ -637,7 +675,7 @@ class Text(File):
                         lui_found = False
                         was_updated = True
                 elif instr1.isLWCz() and instr2.isLWCz():
-                    if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
+                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
                         instr1.blankOut()
                         instr2.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
@@ -645,7 +683,7 @@ class Text(File):
                         lui_found = False
                         was_updated = True
                 elif instr1.isORI() and instr2.isORI():
-                    if instr1.baseRegister == lui_1_register and instr2.baseRegister == lui_2_register:
+                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
                         instr1.blankOut()
                         instr2.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
@@ -681,7 +719,7 @@ class Text(File):
                         lui_register = instr.rt
             else:
                 if instr.isADDIU() or instr.isLW() or instr.isLWCz() or instr.isORI() or instr.isLW():
-                    if instr.baseRegister == lui_register:
+                    if instr.rs == lui_register:
                         instr.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
                         lui_found = False
