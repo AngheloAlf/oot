@@ -257,12 +257,27 @@ class Instruction:
             return False
         if self.isIType2():
             return False
+        if self.isIType3():
+            return False
         return True
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         opcode = self.getOpcodeName()
         if opcode == "BEQ" or opcode == "BEQL":
             return True
         if opcode == "BNE" or opcode == "BNEL":
+            return True
+        return False
+    def isIType3(self) -> bool: # OP  rt, rs, IMM
+        opcode = self.getOpcodeName()
+        if opcode == "ADDI" or opcode == "ADDIU":
+            return True
+        if opcode == "ANDI":
+            return True
+        if opcode == "DADDI" or opcode == "DADDIU":
+            return True
+        if opcode == "ORI" or opcode == "XORI":
+            return True
+        if opcode == "SLTI" or opcode == "SLTIU":
             return True
         return False
 
@@ -327,7 +342,7 @@ class Instruction:
         opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
         rt = self.getRegisterName(self.rt)
-        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
+        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4).upper()
 
         if self.isIType():
             result = f"{opcode} {rt},"
@@ -339,8 +354,14 @@ class Instruction:
             result += f" {rt},"
             result = result.ljust(19, ' ')
             return f"{result} {immediate}"
+        elif self.isIType3():
+            result = f"{opcode} {rt},"
+            result = result.ljust(14, ' ')
+            result += f" {rs},"
+            result = result.ljust(19, ' ')
+            return f"{result} {immediate}"
         elif self.isJType():
-            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7)
+            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
             return f"{opcode} {instr_index}"
         elif self.isRType():
             rd = self.getRegisterName(self.rd)
@@ -479,7 +500,7 @@ class InstructionRegimm(Instruction):
     def __str__(self) -> str:
         opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
-        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
+        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4).upper()
 
         result = f"{opcode} {rs},"
         result = result.ljust(14, ' ')
