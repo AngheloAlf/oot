@@ -35,6 +35,17 @@ def runCommandGetOutput(command: str, args: List[str]) -> List[str] | None:
 def removeExtraWhitespace(line: str) -> str:
     return" ".join(line.split()) 
 
+def bytesToBEWords(array_of_bytes: bytearray) -> List[int]:
+    words = len(array_of_bytes)//4
+    big_endian_format = f">{words}I"
+    return list(struct.unpack_from(big_endian_format, array_of_bytes, 0))
+
+def beWordsToBytes(words_list: List[int], buffer: bytearray) -> bytearray:
+    words = len(words_list)
+    big_endian_format = f">{words}I"
+    struct.pack_into(big_endian_format, buffer, 0, *words_list)
+    return buffer
+
 
 versions = {
     "ntsc_0.9" : "NNR",
@@ -68,13 +79,35 @@ def countUnique(row: list) -> int:
         count -= 1
     return count
 
+def removePointers(args, filedata: bytearray) -> bytearray:
+    if not args.ignore04: # This will probably grow...
+        return filedata
+    
+    words = bytesToBEWords(filedata)
+    for i in range(len(words)):
+        w = words[i]
+        if args.ignore04:
+            if ((w >> 24) & 0xFF) == 0x04:
+                words[i] = 0x04000000
+    return beWordsToBytes(words, filedata)
 
-def compareFileAcrossVersions(versionsList: List[str], filename: str):
+
+def getHashesOfFiles(args, filesPath: List[str]):
+    hashList = []
+    for path in filesPath:
+        f = readFileAsBytearray(path)
+        fHash = getStrHash(removePointers(args, f))
+        line = fHash + " " + path # To be consistent with runCommandGetOutput("md5sum", md5arglist)
+        hashList.append(line)
+    return hashList
+
+def compareFileAcrossVersions(args, versionsList: List[str], filename: str):
     md5arglist = list(map(lambda orig_string: "baserom_" + orig_string + "/" + filename, versionsList))
     # os.system( "md5sum " + " ".join(md5arglist) )
 
     # Get hashes.
-    output = runCommandGetOutput("md5sum", md5arglist)
+    # output = runCommandGetOutput("md5sum", md5arglist)
+    output = getHashesOfFiles(args, md5arglist)
 
     # Print md5hash
     #print("\n".join(output))
@@ -112,6 +145,7 @@ def main():
     parser.add_argument("versionlist", help="Path to version list.")
     parser.add_argument("filelist", help="List of filenames of the ROM that will be compared.")
     parser.add_argument("--noheader", help="Disables the csv header.", action="store_true")
+    parser.add_argument("--ignore04", help="Ignores words starting with 0x04.", action="store_true")
     args = parser.parse_args()
 
     lines = open(args.versionlist).read().splitlines()
@@ -126,7 +160,7 @@ def main():
         print()
 
     for filename in filesList:
-        row = compareFileAcrossVersions(lines, filename)
+        row = compareFileAcrossVersions(args, lines, filename)
 
         # Print csv row
         print(filename, end="")
