@@ -588,13 +588,30 @@ class Text(File):
     def removePointers(self):
         super().removePointers()
 
+        lui_found = False
+        lui_pos = 0
+        lui_register = 0
+
         was_updated = False
         for i in range(len(self.instructions)):
-            if self.instructions[i].isLUI():
-                immediate_half = ((self.instructions[i].immediate >> 8) & 0xFF)
-                if immediate_half == 0x80 or ((immediate_half & 0xF0) == 0 and (immediate_half & 0x0F) != 0):
-                    self.instructions[i].blankOut()
-                    was_updated = True
+            instr = self.instructions[i]
+            if not lui_found:
+                if instr.isLUI():
+                    immediate_half = ((instr.immediate >> 8) & 0xFF)
+                    if immediate_half == 0x80 or ((immediate_half & 0xF0) == 0 and (immediate_half & 0x0F) != 0):
+                        #instr.blankOut()
+                        #was_updated = True
+
+                        lui_found = True
+                        lui_pos = i
+                        lui_register = instr.rt
+            else:
+                if instr.isADDIU() or instr.isLW() or instr.isLWCz() or instr.isORI() or instr.isLW():
+                    if instr.baseRegister == lui_register:
+                        instr.blankOut()
+                        self.instructions[lui_pos].blankOut() # lui
+                        lui_found = False
+                        was_updated = True
 
         if was_updated:
             self.updateWords()
@@ -604,6 +621,28 @@ class Text(File):
         for instr in self.instructions:
             self.words.append(instr.instr)
         self.updateBytes()
+
+    def saveToFile(self, filepath: str):
+        super().saveToFile(filepath + ".text")
+
+        with open(filepath + ".text.asm", "w") as f:
+            for instr in self.instructions:
+                f.write(str(instr) + "\n")
+
+
+class Data(File):
+    def saveToFile(self, filepath: str):
+        super().saveToFile(filepath + ".data")
+
+
+class Rodata(File):
+    def saveToFile(self, filepath: str):
+        super().saveToFile(filepath + ".rodata")
+
+
+class Bss(File):
+    def saveToFile(self, filepath: str):
+        super().saveToFile(filepath + ".bss")
 
 
 class RelocEntry:
@@ -629,6 +668,9 @@ class Reloc(File):
         # TODO
         return result
 
+    def saveToFile(self, filepath: str):
+        super().saveToFile(filepath + ".reloc")
+
 class Overlay(File):
     def __init__(self, array_of_bytes):
         super().__init__(array_of_bytes)
@@ -650,15 +692,15 @@ class Overlay(File):
 
         start += text_size
         end += data_size
-        self.data = File(self.bytes[start:end])
+        self.data = Data(self.bytes[start:end])
 
         start += data_size
         end += rodata_size
-        self.rodata = File(self.bytes[start:end])
+        self.rodata = Rodata(self.bytes[start:end])
 
         start += rodata_size
         end += bss_size
-        self.bss = File(self.bytes[start:end])
+        self.bss = Bss(self.bytes[start:end])
 
         start += bss_size
         end += header_size
@@ -735,11 +777,11 @@ class Overlay(File):
         super().updateBytes()
 
     def saveToFile(self, filepath: str):
-        self.text.saveToFile(filepath + ".text")
-        self.data.saveToFile(filepath + ".data")
-        self.rodata.saveToFile(filepath + ".rodata")
-        self.bss.saveToFile(filepath + ".bss")
-        self.reloc.saveToFile(filepath + ".reloc")
+        self.text.saveToFile(filepath)
+        self.data.saveToFile(filepath)
+        self.rodata.saveToFile(filepath)
+        self.bss.saveToFile(filepath)
+        self.reloc.saveToFile(filepath)
 
 
 
@@ -848,7 +890,7 @@ def compareOverlayAcrossVersions(args, versionsList: List[str], filename: str) -
         ov = Overlay(readFileAsBytearray(path))
         ov.removePointers()
         if args.savetofile:
-            new_file_path = os.path.join(args.savetofile, filename)
+            new_file_path = os.path.join(args.savetofile, version + "_" + filename)
             ov.saveToFile(new_file_path)
         overlays.append(ov)
 
@@ -881,7 +923,7 @@ def main():
     parser.add_argument("--noheader", help="Disables the csv header.", action="store_true")
     parser.add_argument("--ignore04", help="Ignores words starting with 0x04.", action="store_true")
     parser.add_argument("--overlays", help="Treats the files in filelist as overlays.", action="store_true")
-    parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written. The folder must already exits.")
+    parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written. The folder must already exits.", metavar="FOLDER")
     args = parser.parse_args()
 
     lines = open(args.versionlist).read().splitlines()
