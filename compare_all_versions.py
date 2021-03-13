@@ -328,10 +328,11 @@ class Instruction:
             return False
         if self.isRType():
             return False
+        if self.isIType2():
+            return False
         return True
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         return False
-
 
     def sameOpcode(self, other: Instruction) -> bool:
         return self.opcode == other.opcode
@@ -527,8 +528,13 @@ class Instruction:
             return "$fp"
         elif register == 31:
             return "$ra"
-        elif 32 <= register <= 63:
-            return "$f" + str(register-32)
+
+        eprint(f"Unknown register: {register}")
+        return hex(register)
+
+    def getFloatRegisterName(self, register: int) -> str:
+        if 0 <= register <= 31:
+            return "$f" + str(register)
 
         eprint(f"Unknown register: {register}")
         return hex(register)
@@ -565,14 +571,42 @@ class Instruction:
         return self.__str__()
 
 class InstructionSpecial(Instruction):
+    def isJType(self) -> bool: # OP LABEL
+        return False
+    def isRType(self) -> bool: # OP rd, rs, rt
+        return True # Not for all cases, but good enough
+    def isIType(self) -> bool: # OP rt, IMM(rs)
+        return False
+    def isIType2(self) -> bool: # OP  rs, rt, IMM
+        return False
+
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
         return f"SPECIAL({opcode})"
 
 class InstructionRegimm(Instruction):
+    def isJType(self) -> bool: # OP LABEL
+        return False
+    def isRType(self) -> bool: # OP rd, rs, rt
+        return False
+    def isIType(self) -> bool: # OP rt, IMM(rs)
+        return False
+    def isIType2(self) -> bool: # OP  rs, rt, IMM
+        return False
+
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.rt).strip("0x").zfill(2)
         return f"REGIMM({opcode})"
+
+    def __str__(self) -> str:
+        opcode = self.getOpcodeName().lower().ljust(13, ' ')
+        rs = self.getRegisterName(self.rs)
+        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
+
+        result = f"{opcode} {rs},"
+        result = result.ljust(20, ' ')
+        return f"{result} {immediate}"
+
 
 def wordToInstruction(word: int) -> Instruction:
     if ((word >> 26) & 0xFF) == 0x00:
