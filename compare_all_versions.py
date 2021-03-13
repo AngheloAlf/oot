@@ -585,6 +585,26 @@ class InstructionSpecial(Instruction):
         return f"SPECIAL({opcode})"
 
 class InstructionRegimm(Instruction):
+    RegimmOpcodes = {
+        0b00_000: "BLTZ",
+        0b00_001: "BGEZ",
+        0b00_010: "BLTZL",
+        0b00_011: "BGEZL",
+
+        0b01_000: "TGEI",
+        0b01_001: "TGEIU",
+        0b01_010: "TLTI",
+        0b01_011: "TLTIU",
+
+        0b10_000: "BLTZAL",
+        0b10_001: "BGEZAL",
+        0b10_010: "BLTZALL",
+        0b10_011: "BGEZALL",
+
+        0b01_100: "TEQI",
+        0b01_110: "TNEI",
+    }
+
     def isJType(self) -> bool: # OP LABEL
         return False
     def isRType(self) -> bool: # OP rd, rs, rt
@@ -596,7 +616,7 @@ class InstructionRegimm(Instruction):
 
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.rt).strip("0x").zfill(2)
-        return f"REGIMM({opcode})"
+        return InstructionRegimm.RegimmOpcodes.get(self.rt, f"REGIMM({opcode})")
 
     def __str__(self) -> str:
         opcode = self.getOpcodeName().lower().ljust(13, ' ')
