@@ -137,6 +137,80 @@ class File:
 
 
 class Instruction:
+    NormalOpcodes = {
+        0b000_000: "SPECIAL",
+        0b000_001: "REGIMM",
+        0b000_010: "J", # Jump
+        0b000_011: "JAL", # Jump and Link
+        0b000_100: "BEQ",
+        0b000_101: "BNE",
+        0b000_110: "BLEZ",
+        0b000_111: "BGTZ",
+
+        0b001_000: "ADDI", # Add Immediate
+        0b001_001: "ADDIU", # Add Immediate Unsigned Word
+        0b001_010: "SLTI", # Set on Less Than Immediate
+        0b001_011: "SLTIU", # Set on Less Than Immediate Unsigned
+        0b001_100: "ANDI", # And Immediate
+        0b001_101: "ORI", # Or Immediate
+        0b001_110: "XORI", # eXclusive OR Immediate
+        0b001_111: "LUI", # Load Upper Immediate
+
+        0b010_000: "COP0", # Coprocessor OPeration z
+        0b010_001: "COP1", # Coprocessor OPeration z
+        0b010_010: "COP2", # Coprocessor OPeration z
+        0b010_011: "COP1X", # Coprocessor OPeration z
+        0b010_100: "BEQL",
+        0b010_101: "BNEL",
+        0b010_110: "BLEZL",
+        0b010_111: "BGTZL",
+
+        0b011_000: "DADDI", # Doubleword add Immediate
+        0b011_001: "DADDIU", # Doubleword add Immediate Unsigned
+        0b011_010: "LDL", # Load Doubleword Left
+        0b011_011: "LDR", # Load Doubleword Right
+        # 0b011_100: "",
+        # 0b011_101: "",
+        # 0b011_110: "",
+        # 0b011_111: "",
+
+        0b100_000: "LB", # Load Byte
+        0b100_001: "LH", # Load Halfword
+        0b100_010: "LWL", # Load Word Left
+        0b100_011: "LW", # Load Word
+        0b100_100: "LBU", # Load Byte Insigned
+        0b100_101: "LHU", # Load Halfword Unsigned
+        0b100_110: "LWR", # Load Word Right
+        0b100_111: "LWU", # Load Word Unsigned
+
+        0b101_000: "SB", # Store Byte
+        0b101_001: "SH", # Store Halfword
+        0b101_010: "SWL", # Store Word Left
+        0b101_011: "SW", # Store Word
+        0b101_100: "SDL", # Store Doubleword Left
+        0b101_101: "SDR", # Store Doubleword Right
+        0b101_110: "SWR", # Store Word Right
+        # 0b101_111: "",
+
+        0b110_000: "LL", # Load Linked word
+        0b110_001: "LWC1", # Load Word to Coprocessor z
+        0b110_010: "LWC2", # Load Word to Coprocessor z
+        0b110_011: "PREF", # Prefetch
+        0b110_100: "LLD", # Load Linked Doubleword
+        0b110_101: "LDC1", # Load Doubleword to Coprocessor z
+        0b110_110: "LDC2", # Load Doubleword to Coprocessor z
+        0b110_111: "LD", # Load Doubleword
+
+        0b111_000: "SC", # Store Conditional word
+        0b111_001: "SWC1", # Store Word from Coprocessor z
+        0b111_010: "SWC2", # Store Word from Coprocessor z
+        # 0b111_011: "",
+        0b111_100: "SCD", # Store Conditional Doubleword
+        0b111_101: "SDC1", # Store Doubleword from Coprocessor z
+        0b111_110: "SDC2", # Store Doubleword from Coprocessor z
+        0b111_111: "SD", # Store Doubleword
+    }
+
     def __init__(self, instr: int):
         self.opcode = (instr >> 26) & 0x3F
         self.rs = (instr >> 21) & 0x1F # rs
@@ -159,168 +233,21 @@ class Instruction:
     def baseRegister(self) -> int:
         return self.rs
 
-    def isLUI(self) -> bool: # Load Upper Immediate
-        return self.opcode == (0x3C >> 2) # 0b001111
-    def isADDIU(self) -> bool:
-        return self.opcode == (0x24 >> 2) # 0b001001
-    def isLW(self) -> bool: # Load Word
-        return self.opcode == (0x8C >> 2) # 0b100011
-    def isLWCz(self) -> bool: # Load Word to Coprocessor
-        zz = self.opcode & 0x03
-        if zz == 0x00 or zz == 0x03:
-            return False
-        return (self.opcode & 0x3C) == (0xC0 >> 2) # 0b1100zz
-    def isANDI(self) -> bool:
-        return self.opcode == (0x30 >> 2) # 0b001100
-    def isORI(self) -> bool: # Or Immediate
-        return self.opcode == (0x34 >> 2) # 0b001101
-    def isADDI(self) -> bool:
-        return self.opcode == (0x20 >> 2) # 0b001000
-    def isDADDI(self) -> bool: # Doubleword add Immediate
-        return self.opcode == (0x60 >> 2) # 0b011000
-    def isDADDIU(self) -> bool: # Doubleword add Immediate Unsigned
-        return self.opcode == (0x64 >> 2) # 0b011001
-
-    def isBEQ(self) -> bool:
-        return self.opcode == (0x10 >> 2) # 0b000100
-    def isBEQL(self) -> bool:
-        return self.opcode == (0x50 >> 2) # 0b010100
-    def isBLEZ(self) -> bool:
-        return self.opcode == (0x18 >> 2) # 0b000110
-    def isBLEZL(self) -> bool:
-        return self.opcode == (0x58 >> 2) # 0b010110
-    def isBGTZ(self) -> bool:
-        return self.opcode == (0x1C >> 2) # 0b000111
-    def isBGTZL(self) -> bool:
-        return self.opcode == (0x5C >> 2) # 0b010111
-    def isBNE(self) -> bool:
-        return self.opcode == (0x14 >> 2) # 0b000101
-    def isBNEL(self) -> bool:
-        return self.opcode == (0x54 >> 2) # 0b010101
-
-    def isJ(self) -> bool: # Jump
-        return self.opcode == (0x08 >> 2) # 0b000010
-    def isJAL(self) -> bool: # Jump and Link
-        return self.opcode == (0x0C >> 2) # 0b000011
-    # JALR
-    # JR
-
     def isBranch(self) -> bool:
-        return (self.isBEQ() or self.isBEQL() or self.isBLEZ() or self.isBLEZL() 
-                or self.isBGTZ() or self.isBGTZL() or self.isBNE() or self.isBNEL() 
-                or self.isJ() or self.isJAL())
-
-    def isLB(self) -> bool: # Load Byte
-        return self.opcode == (0x80 >> 2) # 0b100000
-    def isLBU(self) -> bool: # Load Byte Insigned
-        return self.opcode == (0x90 >> 2) # 0b100100
-
-    def isLD(self) -> bool: # Load Doubleword
-        return self.opcode == (0xDC >> 2) # 0b110111
-
-    def isLDCz(self) -> bool: # Load Doubleword to Coprocessor z
-        if (self.opcode & 0x03) == 0x00:
-            return False
-        return (self.opcode & 0x3C) == (0xD0 >> 2) # 0b1101zz
-
-    def isLDL(self) -> bool: # Load Doubleword Left
-        return self.opcode == (0x68 >> 2) # 0b011010
-    def isLDR(self) -> bool: # Load Doubleword Right
-        return self.opcode == (0x6C >> 2) # 0b011011
-
-    def isLH(self) -> bool: # Load Halfword
-        return self.opcode == (0x84 >> 2) # 0b100001
-    def isLHU(self) -> bool: # Load Halfword Unsigned
-        return self.opcode == (0x94 >> 2) # 0b100101
-
-    def isLL(self) -> bool: # Load Linked word
-        return self.opcode == (0xC0 >> 2) # 0b110000
-    def isLLD(self) -> bool: # Load Linked Doubleword
-        return self.opcode == (0xD0 >> 2) # 0b110100
-
-    def isLWL(self) -> bool: # Load Word Left
-        return self.opcode == (0x88 >> 2) # 0b100010
-    def isLWR(self) -> bool: # Load Word Right
-        return self.opcode == (0x98 >> 2) # 0b100110
-
-    def isLWU(self) -> bool: # Load Word Unsigned
-        return self.opcode == (0x9C >> 2) # 0b100111
-
-    def isPREF(self) -> bool: # Prefetch
-        return self.opcode == (0xCC >> 2) # 0b110011
-
-    def isSB(self) -> bool: # Store Byte
-        return self.opcode == (0xA0 >> 2) # 0b101000
-    def isSC(self) -> bool: # Store Conditional word
-        return self.opcode == (0xE0 >> 2) # 0b111000
-    def isSCD(self) -> bool: # Store Conditional Doubleword
-        return self.opcode == (0xF0 >> 2) # 0b111100
-    def isSD(self) -> bool: # Store Doubleword
-        return self.opcode == (0xFC >> 2) # 0b111111
-
-    def isSDCz(self) -> bool: # Store Doubleword from Coprocessor
-        if (self.opcode & 0x03) == 0x00:
-            return False
-        return (self.opcode & 0x3C) == (0xF0 >> 2) # 0b1111zz
-
-    def isSDL(self) -> bool: # Store Doubleword Left
-        return self.opcode == (0xB0 >> 2) # 0b101100
-    def isSDR(self) -> bool: # Store Doubleword Right
-        return self.opcode == (0xB4 >> 2) # 0b101101
-
-    def isCOPz(self) -> bool: # Coprocessor OPeration
-        #if (self.opcode & 0x03) == 0x00:
-        #    return False
-        return (self.opcode & 0x3C) == (0x40 >> 2) # 0b0100zz
-
-    def isSH(self) -> bool: # Store Halfword
-        return self.opcode == (0xA4 >> 2) # 0b101001
-
-    # SLL # Shift word Left Logical
-    # SLLV # Shift word Left Logical Variable
-    # SLT # Set on Less Than
-
-    def isSLTI(self) -> bool: # Set on Less Than Immediate
-        return self.opcode == (0x28 >> 2) # 0b001010
-    def isSLTIU(self) -> bool: # Set on Less Than Immediate Unsigned
-        return self.opcode == (0x2C >> 2) # 0b001011
-
-    # SLTU # Set on Less Than Unsigned
-
-    # SRA # Shift word Right Arithmetic
-    # SRAV # Shift word Right Arithmetic Variable
-    # SRL # Shift word Right Logical
-    # SRLV # Shift word Right Logical Variable
-
-    # SUB # Subtract word
-    # SUBU # Subtract Unsigned word
-
-    def isSW(self) -> bool: # Store Word
-        return self.opcode == (0xAC >> 2) # 0b101011
-    def isSWCz(self) -> bool: # Store Word from Coprocessor z
-        zz = self.opcode & 0x03
-        if zz == 0x00 or zz == 0x03:
-            return False
-        return (self.opcode & 0x3C) == (0xE0 >> 2) # 0b1110zz
-
-    def isSWL(self) -> bool: # Store Word Left
-        return self.opcode == (0xA8 >> 2) # 0b101010
-    def isSWR(self) -> bool: # Store Word Right
-        return self.opcode == (0xB8 >> 2) # 0b101110
-
-    # XOR # eXclusive OR
-
-    def isXORI(self) -> bool: # eXclusive OR Immediate
-        return self.opcode == (0x38 >> 2) # 0b001110
-
-    def isSPECIAL(self) -> bool:
-        return self.opcode == 0x00 # 0b000000
-    def isREGIMM(self) -> bool:
-        return self.opcode == 0x01 # 0b000001
-
+        opcode = self.getOpcodeName()
+        if opcode == "J" or opcode == "JAL":
+            return True
+        if opcode == "BEQ" or opcode == "BEQL":
+            return True
+        if opcode == "BLEZ" or opcode == "BLEZL":
+            return True
+        if opcode == "BNE" or opcode == "BNEL":
+            return True
+        return False
 
     def isJType(self) -> bool: # OP LABEL
-        return self.isJ() or self.isJAL()
+        opcode = self.getOpcodeName()
+        return opcode == "J" or opcode == "JAL"
     def isRType(self) -> bool: # OP rd, rs, rt
         return False
     def isIType(self) -> bool: # OP rt, IMM(rs)
@@ -332,6 +259,11 @@ class Instruction:
             return False
         return True
     def isIType2(self) -> bool: # OP  rs, rt, IMM
+        opcode = self.getOpcodeName()
+        if opcode == "BEQ" or opcode == "BEQL":
+            return True
+        if opcode == "BNE" or opcode == "BNEL":
+            return True
         return False
 
     def sameOpcode(self, other: Instruction) -> bool:
@@ -353,155 +285,8 @@ class Instruction:
         self.function = 0
 
     def getOpcodeName(self) -> str:
-        if self.isLUI():
-            return "LUI"
-        elif self.isADDIU():
-            return "ADDIU"
-        elif self.isLW():
-            return "LW"
-        elif self.isLWCz():
-            return f"LWC{self.opcode&0x03}"
-        elif self.isANDI():
-            return "ANDI"
-        elif self.isORI():
-            return "ORI"
-        elif self.isADDI():
-            return "ADDI"
-        elif self.isDADDI():
-            return "DADDI"
-        elif self.isDADDIU():
-            return "DADDIU"
-
-        elif self.isBEQ():
-            return "BEQ"
-        elif self.isBEQL():
-            return "BEQL"
-        elif self.isBLEZ():
-            return "BLEZ"
-        elif self.isBLEZL():
-            return "BLEZL"
-        elif self.isBGTZ():
-            return "BGTZ"
-        elif self.isBGTZL():
-            return "BGTZL"
-        elif self.isBNE():
-            return "BNE"
-        elif self.isBNEL():
-            return "BNEL"
-
-        elif self.isJ():
-            return "J"
-        elif self.isJAL():
-            return "JAL"
-
-        elif self.isLB():
-            return "LB"
-        elif self.isLBU():
-            return "LBU"
-
-        elif self.isLD():
-            return "LD"
-
-        elif self.isLDCz():
-            return f"LDC{self.opcode&0x3}"
-
-        elif self.isLDL():
-            return "LDL"
-        elif self.isLDR():
-            return "LDR"
-
-        elif self.isLH():
-            return "LH"
-        elif self.isLHU():
-            return "LHU"
-
-        elif self.isLL():
-            return "LL"
-        elif self.isLLD():
-            return "LLD"
-
-        elif self.isLWL():
-            return "LWL"
-        elif self.isLWR():
-            return "LWR"
-
-        elif self.isLWU():
-            return "LWU"
-
-        elif self.isPREF():
-            return "PREF"
-
-        elif self.isSB():
-            return "SB"
-        elif self.isSC():
-            return "SC"
-        elif self.isSCD():
-            return "SCD"
-        elif self.isSD():
-            return "SD"
-
-        elif self.isSDCz():
-            return f"SDC{self.opcode&0x03}"
-
-        elif self.isSDL():
-            return "SDL"
-        elif self.isSDR():
-            return "SDR"
-
-        elif self.isCOPz():
-            zz = self.opcode&0x03
-            if zz == 0x03:
-                return "COP1X"
-            return f"COP{zz}"
-
-        elif self.isSH():
-            return "SH"
-
-        # SLL # Shift word Left Logical
-        # SLLV # Shift word Left Logical Variable
-        # SLT # Set on Less Than
-
-        elif self.isSLTI():
-            return "SLTI"
-        elif self.isSLTIU():
-            return "SLTIU"
-
-        # SLTU # Set on Less Than Unsigned
-
-        # SRA # Shift word Right Arithmetic
-        # SRAV # Shift word Right Arithmetic Variable
-        # SRL # Shift word Right Logical
-        # SRLV # Shift word Right Logical Variable
-
-        # SUB # Subtract word
-        # SUBU # Subtract Unsigned word
-
-        elif self.isSW():
-            return "SW"
-        elif self.isSWCz():
-            return f"SWC{self.opcode&0x03}"
-
-        elif self.isSWL():
-            return "SWL"
-        elif self.isSWR():
-            return "SWR"
-
-        # XOR # eXclusive OR
-
-        elif self.isXORI():
-            return "XORI"
-
-        elif self.isCOPz():
-            return f"COP{self.opcode&0x3}"
-
-        elif self.isSPECIAL():
-            return "SPECIAL"
-        elif self.isREGIMM():
-            return "REGIMM"
-
-        opcode = hex(self.opcode)
-        eprint(f"Unknown opcode: {opcode}")
-        return opcode
+        opcode = "0x" + hex(self.opcode).strip("0x").zfill(2)
+        return Instruction.NormalOpcodes.get(self.opcode, f"({opcode})")
 
     def getRegisterName(self, register: int) -> str:
         if register == 0:
@@ -528,32 +313,31 @@ class Instruction:
             return "$fp"
         elif register == 31:
             return "$ra"
-
-        eprint(f"Unknown register: {register}")
         return hex(register)
 
     def getFloatRegisterName(self, register: int) -> str:
         if 0 <= register <= 31:
             return "$f" + str(register)
-
-        eprint(f"Unknown register: {register}")
         return hex(register)
 
     def __str__(self) -> str:
-        opcode = self.getOpcodeName().lower().ljust(13, ' ')
+        if self.instr == 0:
+            return "nop"
+
+        opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
         rt = self.getRegisterName(self.rt)
         immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
 
         if self.isIType():
             result = f"{opcode} {rt},"
-            result = result.ljust(20, ' ')
+            result = result.ljust(14, ' ')
             return f"{result} {immediate}({rs})"
         elif self.isIType2():
             result = f"{opcode} {rs},"
-            result = result.ljust(20, ' ')
+            result = result.ljust(14, ' ')
             result += f" {rt},"
-            result = result.ljust(25, ' ')
+            result = result.ljust(19, ' ')
             return f"{result} {immediate}"
         elif self.isJType():
             instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7)
@@ -561,9 +345,9 @@ class Instruction:
         elif self.isRType():
             rd = self.getRegisterName(self.rd)
             result = f"{opcode} {rd},"
-            result = result.ljust(20, ' ')
+            result = result.ljust(14, ' ')
             result += f" {rs},"
-            result = result.ljust(25, ' ')
+            result = result.ljust(19, ' ')
             return f"{result} {rt}"
         return "ERROR"
 
@@ -572,17 +356,17 @@ class Instruction:
 
 class InstructionSpecial(Instruction):
     SpecialOpcodes = {
-        0b000_000: "SLL",
+        0b000_000: "SLL", # Shift word Left Logical
         0b000_001: "MOVCI",
-        0b000_010: "SRL",
-        0b000_011: "SRA",
-        0b000_100: "SLLV",
+        0b000_010: "SRL", # Shift word Right Logical
+        0b000_011: "SRA", # Shift word Right Arithmetic
+        0b000_100: "SLLV", # Shift word Left Logical Variable
         # 0b000_101: "",
-        0b000_110: "SRLV",
-        0b000_111: "SRAV",
+        0b000_110: "SRLV", # Shift word Right Logical Variable
+        0b000_111: "SRAV", # Shift word Right Arithmetic Variable
 
-        0b001_000: "JR",
-        0b001_001: "JALR",
+        0b001_000: "JR", # Jump Register
+        0b001_001: "JALR", # Jump And Link Register
         0b001_010: "MOVZ",
         0b001_011: "MOVN",
         0b001_100: "SYSCALL",
@@ -610,17 +394,17 @@ class InstructionSpecial(Instruction):
 
         0b100_000: "ADD",
         0b100_001: "ADDU",
-        0b100_010: "SUB",
-        0b100_011: "SUBU",
+        0b100_010: "SUB", # Subtract word
+        0b100_011: "SUBU", # Subtract Unsigned word
         0b100_100: "AND",
         0b100_101: "OR",
-        0b100_110: "XOR",
+        0b100_110: "XOR", # eXclusive OR
         0b100_111: "NOR",
 
         # 0b101_000: "",
         # 0b101_001: "",
-        0b101_010: "SLT",
-        0b101_011: "SLTU",
+        0b101_010: "SLT", # Set on Less Than
+        0b101_011: "SLTU", # Set on Less Than Unsigned
         0b101_100: "DADD",
         0b101_101: "DADDU",
         0b101_110: "DSUB",
@@ -693,12 +477,12 @@ class InstructionRegimm(Instruction):
         return InstructionRegimm.RegimmOpcodes.get(self.rt, f"REGIMM({opcode})")
 
     def __str__(self) -> str:
-        opcode = self.getOpcodeName().lower().ljust(13, ' ')
+        opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
         immediate = "0x" + hex(self.immediate).strip("0x").zfill(4)
 
         result = f"{opcode} {rs},"
-        result = result.ljust(20, ' ')
+        result = result.ljust(14, ' ')
         return f"{result} {immediate}"
 
 
@@ -779,44 +563,47 @@ class Text(File):
             #            instr1.blankOut()
             #            instr2.blankOut()
 
-            if not lui_found:
-                if instr1.isLUI() and instr2.isLUI():
-                    lui_found = True
-                    lui_pos = i
-                    lui_1_register = instr1.rt
-                    lui_2_register = instr2.rt
-            else:
-                if instr1.isADDIU() and instr2.isADDIU():
-                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
-                        instr1.blankOut()
-                        instr2.blankOut()
-                        self.instructions[lui_pos].blankOut() # lui
-                        other_file.instructions[lui_pos].blankOut() # lui
-                        lui_found = False
-                        was_updated = True
-                elif instr1.isLW() and instr2.isLW():
-                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
-                        instr1.blankOut()
-                        instr2.blankOut()
-                        self.instructions[lui_pos].blankOut() # lui
-                        other_file.instructions[lui_pos].blankOut() # lui
-                        lui_found = False
-                        was_updated = True
-                elif instr1.isLWCz() and instr2.isLWCz():
-                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
-                        instr1.blankOut()
-                        instr2.blankOut()
-                        self.instructions[lui_pos].blankOut() # lui
-                        other_file.instructions[lui_pos].blankOut() # lui
-                        lui_found = False
-                        was_updated = True
-                elif instr1.isORI() and instr2.isORI():
-                    if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
-                        instr1.blankOut()
-                        instr2.blankOut()
-                        self.instructions[lui_pos].blankOut() # lui
-                        other_file.instructions[lui_pos].blankOut() # lui
-                        lui_found = False
+            opcode = instr1.getOpcodeName()
+
+            if instr1.sameOpcode(instr2):
+                if not lui_found:
+                    if opcode == "LUI":
+                        lui_found = True
+                        lui_pos = i
+                        lui_1_register = instr1.rt
+                        lui_2_register = instr2.rt
+                else:
+                    if opcode == "ADDIU":
+                        if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
+                            instr1.blankOut()
+                            instr2.blankOut()
+                            self.instructions[lui_pos].blankOut() # lui
+                            other_file.instructions[lui_pos].blankOut() # lui
+                            lui_found = False
+                            was_updated = True
+                    elif opcode == "LW":
+                        if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
+                            instr1.blankOut()
+                            instr2.blankOut()
+                            self.instructions[lui_pos].blankOut() # lui
+                            other_file.instructions[lui_pos].blankOut() # lui
+                            lui_found = False
+                            was_updated = True
+                    elif opcode == "LWC1" or opcode == "LWC2":
+                        if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
+                            instr1.blankOut()
+                            instr2.blankOut()
+                            self.instructions[lui_pos].blankOut() # lui
+                            other_file.instructions[lui_pos].blankOut() # lui
+                            lui_found = False
+                            was_updated = True
+                    elif opcode == "ORI":
+                        if instr1.rs == lui_1_register and instr2.rs == lui_2_register:
+                            instr1.blankOut()
+                            instr2.blankOut()
+                            self.instructions[lui_pos].blankOut() # lui
+                            other_file.instructions[lui_pos].blankOut() # lui
+                            lui_found = False
                         was_updated = True
             if i > lui_pos + 5:
                 lui_found = False
@@ -835,8 +622,10 @@ class Text(File):
         was_updated = False
         for i in range(len(self.instructions)):
             instr = self.instructions[i]
+            opcode = instr.getOpcodeName()
+
             if not lui_found:
-                if instr.isLUI():
+                if opcode == "LUI":
                     immediate_half = ((instr.immediate >> 8) & 0xFF)
                     if immediate_half == 0x80 or ((immediate_half & 0xF0) == 0 and (immediate_half & 0x0F) != 0):
                         #instr.blankOut()
@@ -846,7 +635,7 @@ class Text(File):
                         lui_pos = i
                         lui_register = instr.rt
             else:
-                if instr.isADDIU() or instr.isLW() or instr.isLWCz() or instr.isORI() or instr.isLW():
+                if opcode == "ADDIU" or opcode == "LW" or opcode == "LWC1" or opcode == "LWC2" or opcode == "ORI" or opcode == "LW":
                     if instr.rs == lui_register:
                         instr.blankOut()
                         self.instructions[lui_pos].blankOut() # lui
