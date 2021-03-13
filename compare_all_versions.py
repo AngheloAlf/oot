@@ -21,6 +21,10 @@ def readFileAsBytearray(filepath: str) -> bytearray:
     with open(filepath, mode="rb") as f:
         return bytearray(f.read())
 
+def readFile(filepath: str):
+    with open(filepath) as f:
+        return [x.strip() for x in f.readlines()]
+
 def runCommandGetOutput(command: str, args: List[str]) -> List[str] | None:
     try:
         output = subprocess.check_output([command, *args]).decode("utf-8")
@@ -57,22 +61,24 @@ def getVersionAbbr(filename: str) -> str:
     # If the version wasn't found.
     return filename
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("versionlist", help="Path to version list.")
-    parser.add_argument("filename", help="Filename of the ROM that will be compared.")
-    parser.add_argument("--noheader", help="Disables the csv header.", action="store_true")
-    args = parser.parse_args()
+def countUnique(row: list) -> int:
+    unique = set(row)
+    count = len(unique)
+    if "" in unique:
+        count -= 1
+    return count
 
-    lines = open(args.versionlist).read().splitlines()
-    
-    md5arglist = list(map(lambda orig_string: "baserom_" + orig_string + "/" + args.filename, lines))
+
+def compareFileAcrossVersions(versionsList: List[str], filename: str):
+    md5arglist = list(map(lambda orig_string: "baserom_" + orig_string + "/" + filename, versionsList))
     # os.system( "md5sum " + " ".join(md5arglist) )
 
     # Get hashes.
     output = runCommandGetOutput("md5sum", md5arglist)
-    print("\n".join(output))
-    print()
+
+    # Print md5hash
+    #print("\n".join(output))
+    #print()
 
     filesHashes = dict() # "NN0": "339614255f179a1e308d954d8f7ffc0a"
     firstFilePerHash = dict() # "339614255f179a1e308d954d8f7ffc0a": "NN0"
@@ -89,23 +95,45 @@ def main():
         if filehash not in firstFilePerHash:
             firstFilePerHash[filehash] = abbr
 
-    if not args.noheader:
-        # Print csv header
-        print("Object name", end="")
-        for ver in versions:
-            print("," + ver, end="")
-        print()
-
-    # Print csv row
-    print(args.filename, end="")
-    for ver in versions:
+    row = []
+    for ver in versionsList:
         abbr = versions[ver]
-        print(",", end="")
 
         if abbr in filesHashes:
             fHash = filesHashes[abbr]
-            print(firstFilePerHash[fHash], end="")
-    print()
+            row.append(firstFilePerHash[fHash])
+        else:
+            row.append("")
+    return row
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("versionlist", help="Path to version list.")
+    parser.add_argument("filelist", help="List of filenames of the ROM that will be compared.")
+    parser.add_argument("--noheader", help="Disables the csv header.", action="store_true")
+    args = parser.parse_args()
+
+    lines = open(args.versionlist).read().splitlines()
+    filesList = readFile(args.filelist)
+
+    if not args.noheader:
+        # Print csv header
+        print("Object name", end="")
+        for ver in lines:
+            print("," + ver, end="")
+        print(",Different versions", end="")
+        print()
+
+    for filename in filesList:
+        row = compareFileAcrossVersions(lines, filename)
+
+        # Print csv row
+        print(filename, end="")
+        for cell in row:
+            print("," + cell, end="")
+        print("," + str(countUnique(row)), end="")
+        print()
 
 if __name__ == "__main__":
     main()
