@@ -292,6 +292,11 @@ class Instruction:
             return False
         return self.instr != other.instr
 
+    def modifiesRt(self):
+        if self.isBranch():
+            return False
+        return True
+
     def blankOut(self):
         self.rs = 0
         self.rt = 0
@@ -459,6 +464,9 @@ class InstructionSpecial(Instruction):
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         return False
 
+    def modifiesRt(self):
+        return False
+
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
         return InstructionSpecial.SpecialOpcodes.get(self.rt, f"SPECIAL({opcode})")
@@ -491,6 +499,9 @@ class InstructionRegimm(Instruction):
     def isIType(self) -> bool: # OP rt, IMM(rs)
         return False
     def isIType2(self) -> bool: # OP  rs, rt, IMM
+        return False
+
+    def modifiesRt(self):
         return False
 
     def getOpcodeName(self) -> str:
@@ -636,35 +647,34 @@ class Text(File):
     def removePointers(self):
         super().removePointers()
 
-        lui_found = False
-        lui_pos = 0
-        lui_register = 0
+        lui_registers = dict()
 
         was_updated = False
         for i in range(len(self.instructions)):
             instr = self.instructions[i]
             opcode = instr.getOpcodeName()
 
-            if not lui_found:
-                if opcode == "LUI":
-                    #immediate_half = ((instr.immediate >> 8) & 0xFF)
-                    #if immediate_half == 0x80 or ((immediate_half & 0xF0) == 0 and (immediate_half & 0x0F) != 0):
-                        #instr.blankOut()
-                        #was_updated = True
+            # Clean the tracked registers after X instructions have passed.
+            lui_registers_aux = dict(lui_registers)
+            lui_registers = dict()
+            for lui_reg in lui_registers_aux:
+                lui_pos, instructions_left = lui_registers_aux[lui_reg]
+                instructions_left -= 1
+                if instructions_left > 0:
+                    lui_registers[lui_reg] = [lui_pos, instructions_left]
 
-                    lui_found = True
-                    lui_pos = i
-                    lui_register = instr.rt
-            else:
-                if opcode == "ADDIU" or opcode == "LW" or opcode == "LWC1" or opcode == "LWC2" or opcode == "ORI" or opcode == "LW":
-                    if instr.rs == lui_register:
-                        instr.blankOut()
-                        self.instructions[lui_pos].blankOut() # lui
-                        lui_found = False
-                        was_updated = True
-
-            if i > lui_pos + 5:
-                lui_found = False
+            if opcode == "LUI":
+                lui_registers[instr.rt] = [i, 8]
+            elif opcode in ("ADDIU", "LW", "LWU", "LWC1", "LWC2", "ORI", "LH", "LHU", "LB", "LBU"):
+                rs = instr.rs
+                if rs in lui_registers:
+                    lui_pos, _ = lui_registers[rs]
+                    self.instructions[lui_pos].blankOut() # lui
+                    instr.blankOut()
+                    was_updated = True
+            elif instr.isJType():
+                instr.blankOut()
+                was_updated = True
 
         if was_updated:
             self.updateWords()
