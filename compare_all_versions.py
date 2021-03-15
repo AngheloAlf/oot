@@ -5,11 +5,12 @@ from __future__ import annotations
 import argparse
 import os
 import hashlib
-import json
 import struct
 from typing import List
 import sys
 import subprocess
+from multiprocessing import Pool, cpu_count
+from functools import partial
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
@@ -919,7 +920,7 @@ def getHashesOfFiles(args, filesPath: List[str]) -> List[str]:
             hashList.append(line)
     return hashList
 
-def compareFileAcrossVersions(args, versionsList: List[str], filename: str) -> List[str]:
+def compareFileAcrossVersions(filename: str, versionsList: List[str], args) -> List[List[str]]:
     md5arglist = list(map(lambda orig_string: "baserom_" + orig_string + "/" + filename, versionsList))
     # os.system( "md5sum " + " ".join(filesPath) )
 
@@ -946,7 +947,7 @@ def compareFileAcrossVersions(args, versionsList: List[str], filename: str) -> L
         if filehash not in firstFilePerHash:
             firstFilePerHash[filehash] = abbr
 
-    row = []
+    row = [filename]
     for ver in versionsList:
         abbr = versions.get(ver, None)
 
@@ -955,9 +956,9 @@ def compareFileAcrossVersions(args, versionsList: List[str], filename: str) -> L
             row.append(firstFilePerHash[fHash])
         else:
             row.append("")
-    return row
+    return [row]
 
-def compareOverlayAcrossVersions(args, versionsList: List[str], filename: str) -> List[List[str]]:
+def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -> List[List[str]]:
     column = []
 
     if filename.startswith("ovl_"):
@@ -974,60 +975,42 @@ def compareOverlayAcrossVersions(args, versionsList: List[str], filename: str) -
             f = Overlay(array_of_bytes)
             f.removePointers()
             if args.savetofile:
-                new_file_path = os.path.join(args.savetofile, version + "_" + filename)
+                new_file_path = os.path.join(args.savetofile, version, filename)
                 f.saveToFile(new_file_path)
 
             abbr = getVersionAbbr(path)
 
-            if filename + ".text" not in filesHashes:
-                filesHashes[filename + ".text"] = dict()
-                firstFilePerHash[filename + ".text"] = dict()
-            if filename + ".data" not in filesHashes:
-                filesHashes[filename + ".data"] = dict()
-                firstFilePerHash[filename + ".data"] = dict()
-            if filename + ".rodata" not in filesHashes:
-                filesHashes[filename + ".rodata"] = dict()
-                firstFilePerHash[filename + ".rodata"] = dict()
-            if filename + ".bss" not in filesHashes:
-                filesHashes[filename + ".bss"] = dict()
-                firstFilePerHash[filename + ".bss"] = dict()
-            if filename + ".reloc" not in filesHashes:
-                filesHashes[filename + ".reloc"] = dict()
-                firstFilePerHash[filename + ".reloc"] = dict()
+            subfiles = {
+                ".text" : f.text,
+                ".data" : f.data,
+                ".rodata" : f.rodata,
+                ".bss" : f.bss,
+                ".reloc" : f.reloc,
+            }
 
-            textHash = f.text.getHash()
-            dataHash = f.data.getHash()
-            rodataHash = f.rodata.getHash()
-            bssHash = f.bss.getHash()
-            relocHash = f.reloc.getHash()
+            for section, sub in subfiles.items():
+                file_section = filename + section
+                if file_section not in filesHashes:
+                    filesHashes[file_section] = dict()
+                    firstFilePerHash[file_section] = dict()
 
-            # Map each abbreviation to its hash.
-            filesHashes[filename + ".text"][abbr] = textHash
-            filesHashes[filename + ".data"][abbr] = dataHash
-            filesHashes[filename + ".rodata"][abbr] = rodataHash
-            filesHashes[filename + ".bss"][abbr] = bssHash
-            filesHashes[filename + ".reloc"][abbr] = relocHash
+                f_hash = sub.getHash()
+                # Map each abbreviation to its hash.
+                filesHashes[file_section][abbr] = f_hash
 
-            # Find out where in which version this hash appeared for first time.
-            if textHash not in firstFilePerHash[filename + ".text"]:
-                firstFilePerHash[filename + ".text"][textHash] = abbr
-            if dataHash not in firstFilePerHash[filename + ".data"]:
-                firstFilePerHash[filename + ".data"][dataHash] = abbr
-            if rodataHash not in firstFilePerHash[filename + ".rodata"]:
-                firstFilePerHash[filename + ".rodata"][rodataHash] = abbr
-            if bssHash not in firstFilePerHash[filename + ".bss"]:
-                firstFilePerHash[filename + ".bss"][bssHash] = abbr
-            if relocHash not in firstFilePerHash[filename + ".reloc"]:
-                firstFilePerHash[filename + ".reloc"][relocHash] = abbr
+                # Find out where in which version this hash appeared for first time.
+                if f_hash not in firstFilePerHash[file_section]:
+                    firstFilePerHash[file_section][f_hash] = abbr
 
         for section in [".text", ".data", ".rodata", ".bss", ".reloc"]:
-            row = [filename + section]
+            file_section = filename + section
+            row = [file_section]
             for version in versionsList:
                 abbr = versions[version]
 
-                if abbr in filesHashes[filename + section]:
-                    fHash = filesHashes[filename + section][abbr]
-                    row.append(firstFilePerHash[filename + section][fHash])
+                if abbr in filesHashes[file_section]:
+                    fHash = filesHashes[file_section][abbr]
+                    row.append(firstFilePerHash[file_section][fHash])
                 else:
                     row.append("")
             column.append(row)
@@ -1045,7 +1028,7 @@ def compareOverlayAcrossVersions(args, versionsList: List[str], filename: str) -
             f = File(array_of_bytes)
             f.removePointers()
             if args.savetofile:
-                new_file_path = os.path.join(args.savetofile, version + "_" + filename)
+                new_file_path = os.path.join(args.savetofile, version, filename)
                 f.saveToFile(new_file_path)
 
             abbr = getVersionAbbr(path)
@@ -1081,37 +1064,33 @@ def main():
     parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written. The folder must already exits.", metavar="FOLDER")
     args = parser.parse_args()
 
-    lines = open(args.versionlist).read().splitlines()
+    versionsList = open(args.versionlist).read().splitlines()
     filesList = readFile(args.filelist)
+
+    if args.savetofile is not None:
+        for ver in versionsList:
+            os.makedirs(os.path.join(args.savetofile, ver), exist_ok=True)
 
     if not args.noheader:
         # Print csv header
         print("Object name", end="")
-        for ver in lines:
+        for ver in versionsList:
             print("," + ver, end="")
         print(",Different versions", end="")
         print()
 
-    for filename in filesList:
-        if args.overlays:
-            column = compareOverlayAcrossVersions(args, lines, filename)
+    compareFunction = compareFileAcrossVersions
+    if args.overlays:
+        compareFunction = compareOverlayAcrossVersions
 
-            for row in column:
-                # Print csv row
-                for cell in row:
-                    print(cell + ",", end="")
-                print(countUnique(row)-1, end="")
-                print()
-
-        else:
-            row = compareFileAcrossVersions(args, lines, filename)
-
+    numCores = cpu_count() + 1
+    p = Pool(numCores)
+    for column in p.imap(partial(compareFunction, versionsList=versionsList, args=args), filesList):
+        for row in column:
             # Print csv row
-            print(filename, end="")
             for cell in row:
-                print("," + cell, end="")
-            print("," + str(countUnique(row)), end="")
-            print()
+                print(cell + ",", end="")
+            print(countUnique(row)-1)
 
 if __name__ == "__main__":
     main()
