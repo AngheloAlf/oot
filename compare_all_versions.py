@@ -469,7 +469,7 @@ class InstructionSpecial(Instruction):
 
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
-        return InstructionSpecial.SpecialOpcodes.get(self.rt, f"SPECIAL({opcode})")
+        return InstructionSpecial.SpecialOpcodes.get(self.function, f"SPECIAL({opcode})")
 
 class InstructionRegimm(Instruction):
     RegimmOpcodes = {
