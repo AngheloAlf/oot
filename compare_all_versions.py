@@ -34,21 +34,21 @@ versions = {
 
 # in JAL format. # Real address would be (address << 2)
 address_Graph_OpenDisps = {
-    "ntsc_0.9" : 0x0,
+    "ntsc_0.9" : 0x001F856,
     "ntsc_1.0" : 0x001F8A6,
-    "ntsc_1.1" : 0x0,
+    "ntsc_1.1" : 0x001F8A6,
     "pal_1.0" : 0x001FA2A,
-    "ntsc_1.2" : 0x0,
+    "ntsc_1.2" : 0x001FA4A,
     "pal_1.1" : 0x001FA2A,
-    "jp_gc" : 0x0,
-    "jp_mq" : 0x0,
-    "usa_gc" : 0x0,
-    "usa_mq" : 0x0,
-    "pal_gc" : 0x0,
+    "jp_gc" : 0x001F792,
+    "jp_mq" : 0x001F792,
+    "usa_gc" : 0x001F78A,
+    "usa_mq" : 0x001F78A,
+    "pal_gc" : 0x001F77E,
     "pal_gc_dbg" : 0x0,
     "pal_mq" : 0x001F77E,
     "pal_mq_dbg" : 0x0031AB1,
-    "jp_gc_ce" : 0x0,
+    "jp_gc_ce" : 0x001F78A,
 }
 
 
@@ -898,6 +898,22 @@ class Data(File):
 
 
 class Rodata(File):
+    def removePointers(self):
+        super().removePointers()
+
+        was_updated = False
+        for i in range(self.sizew):
+            top_byte = (self.words[i] >> 24) & 0xFF
+            if top_byte == 0x80:
+                self.words[i] = top_byte << 24
+                was_updated = True
+            if (top_byte & 0xF0) == 0x00 and (top_byte & 0x0F) != 0x00:
+                self.words[i] = top_byte << 24
+                was_updated = True
+        
+        if was_updated:
+            self.updateBytes()
+
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".rodata")
 
