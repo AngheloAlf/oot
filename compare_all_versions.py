@@ -175,6 +175,8 @@ class File:
 
     def updateBytes(self):
         beWordsToBytes(self.words, self.bytes)
+        # Truncate extra data
+        self.bytes = self.bytes[:self.sizew*4]
 
     def saveToFile(self, filepath: str):
         writeBytearrayToFile(filepath, self.bytes)
@@ -295,7 +297,7 @@ class Instruction:
 
     def isJType(self) -> bool: # OP LABEL
         opcode = self.getOpcodeName()
-        return opcode == "J" or opcode == "JAL"
+        return opcode in ("J", "JAL")
     def isRType(self) -> bool: # OP rd, rs, rt
         return False
     def isRType2(self) -> bool: # OP rd, rt, rs
@@ -425,6 +427,10 @@ class Instruction:
         rs = self.getRegisterName(self.rs)
         rt = self.getRegisterName(self.rt)
         immediate = "0x" + hex(self.immediate).strip("0x").zfill(4).upper()
+
+        if "COP" in self.getOpcodeName(): # Hack until I implement COPz instructions
+            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
+            return f"{opcode} {instr_index}"
 
         if self.isIType():
             result = f"{opcode} {rt},"
@@ -594,6 +600,11 @@ class InstructionSpecial(Instruction):
     def __str__(self) -> str:
         opcode = self.getOpcodeName()
         formated_opcode = opcode.lower().ljust(7, ' ')
+
+        if opcode == "MOVCI": # Hack until I implement MOVCI instructions
+            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
+            return f"{formated_opcode} {instr_index}"
+
         if opcode in ("JR", "MTHI", "MTLO"):
             rs = self.getRegisterName(self.rs)
             result = f"{formated_opcode} {rs}"
@@ -799,14 +810,14 @@ class Text(File):
             other_file.updateWords()
 
     def removePointers(self):
+        was_updated = False
+
         if self.args.delete_opendisps:
-            self.deleteCallers_Graph_OpenDisps()
+            was_updated = self.deleteCallers_Graph_OpenDisps()
 
         super().removePointers()
 
         lui_registers = dict()
-
-        was_updated = False
         for i in range(len(self.instructions)):
             instr = self.instructions[i]
             opcode = instr.getOpcodeName()
@@ -836,10 +847,11 @@ class Text(File):
         if was_updated:
             self.updateWords()
 
-    def deleteCallers_Graph_OpenDisps(self):
+    def deleteCallers_Graph_OpenDisps(self) -> bool:
+        was_updated = False
         graph_openDisps = address_Graph_OpenDisps[self.version]
         if graph_openDisps == 0:
-            return
+            return was_updated
 
         last_jr = 0
         found_openDisps = False
@@ -851,6 +863,7 @@ class Text(File):
                 # found end of function
                 if found_openDisps:
                     ranges_to_delete.append((last_jr, i))
+                    was_updated = True
                 found_openDisps = False
                 last_jr = i
             elif opcode == "JAL":
@@ -861,6 +874,8 @@ class Text(File):
         # Remove all functions that call Graph_openDisps
         for begin, end in ranges_to_delete[::-1]:
             del self.instructions[begin:end]
+
+        return was_updated
 
     def updateWords(self):
         self.words = []
