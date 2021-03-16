@@ -950,6 +950,10 @@ class Rodata(File):
 
 
 class Bss(File):
+    def removePointers(self):
+        super().removePointers()
+        self.updateBytes()
+
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".bss")
 
@@ -1000,6 +1004,10 @@ class Reloc(File):
         result = super().compareToFile(other_file, args)
         # TODO
         return result
+
+    def removePointers(self):
+        super().removePointers()
+        self.updateBytes()
 
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".reloc")
@@ -1073,27 +1081,6 @@ class Overlay(File):
         other_file.words = other_file.text.words + other_file.data.words  + other_file.rodata.words + other_file.bss.words + other_file.header + other_file.reloc.words + other_file.tail
         other_file.updateBytes()
 
-    def relocate(self, allocatedVRamAddress: int, vRamAddress: int):
-        allocu32 = allocatedVRamAddress
-
-        sections = [0, 0, 0, 0]
-        sections[0] = 0
-        sections[1] = allocu32
-        sections[2] = allocu32 + self.text.size
-        sections[3] = sections[2] + self.data.size
-
-        for reloc in self.reloc.entries:
-            relocDataPtr = reloc.sectionId
-            # relocData = *relocDataPtr
-            if reloc.relocType == 2:
-                pass
-            elif reloc.relocType == 4:
-                pass
-            elif reloc.relocType == 5:
-                pass
-            elif reloc.relocType == 6:
-                pass
-
     def removePointers(self):
         super().removePointers()
 
@@ -1102,13 +1089,46 @@ class Overlay(File):
             type_name = entry.getTypeName()
             offset = entry.offset//4
             if section == ".text":
-                self.text.instructions
+                instr = self.text.instructions[offset]
+                if type_name == "R_MIPS_26":
+                    self.text.instructions[offset] = wordToInstruction(instr.instr & 0xFC000000)
+                elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
+                    self.text.instructions[offset] = wordToInstruction(instr.instr & 0xFFFF0000)
+                else:
+                    raise RuntimeError(f"{type_name} in .text")
             elif section == ".data":
-                pass
+                word = self.data.words[offset]
+                if type_name == "R_MIPS_32":
+                    self.data.words[offset] = word & 0xFF000000
+                elif type_name == "R_MIPS_26":
+                    self.data.words[offset] = word & 0xFC000000
+                elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
+                    self.data.words[offset] = word & 0xFFFF0000
+                else:
+                    raise RuntimeError(f"{type_name} in .data")
             elif section == ".rodata":
-                pass
+                word = self.rodata.words[offset]
+                if type_name == "R_MIPS_32":
+                    self.rodata.words[offset] = word & 0xFF000000
+                elif type_name == "R_MIPS_26":
+                    self.rodata.words[offset] = word & 0xFC000000
+                elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
+                    self.rodata.words[offset] = word & 0xFFFF0000
+                else:
+                    raise RuntimeError(f"{type_name} in .rodata")
             elif section == ".bss":
-                pass
+                word = self.bss.words[offset]
+                if type_name == "R_MIPS_32":
+                    self.bss.words[offset] = word & 0xFF000000
+                elif type_name == "R_MIPS_26":
+                    self.bss.words[offset] = word & 0xFC000000
+                elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
+                    self.bss.words[offset] = word & 0xFFFF0000
+                else:
+                    raise RuntimeError(f"{type_name} in .bss")
+            else:
+                raise RuntimeError(f"Invalid reloc section: {section}")
+
 
         self.text.removePointers()
         self.data.removePointers()
