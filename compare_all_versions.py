@@ -127,7 +127,7 @@ class File:
             self.updateBytes()
             other.updateBytes()
 
-    def removePointers(self):
+    def removePointers(self, args):
         pass
 
     def updateBytes(self):
@@ -645,8 +645,8 @@ class Text(File):
             self.updateWords()
             other_file.updateWords()
 
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        super().removePointers(args)
 
         lui_registers = dict()
 
@@ -665,7 +665,7 @@ class Text(File):
                     lui_registers[lui_reg] = [lui_pos, instructions_left]
 
             if opcode == "LUI":
-                lui_registers[instr.rt] = [i, 8]
+                lui_registers[instr.rt] = [i, args.track_registers]
             elif opcode in ("ADDIU", "LW", "LWU", "LWC1", "LWC2", "ORI", "LH", "LHU", "LB", "LBU"):
                 rs = instr.rs
                 if rs in lui_registers:
@@ -695,8 +695,8 @@ class Text(File):
 
 
 class Data(File):
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        super().removePointers(args)
 
         was_updated = False
         for i in range(self.sizew):
@@ -841,14 +841,14 @@ class Overlay(File):
             elif reloc.relocType == 6:
                 pass
 
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        super().removePointers(args)
 
-        self.text.removePointers()
-        self.data.removePointers()
-        self.rodata.removePointers()
-        self.bss.removePointers()
-        self.reloc.removePointers()
+        self.text.removePointers(args)
+        self.data.removePointers(args)
+        self.rodata.removePointers(args)
+        self.bss.removePointers(args)
+        self.reloc.removePointers(args)
 
         self.updateBytes()
 
@@ -973,7 +973,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
                 continue
 
             f = Overlay(array_of_bytes)
-            f.removePointers()
+            f.removePointers(args)
             if args.savetofile:
                 new_file_path = os.path.join(args.savetofile, version, filename)
                 f.saveToFile(new_file_path)
@@ -1026,7 +1026,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
                 continue
 
             f = File(array_of_bytes)
-            f.removePointers()
+            f.removePointers(args)
             if args.savetofile:
                 new_file_path = os.path.join(args.savetofile, version, filename)
                 f.saveToFile(new_file_path)
@@ -1062,6 +1062,7 @@ def main():
     parser.add_argument("--ignore04", help="Ignores words starting with 0x04.", action="store_true")
     parser.add_argument("--overlays", help="Treats the files in filelist as overlays.", action="store_true")
     parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written. The folder must already exits.", metavar="FOLDER")
+    parser.add_argument("--track-registers", help="Set for how many instructions a register will be tracked.", type=int, default=8)
     args = parser.parse_args()
 
     versionsList = open(args.versionlist).read().splitlines()
