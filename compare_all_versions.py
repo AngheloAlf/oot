@@ -12,6 +12,46 @@ import subprocess
 from multiprocessing import Pool, cpu_count
 from functools import partial
 
+
+versions = {
+    "ntsc_0.9" : "NNR",
+    "ntsc_1.0" : "NN0",
+    "ntsc_1.1" : "NN1",
+    "pal_1.0" : "NP0",
+    "ntsc_1.2" : "NN2",
+    "pal_1.1" : "NP1",
+    "jp_gc" : "GJO",
+    "jp_mq" : "GJM",
+    "usa_gc" : "GUO",
+    "usa_mq" : "GUM",
+    "pal_gc" : "GPO",
+    "pal_gc_dbg" : "GPOD",
+    "pal_mq" : "GPM",
+    "pal_mq_dbg" : "GPMD",
+    "jp_gc_ce" : "GJC",
+}
+
+
+# in JAL format. # Real address would be (address << 2)
+address_Graph_OpenDisps = {
+    "ntsc_0.9" : 0x0,
+    "ntsc_1.0" : 0x001F8A6,
+    "ntsc_1.1" : 0x0,
+    "pal_1.0" : 0x001FA2A,
+    "ntsc_1.2" : 0x0,
+    "pal_1.1" : 0x001FA2A,
+    "jp_gc" : 0x0,
+    "jp_mq" : 0x0,
+    "usa_gc" : 0x0,
+    "usa_mq" : 0x0,
+    "pal_gc" : 0x0,
+    "pal_gc_dbg" : 0x0,
+    "pal_mq" : 0x001F77E,
+    "pal_mq_dbg" : 0x0031AB1,
+    "jp_gc_ce" : 0x0,
+}
+
+
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
@@ -57,9 +97,12 @@ def beWordsToBytes(words_list: List[int], buffer: bytearray) -> bytearray:
 
 
 class File:
-    def __init__(self, array_of_bytes: bytearray):
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
         self.bytes: bytearray = array_of_bytes
         self.words: List[int] = bytesToBEWords(self.bytes)
+        self.filename: str = filename
+        self.version: str = version
+        self.args = args
 
     @property
     def size(self):
@@ -528,8 +571,8 @@ def wordToInstruction(word: int) -> Instruction:
 
 
 class Text(File):
-    def __init__(self, array_of_bytes):
-        super().__init__(array_of_bytes)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+        super().__init__(array_of_bytes, filename, version, args)
 
         self.instructions: List[Instruction] = list()
         for word in self.words:
@@ -646,6 +689,9 @@ class Text(File):
             other_file.updateWords()
 
     def removePointers(self):
+        if self.args.delete_opendisps:
+            self.deleteCallers_Graph_OpenDisps()
+
         super().removePointers()
 
         lui_registers = dict()
@@ -679,6 +725,32 @@ class Text(File):
 
         if was_updated:
             self.updateWords()
+
+    def deleteCallers_Graph_OpenDisps(self):
+        graph_openDisps = address_Graph_OpenDisps[self.version]
+        if graph_openDisps == 0:
+            return
+
+        last_jr = 0
+        found_openDisps = False
+        ranges_to_delete = []
+        for i in range(self.nInstr):
+            instr = self.instructions[i]
+            opcode = instr.getOpcodeName()
+            if opcode == "JR":
+                # found end of function
+                if found_openDisps:
+                    ranges_to_delete.append((last_jr, i))
+                found_openDisps = False
+                last_jr = i
+            elif opcode == "JAL":
+                # check for Graph_OpenDisps
+                if graph_openDisps == instr.instr_index:
+                    found_openDisps = True
+
+        # Remove all functions that call Graph_openDisps
+        for begin, end in ranges_to_delete[::-1]:
+            del self.instructions[begin:end]
 
     def updateWords(self):
         self.words = []
@@ -732,8 +804,8 @@ class RelocEntry:
         self.offset = entry & 0x00FFFFFF
 
 class Reloc(File):
-    def __init__(self, array_of_bytes):
-        super().__init__(array_of_bytes)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+        super().__init__(array_of_bytes, filename, version, args)
 
         self.entries: List[RelocEntry] = list()
         for word in self.words:
@@ -752,8 +824,8 @@ class Reloc(File):
         super().saveToFile(filepath + ".reloc")
 
 class Overlay(File):
-    def __init__(self, array_of_bytes):
-        super().__init__(array_of_bytes)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+        super().__init__(array_of_bytes, filename, version, args)
 
         seekup = self.words[-1]
         self.headerBPos = self.size - seekup
@@ -768,19 +840,19 @@ class Overlay(File):
 
         start = 0
         end = text_size
-        self.text = Text(self.bytes[start:end])
+        self.text = Text(self.bytes[start:end], filename, version, args)
 
         start += text_size
         end += data_size
-        self.data = Data(self.bytes[start:end])
+        self.data = Data(self.bytes[start:end], filename, version, args)
 
         start += data_size
         end += rodata_size
-        self.rodata = Rodata(self.bytes[start:end])
+        self.rodata = Rodata(self.bytes[start:end], filename, version, args)
 
         start += rodata_size
         end += bss_size
-        self.bss = Bss(self.bytes[start:end])
+        self.bss = Bss(self.bytes[start:end], filename, version, args)
 
         start += bss_size
         end += header_size
@@ -788,7 +860,7 @@ class Overlay(File):
 
         start += header_size
         end += reloc_size
-        self.reloc = Reloc(self.bytes[start:end])
+        self.reloc = Reloc(self.bytes[start:end], filename, version, args)
 
         self.tail = bytesToBEWords(self.bytes[end:])
 
@@ -863,25 +935,6 @@ class Overlay(File):
         self.bss.saveToFile(filepath)
         self.reloc.saveToFile(filepath)
 
-
-
-versions = {
-    "ntsc_0.9" : "NNR",
-    "ntsc_1.0" : "NN0",
-    "ntsc_1.1" : "NN1",
-    "pal_1.0" : "NP0",
-    "ntsc_1.2" : "NN2",
-    "pal_1.1" : "NP1",
-    "jp_gc" : "GJO",
-    "jp_mq" : "GJM",
-    "usa_gc" : "GUO",
-    "usa_mq" : "GUM",
-    "pal_gc" : "GPO",
-    "pal_gc_dbg" : "GPOD",
-    "pal_mq" : "GPM",
-    "pal_mq_dbg" : "GPMD",
-    "jp_gc_ce" : "GJC",
-}
 
 def getVersionAbbr(filename: str) -> str:
     for ver in versions:
@@ -972,7 +1025,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
             if len(array_of_bytes) == 0:
                 continue
 
-            f = Overlay(array_of_bytes)
+            f = Overlay(array_of_bytes, filename, version, args)
             f.removePointers()
             if args.savetofile:
                 new_file_path = os.path.join(args.savetofile, version, filename)
@@ -1025,7 +1078,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
             if len(array_of_bytes) == 0:
                 continue
 
-            f = File(array_of_bytes)
+            f = File(array_of_bytes, filename, version, args)
             f.removePointers()
             if args.savetofile:
                 new_file_path = os.path.join(args.savetofile, version, filename)
@@ -1062,6 +1115,7 @@ def main():
     parser.add_argument("--ignore04", help="Ignores words starting with 0x04.", action="store_true")
     parser.add_argument("--overlays", help="Treats the files in filelist as overlays.", action="store_true")
     parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written. The folder must already exits.", metavar="FOLDER")
+    parser.add_argument("--delete-opendisps", help="Will try to find and delete every function that calls Graph_OpenDisps.", action="store_true")
     args = parser.parse_args()
 
     versionsList = open(args.versionlist).read().splitlines()
