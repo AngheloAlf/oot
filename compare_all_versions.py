@@ -185,11 +185,11 @@ class Instruction:
         0b000_000: "SPECIAL",
         0b000_001: "REGIMM",
         0b000_010: "J", # Jump
-        0b000_011: "JAL", # Jump and Link
-        0b000_100: "BEQ",
-        0b000_101: "BNE",
-        0b000_110: "BLEZ",
-        0b000_111: "BGTZ",
+        0b000_011: "JAL", # Jump And Link
+        0b000_100: "BEQ", # Branch on EQual
+        0b000_101: "BNE", # Branch on Not Equal
+        0b000_110: "BLEZ", # Branch on Less than or Equal to Zero
+        0b000_111: "BGTZ", # Branch on Greater Than Zero
 
         0b001_000: "ADDI", # Add Immediate
         0b001_001: "ADDIU", # Add Immediate Unsigned Word
@@ -203,11 +203,11 @@ class Instruction:
         0b010_000: "COP0", # Coprocessor OPeration z
         0b010_001: "COP1", # Coprocessor OPeration z
         0b010_010: "COP2", # Coprocessor OPeration z
-        0b010_011: "COP1X", # Coprocessor OPeration z
-        0b010_100: "BEQL",
-        0b010_101: "BNEL",
-        0b010_110: "BLEZL",
-        0b010_111: "BGTZL",
+        0b010_011: "COP3", # Coprocessor OPeration z
+        0b010_100: "BEQL", # Branch on EQual Likely
+        0b010_101: "BNEL", # Branch on Not Equal Likely
+        0b010_110: "BLEZL", # Branch on Less than or Equal to Zero Likely
+        0b010_111: "BGTZL", # Branch on Greater Than Zero Likely
 
         0b011_000: "DADDI", # Doubleword add Immediate
         0b011_001: "DADDIU", # Doubleword add Immediate Unsigned
@@ -287,6 +287,8 @@ class Instruction:
             return True
         if opcode == "BNE" or opcode == "BNEL":
             return True
+        if opcode in ("BGTZ", "BGTZL"):
+            return True
         return False
     def isTrap(self) -> bool:
         return False
@@ -307,9 +309,13 @@ class Instruction:
             return False
         if self.isRType2():
             return False
+        if self.isSaType():
+            return False
         if self.isIType2():
             return False
         if self.isIType3():
+            return False
+        if self.isIType4():
             return False
         return True
     def isIType2(self) -> bool: # OP  rs, rt, IMM
@@ -332,6 +338,16 @@ class Instruction:
         if opcode == "SLTI" or opcode == "SLTIU":
             return True
         return False
+    def isIType4(self) -> bool: # OP  rs, IMM
+        opcode = self.getOpcodeName()
+        if opcode in ("BLEZ", "BGTZ", "BLEZL", "BGTZL"):
+            return True
+        return False
+    def isIType5(self) -> bool: # OP  rt, IMM
+        opcode = self.getOpcodeName()
+        if opcode in ("LUI", ):
+            return True
+        return False
 
     def sameOpcode(self, other: Instruction) -> bool:
         return self.opcode == other.opcode
@@ -346,6 +362,13 @@ class Instruction:
 
     def modifiesRt(self) -> bool:
         if self.isBranch():
+            return False
+        opcode = self.getOpcodeName()
+        if opcode in ("SB", "SH", "SWL", "SW", "SDL", "SDR", "SWR"):
+            return False
+        if opcode in ("LWC1", "LWC2", "LDC1", "LDC2"): # Changes the value of the coprocessor's register
+            return False
+        if opcode in ("SWC1", "SWC2", "SDC1", "SDC2"):
             return False
         return True
     def modifiesRd(self) -> bool:
@@ -419,6 +442,14 @@ class Instruction:
             result += f" {rs},"
             result = result.ljust(19, ' ')
             return f"{result} {immediate}"
+        elif self.isIType4():
+            result = f"{opcode} {rs},"
+            result = result.ljust(14, ' ')
+            return f"{result} {immediate}"
+        elif self.isIType5():
+            result = f"{opcode} {rt},"
+            result = result.ljust(14, ' ')
+            return f"{result} {immediate}"
         elif self.isJType():
             instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
             return f"{opcode} {instr_index}"
@@ -451,7 +482,7 @@ class Instruction:
 class InstructionSpecial(Instruction):
     SpecialOpcodes = {
         0b000_000: "SLL", # Shift word Left Logical
-        0b000_001: "MOVCI",
+        0b000_001: "MOVCI", # TODO
         0b000_010: "SRL", # Shift word Right Logical
         0b000_011: "SRA", # Shift word Right Arithmetic
         0b000_100: "SLLV", # Shift word Left Logical Variable
@@ -478,49 +509,49 @@ class InstructionSpecial(Instruction):
         0b010_111: "DSRAV", # Doubleword Shift Right Arithmetic Variable
 
         0b011_000: "MULT", # MULTtiply word
-        0b011_001: "MULTU",
-        0b011_010: "DIV",
-        0b011_011: "DIVU",
-        0b011_100: "DMULT",
-        0b011_101: "DMULTU",
-        0b011_110: "DDIV",
-        0b011_111: "DDIVU",
+        0b011_001: "MULTU", # MULTtiply Unsigned word
+        0b011_010: "DIV", # DIVide word
+        0b011_011: "DIVU", # DIVide Unsigned word
+        0b011_100: "DMULT", # Doubleword MULTiply
+        0b011_101: "DMULTU", # Doubleword MULTiply Unsigned
+        0b011_110: "DDIV", # Doubleword DIVide
+        0b011_111: "DDIVU", # Doubleword DIVide Unsigned
 
-        0b100_000: "ADD",
-        0b100_001: "ADDU",
+        0b100_000: "ADD", # ADD word
+        0b100_001: "ADDU", # ADD Unsigned word
         0b100_010: "SUB", # Subtract word
-        0b100_011: "SUBU", # Subtract Unsigned word
-        0b100_100: "AND",
-        0b100_101: "OR",
+        0b100_011: "SUBU", # SUBtract Unsigned word
+        0b100_100: "AND", # AND
+        0b100_101: "OR", # OR
         0b100_110: "XOR", # eXclusive OR
-        0b100_111: "NOR",
+        0b100_111: "NOR", # Not OR
 
         # 0b101_000: "",
         # 0b101_001: "",
         0b101_010: "SLT", # Set on Less Than
         0b101_011: "SLTU", # Set on Less Than Unsigned
-        0b101_100: "DADD",
-        0b101_101: "DADDU",
-        0b101_110: "DSUB",
-        0b101_111: "DSUBU",
+        0b101_100: "DADD", # Doubleword Add
+        0b101_101: "DADDU", # Doubleword Add Unsigned
+        0b101_110: "DSUB", # Doubleword SUBtract
+        0b101_111: "DSUBU", # Doubleword SUBtract Unsigned
 
-        0b110_000: "TGE",
-        0b110_001: "TGEU",
-        0b110_010: "TLT",
-        0b110_011: "TLTU",
-        0b110_100: "TEQ",
+        0b110_000: "TGE", # Trap if Greater or Equal
+        0b110_001: "TGEU", # Trap if Greater or Equal Unsigned
+        0b110_010: "TLT", # Trap if Less Than
+        0b110_011: "TLTU", # Trap if Less Than Unsigned
+        0b110_100: "TEQ", # Trap if EQual
         # 0b110_101: "",
-        0b110_110: "TNE",
+        0b110_110: "TNE", # Trap if Not Equal
         # 0b110_111: "",
 
-        0b111_000: "DSLL",
+        0b111_000: "DSLL", # Doubleword Shift Left Logical
         # 0b111_001: "",
-        0b111_010: "DSRL",
-        0b111_011: "DSRA",
-        0b111_100: "DSLL32",
+        0b111_010: "DSRL", # Doubleword Shift Right Logical
+        0b111_011: "DSRA", # Doubleword Shift Right Arithmetic
+        0b111_100: "DSLL32", # Doubleword Shift Left Logical plus 32
         # 0b111_101: "",
-        0b111_110: "DSRL32",
-        0b111_111: "DSRA32",
+        0b111_110: "DSRL32", # Doubleword Shift Right Logical plus 32
+        0b111_111: "DSRA32", # Doubleword Shift Right Arithmetic plus 32
     }
 
     def isTrap(self) -> bool:
@@ -540,7 +571,7 @@ class InstructionSpecial(Instruction):
         return opcode in ("DSLLV", "DSRLV", "DSRAV")
     def isSaType(self) -> bool: # OP rd, rt, sa
         opcode = self.getOpcodeName()
-        return opcode in ("SLL", "SRL", "SRA")
+        return opcode in ("SLL", "SRL", "SRA", "DSLL", "DSRL", "DSRA", "DSLL32", "DSRL32", "DSRA32")
     def isIType(self) -> bool: # OP rt, IMM(rs)
         return False
     def isIType2(self) -> bool: # OP  rs, rt, IMM
@@ -550,7 +581,9 @@ class InstructionSpecial(Instruction):
         return False
     def modifiesRd(self) -> bool:
         opcode = self.getOpcodeName()
-        if opcode in ("JR", "JALR", "MTHI", "MTLO", "MULT", "SYSCALL", "BREAK", "SYNC"): # TODO
+        if opcode in ("JR", "JALR", "MTHI", "MTLO", "MULT", "MULTU", "DIV", "DIVU", "DMULT", "DMULTU", "DDIV", "DDIVU", "SYSCALL", "BREAK", "SYNC"): # TODO
+            return False
+        if self.isTrap():
             return False
         return True
 
@@ -576,7 +609,8 @@ class InstructionSpecial(Instruction):
         elif opcode in ("MFHI", "MFLO"):
             rd = self.getRegisterName(self.rd)
             return f"{formated_opcode} {rd}"
-        elif opcode in ("MULT", ):
+        elif opcode in ("MULT", "MULTU", "DIV", "DIVU", 
+                "DMULT", "DMULTU", "DDIV", "DDIVU") or self.isTrap(): # OP  rs, rt
             rs = self.getRegisterName(self.rs)
             rt = self.getRegisterName(self.rt)
             result = f"{formated_opcode} {rs},".ljust(14, ' ')
