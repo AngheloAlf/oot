@@ -1123,26 +1123,30 @@ def compareFileAcrossVersions(filename: str, versionsList: List[str], args) -> L
 
 def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -> List[List[str]]:
     column = []
+    filesHashes = dict() # "filename": {"NN0": hash}
+    firstFilePerHash = dict() # "filename": {hash: "NN0"}
 
-    if filename.startswith("ovl_"):
-        filesHashes = dict() # "filename": {"NN0": hash}
-        firstFilePerHash = dict() # "filename": {hash: "NN0"}
+    is_overlay = filename.startswith("ovl_")
 
-        for version in versionsList:
-            path = "baserom_" + version + "/" + filename
+    for version in versionsList:
+        path = os.path.join("baserom_" + version, filename)
 
-            array_of_bytes = readFileAsBytearray(path)
-            if len(array_of_bytes) == 0:
-                continue
+        array_of_bytes = readFileAsBytearray(path)
+        if len(array_of_bytes) == 0:
+            continue
 
+        if is_overlay:
             f = Overlay(array_of_bytes, filename, version, args)
-            f.removePointers()
-            if args.savetofile:
-                new_file_path = os.path.join(args.savetofile, version, filename)
-                f.saveToFile(new_file_path)
+        else:
+            f = File(array_of_bytes, filename, version, args)
+        f.removePointers()
+        if args.savetofile:
+            new_file_path = os.path.join(args.savetofile, version, filename)
+            f.saveToFile(new_file_path)
 
-            abbr = getVersionAbbr(path)
+        abbr = getVersionAbbr(path)
 
+        if isinstance(f, Overlay):
             subfiles = {
                 ".text" : f.text,
                 ".data" : f.data,
@@ -1150,70 +1154,37 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
                 ".bss" : f.bss,
                 ".reloc" : f.reloc,
             }
+        else:
+            subfiles = {
+                "" : f,
+            }
 
-            for section, sub in subfiles.items():
-                file_section = filename + section
-                if file_section not in filesHashes:
-                    filesHashes[file_section] = dict()
-                    firstFilePerHash[file_section] = dict()
-
-                f_hash = sub.getHash()
-                # Map each abbreviation to its hash.
-                filesHashes[file_section][abbr] = f_hash
-
-                # Find out where in which version this hash appeared for first time.
-                if f_hash not in firstFilePerHash[file_section]:
-                    firstFilePerHash[file_section][f_hash] = abbr
-
-        for section in [".text", ".data", ".rodata", ".bss", ".reloc"]:
+        for section, sub in subfiles.items():
             file_section = filename + section
-            row = [file_section]
-            for version in versionsList:
-                abbr = versions[version]
+            if file_section not in filesHashes:
+                filesHashes[file_section] = dict()
+                firstFilePerHash[file_section] = dict()
 
-                if abbr in filesHashes[file_section]:
-                    fHash = filesHashes[file_section][abbr]
-                    row.append(firstFilePerHash[file_section][fHash])
-                else:
-                    row.append("")
-            column.append(row)
-    else:
-        filesHashes = dict() # "NN0": "339614255f179a1e308d954d8f7ffc0a"
-        firstFilePerHash = dict() # "339614255f179a1e308d954d8f7ffc0a": "NN0"
-
-        for version in versionsList:
-            path = "baserom_" + version + "/" + filename
-
-            array_of_bytes = readFileAsBytearray(path)
-            if len(array_of_bytes) == 0:
-                continue
-
-            f = File(array_of_bytes, filename, version, args)
-            f.removePointers()
-            if args.savetofile:
-                new_file_path = os.path.join(args.savetofile, version, filename)
-                f.saveToFile(new_file_path)
-
-            abbr = getVersionAbbr(path)
-            filehash = f.getHash()
-
+            f_hash = sub.getHash()
             # Map each abbreviation to its hash.
-            filesHashes[abbr] = filehash
+            filesHashes[file_section][abbr] = f_hash
 
             # Find out where in which version this hash appeared for first time.
-            if filehash not in firstFilePerHash:
-                firstFilePerHash[filehash] = abbr
+            if f_hash not in firstFilePerHash[file_section]:
+                firstFilePerHash[file_section][f_hash] = abbr
 
-        row = [filename]
+    for file_section in filesHashes:
+        row = [file_section]
         for version in versionsList:
             abbr = versions[version]
 
-            if abbr in filesHashes:
-                fHash = filesHashes[abbr]
-                row.append(firstFilePerHash[fHash])
+            if abbr in filesHashes[file_section]:
+                fHash = filesHashes[file_section][abbr]
+                row.append(firstFilePerHash[file_section][fHash])
             else:
                 row.append("")
         column.append(row)
+
     return column
 
 
