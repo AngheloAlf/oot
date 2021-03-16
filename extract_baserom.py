@@ -82,7 +82,9 @@ def readFilelists():
     FILE_NAMES["JP GC CE"] = readFile("filelists/filelist_jp_gc_ce.txt")
 
     FILE_NAMES["JP MQ"] = FILE_NAMES["USA MQ"]
+
     FILE_NAMES["USA GC"] = FILE_NAMES["JP GC CE"]
+    FILE_NAMES["JP GC"] = FILE_NAMES["USA GC"]
 
     FILE_NAMES["PAL 1.1"] = FILE_NAMES["PAL 1.0"]
 

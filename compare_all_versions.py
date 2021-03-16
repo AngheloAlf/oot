@@ -420,9 +420,6 @@ class Instruction:
         return hex(register)
 
     def __str__(self) -> str:
-        if self.instr == 0:
-            return "nop"
-
         opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
         rt = self.getRegisterName(self.rt)
@@ -432,6 +429,8 @@ class Instruction:
             instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
             return f"{opcode} {instr_index}"
 
+        if self.getOpcodeName() == "NOP":
+            return "nop"
         if self.isIType():
             result = f"{opcode} {rt},"
             result = result.ljust(14, ' ')
@@ -594,6 +593,8 @@ class InstructionSpecial(Instruction):
         return True
 
     def getOpcodeName(self) -> str:
+        if self.instr == 0:
+            return "NOP"
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
         return InstructionSpecial.SpecialOpcodes.get(self.function, f"SPECIAL({opcode})")
 
@@ -815,6 +816,8 @@ class Text(File):
         if self.args.delete_opendisps:
             was_updated = self.deleteCallers_Graph_OpenDisps()
 
+        was_updated = self.removeTrailingNops() or was_updated
+
         super().removePointers()
 
         lui_registers = dict()
@@ -875,6 +878,19 @@ class Text(File):
         for begin, end in ranges_to_delete[::-1]:
             del self.instructions[begin:end]
 
+        return was_updated
+
+    def removeTrailingNops(self) -> bool:
+        was_updated = False
+        first_nop = self.nInstr
+        for i in range(self.nInstr-1, 0-1, -1):
+            instr = self.instructions[i]
+            if instr.getOpcodeName() != "NOP":
+                break
+            first_nop = i
+        if first_nop != self.nInstr:
+            was_updated = True
+            del self.instructions[first_nop:]
         return was_updated
 
     def updateWords(self):
@@ -957,9 +973,15 @@ class RelocEntry:
         self.relocType = (entry >> 24) & 0x3F
         self.offset = entry & 0x00FFFFFF
 
+    def getSectionName(self) -> str:
+        return RelocEntry.sectionNames.get(self.sectionId, str(self.sectionId))
+
+    def getTypeName(self) -> str:
+        return RelocEntry.relocationsNames.get(self.relocType, str(self.relocType))
+
     def __str__(self) -> str:
-        section = RelocEntry.sectionNames.get(self.sectionId, str(self.sectionId))
-        reloc = RelocEntry.relocationsNames.get(self.relocType, str(self.relocType))
+        section = self.getSectionName()
+        reloc = self.getTypeName()
         return f"{section} {reloc} {hex(self.offset)}"
 
 class Reloc(File):
@@ -1074,6 +1096,19 @@ class Overlay(File):
 
     def removePointers(self):
         super().removePointers()
+
+        for entry in self.reloc.entries:
+            section = entry.getSectionName()
+            type_name = entry.getTypeName()
+            offset = entry.offset//4
+            if section == ".text":
+                self.text.instructions
+            elif section == ".data":
+                pass
+            elif section == ".rodata":
+                pass
+            elif section == ".bss":
+                pass
 
         self.text.removePointers()
         self.data.removePointers()

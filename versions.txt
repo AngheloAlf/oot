@@ -2,7 +2,9 @@ ntsc_0.9
 ntsc_1.0
 ntsc_1.1
 pal_1.0
+ntsc_1.2
 pal_1.1
+jp_gc
 usa_gc
 pal_mq_dbg
 pal_mq
