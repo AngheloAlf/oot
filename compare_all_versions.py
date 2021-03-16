@@ -924,10 +924,28 @@ class Bss(File):
 
 
 class RelocEntry:
+    sectionNames = {
+        1: ".text",
+        2: ".data",
+        3: ".rodata",
+        4: ".bss",
+    }
+    relocationsNames = {
+        2: "R_MIPS_32",
+        4: "R_MIPS_26",
+        5: "R_MIPS_HI16",
+        6: "R_MIPS_LO16",
+    }
+
     def __init__(self, entry: int):
         self.sectionId = entry >> 30
         self.relocType = (entry >> 24) & 0x3F
         self.offset = entry & 0x00FFFFFF
+
+    def __str__(self) -> str:
+        section = RelocEntry.sectionNames.get(self.sectionId, str(self.sectionId))
+        reloc = RelocEntry.relocationsNames.get(self.relocType, str(self.relocType))
+        return f"{section} {reloc} {hex(self.offset)}"
 
 class Reloc(File):
     def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
