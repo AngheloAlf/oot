@@ -288,16 +288,24 @@ class Instruction:
         if opcode == "BNE" or opcode == "BNEL":
             return True
         return False
+    def isTrap(self) -> bool:
+        return False
 
     def isJType(self) -> bool: # OP LABEL
         opcode = self.getOpcodeName()
         return opcode == "J" or opcode == "JAL"
     def isRType(self) -> bool: # OP rd, rs, rt
         return False
+    def isRType2(self) -> bool: # OP rd, rt, rs
+        return False
+    def isSaType(self) -> bool: # OP rd, rt, sa
+        return False
     def isIType(self) -> bool: # OP rt, IMM(rs)
         if self.isJType():
             return False
         if self.isRType():
+            return False
+        if self.isRType2():
             return False
         if self.isIType2():
             return False
@@ -336,10 +344,12 @@ class Instruction:
             return False
         return self.instr != other.instr
 
-    def modifiesRt(self):
+    def modifiesRt(self) -> bool:
         if self.isBranch():
             return False
         return True
+    def modifiesRd(self) -> bool:
+        return False
 
     def blankOut(self):
         self.rs = 0
@@ -419,6 +429,20 @@ class Instruction:
             result += f" {rs},"
             result = result.ljust(19, ' ')
             return f"{result} {rt}"
+        elif self.isRType2():
+            rd = self.getRegisterName(self.rd)
+            result = f"{opcode} {rd},"
+            result = result.ljust(14, ' ')
+            result += f" {rt},"
+            result = result.ljust(19, ' ')
+            return f"{result} {rs}"
+        elif self.isSaType():
+            rd = self.getRegisterName(self.rd)
+            result = f"{opcode} {rd},"
+            result = result.ljust(14, ' ')
+            result += f" {rt},"
+            result = result.ljust(19, ' ')
+            return f"{result} {self.sa}"
         return "ERROR"
 
     def __repr__(self) -> str:
@@ -437,23 +461,23 @@ class InstructionSpecial(Instruction):
 
         0b001_000: "JR", # Jump Register
         0b001_001: "JALR", # Jump And Link Register
-        0b001_010: "MOVZ",
-        0b001_011: "MOVN",
-        0b001_100: "SYSCALL",
-        0b001_101: "BREAK",
+        0b001_010: "MOVZ", # MOVe conditional on Zero
+        0b001_011: "MOVN", # MOVe conditional on Not zero
+        0b001_100: "SYSCALL", # SYStem CALL
+        0b001_101: "BREAK", # Break
         # 0b001_110: "",
-        0b001_111: "SYNC",
+        0b001_111: "SYNC", # Sync
 
-        0b010_000: "MFHI",
-        0b010_001: "MTHI",
-        0b010_010: "MFLO",
-        0b010_011: "MTLO",
-        0b010_100: "DSLLV",
+        0b010_000: "MFHI", # Move From HI register
+        0b010_001: "MTHI", # Move To HI register
+        0b010_010: "MFLO", # Move From LO register
+        0b010_011: "MTLO", # Move To LO register
+        0b010_100: "DSLLV", # Doubleword Shift Left Logical Variable
         # 0b010_101: "",
-        0b010_110: "DSRLV",
-        0b010_111: "DSRAV",
+        0b010_110: "DSRLV", # Doubleword Shift Right Logical Variable
+        0b010_111: "DSRAV", # Doubleword Shift Right Arithmetic Variable
 
-        0b011_000: "MULT",
+        0b011_000: "MULT", # MULTtiply word
         0b011_001: "MULTU",
         0b011_010: "DIV",
         0b011_011: "DIVU",
@@ -499,21 +523,67 @@ class InstructionSpecial(Instruction):
         0b111_111: "DSRA32",
     }
 
+    def isTrap(self) -> bool:
+        opcode = self.getOpcodeName()
+        return opcode in ("TGE", "TGEU", "TLT", "TLTU", "TEQ", "TNE")
+
     def isJType(self) -> bool: # OP LABEL
         return False
     def isRType(self) -> bool: # OP rd, rs, rt
+        if self.isRType2():
+            return False
+        elif self.isSaType():
+            return False
         return True # Not for all cases, but good enough
+    def isRType2(self) -> bool: # OP rd, rt, rs
+        opcode = self.getOpcodeName()
+        return opcode in ("DSLLV", "DSRLV", "DSRAV")
+    def isSaType(self) -> bool: # OP rd, rt, sa
+        opcode = self.getOpcodeName()
+        return opcode in ("SLL", "SRL", "SRA")
     def isIType(self) -> bool: # OP rt, IMM(rs)
         return False
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         return False
 
-    def modifiesRt(self):
+    def modifiesRt(self) -> bool:
         return False
+    def modifiesRd(self) -> bool:
+        opcode = self.getOpcodeName()
+        if opcode in ("JR", "JALR", "MTHI", "MTLO", "MULT", "SYSCALL", "BREAK", "SYNC"): # TODO
+            return False
+        return True
 
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
         return InstructionSpecial.SpecialOpcodes.get(self.function, f"SPECIAL({opcode})")
+
+    def __str__(self) -> str:
+        opcode = self.getOpcodeName()
+        formated_opcode = opcode.lower().ljust(7, ' ')
+        if opcode in ("JR", "MTHI", "MTLO"):
+            rs = self.getRegisterName(self.rs)
+            result = f"{formated_opcode} {rs}"
+            return result
+        elif opcode == "JALR":
+            rs = self.getRegisterName(self.rs)
+            rd = ""
+            if self.rd != 31:
+                rd = self.getRegisterName(self.rd) + ","
+                rd = rd.ljust(6, ' ')
+            result = f"{formated_opcode} {rd}{rs}"
+            return result
+        elif opcode in ("MFHI", "MFLO"):
+            rd = self.getRegisterName(self.rd)
+            return f"{formated_opcode} {rd}"
+        elif opcode in ("MULT", ):
+            rs = self.getRegisterName(self.rs)
+            rt = self.getRegisterName(self.rt)
+            result = f"{formated_opcode} {rs},".ljust(14, ' ')
+            return f"{result} {rt}"
+        elif opcode in ("SYSCALL", "BREAK", "SYNC"):
+            return opcode
+        return super().__str__()
 
 class InstructionRegimm(Instruction):
     RegimmOpcodes = {
@@ -536,6 +606,10 @@ class InstructionRegimm(Instruction):
         0b01_110: "TNEI",
     }
 
+    def isTrap(self) -> bool:
+        opcode = self.getOpcodeName()
+        return opcode in ("TGEI", "TGEIU", "TLTI", "TLTIU", "TEQI", "TNEI")
+
     def isJType(self) -> bool: # OP LABEL
         return False
     def isRType(self) -> bool: # OP rd, rs, rt
@@ -545,7 +619,9 @@ class InstructionRegimm(Instruction):
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         return False
 
-    def modifiesRt(self):
+    def modifiesRt(self) -> bool:
+        return False
+    def modifiesRd(self) -> bool:
         return False
 
     def getOpcodeName(self) -> str:
