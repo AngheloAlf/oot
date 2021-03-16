@@ -84,6 +84,8 @@ def readFilelists():
     FILE_NAMES["JP MQ"] = FILE_NAMES["USA MQ"]
     FILE_NAMES["USA GC"] = FILE_NAMES["JP GC CE"]
 
+    FILE_NAMES["PAL 1.1"] = FILE_NAMES["PAL 1.0"]
+
     # Unconfirmed
     FILE_NAMES["NTSC 1.0 RC"] = FILE_NAMES["NTSC 1.0"]
     FILE_NAMES["NTSC 1.1"] = FILE_NAMES["NTSC 1.0"]

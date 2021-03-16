@@ -12,6 +12,46 @@ import subprocess
 from multiprocessing import Pool, cpu_count
 from functools import partial
 
+
+versions = {
+    "ntsc_0.9" : "NNR",
+    "ntsc_1.0" : "NN0",
+    "ntsc_1.1" : "NN1",
+    "pal_1.0" : "NP0",
+    "ntsc_1.2" : "NN2",
+    "pal_1.1" : "NP1",
+    "jp_gc" : "GJO",
+    "jp_mq" : "GJM",
+    "usa_gc" : "GUO",
+    "usa_mq" : "GUM",
+    "pal_gc" : "GPO",
+    "pal_gc_dbg" : "GPOD",
+    "pal_mq" : "GPM",
+    "pal_mq_dbg" : "GPMD",
+    "jp_gc_ce" : "GJC",
+}
+
+
+# in JAL format. # Real address would be (address << 2)
+address_Graph_OpenDisps = {
+    "ntsc_0.9" : 0x0,
+    "ntsc_1.0" : 0x001F8A6,
+    "ntsc_1.1" : 0x0,
+    "pal_1.0" : 0x001FA2A,
+    "ntsc_1.2" : 0x0,
+    "pal_1.1" : 0x001FA2A,
+    "jp_gc" : 0x0,
+    "jp_mq" : 0x0,
+    "usa_gc" : 0x0,
+    "usa_mq" : 0x0,
+    "pal_gc" : 0x0,
+    "pal_gc_dbg" : 0x0,
+    "pal_mq" : 0x001F77E,
+    "pal_mq_dbg" : 0x0031AB1,
+    "jp_gc_ce" : 0x0,
+}
+
+
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
@@ -57,9 +97,12 @@ def beWordsToBytes(words_list: List[int], buffer: bytearray) -> bytearray:
 
 
 class File:
-    def __init__(self, array_of_bytes: bytearray):
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
         self.bytes: bytearray = array_of_bytes
         self.words: List[int] = bytesToBEWords(self.bytes)
+        self.filename: str = filename
+        self.version: str = version
+        self.args = args
 
     @property
     def size(self):
@@ -127,7 +170,7 @@ class File:
             self.updateBytes()
             other.updateBytes()
 
-    def removePointers(self, args):
+    def removePointers(self):
         pass
 
     def updateBytes(self):
@@ -245,16 +288,24 @@ class Instruction:
         if opcode == "BNE" or opcode == "BNEL":
             return True
         return False
+    def isTrap(self) -> bool:
+        return False
 
     def isJType(self) -> bool: # OP LABEL
         opcode = self.getOpcodeName()
         return opcode == "J" or opcode == "JAL"
     def isRType(self) -> bool: # OP rd, rs, rt
         return False
+    def isRType2(self) -> bool: # OP rd, rt, rs
+        return False
+    def isSaType(self) -> bool: # OP rd, rt, sa
+        return False
     def isIType(self) -> bool: # OP rt, IMM(rs)
         if self.isJType():
             return False
         if self.isRType():
+            return False
+        if self.isRType2():
             return False
         if self.isIType2():
             return False
@@ -293,10 +344,12 @@ class Instruction:
             return False
         return self.instr != other.instr
 
-    def modifiesRt(self):
+    def modifiesRt(self) -> bool:
         if self.isBranch():
             return False
         return True
+    def modifiesRd(self) -> bool:
+        return False
 
     def blankOut(self):
         self.rs = 0
@@ -376,6 +429,20 @@ class Instruction:
             result += f" {rs},"
             result = result.ljust(19, ' ')
             return f"{result} {rt}"
+        elif self.isRType2():
+            rd = self.getRegisterName(self.rd)
+            result = f"{opcode} {rd},"
+            result = result.ljust(14, ' ')
+            result += f" {rt},"
+            result = result.ljust(19, ' ')
+            return f"{result} {rs}"
+        elif self.isSaType():
+            rd = self.getRegisterName(self.rd)
+            result = f"{opcode} {rd},"
+            result = result.ljust(14, ' ')
+            result += f" {rt},"
+            result = result.ljust(19, ' ')
+            return f"{result} {self.sa}"
         return "ERROR"
 
     def __repr__(self) -> str:
@@ -394,23 +461,23 @@ class InstructionSpecial(Instruction):
 
         0b001_000: "JR", # Jump Register
         0b001_001: "JALR", # Jump And Link Register
-        0b001_010: "MOVZ",
-        0b001_011: "MOVN",
-        0b001_100: "SYSCALL",
-        0b001_101: "BREAK",
+        0b001_010: "MOVZ", # MOVe conditional on Zero
+        0b001_011: "MOVN", # MOVe conditional on Not zero
+        0b001_100: "SYSCALL", # SYStem CALL
+        0b001_101: "BREAK", # Break
         # 0b001_110: "",
-        0b001_111: "SYNC",
+        0b001_111: "SYNC", # Sync
 
-        0b010_000: "MFHI",
-        0b010_001: "MTHI",
-        0b010_010: "MFLO",
-        0b010_011: "MTLO",
-        0b010_100: "DSLLV",
+        0b010_000: "MFHI", # Move From HI register
+        0b010_001: "MTHI", # Move To HI register
+        0b010_010: "MFLO", # Move From LO register
+        0b010_011: "MTLO", # Move To LO register
+        0b010_100: "DSLLV", # Doubleword Shift Left Logical Variable
         # 0b010_101: "",
-        0b010_110: "DSRLV",
-        0b010_111: "DSRAV",
+        0b010_110: "DSRLV", # Doubleword Shift Right Logical Variable
+        0b010_111: "DSRAV", # Doubleword Shift Right Arithmetic Variable
 
-        0b011_000: "MULT",
+        0b011_000: "MULT", # MULTtiply word
         0b011_001: "MULTU",
         0b011_010: "DIV",
         0b011_011: "DIVU",
@@ -456,21 +523,67 @@ class InstructionSpecial(Instruction):
         0b111_111: "DSRA32",
     }
 
+    def isTrap(self) -> bool:
+        opcode = self.getOpcodeName()
+        return opcode in ("TGE", "TGEU", "TLT", "TLTU", "TEQ", "TNE")
+
     def isJType(self) -> bool: # OP LABEL
         return False
     def isRType(self) -> bool: # OP rd, rs, rt
+        if self.isRType2():
+            return False
+        elif self.isSaType():
+            return False
         return True # Not for all cases, but good enough
+    def isRType2(self) -> bool: # OP rd, rt, rs
+        opcode = self.getOpcodeName()
+        return opcode in ("DSLLV", "DSRLV", "DSRAV")
+    def isSaType(self) -> bool: # OP rd, rt, sa
+        opcode = self.getOpcodeName()
+        return opcode in ("SLL", "SRL", "SRA")
     def isIType(self) -> bool: # OP rt, IMM(rs)
         return False
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         return False
 
-    def modifiesRt(self):
+    def modifiesRt(self) -> bool:
         return False
+    def modifiesRd(self) -> bool:
+        opcode = self.getOpcodeName()
+        if opcode in ("JR", "JALR", "MTHI", "MTLO", "MULT", "SYSCALL", "BREAK", "SYNC"): # TODO
+            return False
+        return True
 
     def getOpcodeName(self) -> str:
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
         return InstructionSpecial.SpecialOpcodes.get(self.function, f"SPECIAL({opcode})")
+
+    def __str__(self) -> str:
+        opcode = self.getOpcodeName()
+        formated_opcode = opcode.lower().ljust(7, ' ')
+        if opcode in ("JR", "MTHI", "MTLO"):
+            rs = self.getRegisterName(self.rs)
+            result = f"{formated_opcode} {rs}"
+            return result
+        elif opcode == "JALR":
+            rs = self.getRegisterName(self.rs)
+            rd = ""
+            if self.rd != 31:
+                rd = self.getRegisterName(self.rd) + ","
+                rd = rd.ljust(6, ' ')
+            result = f"{formated_opcode} {rd}{rs}"
+            return result
+        elif opcode in ("MFHI", "MFLO"):
+            rd = self.getRegisterName(self.rd)
+            return f"{formated_opcode} {rd}"
+        elif opcode in ("MULT", ):
+            rs = self.getRegisterName(self.rs)
+            rt = self.getRegisterName(self.rt)
+            result = f"{formated_opcode} {rs},".ljust(14, ' ')
+            return f"{result} {rt}"
+        elif opcode in ("SYSCALL", "BREAK", "SYNC"):
+            return opcode
+        return super().__str__()
 
 class InstructionRegimm(Instruction):
     RegimmOpcodes = {
@@ -493,6 +606,10 @@ class InstructionRegimm(Instruction):
         0b01_110: "TNEI",
     }
 
+    def isTrap(self) -> bool:
+        opcode = self.getOpcodeName()
+        return opcode in ("TGEI", "TGEIU", "TLTI", "TLTIU", "TEQI", "TNEI")
+
     def isJType(self) -> bool: # OP LABEL
         return False
     def isRType(self) -> bool: # OP rd, rs, rt
@@ -502,7 +619,9 @@ class InstructionRegimm(Instruction):
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         return False
 
-    def modifiesRt(self):
+    def modifiesRt(self) -> bool:
+        return False
+    def modifiesRd(self) -> bool:
         return False
 
     def getOpcodeName(self) -> str:
@@ -528,8 +647,8 @@ def wordToInstruction(word: int) -> Instruction:
 
 
 class Text(File):
-    def __init__(self, array_of_bytes):
-        super().__init__(array_of_bytes)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+        super().__init__(array_of_bytes, filename, version, args)
 
         self.instructions: List[Instruction] = list()
         for word in self.words:
@@ -645,8 +764,11 @@ class Text(File):
             self.updateWords()
             other_file.updateWords()
 
-    def removePointers(self, args):
-        super().removePointers(args)
+    def removePointers(self):
+        if self.args.delete_opendisps:
+            self.deleteCallers_Graph_OpenDisps()
+
+        super().removePointers()
 
         lui_registers = dict()
 
@@ -665,7 +787,7 @@ class Text(File):
                     lui_registers[lui_reg] = [lui_pos, instructions_left]
 
             if opcode == "LUI":
-                lui_registers[instr.rt] = [i, args.track_registers]
+                lui_registers[instr.rt] = [i, self.args.track_registers]
             elif opcode in ("ADDIU", "LW", "LWU", "LWC1", "LWC2", "ORI", "LH", "LHU", "LB", "LBU"):
                 rs = instr.rs
                 if rs in lui_registers:
@@ -679,6 +801,32 @@ class Text(File):
 
         if was_updated:
             self.updateWords()
+
+    def deleteCallers_Graph_OpenDisps(self):
+        graph_openDisps = address_Graph_OpenDisps[self.version]
+        if graph_openDisps == 0:
+            return
+
+        last_jr = 0
+        found_openDisps = False
+        ranges_to_delete = []
+        for i in range(self.nInstr):
+            instr = self.instructions[i]
+            opcode = instr.getOpcodeName()
+            if opcode == "JR":
+                # found end of function
+                if found_openDisps:
+                    ranges_to_delete.append((last_jr, i))
+                found_openDisps = False
+                last_jr = i
+            elif opcode == "JAL":
+                # check for Graph_OpenDisps
+                if graph_openDisps == instr.instr_index:
+                    found_openDisps = True
+
+        # Remove all functions that call Graph_openDisps
+        for begin, end in ranges_to_delete[::-1]:
+            del self.instructions[begin:end]
 
     def updateWords(self):
         self.words = []
@@ -695,8 +843,8 @@ class Text(File):
 
 
 class Data(File):
-    def removePointers(self, args):
-        super().removePointers(args)
+    def removePointers(self):
+        super().removePointers()
 
         was_updated = False
         for i in range(self.sizew):
@@ -732,8 +880,8 @@ class RelocEntry:
         self.offset = entry & 0x00FFFFFF
 
 class Reloc(File):
-    def __init__(self, array_of_bytes):
-        super().__init__(array_of_bytes)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+        super().__init__(array_of_bytes, filename, version, args)
 
         self.entries: List[RelocEntry] = list()
         for word in self.words:
@@ -752,8 +900,8 @@ class Reloc(File):
         super().saveToFile(filepath + ".reloc")
 
 class Overlay(File):
-    def __init__(self, array_of_bytes):
-        super().__init__(array_of_bytes)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+        super().__init__(array_of_bytes, filename, version, args)
 
         seekup = self.words[-1]
         self.headerBPos = self.size - seekup
@@ -768,19 +916,19 @@ class Overlay(File):
 
         start = 0
         end = text_size
-        self.text = Text(self.bytes[start:end])
+        self.text = Text(self.bytes[start:end], filename, version, args)
 
         start += text_size
         end += data_size
-        self.data = Data(self.bytes[start:end])
+        self.data = Data(self.bytes[start:end], filename, version, args)
 
         start += data_size
         end += rodata_size
-        self.rodata = Rodata(self.bytes[start:end])
+        self.rodata = Rodata(self.bytes[start:end], filename, version, args)
 
         start += rodata_size
         end += bss_size
-        self.bss = Bss(self.bytes[start:end])
+        self.bss = Bss(self.bytes[start:end], filename, version, args)
 
         start += bss_size
         end += header_size
@@ -788,7 +936,7 @@ class Overlay(File):
 
         start += header_size
         end += reloc_size
-        self.reloc = Reloc(self.bytes[start:end])
+        self.reloc = Reloc(self.bytes[start:end], filename, version, args)
 
         self.tail = bytesToBEWords(self.bytes[end:])
 
@@ -841,14 +989,14 @@ class Overlay(File):
             elif reloc.relocType == 6:
                 pass
 
-    def removePointers(self, args):
-        super().removePointers(args)
+    def removePointers(self):
+        super().removePointers()
 
-        self.text.removePointers(args)
-        self.data.removePointers(args)
-        self.rodata.removePointers(args)
-        self.bss.removePointers(args)
-        self.reloc.removePointers(args)
+        self.text.removePointers()
+        self.data.removePointers()
+        self.rodata.removePointers()
+        self.bss.removePointers()
+        self.reloc.removePointers()
 
         self.updateBytes()
 
@@ -863,25 +1011,6 @@ class Overlay(File):
         self.bss.saveToFile(filepath)
         self.reloc.saveToFile(filepath)
 
-
-
-versions = {
-    "ntsc_0.9" : "NNR",
-    "ntsc_1.0" : "NN0",
-    "ntsc_1.1" : "NN1",
-    "pal_1.0" : "NP0",
-    "ntsc_1.2" : "NN2",
-    "pal_1.1" : "NP1",
-    "jp_gc" : "GJO",
-    "jp_mq" : "GJM",
-    "usa_gc" : "GUO",
-    "usa_mq" : "GUM",
-    "pal_gc" : "GPO",
-    "pal_gc_dbg" : "GPOD",
-    "pal_mq" : "GPM",
-    "pal_mq_dbg" : "GPMD",
-    "jp_gc_ce" : "GJC",
-}
 
 def getVersionAbbr(filename: str) -> str:
     for ver in versions:
@@ -972,8 +1101,8 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
             if len(array_of_bytes) == 0:
                 continue
 
-            f = Overlay(array_of_bytes)
-            f.removePointers(args)
+            f = Overlay(array_of_bytes, filename, version, args)
+            f.removePointers()
             if args.savetofile:
                 new_file_path = os.path.join(args.savetofile, version, filename)
                 f.saveToFile(new_file_path)
@@ -1025,8 +1154,8 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
             if len(array_of_bytes) == 0:
                 continue
 
-            f = File(array_of_bytes)
-            f.removePointers(args)
+            f = File(array_of_bytes, filename, version, args)
+            f.removePointers()
             if args.savetofile:
                 new_file_path = os.path.join(args.savetofile, version, filename)
                 f.saveToFile(new_file_path)
@@ -1063,6 +1192,7 @@ def main():
     parser.add_argument("--overlays", help="Treats the files in filelist as overlays.", action="store_true")
     parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written. The folder must already exits.", metavar="FOLDER")
     parser.add_argument("--track-registers", help="Set for how many instructions a register will be tracked.", type=int, default=8)
+    parser.add_argument("--delete-opendisps", help="Will try to find and delete every function that calls Graph_OpenDisps.", action="store_true")
     args = parser.parse_args()
 
     versionsList = open(args.versionlist).read().splitlines()
