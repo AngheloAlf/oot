@@ -26,6 +26,7 @@ versions = {
     "usa_mq" : "GUM",
     "pal_gc" : "GPO",
     "pal_gc_dbg" : "GPOD",
+    "pal_gc_dbg2" : "GPOD2",
     "pal_mq" : "GPM",
     "pal_mq_dbg" : "GPMD",
     "jp_gc_ce" : "GJC",
@@ -46,6 +47,7 @@ address_Graph_OpenDisps = {
     "usa_mq" : 0x001F78A,
     "pal_gc" : 0x001F77E,
     "pal_gc_dbg" : 0x0,
+    "pal_gc_dbg2" : 0x0,
     "pal_mq" : 0x001F77E,
     "pal_mq_dbg" : 0x0031AB1,
     "jp_gc_ce" : 0x001F78A,
@@ -852,8 +854,8 @@ class Text(File):
 
     def deleteCallers_Graph_OpenDisps(self) -> bool:
         was_updated = False
-        graph_openDisps = address_Graph_OpenDisps[self.version]
-        if graph_openDisps == 0:
+        graph_openDisps = address_Graph_OpenDisps.get(self.version)
+        if graph_openDisps is None or graph_openDisps == 0:
             return was_updated
 
         last_jr = 0
@@ -960,10 +962,11 @@ class Bss(File):
 
 class RelocEntry:
     sectionNames = {
+        #0: ".bss",
         1: ".text",
         2: ".data",
         3: ".rodata",
-        4: ".bss",
+        4: ".bss", # ?
     }
     relocationsNames = {
         2: "R_MIPS_32",
@@ -977,6 +980,10 @@ class RelocEntry:
         self.relocType = (entry >> 24) & 0x3F
         self.offset = entry & 0x00FFFFFF
 
+    @property
+    def reloc(self):
+        return (self.sectionId << 30) | (self.relocType << 24) | (self.offset)
+
     def getSectionName(self) -> str:
         return RelocEntry.sectionNames.get(self.sectionId, str(self.sectionId))
 
@@ -987,6 +994,8 @@ class RelocEntry:
         section = self.getSectionName()
         reloc = self.getTypeName()
         return f"{section} {reloc} {hex(self.offset)}"
+    def __repr__(self) -> str:
+        return self.__str__()
 
 class Reloc(File):
     def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
@@ -1088,6 +1097,8 @@ class Overlay(File):
             section = entry.getSectionName()
             type_name = entry.getTypeName()
             offset = entry.offset//4
+            if entry.reloc == 0:
+                continue
             if section == ".text":
                 instr = self.text.instructions[offset]
                 if type_name == "R_MIPS_26":
@@ -1095,7 +1106,7 @@ class Overlay(File):
                 elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
                     self.text.instructions[offset] = wordToInstruction(instr.instr & 0xFFFF0000)
                 else:
-                    raise RuntimeError(f"{type_name} in .text")
+                    raise RuntimeError(f"Invalid <{type_name}> in .text of file '{self.version}/{self.filename}'. Reloc: {entry}")
             elif section == ".data":
                 word = self.data.words[offset]
                 if type_name == "R_MIPS_32":
@@ -1105,7 +1116,7 @@ class Overlay(File):
                 elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
                     self.data.words[offset] = word & 0xFFFF0000
                 else:
-                    raise RuntimeError(f"{type_name} in .data")
+                    raise RuntimeError(f"Invalid <{type_name}> in .data of file '{self.version}/{self.filename}'. Reloc: {entry}")
             elif section == ".rodata":
                 word = self.rodata.words[offset]
                 if type_name == "R_MIPS_32":
@@ -1115,7 +1126,7 @@ class Overlay(File):
                 elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
                     self.rodata.words[offset] = word & 0xFFFF0000
                 else:
-                    raise RuntimeError(f"{type_name} in .rodata")
+                    raise RuntimeError(f"Invalid <{type_name}> in .rodata of file '{self.version}/{self.filename}'. Reloc: {entry}")
             elif section == ".bss":
                 word = self.bss.words[offset]
                 if type_name == "R_MIPS_32":
@@ -1125,9 +1136,10 @@ class Overlay(File):
                 elif type_name in ("R_MIPS_HI16", "R_MIPS_LO16"):
                     self.bss.words[offset] = word & 0xFFFF0000
                 else:
-                    raise RuntimeError(f"{type_name} in .bss")
+                    raise RuntimeError(f"Invalid <{type_name}> in .bss of file '{self.version}/{self.filename}'. Reloc: {entry}")
             else:
-                raise RuntimeError(f"Invalid reloc section: {section}")
+                pass
+                #raise RuntimeError(f"Invalid reloc section <{section}> in file '{self.version}/{self.filename}'. Reloc: {entry}")
 
 
         self.text.removePointers()
@@ -1256,7 +1268,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
                 ".data" : f.data,
                 ".rodata" : f.rodata,
                 ".bss" : f.bss,
-                ".reloc" : f.reloc,
+                #".reloc" : f.reloc,
             }
         else:
             subfiles = {
@@ -1280,7 +1292,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
     for file_section in filesHashes:
         row = [file_section]
         for version in versionsList:
-            abbr = versions[version]
+            abbr = versions.get(version)
 
             if abbr in filesHashes[file_section]:
                 fHash = filesHashes[file_section][abbr]
