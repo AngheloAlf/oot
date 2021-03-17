@@ -16,22 +16,22 @@ VERSIONS_HASHES = {
     "NTSC 1.1":         "721fdcc6f5f34be55c43a807f2a16af4", # Need to double check.
     "NTSC J 1.1":       None,
     "PAL 1.0":          "e040de91a74b61e3201db0e2323f768a",
-    "NTSC 1.2":         None,
+    "NTSC 1.2":         "57a9719ad547c516342e1a15d5c28c3d",
     "NTSC J 1.2":       None,
     "PAL 1.1":          "d714580dd74c2c033f5e1b6dc0aeac77", # Need to double check.
     "PAL WII 1.1":      None,
-    "JP GC":            None,
-    "JP MQ":            None,
+    "JP GC":            "33fb7852c180b18ea0b9620b630f413f",
+    "JP MQ":            "69895c5c78442260f6eafb2506dc482a",
     "USA GC":           "cd09029edcfb7c097ac01986a0f83d3f",
-    "USA MQ":           None,
+    "USA MQ":           "da35577fe54579f6a266931cc75f512d",
     "PAL GC DBG":       None,
     "PAL MQ DBG":       "f0b7f35375f9cc8ca1b2d59d78e35405",
-    "PAL GC DBG2":      None,
-    "PAL GC":           None,
+    "PAL GC DBG2":      "3c10b67a76616ae2c162def7528724cf",
+    "PAL GC":           "cd09029edcfb7c097ac01986a0f83d3f",
     "PAL MQ":           "1618403427e4344a57833043db5ce3c3", # I think it's right.
     "JP GC CE":         "0c13e0449a28ea5b925cdb8af8d29768", # Zelda collection
-    "CHI IQUE":         None,
-    "TCHI IQUE":        None
+    "CN IQUE":          "0ab48b2d44a74b3bb2d384f6170c2742",
+    "TW IQUE":          "a475e9f8615513666a265c464708ae8f"
 }
 
 def getStrHash(byte_array):
