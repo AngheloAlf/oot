@@ -11,7 +11,7 @@ typedef struct EnHorse {
     /* 0x014C */ s32 unk_14C;
     /* 0x0150 */ s32 unk_150;
     /* 0x0154 */ s32 unk_154;
-    /* 0x0158 */ s32 unk_158;
+    /* 0x0158 */ s32 unk_158; // 0 = Epona. 1 = Ingo's horse.
     /* 0x015C */ s8 unk_15C;
     /* 0x0160 */ PSkinAwb unk_160;
     /* 0x01F0 */ u32 unk_1F0;

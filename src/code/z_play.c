@@ -407,6 +407,8 @@ void Gameplay_Init(GameState* thisx) {
     }
 }
 
+HorseSelector gHorseSelector;
+
 void Gameplay_Update(GlobalContext* globalCtx) {
     s32 pad1;
     s32 sp80;
@@ -416,17 +418,28 @@ void Gameplay_Update(GlobalContext* globalCtx) {
 
     input = globalCtx->state.input;
 
-/*
-    if(CHECK_BTN_ANY(input->press.button, BTN_L)){
-        Player* player = PLAYER;
-        
-        //if(Object_GetIndex(OBJECT_ANUBICE) < 0){
-        //    Object_Spawn(&globalCtx->objectCtx, OBJECT_ANUBICE);
-        //}
 
-        //Actor_Spawn(&globalCtx->actorCtx, globalCtx,...
+    if (CHECK_BTN_ANY(input->press.button, BTN_DDOWN)) {
+        if (gHorseSelector.maxValue == 0) gHorseSelector.maxValue = 1;
+        gHorseSelector.enabled = 1 - gHorseSelector.enabled;
     }
-*/
+    if (gHorseSelector.enabled) {
+        if (CHECK_BTN_ANY(input->press.button, BTN_DUP)) {
+            gHorseSelector.trigger = true;
+        }
+        if (CHECK_BTN_ANY(input->press.button, BTN_DRIGHT)) {
+            gHorseSelector.value = (gHorseSelector.value + 1) % gHorseSelector.maxValue;
+            gHorseSelector.indexChange = true;
+        }
+        if (CHECK_BTN_ANY(input->press.button, BTN_DLEFT)) {
+            gHorseSelector.value = (gHorseSelector.value - 1);
+            if (gHorseSelector.value < 0) {
+                gHorseSelector.value = gHorseSelector.maxValue - 1;
+            }
+            gHorseSelector.indexChange = true;
+        }
+    }
+
 
     if ((SREG(1) < 0) || (DREG(0) != 0)) {
         SREG(1) = 0;

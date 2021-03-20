@@ -3625,4 +3625,15 @@ typedef struct {
 
 extern ScreenPrint gScreenPrint[32];
 
+
+typedef struct {
+    s32 enabled;
+    s32 trigger;
+    s32 value;
+    s32 maxValue;
+    s32 indexChange;
+} HorseSelector;
+
+extern HorseSelector gHorseSelector;
+
 #endif

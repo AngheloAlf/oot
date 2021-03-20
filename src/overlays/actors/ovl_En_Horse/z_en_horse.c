@@ -864,17 +864,8 @@ void EnHorse_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
     this->actor.home.rot.z = this->actor.world.rot.z = this->actor.shape.rot.z = 0;
 
-    if (1) {
-        // 3 and 6
-        s32 index = 0;
-        while (gScreenPrint[index].key.u != 0 && index < ARRAY_COUNT(gScreenPrint)) {
-            index++;
-        }
-
-        gScreenPrint[index].shouldDraw = true;
-        gScreenPrint[index].mode = SCREENPRINT_PARAM(PRINT_KEY_UNSIGNED, PRINT_KEY_UNSIGNED);
-        gScreenPrint[index].key.u = this;
-        gScreenPrint[index].value.u = this->actor.params;
+    if (this->unk_158 == 0) {
+        gHorseSelector.maxValue = ARRAY_COUNT(sAnimationHeaders[0]);
     }
 }
 
@@ -888,14 +879,11 @@ void EnHorse_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     Collider_DestroyCylinder(globalCtx, &this->cyl2);
     Collider_DestroyJntSph(globalCtx, &this->jntSph);
 
-    if (1) {
-        s32 index = 0;
-        while (gScreenPrint[index].key.u != (u32)this && index < ARRAY_COUNT(gScreenPrint)) {
-            index++;
+    if (this->unk_158 == 0) {
+        s32 i;
+        for (i = 0; i < ARRAY_COUNT(gScreenPrint); i++) {
+            gScreenPrint[i].shouldDraw = false;
         }
-
-        gScreenPrint[index].shouldDraw = false;
-        gScreenPrint[index].key.u = 0;
     }
 }
 
@@ -3405,6 +3393,44 @@ void EnHorse_Update(Actor* thisx, GlobalContext* globalCtx) {
     Vec3f sp5C = { 0.0f, 0.0f, 0.0f };
     Vec3f sp50 = { 0.0f, 1.0f, 0.0f };
     Player* player = PLAYER;
+
+    if (this->unk_158 == 0) {
+        if (gHorseSelector.enabled) {
+            f32 curFrame = this->unk_160.skelAnime.curFrame;
+
+            gHorseSelector.maxValue = 9; // ARRAY_COUNT(sAnimationHeaders[0])
+
+            gScreenPrint[0].shouldDraw = true;
+            gScreenPrint[0].mode = SCREENPRINT_PARAM(PRINT_KEY_STR, PRINT_VALUE_STR);
+            gScreenPrint[0].key.str = "mode";
+            gScreenPrint[0].value.str = "horse";
+
+            gScreenPrint[1].shouldDraw = true;
+            gScreenPrint[1].mode = SCREENPRINT_PARAM(PRINT_KEY_STR, PRINT_VALUE_SIGNED);
+            gScreenPrint[1].key.str = "index";
+            gScreenPrint[1].value.s = gHorseSelector.value;
+
+            if (gHorseSelector.trigger) {
+                gHorseSelector.trigger = false;
+                curFrame = 0.0f;
+            }
+            if (gHorseSelector.indexChange) {
+                gHorseSelector.indexChange = false;
+                curFrame = 0.0f;
+            }
+
+            Animation_Change(&this->unk_160.skelAnime, sAnimationHeaders[this->unk_158][gHorseSelector.value], 1.0f, curFrame,
+                            Animation_GetLastFrame(sAnimationHeaders[this->unk_158][gHorseSelector.value]), ANIMMODE_LOOP, -3.0f);
+            
+            SkelAnime_Update(&this->unk_160.skelAnime);
+            return;
+        }
+        else{
+            gScreenPrint[0].shouldDraw = false;
+            gScreenPrint[1].shouldDraw = false;
+            gScreenPrint[2].shouldDraw = false;
+        }
+    }
 
     this->unk_200 = thisx->shape.rot.y;
     func_80A631D4(this, gc);
