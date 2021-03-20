@@ -3401,12 +3401,12 @@ void EnHorse_Update(Actor* thisx, GlobalContext* globalCtx) {
             gHorseSelector.maxValue = 9; // ARRAY_COUNT(sAnimationHeaders[0])
 
             gScreenPrint[0].shouldDraw = true;
-            gScreenPrint[0].mode = SCREENPRINT_PARAM(PRINT_KEY_STR, PRINT_VALUE_STR);
+            gScreenPrint[0].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_STR);
             gScreenPrint[0].key.str = "mode";
             gScreenPrint[0].value.str = "horse";
 
             gScreenPrint[1].shouldDraw = true;
-            gScreenPrint[1].mode = SCREENPRINT_PARAM(PRINT_KEY_STR, PRINT_VALUE_SIGNED);
+            gScreenPrint[1].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
             gScreenPrint[1].key.str = "index";
             gScreenPrint[1].value.s = gHorseSelector.value;
 

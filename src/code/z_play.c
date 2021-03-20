@@ -1075,24 +1075,24 @@ void Gameplay_DrawOverlayElements(GlobalContext* globalCtx) {
 
 
 ScreenPrint gScreenPrint[32];
-void ScreenPrint_DrawKey(ScreenPrint* this, ScreenPrintModeKey keyMode, GfxPrint* printer)
+void ScreenPrint_DrawValue(ScreenPrintTypes* typeVal, ScreenPrintMode printMode, GfxPrint* printer)
 {
     char* str;
     GfxPrint_SetColor(printer, 255, 255, 55, 32);
 
-    switch (keyMode) {
-    case PRINT_KEY_SIGNED:
-        GfxPrint_Printf(printer, "%02i: ", this->key.s);
+    switch (printMode) {
+    case SCREENPRINT_SIGNED:
+        GfxPrint_Printf(printer, "%02i", typeVal->s);
         break;
-    case PRINT_KEY_UNSIGNED:
-        GfxPrint_Printf(printer, "0x%02X: ", this->key.u);
+    case SCREENPRINT_UNSIGNED:
+        GfxPrint_Printf(printer, "0x%02X", typeVal->u);
         break;
-    case PRINT_KEY_FLOAT:
-        GfxPrint_Printf(printer, "%f: ", this->key.f);
+    case SCREENPRINT_FLOAT:
+        GfxPrint_Printf(printer, "%f", typeVal->f);
         break;
-    case PRINT_KEY_STR:
-        str = this->key.s;
-        GfxPrint_Printf(printer, "%s: ", str == NULL ? "NULL" : str);
+    case SCREENPRINT_STR:
+        str = typeVal->s;
+        GfxPrint_Printf(printer, "%s", str == NULL ? "NULL" : str);
         break;
     }
 }
@@ -1102,8 +1102,8 @@ void ScreenPrint_Draw(GlobalContext* globalCtx, Gfx **gfxP)
     GfxPrint printer;
     s32 i;
     s32 j = 0;
-    ScreenPrintModeKey keyMode = 0;
-    ScreenPrintModeValue valueMode = 0;
+    ScreenPrintMode keyMode = 0;
+    ScreenPrintMode valueMode = 0;
     char* str;
 
     GfxPrint_Init(&printer);
@@ -1117,27 +1117,14 @@ void ScreenPrint_Draw(GlobalContext* globalCtx, Gfx **gfxP)
         valueMode = SCREENPRINT_PARAM_GETMODE_VALUE(gScreenPrint[i].mode);
 
         GfxPrint_SetPos(&printer, 3, 7 + j);
-        ScreenPrint_DrawKey(&gScreenPrint[i], keyMode, &printer);
+        ScreenPrint_DrawValue(&gScreenPrint[i].key, keyMode, &printer);
+
+        GfxPrint_Printf(&printer, ": ");
 
         GfxPrint_SetColor(&printer, 255, 255, 55, 32);
 
-///*
-        switch (valueMode) {
-        case PRINT_VALUE_SIGNED:
-            GfxPrint_Printf(&printer, "%02i ", gScreenPrint[i].value.s);
-            break;
-        case PRINT_VALUE_UNSIGNED:
-            GfxPrint_Printf(&printer, "0x%02X ", gScreenPrint[i].value.u);
-            break;
-        case PRINT_VALUE_FLOAT:
-            GfxPrint_Printf(&printer, "%f ", gScreenPrint[i].value.f);
-            break;
-        case PRINT_VALUE_STR:
-            str = gScreenPrint[i].value.s;
-            GfxPrint_Printf(&printer, "%s ", str == NULL ? "NULL" : str);
-            break;
-        }
-//*/
+        ScreenPrint_DrawValue(&gScreenPrint[i].value, valueMode, &printer);
+
         j++;
     }
     *gfxP = GfxPrint_Close(&printer);
