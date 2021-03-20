@@ -3586,4 +3586,43 @@ extern MapMarksData* gMapMarkDataTable[];
 //extern ? D_A4800010;
 //extern ? D_A4800018;
 
+typedef enum {
+    PRINT_KEY_SIGNED,
+    PRINT_KEY_UNSIGNED,
+    PRINT_KEY_FLOAT,
+    PRINT_KEY_STR
+} ScreenPrintModeKey;
+
+typedef enum {
+    PRINT_VALUE_SIGNED,
+    PRINT_VALUE_UNSIGNED,
+    PRINT_VALUE_FLOAT,
+    PRINT_VALUE_STR
+} ScreenPrintModeValue;
+
+// SCREENPRINT_PARAM(ScreenPrintKey keyMode, ScreenPrintValue valueMode) 
+#define SCREENPRINT_PARAM(keyMode, valueMode) (((valueMode & 0x0F) << 4) | ((keyMode & 0x0F) << 0))
+#define SCREENPRINT_PARAM_DEFAULT SCREENPRINT_PARAM(PRINT_KEY_SIGNED, PRINT_VALUE_SIGNED)
+#define SCREENPRINT_PARAM_GETMODE_KEY(mode) ((mode >> 0) & 0x0F)
+#define SCREENPRINT_PARAM_GETMODE_VALUE(mode) ((mode >> 4) & 0x0F)
+
+typedef struct {
+    s32 shouldDraw;
+    s32 mode;
+    union {
+        s32 s; // PRINT_KEY_SIGNED
+        u32 u; // PRINT_KEY_UNSIGNED
+        f32 f; // PRINT_KEY_FLOAT
+        char* str; // PRINT_KEY_STR
+    } key;
+    union {
+        s32 s; // PRINT_VALUE_SIGNED
+        u32 u; // PRINT_VALUE_UNSIGNED
+        f32 f; // PRINT_VALUE_FLOAT
+        char* str; // PRINT_VALUE_STR
+    } value;
+} ScreenPrint;
+
+extern ScreenPrint gScreenPrint[32];
+
 #endif

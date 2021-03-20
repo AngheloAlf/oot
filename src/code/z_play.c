@@ -416,6 +416,18 @@ void Gameplay_Update(GlobalContext* globalCtx) {
 
     input = globalCtx->state.input;
 
+/*
+    if(CHECK_BTN_ANY(input->press.button, BTN_L)){
+        Player* player = PLAYER;
+        
+        //if(Object_GetIndex(OBJECT_ANUBICE) < 0){
+        //    Object_Spawn(&globalCtx->objectCtx, OBJECT_ANUBICE);
+        //}
+
+        //Actor_Spawn(&globalCtx->actorCtx, globalCtx,...
+    }
+*/
+
     if ((SREG(1) < 0) || (DREG(0) != 0)) {
         SREG(1) = 0;
         ZeldaArena_Display();
@@ -1047,6 +1059,79 @@ void Gameplay_DrawOverlayElements(GlobalContext* globalCtx) {
     }
 }
 
+
+
+ScreenPrint gScreenPrint[32];
+void ScreenPrint_DrawKey(ScreenPrint* this, ScreenPrintModeKey keyMode, GfxPrint* printer)
+{
+    char* str;
+    GfxPrint_SetColor(printer, 255, 255, 55, 32);
+
+    switch (keyMode) {
+    case PRINT_KEY_SIGNED:
+        GfxPrint_Printf(printer, "%02i: ", this->key.s);
+        break;
+    case PRINT_KEY_UNSIGNED:
+        GfxPrint_Printf(printer, "0x%02X: ", this->key.u);
+        break;
+    case PRINT_KEY_FLOAT:
+        GfxPrint_Printf(printer, "%f: ", this->key.f);
+        break;
+    case PRINT_KEY_STR:
+        str = this->key.s;
+        GfxPrint_Printf(printer, "%s: ", str == NULL ? "NULL" : str);
+        break;
+    }
+}
+
+void ScreenPrint_Draw(GlobalContext* globalCtx, Gfx **gfxP)
+{
+    GfxPrint printer;
+    s32 i;
+    s32 j = 0;
+    ScreenPrintModeKey keyMode = 0;
+    ScreenPrintModeValue valueMode = 0;
+    char* str;
+
+    GfxPrint_Init(&printer);
+    GfxPrint_Open(&printer, *gfxP);
+    for (i = 0; i < ARRAY_COUNT(gScreenPrint); ++i) {
+        if (!gScreenPrint[i].shouldDraw){
+            continue;
+        }
+
+        keyMode = SCREENPRINT_PARAM_GETMODE_KEY(gScreenPrint[i].mode);
+        valueMode = SCREENPRINT_PARAM_GETMODE_VALUE(gScreenPrint[i].mode);
+
+        GfxPrint_SetPos(&printer, 3, 7 + j);
+        ScreenPrint_DrawKey(&gScreenPrint[i], keyMode, &printer);
+
+        GfxPrint_SetColor(&printer, 255, 255, 55, 32);
+
+///*
+        switch (valueMode) {
+        case PRINT_VALUE_SIGNED:
+            GfxPrint_Printf(&printer, "%02i ", gScreenPrint[i].value.s);
+            break;
+        case PRINT_VALUE_UNSIGNED:
+            GfxPrint_Printf(&printer, "0x%02X ", gScreenPrint[i].value.u);
+            break;
+        case PRINT_VALUE_FLOAT:
+            GfxPrint_Printf(&printer, "%f ", gScreenPrint[i].value.f);
+            break;
+        case PRINT_VALUE_STR:
+            str = gScreenPrint[i].value.s;
+            GfxPrint_Printf(&printer, "%s ", str == NULL ? "NULL" : str);
+            break;
+        }
+//*/
+        j++;
+    }
+    *gfxP = GfxPrint_Close(&printer);
+    GfxPrint_Destroy(&printer);
+}
+
+
 void Gameplay_Draw(GlobalContext* globalCtx) {
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
     Lights* sp228;
@@ -1301,6 +1386,19 @@ void Gameplay_Draw(GlobalContext* globalCtx) {
     }
 
     Camera_Finish(ACTIVE_CAM);
+
+
+    {
+        Gfx* prevDisplayList = POLY_OPA_DISP;
+        Gfx* gfxP = Graph_GfxPlusOne(POLY_OPA_DISP);
+
+        gSPDisplayList(OVERLAY_DISP++, gfxP);
+        ScreenPrint_Draw(globalCtx, &gfxP);
+        gSPEndDisplayList(gfxP++);
+        Graph_BranchDlist(prevDisplayList, gfxP);
+        POLY_OPA_DISP = gfxP;
+    }
+
 
     CLOSE_DISPS(gfxCtx, "../z_play.c", 4508);
 }

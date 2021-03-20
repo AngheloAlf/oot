@@ -863,6 +863,19 @@ void EnHorse_Init(Actor* thisx, GlobalContext* globalCtx) {
         }
     }
     this->actor.home.rot.z = this->actor.world.rot.z = this->actor.shape.rot.z = 0;
+
+    if (1) {
+        // 3 and 6
+        s32 index = 0;
+        while (gScreenPrint[index].key.u != 0 && index < ARRAY_COUNT(gScreenPrint)) {
+            index++;
+        }
+
+        gScreenPrint[index].shouldDraw = true;
+        gScreenPrint[index].mode = SCREENPRINT_PARAM(PRINT_KEY_UNSIGNED, PRINT_KEY_UNSIGNED);
+        gScreenPrint[index].key.u = this;
+        gScreenPrint[index].value.u = this->actor.params;
+    }
 }
 
 void EnHorse_Destroy(Actor* thisx, GlobalContext* globalCtx) {
@@ -874,6 +887,16 @@ void EnHorse_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     Collider_DestroyCylinder(globalCtx, &this->cyl1);
     Collider_DestroyCylinder(globalCtx, &this->cyl2);
     Collider_DestroyJntSph(globalCtx, &this->jntSph);
+
+    if (1) {
+        s32 index = 0;
+        while (gScreenPrint[index].key.u != (u32)this && index < ARRAY_COUNT(gScreenPrint)) {
+            index++;
+        }
+
+        gScreenPrint[index].shouldDraw = false;
+        gScreenPrint[index].key.u = 0;
+    }
 }
 
 void func_80A5C888(EnHorse* this, GlobalContext* globalCtx) {
