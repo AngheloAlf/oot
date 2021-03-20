@@ -1,5 +1,7 @@
 #include "z_en_horse.h"
 #include "overlays/actors/ovl_En_In/z_en_in.h"
+#include "objects/object_horse/object_horse.h"
+#include "objects/object_hni/object_hni.h"
 
 #define FLAGS 0x00000010
 
@@ -48,18 +50,17 @@ extern Vec3f D_80A66788, D_80A66794;
 
 extern CutsceneData D_02000230[];
 extern CutsceneData D_02002AC0[];
-extern CutsceneData D_06006530[];
 
-AnimationHeader* D_80A65E10[] = { 0x06006D50, 0x06005584, 0x06004DEC, 0x06003CEC, 0x060075F0,
-                                  0x060032B0, 0x06001E2C, 0x06002470, 0x06002C38 };
+AnimationHeader* D_80A65E10[] = { &gEponaAnim_006D50, &gEponaAnim_005584, &gEponaAnim_004DEC, &gEponaAnim_003CEC, &gEponaAnim_0075F0,
+                                  &gEponaAnim_0032B0, &gEponaAnim_001E2C, &gEponaAnim_002470, &gEponaAnim_002C38 };
 
-AnimationHeader* D_80A65E34[] = { 0x06009FC4, 0x0600A6B4, 0x0600901C, 0x060085E0, 0x0600AF60,
-                                  0x06007B54, 0x0600506C, 0x06005684, 0x06005E20 };
+AnimationHeader* D_80A65E34[] = { &gHorseIngoAnim_009FC4, &gHorseIngoAnim_00A6B4, &gHorseIngoAnim_00901C, &gHorseIngoAnim_0085E0, &gHorseIngoAnim_00AF60,
+                                  &gHorseIngoAnim_007B54, &gHorseIngoAnim_00506C, &gHorseIngoAnim_005684, &gHorseIngoAnim_005E20 };
 static AnimationHeader** sAnimationHeaders[] = { D_80A65E10, D_80A65E34 };
 
 static f32 sPlaybackSpeeds[] = { 0.6666667f, 0.6666667f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.6666667f, 0.6666667f };
 
-static SkeletonHeader* D_80A65E84[] = { 0x06009D74, 0x06004A24 };
+static SkeletonHeader* D_80A65E84[] = { &gEponaSkel, &gHorseIngoSkel };
 
 const ActorInit En_Horse_InitVars = {
     ACTOR_EN_HORSE,
@@ -3692,7 +3693,7 @@ void func_80A65108(Actor* thisx, GlobalContext* globalCtx, PSkinAwb* skin) {
     CollisionCheck_SetAC(globalCtx, &globalCtx->colChkCtx, &this->jntSph.base);
 }
 static s32 unk_80A667DC[] = { 0, 3, 7, 14 };
-static UNK_PTR D_80A667EC[] = { 0x06009F80, 0x0600A180, 0x0600A380 };
+static u64* D_80A667EC[] = { gEponaEyeOpenTex, gEponaEyeHalfTex, gEponaEyeCloseTex };
 static u8 D_80A667F8[] = { 0, 1, 2, 1 };
 
 s32 func_80A65C00(Actor* thisx, GlobalContext* globalCtx, s32 arg2, s32 arg3) {
@@ -3705,7 +3706,7 @@ s32 func_80A65C00(Actor* thisx, GlobalContext* globalCtx, s32 arg2, s32 arg3) {
         u8 index = D_80A667F8[this->unk_37A];
         gSPSegment(POLY_OPA_DISP++, 0x08, SEGMENTED_TO_VIRTUAL(D_80A667EC[index]));
     } else if ((this->unk_158 == 1) && (this->unk_1F0 & 0x40000) && (arg2 == 0x1E)) {
-        func_800A5F60(globalCtx->state.gfxCtx, &this->unk_160, arg2, D_06006530, 0);
+        func_800A5F60(globalCtx->state.gfxCtx, &this->unk_160, arg2, gHorseIngoSaddleDL, 0);
         sp48 = 0;
     }
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_horse.c", 8601);
