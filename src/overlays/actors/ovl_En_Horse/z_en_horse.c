@@ -51,6 +51,18 @@ extern Vec3f D_80A66788, D_80A66794;
 extern CutsceneData D_02000230[];
 extern CutsceneData D_02002AC0[];
 
+char* animationsNames[] = {
+    "Idle",
+    "Whinny",
+    "SlowDown",
+    "Rearing",
+    "WalkingSlow",
+    "WalkingFast",
+    "Running",
+    "Jumping",
+    "JumpingHigh",
+};
+
 AnimationHeader* D_80A65E10[] = { &gEponaIdleAnim, &gEponaWhinnyAnim, &gEponaSlowDownAnim, &gEponaRearingAnim, &gEponaWalkingSlowAnim,
                                   &gEponaWalkingFastAnim, &gEponaRunningAnim, &gEponaJumpingAnim, &gEponaJumpingHighAnim };
 
@@ -3410,6 +3422,11 @@ void EnHorse_Update(Actor* thisx, GlobalContext* globalCtx) {
             gScreenPrint[1].key.str = "index";
             gScreenPrint[1].value.s = gHorseSelector.value;
 
+            gScreenPrint[2].shouldDraw = true;
+            gScreenPrint[2].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_STR);
+            gScreenPrint[2].key.str = "anim";
+            gScreenPrint[2].value.str = animationsNames[gHorseSelector.value];
+
             if (gHorseSelector.trigger) {
                 gHorseSelector.trigger = false;
                 curFrame = 0.0f;
@@ -3419,8 +3436,10 @@ void EnHorse_Update(Actor* thisx, GlobalContext* globalCtx) {
                 curFrame = 0.0f;
             }
 
-            Animation_Change(&this->unk_160.skelAnime, sAnimationHeaders[this->unk_158][gHorseSelector.value], 1.0f, curFrame,
-                            Animation_GetLastFrame(sAnimationHeaders[this->unk_158][gHorseSelector.value]), ANIMMODE_LOOP, -3.0f);
+            Animation_Change(&this->unk_160.skelAnime, sAnimationHeaders[this->unk_158][gHorseSelector.value], 
+                            sPlaybackSpeeds[gHorseSelector.value] * 1.5f, curFrame,
+                            Animation_GetLastFrame(sAnimationHeaders[this->unk_158][gHorseSelector.value]), 
+                            ANIMMODE_LOOP, -3.0f);
             
             SkelAnime_Update(&this->unk_160.skelAnime);
             return;
