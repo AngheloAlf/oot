@@ -51,11 +51,11 @@ extern Vec3f D_80A66788, D_80A66794;
 extern CutsceneData D_02000230[];
 extern CutsceneData D_02002AC0[];
 
-AnimationHeader* D_80A65E10[] = { &gEponaAnim_006D50, &gEponaAnim_005584, &gEponaAnim_004DEC, &gEponaAnim_003CEC, &gEponaAnim_0075F0,
-                                  &gEponaAnim_0032B0, &gEponaAnim_001E2C, &gEponaAnim_002470, &gEponaAnim_002C38 };
+AnimationHeader* D_80A65E10[] = { &gEponaIdleAnim, &gEponaWhinnyAnim, &gEponaSlowDownAnim, &gEponaRearingAnim, &gEponaWalkingSlowAnim,
+                                  &gEponaWalkingFastAnim, &gEponaRunningAnim, &gEponaJumpingAnim, &gEponaJumpingHighAnim };
 
-AnimationHeader* D_80A65E34[] = { &gHorseIngoAnim_009FC4, &gHorseIngoAnim_00A6B4, &gHorseIngoAnim_00901C, &gHorseIngoAnim_0085E0, &gHorseIngoAnim_00AF60,
-                                  &gHorseIngoAnim_007B54, &gHorseIngoAnim_00506C, &gHorseIngoAnim_005684, &gHorseIngoAnim_005E20 };
+AnimationHeader* D_80A65E34[] = { &gHorseIngoIdleAnim, &gHorseIngoWhinnyAnim, &gHorseIngoSlowDownAnim, &gHorseIngoRearingAnim, &gHorseIngoWalkingSlowAnim,
+                                  &gHorseIngoWalkingFastAnim, &gHorseIngoRunningAnim, &gHorseIngoJumpingAnim, &gHorseIngoJumpingHighAnim };
 static AnimationHeader** sAnimationHeaders[] = { D_80A65E10, D_80A65E34 };
 
 static f32 sPlaybackSpeeds[] = { 0.6666667f, 0.6666667f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.6666667f, 0.6666667f };
