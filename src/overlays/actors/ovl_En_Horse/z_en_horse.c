@@ -54,20 +54,20 @@ extern CutsceneData D_02002AC0[];
 char* animationsNames[] = {
     "Idle",
     "Whinny",
-    "SlowDown",
+    "Refuse",
     "Rearing",
-    "WalkingSlow",
-    "WalkingFast",
-    "Running",
+    "Walking",
+    "Trotting",
+    "Galloping",
     "Jumping",
     "JumpingHigh",
 };
 
-AnimationHeader* D_80A65E10[] = { &gEponaIdleAnim, &gEponaWhinnyAnim, &gEponaSlowDownAnim, &gEponaRearingAnim, &gEponaWalkingSlowAnim,
-                                  &gEponaWalkingFastAnim, &gEponaRunningAnim, &gEponaJumpingAnim, &gEponaJumpingHighAnim };
+AnimationHeader* D_80A65E10[] = { &gEponaIdleAnim, &gEponaWhinnyAnim, &gEponaRefuseAnim, &gEponaRearingAnim, &gEponaWalkingAnim,
+                                  &gEponaTrottingAnim, &gEponaGallopingAnim, &gEponaJumpingAnim, &gEponaJumpingHighAnim };
 
-AnimationHeader* D_80A65E34[] = { &gHorseIngoIdleAnim, &gHorseIngoWhinnyAnim, &gHorseIngoSlowDownAnim, &gHorseIngoRearingAnim, &gHorseIngoWalkingSlowAnim,
-                                  &gHorseIngoWalkingFastAnim, &gHorseIngoRunningAnim, &gHorseIngoJumpingAnim, &gHorseIngoJumpingHighAnim };
+AnimationHeader* D_80A65E34[] = { &gHorseIngoIdleAnim, &gHorseIngoWhinnyAnim, &gHorseIngoRefuseAnim, &gHorseIngoRearingAnim, &gHorseIngoWalkingAnim,
+                                  &gHorseIngoTrottingAnim, &gHorseIngoGallopingAnim, &gHorseIngoJumpingAnim, &gHorseIngoJumpingHighAnim };
 static AnimationHeader** sAnimationHeaders[] = { D_80A65E10, D_80A65E34 };
 
 static f32 sPlaybackSpeeds[] = { 0.6666667f, 0.6666667f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.6666667f, 0.6666667f };
