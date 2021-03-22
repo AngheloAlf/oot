@@ -1,0 +1,8 @@
+<Root>
+    <File Name="nes_message_data_static" Segment="0">
+        <Message Name="gBorrowPocketEggEngMsg" Offset="0x0" />
+        <Message Name="gReturnPocketCuccoEngMsg" Offset="0x84" />
+        <Message Name="gGotOddMushroomEngMsg" Offset="0xF0" />
+        <Message Name="gGotOddPotionEngMsg" Offset="0x178" />
+    </File>
+</Root>
