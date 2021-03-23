@@ -230,7 +230,7 @@ endseg
 beginseg
     name "nes_message_data_static"
     romalign 0x1000
-    include "build/baserom/nes_message_data_static.o"
+    include "build/assets/messages/nes_message_data_static/nes_message_data_static.o"
 endseg
 
 beginseg
