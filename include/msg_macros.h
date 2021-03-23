@@ -1,33 +1,51 @@
 
-#define MSGCODE_LINEBREAK "\x00\x0A"
+#define MSG_COLOR_DEFAULT       "\x00"
+// White, apart from Type 5 boxes, for which Black
+
+#define MSG_COLOR_RED           "\x01"
+#define MSG_COLOR_GREEN         "\x02"
+#define MSG_COLOR_BLUE          "\x03"
+#define MSG_COLOR_LIGHTBLUE     "\x04"
+#define MSG_COLOR_PINK          "\x05"
+#define MSG_COLOR_YELLOW        "\x06"
+#define MSG_COLOR_WHITE         "\x07"
+
+#define MSG_COLOR_EXPAND0(color)  color
+#define MSG_COLOR_EXPAND1(color)  MSG_COLOR_EXPAND0(color)
+#define MSG_COLOR(color)  MSG_COLOR_EXPAND1(MSG_COLOR_##color)
+
+//#define MSGCODE_TEXTCOLOR(color) "\x00\x0B" MSG_COLOR(color)
+
+
+#define MSGCODE_LINEBREAK "\x00\n" // "\x00\x0A"
 #define MSGCODE_ENDMARKER "\x81\x70"
 #define MSGCODE_BOXBREAK "\x81\xA5"
-#define MSGCODE_TEXTCOLOR(color) "\x00\x0B\x0C" color //
-#define MSGCODE_INDENT(space) "\x86\xC7\x00" space //
+#define MSGCODE_TEXTCOLOR(color) "\x00\v" "\f" MSG_COLOR(color) // "\x00\x0B\x0C" MSG_COLOR(color)
+#define MSGCODE_INDENT(space) "\x86\xC7" "\x00" space //
 #define MSGCODE_NEXTMSGID(x, y) "\x81\xCB" x y //
-#define MSGCODE_INSTANT_ON "\x81\x89"
+#define MSGCODE_INSTANT_ON "\x81\x89" // "Åâ"
 #define MSGCODE_INSTANT_OFF "\x81\x8A"
 #define MSGCODE_KEEPOPEN "\x86\xC8"
 #define MSGCODE_UNKEVENT "\x81\x9F"
-#define MSGCODE_DELAY_BOXBREAK(x) "\x81\xAC\x00" x //
+#define MSGCODE_DELAY_BOXBREAK(x) "\x81\xAC" "\x00" x //
 //#define MSGCODE_UNUSED_1
-#define MSGCODE_DELAY_FADEOUT(x) "\x81\x9E\x00" x //
+#define MSGCODE_DELAY_FADEOUT(x) "\x81\x9E" "\x00" x //
 #define MSGCODE_PLAYERNAME "\x87\x4F"
 #define MSGCODE_BEGINOCARINA "\x81\xF0"
 //#define MSGCODE_UNUSED_2
 #define MSGCODE_PLAYSOUND(x, y) "\x81\xF3" x y // TODO: fix
-#define MSGCODE_ITEMICON(x) "\x81\x9A\x00" x //
-#define MSGCODE_TEXTSPEED(x) "\x86\xC9\x00" x //
-#define MSGCODE_BACKGROUND(x, y, z) "\x86\xB3\x00" x y z //
+#define MSGCODE_ITEMICON(x) "\x81\x9A" "\x00" x // "Åö" "\x00" x
+#define MSGCODE_TEXTSPEED(x) "\x86\xC9" "\x00" x //
+#define MSGCODE_BACKGROUND(x, y, z) "\x86\xB3" "\x00" x y z // TODO: fix
 #define MSGCODE_MARATHONTIME "\x87\x91"
 #define MSGCODE_HORSERACETIME "\x87\x92"
 #define MSGCODE_HORSEBACKARCHERYSCORE "\x87\x9B"
 #define MSGCODE_GOLDSKULLTULATOTAL "\x86\xA3"
-#define MSGCODE_NOSKIP "\x81\x99"
+#define MSGCODE_NOSKIP "\x81\x99" // "Åô"
 #define MSGCODE_TWOCHOICE "\x81\xBC"
 #define MSGCODE_THREECHOICE "\x81\xB8"
 #define MSGCODE_FISHSIZE "\x86\xA4"
-#define MSGCODE_HIGHSCORE(x) "\x86\x9F\x00" x //
+#define MSGCODE_HIGHSCORE(x) "\x86\x9F" "\x00" x //
 #define MSGCODE_TIME "\x81\xA1"
 
 
