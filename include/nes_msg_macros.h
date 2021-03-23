@@ -51,6 +51,11 @@
 #define MSGCODE_TIME "\x1F"
 
 
+// Special characters
+
+#define MSGCODE_E_ACUTE_LOWERCASE "\x96" // "é"
+
+
 #define MSGCODE_A_BTN "\x9F"
 #define MSGCODE_B_BTN "\xA0"
 #define MSGCODE_C_BTN "\xA1"
