@@ -80,6 +80,7 @@ def readFilelists():
     FILE_NAMES["NTSC 1.0"] = readFile("filelists/filelist_ntsc_1.0.txt")
     FILE_NAMES["PAL 1.0"] = readFile("filelists/filelist_pal_1.0.txt")
     FILE_NAMES["JP GC CE"] = readFile("filelists/filelist_jp_gc_ce.txt")
+    FILE_NAMES["CN IQUE"] = readFile("filelists/filelist_cn_ique.txt")
 
     FILE_NAMES["JP MQ"] = FILE_NAMES["USA MQ"]
 
@@ -119,6 +120,9 @@ def write_output_file(name, offset, size):
         sys.exit(1)
 
 def ExtractFunc(i):
+    if FILE_NAMES[Version][i] == "":
+        print(f"Skipping {i} because it doesn't have a name.")
+        return
     filename = f'baserom_{Edition}/' + FILE_NAMES[Version][i]
     entryOffset = FILE_TABLE_OFFSET[Version] + 16 * i
 
@@ -139,7 +143,8 @@ def ExtractFunc(i):
     if compressed:
         exit_code = os.system('tools/yaz0 -d ' + filename + ' ' + filename)
         if exit_code != 0:
-            exit(exit_code)
+        	os.remove(filename)
+            # exit(exit_code)
 
 #####################################################################
 
