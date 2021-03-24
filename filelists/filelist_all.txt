@@ -22,6 +22,7 @@ message_static
 jpn_message_data_static
 message_texture_static
 nes_font_static
+cn_font_static
 nes_message_data_static
 ger_message_data_static
 fra_message_data_static

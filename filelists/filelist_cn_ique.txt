@@ -4,23 +4,23 @@ dmadata
 Audiobank
 Audioseq
 Audiotable
-
+kanji
 link_animetion
-
+icon_item_static
 icon_item_24_static
 
 
 
 
 
-
-
-
+item_name_static
+map_name_static
+do_action_static
 message_static
 message_texture_static
-
-
-
+cn_font_static
+jpn_message_data_static
+cn_message_data_static
 staff_message_data_static
 map_grand_static
 map_48x85_static
