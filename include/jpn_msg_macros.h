@@ -44,7 +44,7 @@
 #define MSGCODE_INSTANT_OFF "\x81\x8A"
 #define MSGCODE_KEEPOPEN "\x86\xC8"
 #define MSGCODE_UNKEVENT "\x81\x9F"
-#define MSGCODE_DELAY_BOXBREAK(x) "\x81\xAC" "\x00" x //
+#define MSGCODE_DELAY_BOXBREAK(x) "\x81\xA3" "\x00" x //
 //#define MSGCODE_UNUSED_1 "\x??\x??"
 #define MSGCODE_DELAY_FADEOUT(x) "\x81\x9E" "\x00" x //
 #define MSGCODE_PLAYERNAME "\x87\x4F"
