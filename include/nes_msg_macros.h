@@ -16,7 +16,21 @@
 #define MSG_COLOR_EXPAND1(color)  MSG_COLOR_EXPAND0(color)
 #define MSG_COLOR(color)  MSG_COLOR_EXPAND1(MSG_COLOR_##color)
 
-//#define MSGCODE_TEXTCOLOR(color) "\x00\x0B" MSG_COLOR(color)
+
+// Highscores
+#define MSG_HIGHSCORE_HORSEBACK_ARCHERY "\x00"
+#define MSG_HIGHSCORE_POE_POINTS "\x01"
+#define MSG_HIGHSCORE_LARGEST_FISH "\x02"
+#define MSG_HIGHSCORE_HORSE_RACE_TIME "\x03"
+#define MSG_HIGHSCORE_MARATHON_TIME "\x04"
+//#define MSG_HIGHSCORE_ "\x05"
+#define MSG_HIGHSCORE_DAMPE_RACE_TIME "\x06"
+
+#define MSG_HIGHSCORE_EXPAND(score)  score
+//#define MSG_COLOR_EXPAND1(color)  MSG_COLOR_EXPAND0(color)
+#define MSG_HIGHSCORE(score)  MSG_HIGHSCORE_EXPAND(MSG_HIGHSCORE_##score)
+
+
 
 
 #define MSGCODE_LINEBREAK "\x01"
@@ -47,7 +61,7 @@
 #define MSGCODE_TWOCHOICE "\x1B"
 #define MSGCODE_THREECHOICE "\x1C"
 #define MSGCODE_FISHSIZE "\x1D"
-#define MSGCODE_HIGHSCORE(x) "\x1E" x //
+#define MSGCODE_HIGHSCORE(score) "\x1E" MSG_HIGHSCORE(score) //
 #define MSGCODE_TIME "\x1F"
 
 
