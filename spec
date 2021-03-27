@@ -236,19 +236,19 @@ endseg
 beginseg
     name "ger_message_data_static"
     romalign 0x1000
-    include "build/baserom/ger_message_data_static.o"
+    include "build/assets/messages/ger_message_data_static/ger_message_data_static.o"
 endseg
 
 beginseg
     name "fra_message_data_static"
     romalign 0x1000
-    include "build/baserom/fra_message_data_static.o"
+    include "build/assets/messages/fra_message_data_static/fra_message_data_static.o"
 endseg
 
 beginseg
     name "staff_message_data_static"
     romalign 0x1000
-    include "build/baserom/staff_message_data_static.o"
+    include "build/assets/messages/staff_message_data_static/staff_message_data_static.o"
 endseg
 
 beginseg

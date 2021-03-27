@@ -48,7 +48,7 @@
 #define MSGCODE_DELAY_FADEOUT(x) "\x0E" x //
 #define MSGCODE_PLAYERNAME "\x0F"
 #define MSGCODE_BEGINOCARINA "\x10"
-#define MSGCODE_UNUSED_2 "\x11"
+#define MSGCODE_UNUSED_2(x, y) "\x11" x y
 #define MSGCODE_PLAYSOUND(x, y) "\x12" x y
 #define MSGCODE_ITEMICON(x) "\x13" x //
 #define MSGCODE_TEXTSPEED(x) "\x14" x //

@@ -45,11 +45,11 @@
 #define MSGCODE_KEEPOPEN "\x86\xC8"
 #define MSGCODE_UNKEVENT "\x81\x9F"
 #define MSGCODE_DELAY_BOXBREAK(x) "\x81\xAC" "\x00" x //
-//#define MSGCODE_UNUSED_1
+//#define MSGCODE_UNUSED_1 "\x??\x??"
 #define MSGCODE_DELAY_FADEOUT(x) "\x81\x9E" "\x00" x //
 #define MSGCODE_PLAYERNAME "\x87\x4F"
 #define MSGCODE_BEGINOCARINA "\x81\xF0"
-//#define MSGCODE_UNUSED_2
+//#define MSGCODE_UNUSED_2(x, y) "\x??\x??" x y
 #define MSGCODE_PLAYSOUND(x, y) "\x81\xF3" x y
 #define MSGCODE_ITEMICON(x) "\x81\x9A" "\x00" x // "��" "\x00" x
 #define MSGCODE_TEXTSPEED(x) "\x86\xC9" "\x00" x //
