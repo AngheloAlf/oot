@@ -101,6 +101,44 @@
 #define MSGCODE_U_CIRCUMFLEX_LOWERCASE "\x9D" // "û" 
 #define MSGCODE_U_DIAERESIS_LOWERCASE "\x9E" // "ü" 
 
+#ifndef MSG_DISABLE_SPECIAL_MACROS
+
+//#define ‾ "\x7F" // "‾"
+#define À "\x80" // "À"
+#define î "\x81" // "î"
+#define Â "\x82" // "Â"
+#define Ä "\x83" // "Ä"
+#define Ç "\x84" // "Ç"
+#define È "\x85" // "È"
+#define É "\x86" // "É"
+#define Ê "\x87" // "Ê"
+#define Ë "\x88" // "Ë"
+#define Ï "\x89" // "Ï"
+#define Ô "\x8A" // "Ô"
+#define Ö "\x8B" // "Ö"
+#define Ù "\x8C" // "Ù"
+#define Û "\x8D" // "Û"
+#define Ü "\x8E" // "Ü" 
+
+#define ß "\x8F" // "ß" 
+#define à "\x90" // "à" 
+#define á "\x91" // "á" 
+#define â "\x92" // "â" 
+#define ä "\x93" // "ä" 
+#define ç "\x94" // "ç"
+#define è "\x95" // "è"
+#define é "\x96" // "é"
+#define ê "\x97" // "ê"
+#define ë "\x98" // "ë"
+#define ï "\x99" // "ï"
+#define ô "\x9A" // "ô"
+#define ö "\x9B" // "ö" 
+#define ù "\x9C" // "ù" 
+#define û "\x9D" // "û" 
+#define ü "\x9E" // "ü" 
+
+#endif
+
 
 #define MSGCODE_A_BTN "\x9F"
 #define MSGCODE_B_BTN "\xA0"
