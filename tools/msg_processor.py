@@ -45,7 +45,7 @@ def recodeMsg(filepath: str) -> str:
     contents = warningNotice + contents
 
     for char, hexVal in OoTAsciiCharacterMap.items():
-        escapedValue = '"\\x' + hex(hexVal)[2:] + '"'
+        escapedValue = '" "\\x' + hex(hexVal)[2:] + '" "'
         contents = contents.replace(char, escapedValue)
 
     return contents

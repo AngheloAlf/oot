@@ -218,8 +218,8 @@ build/data/%.o: data/%.s
 	iconv --from UTF-8 --to EUC-JP $^ | $(AS) $(ASFLAGS) -o $@
 
 build/assets/messages/%.o: assets/messages/%.c
-	python3 tools/msg_processor.py $^ > $^.recoded
-	$(CC) -c $(CFLAGS) -DMSG_DISABLE_SPECIAL_MACROS $(MIPS_VERSION) $(OPTFLAGS) -o $@ $^.recoded
+	python3 tools/msg_processor.py $^ > $@.recoded.c
+	$(CC) -c $(CFLAGS) -DMSG_DISABLE_SPECIAL_MACROS $(MIPS_VERSION) $(OPTFLAGS) -o $@ $@.recoded.c
 	$(OBJCOPY) -O binary $@ $@.bin
 
 build/assets/%.o: assets/%.c
