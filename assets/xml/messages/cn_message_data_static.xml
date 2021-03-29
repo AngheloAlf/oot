@@ -1,5 +1,5 @@
 <Root>
-    <File Name="cn_message_data_static" Segment="0">
+    <File Name="cn_message_data_static" Segment="7">
         <Message Name="gBorrowPocketEggCnMsg" Encoding="Cn" />
         <Message Name="gReturnPocketCuccoCnMsg" Encoding="Cn" />
         <Message Name="gGotOddMushroomCnMsg" Encoding="Cn" />

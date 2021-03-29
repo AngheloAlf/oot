@@ -1,5 +1,5 @@
 <Root>
-    <File Name="jpn_message_data_static" Segment="0">
+    <File Name="jpn_message_data_static" Segment="7">
         <Message Name="gBorrowPocketEggJpnMsg" Encoding="Jpn" Offset="0x0" />
         <Message Name="gReturnPocketCuccoJpnMsg" Encoding="Jpn" Offset="0x6C" />
         <Message Name="gGotOddMushroomJpnMsg" Encoding="Jpn" Offset="0xD0" />

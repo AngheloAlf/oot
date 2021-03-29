@@ -231,24 +231,28 @@ beginseg
     name "nes_message_data_static"
     romalign 0x1000
     include "build/assets/messages/nes_message_data_static/nes_message_data_static.o"
+    number 7
 endseg
 
 beginseg
     name "ger_message_data_static"
     romalign 0x1000
     include "build/assets/messages/ger_message_data_static/ger_message_data_static.o"
+    number 7
 endseg
 
 beginseg
     name "fra_message_data_static"
     romalign 0x1000
     include "build/assets/messages/fra_message_data_static/fra_message_data_static.o"
+    number 7
 endseg
 
 beginseg
     name "staff_message_data_static"
     romalign 0x1000
     include "build/assets/messages/staff_message_data_static/staff_message_data_static.o"
+    number 7
 endseg
 
 beginseg

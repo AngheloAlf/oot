@@ -1,5 +1,5 @@
 <Root>
-    <File Name="staff_message_data_static" Segment="0">
+    <File Name="staff_message_data_static" Segment="7">
         <Message Name="gMessage0x0StaffMsg" Offset="0x0" />
         <Message Name="gMessage0x1StaffMsg" />
         <Message Name="gMessage0x2StaffMsg" />

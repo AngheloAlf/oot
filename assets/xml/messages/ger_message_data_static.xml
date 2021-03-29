@@ -1,5 +1,5 @@
 <Root>
-    <File Name="ger_message_data_static" Segment="0">
+    <File Name="ger_message_data_static" Segment="7">
         <Message Name="gBorrowPocketEggGerMsg" Offset="0x0" />
         <Message Name="gReturnPocketCuccoGerMsg" />
         <Message Name="gGotOddMushroomGerMsg" />

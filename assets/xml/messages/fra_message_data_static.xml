@@ -1,5 +1,5 @@
 <Root>
-    <File Name="fra_message_data_static" Segment="0">
+    <File Name="fra_message_data_static" Segment="7">
         <Message Name="gBorrowPocketEggFraMsg" Offset="0x0" />
         <Message Name="gReturnPocketCuccoFraMsg" />
         <Message Name="gGotOddMushroomFraMsg" />
