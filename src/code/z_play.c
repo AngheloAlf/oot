@@ -1048,6 +1048,66 @@ void Gameplay_DrawOverlayElements(GlobalContext* globalCtx) {
     }
 }
 
+
+ScreenPrint gScreenPrint[32];
+
+void ScreenPrint_DrawValue(ScreenPrintTypes* typeVal, ScreenPrintMode printMode, GfxPrint* printer)
+{
+    char* str;
+    GfxPrint_SetColor(printer, 255, 255, 55, 32);
+
+    switch (printMode) {
+    case SCREENPRINT_SIGNED:
+        GfxPrint_Printf(printer, "%02i", typeVal->s);
+        break;
+    case SCREENPRINT_UNSIGNED:
+        GfxPrint_Printf(printer, "0x%02X", typeVal->u);
+        break;
+    case SCREENPRINT_FLOAT:
+        GfxPrint_Printf(printer, "%f", typeVal->f);
+        break;
+    case SCREENPRINT_STR:
+        str = typeVal->s;
+        GfxPrint_Printf(printer, "%s", str == NULL ? "NULL" : str);
+        break;
+    }
+}
+
+void ScreenPrint_Draw(GlobalContext* globalCtx, Gfx **gfxP)
+{
+    GfxPrint printer;
+    s32 i;
+    s32 j = 0;
+    ScreenPrintMode keyMode = 0;
+    ScreenPrintMode valueMode = 0;
+    char* str;
+
+    GfxPrint_Init(&printer);
+    GfxPrint_Open(&printer, *gfxP);
+    for (i = 0; i < ARRAY_COUNT(gScreenPrint); ++i) {
+        if (!gScreenPrint[i].shouldDraw){
+            continue;
+        }
+
+        keyMode = SCREENPRINT_PARAM_GETMODE_KEY(gScreenPrint[i].mode);
+        valueMode = SCREENPRINT_PARAM_GETMODE_VALUE(gScreenPrint[i].mode);
+
+        GfxPrint_SetPos(&printer, 3, 7 + j);
+        ScreenPrint_DrawValue(&gScreenPrint[i].key, keyMode, &printer);
+
+        GfxPrint_Printf(&printer, ": ");
+
+        GfxPrint_SetColor(&printer, 255, 255, 55, 32);
+
+        ScreenPrint_DrawValue(&gScreenPrint[i].value, valueMode, &printer);
+
+        j++;
+    }
+    *gfxP = GfxPrint_Close(&printer);
+    GfxPrint_Destroy(&printer);
+}
+
+
 void Gameplay_Draw(GlobalContext* globalCtx) {
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
     Lights* sp228;
@@ -1302,6 +1362,19 @@ void Gameplay_Draw(GlobalContext* globalCtx) {
     }
 
     Camera_Finish(ACTIVE_CAM);
+
+
+    {
+        Gfx* prevDisplayList = POLY_OPA_DISP;
+        Gfx* gfxP = Graph_GfxPlusOne(POLY_OPA_DISP);
+
+        gSPDisplayList(OVERLAY_DISP++, gfxP);
+        ScreenPrint_Draw(globalCtx, &gfxP);
+        gSPEndDisplayList(gfxP++);
+        Graph_BranchDlist(prevDisplayList, gfxP);
+        POLY_OPA_DISP = gfxP;
+    }
+
 
     CLOSE_DISPS(gfxCtx, "../z_play.c", 4508);
 }
