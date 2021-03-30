@@ -116,6 +116,9 @@ void EnDivingGame_Destroy(Actor* thisx, GlobalContext* globalCtx) {
         gSaveContext.timer1State = 0;
     }
     Collider_DestroyCylinder(globalCtx, &this->collider);
+    gScreenPrint[0].shouldDraw = false;
+    gScreenPrint[1].shouldDraw = false;
+    gScreenPrint[2].shouldDraw = false;
 }
 
 void func_809ED9E0(EnDivingGame* this, GlobalContext* globalCtx) {
@@ -540,6 +543,19 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
     Actor_UpdateBgCheckInfo(globalCtx, &this->actor, 20.0f, 20.0f, 60.0f, 29);
     Collider_UpdateCylinder(&this->actor, &this->collider);
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
+
+    gScreenPrint[0].shouldDraw = true;
+    gScreenPrint[0].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[0].key.str = "unk_294";
+    gScreenPrint[0].value.s = this->unk_294;
+    gScreenPrint[1].shouldDraw = true;
+    gScreenPrint[1].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[1].key.str = "unk_296";
+    gScreenPrint[1].value.s = this->unk_296;
+    gScreenPrint[2].shouldDraw = true;
+    gScreenPrint[2].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[2].key.str = "unk_29A";
+    gScreenPrint[2].value.s = this->unk_29A;
 }
 
 Gfx* EnDivingGame_EmptyDList(GraphicsContext* gfxCtx) {
