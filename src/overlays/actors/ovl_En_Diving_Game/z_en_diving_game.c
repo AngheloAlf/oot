@@ -547,16 +547,16 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
 
     gScreenPrint[0].shouldDraw = true;
     gScreenPrint[0].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[0].key.str = "unk_294";
-    gScreenPrint[0].value.s = this->unk_294;
+    gScreenPrint[0].key.str = "csCameraTimer";
+    gScreenPrint[0].value.s = this->csCameraTimer;
     gScreenPrint[1].shouldDraw = true;
     gScreenPrint[1].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
     gScreenPrint[1].key.str = "unk_296";
     gScreenPrint[1].value.s = this->unk_296;
     gScreenPrint[2].shouldDraw = true;
     gScreenPrint[2].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[2].key.str = "unk_29A";
-    gScreenPrint[2].value.s = this->unk_29A;
+    gScreenPrint[2].key.str = "spawnRuppyTimer";
+    gScreenPrint[2].value.s = this->spawnRuppyTimer;
 }
 
 Gfx* EnDivingGame_EmptyDList(GraphicsContext* gfxCtx) {
