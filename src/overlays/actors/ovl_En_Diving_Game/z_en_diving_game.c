@@ -111,14 +111,16 @@ void EnDivingGame_Init(Actor* thisx, GlobalContext* globalCtx) {
 
 void EnDivingGame_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     EnDivingGame* this = THIS;
+    s32 i = 0;
 
     if (this->unk_31F == 0) {
         gSaveContext.timer1State = 0;
     }
     Collider_DestroyCylinder(globalCtx, &this->collider);
-    gScreenPrint[0].shouldDraw = false;
-    gScreenPrint[1].shouldDraw = false;
-    gScreenPrint[2].shouldDraw = false;
+
+    for (i = 0; i < ARRAY_COUNT(gScreenPrint); i++) {
+        gScreenPrint[i].shouldDraw = false;
+    }
 }
 
 void EnDivingGame_SpawnRuppy(EnDivingGame* this, GlobalContext* globalCtx) {
@@ -545,18 +547,46 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
     Collider_UpdateCylinder(&this->actor, &this->collider);
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 
+    /*
     gScreenPrint[0].shouldDraw = true;
     gScreenPrint[0].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[0].key.str = "csCameraTimer";
-    gScreenPrint[0].value.s = this->csCameraTimer;
+    gScreenPrint[0].key.str = "unk_290";
+    gScreenPrint[0].value.s = this->unk_290;
+    */
     gScreenPrint[1].shouldDraw = true;
     gScreenPrint[1].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[1].key.str = "unk_296";
-    gScreenPrint[1].value.s = this->unk_296;
+    gScreenPrint[1].key.str = "unk_292";
+    gScreenPrint[1].value.s = this->unk_292;
+
+    /*
     gScreenPrint[2].shouldDraw = true;
     gScreenPrint[2].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[2].key.str = "spawnRuppyTimer";
-    gScreenPrint[2].value.s = this->spawnRuppyTimer;
+    gScreenPrint[2].key.str = "csCameraTimer";
+    gScreenPrint[2].value.s = this->csCameraTimer;
+    */
+    gScreenPrint[3].shouldDraw = true;
+    gScreenPrint[3].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[3].key.str = "unk_296";
+    gScreenPrint[3].value.s = this->unk_296;
+    /*
+    gScreenPrint[4].shouldDraw = true;
+    gScreenPrint[4].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[4].key.str = "spawnRuppyTimer";
+    gScreenPrint[4].value.s = this->spawnRuppyTimer;
+    */
+
+    gScreenPrint[5].shouldDraw = true;
+    gScreenPrint[5].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[5].key.str = "unk_29C";
+    gScreenPrint[5].value.s = this->unk_29C;
+    gScreenPrint[6].shouldDraw = true;
+    gScreenPrint[6].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[6].key.str = "unk_2A2";
+    gScreenPrint[6].value.s = this->unk_2A2;
+    gScreenPrint[7].shouldDraw = true;
+    gScreenPrint[7].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[7].key.str = "unk_2A4";
+    gScreenPrint[7].value.s = this->unk_2A4;
 }
 
 Gfx* EnDivingGame_EmptyDList(GraphicsContext* gfxCtx) {
