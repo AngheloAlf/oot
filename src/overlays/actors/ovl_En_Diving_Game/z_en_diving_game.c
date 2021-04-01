@@ -605,11 +605,19 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
     gScreenPrint[11].key.str = "notPlayingMinigame";
     gScreenPrint[11].value.s = this->notPlayingMinigame;
     */
+
     /*
     gScreenPrint[12].shouldDraw = true;
     gScreenPrint[12].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[12].key.str = "unk_31F";
-    gScreenPrint[12].value.s = this->unk_31F;
+    gScreenPrint[12].key.str = "allRupeesThrowed";
+    gScreenPrint[12].value.s = this->allRupeesThrowed;
+    */
+
+    /*
+    gScreenPrint[13].shouldDraw = true;
+    gScreenPrint[13].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[13].key.str = "unk_31F";
+    gScreenPrint[13].value.s = this->unk_31F;
     */
 }
 
