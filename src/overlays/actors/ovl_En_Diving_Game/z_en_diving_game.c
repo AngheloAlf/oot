@@ -35,10 +35,6 @@ void func_809EE96C(EnDivingGame* this, GlobalContext* globalCtx);
 void func_809EEA00(EnDivingGame* this, GlobalContext* globalCtx);
 void func_809EEA90(EnDivingGame* this, GlobalContext* globalCtx);
 void func_809EEAF8(EnDivingGame* this, GlobalContext* globalCtx);
-s32 func_809EEDE4(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx);
-void EnDivingGame_SpawnRuppy(EnDivingGame* this, GlobalContext* globalCtx);
-s32 func_809EDB08(EnDivingGame* this, GlobalContext* globalCtx);
-Gfx* EnDivingGame_EmptyDList(GraphicsContext* gfxCtx);
 
 const ActorInit En_Diving_Game_InitVars = {
     ACTOR_EN_DIVING_GAME,
@@ -133,15 +129,17 @@ void EnDivingGame_SpawnRuppy(EnDivingGame* this, GlobalContext* globalCtx) {
     rupeePos.z = (Rand_ZeroOne() - 0.5f) * 20.0f + this->actor.world.pos.z;
     rupee = (EnExRuppy*)Actor_SpawnAsChild(&globalCtx->actorCtx, &this->actor, globalCtx, ACTOR_EN_EX_RUPPY, rupeePos.x,
                                            rupeePos.y, rupeePos.z, 0, (s16)Rand_CenteredFloat(3500.0f) - 1000,
-                                           this->unk_2A6, 0);
+                                           this->rupeesLeftToThrow, 0);
     if (rupee != NULL) {
         rupee->actor.speedXZ = 12.0f;
         rupee->actor.velocity.y = 6.0f;
     }
 }
 
+// EnDivingGame_HasMinigameFinished ?
 s32 func_809EDB08(EnDivingGame* this, GlobalContext* globalCtx) {
     if (gSaveContext.timer1State == 10 && !Gameplay_InCsMode(globalCtx)) {
+        // Failed.
         gSaveContext.timer1State = 0;
         func_800F5B58();
         func_80078884(NA_SE_SY_FOUND);
@@ -151,14 +149,15 @@ s32 func_809EDB08(EnDivingGame* this, GlobalContext* globalCtx) {
         this->allRupeesThrowed = this->unk_2A8 = this->unk_29C = this->unk_2A2 = this->grabbedRupeesCounter = 0;
         func_8002DF54(globalCtx, NULL, 8);
         this->actionFunc = func_809EE048;
-        return 1;
+        return true;
     } else {
-        s32 var = 5;
+        s32 rupeesNeeded = 5;
 
         if (gSaveContext.eventChkInf[3] & 0x100) {
-            var = 10;
+            rupeesNeeded = 10;
         }
-        if (this->grabbedRupeesCounter >= var) {
+        if (this->grabbedRupeesCounter >= rupeesNeeded) {
+            // Won.
             gSaveContext.timer1State = 0;
             this->allRupeesThrowed = this->unk_2A8 = this->unk_29C = this->unk_2A2 = this->grabbedRupeesCounter = 0;
             if (!(gSaveContext.eventChkInf[3] & 0x100)) {
@@ -179,22 +178,23 @@ s32 func_809EDB08(EnDivingGame* this, GlobalContext* globalCtx) {
             } else {
                 this->actionFunc = func_809EE048;
             }
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 void func_809EDCB0(EnDivingGame* this, GlobalContext* globalCtx) {
     f32 frameCount = Animation_GetLastFrame(&D_06002FE8);
     Animation_Change(&this->skelAnime, &D_06002FE8, 1.0f, 0.0f, (s16)frameCount, 0, -10.0f);
-    this->notPlayingMinigame = 1;
+    this->notPlayingMinigame = true;
     this->actionFunc = func_809EDD4C;
 }
 
+// EnDivingGame_Talk ?
 void func_809EDD4C(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
-    if (this->unk_2A8 != 2 || (func_809EDB08(this, globalCtx) == 0)) {
+    if (this->unk_2A8 != 2 || !func_809EDB08(this, globalCtx)) {
         if (func_8002F194(&this->actor, globalCtx)) {
             if (this->unk_292 != 6) {
                 switch (this->unk_2A8) {
@@ -243,6 +243,7 @@ void func_809EDD4C(EnDivingGame* this, GlobalContext* globalCtx) {
     }
 }
 
+// EnDivingGame_HandlePlayerAnswer
 void func_809EDEDC(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
     if (this->unk_292 == func_8010BDBC(&globalCtx->msgCtx)) {
@@ -277,25 +278,25 @@ void func_809EDEDC(EnDivingGame* this, GlobalContext* globalCtx) {
 
 void func_809EE048(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
-    if (this->unk_292 == func_8010BDBC(&globalCtx->msgCtx)) {
-        if (func_80106BC8(globalCtx)) {
-            if (this->unk_29C == 0) {
-                func_80106CCC(globalCtx);
-                func_8002DF54(globalCtx, NULL, 7);
-                this->actionFunc = func_809EDCB0;
-            } else {
-                globalCtx->msgCtx.msgMode = 0x37;
-                func_8002DF54(globalCtx, NULL, 8);
-                this->actionFunc = func_809EE0FC;
-            }
+    if (this->unk_292 == func_8010BDBC(&globalCtx->msgCtx) && func_80106BC8(globalCtx)) {
+        if (this->unk_29C == 0) {
+            func_80106CCC(globalCtx);
+            func_8002DF54(globalCtx, NULL, 7);
+            this->actionFunc = func_809EDCB0;
+        } else {
+            globalCtx->msgCtx.msgMode = 0x37;
+            func_8002DF54(globalCtx, NULL, 8);
+            this->actionFunc = func_809EE0FC;
         }
     }
 }
 
+// Init? Reset?
 void func_809EE0FC(EnDivingGame* this, GlobalContext* globalCtx) {
     f32 frameCount = Animation_GetLastFrame(&D_0600219C);
+
     Animation_Change(&this->skelAnime, &D_0600219C, 1.0f, 0.0f, (s16)frameCount, 2, -10.0f);
-    this->notPlayingMinigame = 0;
+    this->notPlayingMinigame = false;
     this->actionFunc = func_809EE194;
 }
 
@@ -322,9 +323,9 @@ void func_809EE1F4(EnDivingGame* this, GlobalContext* globalCtx) {
     this->unk_2D0.y = -20.0f;
     this->unk_2D0.z = -240.0f;
     if (!(gSaveContext.eventChkInf[3] & 0x100)) {
-        this->unk_2A6 = 5;
+        this->rupeesLeftToThrow = 5;
     } else {
-        this->unk_2A6 = 10;
+        this->rupeesLeftToThrow = 10;
     }
     this->unk_2DC.x = this->unk_2DC.y = this->unk_2DC.z = this->unk_300.x = this->unk_300.y = this->unk_300.z = 0.1f;
     this->vec_2B8.x = globalCtx->view.lookAt.x;
@@ -363,14 +364,14 @@ void func_809EE408(EnDivingGame* this, GlobalContext* globalCtx) {
     if (!this->allRupeesThrowed && this->spawnRuppyTimer == 0) {
         this->spawnRuppyTimer = 5;
         EnDivingGame_SpawnRuppy(this, globalCtx);
-        this->unk_2A6--;
+        this->rupeesLeftToThrow--;
         if (!(gSaveContext.eventChkInf[3] & 0x100)) {
             this->unk_296 = 30;
         } else {
             this->unk_296 = 5;
         }
-        if (this->unk_2A6 <= 0) {
-            this->unk_2A6 = 0;
+        if (this->rupeesLeftToThrow <= 0) {
+            this->rupeesLeftToThrow = 0;
             this->allRupeesThrowed = true;
         }
     }
@@ -388,6 +389,7 @@ void func_809EE408(EnDivingGame* this, GlobalContext* globalCtx) {
     }
 }
 
+// reset?
 void func_809EE6C8(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
     if (this->unk_296 == 0) {
@@ -409,7 +411,7 @@ void func_809EE6C8(EnDivingGame* this, GlobalContext* globalCtx) {
     }
 }
 
-// EnDivingGame_StartMinigame ?
+// EnDivingGame_SayStartAndWait ?
 void func_809EE780(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
     if (this->csCameraTimer == 0) {
@@ -450,6 +452,7 @@ void func_809EE8F0(EnDivingGame* this, GlobalContext* globalCtx) {
     }
 }
 
+// EnDivingGame_SayCongratsAndWait ?
 void func_809EE96C(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
     if ((this->unk_292 == func_8010BDBC(&globalCtx->msgCtx) && func_80106BC8(globalCtx))) {
@@ -481,6 +484,7 @@ void func_809EEA90(EnDivingGame* this, GlobalContext* globalCtx) {
     }
 }
 
+// Award the scale?
 void func_809EEAF8(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
     if (func_8010BDBC(&globalCtx->msgCtx) == 6 && func_80106BC8(globalCtx)) {
