@@ -52,6 +52,7 @@ const ActorInit En_Diving_Game_InitVars = {
     (ActorFunc)EnDivingGame_Draw,
 };
 
+// used to ensure there's only one instance of this actor.
 static u8 D_809EF0B0 = 0;
 
 static ColliderCylinderInit sCylinderInit = {
@@ -188,7 +189,7 @@ s32 func_809EDB08(EnDivingGame* this, GlobalContext* globalCtx) {
 void func_809EDCB0(EnDivingGame* this, GlobalContext* globalCtx) {
     f32 frameCount = Animation_GetLastFrame(&D_06002FE8.common);
     Animation_Change(&this->skelAnime, &D_06002FE8, 1.0f, 0.0f, (s16)frameCount, 0, -10.0f);
-    this->unk_31D = 1;
+    this->notPlayingMinigame = 1;
     this->actionFunc = func_809EDD4C;
 }
 
@@ -295,7 +296,7 @@ void func_809EE048(EnDivingGame* this, GlobalContext* globalCtx) {
 void func_809EE0FC(EnDivingGame* this, GlobalContext* globalCtx) {
     f32 frameCount = Animation_GetLastFrame(&D_0600219C.common);
     Animation_Change(&this->skelAnime, &D_0600219C, 1.0f, 0.0f, (s16)frameCount, 2, -10.0f);
-    this->unk_31D = 0;
+    this->notPlayingMinigame = 0;
     this->actionFunc = func_809EE194;
 }
 
@@ -583,10 +584,40 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
     gScreenPrint[6].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
     gScreenPrint[6].key.str = "unk_2A2";
     gScreenPrint[6].value.s = this->unk_2A2;
+    /*
     gScreenPrint[7].shouldDraw = true;
     gScreenPrint[7].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[7].key.str = "unk_2A4";
-    gScreenPrint[7].value.s = this->unk_2A4;
+    gScreenPrint[7].key.str = "grabbedRuppiesCounter";
+    gScreenPrint[7].value.s = this->grabbedRuppiesCounter;
+    */
+
+    gScreenPrint[8].shouldDraw = true;
+    gScreenPrint[8].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[8].key.str = "unk_2A6";
+    gScreenPrint[8].value.s = this->unk_2A6;
+    gScreenPrint[9].shouldDraw = true;
+    gScreenPrint[9].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[9].key.str = "unk_2A8";
+    gScreenPrint[9].value.s = this->unk_2A8;
+    /*
+    gScreenPrint[10].shouldDraw = true;
+    gScreenPrint[10].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[10].key.str = "unk_2AA";
+    gScreenPrint[10].value.s = this->unk_2AA;
+    */
+
+    /*
+    gScreenPrint[11].shouldDraw = true;
+    gScreenPrint[11].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[11].key.str = "notPlayingMinigame";
+    gScreenPrint[11].value.s = this->notPlayingMinigame;
+    */
+    /*
+    gScreenPrint[12].shouldDraw = true;
+    gScreenPrint[12].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[12].key.str = "unk_31F";
+    gScreenPrint[12].value.s = this->unk_31F;
+    */
 }
 
 Gfx* EnDivingGame_EmptyDList(GraphicsContext* gfxCtx) {
@@ -610,7 +641,7 @@ s32 EnDivingGame_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx**
         rot->z += this->vec_284.z;
     }
 
-    if (this->unk_31D != 0 && (limbIndex == 8 || limbIndex == 9 || limbIndex == 12)) {
+    if (this->notPlayingMinigame != 0 && (limbIndex == 8 || limbIndex == 9 || limbIndex == 12)) {
         rot->y += Math_SinS((globalCtx->state.frames * (limbIndex * 50 + 0x814))) * 200.0f;
         rot->z += Math_CosS((globalCtx->state.frames * (limbIndex * 50 + 0x940))) * 200.0f;
     }
