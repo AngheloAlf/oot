@@ -247,9 +247,9 @@ void func_809EDD4C(EnDivingGame* this, GlobalContext* globalCtx) {
 void func_809EDEDC(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
     if (this->unk_292 == func_8010BDBC(&globalCtx->msgCtx)) {
-        if (func_80106BC8(globalCtx)) {
+        if (func_80106BC8(globalCtx)) { // Did player selected an answer?
             switch (globalCtx->msgCtx.choiceIndex) {
-                case 0:
+                case 0: // Yes
                     if (gSaveContext.rupees >= 20) {
                         Rupees_ChangeBy(-20);
                         this->actor.textId = 0x4054;
@@ -258,7 +258,7 @@ void func_809EDEDC(EnDivingGame* this, GlobalContext* globalCtx) {
                         this->allRupeesThrowed = this->unk_2A8 = this->unk_29C = this->unk_2A2 = this->grabbedRupeesCounter = 0;
                     }
                     break;
-                case 1:
+                case 1: // No
                     this->actor.textId = 0x2D;
                     this->allRupeesThrowed = this->unk_2A8 = this->unk_29C = this->unk_2A2 = this->grabbedRupeesCounter = 0;
                     break;
@@ -276,6 +276,7 @@ void func_809EDEDC(EnDivingGame* this, GlobalContext* globalCtx) {
     }
 }
 
+// Waits for the message to close
 void func_809EE048(EnDivingGame* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
     if (this->unk_292 == func_8010BDBC(&globalCtx->msgCtx) && func_80106BC8(globalCtx)) {
@@ -502,6 +503,11 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
     Player* player = PLAYER;
     Vec3f pos;
 
+    gScreenPrint[0].shouldDraw = true;
+    gScreenPrint[0].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_UNSIGNED);
+    gScreenPrint[0].key.str = "actionFunc";
+    gScreenPrint[0].value.u = this->actionFunc;
+
     if (this->csCameraTimer != 0) {
         this->csCameraTimer--;
     }
@@ -588,14 +594,21 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
     gScreenPrint[7].value.s = this->grabbedRuppiesCounter;
     */
 
+    /*
     gScreenPrint[8].shouldDraw = true;
     gScreenPrint[8].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
-    gScreenPrint[8].key.str = "unk_2A6";
-    gScreenPrint[8].value.s = this->unk_2A6;
+    gScreenPrint[8].key.str = "rupeesLeftToThrow";
+    gScreenPrint[8].value.s = this->rupeesLeftToThrow;
+    */
+
+    /*
     gScreenPrint[9].shouldDraw = true;
     gScreenPrint[9].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
+    gScreenPrint[9].key.str = "minigameState";
     gScreenPrint[9].key.str = "unk_2A8";
     gScreenPrint[9].value.s = this->unk_2A8;
+    */
+
     /*
     gScreenPrint[10].shouldDraw = true;
     gScreenPrint[10].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_SIGNED);
