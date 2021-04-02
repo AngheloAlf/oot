@@ -632,29 +632,29 @@ void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
 
     gScreenPrint[20].shouldDraw = true;
     gScreenPrint[20].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_FLOAT);
-    gScreenPrint[20].key.str = "vec_2B8.x";
-    gScreenPrint[20].value.f = this->vec_2B8.x;
+    gScreenPrint[20].key.str = "camLookAt.x";
+    gScreenPrint[20].value.f = this->camLookAt.x;
     gScreenPrint[21].shouldDraw = true;
     gScreenPrint[21].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_FLOAT);
-    gScreenPrint[21].key.str = "vec_2B8.y";
-    gScreenPrint[21].value.f = this->vec_2B8.y;
+    gScreenPrint[21].key.str = "camLookAt.y";
+    gScreenPrint[21].value.f = this->camLookAt.y;
     gScreenPrint[22].shouldDraw = true;
     gScreenPrint[22].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_FLOAT);
-    gScreenPrint[22].key.str = "vec_2B8.z";
-    gScreenPrint[22].value.f = this->vec_2B8.z;
+    gScreenPrint[22].key.str = "camLookAt.z";
+    gScreenPrint[22].value.f = this->camLookAt.z;
 
     gScreenPrint[23].shouldDraw = true;
     gScreenPrint[23].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_FLOAT);
-    gScreenPrint[23].key.str = "vec_2C4.x";
-    gScreenPrint[23].value.f = this->vec_2C4.x;
+    gScreenPrint[23].key.str = "camEye.x";
+    gScreenPrint[23].value.f = this->camEye.x;
     gScreenPrint[24].shouldDraw = true;
     gScreenPrint[24].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_FLOAT);
-    gScreenPrint[24].key.str = "vec_2C4.y";
-    gScreenPrint[24].value.f = this->vec_2C4.y;
+    gScreenPrint[24].key.str = "camEye.y";
+    gScreenPrint[24].value.f = this->camEye.y;
     gScreenPrint[25].shouldDraw = true;
     gScreenPrint[25].mode = SCREENPRINT_PARAM(SCREENPRINT_STR, SCREENPRINT_FLOAT);
-    gScreenPrint[25].key.str = "vec_2C4.z";
-    gScreenPrint[25].value.f = this->vec_2C4.z;
+    gScreenPrint[25].key.str = "camEye.z";
+    gScreenPrint[25].value.f = this->camEye.z;
 }
 
 Gfx* EnDivingGame_EmptyDList(GraphicsContext* gfxCtx) {
