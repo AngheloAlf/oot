@@ -92,6 +92,8 @@ def readFilelists():
 
     FILE_NAMES["PAL GC DBG2"] = FILE_NAMES["PAL MQ DBG"]
 
+    FILE_NAMES["TW IQUE"] = FILE_NAMES["CN IQUE"]
+
     # Unconfirmed
     FILE_NAMES["NTSC 1.0 RC"] = FILE_NAMES["NTSC 1.0"]
     FILE_NAMES["NTSC 1.1"] = FILE_NAMES["NTSC 1.0"]
