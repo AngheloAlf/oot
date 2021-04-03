@@ -8,6 +8,7 @@ import sys
 import struct
 from multiprocessing import Pool, cpu_count
 from typing import Dict, List
+import zlib
 
 
 ROM_FILE_NAME = 'baserom.z64'
@@ -121,6 +122,27 @@ def write_output_file(name, offset, size):
         print('failed to write file ' + name)
         sys.exit(1)
 
+
+def decompressZlib(data: bytearray) -> bytearray:
+    decomp = zlib.decompressobj(-zlib.MAX_WBITS)
+    output = bytearray()
+    output.extend(decomp.decompress(data))
+    while decomp.unconsumed_tail:
+        output.extend(decomp.decompress(decomp.unconsumed_tail))
+    output.extend(decomp.flush())
+    return output
+
+def writeBytearrayToFile(filepath: str, array_of_bytes: bytearray):
+    with open(filepath, mode="wb") as f:
+       f.write(array_of_bytes)
+
+def readFileAsBytearray(filepath: str) -> bytearray:
+    if not os.path.exists(filepath):
+        return bytearray(0)
+    with open(filepath, mode="rb") as f:
+        return bytearray(f.read())
+
+
 def ExtractFunc(i):
     if FILE_NAMES[Version][i] == "":
         print(f"Skipping {i} because it doesn't have a name.")
@@ -143,10 +165,16 @@ def ExtractFunc(i):
     print('extracting ' + filename + " (0x%08X, 0x%08X)" % (virtStart, virtEnd))
     write_output_file(filename, physStart, size)
     if compressed:
-        exit_code = os.system('tools/yaz0 -d ' + filename + ' ' + filename)
-        if exit_code != 0:
-        	os.remove(filename)
-            # exit(exit_code)
+        if Edition in ("cn_ique", "tw_ique"):
+            data = readFileAsBytearray(filename)
+            decompressed = decompressZlib(data)
+            writeBytearrayToFile(filename, decompressed)
+        else:
+            exit_code = os.system('tools/yaz0 -d ' + filename + ' ' + filename)
+            if exit_code != 0:
+                pass
+                #os.remove(filename)
+                # exit(exit_code)
 
 #####################################################################
 
