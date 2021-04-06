@@ -7,5 +7,21 @@
         <DList Name="gGiSpiritMedallionFaceDL" Offset="0x3610"/>
         <DList Name="gGiShadowMedallionFaceDL" Offset="0x4330"/>
         <DList Name="gGiLightMedallionFaceDL" Offset="0x5220"/>
+
+        <Array Name="gGiMedalUnused1Vtx" Count="148" Offset="0x11B0">
+            <Vtx/>
+        </Array>
+        <Array Name="gGiMedalUnused2Vtx" Count="143" Offset="0x1F40">
+            <Vtx/>
+        </Array>
+        <Array Name="gGiMedalUnused3Vtx" Count="143" Offset="0x2D20">
+            <Vtx/>
+        </Array>
+        <Array Name="gGiMedalUnused4Vtx" Count="143" Offset="0x3A40">
+            <Vtx/>
+        </Array>
+        <Array Name="gGiMedalUnused5Vtx" Count="143" Offset="0x4930">
+            <Vtx/>
+        </Array>
     </File>
 </Root>

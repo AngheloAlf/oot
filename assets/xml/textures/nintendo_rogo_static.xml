@@ -1,5 +1,7 @@
 <Root>
-     <File Name="nintendo_rogo_static" Segment="1">
+    <File Name="nintendo_rogo_static" Segment="1">
+        <Texture Name="gNintendo64TextTex" OutName="nintendo_64_text_tex" Format="i8" Width="192" Height="32" Offset="0x0"/>
+        <Texture Name="gNintendo64TextShineTex" OutName="nintendo_64_text_shine_tex" Format="i8" Width="32" Height="32" Offset="0x1800"/>
         <DList Name="gNintendo64LogoDL" Offset="0x2720"/>
-     </File>
+    </File>
 </Root>
