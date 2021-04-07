@@ -1,14 +1,20 @@
 <Root>
     <File Name="spot02_scene">
-        <Scene Name="spot02_scene"/>
+        <Scene Name="spot02_scene">
+            <CutsceneHint Name="gSpot02DestroyRoyalTombAdultCs" Offset="0x3C80"/>
+            <CutsceneHint Name="gSpot02DestroyRoyalTombChildCs" Offset="0x5020"/>
+        </Scene>
     </File>
     <File Name="spot02_room_0">
         <Room Name="spot02_room_0">
-        <DListHint Offset="0x26D0" Comment="This display list appears to be unused..."/>
+            <DListHint Offset="0x26D0" Comment="This display list appears to be unused..."/>
+            <DListHint Name="gSpot02ShadowTempleEntranceRoomDL" Offset="0x22E8"/>
         </Room>
     </File>
     <File Name="spot02_room_1">
         <Room Name="spot02_room_1">
+            <DListHint Name="gSpot02GraveyardRoomDL" Offset="0x8E28"/>
+            <DListHint Name="gSpot02GraveyardPathsRoomDL" Offset="0x1B658"/>
         </Room>
     </File>
 </Root>
