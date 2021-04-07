@@ -1,6 +1,7 @@
 #include "global.h"
 #include "z64camera.h"
 #include "scenes/dungeons/ganontika/ganontika_scene.h"
+#include "scenes/overworld/spot01/spot01_scene.h"
 
 u16 D_8011E1C0 = 0;
 u16 D_8011E1C4 = 0;
@@ -26,7 +27,7 @@ u8 sTitleCsState = 0;
 
 // TODO: use symbols for these cutscene locations once scenes and rooms are in C
 EntranceCutscene sEntranceCutsceneTable[] = {
-    { 0x0185, 2, 0xA0, 0x02013AA0 },       { 0x013D, 2, 0xA1, 0x02007EA0 },      { 0x00DB, 2, 0xA3, 0x0200A540 },
+    { 0x0185, 2, 0xA0, 0x02013AA0 },       { 0x013D, 2, 0xA1, 0x02007EA0 },      { 0x00DB, 2, 0xA3, gSpot01Cs_00A540 },
     { 0x0108, 2, 0xA4, 0x02003D70 },       { 0x0138, 1, 0xA5, 0x02003F40 },      { 0x014D, 2, 0xA6, 0x02008400 },
     { 0x0053, 2, 0xA7, 0x0200CE00 },       { 0x0000, 2, 0xA8, 0x0200B650 },      { 0x028A, 0, 0x18, 0x0200F9E0 },
     { 0x0292, 0, 0x18, 0x0200FF00 },       { 0x028E, 0, 0x18, 0x02010550 },      { 0x0476, 0, 0x18, 0x02010B30 },
