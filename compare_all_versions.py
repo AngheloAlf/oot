@@ -425,7 +425,7 @@ class Instruction:
         opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
         rt = self.getRegisterName(self.rt)
-        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4).upper()
+        immediate = "0x" + hex(self.immediate)[2:].zfill(4).upper()
 
         if "COP" in self.getOpcodeName(): # Hack until I implement COPz instructions
             instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
