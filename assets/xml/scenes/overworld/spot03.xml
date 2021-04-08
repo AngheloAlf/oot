@@ -8,11 +8,14 @@
     </File>
     <File Name="spot03_room_0">
         <Room Name="spot03_room_0">
+            <DListHint Name="gSpot03ZoraRiverRoomDL" Offset="0x9748"/>
+            <DListHint Name="gSpot03ZoraRiverWaterRoomDL" Offset="0xD168"/>
         </Room>
     </File>
     <File Name="spot03_room_1">
         <Room Name="spot03_room_1">
-            <DListHint Offset="0x74E8" Comment="This display list appears to be unused..."/>
+            <DListHint Name="gSpot03ZoraRiverWaterfallRoomDL" Offset="0x5080"/>
+            <DListHint Name="gSpot03ZoraRiverWaterfallWaterRoomDL" Offset="0x74E8"/>
         </Room>
     </File>
 </Root>
