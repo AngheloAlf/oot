@@ -1,6 +1,6 @@
 <Root>
     <File Name="spot04_scene" Segment="2">
-        <Scene Name="spot04_scene">
+        <Scene Name="spot04_scene" Offset="0x0">
             <PathHint Offset="0x314"/>
             <PathHint Offset="0x31C"/>
             <PathHint Offset="0xD730"/>
@@ -15,7 +15,7 @@
     <File Name="spot04_room_1" Segment="3">
         <Room Name="spot04_room_1" Offset="0x0"/>
         <DList Name="gSpot04DekuTreeRoomDL" Offset="0x4E88"/>
-        <DList Name="gSpot04DekuTreeOverlaysRoomDL" Offset="0x4E88"/>
+        <DList Name="gSpot04DekuTreeOverlaysRoomDL" Offset="0x7B60"/>
     </File>
     <File Name="spot04_room_2" Segment="3">
         <Room Name="spot04_room_2" Offset="0x0"/>
