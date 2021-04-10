@@ -6,14 +6,14 @@
 
 #include "z_en_owl.h"
 #include "vt.h"
+#include "scenes/overworld/spot06/spot06_scene.h"
+#include "scenes/overworld/spot16/spot16_scene.h"
 
 #define FLAGS 0x00000019
 
 #define THIS ((EnOwl*)thisx)
 
 extern AnimationHeader D_0600C1C4;
-extern CsCmdActorAction D_0201E6A0;
-extern CsCmdActorAction D_0201B0C0;
 extern AnimationHeader D_06001168;
 extern FlexSkeletonHeader D_0600C0E8;
 extern FlexSkeletonHeader D_060100B0;
@@ -761,7 +761,7 @@ void func_80ACB748(EnOwl* this, GlobalContext* globalCtx) {
     }
 
     switch (owlType) {
-        case 7:
+        case OWL_HYLIA_SHORTCUT:
             unkf2 = xyzDist * 2.f;
             func_800F436C(&D_80ACD62C, NA_SE_EV_FLYING_AIR - SFX_FLAG, unkf2);
             if ((globalCtx->csCtx.frames > 324) ||
@@ -772,8 +772,8 @@ void func_80ACB748(EnOwl* this, GlobalContext* globalCtx) {
                 func_800F436C(&D_80ACD62C, NA_SE_EV_PASS_AIR, unkf2);
             }
             break;
-        case 8:
-        case 9:
+        case OWL_DEATH_MOUNTAIN:
+        case OWL_DEATH_MOUNTAIN2:
             unkf2 = xyzDist * 2.f;
             func_800F436C(&D_80ACD62C, NA_SE_EV_FLYING_AIR - SFX_FLAG, unkf2);
             if ((globalCtx->csCtx.frames >= 420) ||
@@ -957,16 +957,16 @@ void func_80ACC00C(EnOwl* this, GlobalContext* globalCtx) {
             osSyncPrintf("%dのフクロウ\n", owlType); // "%d owl"
             osSyncPrintf(VT_RST);
             switch (owlType) {
-                case 7:
+                case OWL_HYLIA_SHORTCUT:
                     osSyncPrintf(VT_FGCOL(CYAN));
                     osSyncPrintf("SPOT 06 の デモがはしった\n"); // Demo of SPOT 06
                     osSyncPrintf(VT_RST);
-                    globalCtx->csCtx.segment = SEGMENTED_TO_VIRTUAL(&D_0201B0C0);
+                    globalCtx->csCtx.segment = SEGMENTED_TO_VIRTUAL(gSpot06OwlLakeHyliaCs);
                     this->actor.draw = NULL;
                     break;
-                case 8:
-                case 9:
-                    globalCtx->csCtx.segment = SEGMENTED_TO_VIRTUAL(&D_0201E6A0);
+                case OWL_DEATH_MOUNTAIN:
+                case OWL_DEATH_MOUNTAIN2:
+                    globalCtx->csCtx.segment = SEGMENTED_TO_VIRTUAL(gSpot16OwlDeathMountainCs);
                     this->actor.draw = NULL;
                     break;
                 default:
@@ -1085,11 +1085,11 @@ s32 func_80ACC5CC(EnOwl* this) {
 }
 
 s32 func_80ACC624(EnOwl* this, GlobalContext* globalCtx) {
-    s32 switchFlag = (this->actor.params & 0xFC0) >> 6;
+    s32 owlType = (this->actor.params & 0xFC0) >> 6;
 
     if (globalCtx->sceneNum != SCENE_SPOT11) {
         return true;
-    } else if (switchFlag == 0xA) {
+    } else if (owlType == OWL_DESSERT_COLOSSUS) {
         return true;
     } else if (globalCtx->csCtx.frames >= 300 && globalCtx->csCtx.frames <= 430) {
         return true;

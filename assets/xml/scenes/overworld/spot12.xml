@@ -1,13 +1,19 @@
 <Root>
     <File Name="spot12_scene" Segment="2">
+        <Texture Name="gSpot12JailDayTex" OutName="spot12_jail_day" Format="rgb5a1" Width="64" Height="32" Offset="0x9678"/>
+        <Texture Name="gSpot12JailNightTex" OutName="spot12_jail_night" Format="rgb5a1" Width="64" Height="32" Offset="0xDE78"/>
         <Scene Name="spot12_scene" Offset="0x0">
             <CutsceneHint Offset="0x6490"/>
         </Scene>
     </File>
     <File Name="spot12_room_0" Segment="3">
+        <DList Name="gSpot12GerudoFortressRoomDL" Offset="0x8A00"/>
+        <DList Name="gSpot12GerudoFortressOverlaysRoomDL" Offset="0xFD50"/>
         <Room Name="spot12_room_0" Offset="0x0"/>
     </File>
     <File Name="spot12_room_1" Segment="3">
+        <DList Name="gSpot12ArcheryMinigameRoomDL" Offset="0x55E8"/>
+        <DList Name="gSpot12ArcheryMinigameOverlaysRoomDL" Offset="0xB090"/>
         <Room Name="spot12_room_1" Offset="0x0"/>
     </File>
 </Root>

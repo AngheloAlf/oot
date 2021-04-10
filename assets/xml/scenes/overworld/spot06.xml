@@ -3,7 +3,7 @@
         <Scene Name="spot06_scene" Offset="0x0">
             <CutsceneHint Offset="0x7020"/>
             <PathHint Offset="0x776C"/>
-            <CutsceneHint Offset="0x1B0C0"/>
+            <CutsceneHint Name="gSpot06OwlLakeHyliaCs" Offset="0x1B0C0"/>
         </Scene>
     </File>
     <File Name="spot06_room_0" Segment="3">

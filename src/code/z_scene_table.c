@@ -1,5 +1,6 @@
 #include "global.h"
 #include "scenes/overworld/spot01/spot01_scene.h"
+#include "scenes/overworld/spot12/spot12_scene.h"
 
 #define ENTRANCE(scene, spawn, continueBgm, displayTitleCard, fadeIn, fadeOut)                                     \
     {                                                                                                              \
@@ -2110,7 +2111,9 @@ void func_8009F074(GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_scene_table.c", 7339);
 }
 
-u32 D_8012A380[] = { 0x02009678, 0x0200DE78 };
+// ZAPD wont use the right name here.
+u64* D_8012A380[] = { gSpot12JailDayTex, spot12_sceneTex_00DE78 };
+// u64* D_8012A380[] = { gSpot12JailDayTex, gSpot12JailNightTex };
 
 // Scene Draw Config 11
 void func_8009F1B4(GlobalContext* globalCtx) {
