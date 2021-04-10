@@ -1,12 +1,14 @@
 <Root>
-    <File Name="spot17_scene">
-        <Scene Name="spot17_scene">
-        </Scene>
+    <File Name="spot17_scene" Segment="2">
+        <Scene Name="spot17_scene" Offset="0x0"/>
     </File>
-    <File Name="spot17_room_0">
-        <Room Name="spot17_room_0"/>
+    <File Name="spot17_room_0" Segment="3">
+        <DList Name="gSpot17FireTempleEntranceRoomDL" Offset="0x3858"/>
+        <Room Name="spot17_room_0" Offset="0x0"/>
     </File>
-    <File Name="spot17_room_1">
-        <Room Name="spot17_room_1"/>
+    <File Name="spot17_room_1" Segment="3">
+        <DList Name="gSpot17DeathMountainCraterRoomDL" Offset="0xBB18"/>
+        <DList Name="gSpot17DeathMountainCraterOverlaysRoomDL" Offset="0x10E30"/>
+        <Room Name="spot17_room_1" Offset="0x0"/>
     </File>
 </Root>

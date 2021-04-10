@@ -1,6 +1,7 @@
 #include "global.h"
 #include "scenes/overworld/spot01/spot01_scene.h"
 #include "scenes/overworld/spot12/spot12_scene.h"
+#include "scenes/overworld/spot20/spot20_scene.h"
 
 #define ENTRANCE(scene, spawn, continueBgm, displayTitleCard, fadeIn, fadeOut)                                     \
     {                                                                                                              \
@@ -2258,7 +2259,7 @@ void func_8009F9D0(GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_scene_table.c", 7578);
 }
 
-u32 D_8012A390[] = { 0x020081E0, 0x0200FBE0 };
+u64* D_8012A390[] = { gSpot20WindowDayTex, gSpot20WindowNightTex };
 
 // Scene Draw Config 17
 void func_8009FB74(GlobalContext* globalCtx) {
