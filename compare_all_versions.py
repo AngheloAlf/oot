@@ -352,6 +352,8 @@ class Instruction:
         if opcode in ("LUI", ):
             return True
         return False
+    def isMType(self) -> bool: # OP rd, rs
+        return False
 
     def sameOpcode(self, other: Instruction) -> bool:
         return self.opcode == other.opcode
@@ -403,7 +405,7 @@ class Instruction:
         elif 16 <= register <= 23:
             return "$s" + str(register-16)
         elif 24 <= register <= 25:
-            return "$t" + str(register-24)
+            return "$t" + str(register-24 + 8)
         elif 26 <= register <= 27:
             return "$k" + str(register-26)
         elif register == 28:
@@ -481,6 +483,11 @@ class Instruction:
             result += f" {rt},"
             result = result.ljust(19, ' ')
             return f"{result} {self.sa}"
+        elif self.isMType():
+            rd = self.getRegisterName(self.rd)
+            result = f"{opcode} {rd},"
+            result = result.ljust(14, ' ')
+            return f"{result} {rs}"
         return "ERROR"
 
     def __repr__(self) -> str:
@@ -572,6 +579,8 @@ class InstructionSpecial(Instruction):
             return False
         elif self.isSaType():
             return False
+        elif self.isMType():
+            return False
         return True # Not for all cases, but good enough
     def isRType2(self) -> bool: # OP rd, rt, rs
         opcode = self.getOpcodeName()
@@ -583,6 +592,9 @@ class InstructionSpecial(Instruction):
         return False
     def isIType2(self) -> bool: # OP  rs, rt, IMM
         return False
+    def isMType(self) -> bool: # OP rd, rs
+        opcode = self.getOpcodeName()
+        return opcode in ("MOVE",)
 
     def modifiesRt(self) -> bool:
         return False
@@ -598,7 +610,11 @@ class InstructionSpecial(Instruction):
         if self.instr == 0:
             return "NOP"
         opcode = "0x" + hex(self.function).strip("0x").zfill(2)
-        return InstructionSpecial.SpecialOpcodes.get(self.function, f"SPECIAL({opcode})")
+        name = InstructionSpecial.SpecialOpcodes.get(self.function, f"SPECIAL({opcode})")
+        if name == "OR":
+            if self.rt == 0:
+                return "MOVE"
+        return name
 
     def __str__(self) -> str:
         opcode = self.getOpcodeName()
@@ -943,7 +959,7 @@ class Rodata(File):
             if (top_byte & 0xF0) == 0x00 and (top_byte & 0x0F) != 0x00:
                 self.words[i] = top_byte << 24
                 was_updated = True
-        
+
         if was_updated:
             self.updateBytes()
 
