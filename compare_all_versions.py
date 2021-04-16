@@ -149,6 +149,8 @@ class File:
         return result
 
     def blankOutDifferences(self, other: File, args):
+        if args.dont_remove_ptrs:
+            return
         was_updated = False
         if args.ignore80 or args.ignore06 or args.ignore04:
             min_len = min(self.sizew, other.sizew)
@@ -172,7 +174,7 @@ class File:
             self.updateBytes()
             other.updateBytes()
 
-    def removePointers(self):
+    def removePointers(self, args):
         pass
 
     def updateBytes(self):
@@ -750,6 +752,8 @@ class Text(File):
         return result
 
     def blankOutDifferences(self, other_file: File, args):
+        if args.dont_remove_ptrs:
+            return
         super().blankOutDifferences(other_file, args)
         if not isinstance(other_file, Text):
             return
@@ -828,7 +832,10 @@ class Text(File):
             self.updateWords()
             other_file.updateWords()
 
-    def removePointers(self):
+    def removePointers(self, args):
+        if args.dont_remove_ptrs:
+            return
+
         was_updated = False
 
         if self.args.delete_opendisps:
@@ -836,7 +843,7 @@ class Text(File):
 
         was_updated = self.removeTrailingNops() or was_updated
 
-        super().removePointers()
+        super().removePointers(args)
 
         lui_registers = dict()
         for i in range(len(self.instructions)):
@@ -926,8 +933,10 @@ class Text(File):
 
 
 class Data(File):
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        if args.dont_remove_ptrs:
+            return
+        super().removePointers(args)
 
         was_updated = False
         for i in range(self.sizew):
@@ -938,7 +947,7 @@ class Data(File):
             if (top_byte & 0xF0) == 0x00 and (top_byte & 0x0F) != 0x00:
                 self.words[i] = top_byte << 24
                 was_updated = True
-        
+
         if was_updated:
             self.updateBytes() 
 
@@ -947,8 +956,10 @@ class Data(File):
 
 
 class Rodata(File):
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        if args.dont_remove_ptrs:
+            return
+        super().removePointers(args)
 
         was_updated = False
         for i in range(self.sizew):
@@ -968,8 +979,10 @@ class Rodata(File):
 
 
 class Bss(File):
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        if args.dont_remove_ptrs:
+            return
+        super().removePointers(args)
         self.updateBytes()
 
     def saveToFile(self, filepath: str):
@@ -1030,8 +1043,10 @@ class Reloc(File):
         # TODO
         return result
 
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        if args.dont_remove_ptrs:
+            return
+        super().removePointers(args)
         self.updateBytes()
 
     def saveToFile(self, filepath: str):
@@ -1094,6 +1109,8 @@ class Overlay(File):
         return result
 
     def blankOutDifferences(self, other_file: File, args):
+        if args.dont_remove_ptrs:
+            return
         super().blankOutDifferences(other_file, args)
         if not isinstance(other_file, Overlay):
             return
@@ -1102,12 +1119,14 @@ class Overlay(File):
 
         self.words = self.text.words + self.data.words + self.rodata.words + self.bss.words + self.header + self.reloc.words + self.tail
         self.updateBytes()
-        
+
         other_file.words = other_file.text.words + other_file.data.words  + other_file.rodata.words + other_file.bss.words + other_file.header + other_file.reloc.words + other_file.tail
         other_file.updateBytes()
 
-    def removePointers(self):
-        super().removePointers()
+    def removePointers(self, args):
+        if args.dont_remove_ptrs:
+            return
+        super().removePointers(args)
 
         for entry in self.reloc.entries:
             section = entry.getSectionName()
@@ -1158,11 +1177,11 @@ class Overlay(File):
                 #raise RuntimeError(f"Invalid reloc section <{section}> in file '{self.version}/{self.filename}'. Reloc: {entry}")
 
 
-        self.text.removePointers()
-        self.data.removePointers()
-        self.rodata.removePointers()
-        self.bss.removePointers()
-        self.reloc.removePointers()
+        self.text.removePointers(args)
+        self.data.removePointers(args)
+        self.rodata.removePointers(args)
+        self.bss.removePointers(args)
+        self.reloc.removePointers(args)
 
         self.updateBytes()
 
@@ -1193,9 +1212,11 @@ def countUnique(row: list) -> int:
     return count
 
 def removePointers(args, filedata: bytearray) -> bytearray:
+    if args.dont_remove_ptrs:
+        return filedata
     if not args.ignore04: # This will probably grow...
         return filedata
-    
+
     words = bytesToBEWords(filedata)
     for i in range(len(words)):
         w = words[i]
@@ -1271,7 +1292,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
             f = Overlay(array_of_bytes, filename, version, args)
         else:
             f = File(array_of_bytes, filename, version, args)
-        f.removePointers()
+        f.removePointers(args)
         if args.savetofile:
             new_file_path = os.path.join(args.savetofile, version, filename)
             f.saveToFile(new_file_path)
@@ -1327,9 +1348,10 @@ def main():
     parser.add_argument("--noheader", help="Disables the csv header.", action="store_true")
     parser.add_argument("--ignore04", help="Ignores words starting with 0x04.", action="store_true")
     parser.add_argument("--overlays", help="Treats the files in filelist as overlays.", action="store_true")
-    parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written. The folder must already exits.", metavar="FOLDER")
+    parser.add_argument("--savetofile", help="Specify a folder where each part of an overlay will be written.", metavar="FOLDER")
     parser.add_argument("--track-registers", help="Set for how many instructions a register will be tracked.", type=int, default=8)
     parser.add_argument("--delete-opendisps", help="Will try to find and delete every function that calls Graph_OpenDisps.", action="store_true")
+    parser.add_argument("--dont-remove-ptrs", help="Disable the pointer removal feature.", action="store_true")
     args = parser.parse_args()
 
     versionsList = open(args.versionlist).read().splitlines()
