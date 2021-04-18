@@ -3482,4 +3482,7 @@ typedef struct {
 
 extern ScreenPrint gScreenPrint[32];
 
+void ScreenPrint_SetValue(s32 index, ScreenPrintMode keyType, void* keyValue, ScreenPrintMode valType, void* valValue);
+void ScreenPrint_UnsetValue(s32 index);
+
 #endif

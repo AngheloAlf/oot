@@ -1107,6 +1107,34 @@ void ScreenPrint_Draw(GlobalContext* globalCtx, Gfx **gfxP)
     GfxPrint_Destroy(&printer);
 }
 
+void ScreenPrintTypes_SetValue(ScreenPrintTypes* self, ScreenPrintMode type, void* value) {
+    switch (type) {
+    case SCREENPRINT_SIGNED:
+        self->s = (s32)value;
+        break;
+    case SCREENPRINT_UNSIGNED:
+        self->u = (u32)value;
+        break;
+    case SCREENPRINT_FLOAT:
+        self->f = *(f32*)&value;
+        break;
+    case SCREENPRINT_STR:
+        self->str = (char*)value;
+        break;
+    }
+}
+
+void ScreenPrint_SetValue(s32 index, ScreenPrintMode keyType, void* keyValue, ScreenPrintMode valType, void* valValue) {
+    gScreenPrint[index].shouldDraw = true;
+    gScreenPrint[index].mode = SCREENPRINT_PARAM(keyType, valType);
+    ScreenPrintTypes_SetValue(&gScreenPrint[index].key, keyType, keyValue);
+    ScreenPrintTypes_SetValue(&gScreenPrint[index].value, valType, valValue);
+}
+
+void ScreenPrint_UnsetValue(s32 index) {
+    gScreenPrint[index].shouldDraw = false;
+}
+
 
 void Gameplay_Draw(GlobalContext* globalCtx) {
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
