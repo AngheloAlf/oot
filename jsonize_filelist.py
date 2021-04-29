@@ -9,7 +9,7 @@ import subprocess
 #with open(filename) as f:
 #    b = f.readlines()
 
-version = 'ntsc_1.0'
+version = 'cn_ique'
 
 lines = str(subprocess.check_output(['python3', 'extract_baserom.py', version]))
 
