@@ -98,17 +98,17 @@
         },
         {
             "vrom": "008EA000",
-            "name": "jpn_message_data_static",
-            "type": "Unknow"
-        },
-        {
-            "vrom": "008EC000",
             "name": "message_texture_static",
             "type": "Unknow"
         },
         {
-            "vrom": "008F1000",
+            "vrom": "008EC000",
             "name": "nes_font_static",
+            "type": "Unknow"
+        },
+        {
+            "vrom": "008F1000",
+            "name": "jpn_message_data_static",
             "type": "Unknow"
         },
         {

@@ -9,7 +9,7 @@ import subprocess
 #with open(filename) as f:
 #    b = f.readlines()
 
-version = 'cn_ique'
+version = 'usa_mq'
 
 lines = str(subprocess.check_output(['python3', 'extract_baserom.py', version]))
 
@@ -44,5 +44,5 @@ for l in lines.split("\\n"):
 
 js = json.dumps(data, indent=4)
 
-with open(version + ".json", "w") as f:
+with open("filelists/jsons/" + version + ".json", "w") as f:
     f.write(js)
