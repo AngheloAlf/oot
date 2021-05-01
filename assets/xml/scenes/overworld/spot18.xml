@@ -1,33 +1,38 @@
 <Root>
     <File Name="spot18_scene" Segment="2">
-        <Scene Name="spot18_scene" Offset="0x0">
-            <CutsceneHint Name="gGoronCityDaruniaCorrectCs" Offset="0x59E0"/>
+        <Cutscene Name="gGoronCityDaruniaCorrectCs" Offset="0x59E0"/>
+        <Cutscene Name="gGoronCityDarunia01Cs" Offset="0x6930"/>
+        <Cutscene Name="gGoronCityDaruniaWrongCs" Offset="0x7DE0"/>
+        <Cutscene Name="gGoronCityEnterFirstTimeCs" Offset="0x8400"/>
 
-            <CutsceneHint Name="gGoronCityDarunia01Cs" Offset="0x6930"/>
-
-            <CutsceneHint Name="gGoronCityDaruniaWrongCs" Offset="0x7DE0"/>
-
-            <CutsceneHint Name="gGoronCityEnterFirstTimeCs" Offset="0x8400"/>
-        </Scene>
+        <Scene Name="spot18_scene" Offset="0x0"/>
     </File>
+
     <File Name="spot18_room_0" Segment="3">
         <DList Name="gSpot18BoulderMazeRoomDL" Offset="0x4948"/>
         <DList Name="gSpot18BoulderMazeOverlaysRoomDL" Offset="0xDFB8"/>
+
         <Room Name="spot18_room_0" Offset="0x0"/>
     </File>
+
     <File Name="spot18_room_1" Segment="3">
         <DList Name="gSpot18DaruniaRoomRoomDL" Offset="0x2830"/>
         <DList Name="gSpot18DaruniaRoomOverlaysRoomDL" Offset="0x5DE8"/>
+
         <Room Name="spot18_room_1" Offset="0x0"/>
     </File>
+
     <File Name="spot18_room_2" Segment="3">
         <DList Name="gSpot18MedigoronShopRoomDL" Offset="0x47D8"/>
         <DList Name="gSpot18MedigoronShopOverlaysRoomDL" Offset="0xD188"/>
+
         <Room Name="spot18_room_2" Offset="0x0"/>
     </File>
+
     <File Name="spot18_room_3" Segment="3">
         <DList Name="gSpot18GoronCityRoomDL" Offset="0xB400"/>
         <DList Name="gSpot18GoronCityOverlaysRoomDL" Offset="0x194B0"/>
+
         <Room Name="spot18_room_3" Offset="0x0"/>
     </File>
 </Root>

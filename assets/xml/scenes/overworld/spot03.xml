@@ -1,21 +1,23 @@
 <Root>
-    <File Name="spot03_scene">
-        <Scene Name="spot03_scene">
-            <PathHint Offset="0x02C4"/>
-            <PathHint Offset="0x6910"/>
-            <PathHint Offset="0x6918"/>
-        </Scene>
+    <File Name="spot03_scene" Segment="2">
+        <Path Name="gSpot03Path_0002C4" Offset="0x2C4"/>
+        <Path Name="gSpot03Path_006910" Offset="0x6910"/>
+        <Path Name="gSpot03Path_006918" Offset="0x6918"/>
+
+        <Scene Name="spot03_scene" Offset="0x0"/>
     </File>
-    <File Name="spot03_room_0">
-        <Room Name="spot03_room_0">
-            <DListHint Name="gSpot03ZoraRiverRoomDL" Offset="0x9748"/>
-            <DListHint Name="gSpot03ZoraRiverWaterRoomDL" Offset="0xD168"/>
-        </Room>
+
+    <File Name="spot03_room_0" Segment="3">
+        <DList Name="gSpot03ZoraRiverRoomDL" Offset="0x9748"/>
+        <DList Name="gSpot03ZoraRiverWaterRoomDL" Offset="0xD168"/>
+
+        <Room Name="spot03_room_0" Offset="0x0"/>
     </File>
-    <File Name="spot03_room_1">
-        <Room Name="spot03_room_1">
-            <DListHint Name="gSpot03ZoraRiverWaterfallRoomDL" Offset="0x5080"/>
-            <DListHint Name="gSpot03ZoraRiverWaterfallWaterRoomDL" Offset="0x74E8"/>
-        </Room>
+
+    <File Name="spot03_room_1" Segment="3">
+        <DList Name="gSpot03ZoraRiverWaterfallRoomDL" Offset="0x5080"/>
+        <DList Name="gSpot03ZoraRiverWaterfallWaterRoomDL" Offset="0x74E8"/>
+
+        <Room Name="spot03_room_1" Offset="0x0"/>
     </File>
 </Root>

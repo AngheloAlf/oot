@@ -1,14 +1,17 @@
 <Root>
     <File Name="spot06_scene" Segment="2">
-        <Scene Name="spot06_scene" Offset="0x0">
-            <CutsceneHint Offset="0x7020"/>
-            <PathHint Offset="0x776C"/>
-            <CutsceneHint Name="gSpot06OwlLakeHyliaCs" Offset="0x1B0C0"/>
-        </Scene>
+        <Cutscene Name="gSpot06Cs_007020" Offset="0x7020"/>
+        <Cutscene Name="gSpot06OwlLakeHyliaCs" Offset="0x1B0C0"/>
+
+        <Path Name="gSpot06Path_00776C" Offset="0x776C"/>
+
+        <Scene Name="spot06_scene" Offset="0x0"/>
     </File>
+
     <File Name="spot06_room_0" Segment="3">
         <DList Name="gSpot06LakeHyliaRoomDL" Offset="0xA400"/>
         <DList Name="gSpot06LakeHyliaOvarlaysRoomDL" Offset="0xA608"/>
+
         <Room Name="spot06_room_0" Offset="0x0"/>
     </File>
 </Root>

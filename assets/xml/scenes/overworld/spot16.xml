@@ -1,14 +1,16 @@
 <Root>
     <File Name="spot16_scene" Segment="2">
-        <Scene Name="spot16_scene" Offset="0x0">
-            <CutsceneHint Name="gSpot16OwlDeathMountainCs" Offset="0x1E6A0"/>
-        </Scene>
+        <Cutscene Name="gSpot16OwlDeathMountainCs" Offset="0x1E6A0"/>
+
+        <Scene Name="spot16_scene" Offset="0x0"/>
     </File>
+
     <File Name="spot16_room_0" Segment="3">
         <DList Name="gSpot16DeathMountainRoomDL" Offset="0xA310"/>
         <!-- Crashes ZAPD -->
         <!-- <DList Name="gSpot16DeathMountainOverlaysRoomDL" Offset="0xAA48"/> -->
         <DList Name="gSpot16DeathMountainShadowsRoomDL" Offset="0xACE8"/>
+
         <Room Name="spot16_room_0" Offset="0x0"/>
     </File>
 </Root>

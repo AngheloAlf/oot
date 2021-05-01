@@ -1,25 +1,29 @@
 <Root>
     <File Name="spot04_scene" Segment="2">
-        <Scene Name="spot04_scene" Offset="0x0">
-            <PathHint Offset="0x314"/>
-            <PathHint Offset="0x31C"/>
-            <PathHint Offset="0xD730"/>
-            <CutsceneHint Offset="0x10E20"/>
-        </Scene>
+        <Path Name="gSpot04Path_000314" Offset="0x314"/>
+        <Path Name="gSpot04Path_00031C" Offset="0x31C"/>
+        <Path Name="gSpot04Path_00D730" Offset="0xD730"/>
+
+        <Cutscene Name="gSpot04Cs_10E20" Offset="0x10E20"/>
+
+        <Scene Name="spot04_scene" Offset="0x0"/>
     </File>
     <File Name="spot04_room_0" Segment="3">
         <Room Name="spot04_room_0" Offset="0x0"/>
         <DList Name="gSpot04KokiriForestRoomDL" Offset="0xBE80"/>
         <DList Name="gSpot04KokiriForestOverlaysRoomDL" Offset="0x18A60"/>
     </File>
+
     <File Name="spot04_room_1" Segment="3">
         <Room Name="spot04_room_1" Offset="0x0"/>
         <DList Name="gSpot04DekuTreeRoomDL" Offset="0x4E88"/>
         <DList Name="gSpot04DekuTreeOverlaysRoomDL" Offset="0x7B60"/>
     </File>
+
     <File Name="spot04_room_2" Segment="3">
-        <Room Name="spot04_room_2" Offset="0x0"/>
         <DList Name="gSpot04MazeRoomDL" Offset="0x2BB8"/>
         <DList Name="gSpot04MazeOverlaysRoomDL" Offset="0x5058"/>
+
+        <Room Name="spot04_room_2" Offset="0x0"/>
     </File>
 </Root>

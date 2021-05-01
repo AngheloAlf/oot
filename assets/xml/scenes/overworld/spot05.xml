@@ -3,16 +3,19 @@
         <!--Texture Name="gSpot05TLUT_006BC0" OutName="spot05_006BC0_tlut" Format="rgb5a1" Width="16" Height="13" Offset="0x6BC0"/-->
         <!--Texture Name="gSpot05ClimbingPlantTex" OutName="spot05_climbing_plant" Format="rgb5a1" Width="32" Height="64" Offset="0x6D60"/-->
 
-        <Scene Name="spot05_scene" Offset="0x0">
-            <PathHint Offset="0x69E0"/>
-            <PathHint Offset="0x69E8"/>
-            <PathHint Offset="0x69F0"/>
-            <PathHint Offset="0x69F8"/>
-        </Scene>
+        <Cutscene Name="gMinuetCs" Offset="0x3F80"/>
+
+        <Path Name="gSpot05Path_0069E0" Offset="0x69E0"/>
+        <Path Name="gSpot05Path_0069E8" Offset="0x69E8"/>
+        <Path Name="gSpot05Path_0069F0" Offset="0x69F0"/>
+        <Path Name="gSpot05Path_0069F8" Offset="0x69F8"/>
+
+        <Scene Name="spot05_scene" Offset="0x0"/>
     </File>
     <File Name="spot05_room_0" Segment="3">
         <DList Name="gSpot05SacredForestMeadowRoomDL" Offset="0x9A60"/>
         <DList Name="gSpot05SacredForestMeadowWaterRoomDL" Offset="0x9EE0"/>
+
         <Room Name="spot05_room_0" Offset="0x0"/>
     </File>
 </Root>

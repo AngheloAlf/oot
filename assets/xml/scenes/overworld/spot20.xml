@@ -3,13 +3,15 @@
         <Texture Name="gSpot20WindowDayTex" OutName="spot20_window_day" Format="rgb5a1" Width="32" Height="64" Offset="0x81E0"/>
         <Texture Name="gSpot20WindowNightTex" OutName="spot20_window_night" Format="rgb5a1" Width="32" Height="64" Offset="0xFBE0"/>
 
-        <Scene Name="spot20_scene" Offset="0x0">
-            <CutsceneHint Name="gSpot20LonLonRanchEnterFirstTimeCs" Offset="0x5BD0"/>
-        </Scene>
+        <Cutscene Name="gSpot20LonLonRanchEnterFirstTimeCs" Offset="0x5BD0"/>
+
+        <Scene Name="spot20_scene" Offset="0x0"/>
     </File>
+
     <File Name="spot20_room_0" Segment="3">
         <DList Name="gSpot20LonLonRanchRoomDL" Offset="0x5E50"/>
         <DList Name="gSpot20LonLonRanchOverlaysRoomDL" Offset="0x66B8"/>
+
         <Room Name="spot20_room_0" Offset="0x0"/>
     </File>
 </Root>
