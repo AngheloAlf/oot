@@ -1,10 +1,8 @@
 <Root>
     <File Name="spot01_scene" Segment="2">
-        <Texture Name="gSpot01WindowDayTex" OutName="spot01_window_day" Format="rgb5a1" Width="32" Height="64" Offset="0x15b50"/>
-        <Texture Name="gSpot01WindowNightTex" OutName="spot01_window_night" Format="rgb5a1" Width="32" Height="64" Offset="0x16b50"/>
         <!-- This Texture are being ignored. I should fix that. -->
-        <Texture Name="gSpot01TLUT_00A870" OutName="spot01_tlut_A870" Format="rgb5a1" Width="16" Height="1" Offset="0xA870"/>
-        <!--Texture Name="gSpot01GrassUnusedTex" OutName="spot01_grass_unused" Format="rgb5a1" Width="32" Height="32" Offset="0xAA50"/-->
+        <Texture Name="gSpot01TLUT_00A870" OutName="spot01_tlut_A870" Format="rgb5a1" Width="220" Height="1" Offset="0xA870"/>
+        <Texture Name="gSpot01GrassTex" OutName="spot01_grass" Format="rgb5a1" Width="32" Height="32" Offset="0xAA50"/>
 
         <Texture Name="gSpot01WindowDayTex" OutName="spot01_window_day" Format="rgb5a1" Width="32" Height="64" Offset="0x15b50"/>
         <Texture Name="gSpot01WindowNightTex" OutName="spot01_window_night" Format="rgb5a1" Width="32" Height="64" Offset="0x16b50"/>
