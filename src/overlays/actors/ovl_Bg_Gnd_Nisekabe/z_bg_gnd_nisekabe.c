@@ -11,10 +11,10 @@
 
 #define THIS ((BgGndNisekabe*)thisx)
 
-void BgGndNisekabe_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgGndNisekabe_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgGndNisekabe_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgGndNisekabe_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgGndNisekabe_Init(Actor* thisx, GameState* state);
+void BgGndNisekabe_Destroy(Actor* thisx, GameState* state);
+void BgGndNisekabe_Update(Actor* thisx, GameState* state);
+void BgGndNisekabe_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Gnd_Nisekabe_InitVars = {
     ACTOR_BG_GND_NISEKABE,
@@ -28,17 +28,17 @@ const ActorInit Bg_Gnd_Nisekabe_InitVars = {
     (ActorFunc)BgGndNisekabe_Draw,
 };
 
-void BgGndNisekabe_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndNisekabe_Init(Actor* thisx, GameState* state) {
     BgGndNisekabe* this = THIS;
 
     Actor_SetScale(&this->actor, 0.1);
     this->actor.uncullZoneForward = 3000.0;
 }
 
-void BgGndNisekabe_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndNisekabe_Destroy(Actor* thisx, GameState* state) {
 }
 
-void BgGndNisekabe_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndNisekabe_Update(Actor* thisx, GameState* state) {
     BgGndNisekabe* this = THIS;
 
     if (globalCtx->actorCtx.unk_03 != 0) {
@@ -48,7 +48,7 @@ void BgGndNisekabe_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgGndNisekabe_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndNisekabe_Draw(Actor* thisx, GameState* state) {
     static Gfx* dLists[] = {
         gLightTrialFakeWallDL,
         gGanonsCastleUnusedFakeWallDL,

@@ -11,10 +11,10 @@
 
 #define THIS ((EnPoDesert*)thisx)
 
-void EnPoDesert_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPoDesert_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPoDesert_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnPoDesert_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnPoDesert_Init(Actor* thisx, GameState* state);
+void EnPoDesert_Destroy(Actor* thisx, GameState* state);
+void EnPoDesert_Update(Actor* thisx, GameState* state);
+void EnPoDesert_Draw(Actor* thisx, GameState* state);
 
 void EnPoDesert_SetNextPathPoint(EnPoDesert* this, GlobalContext* globalCtx);
 void EnPoDesert_WaitForPlayer(EnPoDesert* this, GlobalContext* globalCtx);
@@ -59,7 +59,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 3200, ICHAIN_STOP),
 };
 
-void EnPoDesert_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoDesert_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnPoDesert* this = THIS;
 
@@ -82,7 +82,7 @@ void EnPoDesert_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnPoDesert_SetNextPathPoint(this, globalCtx);
 }
 
-void EnPoDesert_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoDesert_Destroy(Actor* thisx, GameState* state) {
     EnPoDesert* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -187,7 +187,7 @@ void EnPoDesert_Disappear(EnPoDesert* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnPoDesert_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoDesert_Update(Actor* thisx, GameState* state) {
     EnPoDesert* this = THIS;
     s32 pad;
 
@@ -252,7 +252,7 @@ void EnPoDesert_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLis
     }
 }
 
-void EnPoDesert_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoDesert_Draw(Actor* thisx, GameState* state) {
     EnPoDesert* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_po_desert.c", 559);

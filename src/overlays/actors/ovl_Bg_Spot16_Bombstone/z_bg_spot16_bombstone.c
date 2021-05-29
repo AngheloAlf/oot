@@ -6,10 +6,10 @@
 
 #define THIS ((BgSpot16Bombstone*)thisx)
 
-void BgSpot16Bombstone_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot16Bombstone_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot16Bombstone_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot16Bombstone_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot16Bombstone_Init(Actor* thisx, GameState* state);
+void BgSpot16Bombstone_Destroy(Actor* thisx, GameState* state);
+void BgSpot16Bombstone_Update(Actor* thisx, GameState* state);
+void BgSpot16Bombstone_Draw(Actor* thisx, GameState* state);
 
 void func_808B5A94(BgSpot16Bombstone* this, GlobalContext* globalCtx);
 void func_808B5B04(BgSpot16Bombstone* this, GlobalContext* globalCtx);
@@ -233,7 +233,7 @@ s32 func_808B4E58(BgSpot16Bombstone* this, GlobalContext* globalctx) {
     return true;
 }
 
-void BgSpot16Bombstone_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Bombstone_Init(Actor* thisx, GameState* state) {
     BgSpot16Bombstone* this = THIS;
     s16 shouldLive;
 
@@ -267,7 +267,7 @@ void BgSpot16Bombstone_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("Spot16 obj 爆弾石 (scaleX %f)(arg_data 0x%04x)\n", this->actor.scale.x, this->actor.params);
 }
 
-void BgSpot16Bombstone_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Bombstone_Destroy(Actor* thisx, GameState* state) {
     BgSpot16Bombstone* this = THIS;
 
     if (this->actor.params == 0xFF) {
@@ -525,7 +525,7 @@ void func_808B5B6C(BgSpot16Bombstone* this, GlobalContext* globalCtx) {
     Actor_UpdateBgCheckInfo(globalCtx, actor, 17.5f, 35.0f, 0.0f, 5);
 }
 
-void BgSpot16Bombstone_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Bombstone_Update(Actor* thisx, GameState* state) {
     BgSpot16Bombstone* this = THIS;
 
     this->unk_154++;
@@ -534,7 +534,7 @@ void BgSpot16Bombstone_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot16Bombstone_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Bombstone_Draw(Actor* thisx, GameState* state) {
     BgSpot16Bombstone* this = THIS;
     s32 pad;
 

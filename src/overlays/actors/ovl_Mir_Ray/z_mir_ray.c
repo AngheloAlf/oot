@@ -11,10 +11,10 @@
 
 #define THIS ((MirRay*)thisx)
 
-void MirRay_Init(Actor* thisx, GlobalContext* globalCtx);
-void MirRay_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void MirRay_Update(Actor* thisx, GlobalContext* globalCtx);
-void MirRay_Draw(Actor* thisx, GlobalContext* globalCtx);
+void MirRay_Init(Actor* thisx, GameState* state);
+void MirRay_Destroy(Actor* thisx, GameState* state);
+void MirRay_Update(Actor* thisx, GameState* state);
+void MirRay_Draw(Actor* thisx, GameState* state);
 
 s32 MirRay_CheckInFrustum(Vec3f* vecA, Vec3f* vecB, f32 pointx, f32 pointy, f32 pointz, s16 radiusA, s16 radiusB);
 
@@ -160,7 +160,7 @@ void MirRay_MakeShieldLight(MirRay* this, GlobalContext* globalCtx) {
     }
 }
 
-void MirRay_Init(Actor* thisx, GlobalContext* globalCtx) {
+void MirRay_Init(Actor* thisx, GameState* state) {
     s32 pad;
     MirRay* this = THIS;
     MirRayDataEntry* dataEntry = &sMirRayData[this->actor.params];
@@ -226,7 +226,7 @@ void MirRay_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void MirRay_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void MirRay_Destroy(Actor* thisx, GameState* state) {
     MirRay* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -238,7 +238,7 @@ void MirRay_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     Collider_DestroyQuad(globalCtx, &this->shieldRay);
 }
 
-void MirRay_Update(Actor* thisx, GlobalContext* globalCtx) {
+void MirRay_Update(Actor* thisx, GameState* state) {
     s32 pad;
     MirRay* this = THIS;
     Player* player = PLAYER;
@@ -481,7 +481,7 @@ void MirRay_ReflectedBeam(MirRay* this, GlobalContext* globalCtx, MirRayShieldRe
     }
 }
 
-void MirRay_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void MirRay_Draw(Actor* thisx, GameState* state) {
     MirRay* this = THIS;
     Player* player = PLAYER;
     s32 i;

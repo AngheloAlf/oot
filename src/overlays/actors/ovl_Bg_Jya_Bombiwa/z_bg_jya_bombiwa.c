@@ -13,10 +13,10 @@
 
 #define THIS ((BgJyaBombiwa*)thisx)
 
-void BgJyaBombiwa_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBombiwa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBombiwa_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBombiwa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaBombiwa_Init(Actor* thisx, GameState* state);
+void BgJyaBombiwa_Destroy(Actor* thisx, GameState* state);
+void BgJyaBombiwa_Update(Actor* thisx, GameState* state);
+void BgJyaBombiwa_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Jya_Bombiwa_InitVars = {
     ACTOR_BG_JYA_BOMBIWA,
@@ -88,7 +88,7 @@ void BgJyaBombiwa_InitCollider(BgJyaBombiwa* this, GlobalContext* globalCtx) {
     Collider_SetJntSph(globalCtx, &this->collider, &this->dyna.actor, &sJntSphInit, this->colliderItems);
 }
 
-void BgJyaBombiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBombiwa_Init(Actor* thisx, GameState* state) {
     BgJyaBombiwa* this = THIS;
 
     if ((this->dyna.actor.params & 0x3F) != 0x29) {
@@ -111,7 +111,7 @@ void BgJyaBombiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaBombiwa_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBombiwa_Destroy(Actor* thisx, GameState* state) {
     BgJyaBombiwa* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -162,7 +162,7 @@ void BgJyaBombiwa_Break(BgJyaBombiwa* this, GlobalContext* globalCtx) {
     func_80033480(globalCtx, &pos, 100.0f, 0xA, 0x64, 0xA0, 1);
 }
 
-void BgJyaBombiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBombiwa_Update(Actor* thisx, GameState* state) {
     BgJyaBombiwa* this = THIS;
 
     if (this->collider.base.acFlags & AC_HIT) {
@@ -175,7 +175,7 @@ void BgJyaBombiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaBombiwa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBombiwa_Draw(Actor* thisx, GameState* state) {
     BgJyaBombiwa* this = THIS;
 
     Gfx_DrawDListOpa(globalCtx, gBombiwaDL);

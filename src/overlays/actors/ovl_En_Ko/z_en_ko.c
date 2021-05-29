@@ -4,10 +4,10 @@
 
 #define THIS ((EnKo*)thisx)
 
-void EnKo_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnKo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnKo_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnKo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnKo_Init(Actor* thisx, GameState* state);
+void EnKo_Destroy(Actor* thisx, GameState* state);
+void EnKo_Update(Actor* thisx, GameState* state);
+void EnKo_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06006A60;
 extern UNK_TYPE D_06007830;

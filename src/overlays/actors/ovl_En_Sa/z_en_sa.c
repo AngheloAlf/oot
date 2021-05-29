@@ -6,10 +6,10 @@
 
 #define THIS ((EnSa*)thisx)
 
-void EnSa_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSa_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSa_Init(Actor* thisx, GameState* state);
+void EnSa_Destroy(Actor* thisx, GameState* state);
+void EnSa_Update(Actor* thisx, GameState* state);
+void EnSa_Draw(Actor* thisx, GameState* state);
 
 void func_80AF6448(EnSa* this, GlobalContext* globalCtx);
 void func_80AF67D0(EnSa* this, GlobalContext* globalCtx);
@@ -444,7 +444,7 @@ void func_80AF6170(CsCmdActorAction* csAction, Vec3f* dst) {
     dst->z = csAction->endPos.z;
 }
 
-void EnSa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSa_Init(Actor* thisx, GameState* state) {
     EnSa* this = THIS;
     s32 pad;
 
@@ -498,7 +498,7 @@ void EnSa_Init(Actor* thisx, GlobalContext* globalCtx) {
                        this->actor.world.pos.y, this->actor.world.pos.z, 0, 0, 0, FAIRY_KOKIRI);
 }
 
-void EnSa_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSa_Destroy(Actor* thisx, GameState* state) {
     EnSa* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -686,7 +686,7 @@ void func_80AF6B20(EnSa* this, GlobalContext* globalCtx) {
     this->actionFunc = func_80AF6448;
 }
 
-void EnSa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSa_Update(Actor* thisx, GameState* state) {
     EnSa* this = THIS;
     s32 pad;
 
@@ -761,7 +761,7 @@ void EnSa_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnSa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSa_Draw(Actor* thisx, GameState* state) {
     static u64* sMouthTextures[] = { gSariaMouthClosed2Tex, gSariaMouthSmilingOpenTex, gSariaMouthFrowningTex,
                                      gSariaMouthSuprisedTex, gSariaMouthClosedTex };
     static u64* sEyeTextures[] = { gSariaEyeOpenTex, gSariaEyeHalfTex, gSariaEyeClosedTex, gSariaEyeSuprisedTex,

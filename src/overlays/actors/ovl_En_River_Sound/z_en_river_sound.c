@@ -10,10 +10,10 @@
 
 #define THIS ((EnRiverSound*)thisx)
 
-void EnRiverSound_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnRiverSound_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnRiverSound_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnRiverSound_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnRiverSound_Init(Actor* thisx, GameState* state);
+void EnRiverSound_Destroy(Actor* thisx, GameState* state);
+void EnRiverSound_Update(Actor* thisx, GameState* state);
+void EnRiverSound_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_River_Sound_InitVars = {
     ACTOR_EN_RIVER_SOUND,
@@ -27,7 +27,7 @@ const ActorInit En_River_Sound_InitVars = {
     (ActorFunc)EnRiverSound_Draw,
 };
 
-void EnRiverSound_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnRiverSound_Init(Actor* thisx, GameState* state) {
     EnRiverSound* this = THIS;
 
     this->unk_14C = 0;
@@ -47,7 +47,7 @@ void EnRiverSound_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnRiverSound_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnRiverSound_Destroy(Actor* thisx, GameState* state) {
     EnRiverSound* this = THIS;
 
     if (this->actor.params == 12) {
@@ -168,7 +168,7 @@ s32 func_80AE6BC0(Vec3s* points, s32 numPoints, Vec3f* pos, Vec3f* res) {
     return 1;
 }
 
-void EnRiverSound_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnRiverSound_Update(Actor* thisx, GameState* state) {
     Path* path;
     Vec3f* pos;
     Player* player = PLAYER;
@@ -207,7 +207,7 @@ void EnRiverSound_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnRiverSound_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnRiverSound_Draw(Actor* thisx, GameState* state) {
     EnRiverSound* this = THIS;
 
     static s16 D_80AE71F8[] = {

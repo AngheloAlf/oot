@@ -11,10 +11,10 @@
 
 #define THIS ((EnSb*)thisx)
 
-void EnSb_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSb_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSb_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSb_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSb_Init(Actor* thisx, GameState* state);
+void EnSb_Destroy(Actor* thisx, GameState* state);
+void EnSb_Update(Actor* thisx, GameState* state);
+void EnSb_Draw(Actor* thisx, GameState* state);
 
 void EnSb_SetupWaitClosed(EnSb* this);
 
@@ -113,7 +113,7 @@ extern AnimationHeader D_06000124;
 extern AnimationHeader D_06002C8C;
 extern AnimationHeader D_060000B4;
 
-void EnSb_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSb_Init(Actor* thisx, GameState* state) {
     EnSb* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -134,7 +134,7 @@ void EnSb_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnSb_SetupWaitClosed(this);
 }
 
-void EnSb_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSb_Destroy(Actor* thisx, GameState* state) {
     EnSb* this = THIS;
     SkelAnime_Free(&this->skelAnime, globalCtx);
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -444,7 +444,7 @@ s32 EnSb_UpdateDamage(EnSb* this, GlobalContext* globalCtx) {
     return 0;
 }
 
-void EnSb_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSb_Update(Actor* thisx, GameState* state) {
     EnSb* this = THIS;
     s32 pad;
 
@@ -483,7 +483,7 @@ void EnSb_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     BodyBreak_SetInfo(&this->bodyBreak, limbIndex, 0, 6, 8, dList, BODYBREAK_OBJECT_DEFAULT);
 }
 
-void EnSb_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSb_Draw(Actor* thisx, GameState* state) {
     EnSb* this = THIS;
     Vec3f flamePos;
     Vec3f* offset;

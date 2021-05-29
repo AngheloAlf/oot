@@ -10,9 +10,9 @@
 
 #define THIS ((EnTana*)thisx)
 
-void EnTana_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTana_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTana_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnTana_Init(Actor* thisx, GameState* state);
+void EnTana_Destroy(Actor* thisx, GameState* state);
+void EnTana_Update(Actor* thisx, GameState* state);
 void func_80B17FC4(Actor* thisx, GlobalContext* globalCtx);
 void func_80B1809C(Actor* thisx, GlobalContext* globalCtx);
 
@@ -51,7 +51,7 @@ static UNK_PTR sUnkSegments[] = {
     0x06001608,
 };
 
-void EnTana_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTana_Init(Actor* thisx, GameState* state) {
     EnTana* this = THIS;
 
     osSyncPrintf("☆☆☆ %s ☆☆☆\n", sShelfTypes[thisx->params]);
@@ -60,10 +60,10 @@ void EnTana_Init(Actor* thisx, GlobalContext* globalCtx) {
     thisx->draw = sDrawFuncs[thisx->params];
 }
 
-void EnTana_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTana_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnTana_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTana_Update(Actor* thisx, GameState* state) {
 }
 
 void func_80B17FC4(Actor* thisx, GlobalContext* globalCtx) {

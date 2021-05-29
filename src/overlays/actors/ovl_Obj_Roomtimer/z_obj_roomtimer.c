@@ -10,9 +10,9 @@
 
 #define THIS ((ObjRoomtimer*)thisx)
 
-void ObjRoomtimer_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjRoomtimer_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjRoomtimer_Update(Actor* thisx, GlobalContext* globalCtx);
+void ObjRoomtimer_Init(Actor* thisx, GameState* state);
+void ObjRoomtimer_Destroy(Actor* thisx, GameState* state);
+void ObjRoomtimer_Update(Actor* thisx, GameState* state);
 
 void func_80B9D054(ObjRoomtimer* this, GlobalContext* globalCtx);
 void func_80B9D0B0(ObjRoomtimer* this, GlobalContext* globalCtx);
@@ -29,7 +29,7 @@ const ActorInit Obj_Roomtimer_InitVars = {
     (ActorFunc)NULL,
 };
 
-void ObjRoomtimer_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjRoomtimer_Init(Actor* thisx, GameState* state) {
     ObjRoomtimer* this = THIS;
     s16 params = this->actor.params;
 
@@ -48,7 +48,7 @@ void ObjRoomtimer_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80B9D054;
 }
 
-void ObjRoomtimer_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjRoomtimer_Destroy(Actor* thisx, GameState* state) {
     ObjRoomtimer* this = THIS;
 
     if ((this->actor.params != 0x3FF) && (gSaveContext.timer1Value > 0)) {
@@ -83,7 +83,7 @@ void func_80B9D0B0(ObjRoomtimer* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjRoomtimer_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjRoomtimer_Update(Actor* thisx, GameState* state) {
     ObjRoomtimer* this = THIS;
 
     this->actionFunc(this, globalCtx);

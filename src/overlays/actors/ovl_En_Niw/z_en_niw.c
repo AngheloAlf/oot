@@ -12,10 +12,10 @@
 
 #define THIS ((EnNiw*)thisx)
 
-void EnNiw_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnNiw_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnNiw_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnNiw_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnNiw_Init(Actor* thisx, GameState* state);
+void EnNiw_Destroy(Actor* thisx, GameState* state);
+void EnNiw_Update(Actor* thisx, GameState* state);
+void EnNiw_Draw(Actor* thisx, GameState* state);
 
 void EnNiw_ResetAction(EnNiw* this, GlobalContext* globalCtx);
 void func_80AB6324(EnNiw* this, GlobalContext* globalCtx);
@@ -124,7 +124,7 @@ extern AnimationHeader D_060000E8;
 extern Gfx D_060023B0[];
 extern Gfx D_06002428[];
 
-void EnNiw_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiw_Init(Actor* thisx, GameState* state) {
     EnNiw* this = THIS;
     s32 pad;
     s32 i;
@@ -245,7 +245,7 @@ void EnNiw_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnNiw_ResetAction;
 }
 
-void EnNiw_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiw_Destroy(Actor* thisx, GameState* state) {
     EnNiw* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -876,7 +876,7 @@ void func_80AB747C(EnNiw* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnNiw_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiw_Update(Actor* thisx, GameState* state) {
     s32 pad1;
     EnNiw* this = THIS;
     Player* player = PLAYER;
@@ -1135,7 +1135,7 @@ s32 EnNiw_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList,
     return false;
 }
 
-void EnNiw_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiw_Draw(Actor* thisx, GameState* state) {
     EnNiw* this = THIS;
     Vec3f scale = { 0.15f, 0.15f, 0.15f };
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;

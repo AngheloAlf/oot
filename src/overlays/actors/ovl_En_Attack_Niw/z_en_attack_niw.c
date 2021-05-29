@@ -11,10 +11,10 @@
 
 #define THIS ((EnAttackNiw*)thisx)
 
-void EnAttackNiw_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnAttackNiw_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnAttackNiw_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnAttackNiw_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnAttackNiw_Init(Actor* thisx, GameState* state);
+void EnAttackNiw_Destroy(Actor* thisx, GameState* state);
+void EnAttackNiw_Update(Actor* thisx, GameState* state);
+void EnAttackNiw_Draw(Actor* thisx, GameState* state);
 
 void func_809B5670(EnAttackNiw* this, GlobalContext* globalCtx);
 void func_809B5C18(EnAttackNiw* this, GlobalContext* globalCtx);
@@ -41,7 +41,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 0, ICHAIN_STOP),
 };
 
-void EnAttackNiw_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnAttackNiw_Init(Actor* thisx, GameState* state) {
     EnAttackNiw* this = THIS;
     s32 pad;
 
@@ -62,7 +62,7 @@ void EnAttackNiw_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_809B5670;
 }
 
-void EnAttackNiw_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnAttackNiw_Destroy(Actor* thisx, GameState* state) {
     EnAttackNiw* this = THIS;
     EnNiw* cucco = (EnNiw*)this->actor.parent;
 
@@ -296,7 +296,7 @@ void func_809B5C18(EnAttackNiw* this, GlobalContext* globalCtx) {
     func_809B5268(this, globalCtx, 2);
 }
 
-void EnAttackNiw_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnAttackNiw_Update(Actor* thisx, GameState* state) {
     f32 tmpf1;
     EnAttackNiw* this = THIS;
     EnNiw* cucco;
@@ -398,7 +398,7 @@ s32 func_809B5F98(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3f* p
     return 0;
 }
 
-void EnAttackNiw_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnAttackNiw_Draw(Actor* thisx, GameState* state) {
     EnAttackNiw* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

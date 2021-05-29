@@ -12,10 +12,10 @@
 
 #define THIS ((EnFish*)thisx)
 
-void EnFish_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFish_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFish_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFish_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFish_Init(Actor* thisx, GameState* state);
+void EnFish_Destroy(Actor* thisx, GameState* state);
+void EnFish_Update(Actor* thisx, GameState* state);
+void EnFish_Draw(Actor* thisx, GameState* state);
 
 void EnFish_Respawning_SetupSlowDown(EnFish* this);
 void EnFish_Respawning_SlowDown(EnFish* this, GlobalContext* globalCtx);
@@ -129,7 +129,7 @@ void EnFish_ClearCutsceneData(EnFish* this) {
     D_80A17018 = 0.0f;
 }
 
-void EnFish_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFish_Init(Actor* thisx, GameState* state) {
     EnFish* this = THIS;
     s16 params = this->actor.params;
 
@@ -153,7 +153,7 @@ void EnFish_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFish_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void EnFish_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnFish* this = THIS;
 
@@ -741,7 +741,7 @@ void EnFish_RespawningUpdate(EnFish* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFish_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFish_Update(Actor* thisx, GameState* state) {
     EnFish* this = THIS;
 
     if ((D_80A17010 == NULL) && (this->actor.params == FISH_DROPPED) && (globalCtx->csCtx.state != 0) &&
@@ -759,7 +759,7 @@ void EnFish_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFish_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFish_Draw(Actor* thisx, GameState* state) {
     EnFish* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot01Fusya*)thisx)
 
-void BgSpot01Fusya_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Fusya_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Fusya_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Fusya_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot01Fusya_Init(Actor* thisx, GameState* state);
+void BgSpot01Fusya_Destroy(Actor* thisx, GameState* state);
+void BgSpot01Fusya_Update(Actor* thisx, GameState* state);
+void BgSpot01Fusya_Draw(Actor* thisx, GameState* state);
 
 void func_808AAA50(BgSpot01Fusya* this, GlobalContext* globalCtx);
 
@@ -42,7 +42,7 @@ void BgSpot01Fusya_SetupAction(BgSpot01Fusya* this, BgSpot01FusyaActionFunc acti
     this->actionFunc = actionFunc;
 }
 
-void BgSpot01Fusya_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Fusya_Init(Actor* thisx, GameState* state) {
     BgSpot01Fusya* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -55,7 +55,7 @@ void BgSpot01Fusya_Init(Actor* thisx, GlobalContext* globalCtx) {
     BgSpot01Fusya_SetupAction(this, func_808AAA50);
 }
 
-void BgSpot01Fusya_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Fusya_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_808AAA50(BgSpot01Fusya* this, GlobalContext* globalCtx) {
@@ -71,13 +71,13 @@ void func_808AAA50(BgSpot01Fusya* this, GlobalContext* globalCtx) {
     Math_ApproachF(&this->unk_154, this->unk_158, this->unk_15C, 100.0f);
 }
 
-void BgSpot01Fusya_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Fusya_Update(Actor* thisx, GameState* state) {
     BgSpot01Fusya* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot01Fusya_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Fusya_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_spot01_fusya.c", 210);
 
     func_80093D18(globalCtx->state.gfxCtx);

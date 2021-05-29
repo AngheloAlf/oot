@@ -11,10 +11,10 @@
 
 #define THIS ((EnGuest*)thisx)
 
-void EnGuest_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGuest_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGuest_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGuest_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGuest_Init(Actor* thisx, GameState* state);
+void EnGuest_Destroy(Actor* thisx, GameState* state);
+void EnGuest_Update(Actor* thisx, GameState* state);
+void EnGuest_Draw(Actor* thisx, GameState* state);
 
 void func_80A50518(EnGuest* this, GlobalContext* globalCtx);
 void func_80A5057C(EnGuest* this, GlobalContext* globalCtx);
@@ -59,7 +59,7 @@ extern FlexSkeletonHeader D_060000F0;
 extern AnimationHeader D_060042AC;
 extern Gfx D_060059B0[];
 
-void EnGuest_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGuest_Init(Actor* thisx, GameState* state) {
     EnGuest* this = THIS;
 
     if (gSaveContext.infTable[7] & 0x40) {
@@ -76,13 +76,13 @@ void EnGuest_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnGuest_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGuest_Destroy(Actor* thisx, GameState* state) {
     EnGuest* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
 
-void EnGuest_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGuest_Update(Actor* thisx, GameState* state) {
     EnGuest* this = THIS;
     s32 pad;
 
@@ -222,7 +222,7 @@ s32 EnGuest_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLis
     return false;
 }
 
-void EnGuest_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGuest_Draw(Actor* thisx, GameState* state) {
     EnGuest* this = THIS;
     s32 pad;
 

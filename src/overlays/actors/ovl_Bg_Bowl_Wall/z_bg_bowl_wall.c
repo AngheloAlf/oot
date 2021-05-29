@@ -13,10 +13,10 @@
 
 #define THIS ((BgBowlWall*)thisx)
 
-void BgBowlWall_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgBowlWall_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgBowlWall_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgBowlWall_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgBowlWall_Init(Actor* thisx, GameState* state);
+void BgBowlWall_Destroy(Actor* thisx, GameState* state);
+void BgBowlWall_Update(Actor* thisx, GameState* state);
+void BgBowlWall_Draw(Actor* thisx, GameState* state);
 
 void BgBowlWall_SpawnBullseyes(BgBowlWall* this, GlobalContext* globalCtx);
 void BgBowlWall_WaitForHit(BgBowlWall* this, GlobalContext* globalCtx);
@@ -50,7 +50,7 @@ static Vec3f sBullseyeOffset[] = {
 
 static s16 sTargetRot[] = { 0x0000, 0x0000, 0x3FFF, -0x3FFF };
 
-void BgBowlWall_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgBowlWall_Init(Actor* thisx, GameState* state) {
     BgBowlWall* this = THIS;
     s32 pad1;
     s32 pad2;
@@ -72,7 +72,7 @@ void BgBowlWall_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.actor.scale.x = this->dyna.actor.scale.y = this->dyna.actor.scale.z = 1.0f;
 }
 
-void BgBowlWall_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgBowlWall_Destroy(Actor* thisx, GameState* state) {
     BgBowlWall* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -192,7 +192,7 @@ void BgBowlWall_Reset(BgBowlWall* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgBowlWall_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgBowlWall_Update(Actor* thisx, GameState* state) {
     BgBowlWall* this = THIS;
 
     if (this->timer != 0) {
@@ -202,7 +202,7 @@ void BgBowlWall_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgBowlWall_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgBowlWall_Draw(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     BgBowlWall* this = THIS;
     u32 frames;

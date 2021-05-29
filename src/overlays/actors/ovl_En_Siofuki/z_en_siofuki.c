@@ -10,10 +10,10 @@
 
 #define THIS ((EnSiofuki*)thisx)
 
-void EnSiofuki_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSiofuki_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSiofuki_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSiofuki_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSiofuki_Init(Actor* thisx, GameState* state);
+void EnSiofuki_Destroy(Actor* thisx, GameState* state);
+void EnSiofuki_Update(Actor* thisx, GameState* state);
+void EnSiofuki_Draw(Actor* thisx, GameState* state);
 
 void func_80AFC34C(EnSiofuki* this, GlobalContext* globalCtx);
 void func_80AFC544(EnSiofuki* this, GlobalContext* globalCtx);
@@ -38,7 +38,7 @@ static InitChainEntry sInitChain[] = {
 extern Gfx D_06000B70[];
 extern UNK_TYPE D_06000D78;
 
-void EnSiofuki_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSiofuki_Init(Actor* thisx, GameState* state) {
     EnSiofuki* this = THIS;
     s32 type;
     CollisionHeader* colHeader = NULL;
@@ -102,7 +102,7 @@ void EnSiofuki_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnSiofuki_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSiofuki_Destroy(Actor* thisx, GameState* state) {
     EnSiofuki* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -273,13 +273,13 @@ void func_80AFC544(EnSiofuki* this, GlobalContext* globalCtx) {
     func_80AFC1D0(this, globalCtx);
 }
 
-void EnSiofuki_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSiofuki_Update(Actor* thisx, GameState* state) {
     EnSiofuki* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void EnSiofuki_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSiofuki_Draw(Actor* thisx, GameState* state) {
     EnSiofuki* this = THIS;
     u32 x;
     u32 y;

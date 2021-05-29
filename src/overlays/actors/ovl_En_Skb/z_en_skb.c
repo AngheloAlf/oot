@@ -6,10 +6,10 @@
 
 #define THIS ((EnSkb*)thisx)
 
-void EnSkb_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSkb_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSkb_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSkb_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSkb_Init(Actor* thisx, GameState* state);
+void EnSkb_Destroy(Actor* thisx, GameState* state);
+void EnSkb_Update(Actor* thisx, GameState* state);
+void EnSkb_Draw(Actor* thisx, GameState* state);
 
 void func_80AFCD60(EnSkb* this);
 void func_80AFCDF8(EnSkb* this);
@@ -142,7 +142,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32_DIV1000(gravity, -2000, ICHAIN_STOP),
 };
 
-void EnSkb_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkb_Init(Actor* thisx, GameState* state) {
     EnSkb* this = THIS;
     s16 paramOffsetBody;
     s16 paramOffsetArm;
@@ -174,7 +174,7 @@ void EnSkb_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_80AFCDF8(this);
 }
 
-void EnSkb_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkb_Destroy(Actor* thisx, GameState* state) {
     EnSkb* this = THIS;
     if (this->actor.parent != NULL) {
         EnEncount1* spawner = (EnEncount1*)this->actor.parent;
@@ -490,7 +490,7 @@ void func_80AFD968(EnSkb* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSkb_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkb_Update(Actor* thisx, GameState* state) {
     EnSkb* this = THIS;
     s32 pad;
 
@@ -546,7 +546,7 @@ void EnSkb_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     }
 }
 
-void EnSkb_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkb_Draw(Actor* thisx, GameState* state) {
     EnSkb* this = THIS;
     func_80093D18(globalCtx->state.gfxCtx);
     SkelAnime_DrawOpa(globalCtx, this->skelAnime.skeleton, this->skelAnime.jointTable, EnSkb_OverrideLimbDraw,

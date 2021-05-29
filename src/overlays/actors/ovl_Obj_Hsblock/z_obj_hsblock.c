@@ -10,10 +10,10 @@
 
 #define THIS ((ObjHsblock*)thisx)
 
-void ObjHsblock_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjHsblock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjHsblock_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjHsblock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjHsblock_Init(Actor* thisx, GameState* state);
+void ObjHsblock_Destroy(Actor* thisx, GameState* state);
+void ObjHsblock_Update(Actor* thisx, GameState* state);
+void ObjHsblock_Draw(Actor* thisx, GameState* state);
 
 void func_80B93DF4(ObjHsblock* this, GlobalContext* globalCtx);
 void func_80B93E5C(ObjHsblock* this, GlobalContext* globalCtx);
@@ -75,7 +75,7 @@ void func_80B93BF0(ObjHsblock* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjHsblock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHsblock_Init(Actor* thisx, GameState* state) {
     ObjHsblock* this = THIS;
 
     func_80B93B68(this, globalCtx, D_80B940DC[thisx->params & 3], DPM_UNK);
@@ -100,7 +100,7 @@ void ObjHsblock_Init(Actor* thisx, GlobalContext* globalCtx) {
     mREG(15) = 255;
 }
 
-void ObjHsblock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHsblock_Destroy(Actor* thisx, GameState* state) {
     ObjHsblock* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -136,7 +136,7 @@ void func_80B93E5C(ObjHsblock* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjHsblock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHsblock_Update(Actor* thisx, GameState* state) {
     ObjHsblock* this = THIS;
 
     if (this->actionFunc != NULL) {
@@ -145,7 +145,7 @@ void ObjHsblock_Update(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetFocus(thisx, D_80B940C0[thisx->params & 3]);
 }
 
-void ObjHsblock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHsblock_Draw(Actor* thisx, GameState* state) {
     Color_RGB8* color;
     Color_RGB8 defaultColor;
 

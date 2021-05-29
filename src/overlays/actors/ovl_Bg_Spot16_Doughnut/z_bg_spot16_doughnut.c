@@ -11,10 +11,10 @@
 
 #define THIS ((BgSpot16Doughnut*)thisx)
 
-void BgSpot16Doughnut_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot16Doughnut_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot16Doughnut_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot16Doughnut_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot16Doughnut_Init(Actor* thisx, GameState* state);
+void BgSpot16Doughnut_Destroy(Actor* thisx, GameState* state);
+void BgSpot16Doughnut_Update(Actor* thisx, GameState* state);
+void BgSpot16Doughnut_Draw(Actor* thisx, GameState* state);
 
 void BgSpot16Doughnut_UpdateExpanding(Actor* thisx, GlobalContext* globalCtx);
 void BgSpot16Doughnut_DrawExpanding(Actor* thisx, GlobalContext* globalCtx);
@@ -44,7 +44,7 @@ static s16 sScales[] = {
 extern Gfx D_06000660[];
 extern Gfx D_06000FC0[];
 
-void BgSpot16Doughnut_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Doughnut_Init(Actor* thisx, GameState* state) {
     BgSpot16Doughnut* this = THIS;
     s32 params;
 
@@ -83,10 +83,10 @@ void BgSpot16Doughnut_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot16Doughnut_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Doughnut_Destroy(Actor* thisx, GameState* state) {
 }
 
-void BgSpot16Doughnut_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Doughnut_Update(Actor* thisx, GameState* state) {
     BgSpot16Doughnut* this = THIS;
 
     if (!(this->fireFlag & 1)) {
@@ -120,7 +120,7 @@ void BgSpot16Doughnut_UpdateExpanding(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetScale(&this->actor, this->actor.scale.x + 0.0019999998f);
 }
 
-void BgSpot16Doughnut_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot16Doughnut_Draw(Actor* thisx, GameState* state) {
     BgSpot16Doughnut* this = THIS;
     u32 scroll = globalCtx->gameplayFrames & 0xFFFF;
     s32 pad;

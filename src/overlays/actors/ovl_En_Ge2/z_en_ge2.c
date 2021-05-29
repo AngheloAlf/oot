@@ -35,10 +35,10 @@ typedef enum {
     /* 8 */ GE2_ACTION_WAITLOOKATPLAYER
 } EnGe2Action;
 
-void EnGe2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGe2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGe2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGe2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGe2_Init(Actor* thisx, GameState* state);
+void EnGe2_Destroy(Actor* thisx, GameState* state);
+void EnGe2_Update(Actor* thisx, GameState* state);
+void EnGe2_Draw(Actor* thisx, GameState* state);
 
 s32 EnGe2_CheckCarpentersFreed(void);
 void EnGe2_CaptureClose(EnGe2* this, GlobalContext* globalCtx);
@@ -113,7 +113,7 @@ void EnGe2_ChangeAction(EnGe2* this, s32 i) {
     this->stateFlags &= ~GE2_STATE_ANIMCOMPLETE;
 }
 
-void EnGe2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe2_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnGe2* this = THIS;
 
@@ -170,7 +170,7 @@ void EnGe2_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->walkDuration = ((this->actor.params & 0xFF00) >> 8) * 10;
 }
 
-void EnGe2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe2_Destroy(Actor* thisx, GameState* state) {
     EnGe2* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -544,7 +544,7 @@ void EnGe2_UpdateAfterTalk(Actor* thisx, GlobalContext* globalCtx) {
     EnGe2_MoveAndBlink(this, globalCtx);
 }
 
-void EnGe2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe2_Update(Actor* thisx, GameState* state) {
     EnGe2* this = THIS;
     s32 paramsType;
 
@@ -648,7 +648,7 @@ static u64* sEyeTextures[] = {
     gGerudoPurpleEyeClosedTex,
 };
 
-void EnGe2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe2_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnGe2* this = THIS;
 

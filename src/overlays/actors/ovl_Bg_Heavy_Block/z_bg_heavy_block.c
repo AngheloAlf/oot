@@ -13,10 +13,10 @@
 
 #define PIECE_FLAG_HIT_FLOOR (1 << 0)
 
-void BgHeavyBlock_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHeavyBlock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHeavyBlock_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHeavyBlock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHeavyBlock_Init(Actor* thisx, GameState* state);
+void BgHeavyBlock_Destroy(Actor* thisx, GameState* state);
+void BgHeavyBlock_Update(Actor* thisx, GameState* state);
+void BgHeavyBlock_Draw(Actor* thisx, GameState* state);
 
 void BgHeavyBlock_DrawPiece(Actor* thisx, GlobalContext* globalCtx);
 
@@ -87,7 +87,7 @@ void BgHeavyBlock_SetupDynapoly(BgHeavyBlock* this, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, &this->dyna.actor, colHeader);
 }
 
-void BgHeavyBlock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHeavyBlock_Init(Actor* thisx, GameState* state) {
     BgHeavyBlock* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -154,7 +154,7 @@ void BgHeavyBlock_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf(VT_FGCOL(CYAN) " 最大 ブロック セーブビット %x\n" VT_RST, thisx->params);
 }
 
-void BgHeavyBlock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHeavyBlock_Destroy(Actor* thisx, GameState* state) {
     BgHeavyBlock* this = THIS;
     switch (this->dyna.actor.params & 0xFF) {
         case HEAVYBLOCK_BIG_PIECE:
@@ -480,13 +480,13 @@ void BgHeavyBlock_Land(BgHeavyBlock* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHeavyBlock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHeavyBlock_Update(Actor* thisx, GameState* state) {
     BgHeavyBlock* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHeavyBlock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHeavyBlock_Draw(Actor* thisx, GameState* state) {
     static Vec3f D_80884EC8 = { 0.0f, 0.0f, 0.0f };
     static Vec3f D_80884ED4 = { 0.0f, 400.0f, 0.0f };
     BgHeavyBlock* this = THIS;

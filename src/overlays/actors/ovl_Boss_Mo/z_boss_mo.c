@@ -4,10 +4,10 @@
 
 #define THIS ((BossMo*)thisx)
 
-void BossMo_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossMo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossMo_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossMo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossMo_Init(Actor* thisx, GameState* state);
+void BossMo_Destroy(Actor* thisx, GameState* state);
+void BossMo_Update(Actor* thisx, GameState* state);
+void BossMo_Draw(Actor* thisx, GameState* state);
 
 /*
 const ActorInit Boss_Mo_InitVars = {

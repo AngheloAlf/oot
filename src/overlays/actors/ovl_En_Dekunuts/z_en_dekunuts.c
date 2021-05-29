@@ -14,10 +14,10 @@
 
 #define DEKUNUTS_FLOWER 10
 
-void EnDekunuts_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDekunuts_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDekunuts_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDekunuts_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDekunuts_Init(Actor* thisx, GameState* state);
+void EnDekunuts_Destroy(Actor* thisx, GameState* state);
+void EnDekunuts_Update(Actor* thisx, GameState* state);
+void EnDekunuts_Draw(Actor* thisx, GameState* state);
 
 void EnDekunuts_SetupWait(EnDekunuts* this);
 void EnDekunuts_Wait(EnDekunuts* this, GlobalContext* globalCtx);
@@ -107,7 +107,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 2600, ICHAIN_STOP),
 };
 
-void EnDekunuts_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDekunuts_Init(Actor* thisx, GameState* state) {
     EnDekunuts* this = THIS;
     s32 pad;
 
@@ -132,7 +132,7 @@ void EnDekunuts_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDekunuts_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDekunuts_Destroy(Actor* thisx, GameState* state) {
     EnDekunuts* this = THIS;
 
     if (this->actor.params != DEKUNUTS_FLOWER) {
@@ -469,7 +469,7 @@ void EnDekunuts_ColliderCheck(EnDekunuts* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDekunuts_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDekunuts_Update(Actor* thisx, GameState* state) {
     EnDekunuts* this = THIS;
     s32 pad;
 
@@ -526,7 +526,7 @@ s32 EnDekunuts_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** d
     return false;
 }
 
-void EnDekunuts_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDekunuts_Draw(Actor* thisx, GameState* state) {
     EnDekunuts* this = THIS;
 
     if (this->actor.params == DEKUNUTS_FLOWER) {

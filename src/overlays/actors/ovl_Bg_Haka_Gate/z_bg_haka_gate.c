@@ -31,9 +31,9 @@
 
 #define SKULL_OF_TRUTH_FOUND 100
 
-void BgHakaGate_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaGate_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaGate_Update(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaGate_Init(Actor* thisx, GameState* state);
+void BgHakaGate_Destroy(Actor* thisx, GameState* state);
+void BgHakaGate_Update(Actor* thisx, GameState* state);
 void BgHakaGate_Draw(Actor* this, GlobalContext* globalCtx);
 
 void BgHakaGate_DoNothing(BgHakaGate* this, GlobalContext* globalCtx);
@@ -76,7 +76,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgHakaGate_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaGate_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgHakaGate* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -141,7 +141,7 @@ void BgHakaGate_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaGate_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaGate_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgHakaGate* this = THIS;
 
@@ -306,7 +306,7 @@ void BgHakaGate_FalseSkull(BgHakaGate* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaGate_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaGate_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgHakaGate* this = THIS;
 
@@ -343,7 +343,7 @@ void BgHakaGate_DrawFlame(BgHakaGate* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaGate_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaGate_Draw(Actor* thisx, GameState* state) {
     static Gfx* displayLists[] = { 0x06012270, 0x06010A10, 0x0600A860, 0x0600F1B0 };
     BgHakaGate* this = THIS;
     MtxF currentMtxF;

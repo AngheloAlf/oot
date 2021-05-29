@@ -44,10 +44,10 @@ typedef enum {
     /* 4 */ MALONRACE_FAILURE
 } HorseGameMalonRaceResult;
 
-void EnHorseGameCheck_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseGameCheck_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseGameCheck_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseGameCheck_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHorseGameCheck_Init(Actor* thisx, GameState* state);
+void EnHorseGameCheck_Destroy(Actor* thisx, GameState* state);
+void EnHorseGameCheck_Update(Actor* thisx, GameState* state);
+void EnHorseGameCheck_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Horse_Game_Check_InitVars = {
     ACTOR_EN_HORSE_GAME_CHECK,
@@ -437,7 +437,7 @@ static EnHorseGameCheckFunc sUpdateFuncs[] = {
     EnHorseGameCheck_UpdateMalonRace,
 };
 
-void EnHorseGameCheck_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGameCheck_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnHorseGameCheckBase* this = THIS;
 
@@ -449,7 +449,7 @@ void EnHorseGameCheck_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHorseGameCheck_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGameCheck_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnHorseGameCheckBase* this = THIS;
 
@@ -458,7 +458,7 @@ void EnHorseGameCheck_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHorseGameCheck_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGameCheck_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnHorseGameCheckBase* this = THIS;
 
@@ -467,5 +467,5 @@ void EnHorseGameCheck_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHorseGameCheck_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGameCheck_Draw(Actor* thisx, GameState* state) {
 }

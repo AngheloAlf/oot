@@ -12,10 +12,10 @@
 
 #define THIS ((EnPoSisters*)thisx)
 
-void EnPoSisters_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPoSisters_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPoSisters_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnPoSisters_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnPoSisters_Init(Actor* thisx, GameState* state);
+void EnPoSisters_Destroy(Actor* thisx, GameState* state);
+void EnPoSisters_Update(Actor* thisx, GameState* state);
+void EnPoSisters_Draw(Actor* thisx, GameState* state);
 
 void func_80ADA094(EnPoSisters* this, GlobalContext* globalCtx);
 void func_80ADA4A8(EnPoSisters* this, GlobalContext* globalCtx);
@@ -175,7 +175,7 @@ static Color_RGBA8 D_80ADD7E8[4] = {
 
 static Vec3f D_80ADD7F8 = { 1000.0f, -1700.0f, 0.0f };
 
-void EnPoSisters_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoSisters_Init(Actor* thisx, GameState* state) {
     EnPoSisters* this = THIS;
     s32 pad;
 
@@ -222,7 +222,7 @@ void EnPoSisters_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.params &= 0x3F;
 }
 
-void EnPoSisters_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoSisters_Destroy(Actor* thisx, GameState* state) {
     EnPoSisters* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -1171,7 +1171,7 @@ void func_80ADC10C(EnPoSisters* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnPoSisters_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoSisters_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnPoSisters* this = THIS;
     s16 temp;
@@ -1338,7 +1338,7 @@ void EnPoSisters_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLi
     }
 }
 
-void EnPoSisters_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoSisters_Draw(Actor* thisx, GameState* state) {
     EnPoSisters* this = THIS;
     u8 phi_s5;
     f32 phi_f20;

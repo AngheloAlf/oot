@@ -10,10 +10,10 @@
 
 #define THIS ((EnBrob*)thisx)
 
-void EnBrob_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBrob_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBrob_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBrob_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBrob_Init(Actor* thisx, GameState* state);
+void EnBrob_Destroy(Actor* thisx, GameState* state);
+void EnBrob_Update(Actor* thisx, GameState* state);
+void EnBrob_Draw(Actor* thisx, GameState* state);
 
 void func_809CADDC(EnBrob* this, GlobalContext* globalCtx);
 void func_809CB054(EnBrob* this, GlobalContext* globalCtx);
@@ -64,7 +64,7 @@ static ColliderCylinderInit sCylinderInit = {
 
 static CollisionCheckInfoInit sColChkInfoInit = { 0, 60, 120, MASS_IMMOVABLE };
 
-void EnBrob_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBrob_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnBrob* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -102,7 +102,7 @@ void EnBrob_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_809CADDC(this, globalCtx);
 }
 
-void EnBrob_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBrob_Destroy(Actor* thisx, GameState* state) {
     EnBrob* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -261,7 +261,7 @@ void func_809CB458(EnBrob* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBrob_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnBrob_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnBrob* this = THIS;
     s32 i;
@@ -325,7 +325,7 @@ void EnBrob_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, V
     }
 }
 
-void EnBrob_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBrob_Draw(Actor* thisx, GameState* state) {
     EnBrob* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

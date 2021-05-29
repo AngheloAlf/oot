@@ -11,10 +11,10 @@
 
 #define THIS ((EnHorseLinkChild*)thisx)
 
-void EnHorseLinkChild_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseLinkChild_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseLinkChild_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseLinkChild_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHorseLinkChild_Init(Actor* thisx, GameState* state);
+void EnHorseLinkChild_Destroy(Actor* thisx, GameState* state);
+void EnHorseLinkChild_Update(Actor* thisx, GameState* state);
+void EnHorseLinkChild_Draw(Actor* thisx, GameState* state);
 
 void func_80A69B7C(EnHorseLinkChild* this);
 void func_80A69EC0(EnHorseLinkChild* this);
@@ -141,7 +141,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneScale, 1200, ICHAIN_STOP),
 };
 
-void EnHorseLinkChild_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseLinkChild_Init(Actor* thisx, GameState* state) {
     EnHorseLinkChild* this = THIS;
     s32 pad;
 
@@ -180,7 +180,7 @@ void EnHorseLinkChild_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.home.rot.z = this->actor.world.rot.z = this->actor.shape.rot.z = 0;
 }
 
-void EnHorseLinkChild_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseLinkChild_Destroy(Actor* thisx, GameState* state) {
     EnHorseLinkChild* this = THIS;
 
     func_800A6888(globalCtx, &this->skin);
@@ -551,7 +551,7 @@ static EnHorseLinkChildActionFunc sActionFuncs[] = {
 static u64* sEyeTextures[] = { gChildEponaEyeOpenTex, gChildEponaEyeHalfTex, gChildEponaEyeCloseTex };
 static u8 sEyeIndexOrder[] = { 0, 1, 2, 1 };
 
-void EnHorseLinkChild_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseLinkChild_Update(Actor* thisx, GameState* state) {
     EnHorseLinkChild* this = THIS;
     s32 pad;
 
@@ -616,7 +616,7 @@ s32 func_80A6AD84(Actor* thisx, GlobalContext* globalCtx, s32 arg2, PSkinAwb* ar
     return 1;
 }
 
-void EnHorseLinkChild_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseLinkChild_Draw(Actor* thisx, GameState* state) {
     EnHorseLinkChild* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

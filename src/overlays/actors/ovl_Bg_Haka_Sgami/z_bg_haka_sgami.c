@@ -18,10 +18,10 @@ typedef enum {
 
 #define SCYTHE_SPIN_TIME 32
 
-void BgHakaSgami_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaSgami_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaSgami_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaSgami_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaSgami_Init(Actor* thisx, GameState* state);
+void BgHakaSgami_Destroy(Actor* thisx, GameState* state);
+void BgHakaSgami_Update(Actor* thisx, GameState* state);
+void BgHakaSgami_Draw(Actor* thisx, GameState* state);
 
 void BgHakaSgami_SetupSpin(BgHakaSgami* this, GlobalContext* globalCtx);
 void BgHakaSgami_Spin(BgHakaSgami* this, GlobalContext* globalCtx);
@@ -129,7 +129,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgHakaSgami_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaSgami_Init(Actor* thisx, GameState* state) {
     static u8 sP1StartColor[] = { 250, 250, 250, 200 };
     static u8 sP2StartColor[] = { 200, 200, 200, 130 };
     static u8 sP1EndColor[] = { 200, 200, 200, 60 };
@@ -189,7 +189,7 @@ void BgHakaSgami_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgHakaSgami_SetupSpin;
 }
 
-void BgHakaSgami_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaSgami_Destroy(Actor* thisx, GameState* state) {
     BgHakaSgami* this = THIS;
 
     Effect_Delete(globalCtx, this->blureEffectIndex[0]);
@@ -288,7 +288,7 @@ void BgHakaSgami_Spin(BgHakaSgami* this, GlobalContext* globalCtx) {
     func_8002F974(&this->actor, NA_SE_EV_ROLLCUTTER_MOTOR - SFX_FLAG);
 }
 
-void BgHakaSgami_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaSgami_Update(Actor* thisx, GameState* state) {
     BgHakaSgami* this = THIS;
     Player* player = PLAYER;
 
@@ -297,7 +297,7 @@ void BgHakaSgami_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaSgami_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaSgami_Draw(Actor* thisx, GameState* state) {
     BgHakaSgami* this = THIS;
 
     if (this->unk_151 != 0) {

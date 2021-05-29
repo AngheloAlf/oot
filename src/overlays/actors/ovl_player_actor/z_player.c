@@ -9032,7 +9032,7 @@ static void (*D_80854738[])(GlobalContext* globalCtx, Player* this) = {
 
 static Vec3f D_80854778 = { 0.0f, 50.0f, 0.0f };
 
-void Player_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void Player_Init(Actor* thisx, GameState* state) {
     Player* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
     Scene* scene = globalCtx->loadedScene;
@@ -10243,7 +10243,7 @@ void Player_UpdateCommon(Player* this, GlobalContext* globalCtx, Input* input) {
 
 static Vec3f D_80854838 = { 0.0f, 0.0f, -30.0f };
 
-void Player_Update(Actor* thisx, GlobalContext* globalCtx) {
+void Player_Update(Actor* thisx, GameState* state) {
     static Vec3f sDogSpawnPos;
     Player* this = THIS;
     s32 dogParams;
@@ -10381,7 +10381,7 @@ void func_8084A0E8(GlobalContext* globalCtx, Player* this, s32 lod, Gfx* cullDLi
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_player.c", 19328);
 }
 
-void Player_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void Player_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     Player* this = THIS;
 
@@ -10477,7 +10477,7 @@ void Player_Draw(Actor* thisx, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_player.c", 19473);
 }
 
-void Player_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void Player_Destroy(Actor* thisx, GameState* state) {
     Player* this = THIS;
 
     Effect_Delete(globalCtx, this->swordEffectIndex);

@@ -10,10 +10,10 @@
 
 #define THIS ((EnPart*)thisx)
 
-void EnPart_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPart_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPart_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnPart_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnPart_Init(Actor* thisx, GameState* state);
+void EnPart_Destroy(Actor* thisx, GameState* state);
+void EnPart_Update(Actor* thisx, GameState* state);
+void EnPart_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Part_InitVars = {
     ACTOR_EN_PART,
@@ -36,10 +36,10 @@ extern UNK_TYPE D_06002100[];
 extern Gfx D_06002FF0[];
 extern Gfx D_06015380[];
 
-void EnPart_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPart_Init(Actor* thisx, GameState* state) {
 }
 
-void EnPart_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPart_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_80ACDDE8(EnPart* this, GlobalContext* globalCtx) {
@@ -241,7 +241,7 @@ void func_80ACE7E8(EnPart* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnPart_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPart_Update(Actor* thisx, GameState* state) {
     static EnPartActionFunc sActionFuncs[] = {
         func_80ACDDE8, func_80ACE13C, func_80ACE5B8, func_80ACE5C8, func_80ACE7E8,
     };
@@ -279,7 +279,7 @@ Gfx* func_80ACEAC0(GraphicsContext* gfxCtx, u8 primR, u8 primG, u8 primB, u8 env
     return dList;
 }
 
-void EnPart_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnPart_Draw(Actor* thisx, GameState* state) {
     EnPart* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_part.c", 647);

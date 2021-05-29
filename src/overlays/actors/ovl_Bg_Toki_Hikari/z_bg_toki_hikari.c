@@ -10,10 +10,10 @@
 
 #define THIS ((BgTokiHikari*)thisx)
 
-void BgTokiHikari_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgTokiHikari_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgTokiHikari_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgTokiHikari_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgTokiHikari_Init(Actor* thisx, GameState* state);
+void BgTokiHikari_Destroy(Actor* thisx, GameState* state);
+void BgTokiHikari_Update(Actor* thisx, GameState* state);
+void BgTokiHikari_Draw(Actor* thisx, GameState* state);
 
 void BgTokiHikari_DoNothing(BgTokiHikari* this, GlobalContext* globalCtx);
 void func_808BA018(BgTokiHikari* this, GlobalContext* globalCtx);
@@ -45,7 +45,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
-void BgTokiHikari_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiHikari_Init(Actor* thisx, GameState* state) {
     BgTokiHikari* this = THIS;
 
     switch (this->actor.params) {
@@ -64,18 +64,18 @@ void BgTokiHikari_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgTokiHikari_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiHikari_Destroy(Actor* thisx, GameState* state) {
 }
 
 void BgTokiHikari_DoNothing(BgTokiHikari* this, GlobalContext* globalCtx) {
 }
 
-void BgTokiHikari_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiHikari_Update(Actor* thisx, GameState* state) {
     BgTokiHikari* this = THIS;
     this->actionFunc(this, globalCtx);
 }
 
-void BgTokiHikari_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiHikari_Draw(Actor* thisx, GameState* state) {
     BgTokiHikari* this = THIS;
 
     switch (this->actor.params) {

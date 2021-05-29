@@ -16,10 +16,10 @@
 
 #define THIS ((EnZl3*)thisx)
 
-void EnZl3_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnZl3_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnZl3_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnZl3_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnZl3_Init(Actor* thisx, GameState* state);
+void EnZl3_Destroy(Actor* thisx, GameState* state);
+void EnZl3_Update(Actor* thisx, GameState* state);
+void EnZl3_Draw(Actor* thisx, GameState* state);
 void func_80B59AD0(EnZl3* this, GlobalContext* globalCtx);
 
 static ColliderCylinderInitType1 sCylinderInit = {
@@ -81,7 +81,7 @@ void func_80B533FC(EnZl3* this, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &collider->base);
 }
 
-void EnZl3_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl3_Destroy(Actor* thisx, GameState* state) {
     EnZl3* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -2643,7 +2643,7 @@ static EnZl3ActionFunc sActionFuncs[] = {
     func_80B591BC, func_80B5922C, func_80B592A8, func_80B59340, func_80B593D0,
 };
 
-void EnZl3_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl3_Update(Actor* thisx, GameState* state) {
     EnZl3* this = THIS;
 
     if (this->action < 0 || this->action >= ARRAY_COUNT(sActionFuncs) || sActionFuncs[this->action] == NULL) {
@@ -2653,7 +2653,7 @@ void EnZl3_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void EnZl3_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl3_Init(Actor* thisx, GameState* state) {
     EnZl3* this = THIS;
     ActorShape* shape = &this->actor.shape;
     s32 pad;
@@ -2752,7 +2752,7 @@ static EnZl3DrawFunc sDrawFuncs[] = {
     func_80B5A1D0,
 };
 
-void EnZl3_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl3_Draw(Actor* thisx, GameState* state) {
     EnZl3* this = THIS;
 
     if (this->drawConfig < 0 || this->drawConfig >= 3 || sDrawFuncs[this->drawConfig] == NULL) {

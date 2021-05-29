@@ -14,10 +14,10 @@
 
 #define THIS ((EnNutsball*)thisx)
 
-void EnNutsball_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnNutsball_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnNutsball_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnNutsball_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnNutsball_Init(Actor* thisx, GameState* state);
+void EnNutsball_Destroy(Actor* thisx, GameState* state);
+void EnNutsball_Update(Actor* thisx, GameState* state);
+void EnNutsball_Draw(Actor* thisx, GameState* state);
 
 void func_80ABBB34(EnNutsball* this, GlobalContext* globalCtx);
 void func_80ABBBA8(EnNutsball* this, GlobalContext* globalCtx);
@@ -58,7 +58,7 @@ static s16 sObjectIDs[] = { OBJECT_DEKUNUTS, OBJECT_HINTNUTS, OBJECT_SHOPNUTS, O
 
 static Gfx* sDLists[] = { 0x06002028, gHintNutsNutDL, 0x06004008, gDntJijiNutDL, gDntStageNutDL };
 
-void EnNutsball_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnNutsball_Init(Actor* thisx, GameState* state) {
     EnNutsball* this = THIS;
     s32 pad;
 
@@ -74,7 +74,7 @@ void EnNutsball_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnNutsball_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnNutsball_Destroy(Actor* thisx, GameState* state) {
     EnNutsball* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -137,7 +137,7 @@ void func_80ABBBA8(EnNutsball* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnNutsball_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnNutsball_Update(Actor* thisx, GameState* state) {
     EnNutsball* this = THIS;
     Player* player = PLAYER;
     s32 pad;
@@ -157,7 +157,7 @@ void EnNutsball_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnNutsball_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnNutsball_Draw(Actor* thisx, GameState* state) {
     s32 pad;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_nutsball.c", 327);

@@ -15,10 +15,10 @@
 
 #define THIS ((EnZl2*)thisx)
 
-void EnZl2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnZl2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnZl2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnZl2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnZl2_Init(Actor* thisx, GameState* state);
+void EnZl2_Destroy(Actor* thisx, GameState* state);
+void EnZl2_Update(Actor* thisx, GameState* state);
+void EnZl2_Draw(Actor* thisx, GameState* state);
 
 s32 func_80B4F45C(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx, Gfx** gfx);
 
@@ -99,7 +99,7 @@ const ActorInit En_Zl2_InitVars = {
     (ActorFunc)EnZl2_Draw,
 };
 
-void EnZl2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl2_Destroy(Actor* thisx, GameState* state) {
     EnZl2* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -1584,7 +1584,7 @@ void func_80B521A0(EnZl2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnZl2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl2_Update(Actor* thisx, GameState* state) {
     EnZl2* this = THIS;
 
     if (this->action < 0 || this->action >= 0x24 || sActionFuncs[this->action] == NULL) {
@@ -1594,7 +1594,7 @@ void EnZl2_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void EnZl2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl2_Init(Actor* thisx, GameState* state) {
     EnZl2* this = THIS;
     ActorShape* shape = &thisx->shape;
     s32 pad;
@@ -1680,7 +1680,7 @@ void func_80B525D4(EnZl2* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_zl2.c", 1692);
 }
 
-void EnZl2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl2_Draw(Actor* thisx, GameState* state) {
     EnZl2* this = THIS;
 
     if ((this->drawConfig < 0) || (this->drawConfig >= 3) || (sDrawFuncs[this->drawConfig] == NULL)) {

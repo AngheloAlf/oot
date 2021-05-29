@@ -10,10 +10,10 @@
 
 #define THIS ((EnHy*)thisx)
 
-void EnHy_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHy_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHy_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHy_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHy_Init(Actor* thisx, GameState* state);
+void EnHy_Destroy(Actor* thisx, GameState* state);
+void EnHy_Update(Actor* thisx, GameState* state);
+void EnHy_Draw(Actor* thisx, GameState* state);
 
 void func_80A70E34(EnHy* this, GlobalContext* globalCtx);
 void func_80A7134C(EnHy* this, GlobalContext* globalCtx);
@@ -719,7 +719,7 @@ s32 func_80A70AE4(EnHy* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHy_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHy_Init(Actor* thisx, GameState* state) {
     EnHy* this = THIS;
 
     if (((this->actor.params & 0x7F) > 20) || !func_80A6F744(this, globalCtx) || !func_80A6F5B0(this, globalCtx)) {
@@ -733,7 +733,7 @@ void EnHy_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80A70E34;
 }
 
-void EnHy_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHy_Destroy(Actor* thisx, GameState* state) {
     EnHy* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -919,7 +919,7 @@ void func_80A71530(EnHy* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHy_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHy_Update(Actor* thisx, GameState* state) {
     EnHy* this = THIS;
 
     if (this->actionFunc != func_80A70E34) {
@@ -1021,7 +1021,7 @@ Gfx* func_80A71BBC(GraphicsContext* globalCtx, u8 envR, u8 envG, u8 envB, u8 env
     return dList;
 }
 
-void EnHy_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHy_Draw(Actor* thisx, GameState* state) {
     EnHy* this = THIS;
     Color_RGBA8 envColor1;
     Color_RGBA8 envColor2;

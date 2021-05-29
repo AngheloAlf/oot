@@ -10,10 +10,10 @@
 
 #define THIS ((EnZl1*)thisx)
 
-void EnZl1_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnZl1_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnZl1_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnZl1_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnZl1_Init(Actor* thisx, GameState* state);
+void EnZl1_Destroy(Actor* thisx, GameState* state);
+void EnZl1_Update(Actor* thisx, GameState* state);
+void EnZl1_Draw(Actor* thisx, GameState* state);
 
 void func_80B4AE18(EnZl1* this);
 void func_80B4AF18(EnZl1* this, GlobalContext* globalCtx);
@@ -81,7 +81,7 @@ void func_80B4AB40(void) {
 void func_80B4AB48(void) {
 }
 
-void EnZl1_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl1_Init(Actor* thisx, GameState* state) {
     f32 frameCount;
     EnZl1* this = THIS;
 
@@ -119,7 +119,7 @@ void EnZl1_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnZl1_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl1_Destroy(Actor* thisx, GameState* state) {
     EnZl1* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -556,7 +556,7 @@ void func_80B4BF2C(EnZl1* this, GlobalContext* globalCtx) {
     func_80038290(globalCtx, &this->actor, &this->unk_200, &this->unk_206, this->actor.focus.pos);
 }
 
-void EnZl1_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl1_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnZl1* this = THIS;
 
@@ -605,7 +605,7 @@ void EnZl1_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     }
 }
 
-void EnZl1_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl1_Draw(Actor* thisx, GameState* state) {
     EnZl1* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_girlB.c", 2011);

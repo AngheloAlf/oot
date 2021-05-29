@@ -11,10 +11,10 @@
 
 #define THIS ((DemoGo*)thisx)
 
-void DemoGo_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoGo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoGo_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoGo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoGo_Init(Actor* thisx, GameState* state);
+void DemoGo_Destroy(Actor* thisx, GameState* state);
+void DemoGo_Update(Actor* thisx, GameState* state);
+void DemoGo_Draw(Actor* thisx, GameState* state);
 
 void func_8097CE10(DemoGo* this, GlobalContext* globalCtx);
 void func_8097CFDC(DemoGo* this, GlobalContext* globalCtx);
@@ -85,7 +85,7 @@ void func_8097C8A8(DemoGo* this, GlobalContext* globalCtx) {
     }
 }
 
-void DemoGo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGo_Destroy(Actor* thisx, GameState* state) {
     DemoGo* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -304,7 +304,7 @@ void func_8097D130(DemoGo* this, GlobalContext* globalCtx) {
     func_8097C9DC(this);
 }
 
-void DemoGo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGo_Update(Actor* thisx, GameState* state) {
     DemoGo* this = THIS;
 
     if (this->action < 0 || this->action >= 7 || D_8097D44C[this->action] == 0) {
@@ -314,7 +314,7 @@ void DemoGo_Update(Actor* thisx, GlobalContext* globalCtx) {
     D_8097D44C[this->action](this, globalCtx);
 }
 
-void DemoGo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGo_Init(Actor* thisx, GameState* state) {
     DemoGo* this = THIS;
     AnimationHeader* animation = &D_06004930;
 
@@ -346,7 +346,7 @@ void func_8097D29C(DemoGo* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_demo_go.c", 746);
 }
 
-void DemoGo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGo_Draw(Actor* thisx, GameState* state) {
     DemoGo* this = THIS;
 
     if (this->drawConfig < 0 || this->drawConfig >= 2 || D_8097D468[this->drawConfig] == NULL) {

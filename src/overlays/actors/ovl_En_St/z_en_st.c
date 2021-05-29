@@ -10,10 +10,10 @@
 
 #define THIS ((EnSt*)thisx)
 
-void EnSt_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSt_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSt_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSt_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSt_Init(Actor* thisx, GameState* state);
+void EnSt_Destroy(Actor* thisx, GameState* state);
+void EnSt_Update(Actor* thisx, GameState* state);
+void EnSt_Draw(Actor* thisx, GameState* state);
 void EnSt_ReturnToCeiling(EnSt* this, GlobalContext* globalCtx);
 void EnSt_MoveToGround(EnSt* this, GlobalContext* globalCtx);
 void EnSt_StartOnCeilingOrGround(EnSt* this, GlobalContext* globalCtx);
@@ -788,7 +788,7 @@ void EnSt_Sway(EnSt* this) {
     }
 }
 
-void EnSt_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSt_Init(Actor* thisx, GameState* state) {
     EnSt* this = THIS;
     s32 pad;
 
@@ -814,7 +814,7 @@ void EnSt_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnSt_SetupAction(this, EnSt_StartOnCeilingOrGround);
 }
 
-void EnSt_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSt_Destroy(Actor* thisx, GameState* state) {
     EnSt* this = THIS;
     s32 i;
 
@@ -1016,7 +1016,7 @@ void EnSt_StartOnCeilingOrGround(EnSt* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSt_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSt_Update(Actor* thisx, GameState* state) {
     EnSt* this = THIS;
     s32 pad;
     Color_RGBA8 color = { 0, 0, 0, 0 };
@@ -1092,7 +1092,7 @@ void EnSt_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dListP, Ve
     Collider_UpdateSpheres(limbIndex, &this->colSph);
 }
 
-void EnSt_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSt_Draw(Actor* thisx, GameState* state) {
     EnSt* this = THIS;
 
     EnSt_CheckBodyStickHit(this, globalCtx);

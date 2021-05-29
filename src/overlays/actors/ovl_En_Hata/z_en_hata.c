@@ -11,10 +11,10 @@
 
 #define THIS ((EnHata*)thisx)
 
-void EnHata_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHata_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHata_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHata_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHata_Init(Actor* thisx, GameState* state);
+void EnHata_Destroy(Actor* thisx, GameState* state);
+void EnHata_Update(Actor* thisx, GameState* state);
+void EnHata_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Hata_InitVars = {
     ACTOR_EN_HATA,
@@ -51,7 +51,7 @@ static ColliderCylinderInit sCylinderInit = {
 
 static CollisionCheckInfoInit2 sColChkInfoInit = { 0, 0, 0, 0, MASS_IMMOVABLE };
 
-void EnHata_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHata_Init(Actor* thisx, GameState* state) {
     EnHata* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -72,14 +72,14 @@ void EnHata_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_278 = Rand_ZeroOne() * 0xFFFF;
 }
 
-void EnHata_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHata_Destroy(Actor* thisx, GameState* state) {
     EnHata* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void EnHata_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnHata_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnHata* this = THIS;
     s32 pitch;
@@ -138,7 +138,7 @@ s32 EnHata_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
 void EnHata_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
 }
 
-void EnHata_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHata_Draw(Actor* thisx, GameState* state) {
     EnHata* this = THIS;
 
     func_800943C8(globalCtx->state.gfxCtx);

@@ -18,10 +18,10 @@
 #define MOVEBG_POINT_ID(params) ((u16)(params)&0xF)
 #define MOVEBG_SPEED(params) (((u16)(params) >> 0x4) & 0xF)
 
-void BgMizuMovebg_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuMovebg_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuMovebg_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuMovebg_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMizuMovebg_Init(Actor* thisx, GameState* state);
+void BgMizuMovebg_Destroy(Actor* thisx, GameState* state);
+void BgMizuMovebg_Update(Actor* thisx, GameState* state);
+void BgMizuMovebg_Draw(Actor* thisx, GameState* state);
 
 void func_8089E318(BgMizuMovebg* this, GlobalContext* globalCtx);
 void func_8089E650(BgMizuMovebg* this, GlobalContext* globalCtx);
@@ -82,7 +82,7 @@ s32 func_8089DC30(GlobalContext* globalCtx) {
 
 #ifdef NON_MATCHING
 // Codegen OK, Stack Issues
-void BgMizuMovebg_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuMovebg_Init(Actor* thisx, GameState* state) {
     BgMizuMovebg* this = THIS;
     WaterBox* waterBoxes;
     CollisionHeader* colHeader;
@@ -170,7 +170,7 @@ void BgMizuMovebg_Init(Actor* thisx, GlobalContext* globalCtx) {
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_Bg_Mizu_Movebg/BgMizuMovebg_Init.s")
 #endif
 
-void BgMizuMovebg_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuMovebg_Destroy(Actor* thisx, GameState* state) {
     BgMizuMovebg* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -350,13 +350,13 @@ void func_8089E650(BgMizuMovebg* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgMizuMovebg_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuMovebg_Update(Actor* thisx, GameState* state) {
     BgMizuMovebg* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgMizuMovebg_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void BgMizuMovebg_Draw(Actor* thisx, GameState* state) {
     BgMizuMovebg* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
     u32 frames;

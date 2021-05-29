@@ -11,10 +11,10 @@
 
 #define THIS ((EnHorseZelda*)thisx)
 
-void EnHorseZelda_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseZelda_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseZelda_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseZelda_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHorseZelda_Init(Actor* thisx, GameState* state);
+void EnHorseZelda_Destroy(Actor* thisx, GameState* state);
+void EnHorseZelda_Update(Actor* thisx, GameState* state);
+void EnHorseZelda_Draw(Actor* thisx, GameState* state);
 
 void func_80A6DCCC(EnHorseZelda* this, GlobalContext* globalCtx);
 void func_80A6DDFC(EnHorseZelda* this, GlobalContext* globalCtx);
@@ -148,7 +148,7 @@ void func_80A6D918(EnHorseZelda* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHorseZelda_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseZelda_Init(Actor* thisx, GameState* state) {
     EnHorseZelda* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -171,7 +171,7 @@ void EnHorseZelda_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_80A6DC7C(this);
 }
 
-void EnHorseZelda_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseZelda_Destroy(Actor* thisx, GameState* state) {
     EnHorseZelda* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->colliderCylinder);
@@ -228,7 +228,7 @@ void func_80A6DE38(EnHorseZelda* this, GlobalContext* globalCtx) {
     this->actor.shape.rot.x = Math_FAtan2F(this->actor.world.pos.y - this->unk_1F4, 30.0f) * (0x8000 / M_PI);
 }
 
-void EnHorseZelda_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseZelda_Update(Actor* thisx, GameState* state) {
     EnHorseZelda* this = THIS;
     s32 pad;
 
@@ -265,7 +265,7 @@ void func_80A6DFD4(Actor* thisx, GlobalContext* globalCtx, PSkinAwb* skin) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->colliderSphere.base);
 }
 
-void EnHorseZelda_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseZelda_Draw(Actor* thisx, GameState* state) {
     EnHorseZelda* this = THIS;
 
     func_80A6DE38(this, globalCtx);

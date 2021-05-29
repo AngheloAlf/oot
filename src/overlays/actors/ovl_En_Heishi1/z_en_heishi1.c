@@ -12,10 +12,10 @@
 
 #define THIS ((EnHeishi1*)thisx)
 
-void EnHeishi1_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi1_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi1_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi1_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHeishi1_Init(Actor* thisx, GameState* state);
+void EnHeishi1_Destroy(Actor* thisx, GameState* state);
+void EnHeishi1_Update(Actor* thisx, GameState* state);
+void EnHeishi1_Draw(Actor* thisx, GameState* state);
 
 void EnHeishi1_SetupWait(EnHeishi1* this, GlobalContext* globalCtx);
 void EnHeishi1_SetupWalk(EnHeishi1* this, GlobalContext* globalCtx);
@@ -65,7 +65,7 @@ static s32 sCamDataIdxs[] = {
 
 static s16 sWaypoints[] = { 0, 4, 1, 5, 2, 6, 3, 7 };
 
-void EnHeishi1_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi1_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnHeishi1* this = THIS;
     Vec3f rupeePos;
@@ -133,7 +133,7 @@ void EnHeishi1_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHeishi1_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi1_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnHeishi1_SetupWalk(EnHeishi1* this, GlobalContext* globalCtx) {
@@ -386,7 +386,7 @@ void EnHeishi1_WaitNight(EnHeishi1* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHeishi1_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi1_Update(Actor* thisx, GameState* state) {
     EnHeishi1* this = THIS;
     s16 path;
     u8 i;
@@ -490,7 +490,7 @@ s32 EnHeishi1_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dL
     return false;
 }
 
-void EnHeishi1_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi1_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnHeishi1* this = THIS;
     Vec3f matrixScale = { 0.3f, 0.3f, 0.3f };

@@ -6,10 +6,10 @@
 
 #define THIS ((EnFireRock*)thisx)
 
-void EnFireRock_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFireRock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFireRock_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFireRock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFireRock_Init(Actor* thisx, GameState* state);
+void EnFireRock_Destroy(Actor* thisx, GameState* state);
+void EnFireRock_Update(Actor* thisx, GameState* state);
+void EnFireRock_Draw(Actor* thisx, GameState* state);
 
 void FireRock_WaitSpawnRocksFromCeiling(EnFireRock* this, GlobalContext* globalCtx);
 void FireRock_WaitOnFloor(EnFireRock* this, GlobalContext* globalCtx);
@@ -70,7 +70,7 @@ static ColliderCylinderInit D_80A12CCC = {
     { 30, 30, -10, { 0, 0, 0 } },
 };
 
-void EnFireRock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFireRock_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     Player* player = PLAYER;
     EnFireRock* this = THIS;
@@ -148,7 +148,7 @@ void EnFireRock_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFireRock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFireRock_Destroy(Actor* thisx, GameState* state) {
     EnFireRock* this = THIS;
 
     if ((this->actor.parent != NULL) && (this->actor.parent == &this->spawner->actor)) {
@@ -303,7 +303,7 @@ void FireRock_WaitOnFloor(EnFireRock* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFireRock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFireRock_Update(Actor* thisx, GameState* state) {
     EnFireRock* this = THIS;
     s16 setCollision;
     Player* player = PLAYER;
@@ -379,7 +379,7 @@ void EnFireRock_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFireRock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFireRock_Draw(Actor* thisx, GameState* state) {
     EnFireRock* this = THIS;
     s32 pad;
 

@@ -6,12 +6,12 @@
 
 #define THIS ((EnFr*)thisx)
 
-void EnFr_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFr_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFr_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnFr_Init(Actor* thisx, GameState* state);
+void EnFr_Destroy(Actor* thisx, GameState* state);
+void EnFr_Update(Actor* thisx, GameState* state);
 void EnFr_UpdateIdle(Actor* thisx, GlobalContext* globalCtx);
 void EnFr_UpdateActive(Actor* thisx, GlobalContext* globalCtx);
-void EnFr_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFr_Draw(Actor* thisx, GameState* state);
 
 // Animation Functions
 void EnFr_SetupJumpingOutOfWater(EnFr* this, GlobalContext* globalCtx);
@@ -224,7 +224,7 @@ void EnFr_OrientUnderwater(EnFr* this) {
     this->actor.gravity = 0.0f;
 }
 
-void EnFr_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFr_Init(Actor* thisx, GameState* state) {
     EnFr* this = THIS;
 
     if (this->actor.params == 0) {
@@ -266,7 +266,7 @@ void EnFr_DrawActive(EnFr* this) {
     this->actor.draw = EnFr_Draw;
 }
 
-void EnFr_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFr_Update(Actor* thisx, GameState* state) {
     EnFr* this = THIS;
     s32 pad;
     s32 frogIndex;
@@ -320,7 +320,7 @@ void EnFr_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFr_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFr_Destroy(Actor* thisx, GameState* state) {
     EnFr* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -1057,7 +1057,7 @@ void EnFr_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnFr_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFr_Draw(Actor* thisx, GameState* state) {
     static u64* eyeTextures[] = { 0x060059A0, 0x06005BA0 };
     s16 lightRadius;
     EnFr* this = THIS;

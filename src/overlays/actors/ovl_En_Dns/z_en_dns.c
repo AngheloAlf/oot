@@ -11,10 +11,10 @@
 
 #define THIS ((EnDns*)thisx)
 
-void EnDns_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDns_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDns_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDns_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDns_Init(Actor* thisx, GameState* state);
+void EnDns_Destroy(Actor* thisx, GameState* state);
+void EnDns_Update(Actor* thisx, GameState* state);
+void EnDns_Draw(Actor* thisx, GameState* state);
 
 u32 func_809EF5A4(EnDns* this);
 u32 func_809EF658(EnDns* this);
@@ -137,7 +137,7 @@ extern FlexSkeletonHeader D_060041A8;
 extern AnimationHeader D_060009A0;
 extern AnimationHeader D_06004404;
 
-void EnDns_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDns_Init(Actor* thisx, GameState* state) {
     EnDns* this = THIS;
 
     if (this->actor.params < 0) {
@@ -171,7 +171,7 @@ void EnDns_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnDns_SetupWait;
 }
 
-void EnDns_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDns_Destroy(Actor* thisx, GameState* state) {
     EnDns* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -475,7 +475,7 @@ void EnDns_Burrow(EnDns* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDns_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDns_Update(Actor* thisx, GameState* state) {
     EnDns* this = THIS;
     s16 pad;
 
@@ -495,7 +495,7 @@ void EnDns_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDns_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDns_Draw(Actor* thisx, GameState* state) {
     EnDns* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

@@ -11,10 +11,10 @@
 
 #define THIS ((EnHs2*)thisx)
 
-void EnHs2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHs2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHs2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHs2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHs2_Init(Actor* thisx, GameState* state);
+void EnHs2_Destroy(Actor* thisx, GameState* state);
+void EnHs2_Update(Actor* thisx, GameState* state);
+void EnHs2_Draw(Actor* thisx, GameState* state);
 void func_80A6F1A4(EnHs2* this, GlobalContext* globalCtx);
 
 const ActorInit En_Hs2_InitVars = {
@@ -52,7 +52,7 @@ static ColliderCylinderInit sCylinderInit = {
 extern FlexSkeletonHeader D_06006260;
 extern AnimationHeader D_060005C0;
 
-void EnHs2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHs2_Init(Actor* thisx, GameState* state) {
     EnHs2* this = THIS;
     s32 pad;
 
@@ -69,7 +69,7 @@ void EnHs2_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.targetMode = 6;
 }
 
-void EnHs2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHs2_Destroy(Actor* thisx, GameState* state) {
     EnHs2* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -108,7 +108,7 @@ void func_80A6F1A4(EnHs2* this, GlobalContext* globalCtx) {
     func_80A6F0B4(this, globalCtx, textId, func_80A6F164);
 }
 
-void EnHs2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHs2_Update(Actor* thisx, GameState* state) {
     EnHs2* this = THIS;
     s32 pad;
 
@@ -162,7 +162,7 @@ void EnHs2_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     }
 }
 
-void EnHs2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHs2_Draw(Actor* thisx, GameState* state) {
     EnHs2* this = THIS;
 
     func_800943C8(globalCtx->state.gfxCtx);

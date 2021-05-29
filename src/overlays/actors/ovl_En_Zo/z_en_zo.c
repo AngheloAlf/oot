@@ -18,10 +18,10 @@ typedef enum {
     /* 3 */ ENZO_EFFECT_BUBBLE
 } EnZoEffectType;
 
-void EnZo_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnZo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnZo_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnZo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnZo_Init(Actor* thisx, GameState* state);
+void EnZo_Destroy(Actor* thisx, GameState* state);
+void EnZo_Update(Actor* thisx, GameState* state);
+void EnZo_Draw(Actor* thisx, GameState* state);
 
 // Actions
 void EnZo_Standing(EnZo* this, GlobalContext* globalCtx);
@@ -559,7 +559,7 @@ void EnZo_SetAnimation(EnZo* this) {
     }
 }
 
-void EnZo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnZo_Init(Actor* thisx, GameState* state) {
     EnZo* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, NULL, 0.0f);
@@ -596,7 +596,7 @@ void EnZo_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnZo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnZo_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnZo_Standing(EnZo* this, GlobalContext* globalCtx) {
@@ -705,7 +705,7 @@ void EnZo_Dive(EnZo* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnZo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnZo_Update(Actor* thisx, GameState* state) {
     EnZo* this = THIS;
     u32 pad;
     Vec3f pos;
@@ -776,7 +776,7 @@ void EnZo_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnZo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnZo_Draw(Actor* thisx, GameState* state) {
     EnZo* this = THIS;
     void* eyeTextures[] = { gZoraEyeOpenTex, gZoraEyeHalfTex, gZoraEyeClosedTex };
 

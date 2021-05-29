@@ -14,9 +14,10 @@
 
 struct Actor;
 struct GlobalContext;
+struct GameState;
 struct Lights;
 
-typedef void (*ActorFunc)(struct Actor*, struct GlobalContext*);
+typedef void (*ActorFunc)(struct Actor*, struct GameState*);
 typedef void (*ActorShadowFunc)(struct Actor*, struct Lights*, struct GlobalContext*);
 typedef u16 (*callback1_800343CC)(struct GlobalContext*, struct Actor*);
 typedef s16 (*callback2_800343CC)(struct GlobalContext*, struct Actor*);

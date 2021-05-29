@@ -6,10 +6,10 @@
 
 #define THIS ((EnSkj*)thisx)
 
-void EnSkj_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSkj_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSkj_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSkj_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSkj_Init(Actor* thisx, GameState* state);
+void EnSkj_Destroy(Actor* thisx, GameState* state);
+void EnSkj_Update(Actor* thisx, GameState* state);
+void EnSkj_Draw(Actor* thisx, GameState* state);
 
 void EnSkj_SariasSongShortStumpUpdate(Actor* thisx, GlobalContext* globalCtx);
 void EnSkj_OcarinaMinigameShortStumpUpdate(Actor* thisx, GlobalContext* globalCtx);
@@ -368,7 +368,7 @@ void EnSkj_SetNaviId(EnSkj* this) {
     }
 }
 
-void EnSkj_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkj_Init(Actor* thisx, GameState* state) {
     s16 type = (thisx->params >> 0xA) & 0x3F;
     EnSkj* this = (EnSkj*)thisx;
     GlobalContext* globalCtx2 = globalCtx;
@@ -466,7 +466,7 @@ void EnSkj_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnSkj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkj_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnSkj* this = THIS;
 
@@ -1290,7 +1290,7 @@ void EnSkj_LeaveOcarinaGame(EnSkj* this, GlobalContext* globalCtx) {
     EnSkj_Backflip(this);
 }
 
-void EnSkj_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkj_Update(Actor* thisx, GameState* state) {
     Vec3f dropPos;
     s32 pad;
     EnSkj* this = THIS;
@@ -1653,7 +1653,7 @@ Gfx* EnSkj_OpaqueDL(GraphicsContext* gfxCtx, u32 alpha) {
     return dList;
 }
 
-void EnSkj_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkj_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnSkj* this = THIS;
 

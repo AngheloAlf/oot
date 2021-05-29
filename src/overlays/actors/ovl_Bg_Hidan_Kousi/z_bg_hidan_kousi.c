@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanKousi*)thisx)
 
-void BgHidanKousi_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanKousi_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanKousi_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanKousi_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanKousi_Init(Actor* thisx, GameState* state);
+void BgHidanKousi_Destroy(Actor* thisx, GameState* state);
+void BgHidanKousi_Update(Actor* thisx, GameState* state);
+void BgHidanKousi_Draw(Actor* thisx, GameState* state);
 
 void func_80889ACC(BgHidanKousi* this);
 void func_80889B5C(BgHidanKousi* this, GlobalContext* globalCtx);
@@ -64,7 +64,7 @@ void BgHidanKousi_SetupAction(BgHidanKousi* this, BgHidanKousiActionFunc actionF
     this->actionFunc = actionFunc;
 }
 
-void BgHidanKousi_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKousi_Init(Actor* thisx, GameState* state) {
     BgHidanKousi* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -90,7 +90,7 @@ void BgHidanKousi_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanKousi_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKousi_Destroy(Actor* thisx, GameState* state) {
     BgHidanKousi* this = THIS;
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
@@ -145,13 +145,13 @@ void func_80889C90(BgHidanKousi* this, GlobalContext* globalCtx) {
 void func_80889D28(BgHidanKousi* this, GlobalContext* globalCtx) {
 }
 
-void BgHidanKousi_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKousi_Update(Actor* thisx, GameState* state) {
     BgHidanKousi* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHidanKousi_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKousi_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_hidan_kousi.c", 350);
 
     func_80093D18(globalCtx->state.gfxCtx);

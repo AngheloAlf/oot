@@ -11,10 +11,10 @@
 
 #define THIS ((EnBoom*)thisx)
 
-void EnBoom_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBoom_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBoom_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBoom_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBoom_Init(Actor* thisx, GameState* state);
+void EnBoom_Destroy(Actor* thisx, GameState* state);
+void EnBoom_Update(Actor* thisx, GameState* state);
+void EnBoom_Draw(Actor* thisx, GameState* state);
 
 void EnBoom_Fly(EnBoom* this, GlobalContext* globalCtx);
 
@@ -59,7 +59,7 @@ void EnBoom_SetupAction(EnBoom* this, EnBoomActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnBoom_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBoom_Init(Actor* thisx, GameState* state) {
     EnBoom* this = THIS;
     EffectBlureInit1 trail;
 
@@ -99,7 +99,7 @@ void EnBoom_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnBoom_SetupAction(this, EnBoom_Fly);
 }
 
-void EnBoom_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBoom_Destroy(Actor* thisx, GameState* state) {
     EnBoom* this = THIS;
 
     Effect_Delete(globalCtx, this->effectIndex);
@@ -238,7 +238,7 @@ void EnBoom_Fly(EnBoom* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBoom_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBoom_Update(Actor* thisx, GameState* state) {
     EnBoom* this = THIS;
     Player* player = PLAYER;
 
@@ -249,7 +249,7 @@ void EnBoom_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnBoom_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBoom_Draw(Actor* thisx, GameState* state) {
     static Vec3f sMultVec1 = { -960.0f, 0.0f, 0.0f };
     static Vec3f sMultVec2 = { 960.0f, 0.0f, 0.0f };
     EnBoom* this = THIS;

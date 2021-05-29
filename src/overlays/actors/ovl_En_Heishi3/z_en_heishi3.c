@@ -12,10 +12,10 @@
 
 #define THIS ((EnHeishi3*)thisx)
 
-void EnHeishi3_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi3_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi3_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi3_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHeishi3_Init(Actor* thisx, GameState* state);
+void EnHeishi3_Destroy(Actor* thisx, GameState* state);
+void EnHeishi3_Update(Actor* thisx, GameState* state);
+void EnHeishi3_Draw(Actor* thisx, GameState* state);
 
 void EnHeishi3_SetupGuardType(EnHeishi3* this, GlobalContext* globalCtx);
 void EnHeishi3_StandSentinelInGrounds(EnHeishi3* this, GlobalContext* globalCtx);
@@ -59,7 +59,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 15, 70, 0, { 0, 0, 0 } },
 };
 
-void EnHeishi3_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi3_Init(Actor* thisx, GameState* state) {
     EnHeishi3* this = THIS;
 
     sPlayerCaught = 0;
@@ -87,7 +87,7 @@ void EnHeishi3_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnHeishi3_SetupGuardType;
 }
 
-void EnHeishi3_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi3_Destroy(Actor* thisx, GameState* state) {
     EnHeishi3* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -212,7 +212,7 @@ void func_80A55D00(EnHeishi3* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHeishi3_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi3_Update(Actor* thisx, GameState* state) {
     EnHeishi3* this = THIS;
     s32 pad;
 
@@ -245,7 +245,7 @@ s32 EnHeishi3_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dL
     return false;
 }
 
-void EnHeishi3_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi3_Draw(Actor* thisx, GameState* state) {
     EnHeishi3* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

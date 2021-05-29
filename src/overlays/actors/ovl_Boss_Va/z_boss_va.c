@@ -5,10 +5,10 @@
 
 #define THIS ((BossVa*)thisx)
 
-void BossVa_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossVa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossVa_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossVa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossVa_Init(Actor* thisx, GameState* state);
+void BossVa_Destroy(Actor* thisx, GameState* state);
+void BossVa_Update(Actor* thisx, GameState* state);
+void BossVa_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000024;
 extern UNK_TYPE D_06000FA0;

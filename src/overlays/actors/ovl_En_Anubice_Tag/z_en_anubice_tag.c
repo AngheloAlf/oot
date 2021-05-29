@@ -11,10 +11,10 @@
 
 #define THIS ((EnAnubiceTag*)thisx)
 
-void EnAnubiceTag_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnAnubiceTag_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnAnubiceTag_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnAnubiceTag_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnAnubiceTag_Init(Actor* thisx, GameState* state);
+void EnAnubiceTag_Destroy(Actor* thisx, GameState* state);
+void EnAnubiceTag_Update(Actor* thisx, GameState* state);
+void EnAnubiceTag_Draw(Actor* thisx, GameState* state);
 
 void EnAnubiceTag_SpawnAnubis(EnAnubiceTag* this, GlobalContext* globalCtx);
 void EnAnubiceTag_ManageAnubis(EnAnubiceTag* this, GlobalContext* globalCtx);
@@ -31,7 +31,7 @@ const ActorInit En_Anubice_Tag_InitVars = {
     (ActorFunc)EnAnubiceTag_Draw,
 };
 
-void EnAnubiceTag_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubiceTag_Init(Actor* thisx, GameState* state) {
     EnAnubiceTag* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -47,7 +47,7 @@ void EnAnubiceTag_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnAnubiceTag_SpawnAnubis;
 }
 
-void EnAnubiceTag_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubiceTag_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnAnubiceTag_SpawnAnubis(EnAnubiceTag* this, GlobalContext* globalCtx) {
@@ -97,13 +97,13 @@ void EnAnubiceTag_ManageAnubis(EnAnubiceTag* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnAnubiceTag_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubiceTag_Update(Actor* thisx, GameState* state) {
     EnAnubiceTag* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void EnAnubiceTag_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubiceTag_Draw(Actor* thisx, GameState* state) {
     EnAnubiceTag* this = THIS;
 
     if (BREG(0) != 0) {

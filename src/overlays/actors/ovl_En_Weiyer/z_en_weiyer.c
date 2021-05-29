@@ -10,10 +10,10 @@
 
 #define THIS ((EnWeiyer*)thisx)
 
-void EnWeiyer_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWeiyer_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWeiyer_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnWeiyer_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnWeiyer_Init(Actor* thisx, GameState* state);
+void EnWeiyer_Destroy(Actor* thisx, GameState* state);
+void EnWeiyer_Update(Actor* thisx, GameState* state);
+void EnWeiyer_Draw(Actor* thisx, GameState* state);
 
 void func_80B32804(EnWeiyer* this, GlobalContext* globalCtx);
 void func_80B328E8(EnWeiyer* this, GlobalContext* globalCtx);
@@ -104,7 +104,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 2500, ICHAIN_STOP),
 };
 
-void EnWeiyer_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnWeiyer_Init(Actor* thisx, GameState* state) {
     EnWeiyer* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -116,7 +116,7 @@ void EnWeiyer_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80B32804;
 }
 
-void EnWeiyer_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWeiyer_Destroy(Actor* thisx, GameState* state) {
     EnWeiyer* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -583,7 +583,7 @@ void func_80B3368C(EnWeiyer* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnWeiyer_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnWeiyer_Update(Actor* thisx, GameState* state) {
     EnWeiyer* this = THIS;
     s32 pad;
 
@@ -629,7 +629,7 @@ s32 EnWeiyer_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLi
     return 0;
 }
 
-void EnWeiyer_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnWeiyer_Draw(Actor* thisx, GameState* state) {
     EnWeiyer* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_weiyer.c", 1193);

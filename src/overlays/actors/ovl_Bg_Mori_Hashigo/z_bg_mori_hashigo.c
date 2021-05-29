@@ -11,10 +11,10 @@
 
 #define THIS ((BgMoriHashigo*)thisx)
 
-void BgMoriHashigo_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHashigo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHashigo_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHashigo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriHashigo_Init(Actor* thisx, GameState* state);
+void BgMoriHashigo_Destroy(Actor* thisx, GameState* state);
+void BgMoriHashigo_Update(Actor* thisx, GameState* state);
+void BgMoriHashigo_Draw(Actor* thisx, GameState* state);
 
 void BgMoriHashigo_SetupWaitForMoriTex(BgMoriHashigo* this);
 void BgMoriHashigo_WaitForMoriTex(BgMoriHashigo* this, GlobalContext* globalCtx);
@@ -152,7 +152,7 @@ s32 BgMoriHashigo_InitLadder(BgMoriHashigo* this, GlobalContext* globalCtx) {
     return true;
 }
 
-void BgMoriHashigo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashigo_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashigo* this = THIS;
 
@@ -180,7 +180,7 @@ void BgMoriHashigo_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriHashigo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashigo_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashigo* this = THIS;
 
@@ -267,7 +267,7 @@ void BgMoriHashigo_SetupLadderRest(BgMoriHashigo* this) {
     this->dyna.actor.world.pos.y = this->dyna.actor.floorHeight;
 }
 
-void BgMoriHashigo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashigo_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashigo* this = THIS;
 
@@ -279,7 +279,7 @@ void BgMoriHashigo_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriHashigo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashigo_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashigo* this = THIS;
 

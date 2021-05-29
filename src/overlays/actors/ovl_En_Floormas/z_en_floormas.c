@@ -17,10 +17,10 @@
 #define MERGE_MASTER 0x40
 #define MERGE_SLAVE 0x20
 
-void EnFloormas_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFloormas_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFloormas_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFloormas_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFloormas_Init(Actor* thisx, GameState* state);
+void EnFloormas_Destroy(Actor* thisx, GameState* state);
+void EnFloormas_Update(Actor* thisx, GameState* state);
+void EnFloormas_Draw(Actor* thisx, GameState* state);
 
 void EnFloormas_GrabLink(EnFloormas* this, GlobalContext* globalCtx);
 void EnFloormas_Split(EnFloormas* this, GlobalContext* globalCtx);
@@ -121,7 +121,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32_DIV1000(gravity, -1000, ICHAIN_STOP),
 };
 
-void EnFloormas_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFloormas_Init(Actor* thisx, GameState* state) {
     EnFloormas* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
     s32 invisble;
@@ -176,7 +176,7 @@ void EnFloormas_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFloormas_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFloormas_Destroy(Actor* thisx, GameState* state) {
     EnFloormas* this = THIS;
     ColliderCylinder* col = &this->collider;
     Collider_DestroyCylinder(globalCtx, col);
@@ -1019,7 +1019,7 @@ void EnFloormas_ColliderCheck(EnFloormas* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFloormas_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFloormas_Update(Actor* thisx, GameState* state) {
     EnFloormas* this = THIS;
     s32 pad;
 
@@ -1104,7 +1104,7 @@ void EnFloormas_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLis
 
 static Color_RGBA8 sMergeColor = { 0, 255, 0, 0 };
 
-void EnFloormas_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFloormas_Draw(Actor* thisx, GameState* state) {
     EnFloormas* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_floormas.c", 2318);

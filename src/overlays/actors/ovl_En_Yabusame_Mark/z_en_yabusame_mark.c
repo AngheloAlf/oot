@@ -11,9 +11,9 @@
 
 #define THIS ((EnYabusameMark*)thisx)
 
-void EnYabusameMark_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnYabusameMark_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnYabusameMark_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnYabusameMark_Init(Actor* thisx, GameState* state);
+void EnYabusameMark_Destroy(Actor* thisx, GameState* state);
+void EnYabusameMark_Update(Actor* thisx, GameState* state);
 void func_80B42F74(EnYabusameMark* this, GlobalContext* globalCtx);
 
 static ColliderQuadInit sQuadInit = {
@@ -75,13 +75,13 @@ unknownStruct D_80B4362C[] = {
     { 40.0f, 120.0f, 160.0f, 777.0f },
 };
 
-void EnYabusameMark_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnYabusameMark_Destroy(Actor* thisx, GameState* state) {
     EnYabusameMark* this = THIS;
 
     Collider_DestroyQuad(globalCtx, &this->collider);
 }
 
-void EnYabusameMark_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnYabusameMark_Init(Actor* thisx, GameState* state) {
     EnYabusameMark* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -198,7 +198,7 @@ static Vec3f D_80B43668 = { 0.0f, 0.0f, 0.0f };
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Yabusame_Mark/func_80B42F74.s")
 #endif
 
-void EnYabusameMark_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnYabusameMark_Update(Actor* thisx, GameState* state) {
     EnYabusameMark* this = THIS;
     Vec3f* vertexArray;
     u32 arrayIndex;

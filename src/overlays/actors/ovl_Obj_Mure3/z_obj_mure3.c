@@ -10,9 +10,9 @@
 
 #define THIS ((ObjMure3*)thisx)
 
-void ObjMure3_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjMure3_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjMure3_Update(Actor* thisx, GlobalContext* globalCtx);
+void ObjMure3_Init(Actor* thisx, GameState* state);
+void ObjMure3_Destroy(Actor* thisx, GameState* state);
+void ObjMure3_Update(Actor* thisx, GameState* state);
 
 void func_80B9AF24(ObjMure3* this);
 void func_80B9AF34(ObjMure3* this, GlobalContext* globalCtx);
@@ -142,7 +142,7 @@ void func_80B9ADCC(ObjMure3* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjMure3_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjMure3_Init(Actor* thisx, GameState* state) {
     s32 pad;
     ObjMure3* this = THIS;
 
@@ -154,7 +154,7 @@ void ObjMure3_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_80B9AF24(this);
 }
 
-void ObjMure3_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjMure3_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_80B9AF24(ObjMure3* this) {
@@ -192,7 +192,7 @@ void func_80B9AFFC(ObjMure3* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjMure3_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjMure3_Update(Actor* thisx, GameState* state) {
     ObjMure3* this = THIS;
 
     this->actionFunc(this, globalCtx);

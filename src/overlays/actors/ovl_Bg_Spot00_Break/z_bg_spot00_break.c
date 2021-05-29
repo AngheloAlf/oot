@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot00Break*)thisx)
 
-void BgSpot00Break_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot00Break_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot00Break_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot00Break_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot00Break_Init(Actor* thisx, GameState* state);
+void BgSpot00Break_Destroy(Actor* thisx, GameState* state);
+void BgSpot00Break_Update(Actor* thisx, GameState* state);
+void BgSpot00Break_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Spot00_Break_InitVars = {
     ACTOR_BG_SPOT00_BREAK,
@@ -39,7 +39,7 @@ extern CollisionHeader D_06000908;
 extern Gfx D_06000980[];
 extern Gfx D_06000440[];
 
-void BgSpot00Break_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Break_Init(Actor* thisx, GameState* state) {
     BgSpot00Break* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -60,16 +60,16 @@ void BgSpot00Break_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot00Break_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Break_Destroy(Actor* thisx, GameState* state) {
     BgSpot00Break* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void BgSpot00Break_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Break_Update(Actor* thisx, GameState* state) {
 }
 
-void BgSpot00Break_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Break_Draw(Actor* thisx, GameState* state) {
     BgSpot00Break* this = THIS;
 
     if (this->dyna.actor.params == 1) {

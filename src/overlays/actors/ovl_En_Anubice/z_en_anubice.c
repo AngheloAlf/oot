@@ -14,10 +14,10 @@
 
 #define THIS ((EnAnubice*)thisx)
 
-void EnAnubice_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnAnubice_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnAnubice_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnAnubice_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnAnubice_Init(Actor* thisx, GameState* state);
+void EnAnubice_Destroy(Actor* thisx, GameState* state);
+void EnAnubice_Update(Actor* thisx, GameState* state);
+void EnAnubice_Draw(Actor* thisx, GameState* state);
 
 void EnAnubice_FindFlameCircles(EnAnubice* this, GlobalContext* globalCtx);
 void EnAnubice_SetupIdle(EnAnubice* this, GlobalContext* globalCtx);
@@ -120,7 +120,7 @@ void EnAnubice_SetFireballRot(EnAnubice* this, GlobalContext* globalCtx) {
     this->fireballRot.y = RADF_TO_BINANG(Math_FAtan2F(x, z));
 }
 
-void EnAnubice_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubice_Init(Actor* thisx, GameState* state) {
     EnAnubice* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 20.0f);
@@ -148,7 +148,7 @@ void EnAnubice_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnAnubice_FindFlameCircles;
 }
 
-void EnAnubice_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubice_Destroy(Actor* thisx, GameState* state) {
     EnAnubice* this = THIS;
     EnAnubiceTag* temp_v1;
 
@@ -348,7 +348,7 @@ void EnAnubice_Die(EnAnubice* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnAnubice_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubice_Update(Actor* thisx, GameState* state) {
     f32 zero;
     BgHidanCurtain* flameCircle;
     s32 i;
@@ -483,7 +483,7 @@ void EnAnubis_PostLimbDraw(struct GlobalContext* globalCtx, s32 limbIndex, Gfx**
     }
 }
 
-void EnAnubice_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnAnubice_Draw(Actor* thisx, GameState* state) {
     EnAnubice* this = THIS;
 
     func_80093D84(globalCtx->state.gfxCtx);

@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanRock*)thisx)
 
-void BgHidanRock_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanRock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanRock_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanRock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanRock_Init(Actor* thisx, GameState* state);
+void BgHidanRock_Destroy(Actor* thisx, GameState* state);
+void BgHidanRock_Update(Actor* thisx, GameState* state);
+void BgHidanRock_Draw(Actor* thisx, GameState* state);
 
 void func_8088B24C(BgHidanRock* this);
 
@@ -68,7 +68,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32_DIV1000(gravity, -600, ICHAIN_STOP),
 };
 
-void BgHidanRock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRock_Init(Actor* thisx, GameState* state) {
     BgHidanRock* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -107,7 +107,7 @@ void BgHidanRock_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->timer = 0;
 }
 
-void BgHidanRock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRock_Destroy(Actor* thisx, GameState* state) {
     BgHidanRock* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -329,7 +329,7 @@ void func_8088B990(BgHidanRock* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanRock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRock_Update(Actor* thisx, GameState* state) {
     BgHidanRock* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -378,7 +378,7 @@ void func_8088BC40(GlobalContext* globalCtx, BgHidanRock* this) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_hidan_rock.c", 857);
 }
 
-void BgHidanRock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRock_Draw(Actor* thisx, GameState* state) {
     BgHidanRock* this = THIS;
     s32 pad;
 

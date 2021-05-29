@@ -11,10 +11,10 @@
 
 #define THIS ((EnRl*)thisx)
 
-void EnRl_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnRl_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnRl_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnRl_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnRl_Init(Actor* thisx, GameState* state);
+void EnRl_Destroy(Actor* thisx, GameState* state);
+void EnRl_Update(Actor* thisx, GameState* state);
+void EnRl_Draw(Actor* thisx, GameState* state);
 
 void func_80AE7798(EnRl* this, GlobalContext* globalCtx);
 void func_80AE77B8(EnRl* this, GlobalContext* globalCtx);
@@ -35,7 +35,7 @@ extern AnimationHeader D_06000A3C;
 extern AnimationHeader D_06000830;
 extern AnimationHeader D_0600040C;
 
-void EnRl_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnRl_Destroy(Actor* thisx, GameState* state) {
     EnRl* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -327,7 +327,7 @@ static EnRlActionFunc sActionFuncs[] = {
     func_80AE7C64, func_80AE7C94, func_80AE7CE8, func_80AE7D40,
 };
 
-void EnRl_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnRl_Update(Actor* thisx, GameState* state) {
     EnRl* this = THIS;
 
     if ((this->action < 0) || (this->action > 7) || (sActionFuncs[this->action] == NULL)) {
@@ -337,7 +337,7 @@ void EnRl_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void EnRl_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnRl_Init(Actor* thisx, GameState* state) {
     EnRl* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 50.0f);
@@ -376,7 +376,7 @@ static EnRlDrawFunc sDrawFuncs[] = {
     func_80AE7D94,
 };
 
-void EnRl_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnRl_Draw(Actor* thisx, GameState* state) {
     EnRl* this = THIS;
 
     if (this->drawConfig < 0 || this->drawConfig >= 3 || sDrawFuncs[this->drawConfig] == NULL) {

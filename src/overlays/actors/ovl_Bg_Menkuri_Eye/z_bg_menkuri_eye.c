@@ -10,10 +10,10 @@
 
 #define THIS ((BgMenkuriEye*)thisx)
 
-void BgMenkuriEye_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMenkuriEye_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMenkuriEye_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMenkuriEye_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMenkuriEye_Init(Actor* thisx, GameState* state);
+void BgMenkuriEye_Destroy(Actor* thisx, GameState* state);
+void BgMenkuriEye_Update(Actor* thisx, GameState* state);
+void BgMenkuriEye_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Menkuri_Eye_InitVars = {
     ACTOR_BG_MENKURI_EYE,
@@ -61,7 +61,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgMenkuriEye_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriEye_Init(Actor* thisx, GameState* state) {
     BgMenkuriEye* this = THIS;
     ColliderJntSphElement* colliderList;
 
@@ -79,13 +79,13 @@ void BgMenkuriEye_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->framesUntilDisable = -1;
 }
 
-void BgMenkuriEye_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriEye_Destroy(Actor* thisx, GameState* state) {
     BgMenkuriEye* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->collider);
 }
 
-void BgMenkuriEye_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriEye_Update(Actor* thisx, GameState* state) {
     BgMenkuriEye* this = THIS;
 
     if (!Flags_GetSwitch(globalCtx, this->actor.params)) {
@@ -119,7 +119,7 @@ void BgMenkuriEye_Update(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetFocus(&this->actor, 0.0f);
 }
 
-void BgMenkuriEye_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriEye_Draw(Actor* thisx, GameState* state) {
     BgMenkuriEye* this = THIS;
     s32 pad;
 

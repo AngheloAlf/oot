@@ -4,10 +4,10 @@
 
 #define THIS ((EnBigokuta*)thisx)
 
-void EnBigokuta_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBigokuta_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBigokuta_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBigokuta_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBigokuta_Init(Actor* thisx, GameState* state);
+void EnBigokuta_Destroy(Actor* thisx, GameState* state);
+void EnBigokuta_Update(Actor* thisx, GameState* state);
+void EnBigokuta_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000444;
 extern UNK_TYPE D_06000A74;

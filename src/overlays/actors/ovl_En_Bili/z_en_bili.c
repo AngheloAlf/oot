@@ -10,10 +10,10 @@
 
 #define THIS ((EnBili*)thisx)
 
-void EnBili_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBili_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBili_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBili_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBili_Init(Actor* thisx, GameState* state);
+void EnBili_Destroy(Actor* thisx, GameState* state);
+void EnBili_Update(Actor* thisx, GameState* state);
+void EnBili_Draw(Actor* thisx, GameState* state);
 
 void EnBili_SetupFloatIdle(EnBili* this);
 void EnBili_SetupSpawnedFlyApart(EnBili* this);
@@ -117,7 +117,7 @@ extern AnimationHeader D_06000064;
 extern AnimationHeader D_060000A4;
 extern SkeletonHeader D_06005848;
 
-void EnBili_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBili_Init(Actor* thisx, GameState* state) {
     EnBili* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -136,7 +136,7 @@ void EnBili_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnBili_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBili_Destroy(Actor* thisx, GameState* state) {
     EnBili* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -589,7 +589,7 @@ void EnBili_UpdateDamage(EnBili* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBili_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnBili_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnBili* this = THIS;
 
@@ -751,7 +751,7 @@ static Gfx D_809C1700[] = {
     gsSPEndDisplayList(),
 };
 
-void EnBili_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBili_Draw(Actor* thisx, GameState* state) {
     EnBili* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_bili.c", 1521);

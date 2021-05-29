@@ -11,9 +11,9 @@
 
 #define THIS ((ObjBlockstop*)thisx)
 
-void ObjBlockstop_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjBlockstop_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjBlockstop_Update(Actor* thisx, GlobalContext* globalCtx);
+void ObjBlockstop_Init(Actor* thisx, GameState* state);
+void ObjBlockstop_Destroy(Actor* thisx, GameState* state);
+void ObjBlockstop_Update(Actor* thisx, GameState* state);
 
 const ActorInit Obj_Blockstop_InitVars = {
     ACTOR_OBJ_BLOCKSTOP,
@@ -27,7 +27,7 @@ const ActorInit Obj_Blockstop_InitVars = {
     NULL,
 };
 
-void ObjBlockstop_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjBlockstop_Init(Actor* thisx, GameState* state) {
     ObjBlockstop* this = THIS;
 
     if (Flags_GetSwitch(globalCtx, this->actor.params)) {
@@ -37,10 +37,10 @@ void ObjBlockstop_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjBlockstop_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjBlockstop_Destroy(Actor* thisx, GameState* state) {
 }
 
-void ObjBlockstop_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjBlockstop_Update(Actor* thisx, GameState* state) {
     ObjBlockstop* this = THIS;
     DynaPolyActor* dynaPolyActor;
     Vec3f sp4C;

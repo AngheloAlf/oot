@@ -10,10 +10,10 @@
 
 #define THIS ((BgHaka*)thisx)
 
-void BgHaka_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHaka_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHaka_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHaka_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHaka_Init(Actor* thisx, GameState* state);
+void BgHaka_Destroy(Actor* thisx, GameState* state);
+void BgHaka_Update(Actor* thisx, GameState* state);
+void BgHaka_Draw(Actor* thisx, GameState* state);
 
 void func_8087B758(BgHaka* this, Player* player);
 void func_8087B7E8(BgHaka* this, GlobalContext* globalCtx);
@@ -42,7 +42,7 @@ extern CollisionHeader D_06000428;
 extern Gfx D_060001B0[];
 extern Gfx D_060002A8[];
 
-void BgHaka_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHaka_Init(Actor* thisx, GameState* state) {
     BgHaka* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -54,7 +54,7 @@ void BgHaka_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_8087B7E8;
 }
 
-void BgHaka_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHaka_Destroy(Actor* thisx, GameState* state) {
     BgHaka* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -145,13 +145,13 @@ void func_8087BAE4(BgHaka* this, GlobalContext* globalCtx) {
     func_8087B758(this, player);
 }
 
-void BgHaka_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHaka_Update(Actor* thisx, GameState* state) {
     BgHaka* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHaka_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHaka_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_haka.c", 401);
 
     func_80093D18(globalCtx->state.gfxCtx);

@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot01Idosoko*)thisx)
 
-void BgSpot01Idosoko_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Idosoko_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Idosoko_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Idosoko_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot01Idosoko_Init(Actor* thisx, GameState* state);
+void BgSpot01Idosoko_Destroy(Actor* thisx, GameState* state);
+void BgSpot01Idosoko_Update(Actor* thisx, GameState* state);
+void BgSpot01Idosoko_Draw(Actor* thisx, GameState* state);
 
 void func_808ABF54(BgSpot01Idosoko* this, GlobalContext* globalCtx);
 
@@ -39,7 +39,7 @@ void BgSpot01Idosoko_SetupAction(BgSpot01Idosoko* this, BgSpot01IdosokoActionFun
     this->actionFunc = actionFunc;
 }
 
-void BgSpot01Idosoko_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idosoko_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgSpot01Idosoko* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -56,7 +56,7 @@ void BgSpot01Idosoko_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot01Idosoko_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idosoko_Destroy(Actor* thisx, GameState* state) {
     BgSpot01Idosoko* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -65,7 +65,7 @@ void BgSpot01Idosoko_Destroy(Actor* thisx, GlobalContext* globalCtx) {
 void func_808ABF54(BgSpot01Idosoko* this, GlobalContext* globalCtx) {
 }
 
-void BgSpot01Idosoko_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idosoko_Update(Actor* thisx, GameState* state) {
     BgSpot01Idosoko* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -73,7 +73,7 @@ void BgSpot01Idosoko_Update(Actor* thisx, GlobalContext* globalCtx) {
 
 extern u32 D_06003B20;
 
-void BgSpot01Idosoko_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idosoko_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_spot01_idosoko.c", 162);
 
     func_80093D18(globalCtx->state.gfxCtx);

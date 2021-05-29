@@ -13,10 +13,10 @@
 
 #define THIS ((EnButte*)thisx)
 
-void EnButte_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnButte_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnButte_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnButte_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnButte_Init(Actor* thisx, GameState* state);
+void EnButte_Destroy(Actor* thisx, GameState* state);
+void EnButte_Update(Actor* thisx, GameState* state);
+void EnButte_Draw(Actor* thisx, GameState* state);
 
 void EnButte_SetupFlyAround(EnButte* this);
 void EnButte_FlyAround(EnButte* this, GlobalContext* globalCtx);
@@ -147,7 +147,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 600, ICHAIN_STOP),
 };
 
-void EnButte_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnButte_Init(Actor* thisx, GameState* state) {
     EnButte* this = THIS;
 
     if (this->actor.params == -1) {
@@ -176,7 +176,7 @@ void EnButte_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(field keep 蝶)(%x)(arg_data 0x%04x)\n", this, this->actor.params);
 }
 
-void EnButte_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void EnButte_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnButte* this = THIS;
 
@@ -383,7 +383,7 @@ void EnButte_WaitToDie(EnButte* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnButte_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnButte_Update(Actor* thisx, GameState* state) {
     EnButte* this = THIS;
 
     if ((this->actor.child != NULL) && (this->actor.child->update == NULL) && (this->actor.child != &this->actor)) {
@@ -420,7 +420,7 @@ void EnButte_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnButte_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnButte_Draw(Actor* thisx, GameState* state) {
     EnButte* this = THIS;
 
     if (this->drawSkelAnime) {

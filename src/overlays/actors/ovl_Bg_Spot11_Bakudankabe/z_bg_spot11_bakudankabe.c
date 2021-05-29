@@ -13,10 +13,10 @@
 
 #define THIS ((BgSpot11Bakudankabe*)thisx)
 
-void BgSpot11Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot11Bakudankabe_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot11Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot11Bakudankabe_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot11Bakudankabe_Init(Actor* thisx, GameState* state);
+void BgSpot11Bakudankabe_Destroy(Actor* thisx, GameState* state);
+void BgSpot11Bakudankabe_Update(Actor* thisx, GameState* state);
+void BgSpot11Bakudankabe_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Spot11_Bakudankabe_InitVars = {
     ACTOR_BG_SPOT11_BAKUDANKABE,
@@ -109,7 +109,7 @@ void func_808B2218(BgSpot11Bakudankabe* this, GlobalContext* globalCtx) {
     func_80033480(globalCtx, &burstDepthY, 70, 4, 110, 160, 1);
 }
 
-void BgSpot11Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot11Bakudankabe_Init(Actor* thisx, GameState* state) {
     BgSpot11Bakudankabe* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -126,14 +126,14 @@ void BgSpot11Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(spot11 爆弾壁)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void BgSpot11Bakudankabe_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot11Bakudankabe_Destroy(Actor* thisx, GameState* state) {
     BgSpot11Bakudankabe* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
 
-void BgSpot11Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot11Bakudankabe_Update(Actor* thisx, GameState* state) {
     BgSpot11Bakudankabe* this = THIS;
 
     if (this->collider.base.acFlags & AC_HIT) {
@@ -147,7 +147,7 @@ void BgSpot11Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetAC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void BgSpot11Bakudankabe_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot11Bakudankabe_Draw(Actor* thisx, GameState* state) {
     BgSpot11Bakudankabe* this = THIS;
 
     Gfx_DrawDListOpa(globalCtx, gDesertColossusBombableWallDL);

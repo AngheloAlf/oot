@@ -10,10 +10,10 @@
 
 #define THIS ((MagicWind*)thisx)
 
-void MagicWind_Init(Actor* thisx, GlobalContext* globalCtx);
-void MagicWind_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void MagicWind_Update(Actor* thisx, GlobalContext* globalCtx);
-void MagicWind_Draw(Actor* thisx, GlobalContext* globalCtx);
+void MagicWind_Init(Actor* thisx, GameState* state);
+void MagicWind_Destroy(Actor* thisx, GameState* state);
+void MagicWind_Update(Actor* thisx, GameState* state);
+void MagicWind_Draw(Actor* thisx, GameState* state);
 
 void MagicWind_Shrink(MagicWind* this, GlobalContext* globalCtx);
 void MagicWind_WaitForTimer(MagicWind* this, GlobalContext* globalCtx);
@@ -126,7 +126,7 @@ void MagicWind_SetupAction(MagicWind* this, MagicWindFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void MagicWind_Init(Actor* thisx, GlobalContext* globalCtx) {
+void MagicWind_Init(Actor* thisx, GameState* state) {
     MagicWind* this = THIS;
     Player* player = PLAYER;
 
@@ -151,7 +151,7 @@ void MagicWind_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void MagicWind_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void MagicWind_Destroy(Actor* thisx, GameState* state) {
     MagicWind* this = THIS;
     SkelCurve_Destroy(globalCtx, &this->skelCurve);
     func_800876C8(globalCtx);
@@ -213,7 +213,7 @@ void MagicWind_Shrink(MagicWind* this, GlobalContext* globalCtx) {
     }
 }
 
-void MagicWind_Update(Actor* thisx, GlobalContext* globalCtx) {
+void MagicWind_Update(Actor* thisx, GameState* state) {
     MagicWind* this = THIS;
     if (globalCtx->msgCtx.msgMode == 0xD || globalCtx->msgCtx.msgMode == 0x11) {
         Actor_Kill(thisx);
@@ -248,7 +248,7 @@ s32 MagicWind_OverrideLimbDraw(GlobalContext* globalCtx, SkelAnimeCurve* skelCur
     return true;
 }
 
-void MagicWind_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void MagicWind_Draw(Actor* thisx, GameState* state) {
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
     MagicWind* this = THIS;
 

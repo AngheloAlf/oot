@@ -13,10 +13,10 @@
 
 #define THIS ((ObjSyokudai*)thisx)
 
-void ObjSyokudai_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjSyokudai_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjSyokudai_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjSyokudai_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjSyokudai_Init(Actor* thisx, GameState* state);
+void ObjSyokudai_Destroy(Actor* thisx, GameState* state);
+void ObjSyokudai_Update(Actor* thisx, GameState* state);
+void ObjSyokudai_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Obj_Syokudai_InitVars = {
     ACTOR_OBJ_SYOKUDAI,
@@ -79,7 +79,7 @@ static InitChainEntry sInitChain[] = {
 
 static s32 sLitTorchCount;
 
-void ObjSyokudai_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjSyokudai_Init(Actor* thisx, GameState* state) {
     static u8 sColTypesStand[] = { 0x09, 0x0B, 0x0B };
     s32 pad;
     ObjSyokudai* this = THIS;
@@ -110,7 +110,7 @@ void ObjSyokudai_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetFocus(&this->actor, 60.0f);
 }
 
-void ObjSyokudai_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjSyokudai_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     ObjSyokudai* this = THIS;
 
@@ -119,7 +119,7 @@ void ObjSyokudai_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
 }
 
-void ObjSyokudai_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void ObjSyokudai_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     ObjSyokudai* this = THIS;
     s32 torchCount = (this->actor.params >> 6) & 0xF;
@@ -258,7 +258,7 @@ void ObjSyokudai_Update(Actor* thisx, GlobalContext* globalCtx2) {
     this->flameTexScroll++;
 }
 
-void ObjSyokudai_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjSyokudai_Draw(Actor* thisx, GameState* state) {
     static Gfx* displayLists[] = { gGoldenTorchDL, gTimedTorchDL, gWoodenTorchDL };
     s32 pad;
     ObjSyokudai* this = THIS;

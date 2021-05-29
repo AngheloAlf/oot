@@ -20,9 +20,9 @@ typedef enum {
     /* 1 */ MOVE_HOME
 } GSwitchMoveState;
 
-void EnGSwitch_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGSwitch_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGSwitch_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnGSwitch_Init(Actor* thisx, GameState* state);
+void EnGSwitch_Destroy(Actor* thisx, GameState* state);
+void EnGSwitch_Update(Actor* thisx, GameState* state);
 void EnGSwitch_DrawRupee(Actor* thisx, GlobalContext* globalCtx);
 void EnGSwitch_DrawPot(Actor* thisx, GlobalContext* globalCtx);
 
@@ -80,7 +80,7 @@ const ActorInit En_G_Switch_InitVars = {
     NULL,
 };
 
-void EnGSwitch_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGSwitch_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnGSwitch* this = THIS;
 
@@ -168,7 +168,7 @@ void EnGSwitch_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnGSwitch_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGSwitch_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnGSwitch* this = THIS;
 
@@ -418,7 +418,7 @@ void EnGSwitch_Kill(EnGSwitch* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGSwitch_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGSwitch_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnGSwitch* this = THIS;
 

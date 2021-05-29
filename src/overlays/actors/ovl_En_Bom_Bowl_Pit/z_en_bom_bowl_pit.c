@@ -7,9 +7,9 @@
 
 #define THIS ((EnBomBowlPit*)thisx)
 
-void EnBomBowlPit_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBomBowlPit_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBomBowlPit_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnBomBowlPit_Init(Actor* thisx, GameState* state);
+void EnBomBowlPit_Destroy(Actor* thisx, GameState* state);
+void EnBomBowlPit_Update(Actor* thisx, GameState* state);
 
 void EnBomBowlPit_SetupDetectHit(EnBomBowlPit* this, GlobalContext* globalCtx);
 void EnBomBowlPit_DetectHit(EnBomBowlPit* this, GlobalContext* globalCtx);
@@ -34,13 +34,13 @@ const ActorInit En_Bom_Bowl_Pit_InitVars = {
     NULL,
 };
 
-void EnBomBowlPit_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomBowlPit_Init(Actor* thisx, GameState* state) {
     EnBomBowlPit* this = THIS;
 
     this->actionFunc = EnBomBowlPit_SetupDetectHit;
 }
 
-void EnBomBowlPit_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomBowlPit_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnBomBowlPit_SetupDetectHit(EnBomBowlPit* this, GlobalContext* globalCtx) {
@@ -213,7 +213,7 @@ void EnBomBowlPit_Reset(EnBomBowlPit* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBomBowlPit_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomBowlPit_Update(Actor* thisx, GameState* state) {
     EnBomBowlPit* this = THIS;
 
     this->actionFunc(this, globalCtx);

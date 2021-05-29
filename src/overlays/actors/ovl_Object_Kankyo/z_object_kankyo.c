@@ -12,10 +12,10 @@
 
 #define THIS ((ObjectKankyo*)thisx)
 
-void ObjectKankyo_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjectKankyo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjectKankyo_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjectKankyo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjectKankyo_Init(Actor* thisx, GameState* state);
+void ObjectKankyo_Destroy(Actor* thisx, GameState* state);
+void ObjectKankyo_Update(Actor* thisx, GameState* state);
+void ObjectKankyo_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_01000000;
 extern UNK_TYPE D_06009620;

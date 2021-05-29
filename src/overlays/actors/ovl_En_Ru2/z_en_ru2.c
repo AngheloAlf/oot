@@ -11,10 +11,10 @@
 
 #define THIS ((EnRu2*)thisx)
 
-void EnRu2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnRu2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnRu2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnRu2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnRu2_Init(Actor* thisx, GameState* state);
+void EnRu2_Destroy(Actor* thisx, GameState* state);
+void EnRu2_Update(Actor* thisx, GameState* state);
+void EnRu2_Draw(Actor* thisx, GameState* state);
 
 void func_80AF2CB4(EnRu2* this, GlobalContext* globalCtx);
 void func_80AF2CD4(EnRu2* this, GlobalContext* globalCtx);
@@ -112,7 +112,7 @@ void func_80AF259C(EnRu2* this, GlobalContext* globalCtx) {
     CollisionCheck_SetAC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void EnRu2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu2_Destroy(Actor* thisx, GameState* state) {
     EnRu2* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -761,7 +761,7 @@ void func_80AF3D60(EnRu2* this, GlobalContext* globalCtx) {
     func_80AF3B74(this, globalCtx);
 }
 
-void EnRu2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu2_Update(Actor* thisx, GameState* state) {
     EnRu2* this = THIS;
 
     if ((this->action < 0) || (this->action >= ARRAY_COUNT(sActionFuncs)) || (sActionFuncs[this->action] == NULL)) {
@@ -772,7 +772,7 @@ void EnRu2_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void EnRu2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu2_Init(Actor* thisx, GameState* state) {
     EnRu2* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
@@ -822,7 +822,7 @@ void func_80AF3F20(EnRu2* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_ru2.c", 663);
 }
 
-void EnRu2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu2_Draw(Actor* thisx, GameState* state) {
     EnRu2* this = THIS;
 
     if ((this->drawConfig < 0) || (this->drawConfig >= ARRAY_COUNT(sDrawFuncs)) ||

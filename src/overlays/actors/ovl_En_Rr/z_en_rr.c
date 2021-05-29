@@ -47,10 +47,10 @@ typedef enum {
     /* 5 */ RR_DROP_RUPEE_RED
 } EnRrDropType;
 
-void EnRr_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnRr_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnRr_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnRr_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnRr_Init(Actor* thisx, GameState* state);
+void EnRr_Destroy(Actor* thisx, GameState* state);
+void EnRr_Update(Actor* thisx, GameState* state);
+void EnRr_Draw(Actor* thisx, GameState* state);
 
 void EnRr_InitBodySegments(EnRr* this, GlobalContext* globalCtx);
 
@@ -163,7 +163,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 30, ICHAIN_STOP),
 };
 
-void EnRr_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnRr_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnRr* this = THIS;
     s32 i;
@@ -200,7 +200,7 @@ void EnRr_Init(Actor* thisx, GlobalContext* globalCtx2) {
     EnRr_InitBodySegments(this, globalCtx);
 }
 
-void EnRr_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnRr_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnRr* this = THIS;
 
@@ -757,7 +757,7 @@ void EnRr_Stunned(EnRr* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnRr_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnRr_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnRr* this = THIS;
     s32 i;
@@ -840,7 +840,7 @@ static Vec3f sEffectOffsets[] = {
     { 0.0f, 0.0f, -25.0f },
 };
 
-void EnRr_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnRr_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     Vec3f zeroVec;
     EnRr* this = THIS;

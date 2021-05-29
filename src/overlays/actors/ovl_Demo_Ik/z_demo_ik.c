@@ -5,10 +5,10 @@
 
 #define THIS ((DemoIk*)thisx)
 
-void DemoIk_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoIk_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoIk_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoIk_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoIk_Init(Actor* thisx, GameState* state);
+void DemoIk_Destroy(Actor* thisx, GameState* state);
+void DemoIk_Update(Actor* thisx, GameState* state);
+void DemoIk_Draw(Actor* thisx, GameState* state);
 
 void DemoIk_Type1Init(DemoIk* this, GlobalContext* globalCtx);
 void DemoIk_Type2Init(DemoIk* this, GlobalContext* globalCtx);
@@ -44,7 +44,7 @@ extern FlexSkeletonHeader D_0601EB40;
 extern AnimationHeader D_0601EE34;
 extern FlexSkeletonHeader D_06000900;
 
-void DemoIk_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIk_Destroy(Actor* thisx, GameState* state) {
 }
 
 void DemoIk_BgCheck(DemoIk* this, GlobalContext* globalCtx) {
@@ -488,7 +488,7 @@ static DemoIkActionFunc sActionFuncs[] = {
     DemoIk_Type2Action0, DemoIk_Type2Action1, DemoIk_Type2Action2,
 };
 
-void DemoIk_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIk_Update(Actor* thisx, GameState* state) {
     s32 pad;
     DemoIk* this = THIS;
 
@@ -510,7 +510,7 @@ static DemoIkDrawFunc sDrawFuncs[] = {
     DemoIk_Type2Draw,
 };
 
-void DemoIk_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIk_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     DemoIk* this = THIS;
 
@@ -534,7 +534,7 @@ const ActorInit Demo_Ik_InitVars = {
     (ActorFunc)DemoIk_Draw,
 };
 
-void DemoIk_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIk_Init(Actor* thisx, GameState* state) {
     s32 pad;
     DemoIk* this = THIS;
 

@@ -23,10 +23,10 @@ typedef enum {
     /* 02 */ GE1_HAIR_SPIKY
 } EnGe1Hairstyle;
 
-void EnGe1_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGe1_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGe1_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGe1_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGe1_Init(Actor* thisx, GameState* state);
+void EnGe1_Destroy(Actor* thisx, GameState* state);
+void EnGe1_Update(Actor* thisx, GameState* state);
+void EnGe1_Draw(Actor* thisx, GameState* state);
 
 s32 EnGe1_CheckCarpentersFreed(void);
 void EnGe1_WatchForPlayerFrontOnly(EnGe1* this, GlobalContext* globalCtx);
@@ -87,7 +87,7 @@ static u64* sEyeTextures[] = {
     gGerudoWhiteEyeClosedTex,
 };
 
-void EnGe1_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe1_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnGe1* this = THIS;
 
@@ -177,7 +177,7 @@ void EnGe1_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->stateFlags = 0;
 }
 
-void EnGe1_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe1_Destroy(Actor* thisx, GameState* state) {
     EnGe1* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -719,7 +719,7 @@ void EnGe1_LookAtPlayer(EnGe1* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGe1_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe1_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnGe1* this = THIS;
 
@@ -801,7 +801,7 @@ void EnGe1_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_ge1.c", 1427);
 }
 
-void EnGe1_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe1_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnGe1* this = THIS;
 

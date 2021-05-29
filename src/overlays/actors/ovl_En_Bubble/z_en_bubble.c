@@ -4,10 +4,10 @@
 
 #define THIS ((EnBubble*)thisx)
 
-void EnBubble_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBubble_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBubble_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBubble_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBubble_Init(Actor* thisx, GameState* state);
+void EnBubble_Destroy(Actor* thisx, GameState* state);
+void EnBubble_Update(Actor* thisx, GameState* state);
+void EnBubble_Draw(Actor* thisx, GameState* state);
 
 void EnBubble_Wait(EnBubble* this, GlobalContext* globalCtx);
 void EnBubble_Pop(EnBubble* this, GlobalContext* globalCtx);
@@ -332,7 +332,7 @@ void func_809CC774(EnBubble* this) {
     this->colliderSphere.elements[1].dim = *dim;
 }
 
-void EnBubble_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBubble_Init(Actor* thisx, GameState* state) {
     EnBubble* this = THIS;
     u32 pad;
 
@@ -352,7 +352,7 @@ void EnBubble_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnBubble_Wait;
 }
 
-void EnBubble_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBubble_Destroy(Actor* thisx, GameState* state) {
     EnBubble* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->colliderSphere);
@@ -398,7 +398,7 @@ void EnBubble_Regrow(EnBubble* this, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->colliderSphere.base);
 }
 
-void EnBubble_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBubble_Update(Actor* thisx, GameState* state) {
     EnBubble* this = THIS;
 
     func_8002D7EC(&this->actor);
@@ -407,7 +407,7 @@ void EnBubble_Update(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetFocus(&this->actor, this->actor.shape.yOffset);
 }
 
-void EnBubble_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBubble_Draw(Actor* thisx, GameState* state) {
     EnBubble* this = THIS;
     u32 pad;
 

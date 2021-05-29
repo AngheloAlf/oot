@@ -11,9 +11,9 @@
 
 #define THIS ((EnOkarinaTag*)thisx)
 
-void EnOkarinaTag_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnOkarinaTag_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnOkarinaTag_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnOkarinaTag_Init(Actor* thisx, GameState* state);
+void EnOkarinaTag_Destroy(Actor* thisx, GameState* state);
+void EnOkarinaTag_Update(Actor* thisx, GameState* state);
 
 void func_80ABEF2C(EnOkarinaTag* this, GlobalContext* globalCtx);
 void func_80ABF708(EnOkarinaTag* this, GlobalContext* globalCtx);
@@ -40,10 +40,10 @@ extern CutsceneData D_020024A0[];
 extern CutsceneData D_80ABF9D0[];
 extern CutsceneData D_80ABFB40[];
 
-void EnOkarinaTag_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkarinaTag_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnOkarinaTag_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkarinaTag_Init(Actor* thisx, GameState* state) {
     EnOkarinaTag* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -315,7 +315,7 @@ void func_80ABF7CC(EnOkarinaTag* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnOkarinaTag_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkarinaTag_Update(Actor* thisx, GameState* state) {
     EnOkarinaTag* this = THIS;
 
     this->actionFunc(this, globalCtx);

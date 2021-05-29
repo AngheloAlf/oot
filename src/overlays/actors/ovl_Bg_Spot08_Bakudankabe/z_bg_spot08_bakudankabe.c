@@ -12,10 +12,10 @@
 
 #define THIS ((BgSpot08Bakudankabe*)thisx)
 
-void BgSpot08Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot08Bakudankabe_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot08Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot08Bakudankabe_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot08Bakudankabe_Init(Actor* thisx, GameState* state);
+void BgSpot08Bakudankabe_Destroy(Actor* thisx, GameState* state);
+void BgSpot08Bakudankabe_Update(Actor* thisx, GameState* state);
+void BgSpot08Bakudankabe_Draw(Actor* thisx, GameState* state);
 
 void func_808B02D0(BgSpot08Bakudankabe* this, GlobalContext* globalCtx);
 void func_808B0324(BgSpot08Bakudankabe* this, GlobalContext* globalCtx);
@@ -160,7 +160,7 @@ void func_808B0324(BgSpot08Bakudankabe* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot08Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Bakudankabe_Init(Actor* thisx, GameState* state) {
     BgSpot08Bakudankabe* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -176,14 +176,14 @@ void BgSpot08Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
 }
 
-void BgSpot08Bakudankabe_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Bakudankabe_Destroy(Actor* thisx, GameState* state) {
     BgSpot08Bakudankabe* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
     Collider_DestroyJntSph(globalCtx, &this->collider);
 }
 
-void BgSpot08Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Bakudankabe_Update(Actor* thisx, GameState* state) {
     BgSpot08Bakudankabe* this = THIS;
 
     if (this->collider.base.acFlags & AC_HIT) {
@@ -197,7 +197,7 @@ void BgSpot08Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot08Bakudankabe_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Bakudankabe_Draw(Actor* thisx, GameState* state) {
     BgSpot08Bakudankabe* this = THIS;
 
     Collider_UpdateSpheres(0, &this->collider);

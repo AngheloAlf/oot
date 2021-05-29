@@ -11,10 +11,10 @@
 
 #define THIS ((ObjKibako2*)thisx)
 
-void ObjKibako2_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjKibako2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjKibako2_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjKibako2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjKibako2_Init(Actor* thisx, GameState* state);
+void ObjKibako2_Destroy(Actor* thisx, GameState* state);
+void ObjKibako2_Update(Actor* thisx, GameState* state);
+void ObjKibako2_Draw(Actor* thisx, GameState* state);
 void ObjKibako2_Idle(ObjKibako2* this, GlobalContext* globalCtx);
 void ObjKibako2_Kill(ObjKibako2* this, GlobalContext* globalCtx);
 
@@ -119,7 +119,7 @@ void ObjKibako2_SpawnCollectible(ObjKibako2* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjKibako2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjKibako2_Init(Actor* thisx, GameState* state) {
     ObjKibako2* this = THIS;
     s16 pad;
     CollisionHeader* colHeader = NULL;
@@ -140,7 +140,7 @@ void ObjKibako2_Init(Actor* thisx, GlobalContext* globalCtx) {
                  this->dyna.actor.home.rot.x);
 }
 
-void ObjKibako2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjKibako2_Destroy(Actor* thisx, GameState* state) {
     ObjKibako2* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -173,12 +173,12 @@ void ObjKibako2_Kill(ObjKibako2* this, GlobalContext* globalCtx) {
     Actor_Kill(&this->dyna.actor);
 }
 
-void ObjKibako2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjKibako2_Update(Actor* thisx, GameState* state) {
     ObjKibako2* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void ObjKibako2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjKibako2_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06000960);
 }

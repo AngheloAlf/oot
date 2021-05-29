@@ -11,10 +11,10 @@
 
 #define THIS ((OceffSpot*)thisx)
 
-void OceffSpot_Init(Actor* thisx, GlobalContext* globalCtx);
-void OceffSpot_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void OceffSpot_Update(Actor* thisx, GlobalContext* globalCtx);
-void OceffSpot_Draw(Actor* thisx, GlobalContext* globalCtx);
+void OceffSpot_Init(Actor* thisx, GameState* state);
+void OceffSpot_Destroy(Actor* thisx, GameState* state);
+void OceffSpot_Update(Actor* thisx, GameState* state);
+void OceffSpot_Draw(Actor* thisx, GameState* state);
 
 void OceffSpot_GrowCylinder(OceffSpot* this, GlobalContext* globalCtx);
 
@@ -41,7 +41,7 @@ void OceffSpot_SetupAction(OceffSpot* this, OceffSpotActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void OceffSpot_Init(Actor* thisx, GlobalContext* globalCtx) {
+void OceffSpot_Init(Actor* thisx, GameState* state) {
     s32 pad;
     OceffSpot* this = THIS;
 
@@ -64,7 +64,7 @@ void OceffSpot_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_174 = 0;
 }
 
-void OceffSpot_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void OceffSpot_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     OceffSpot* this = THIS;
     Player* player = PLAYER;
@@ -117,7 +117,7 @@ void OceffSpot_GrowCylinder(OceffSpot* this, GlobalContext* globalCtx) {
     }
 }
 
-void OceffSpot_Update(Actor* thisx, GlobalContext* globalCtx) {
+void OceffSpot_Update(Actor* thisx, GameState* state) {
     OceffSpot* this = THIS;
     s32 pad;
     Player* player = PLAYER;
@@ -146,7 +146,7 @@ void OceffSpot_Update(Actor* thisx, GlobalContext* globalCtx) {
                               (s32)(255.0f * temp), (s32)(255.0f * temp), (s32)(200.0f * temp), (s16)(100.0f * temp));
 }
 
-void OceffSpot_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void OceffSpot_Draw(Actor* thisx, GameState* state) {
     OceffSpot* this = THIS;
     u32 scroll = globalCtx->state.frames & 0xFFFF;
 

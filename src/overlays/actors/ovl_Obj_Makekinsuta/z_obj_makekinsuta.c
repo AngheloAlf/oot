@@ -11,8 +11,8 @@
 
 #define THIS ((ObjMakekinsuta*)thisx)
 
-void ObjMakekinsuta_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjMakekinsuta_Update(Actor* thisx, GlobalContext* globalCtx);
+void ObjMakekinsuta_Init(Actor* thisx, GameState* state);
+void ObjMakekinsuta_Update(Actor* thisx, GameState* state);
 
 void func_80B98320(ObjMakekinsuta* this, GlobalContext* globalCtx);
 void ObjMakekinsuta_DoNothing(ObjMakekinsuta* this, GlobalContext* globalCtx);
@@ -29,7 +29,7 @@ const ActorInit Obj_Makekinsuta_InitVars = {
     NULL,
 };
 
-void ObjMakekinsuta_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjMakekinsuta_Init(Actor* thisx, GameState* state) {
     ObjMakekinsuta* this = THIS;
 
     if ((this->actor.params & 0x6000) == 0x4000) {
@@ -63,7 +63,7 @@ void func_80B98320(ObjMakekinsuta* this, GlobalContext* globalCtx) {
 void ObjMakekinsuta_DoNothing(ObjMakekinsuta* this, GlobalContext* globalCtx) {
 }
 
-void ObjMakekinsuta_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjMakekinsuta_Update(Actor* thisx, GameState* state) {
     ObjMakekinsuta* this = THIS;
 
     this->actionFunc(this, globalCtx);

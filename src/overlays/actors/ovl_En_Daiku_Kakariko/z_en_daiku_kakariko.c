@@ -17,10 +17,10 @@ typedef enum {
     /* 0x3 */ CARPENTER_SHIRO    // Pink and purple pants, two-spiked hair
 } KakarikoCarpenterType;
 
-void EnDaikuKakariko_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDaikuKakariko_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDaikuKakariko_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDaikuKakariko_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDaikuKakariko_Init(Actor* thisx, GameState* state);
+void EnDaikuKakariko_Destroy(Actor* thisx, GameState* state);
+void EnDaikuKakariko_Update(Actor* thisx, GameState* state);
+void EnDaikuKakariko_Draw(Actor* thisx, GameState* state);
 
 void EnDaikuKakariko_Wait(EnDaikuKakariko* this, GlobalContext* globalCtx);
 void EnDaikuKakariko_Run(EnDaikuKakariko* this, GlobalContext* globalCtx);
@@ -84,7 +84,7 @@ void EnDaikuKakariko_SetAnimFromIndex(EnDaikuKakariko* this, s32 animIndex, s32*
     *currentAnimIndex = animIndex;
 }
 
-void EnDaikuKakariko_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaikuKakariko_Init(Actor* thisx, GameState* state) {
     static u16 initFlags[] = { 0x0080, 0x00B0, 0x0070, 0x0470 }; // List of inital values for this->flags
     EnDaikuKakariko* this = THIS;
     s32 pad;
@@ -162,7 +162,7 @@ void EnDaikuKakariko_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDaikuKakariko_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaikuKakariko_Destroy(Actor* thisx, GameState* state) {
     EnDaikuKakariko* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -410,7 +410,7 @@ void EnDaikuKakariko_Run(EnDaikuKakariko* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDaikuKakariko_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaikuKakariko_Update(Actor* thisx, GameState* state) {
     EnDaikuKakariko* this = THIS;
     s32 pad;
     Player* player = PLAYER;
@@ -497,7 +497,7 @@ void EnDaikuKakariko_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx**
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_daiku_kakariko.c", 1113);
 }
 
-void EnDaikuKakariko_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaikuKakariko_Draw(Actor* thisx, GameState* state) {
     EnDaikuKakariko* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_daiku_kakariko.c", 1124);

@@ -15,10 +15,10 @@ typedef enum {
     /* 1 */ WINDMILL_DAMPE_STONE_DOOR
 } WindmillSetpiecesMode;
 
-void BgRelayObjects_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgRelayObjects_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgRelayObjects_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgRelayObjects_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgRelayObjects_Init(Actor* thisx, GameState* state);
+void BgRelayObjects_Destroy(Actor* thisx, GameState* state);
+void BgRelayObjects_Update(Actor* thisx, GameState* state);
+void BgRelayObjects_Draw(Actor* thisx, GameState* state);
 
 void func_808A90F4(BgRelayObjects* this, GlobalContext* globalCtx);
 void func_808A91AC(BgRelayObjects* this, GlobalContext* globalCtx);
@@ -49,7 +49,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgRelayObjects_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgRelayObjects_Init(Actor* thisx, GameState* state) {
     static u32 D_808A9508 = 0;
     BgRelayObjects* this = THIS;
     s32 pad;
@@ -110,7 +110,7 @@ void BgRelayObjects_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, thisx, colHeader);
 }
 
-void BgRelayObjects_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgRelayObjects_Destroy(Actor* thisx, GameState* state) {
     BgRelayObjects* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -198,13 +198,13 @@ void func_808A939C(BgRelayObjects* this, GlobalContext* globalCtx) {
                   ((this->dyna.actor.world.rot.y - 0x80) * (1.0f / 0x380)) + 1.0f);
 }
 
-void BgRelayObjects_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgRelayObjects_Update(Actor* thisx, GameState* state) {
     BgRelayObjects* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgRelayObjects_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgRelayObjects_Draw(Actor* thisx, GameState* state) {
     BgRelayObjects* this = THIS;
 
     if (this->dyna.actor.params == WINDMILL_ROTATING_GEAR) {

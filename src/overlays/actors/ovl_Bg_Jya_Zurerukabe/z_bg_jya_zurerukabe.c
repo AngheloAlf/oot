@@ -12,10 +12,10 @@
 
 #define THIS ((BgJyaZurerukabe*)thisx)
 
-void BgJyaZurerukabe_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaZurerukabe_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaZurerukabe_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaZurerukabe_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaZurerukabe_Init(Actor* thisx, GameState* state);
+void BgJyaZurerukabe_Destroy(Actor* thisx, GameState* state);
+void BgJyaZurerukabe_Update(Actor* thisx, GameState* state);
+void BgJyaZurerukabe_Draw(Actor* thisx, GameState* state);
 
 void func_8089B4C8(BgJyaZurerukabe* this, GlobalContext* globalCtx);
 void func_8089B7B4(BgJyaZurerukabe* this);
@@ -109,7 +109,7 @@ void func_8089B4C8(BgJyaZurerukabe* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaZurerukabe_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaZurerukabe_Init(Actor* thisx, GameState* state) {
     BgJyaZurerukabe* this = THIS;
     s32 i;
 
@@ -135,7 +135,7 @@ void BgJyaZurerukabe_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(jya ずれる壁)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void BgJyaZurerukabe_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaZurerukabe_Destroy(Actor* thisx, GameState* state) {
     BgJyaZurerukabe* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -172,7 +172,7 @@ void func_8089B870(BgJyaZurerukabe* this, GlobalContext* globalCtx) {
     func_8002F974(&this->dyna.actor, NA_SE_EV_ELEVATOR_MOVE - SFX_FLAG);
 }
 
-void BgJyaZurerukabe_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaZurerukabe_Update(Actor* thisx, GameState* state) {
     BgJyaZurerukabe* this = THIS;
 
     if (this->unk_16A > 0) {
@@ -186,6 +186,6 @@ void BgJyaZurerukabe_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaZurerukabe_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaZurerukabe_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gZurerukabeDL);
 }

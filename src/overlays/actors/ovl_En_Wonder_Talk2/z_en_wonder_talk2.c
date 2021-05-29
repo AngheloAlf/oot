@@ -11,9 +11,9 @@
 
 #define THIS ((EnWonderTalk2*)thisx)
 
-void EnWonderTalk2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWonderTalk2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWonderTalk2_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnWonderTalk2_Init(Actor* thisx, GameState* state);
+void EnWonderTalk2_Destroy(Actor* thisx, GameState* state);
+void EnWonderTalk2_Update(Actor* thisx, GameState* state);
 
 void func_80B3A10C(EnWonderTalk2* this, GlobalContext* globalCtx);
 void func_80B3A4F8(EnWonderTalk2* this, GlobalContext* globalCtx);
@@ -35,10 +35,10 @@ const ActorInit En_Wonder_Talk2_InitVars = {
 
 static s16 D_80B3A8E0[] = { 6, 0, 1, 2, 3, 4, 5 };
 
-void EnWonderTalk2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderTalk2_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnWonderTalk2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderTalk2_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnWonderTalk2* this = THIS;
 
@@ -268,7 +268,7 @@ void func_80B3A4F8(EnWonderTalk2* this, GlobalContext* globalCtx) {
 void EnWonderTalk2_DoNothing(EnWonderTalk2* this, GlobalContext* globalCtx) {
 }
 
-void EnWonderTalk2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderTalk2_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnWonderTalk2* this = THIS;
 

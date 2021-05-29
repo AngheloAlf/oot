@@ -14,10 +14,10 @@
 
 #define THIS ((EnDntJiji*)thisx)
 
-void EnDntJiji_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDntJiji_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDntJiji_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDntJiji_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDntJiji_Init(Actor* thisx, GameState* state);
+void EnDntJiji_Destroy(Actor* thisx, GameState* state);
+void EnDntJiji_Update(Actor* thisx, GameState* state);
+void EnDntJiji_Draw(Actor* thisx, GameState* state);
 
 void EnDntJiji_SetFlower(EnDntJiji* this, GlobalContext* globalCtx);
 
@@ -73,7 +73,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 30, 80, 0, { 0, 0, 0 } },
 };
 
-void EnDntJiji_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntJiji_Init(Actor* thisx, GameState* state) {
     EnDntJiji* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 0.0f);
@@ -92,7 +92,7 @@ void EnDntJiji_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.gravity = -2.0f;
 }
 
-void EnDntJiji_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntJiji_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnDntJiji* this = THIS;
 
@@ -370,7 +370,7 @@ void EnDntJiji_Return(EnDntJiji* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDntJiji_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntJiji_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnDntJiji* this = THIS;
 
@@ -428,7 +428,7 @@ void EnDntJiji_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDntJiji_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntJiji_Draw(Actor* thisx, GameState* state) {
     static void* blinkTex[] = { &gDntJijiEyeOpenTex, &gDntJijiEyeHalfTex, &gDntJijiEyeShutTex };
     EnDntJiji* this = THIS;
 

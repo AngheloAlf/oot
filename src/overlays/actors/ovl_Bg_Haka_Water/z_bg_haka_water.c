@@ -10,10 +10,10 @@
 
 #define THIS ((BgHakaWater*)thisx)
 
-void BgHakaWater_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaWater_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaWater_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaWater_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaWater_Init(Actor* thisx, GameState* state);
+void BgHakaWater_Destroy(Actor* thisx, GameState* state);
+void BgHakaWater_Update(Actor* thisx, GameState* state);
+void BgHakaWater_Draw(Actor* thisx, GameState* state);
 
 void func_80881D94(BgHakaWater* this, GlobalContext* globalCtx);
 void BgHakaWater_Wait(BgHakaWater* this, GlobalContext* globalCtx);
@@ -38,7 +38,7 @@ static InitChainEntry sInitChain[] = {
 extern Gfx D_06001E50[];
 extern Gfx D_06002010[];
 
-void BgHakaWater_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaWater_Init(Actor* thisx, GameState* state) {
     BgHakaWater* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -53,7 +53,7 @@ void BgHakaWater_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgHakaWater_Wait;
 }
 
-void BgHakaWater_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaWater_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_80881D94(BgHakaWater* this, GlobalContext* globalCtx) {
@@ -103,13 +103,13 @@ void BgHakaWater_ChangeWaterLevel(BgHakaWater* this, GlobalContext* globalCtx) {
     func_80881D94(this, globalCtx);
 }
 
-void BgHakaWater_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaWater_Update(Actor* thisx, GameState* state) {
     BgHakaWater* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHakaWater_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaWater_Draw(Actor* thisx, GameState* state) {
     BgHakaWater* this = THIS;
     s32 pad;
     f32 temp;

@@ -11,10 +11,10 @@
 
 #define THIS ((BgPoEvent*)thisx)
 
-void BgPoEvent_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgPoEvent_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgPoEvent_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgPoEvent_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgPoEvent_Init(Actor* thisx, GameState* state);
+void BgPoEvent_Destroy(Actor* thisx, GameState* state);
+void BgPoEvent_Update(Actor* thisx, GameState* state);
+void BgPoEvent_Draw(Actor* thisx, GameState* state);
 
 void BgPoEvent_BlockWait(BgPoEvent* this, GlobalContext* globalCtx);
 void BgPoEvent_BlockShake(BgPoEvent* this, GlobalContext* globalCtx);
@@ -193,7 +193,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
-void BgPoEvent_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoEvent_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgPoEvent* this = THIS;
 
@@ -220,7 +220,7 @@ void BgPoEvent_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgPoEvent_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoEvent_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgPoEvent* this = THIS;
 
@@ -582,7 +582,7 @@ void BgPoEvent_PaintingBurn(BgPoEvent* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgPoEvent_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoEvent_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgPoEvent* this = THIS;
 
@@ -592,7 +592,7 @@ void BgPoEvent_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgPoEvent_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoEvent_Draw(Actor* thisx, GameState* state) {
     static Gfx* displayLists[] = {
         gPoSistersAmyBlockDL,     gPoSistersAmyBethBlockDL, gPoSistersJoellePaintingDL,
         gPoSistersBethPaintingDL, gPoSistersAmyPaintingDL,

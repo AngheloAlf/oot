@@ -19,10 +19,10 @@ typedef enum {
     /* 3 */ JABUJABU_EYE_MAX
 } EnJjEyeState;
 
-void EnJj_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnJj_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnJj_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnJj_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnJj_Init(Actor* thisx, GameState* state);
+void EnJj_Destroy(Actor* thisx, GameState* state);
+void EnJj_Update(Actor* thisx, GameState* state);
+void EnJj_Draw(Actor* thisx, GameState* state);
 
 void EnJj_UpdateStaticCollision(Actor* thisx, GlobalContext* globalCtx);
 void EnJj_WaitToOpenMouth(EnJj* this, GlobalContext* globalCtx);
@@ -79,7 +79,7 @@ void EnJj_SetupAction(EnJj* this, EnJjActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnJj_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnJj_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnJj* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -137,7 +137,7 @@ void EnJj_Init(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void EnJj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnJj_Destroy(Actor* thisx, GameState* state) {
     EnJj* this = THIS;
 
     switch (this->dyna.actor.params) {
@@ -285,7 +285,7 @@ void EnJj_RemoveDust(EnJj* this, GlobalContext* globalCtx) {
 void EnJj_UpdateStaticCollision(Actor* thisx, GlobalContext* globalCtx) {
 }
 
-void EnJj_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnJj_Update(Actor* thisx, GameState* state) {
     EnJj* this = THIS;
 
     if ((globalCtx->csCtx.state != CS_STATE_IDLE) && (globalCtx->csCtx.npcActions[2] != NULL)) {
@@ -312,7 +312,7 @@ static u64* sEyeTextures[] = {
     gJabuJabuEyeClosedTex,
 };
 
-void EnJj_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void EnJj_Draw(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnJj* this = THIS;
 

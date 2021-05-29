@@ -10,10 +10,10 @@
 
 #define THIS ((EnVali*)thisx)
 
-void EnVali_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnVali_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnVali_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnVali_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnVali_Init(Actor* thisx, GameState* state);
+void EnVali_Destroy(Actor* thisx, GameState* state);
+void EnVali_Update(Actor* thisx, GameState* state);
+void EnVali_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000710;
 extern UNK_TYPE D_06000854;

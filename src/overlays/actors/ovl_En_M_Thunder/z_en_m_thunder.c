@@ -5,10 +5,10 @@
 
 #define THIS ((EnMThunder*)thisx)
 
-void EnMThunder_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMThunder_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMThunder_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMThunder_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMThunder_Init(Actor* thisx, GameState* state);
+void EnMThunder_Destroy(Actor* thisx, GameState* state);
+void EnMThunder_Update(Actor* thisx, GameState* state);
+void EnMThunder_Draw(Actor* thisx, GameState* state);
 
 void func_80A9F314(GlobalContext* globalCtx, f32 arg1);
 void func_80A9F408(EnMThunder* this, GlobalContext* globalCtx);
@@ -67,7 +67,7 @@ void func_80A9EFE0(EnMThunder* this, EnMThunderActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnMThunder_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnMThunder_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnMThunder* this = THIS;
     Player* player = PLAYER;
@@ -119,7 +119,7 @@ void EnMThunder_Init(Actor* thisx, GlobalContext* globalCtx2) {
     this->actor.child = NULL;
 }
 
-void EnMThunder_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMThunder_Destroy(Actor* thisx, GameState* state) {
     EnMThunder* this = THIS;
 
     if (this->unk_1CA != 0) {
@@ -308,7 +308,7 @@ void func_80A9F9B4(EnMThunder* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMThunder_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMThunder_Update(Actor* thisx, GameState* state) {
     EnMThunder* this = THIS;
     f32 blueRadius;
     s32 redGreen;
@@ -323,7 +323,7 @@ void EnMThunder_Update(Actor* thisx, GlobalContext* globalCtx) {
 }
 
 #ifdef NON_MATCHING
-void EnMThunder_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void EnMThunder_Draw(Actor* thisx, GameState* state) {
     static f32 D_80AA046C[] = { 0.1f, 0.15f, 0.2f, 0.25f, 0.3f, 0.25f, 0.2f, 0.15f };
     GlobalContext* globalCtx = globalCtx2;
     EnMThunder* this = THIS;

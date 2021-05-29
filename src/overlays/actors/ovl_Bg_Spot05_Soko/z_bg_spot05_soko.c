@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot05Soko*)thisx)
 
-void BgSpot05Soko_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot05Soko_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot05Soko_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot05Soko_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot05Soko_Init(Actor* thisx, GameState* state);
+void BgSpot05Soko_Destroy(Actor* thisx, GameState* state);
+void BgSpot05Soko_Update(Actor* thisx, GameState* state);
+void BgSpot05Soko_Draw(Actor* thisx, GameState* state);
 void func_808AE5A8(BgSpot05Soko* this, GlobalContext* globalCtx);
 void func_808AE5B4(BgSpot05Soko* this, GlobalContext* globalCtx);
 void func_808AE630(BgSpot05Soko* this, GlobalContext* globalCtx);
@@ -42,7 +42,7 @@ static Gfx* sDLists[] = {
     0x06001190,
 };
 
-void BgSpot05Soko_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot05Soko_Init(Actor* thisx, GameState* state) {
     s32 pad1;
     BgSpot05Soko* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -71,7 +71,7 @@ void BgSpot05Soko_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, thisx, colHeader);
 }
 
-void BgSpot05Soko_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot05Soko_Destroy(Actor* thisx, GameState* state) {
     BgSpot05Soko* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -98,12 +98,12 @@ void func_808AE630(BgSpot05Soko* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot05Soko_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot05Soko_Update(Actor* thisx, GameState* state) {
     BgSpot05Soko* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot05Soko_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot05Soko_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, sDLists[thisx->params]);
 }

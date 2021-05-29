@@ -43,10 +43,10 @@ this->actor.params & 0x1F
 Gorons only move when this->unk_194.unk_00 == 0
 */
 
-void EnGo2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGo2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGo2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGo2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGo2_Init(Actor* thisx, GameState* state);
+void EnGo2_Destroy(Actor* thisx, GameState* state);
+void EnGo2_Update(Actor* thisx, GameState* state);
+void EnGo2_Draw(Actor* thisx, GameState* state);
 
 void EnGo2_StopRolling(EnGo2* this, GlobalContext* globalCtx);
 void EnGo2_CurledUp(EnGo2* this, GlobalContext* globalCtx);
@@ -1494,7 +1494,7 @@ void EnGo2_BiggoronAnimation(EnGo2* this) {
     }
 }
 
-void EnGo2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo2_Init(Actor* thisx, GameState* state) {
     EnGo2* this = THIS;
     s32 pad;
 
@@ -1603,7 +1603,7 @@ void EnGo2_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnGo2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo2_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnGo2_CurledUp(EnGo2* this, GlobalContext* globalCtx) {
@@ -1950,7 +1950,7 @@ void EnGo2_GoronFireGenericAction(EnGo2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGo2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo2_Update(Actor* thisx, GameState* state) {
     EnGo2* this = THIS;
 
     func_80A45360(this, &this->alpha);
@@ -2041,7 +2041,7 @@ void EnGo2_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     }
 }
 
-void EnGo2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo2_Draw(Actor* thisx, GameState* state) {
     EnGo2* this = THIS;
     u64* eyeTextures[] = { D_0600DA80, D_0600CE80, D_0600D280, D_0600D680 };
     u64* mouthTextures[] = { D_0600DE80, D_0600E680 };

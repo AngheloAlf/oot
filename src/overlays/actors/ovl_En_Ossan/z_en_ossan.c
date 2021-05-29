@@ -5,9 +5,9 @@
 
 #define THIS ((EnOssan*)thisx)
 
-void EnOssan_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnOssan_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnOssan_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnOssan_Init(Actor* thisx, GameState* state);
+void EnOssan_Destroy(Actor* thisx, GameState* state);
+void EnOssan_Update(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_060000F0;
 extern UNK_TYPE D_060000FC;

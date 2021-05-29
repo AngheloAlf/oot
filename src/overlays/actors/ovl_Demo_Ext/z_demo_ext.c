@@ -22,17 +22,17 @@ typedef enum {
     /* 0x01 */ EXT_DRAW_VORTEX
 } DemoExtDrawMode;
 
-void DemoExt_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoExt_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoExt_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoExt_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoExt_Init(Actor* thisx, GameState* state);
+void DemoExt_Destroy(Actor* thisx, GameState* state);
+void DemoExt_Update(Actor* thisx, GameState* state);
+void DemoExt_Draw(Actor* thisx, GameState* state);
 
 extern Gfx D_0600FAA0[];
 
-void DemoExt_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoExt_Destroy(Actor* thisx, GameState* state) {
 }
 
-void DemoExt_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoExt_Init(Actor* thisx, GameState* state) {
     DemoExt* this = THIS;
 
     this->scrollIncr[0] = 25;
@@ -170,7 +170,7 @@ static DemoExtActionFunc sActionFuncs[] = {
     DemoExt_DispellVortex,
 };
 
-void DemoExt_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoExt_Update(Actor* thisx, GameState* state) {
     DemoExt* this = THIS;
 
     if ((this->action < EXT_WAIT) || (this->action > EXT_DISPELL) || sActionFuncs[this->action] == NULL) {
@@ -224,7 +224,7 @@ static DemoExtDrawFunc sDrawFuncs[] = {
     DemoExt_DrawVortex,
 };
 
-void DemoExt_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoExt_Draw(Actor* thisx, GameState* state) {
     DemoExt* this = THIS;
 
     if ((this->drawMode < EXT_DRAW_NOTHING) || (this->drawMode > EXT_DRAW_VORTEX) ||

@@ -10,10 +10,10 @@
 
 #define THIS ((OceffStorm*)thisx)
 
-void OceffStorm_Init(Actor* thisx, GlobalContext* globalCtx);
-void OceffStorm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void OceffStorm_Update(Actor* thisx, GlobalContext* globalCtx);
-void OceffStorm_Draw(Actor* thisx, GlobalContext* globalCtx);
+void OceffStorm_Init(Actor* thisx, GameState* state);
+void OceffStorm_Destroy(Actor* thisx, GameState* state);
+void OceffStorm_Update(Actor* thisx, GameState* state);
+void OceffStorm_Draw(Actor* thisx, GameState* state);
 
 void OceffStorm_Draw2(Actor* thisx, GlobalContext* globalCtx);
 
@@ -38,7 +38,7 @@ void OceffStorm_SetupAction(OceffStorm* this, OceffStormActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void OceffStorm_Init(Actor* thisx, GlobalContext* globalCtx) {
+void OceffStorm_Init(Actor* thisx, GameState* state) {
     OceffStorm* this = THIS;
     OceffStorm_SetupAction(this, OceffStorm_DefaultAction);
     this->posYOffAdd = 0;
@@ -59,7 +59,7 @@ void OceffStorm_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void OceffStorm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void OceffStorm_Destroy(Actor* thisx, GameState* state) {
     OceffStorm* this = THIS;
     Player* player = PLAYER;
 
@@ -115,7 +115,7 @@ void OceffStorm_UnkAction(OceffStorm* this, GlobalContext* globalCtx) {
     // ! @bug Actor_Kill is never called so the actor will stay alive forever
 }
 
-void OceffStorm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void OceffStorm_Update(Actor* thisx, GameState* state) {
     OceffStorm* this = THIS;
     Player* player = PLAYER;
 
@@ -147,7 +147,7 @@ void OceffStorm_Draw2(Actor* thisx, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_oceff_storm.c", 477);
 }
 
-void OceffStorm_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void OceffStorm_Draw(Actor* thisx, GameState* state) {
     u32 scroll = globalCtx->state.frames & 0xFFF;
     OceffStorm* this = THIS;
     Vtx* vtxPtr = sCylinderVtx;

@@ -10,10 +10,10 @@
 
 #define THIS ((EnDs*)thisx)
 
-void EnDs_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDs_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDs_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDs_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDs_Init(Actor* thisx, GameState* state);
+void EnDs_Destroy(Actor* thisx, GameState* state);
+void EnDs_Update(Actor* thisx, GameState* state);
+void EnDs_Draw(Actor* thisx, GameState* state);
 
 void EnDs_Wait(EnDs* this, GlobalContext* globalCtx);
 
@@ -32,7 +32,7 @@ const ActorInit En_Ds_InitVars = {
 extern FlexSkeletonHeader D_06004768;
 extern AnimationHeader D_0600039C;
 
-void EnDs_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDs_Init(Actor* thisx, GameState* state) {
     EnDs* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 36.0f);
@@ -50,7 +50,7 @@ void EnDs_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_1E4 = 0.0f;
 }
 
-void EnDs_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDs_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnDs_Talk(EnDs* this, GlobalContext* globalCtx) {
@@ -235,7 +235,7 @@ void EnDs_Wait(EnDs* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDs_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDs_Update(Actor* thisx, GameState* state) {
     EnDs* this = THIS;
 
     if (SkelAnime_Update(&this->skelAnime) != 0) {
@@ -273,7 +273,7 @@ void EnDs_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnDs_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDs_Draw(Actor* thisx, GameState* state) {
     EnDs* this = THIS;
 
     func_800943C8(globalCtx->state.gfxCtx);

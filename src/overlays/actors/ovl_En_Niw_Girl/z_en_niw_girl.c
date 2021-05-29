@@ -12,10 +12,10 @@
 
 #define THIS ((EnNiwGirl*)thisx)
 
-void EnNiwGirl_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnNiwGirl_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnNiwGirl_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnNiwGirl_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnNiwGirl_Init(Actor* thisx, GameState* state);
+void EnNiwGirl_Destroy(Actor* thisx, GameState* state);
+void EnNiwGirl_Update(Actor* thisx, GameState* state);
+void EnNiwGirl_Draw(Actor* thisx, GameState* state);
 
 void EnNiwGirl_Talk(EnNiwGirl* this, GlobalContext* globalCtx);
 void func_80AB94D0(EnNiwGirl* this, GlobalContext* globalCtx);
@@ -53,7 +53,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 10, 30, 0, { 0, 0, 0 } },
 };
 
-void EnNiwGirl_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwGirl_Init(Actor* thisx, GameState* state) {
     EnNiwGirl* this = THIS;
     s32 pad;
     Vec3f vec1;
@@ -93,7 +93,7 @@ void EnNiwGirl_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnNiwGirl_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwGirl_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnNiwGirl_Jump(EnNiwGirl* this, GlobalContext* globalCtx) {
@@ -187,7 +187,7 @@ void func_80AB94D0(EnNiwGirl* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnNiwGirl_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwGirl_Update(Actor* thisx, GameState* state) {
     EnNiwGirl* this = THIS;
     EnNiwGirlActionFunc tempActionFunc;
     Player* player = PLAYER;
@@ -246,7 +246,7 @@ s32 EnNiwGirlOverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLi
 
 static Vec3f sConstVec3f = { 0.2f, 0.2f, 0.2f };
 
-void EnNiwGirl_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwGirl_Draw(Actor* thisx, GameState* state) {
     static u64* eyeTextures[] = { gNiwGirlEyeOpenTex, gNiwGirlEyeHalfTex, gNiwGirlEyeClosedTex };
     EnNiwGirl* this = THIS;
     s32 pad;

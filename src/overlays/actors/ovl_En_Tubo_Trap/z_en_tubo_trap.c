@@ -13,10 +13,10 @@
 
 #define THIS ((EnTuboTrap*)thisx)
 
-void EnTuboTrap_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTuboTrap_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTuboTrap_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTuboTrap_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTuboTrap_Init(Actor* thisx, GameState* state);
+void EnTuboTrap_Destroy(Actor* thisx, GameState* state);
+void EnTuboTrap_Update(Actor* thisx, GameState* state);
+void EnTuboTrap_Draw(Actor* thisx, GameState* state);
 
 void EnTuboTrap_WaitForProximity(EnTuboTrap* this, GlobalContext* globalCtx);
 void EnTuboTrap_Levitate(EnTuboTrap* this, GlobalContext* globalCtx);
@@ -54,7 +54,7 @@ const ActorInit En_Tubo_Trap_InitVars = {
     (ActorFunc)EnTuboTrap_Draw,
 };
 
-void EnTuboTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTuboTrap_Init(Actor* thisx, GameState* state) {
     EnTuboTrap* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 2.0f);
@@ -66,7 +66,7 @@ void EnTuboTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnTuboTrap_WaitForProximity;
 }
 
-void EnTuboTrap_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTuboTrap_Destroy(Actor* thisx, GameState* state) {
     EnTuboTrap* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -273,7 +273,7 @@ void EnTuboTrap_Fly(EnTuboTrap* this, GlobalContext* globalCtx) {
     EnTuboTrap_HandleImpact(this, globalCtx);
 }
 
-void EnTuboTrap_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTuboTrap_Update(Actor* thisx, GameState* state) {
     EnTuboTrap* this = THIS;
     s32 pad;
 
@@ -286,6 +286,6 @@ void EnTuboTrap_Update(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetAT(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void EnTuboTrap_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTuboTrap_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gPotDL);
 }

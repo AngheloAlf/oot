@@ -13,10 +13,10 @@
 
 #define THIS ((BgSpot17Bakudankabe*)thisx)
 
-void BgSpot17Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot17Bakudankabe_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot17Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot17Bakudankabe_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot17Bakudankabe_Init(Actor* thisx, GameState* state);
+void BgSpot17Bakudankabe_Destroy(Actor* thisx, GameState* state);
+void BgSpot17Bakudankabe_Update(Actor* thisx, GameState* state);
+void BgSpot17Bakudankabe_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Spot17_Bakudankabe_InitVars = {
     ACTOR_BG_SPOT17_BAKUDANKABE,
@@ -92,7 +92,7 @@ void func_808B6BC0(BgSpot17Bakudankabe* this, GlobalContext* globalCtx) {
     func_80033480(globalCtx, &burstDepthY, 60.0f, 4, 110, 160, 1);
 }
 
-void BgSpot17Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot17Bakudankabe_Init(Actor* thisx, GameState* state) {
     BgSpot17Bakudankabe* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -108,12 +108,12 @@ void BgSpot17Bakudankabe_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
 }
 
-void BgSpot17Bakudankabe_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot17Bakudankabe_Destroy(Actor* thisx, GameState* state) {
     BgSpot17Bakudankabe* this = THIS;
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void BgSpot17Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot17Bakudankabe_Update(Actor* thisx, GameState* state) {
     BgSpot17Bakudankabe* this = THIS;
     if (this->dyna.actor.xzDistToPlayer < 650.0f && func_80033684(globalCtx, &this->dyna.actor) != NULL) {
         func_808B6BC0(this, globalCtx);
@@ -124,7 +124,7 @@ void BgSpot17Bakudankabe_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot17Bakudankabe_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot17Bakudankabe_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     s8 r = coss(globalCtx->gameplayFrames * 1500) >> 8;
     s8 g = coss(globalCtx->gameplayFrames * 1500) >> 8;

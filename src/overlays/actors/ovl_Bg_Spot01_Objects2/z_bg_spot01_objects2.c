@@ -10,9 +10,9 @@
 
 #define THIS ((BgSpot01Objects2*)thisx)
 
-void BgSpot01Objects2_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Objects2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Objects2_Update(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot01Objects2_Init(Actor* thisx, GameState* state);
+void BgSpot01Objects2_Destroy(Actor* thisx, GameState* state);
+void BgSpot01Objects2_Update(Actor* thisx, GameState* state);
 
 void func_808AC2BC(BgSpot01Objects2* this, GlobalContext* globalCtx);
 void func_808AC474(BgSpot01Objects2* this, GlobalContext* globalCtx);
@@ -42,7 +42,7 @@ static Gfx* D_808AC510[] = { 0x06001EB0, 0x06002780, 0x06003078, 0x06001228, 0x0
 extern CollisionHeader D_06001A38;
 extern CollisionHeader D_06001C58;
 
-void BgSpot01Objects2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Objects2_Init(Actor* thisx, GameState* state) {
     BgSpot01Objects2* this = THIS;
 
     switch (this->dyna.actor.params & 7) {
@@ -73,7 +73,7 @@ void BgSpot01Objects2_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
 }
 
-void BgSpot01Objects2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Objects2_Destroy(Actor* thisx, GameState* state) {
 }
 
 s32 func_808AC22C(Path* pathList, Vec3f* pos, s32 path, s32 waypoint) {
@@ -128,7 +128,7 @@ void func_808AC2BC(BgSpot01Objects2* this, GlobalContext* globalCtx) {
 void func_808AC474(BgSpot01Objects2* this, GlobalContext* globalCtx) {
 }
 
-void BgSpot01Objects2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Objects2_Update(Actor* thisx, GameState* state) {
     BgSpot01Objects2* this = THIS;
 
     this->actionFunc(this, globalCtx);

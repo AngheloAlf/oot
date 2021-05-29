@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot12Saku*)thisx)
 
-void BgSpot12Saku_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot12Saku_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot12Saku_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot12Saku_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot12Saku_Init(Actor* thisx, GameState* state);
+void BgSpot12Saku_Destroy(Actor* thisx, GameState* state);
+void BgSpot12Saku_Update(Actor* thisx, GameState* state);
+void BgSpot12Saku_Draw(Actor* thisx, GameState* state);
 
 void func_808B3550(BgSpot12Saku* this);
 void func_808B357C(BgSpot12Saku* this, GlobalContext* globalCtx);
@@ -58,7 +58,7 @@ void func_808B3420(BgSpot12Saku* this, GlobalContext* globalCtx, CollisionHeader
     }
 }
 
-void BgSpot12Saku_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Saku_Init(Actor* thisx, GameState* state) {
     BgSpot12Saku* this = THIS;
 
     func_808B3420(this, globalCtx, &D_0600238C, DPM_UNK);
@@ -70,7 +70,7 @@ void BgSpot12Saku_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot12Saku_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Saku_Destroy(Actor* thisx, GameState* state) {
     BgSpot12Saku* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -125,7 +125,7 @@ void func_808B3714(BgSpot12Saku* this) {
 void func_808B37AC(BgSpot12Saku* this, GlobalContext* globalCtx) {
 }
 
-void BgSpot12Saku_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Saku_Update(Actor* thisx, GameState* state) {
     BgSpot12Saku* this = THIS;
 
     if (this->timer > 0) {
@@ -134,6 +134,6 @@ void BgSpot12Saku_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot12Saku_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Saku_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06002260);
 }

@@ -53,10 +53,10 @@ typedef enum {
     /* 0x2 */ TEKTITE_FLIPPED
 } EnTiteFlipState;
 
-void EnTite_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTite_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTite_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTite_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTite_Init(Actor* thisx, GameState* state);
+void EnTite_Destroy(Actor* thisx, GameState* state);
+void EnTite_Update(Actor* thisx, GameState* state);
+void EnTite_Draw(Actor* thisx, GameState* state);
 
 void EnTite_SetupIdle(EnTite* this);
 void EnTite_SetupTurnTowardPlayer(EnTite* this);
@@ -189,7 +189,7 @@ void EnTite_SetupAction(EnTite* this, EnTiteActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnTite_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTite_Init(Actor* thisx, GameState* state) {
     EnTite* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -216,7 +216,7 @@ void EnTite_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnTite_SetupIdle(this);
 }
 
-void EnTite_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTite_Destroy(Actor* thisx, GameState* state) {
     EnTite* this = THIS;
     EnEncount1* spawner;
 
@@ -900,7 +900,7 @@ void EnTite_CheckDamage(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnTite_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTite_Update(Actor* thisx, GameState* state) {
     EnTite* this = THIS;
     char pad[0x4];
     CollisionPoly* floorPoly;
@@ -992,7 +992,7 @@ void EnTite_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** limbDLis
     BodyBreak_SetInfo(&this->bodyBreak, limbIndex, 0, 24, 24, limbDList, BODYBREAK_OBJECT_DEFAULT);
 }
 
-void EnTite_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTite_Draw(Actor* thisx, GameState* state) {
     EnTite* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_tite.c", 1704);

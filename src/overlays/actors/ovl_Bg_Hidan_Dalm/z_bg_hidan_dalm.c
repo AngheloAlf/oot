@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanDalm*)thisx)
 
-void BgHidanDalm_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanDalm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanDalm_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanDalm_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanDalm_Init(Actor* thisx, GameState* state);
+void BgHidanDalm_Destroy(Actor* thisx, GameState* state);
+void BgHidanDalm_Update(Actor* thisx, GameState* state);
+void BgHidanDalm_Draw(Actor* thisx, GameState* state);
 
 void BgHidanDalm_Wait(BgHidanDalm* this, GlobalContext* globalCtx);
 void BgHidanDalm_Shrink(BgHidanDalm* this, GlobalContext* globalCtx);
@@ -96,7 +96,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32_DIV1000(gravity, -200, ICHAIN_STOP),
 };
 
-void BgHidanDalm_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanDalm_Init(Actor* thisx, GameState* state) {
     BgHidanDalm* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -117,7 +117,7 @@ void BgHidanDalm_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanDalm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanDalm_Destroy(Actor* thisx, GameState* state) {
     BgHidanDalm* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -178,7 +178,7 @@ void BgHidanDalm_Shrink(BgHidanDalm* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanDalm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanDalm_Update(Actor* thisx, GameState* state) {
     BgHidanDalm* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -209,7 +209,7 @@ void BgHidanDalm_UpdateCollider(BgHidanDalm* this) {
     Collider_SetTrisVertices(&this->collider, 3, &pos0, &pos2, &pos1);
 }
 
-void BgHidanDalm_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanDalm_Draw(Actor* thisx, GameState* state) {
     BgHidanDalm* this = THIS;
 
     if (this->dyna.actor.params == 0) {

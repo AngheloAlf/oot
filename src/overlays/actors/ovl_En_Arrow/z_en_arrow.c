@@ -11,10 +11,10 @@
 
 #define THIS ((EnArrow*)thisx)
 
-void EnArrow_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnArrow_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnArrow_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnArrow_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnArrow_Init(Actor* thisx, GameState* state);
+void EnArrow_Destroy(Actor* thisx, GameState* state);
+void EnArrow_Update(Actor* thisx, GameState* state);
+void EnArrow_Draw(Actor* thisx, GameState* state);
 
 void EnArrow_Shoot(EnArrow* this, GlobalContext* globalCtx);
 void EnArrow_Fly(EnArrow* this, GlobalContext* globalCtx);
@@ -61,7 +61,7 @@ void EnArrow_SetupAction(EnArrow* this, EnArrowActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnArrow_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnArrow_Init(Actor* thisx, GameState* state) {
     static EffectBlureInit2 blureNormal = {
         0, 4, 0, { 0, 255, 200, 255 },   { 0, 255, 255, 255 }, { 0, 255, 200, 0 }, { 0, 255, 255, 0 }, 16,
         0, 1, 0, { 255, 255, 170, 255 }, { 0, 150, 0, 0 },
@@ -139,7 +139,7 @@ void EnArrow_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnArrow_SetupAction(this, EnArrow_Shoot);
 }
 
-void EnArrow_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnArrow_Destroy(Actor* thisx, GameState* state) {
     EnArrow* this = THIS;
 
     if (this->actor.params <= ARROW_LIGHT) {
@@ -386,7 +386,7 @@ void func_809B4640(EnArrow* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnArrow_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnArrow_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnArrow* this = THIS;
     Player* player = PLAYER;
@@ -450,7 +450,7 @@ void func_809B4800(EnArrow* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnArrow_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnArrow_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnArrow* this = THIS;
     u8 alpha;

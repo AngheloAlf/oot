@@ -16,10 +16,10 @@
 
 #define THIS ((EnHeishi2*)thisx)
 
-void EnHeishi2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHeishi2_Init(Actor* thisx, GameState* state);
+void EnHeishi2_Destroy(Actor* thisx, GameState* state);
+void EnHeishi2_Update(Actor* thisx, GameState* state);
+void EnHeishi2_Draw(Actor* thisx, GameState* state);
 
 void EnHeishi2_DrawKingGuard(Actor* thisx, GlobalContext* globalCtx);
 void EnHeishi2_DoNothing1(EnHeishi2* this, GlobalContext* globalCtx);
@@ -84,7 +84,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 33, 40, 0, { 0, 0, 0 } },
 };
 
-void EnHeishi2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi2_Init(Actor* thisx, GameState* state) {
     ColliderCylinder* collider;
     EnHeishi2* this = THIS;
 
@@ -161,7 +161,7 @@ void EnHeishi2_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHeishi2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi2_Destroy(Actor* thisx, GameState* state) {
     EnHeishi2* this = THIS;
 
     if ((this->collider.dim.radius != 0) || (this->collider.dim.height != 0)) {
@@ -773,7 +773,7 @@ void func_80A549E8(EnHeishi2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHeishi2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi2_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnHeishi2* this = THIS;
     s32 i;
@@ -847,7 +847,7 @@ void EnHeishi2_DrawKingGuard(Actor* thisx, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_heishi2.c", 1777);
 }
 
-void EnHeishi2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi2_Draw(Actor* thisx, GameState* state) {
     EnHeishi2* this = THIS;
     Mtx* mtx;
     s32 linkObjBankIndex;

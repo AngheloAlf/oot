@@ -71,10 +71,10 @@ typedef enum {
     CUT_VERT_R
 } EnKanbanCutType;
 
-void EnKanban_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnKanban_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnKanban_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnKanban_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnKanban_Init(Actor* thisx, GameState* state);
+void EnKanban_Destroy(Actor* thisx, GameState* state);
+void EnKanban_Update(Actor* thisx, GameState* state);
+void EnKanban_Draw(Actor* thisx, GameState* state);
 
 extern Gfx D_06000C30[];
 extern Gfx D_06001630[];
@@ -194,7 +194,7 @@ void EnKanban_SetFloorRot(EnKanban* this) {
     }
 }
 
-void EnKanban_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnKanban_Init(Actor* thisx, GameState* state) {
     EnKanban* this = THIS;
 
     Actor_SetScale(&this->actor, 0.01f);
@@ -223,7 +223,7 @@ void EnKanban_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnKanban_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnKanban_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnKanban* this = THIS;
 
@@ -253,7 +253,7 @@ void EnKanban_Message(EnKanban* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnKanban_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnKanban_Update(Actor* thisx, GameState* state) {
     u8 bounced = false;
     GlobalContext* globalCtx = globalCtx2;
     EnKanban* this = THIS;
@@ -803,7 +803,7 @@ static Gfx sShadowDList[] = {
     gsSPEndDisplayList(),
 };
 
-void EnKanban_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnKanban_Draw(Actor* thisx, GameState* state) {
     EnKanban* this = THIS;
     f32 zShift;
     f32 zShift2;

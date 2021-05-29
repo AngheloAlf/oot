@@ -25,10 +25,10 @@ typedef enum {
     /* 16 */ GELDB_SPIN_DODGE
 } EnGeldBAction;
 
-void EnGeldB_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGeldB_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGeldB_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGeldB_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGeldB_Init(Actor* thisx, GameState* state);
+void EnGeldB_Destroy(Actor* thisx, GameState* state);
+void EnGeldB_Update(Actor* thisx, GameState* state);
+void EnGeldB_Draw(Actor* thisx, GameState* state);
 
 s32 EnGeldB_DodgeRanged(GlobalContext* globalCtx, EnGeldB* this);
 
@@ -211,7 +211,7 @@ void EnGeldB_SetupAction(EnGeldB* this, EnGeldBActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnGeldB_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGeldB_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EffectBlureInit1 blureInit;
     EnGeldB* this = THIS;
@@ -254,7 +254,7 @@ void EnGeldB_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnGeldB_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGeldB_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnGeldB* this = THIS;
 
@@ -1389,7 +1389,7 @@ void EnGeldB_CollisionCheck(EnGeldB* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGeldB_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGeldB_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnGeldB* this = THIS;
 
@@ -1532,7 +1532,7 @@ void EnGeldB_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, 
     }
 }
 
-void EnGeldB_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGeldB_Draw(Actor* thisx, GameState* state) {
     static Vec3f blockTrisOffsets0[3] = {
         { -3000.0f, 6000.0f, 1600.0f },
         { -3000.0f, 0.0f, 1600.0f },

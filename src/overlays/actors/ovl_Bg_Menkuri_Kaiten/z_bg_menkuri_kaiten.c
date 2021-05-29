@@ -10,10 +10,10 @@
 
 #define THIS ((BgMenkuriKaiten*)thisx)
 
-void BgMenkuriKaiten_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMenkuriKaiten_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMenkuriKaiten_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMenkuriKaiten_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMenkuriKaiten_Init(Actor* thisx, GameState* state);
+void BgMenkuriKaiten_Destroy(Actor* thisx, GameState* state);
+void BgMenkuriKaiten_Update(Actor* thisx, GameState* state);
+void BgMenkuriKaiten_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Menkuri_Kaiten_InitVars = {
     ACTOR_BG_MENKURI_KAITEN,
@@ -34,7 +34,7 @@ static InitChainEntry sInitChain[] = {
 extern Gfx D_060038D0[];
 extern CollisionHeader D_060042D8;
 
-void BgMenkuriKaiten_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriKaiten_Init(Actor* thisx, GameState* state) {
     BgMenkuriKaiten* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -45,13 +45,13 @@ void BgMenkuriKaiten_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, &this->dyna.actor, colHeader);
 }
 
-void BgMenkuriKaiten_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriKaiten_Destroy(Actor* thisx, GameState* state) {
     BgMenkuriKaiten* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void BgMenkuriKaiten_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriKaiten_Update(Actor* thisx, GameState* state) {
     BgMenkuriKaiten* this = THIS;
 
     if (!Flags_GetSwitch(globalCtx, this->dyna.actor.params) && func_80043590(&this->dyna)) {
@@ -60,6 +60,6 @@ void BgMenkuriKaiten_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMenkuriKaiten_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMenkuriKaiten_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_060038D0);
 }

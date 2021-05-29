@@ -11,10 +11,10 @@
 
 #define THIS ((EnDha*)thisx)
 
-void EnDha_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDha_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDha_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDha_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDha_Init(Actor* thisx, GameState* state);
+void EnDha_Destroy(Actor* thisx, GameState* state);
+void EnDha_Update(Actor* thisx, GameState* state);
+void EnDha_Draw(Actor* thisx, GameState* state);
 
 void EnDha_SetupWait(EnDha* this);
 void EnDha_Wait(EnDha* this, GlobalContext* globalCtx);
@@ -155,7 +155,7 @@ void EnDha_SetupAction(EnDha* this, EnDhaActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnDha_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDha_Init(Actor* thisx, GameState* state) {
     EnDha* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -174,7 +174,7 @@ void EnDha_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnDha_SetupWait(this);
 }
 
-void EnDha_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDha_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnDha* this = THIS;
 
@@ -404,7 +404,7 @@ void EnDha_UpdateHealth(EnDha* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDha_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDha_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnDha* this = THIS;
 
@@ -458,7 +458,7 @@ void EnDha_OverridePostDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
     }
 }
 
-void EnDha_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDha_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnDha* this = THIS;
 

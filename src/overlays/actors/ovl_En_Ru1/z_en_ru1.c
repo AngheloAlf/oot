@@ -11,10 +11,10 @@
 
 #define THIS ((EnRu1*)thisx)
 
-void EnRu1_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnRu1_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnRu1_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnRu1_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnRu1_Init(Actor* thisx, GameState* state);
+void EnRu1_Destroy(Actor* thisx, GameState* state);
+void EnRu1_Update(Actor* thisx, GameState* state);
+void EnRu1_Draw(Actor* thisx, GameState* state);
 
 void func_80AEC0B4(EnRu1* this, GlobalContext* globalCtx);
 void func_80AEC100(EnRu1* this, GlobalContext* globalCtx);
@@ -223,7 +223,7 @@ u8 func_80AEADF0(EnRu1* this) {
     return params;
 }
 
-void EnRu1_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu1_Destroy(Actor* thisx, GameState* state) {
     EnRu1* this = THIS;
 
     func_80AEAD98(this, globalCtx);
@@ -2222,7 +2222,7 @@ void func_80AF0050(EnRu1* this, GlobalContext* globalCtx) {
     this->actor.room = -1;
 }
 
-void EnRu1_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu1_Update(Actor* thisx, GameState* state) {
     EnRu1* this = THIS;
 
     if (this->action < 0 || this->action >= ARRAY_COUNT(sActionFuncs) || sActionFuncs[this->action] == NULL) {
@@ -2233,7 +2233,7 @@ void EnRu1_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void EnRu1_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu1_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnRu1* this = THIS;
 
@@ -2372,7 +2372,7 @@ void func_80AF05D4(EnRu1* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_ru1.c", 1353);
 }
 
-void EnRu1_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnRu1_Draw(Actor* thisx, GameState* state) {
     EnRu1* this = THIS;
 
     if (this->drawConfig < 0 || this->drawConfig >= ARRAY_COUNT(sDrawFuncs) || sDrawFuncs[this->drawConfig] == 0) {

@@ -12,10 +12,10 @@
 
 #define THIS ((EnPoRelay*)thisx)
 
-void EnPoRelay_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPoRelay_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPoRelay_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnPoRelay_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnPoRelay_Init(Actor* thisx, GameState* state);
+void EnPoRelay_Destroy(Actor* thisx, GameState* state);
+void EnPoRelay_Update(Actor* thisx, GameState* state);
+void EnPoRelay_Draw(Actor* thisx, GameState* state);
 
 void EnPoRelay_Idle(EnPoRelay* this, GlobalContext* globalCtx);
 void EnPoRelay_Race(EnPoRelay* this, GlobalContext* globalCtx);
@@ -86,7 +86,7 @@ static u64* sEyesSegments[] = {
     gDampeEyeClosedTex,
 };
 
-void EnPoRelay_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoRelay_Init(Actor* thisx, GameState* state) {
     EnPoRelay* this = THIS;
     s32 temp;
 
@@ -112,7 +112,7 @@ void EnPoRelay_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.params &= 0x3F;
 }
 
-void EnPoRelay_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoRelay_Destroy(Actor* thisx, GameState* state) {
     EnPoRelay* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -346,7 +346,7 @@ void EnPoRelay_DisappearAndReward(EnPoRelay* this, GlobalContext* globalCtx) {
     this->actor.world.pos.y += 10.0f;
 }
 
-void EnPoRelay_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoRelay_Update(Actor* thisx, GameState* state) {
     EnPoRelay* this = THIS;
     s32 pad;
 
@@ -399,7 +399,7 @@ void EnPoRelay_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
     }
 }
 
-void EnPoRelay_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoRelay_Draw(Actor* thisx, GameState* state) {
     EnPoRelay* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_po_relay.c", 940);

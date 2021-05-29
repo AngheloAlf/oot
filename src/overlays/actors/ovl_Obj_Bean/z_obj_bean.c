@@ -11,10 +11,10 @@
 
 #define THIS ((ObjBean*)thisx)
 
-void ObjBean_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjBean_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjBean_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjBean_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjBean_Init(Actor* thisx, GameState* state);
+void ObjBean_Destroy(Actor* thisx, GameState* state);
+void ObjBean_Update(Actor* thisx, GameState* state);
+void ObjBean_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000090;
 extern UNK_TYPE D_060001B0;

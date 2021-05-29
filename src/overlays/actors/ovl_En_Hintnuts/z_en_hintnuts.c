@@ -11,10 +11,10 @@
 
 #define THIS ((EnHintnuts*)thisx)
 
-void EnHintnuts_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHintnuts_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHintnuts_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHintnuts_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHintnuts_Init(Actor* thisx, GameState* state);
+void EnHintnuts_Destroy(Actor* thisx, GameState* state);
+void EnHintnuts_Update(Actor* thisx, GameState* state);
+void EnHintnuts_Draw(Actor* thisx, GameState* state);
 
 void EnHintnuts_SetupWait(EnHintnuts* this);
 void EnHintnuts_Wait(EnHintnuts* this, GlobalContext* globalCtx);
@@ -71,7 +71,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 2600, ICHAIN_STOP),
 };
 
-void EnHintnuts_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHintnuts_Init(Actor* thisx, GameState* state) {
     EnHintnuts* this = THIS;
     s32 pad;
 
@@ -101,7 +101,7 @@ void EnHintnuts_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHintnuts_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHintnuts_Destroy(Actor* thisx, GameState* state) {
     EnHintnuts* this = THIS;
     if (this->actor.params != 0xA) {
         Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -475,7 +475,7 @@ void EnHintnuts_ColliderCheck(EnHintnuts* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHintnuts_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHintnuts_Update(Actor* thisx, GameState* state) {
     EnHintnuts* this = THIS;
     s32 pad;
 
@@ -532,7 +532,7 @@ s32 EnHintnuts_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** d
     return false;
 }
 
-void EnHintnuts_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHintnuts_Draw(Actor* thisx, GameState* state) {
     EnHintnuts* this = THIS;
 
     if (this->actor.params == 0xA) {

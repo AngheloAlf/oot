@@ -13,10 +13,10 @@
 
 #define THIS ((EnReeba*)thisx)
 
-void EnReeba_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnReeba_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnReeba_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnReeba_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnReeba_Init(Actor* thisx, GameState* state);
+void EnReeba_Destroy(Actor* thisx, GameState* state);
+void EnReeba_Update(Actor* thisx, GameState* state);
+void EnReeba_Draw(Actor* thisx, GameState* state);
 
 void func_80AE4F40(EnReeba* this, GlobalContext* globalCtx);
 void func_80AE5054(EnReeba* this, GlobalContext* globalCtx);
@@ -101,7 +101,7 @@ static ColliderCylinderInit sCylinderInit = {
 extern AnimationHeader D_060001E4;
 extern SkeletonHeader D_06001EE8;
 
-void EnReeba_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnReeba_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnReeba* this = THIS;
     s32 surfaceType;
@@ -144,7 +144,7 @@ void EnReeba_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionfunc = func_80AE4F40;
 }
 
-void EnReeba_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnReeba_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnReeba* this = THIS;
 
@@ -575,7 +575,7 @@ void func_80AE5EDC(EnReeba* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnReeba_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnReeba_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnReeba* this = THIS;
     Player* player = PLAYER;
@@ -650,7 +650,7 @@ void EnReeba_Update(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void EnReeba_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnReeba_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnReeba* this = THIS;
 

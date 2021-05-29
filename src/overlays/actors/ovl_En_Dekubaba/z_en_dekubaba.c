@@ -5,10 +5,10 @@
 
 #define THIS ((EnDekubaba*)thisx)
 
-void EnDekubaba_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDekubaba_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDekubaba_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDekubaba_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDekubaba_Init(Actor* thisx, GameState* state);
+void EnDekubaba_Destroy(Actor* thisx, GameState* state);
+void EnDekubaba_Update(Actor* thisx, GameState* state);
+void EnDekubaba_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000208;
 extern UNK_TYPE D_060002B8;

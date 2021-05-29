@@ -4,10 +4,10 @@
 
 #define THIS ((EnGanonMant*)thisx)
 
-void EnGanonMant_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGanonMant_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGanonMant_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGanonMant_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGanonMant_Init(Actor* thisx, GameState* state);
+void EnGanonMant_Destroy(Actor* thisx, GameState* state);
+void EnGanonMant_Update(Actor* thisx, GameState* state);
+void EnGanonMant_Draw(Actor* thisx, GameState* state);
 
 /*
 const ActorInit En_Ganon_Mant_InitVars = {

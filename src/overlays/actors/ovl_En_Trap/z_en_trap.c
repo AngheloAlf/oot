@@ -30,10 +30,10 @@
 #define vClosestDirection genericVar1 // relative to spike trap's facing angle if moving out, absolute if moving in
 #define vMovementMetric genericVar2
 
-void EnTrap_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTrap_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTrap_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTrap_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTrap_Init(Actor* thisx, GameState* state);
+void EnTrap_Destroy(Actor* thisx, GameState* state);
+void EnTrap_Update(Actor* thisx, GameState* state);
+void EnTrap_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Trap_InitVars = {
     ACTOR_EN_TRAP,
@@ -62,7 +62,7 @@ static ColliderCylinderInit sCylinderInit = {
 
 extern Gfx D_06001400[];
 
-void EnTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTrap_Init(Actor* thisx, GameState* state) {
     f32 trapDist;
     f32 trapSpeed;
     s16 zSpeed;
@@ -117,12 +117,12 @@ void EnTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
     thisx->colChkInfo.mass = 0xFF;
 }
 
-void EnTrap_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTrap_Destroy(Actor* thisx, GameState* state) {
     EnTrap* this = THIS;
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
 
-void EnTrap_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTrap_Update(Actor* thisx, GameState* state) {
     EnTrap* this = THIS;
     Vec3f posTemp;
     s16 angleToKnockPlayer;
@@ -389,7 +389,7 @@ void EnTrap_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnTrap_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTrap_Draw(Actor* thisx, GameState* state) {
     func_8002EBCC(thisx, globalCtx, 1);
     Gfx_DrawDListOpa(globalCtx, D_06001400);
 }

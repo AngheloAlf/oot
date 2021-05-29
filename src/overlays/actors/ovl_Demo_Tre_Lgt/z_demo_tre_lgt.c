@@ -6,10 +6,10 @@
 
 #define THIS ((DemoTreLgt*)thisx)
 
-void DemoTreLgt_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoTreLgt_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoTreLgt_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoTreLgt_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoTreLgt_Init(Actor* thisx, GameState* state);
+void DemoTreLgt_Destroy(Actor* thisx, GameState* state);
+void DemoTreLgt_Update(Actor* thisx, GameState* state);
+void DemoTreLgt_Draw(Actor* thisx, GameState* state);
 
 void func_80993848(DemoTreLgt* this, GlobalContext* globalCtx);
 void func_80993754(DemoTreLgt* this);
@@ -47,7 +47,7 @@ static DemoTreLgtActionFunc sActionFuncs[] = {
     func_80993848,
 };
 
-void DemoTreLgt_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoTreLgt_Init(Actor* thisx, GameState* state) {
     DemoTreLgt* this = THIS;
 
     if (!SkelCurve_Init(globalCtx, &this->skelCurve, &gTreasureChestCurveSkel, sTransformUpdIdx[0])) {
@@ -63,7 +63,7 @@ void DemoTreLgt_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_80993754(this);
 }
 
-void DemoTreLgt_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoTreLgt_Destroy(Actor* thisx, GameState* state) {
     DemoTreLgt* this = THIS;
 
     SkelCurve_Destroy(globalCtx, &this->skelCurve);
@@ -127,7 +127,7 @@ void func_80993848(DemoTreLgt* this, GlobalContext* globalCtx) {
     }
 }
 
-void DemoTreLgt_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoTreLgt_Update(Actor* thisx, GameState* state) {
     DemoTreLgt* this = THIS;
 
     sActionFuncs[this->action](this, globalCtx);
@@ -151,7 +151,7 @@ s32 DemoTreLgt_PostLimbDraw(GlobalContext* globalCtx, SkelAnimeCurve* skelCurve,
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_demo_tre_lgt.c", 448);
 }
 
-void DemoTreLgt_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoTreLgt_Draw(Actor* thisx, GameState* state) {
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
     DemoTreLgt* this = THIS;
 

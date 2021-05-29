@@ -47,8 +47,8 @@ typedef enum {
     /* 3 */ BONGO_SHADOW
 } BossSstEffectMode;
 
-void BossSst_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossSst_Destroy(Actor* thisx, GlobalContext* globalCtx);
+void BossSst_Init(Actor* thisx, GameState* state);
+void BossSst_Destroy(Actor* thisx, GameState* state);
 void BossSst_UpdateHand(Actor* thisx, GlobalContext* globalCtx);
 void BossSst_UpdateHead(Actor* thisx, GlobalContext* globalCtx);
 void BossSst_DrawHand(Actor* thisx, GlobalContext* globalCtx);
@@ -264,7 +264,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 20, ICHAIN_STOP),
 };
 
-void BossSst_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void BossSst_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BossSst* this = THIS;
 
@@ -335,7 +335,7 @@ void BossSst_Init(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void BossSst_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BossSst_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BossSst* this = THIS;
 

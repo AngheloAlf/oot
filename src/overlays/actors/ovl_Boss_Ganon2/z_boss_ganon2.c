@@ -4,10 +4,10 @@
 
 #define THIS ((BossGanon2*)thisx)
 
-void BossGanon2_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossGanon2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossGanon2_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossGanon2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossGanon2_Init(Actor* thisx, GameState* state);
+void BossGanon2_Destroy(Actor* thisx, GameState* state);
+void BossGanon2_Update(Actor* thisx, GameState* state);
+void BossGanon2_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000BFC;
 extern UNK_TYPE D_06000EA0;

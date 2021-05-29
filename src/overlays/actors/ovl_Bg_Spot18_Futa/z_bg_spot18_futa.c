@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot18Futa*)thisx)
 
-void BgSpot18Futa_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Futa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Futa_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Futa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot18Futa_Init(Actor* thisx, GameState* state);
+void BgSpot18Futa_Destroy(Actor* thisx, GameState* state);
+void BgSpot18Futa_Update(Actor* thisx, GameState* state);
+void BgSpot18Futa_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Spot18_Futa_InitVars = {
     ACTOR_BG_SPOT18_FUTA,
@@ -37,7 +37,7 @@ static InitChainEntry sInitChain[] = {
 extern CollisionHeader D_06000368;
 extern Gfx D_06000150[];
 
-void BgSpot18Futa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Futa_Init(Actor* thisx, GameState* state) {
     BgSpot18Futa* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -48,13 +48,13 @@ void BgSpot18Futa_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
 }
 
-void BgSpot18Futa_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Futa_Destroy(Actor* thisx, GameState* state) {
     BgSpot18Futa* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void BgSpot18Futa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Futa_Update(Actor* thisx, GameState* state) {
     BgSpot18Futa* this = THIS;
     s32 iVar1;
 
@@ -70,6 +70,6 @@ void BgSpot18Futa_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot18Futa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Futa_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06000150);
 }

@@ -10,10 +10,10 @@
 
 #define THIS ((EnAni*)thisx)
 
-void EnAni_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnAni_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnAni_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnAni_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnAni_Init(Actor* thisx, GameState* state);
+void EnAni_Destroy(Actor* thisx, GameState* state);
+void EnAni_Update(Actor* thisx, GameState* state);
+void EnAni_Draw(Actor* thisx, GameState* state);
 
 s32 EnAni_SetText(EnAni* this, GlobalContext* globalCtx, u16 textId);
 void func_809B04F0(EnAni* this, GlobalContext* globalCtx);
@@ -73,7 +73,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneForward, 850, ICHAIN_STOP),
 };
 
-void EnAni_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnAni_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnAni* this = THIS;
 
@@ -95,7 +95,7 @@ void EnAni_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.velocity.y = -1.0f;
 }
 
-void EnAni_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnAni_Destroy(Actor* thisx, GameState* state) {
     EnAni* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -239,7 +239,7 @@ void func_809B0A6C(EnAni* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnAni_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnAni_Update(Actor* thisx, GameState* state) {
     EnAni* this = THIS;
     s32 pad[2];
 
@@ -322,7 +322,7 @@ static u64* sEyeTextures[] = {
     0x06001D18,
 };
 
-void EnAni_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnAni_Draw(Actor* thisx, GameState* state) {
     EnAni* this = THIS;
     s32 pad;
 

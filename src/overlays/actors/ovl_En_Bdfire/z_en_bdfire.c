@@ -10,10 +10,10 @@
 
 #define THIS ((EnBdfire*)thisx)
 
-void EnBdfire_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBdfire_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBdfire_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBdfire_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBdfire_Init(Actor* thisx, GameState* state);
+void EnBdfire_Destroy(Actor* thisx, GameState* state);
+void EnBdfire_Update(Actor* thisx, GameState* state);
+void EnBdfire_Draw(Actor* thisx, GameState* state);
 
 void EnBdfire_DrawFire(EnBdfire* this, GlobalContext* globalCtx);
 void func_809BC2A4(EnBdfire* this, GlobalContext* globalCtx);
@@ -41,7 +41,7 @@ void EnbdFire_SetupDraw(EnBdfire* this, EnBdfireDrawFunc drawFunc) {
     this->drawFunc = drawFunc;
 }
 
-void EnBdfire_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBdfire_Init(Actor* thisx, GameState* state) {
     EnBdfire* this = THIS;
     s32 pad;
 
@@ -75,7 +75,7 @@ void EnBdfire_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnBdfire_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBdfire_Destroy(Actor* thisx, GameState* state) {
     EnBdfire* this = THIS;
 
     if (this->actor.params < 0) {
@@ -189,7 +189,7 @@ void func_809BC598(EnBdfire* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBdfire_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBdfire_Update(Actor* thisx, GameState* state) {
     EnBdfire* this = THIS;
 
     this->unk_156++;
@@ -223,7 +223,7 @@ void EnBdfire_DrawFire(EnBdfire* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_bdfire.c", 651);
 }
 
-void EnBdfire_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBdfire_Draw(Actor* thisx, GameState* state) {
     EnBdfire* this = THIS;
 
     this->drawFunc(this, globalCtx);

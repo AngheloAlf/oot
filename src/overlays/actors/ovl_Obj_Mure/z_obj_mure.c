@@ -10,9 +10,9 @@
 
 #define THIS ((ObjMure*)thisx)
 
-void ObjMure_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjMure_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjMure_Update(Actor* thisx, GlobalContext* globalCtx);
+void ObjMure_Init(Actor* thisx, GameState* state);
+void ObjMure_Destroy(Actor* thisx, GameState* state);
+void ObjMure_Update(Actor* thisx, GameState* state);
 
 /*
 const ActorInit Obj_Mure_InitVars = {

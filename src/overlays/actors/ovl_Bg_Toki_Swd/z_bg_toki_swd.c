@@ -10,10 +10,10 @@
 
 #define THIS ((BgTokiSwd*)thisx)
 
-void BgTokiSwd_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgTokiSwd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgTokiSwd_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgTokiSwd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgTokiSwd_Init(Actor* thisx, GameState* state);
+void BgTokiSwd_Destroy(Actor* thisx, GameState* state);
+void BgTokiSwd_Update(Actor* thisx, GameState* state);
+void BgTokiSwd_Draw(Actor* thisx, GameState* state);
 
 void func_808BAF40(BgTokiSwd* this, GlobalContext* globalCtx);
 void func_808BB0AC(BgTokiSwd* this, GlobalContext* globalCtx);
@@ -67,7 +67,7 @@ void BgTokiSwd_SetupAction(BgTokiSwd* this, BgTokiSwdActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void BgTokiSwd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiSwd_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgTokiSwd* this = THIS;
 
@@ -89,7 +89,7 @@ void BgTokiSwd_Init(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetInfo(&this->actor.colChkInfo, NULL, &sColChkInfoInit);
 }
 
-void BgTokiSwd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiSwd_Destroy(Actor* thisx, GameState* state) {
     BgTokiSwd* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -154,14 +154,14 @@ void func_808BB128(BgTokiSwd* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgTokiSwd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiSwd_Update(Actor* thisx, GameState* state) {
     BgTokiSwd* this = THIS;
 
     this->actionFunc(this, globalCtx);
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void BgTokiSwd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgTokiSwd_Draw(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     BgTokiSwd* this = THIS;
     s32 pad[3];

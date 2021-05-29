@@ -5,10 +5,10 @@
 
 #define THIS ((EnFdFire*)thisx)
 
-void EnFdFire_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFdFire_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFdFire_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFdFire_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFdFire_Init(Actor* thisx, GameState* state);
+void EnFdFire_Destroy(Actor* thisx, GameState* state);
+void EnFdFire_Update(Actor* thisx, GameState* state);
+void EnFdFire_Draw(Actor* thisx, GameState* state);
 void EnFdFire_Disappear(EnFdFire* this, GlobalContext* globalCtx);
 void func_80A0E70C(EnFdFire* this, GlobalContext* globalCtx);
 void EnFdFire_DanceTowardsPlayer(EnFdFire* this, GlobalContext* globalCtx);
@@ -121,7 +121,7 @@ s32 EnFdFire_CheckCollider(EnFdFire* this, GlobalContext* globalCtx) {
     return false;
 }
 
-void EnFdFire_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFdFire_Init(Actor* thisx, GameState* state) {
     EnFdFire* this = THIS;
     s32 pad;
     Player* player = PLAYER;
@@ -140,7 +140,7 @@ void EnFdFire_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80A0E70C;
 }
 
-void EnFdFire_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFdFire_Destroy(Actor* thisx, GameState* state) {
     EnFdFire* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -209,7 +209,7 @@ void EnFdFire_Disappear(EnFdFire* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFdFire_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFdFire_Update(Actor* thisx, GameState* state) {
     EnFdFire* this = THIS;
     s32 pad;
 
@@ -230,7 +230,7 @@ void EnFdFire_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFdFire_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFdFire_Draw(Actor* thisx, GameState* state) {
     Color_RGBA8 primColors[] = {
         { 255, 255, 0, 255 },
         { 255, 255, 255, 255 },

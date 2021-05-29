@@ -34,10 +34,10 @@ typedef enum {
     /* 2 */ EYE_CLOSED
 } BossFdEyeState;
 
-void BossFd_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossFd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossFd_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossFd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossFd_Init(Actor* thisx, GameState* state);
+void BossFd_Destroy(Actor* thisx, GameState* state);
+void BossFd_Update(Actor* thisx, GameState* state);
+void BossFd_Draw(Actor* thisx, GameState* state);
 
 void BossFd_SetupFly(BossFd* this, GlobalContext* globalCtx);
 void BossFd_Fly(BossFd* this, GlobalContext* globalCtx);
@@ -171,7 +171,7 @@ void BossFd_UpdateCamera(BossFd* this, GlobalContext* globalCtx) {
     }
 }
 
-void BossFd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BossFd* this = THIS;
     s16 i;
@@ -227,7 +227,7 @@ void BossFd_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BossFd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BossFd* this = THIS;
 
@@ -1298,7 +1298,7 @@ void BossFd_CollisionCheck(BossFd* this, GlobalContext* globalCtx) {
     }
 }
 
-void BossFd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BossFd* this = THIS;
     f32 headGlow;
@@ -1630,7 +1630,7 @@ void BossFd_DrawEffects(BossFdEffect* effect, GlobalContext* globalCtx) {
     CLOSE_DISPS(gfxCtx, "../z_boss_fd.c", 4198);
 }
 
-void BossFd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BossFd* this = THIS;
 

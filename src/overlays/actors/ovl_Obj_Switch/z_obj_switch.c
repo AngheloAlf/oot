@@ -17,10 +17,10 @@
 // switch flag: (this->dyna.actor.params >> 8 & 0x3F)
 // frozen:      this->dyna.actor.params >> 7 & 1
 
-void ObjSwitch_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjSwitch_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjSwitch_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjSwitch_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjSwitch_Init(Actor* thisx, GameState* state);
+void ObjSwitch_Destroy(Actor* thisx, GameState* state);
+void ObjSwitch_Update(Actor* thisx, GameState* state);
+void ObjSwitch_Draw(Actor* thisx, GameState* state);
 
 void ObjSwitch_FloorUpInit(ObjSwitch* this);
 void ObjSwitch_FloorUp(ObjSwitch* this, GlobalContext* globalCtx);
@@ -280,7 +280,7 @@ void ObjSwitch_UpdateTwoTexScrollXY(ObjSwitch* this) {
     this->y2TexScroll = (this->y2TexScroll - 1) & 0x7F;
 }
 
-void ObjSwitch_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjSwitch_Init(Actor* thisx, GameState* state) {
     ObjSwitch* this = THIS;
     s32 switchFlagSet;
     s32 type;
@@ -347,7 +347,7 @@ void ObjSwitch_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(Dungeon switch)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void ObjSwitch_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjSwitch_Destroy(Actor* thisx, GameState* state) {
     ObjSwitch* this = THIS;
 
     switch ((this->dyna.actor.params & 7)) {
@@ -676,7 +676,7 @@ void ObjSwitch_CrystalTurnOff(ObjSwitch* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjSwitch_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjSwitch_Update(Actor* thisx, GameState* state) {
     ObjSwitch* this = THIS;
 
     if (this->releaseTimer > 0) {
@@ -800,7 +800,7 @@ static ObjSwitchActionFunc sDrawFuncs[] = {
     ObjSwitch_DrawFloor, ObjSwitch_DrawFloorRusty, ObjSwitch_DrawEye, ObjSwitch_DrawCrystal, ObjSwitch_DrawCrystal,
 };
 
-void ObjSwitch_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjSwitch_Draw(Actor* thisx, GameState* state) {
     ObjSwitch* this = THIS;
 
     sDrawFuncs[(this->dyna.actor.params & 7)](this, globalCtx);

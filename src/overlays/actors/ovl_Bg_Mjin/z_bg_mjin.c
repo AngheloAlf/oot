@@ -10,10 +10,10 @@
 
 #define THIS ((BgMjin*)thisx)
 
-void BgMjin_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMjin_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMjin_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMjin_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMjin_Init(Actor* thisx, GameState* state);
+void BgMjin_Destroy(Actor* thisx, GameState* state);
+void BgMjin_Update(Actor* thisx, GameState* state);
+void BgMjin_Draw(Actor* thisx, GameState* state);
 
 void func_808A0850(BgMjin* this, GlobalContext* globalCtx);
 void func_808A0920(BgMjin* this, GlobalContext* globalCtx);
@@ -50,7 +50,7 @@ void BgMjin_SetupAction(BgMjin* this, BgMjinActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void BgMjin_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMjin_Init(Actor* thisx, GameState* state) {
     BgMjin* this = THIS;
     s8 objBankIndex;
 
@@ -64,7 +64,7 @@ void BgMjin_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMjin_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMjin_Destroy(Actor* thisx, GameState* state) {
     BgMjin* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -91,13 +91,13 @@ void func_808A0850(BgMjin* this, GlobalContext* globalCtx) {
 void func_808A0920(BgMjin* this, GlobalContext* globalCtx) {
 }
 
-void BgMjin_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMjin_Update(Actor* thisx, GameState* state) {
     BgMjin* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgMjin_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMjin_Draw(Actor* thisx, GameState* state) {
     BgMjin* this = THIS;
     u32 dlist;
 

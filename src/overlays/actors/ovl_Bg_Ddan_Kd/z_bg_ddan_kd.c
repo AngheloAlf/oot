@@ -10,10 +10,10 @@
 
 #define THIS ((BgDdanKd*)thisx)
 
-void BgDdanKd_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgDdanKd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgDdanKd_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgDdanKd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgDdanKd_Init(Actor* thisx, GameState* state);
+void BgDdanKd_Destroy(Actor* thisx, GameState* state);
+void BgDdanKd_Update(Actor* thisx, GameState* state);
+void BgDdanKd_Draw(Actor* thisx, GameState* state);
 
 void BgDdanKd_CheckForExplosions(BgDdanKd* this, GlobalContext* globalCtx);
 void BgDdanKd_LowerStairs(BgDdanKd* this, GlobalContext* globalCtx);
@@ -65,7 +65,7 @@ void BgDdanKd_SetupAction(BgDdanKd* this, BgDdanKdActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void BgDdanKd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanKd_Init(Actor* thisx, GameState* state) {
     BgDdanKd* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -88,7 +88,7 @@ void BgDdanKd_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgDdanKd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanKd_Destroy(Actor* thisx, GameState* state) {
     BgDdanKd* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -180,12 +180,12 @@ void BgDdanKd_LowerStairs(BgDdanKd* this, GlobalContext* globalCtx) {
 void func_80871838(BgDdanKd* this, GlobalContext* globalCtx) {
 }
 
-void BgDdanKd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanKd_Update(Actor* thisx, GameState* state) {
     BgDdanKd* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgDdanKd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanKd_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_060048A8);
 }

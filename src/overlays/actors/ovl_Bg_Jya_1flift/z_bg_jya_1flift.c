@@ -11,10 +11,10 @@
 
 #define THIS ((BgJya1flift*)thisx)
 
-void BgJya1flift_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJya1flift_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJya1flift_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJya1flift_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJya1flift_Init(Actor* thisx, GameState* state);
+void BgJya1flift_Destroy(Actor* thisx, GameState* state);
+void BgJya1flift_Update(Actor* thisx, GameState* state);
+void BgJya1flift_Draw(Actor* thisx, GameState* state);
 
 void BgJya1flift_SetupWaitForSwitch(BgJya1flift* this);
 void BgJya1flift_WaitForSwitch(BgJya1flift* this, GlobalContext* globalCtx);
@@ -93,7 +93,7 @@ void BgJya1flift_InitCollision(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.actor.colChkInfo.mass = MASS_IMMOVABLE;
 }
 
-void BgJya1flift_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJya1flift_Init(Actor* thisx, GameState* state) {
     BgJya1flift* this = THIS;
     // 1 F lift
     osSyncPrintf("(１Ｆリフト)(flag %d)(room %d)\n", sIsSpawned, globalCtx->roomCtx.curRoom.num);
@@ -115,7 +115,7 @@ void BgJya1flift_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->hasInitialized = true;
 }
 
-void BgJya1flift_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJya1flift_Destroy(Actor* thisx, GameState* state) {
     BgJya1flift* this = THIS;
 
     if (this->hasInitialized) {
@@ -181,7 +181,7 @@ void BgJya1flift_DelayMove(BgJya1flift* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgJya1flift_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJya1flift_Update(Actor* thisx, GameState* state) {
     BgJya1flift* this = THIS;
     s32 pad;
     s32 tempIsRiding;
@@ -206,6 +206,6 @@ void BgJya1flift_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJya1flift_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJya1flift_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, g1fliftDL);
 }

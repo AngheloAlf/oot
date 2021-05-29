@@ -11,10 +11,10 @@
 
 #define THIS ((ObjHamishi*)thisx)
 
-void ObjHamishi_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjHamishi_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjHamishi_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjHamishi_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjHamishi_Init(Actor* thisx, GameState* state);
+void ObjHamishi_Destroy(Actor* thisx, GameState* state);
+void ObjHamishi_Update(Actor* thisx, GameState* state);
+void ObjHamishi_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Obj_Hamishi_InitVars = {
     ACTOR_OBJ_HAMISHI,
@@ -136,7 +136,7 @@ void ObjHamishi_Break(ObjHamishi* this, GlobalContext* globalCtx) {
     func_80033480(globalCtx, &this->actor.world.pos, 140.0f, 12, 80, 90, 1);
 }
 
-void ObjHamishi_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHamishi_Init(Actor* thisx, GameState* state) {
     ObjHamishi* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -159,14 +159,14 @@ void ObjHamishi_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.shape.yOffset = 80.0f;
 }
 
-void ObjHamishi_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHamishi_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     ObjHamishi* this = THIS;
 
     Collider_DestroyCylinder(globalCtx2, &this->collider);
 }
 
-void ObjHamishi_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHamishi_Update(Actor* thisx, GameState* state) {
     ObjHamishi* this = THIS;
     CollisionCheckContext* colChkCtx = &globalCtx->colChkCtx;
 
@@ -195,7 +195,7 @@ void ObjHamishi_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjHamishi_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHamishi_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_obj_hamishi.c", 399);
 
     func_80093D18(globalCtx->state.gfxCtx);

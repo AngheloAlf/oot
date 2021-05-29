@@ -27,10 +27,10 @@ typedef enum {
     /* 1 */ RM2_MOUTH_OPEN
 } RunningManMouthTex;
 
-void EnMm2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMm2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMm2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMm2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMm2_Init(Actor* thisx, GameState* state);
+void EnMm2_Destroy(Actor* thisx, GameState* state);
+void EnMm2_Update(Actor* thisx, GameState* state);
+void EnMm2_Draw(Actor* thisx, GameState* state);
 void func_80AAF3C0(EnMm2* this, GlobalContext* globalCtx);
 void func_80AAF57C(EnMm2* this, GlobalContext* globalCtx);
 void func_80AAF668(EnMm2* this, GlobalContext* globalCtx);
@@ -132,7 +132,7 @@ void func_80AAEF70(EnMm2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMm2_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnMm2_Init(Actor* thisx, GameState* state) {
     EnMm2* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
 
@@ -167,7 +167,7 @@ void EnMm2_Init(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void EnMm2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMm2_Destroy(Actor* thisx, GameState* state) {
     EnMm2* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -298,7 +298,7 @@ void func_80AAF668(EnMm2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMm2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMm2_Update(Actor* thisx, GameState* state) {
     EnMm2* this = THIS;
     s32 pad;
 
@@ -317,7 +317,7 @@ void EnMm2_Update(Actor* thisx, GlobalContext* globalCtx) {
     Actor_UpdateBgCheckInfo(globalCtx, &this->actor, 0.0f, 0.0f, 0.0f, 4);
 }
 
-void EnMm2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMm2_Draw(Actor* thisx, GameState* state) {
     static u64* mouthTextures[] = { gRunningManMouthOpenTex, gRunningManMouthClosedTex };
     EnMm2* this = THIS;
 

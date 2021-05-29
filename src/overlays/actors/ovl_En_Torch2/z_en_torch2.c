@@ -49,10 +49,10 @@ typedef enum {
     /* 27 */ BIG_SPIN_2H
 } PlayerSwordAnimation;
 
-void EnTorch2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTorch2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTorch2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTorch2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTorch2_Init(Actor* thisx, GameState* state);
+void EnTorch2_Destroy(Actor* thisx, GameState* state);
+void EnTorch2_Update(Actor* thisx, GameState* state);
+void EnTorch2_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Torch2_InitVars = {
     ACTOR_EN_TORCH2,
@@ -122,7 +122,7 @@ static DamageTable sDamageTable = {
     /* Unknown 2     */ DMG_ENTRY(0, 0x0),
 };
 
-void EnTorch2_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnTorch2_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     Player* this = THIS;
 
@@ -159,7 +159,7 @@ void EnTorch2_Init(Actor* thisx, GlobalContext* globalCtx2) {
     sSpawnPoint = this->actor.home.pos;
 }
 
-void EnTorch2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTorch2_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     Player* this = THIS;
 
@@ -234,7 +234,7 @@ void EnTorch2_Backflip(Player* this, Input* input, Actor* thisx) {
  * neither this nor the original are consistent about it, unfortunately they're not
  * inconsistent in the same way. Also a small instruction mismatch in the input section
  */
-void EnTorch2_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnTorch2_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     Player* player = PLAYER;
     Player* this = THIS;
@@ -781,7 +781,7 @@ void EnTorch2_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList,
     func_80090D20(globalCtx, limbIndex, dList, rot, &this->actor);
 }
 
-void EnTorch2_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void EnTorch2_Draw(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     Player* this = THIS;
     s32 pad;

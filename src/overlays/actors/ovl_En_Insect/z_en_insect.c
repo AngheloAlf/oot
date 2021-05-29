@@ -12,10 +12,10 @@
 
 #define THIS ((EnInsect*)thisx)
 
-void EnInsect_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnInsect_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnInsect_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnInsect_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnInsect_Init(Actor* thisx, GameState* state);
+void EnInsect_Destroy(Actor* thisx, GameState* state);
+void EnInsect_Update(Actor* thisx, GameState* state);
+void EnInsect_Draw(Actor* thisx, GameState* state);
 
 void func_80A7C3A0(EnInsect* this);
 void func_80A7C3F4(EnInsect* this, GlobalContext* globalCtx);
@@ -164,7 +164,7 @@ void func_80A7C058(EnInsect* this) {
     }
 }
 
-void EnInsect_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnInsect_Init(Actor* thisx, GameState* state) {
     EnInsect* this = THIS;
     f32 rand;
     s16 temp_s2;
@@ -228,7 +228,7 @@ void EnInsect_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnInsect_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnInsect_Destroy(Actor* thisx, GameState* state) {
     s16 temp_v0;
     EnInsect* this = THIS;
 
@@ -717,7 +717,7 @@ void func_80A7D460(EnInsect* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnInsect_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnInsect_Update(Actor* thisx, GameState* state) {
     EnInsect* this = THIS;
     s32 phi_v0;
 
@@ -791,7 +791,7 @@ void EnInsect_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnInsect_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnInsect_Draw(Actor* thisx, GameState* state) {
     EnInsect* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

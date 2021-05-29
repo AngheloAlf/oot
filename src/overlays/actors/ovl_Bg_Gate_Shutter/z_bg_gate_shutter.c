@@ -11,10 +11,10 @@
 
 #define THIS ((BgGateShutter*)thisx)
 
-void BgGateShutter_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgGateShutter_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgGateShutter_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgGateShutter_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgGateShutter_Init(Actor* thisx, GameState* state);
+void BgGateShutter_Destroy(Actor* thisx, GameState* state);
+void BgGateShutter_Update(Actor* thisx, GameState* state);
+void BgGateShutter_Draw(Actor* thisx, GameState* state);
 
 void func_8087828C(BgGateShutter* this, GlobalContext* globalCtx);
 void func_80878300(BgGateShutter* this, GlobalContext* globalCtx);
@@ -36,7 +36,7 @@ const ActorInit Bg_Gate_Shutter_InitVars = {
 extern Gfx D_06001CD0[];
 extern CollisionHeader D_06001DA8;
 
-void BgGateShutter_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgGateShutter_Init(Actor* thisx, GameState* state) {
     BgGateShutter* this = THIS;
     s32 pad[2];
     CollisionHeader* colHeader = NULL;
@@ -60,7 +60,7 @@ void BgGateShutter_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_8087828C;
 }
 
-void BgGateShutter_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgGateShutter_Destroy(Actor* thisx, GameState* state) {
     BgGateShutter* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -117,7 +117,7 @@ void func_808783D4(BgGateShutter* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgGateShutter_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgGateShutter_Update(Actor* thisx, GameState* state) {
     BgGateShutter* this = THIS;
 
     if (this->unk_178 != 0) {
@@ -126,7 +126,7 @@ void BgGateShutter_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgGateShutter_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgGateShutter_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_gate_shutter.c", 323);
 
     func_80093D18(globalCtx->state.gfxCtx);

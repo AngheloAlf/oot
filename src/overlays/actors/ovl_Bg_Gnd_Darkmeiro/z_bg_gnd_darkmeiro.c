@@ -11,9 +11,9 @@
 
 #define THIS ((BgGndDarkmeiro*)thisx)
 
-void BgGndDarkmeiro_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgGndDarkmeiro_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgGndDarkmeiro_Update(Actor* thisx, GlobalContext* globalCtx);
+void BgGndDarkmeiro_Init(Actor* thisx, GameState* state);
+void BgGndDarkmeiro_Destroy(Actor* thisx, GameState* state);
+void BgGndDarkmeiro_Update(Actor* thisx, GameState* state);
 void BgGndDarkmeiro_DrawInvisiblePath(Actor* thisx, GlobalContext* globalCtx);
 void BgGndDarkmeiro_DrawSwitchBlock(Actor* thisx, GlobalContext* globalCtx);
 void BgGndDarkmeiro_DrawStaticBlock(Actor* thisx, GlobalContext* globalCtx);
@@ -47,7 +47,7 @@ void BgGndDarkmeiro_ToggleBlock(BgGndDarkmeiro* this, GlobalContext* globalCtx) 
     }
 }
 
-void BgGndDarkmeiro_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndDarkmeiro_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     CollisionHeader* colHeader = NULL;
     BgGndDarkmeiro* this = THIS;
@@ -98,7 +98,7 @@ void BgGndDarkmeiro_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgGndDarkmeiro_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndDarkmeiro_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     BgGndDarkmeiro* this = THIS;
 
@@ -170,7 +170,7 @@ void BgGndDarkmeiro_UpdateSwitchBlock(BgGndDarkmeiro* this, GlobalContext* globa
     BgGndDarkmeiro_ToggleBlock(this, globalCtx);
 }
 
-void BgGndDarkmeiro_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndDarkmeiro_Update(Actor* thisx, GameState* state) {
     BgGndDarkmeiro* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
 

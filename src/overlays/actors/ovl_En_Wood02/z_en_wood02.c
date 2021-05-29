@@ -10,10 +10,10 @@
 
 #define THIS ((EnWood02*)thisx)
 
-void EnWood02_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWood02_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWood02_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnWood02_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnWood02_Init(Actor* thisx, GameState* state);
+void EnWood02_Destroy(Actor* thisx, GameState* state);
+void EnWood02_Update(Actor* thisx, GameState* state);
+void EnWood02_Draw(Actor* thisx, GameState* state);
 
 /**
  * WOOD_SPAWN_SPAWNER is also used by some individual trees: EnWood02_Update also checks for parent before running any
@@ -149,7 +149,7 @@ void EnWood02_SpawnOffspring(EnWood02* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnWood02_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnWood02_Init(Actor* thisx, GameState* state) {
     s16 spawnType;
     f32 actorScale;
     GlobalContext* globalCtx = globalCtx2;
@@ -281,7 +281,7 @@ void EnWood02_Init(Actor* thisx, GlobalContext* globalCtx2) {
     this->actor.colChkInfo.mass = MASS_IMMOVABLE;
 }
 
-void EnWood02_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWood02_Destroy(Actor* thisx, GameState* state) {
     EnWood02* this = THIS;
 
     if (this->actor.params <= WOOD_TREE_KAKARIKO_ADULT) {
@@ -289,7 +289,7 @@ void EnWood02_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnWood02_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnWood02_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnWood02* this = THIS;
     f32 wobbleAmplitude;
@@ -402,7 +402,7 @@ void EnWood02_Update(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void EnWood02_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnWood02_Draw(Actor* thisx, GameState* state) {
     EnWood02* this = THIS;
     s16 type;
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;

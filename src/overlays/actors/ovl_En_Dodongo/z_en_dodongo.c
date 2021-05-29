@@ -19,10 +19,10 @@ typedef enum {
     DODONGO_WALK
 } EnDodongoActionState;
 
-void EnDodongo_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDodongo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDodongo_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDodongo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDodongo_Init(Actor* thisx, GameState* state);
+void EnDodongo_Destroy(Actor* thisx, GameState* state);
+void EnDodongo_Update(Actor* thisx, GameState* state);
+void EnDodongo_Draw(Actor* thisx, GameState* state);
 
 void EnDodongo_SetupDeath(EnDodongo* this, GlobalContext* globalCtx);
 void EnDodongo_ShiftVecRadial(s16 yaw, f32 radius, Vec3f* vec);
@@ -306,7 +306,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 2800, ICHAIN_STOP),
 };
 
-void EnDodongo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDodongo_Init(Actor* thisx, GameState* state) {
     EnDodongo* this = THIS;
     EffectBlureInit1 blureInit;
 
@@ -346,7 +346,7 @@ void EnDodongo_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnDodongo_SetupIdle(this);
 }
 
-void EnDodongo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDodongo_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnDodongo* this = THIS;
 
@@ -763,7 +763,7 @@ void EnDodongo_UpdateQuad(EnDodongo* this, GlobalContext* globalCtx) {
                              &this->colliderAT.dim.quad[c], &this->colliderAT.dim.quad[d]);
 }
 
-void EnDodongo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDodongo_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnDodongo* this = THIS;
 
@@ -914,7 +914,7 @@ void EnDodongo_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
     }
 }
 
-void EnDodongo_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void EnDodongo_Draw(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnDodongo* this = THIS;
     s32 index;

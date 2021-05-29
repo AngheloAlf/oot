@@ -12,10 +12,10 @@
 
 #define THIS ((EnLight*)thisx)
 
-void EnLight_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnLight_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnLight_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnLight_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnLight_Init(Actor* thisx, GameState* state);
+void EnLight_Destroy(Actor* thisx, GameState* state);
+void EnLight_Update(Actor* thisx, GameState* state);
+void EnLight_Draw(Actor* thisx, GameState* state);
 void EnLight_UpdateSwitch(Actor* thisx, GlobalContext* globalCtx);
 
 const ActorInit En_Light_InitVars = {
@@ -47,7 +47,7 @@ static FlameParams D_80A9E840[] = {
     { { 170, 255, 255, 255 }, { 0, 0, 255 }, 75 },   { { 170, 255, 255, 255 }, { 0, 150, 255 }, 75 },
 };
 
-void EnLight_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnLight_Init(Actor* thisx, GameState* state) {
     EnLight* this = THIS;
     s16 yOffset;
 
@@ -71,7 +71,7 @@ void EnLight_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnLight_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnLight_Destroy(Actor* thisx, GameState* state) {
     EnLight* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -89,7 +89,7 @@ void EnLight_UpdatePosRot(EnLight* this, GlobalContext* globalCtx) {
     this->timer++;
 }
 
-void EnLight_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnLight_Update(Actor* thisx, GameState* state) {
     f32 intensity;
     FlameParams* flameParams;
     s16 radius;
@@ -151,7 +151,7 @@ void EnLight_UpdateSwitch(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnLight_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnLight_Draw(Actor* thisx, GameState* state) {
     EnLight* this = THIS;
     s32 pad;
     FlameParams* flameParams;

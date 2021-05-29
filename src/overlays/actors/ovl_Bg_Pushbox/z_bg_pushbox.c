@@ -10,10 +10,10 @@
 
 #define THIS ((BgPushbox*)thisx)
 
-void BgPushbox_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgPushbox_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgPushbox_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgPushbox_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgPushbox_Init(Actor* thisx, GameState* state);
+void BgPushbox_Destroy(Actor* thisx, GameState* state);
+void BgPushbox_Update(Actor* thisx, GameState* state);
+void BgPushbox_Draw(Actor* thisx, GameState* state);
 
 void func_808A8BAC(BgPushbox* this, GlobalContext* globalCtx);
 
@@ -40,7 +40,7 @@ void BgPushbox_SetupAction(BgPushbox* this, BgPushboxActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void BgPushbox_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgPushbox_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgPushbox* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -54,7 +54,7 @@ void BgPushbox_Init(Actor* thisx, GlobalContext* globalCtx) {
     BgPushbox_SetupAction(this, func_808A8BAC);
 }
 
-void BgPushbox_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgPushbox_Destroy(Actor* thisx, GameState* state) {
     BgPushbox* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -71,14 +71,14 @@ void func_808A8BAC(BgPushbox* this, GlobalContext* globalCtx) {
     Actor_UpdateBgCheckInfo(globalCtx, &this->dyna.actor, 20.0f, 40.0f, 40.0f, 0x1D);
 }
 
-void BgPushbox_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgPushbox_Update(Actor* thisx, GameState* state) {
     BgPushbox* this = THIS;
 
     this->actionFunc(this, globalCtx);
     func_8002DF90(&this->dyna);
 }
 
-void BgPushbox_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgPushbox_Draw(Actor* thisx, GameState* state) {
     s32 pad;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_pushbox.c", 263);

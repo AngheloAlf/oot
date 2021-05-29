@@ -10,10 +10,10 @@
 
 #define THIS ((EnMs*)thisx)
 
-void EnMs_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMs_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMs_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMs_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMs_Init(Actor* thisx, GameState* state);
+void EnMs_Destroy(Actor* thisx, GameState* state);
+void EnMs_Update(Actor* thisx, GameState* state);
+void EnMs_Draw(Actor* thisx, GameState* state);
 
 void EnMs_SetOfferText(EnMs* this, GlobalContext* globalCtx);
 void EnMs_Wait(EnMs* this, GlobalContext* globalCtx);
@@ -72,7 +72,7 @@ void EnMs_SetOfferText(EnMs* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMs_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMs_Init(Actor* thisx, GameState* state) {
     EnMs* this = THIS;
     s32 pad;
 
@@ -97,7 +97,7 @@ void EnMs_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnMs_Wait;
 }
 
-void EnMs_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMs_Destroy(Actor* thisx, GameState* state) {
     EnMs* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -160,7 +160,7 @@ void EnMs_TalkAfterPurchase(EnMs* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMs_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMs_Update(Actor* thisx, GameState* state) {
     EnMs* this = THIS;
     s32 pad;
 
@@ -180,7 +180,7 @@ void EnMs_Update(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void EnMs_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMs_Draw(Actor* thisx, GameState* state) {
     EnMs* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

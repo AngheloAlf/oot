@@ -11,10 +11,10 @@
 
 #define THIS ((BgJyaBigmirror*)thisx)
 
-void BgJyaBigmirror_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBigmirror_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBigmirror_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBigmirror_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaBigmirror_Init(Actor* thisx, GameState* state);
+void BgJyaBigmirror_Destroy(Actor* thisx, GameState* state);
+void BgJyaBigmirror_Update(Actor* thisx, GameState* state);
+void BgJyaBigmirror_Draw(Actor* thisx, GameState* state);
 
 static u8 sIsSpawned = false;
 
@@ -174,7 +174,7 @@ void BgJyaBigmirror_HandleMirRay(Actor* thisx, GlobalContext* globalCtx) {
     this->mirRayObjIndex = objBankIndex;
 }
 
-void BgJyaBigmirror_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBigmirror_Init(Actor* thisx, GameState* state) {
     BgJyaBigmirror* this = THIS;
 
     if (sIsSpawned) {
@@ -194,7 +194,7 @@ void BgJyaBigmirror_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(jya 大鏡)(arg_data 0x%04x)\n", this->actor.params);
 }
 
-void BgJyaBigmirror_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBigmirror_Destroy(Actor* thisx, GameState* state) {
     BgJyaBigmirror* this = THIS;
 
     if (this->spawned) {
@@ -202,7 +202,7 @@ void BgJyaBigmirror_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaBigmirror_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBigmirror_Update(Actor* thisx, GameState* state) {
     BgJyaBigmirror_SetRoomFlag(thisx, globalCtx);
     BgJyaBigmirror_HandleCobra(thisx, globalCtx);
     BgJyaBigmirror_SetBombiwaFlag(thisx, globalCtx);
@@ -239,7 +239,7 @@ void BgJyaBigmirror_DrawLightBeam(Actor* thisx, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_jya_bigmirror.c", 476);
 }
 
-void BgJyaBigmirror_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBigmirror_Draw(Actor* thisx, GameState* state) {
     BgJyaBigmirror* this = THIS;
 
     if (this->puzzleFlags & BIGMIR_PUZZLE_IN_1ST_TOP_ROOM) {

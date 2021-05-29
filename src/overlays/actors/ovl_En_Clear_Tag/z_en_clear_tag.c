@@ -4,10 +4,10 @@
 
 #define THIS ((EnClearTag*)thisx)
 
-void EnClearTag_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnClearTag_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnClearTag_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnClearTag_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnClearTag_Init(Actor* thisx, GameState* state);
+void EnClearTag_Destroy(Actor* thisx, GameState* state);
+void EnClearTag_Update(Actor* thisx, GameState* state);
+void EnClearTag_Draw(Actor* thisx, GameState* state);
 
 void EnClearTag_UpdateEffects(GlobalContext* globalCtx);
 void EnClearTag_DrawEffects(GlobalContext* globalCtx);
@@ -217,7 +217,7 @@ void EnClearTag_CreateFlashEffect(GlobalContext* globalCtx, Vec3f* position, f32
  * EnClear_Tag destructor.
  * This just destroys the collider.
  */
-void EnClearTag_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnClearTag_Destroy(Actor* thisx, GameState* state) {
     EnClearTag* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -227,7 +227,7 @@ void EnClearTag_Destroy(Actor* thisx, GlobalContext* globalCtx) {
  * EnClear_Tag constructor.
  * This allocates a collider, initializes effects, and sets up ClearTag instance data.
  */
-void EnClearTag_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnClearTag_Init(Actor* thisx, GameState* state) {
     EnClearTag* this = THIS;
     s32 defaultCutsceneTimer = 100;
     s16 i;
@@ -312,7 +312,7 @@ void EnClearTag_CalculateFloorTangent(EnClearTag* this) {
  * This function controls the cutscene that plays when the Arwing has params for
  * cutscene. The cutscene stops playing when the Arwing is a specified distance from the starting point.
  */
-void EnClearTag_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnClearTag_Update(Actor* thisx, GameState* state) {
     u8 hasAtHit = false;
     s16 i;
     s16 xRotationTarget;
@@ -679,7 +679,7 @@ void EnClearTag_Update(Actor* thisx, GlobalContext* globalCtx2) {
  * Laser clear tag type will draw two lasers.
  * Arwing clear tage types will draw the Arwing, the backfire, and a shadow.
  */
-void EnClearTag_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnClearTag_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnClearTag* this = THIS;
 

@@ -15,10 +15,10 @@
 
 #define THIS ((EnViewer*)thisx)
 
-void EnViewer_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnViewer_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnViewer_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnViewer_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnViewer_Init(Actor* thisx, GameState* state);
+void EnViewer_Destroy(Actor* thisx, GameState* state);
+void EnViewer_Update(Actor* thisx, GameState* state);
+void EnViewer_Draw(Actor* thisx, GameState* state);
 
 void EnViewer_GetCutsceneNextPos(EnViewer* this, GlobalContext* globalCtx);
 void func_80B2C8AC(EnViewer* this2, GlobalContext* globalCtx);
@@ -139,7 +139,7 @@ void EnViewer_SetupAction(EnViewer* this, EnViewerActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnViewer_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnViewer_Init(Actor* thisx, GameState* state) {
     EnViewer* this = THIS;
     u8 params;
 
@@ -156,7 +156,7 @@ void EnViewer_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnViewer_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnViewer_Destroy(Actor* thisx, GameState* state) {
     EnViewer* this = THIS;
     func_800A6888(globalCtx, &this->skin);
 }
@@ -502,7 +502,7 @@ void func_80B2A75C(EnViewer* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnViewer_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnViewer_Update(Actor* thisx, GameState* state) {
     EnViewer* this = THIS;
 
     gSegments[6] = VIRTUAL_TO_PHYSICAL(globalCtx->objectCtx.status[this->animObjBankIndex].segment);
@@ -692,7 +692,7 @@ void func_80B2C130(EnViewer* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_viewer.c", 1740);
 }
 
-void EnViewer_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnViewer_Draw(Actor* thisx, GameState* state) {
     EnViewer* this = THIS;
     s32 pad;
     s16 params;

@@ -4,10 +4,10 @@
 
 #define THIS ((BgIceShelter*)thisx)
 
-void BgIceShelter_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgIceShelter_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgIceShelter_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgIceShelter_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgIceShelter_Init(Actor* thisx, GameState* state);
+void BgIceShelter_Destroy(Actor* thisx, GameState* state);
+void BgIceShelter_Update(Actor* thisx, GameState* state);
+void BgIceShelter_Draw(Actor* thisx, GameState* state);
 
 void func_80891064(BgIceShelter* this);
 void func_808911BC(BgIceShelter* this);
@@ -136,7 +136,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_STOP),
 };
 
-void BgIceShelter_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceShelter_Init(Actor* thisx, GameState* state) {
     static Vec3f kzIceScale = { 0.18f, 0.27f, 0.24f };
     BgIceShelter* this = THIS;
     s16 type = (this->dyna.actor.params >> 8) & 7;
@@ -179,7 +179,7 @@ void BgIceShelter_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(ice shelter)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void BgIceShelter_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceShelter_Destroy(Actor* thisx, GameState* state) {
     BgIceShelter* this = THIS;
 
     switch ((this->dyna.actor.params >> 8) & 7) {
@@ -384,13 +384,13 @@ void func_808911D4(BgIceShelter* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgIceShelter_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceShelter_Update(Actor* thisx, GameState* state) {
     BgIceShelter* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgIceShelter_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void BgIceShelter_Draw(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BgIceShelter* this = THIS;
 

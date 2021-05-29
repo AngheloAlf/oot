@@ -11,9 +11,9 @@
 
 #define THIS ((EnOkarinaEffect*)thisx)
 
-void EnOkarinaEffect_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnOkarinaEffect_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnOkarinaEffect_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnOkarinaEffect_Init(Actor* thisx, GameState* state);
+void EnOkarinaEffect_Destroy(Actor* thisx, GameState* state);
+void EnOkarinaEffect_Update(Actor* thisx, GameState* state);
 
 void EnOkarinaEffect_TriggerStorm(EnOkarinaEffect* this, GlobalContext* globalCtx);
 void EnOkarinaEffect_ManageStorm(EnOkarinaEffect* this, GlobalContext* globalCtx);
@@ -34,7 +34,7 @@ void EnOkarinaEffect_SetupAction(EnOkarinaEffect* this, EnOkarinaEffectActionFun
     this->actionFunc = actionFunc;
 }
 
-void EnOkarinaEffect_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkarinaEffect_Destroy(Actor* thisx, GameState* state) {
     EnOkarinaEffect* this = THIS;
 
     globalCtx->envCtx.unk_F2[0] = 0;
@@ -45,7 +45,7 @@ void EnOkarinaEffect_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     globalCtx->envCtx.lightning = 2; // end lightning
 }
 
-void EnOkarinaEffect_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkarinaEffect_Init(Actor* thisx, GameState* state) {
     EnOkarinaEffect* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -112,7 +112,7 @@ void EnOkarinaEffect_ManageStorm(EnOkarinaEffect* this, GlobalContext* globalCtx
     }
 }
 
-void EnOkarinaEffect_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkarinaEffect_Update(Actor* thisx, GameState* state) {
     EnOkarinaEffect* this = THIS;
 
     this->actionFunc(this, globalCtx);

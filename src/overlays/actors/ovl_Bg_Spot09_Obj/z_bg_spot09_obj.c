@@ -11,10 +11,10 @@
 
 #define THIS ((BgSpot09Obj*)thisx)
 
-void BgSpot09Obj_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot09Obj_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot09Obj_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot09Obj_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot09Obj_Init(Actor* thisx, GameState* state);
+void BgSpot09Obj_Destroy(Actor* thisx, GameState* state);
+void BgSpot09Obj_Update(Actor* thisx, GameState* state);
+void BgSpot09Obj_Draw(Actor* thisx, GameState* state);
 
 s32 func_808B1AE0(BgSpot09Obj* this, GlobalContext* globalCtx);
 s32 func_808B1BA0(BgSpot09Obj* this, GlobalContext* globalCtx);
@@ -136,7 +136,7 @@ s32 func_808B1D44(BgSpot09Obj* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot09Obj_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot09Obj_Init(Actor* thisx, GameState* state) {
     BgSpot09Obj* this = THIS;
 
     osSyncPrintf("Spot09 Object [arg_data : 0x%04x](大工救出フラグ 0x%x)\n", this->dyna.actor.params,
@@ -154,7 +154,7 @@ void BgSpot09Obj_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot09Obj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot09Obj_Destroy(Actor* thisx, GameState* state) {
     DynaCollisionContext* dynaColCtx = &globalCtx->colCtx.dyna;
     BgSpot09Obj* this = THIS;
 
@@ -163,10 +163,10 @@ void BgSpot09Obj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot09Obj_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot09Obj_Update(Actor* thisx, GameState* state) {
 }
 
-void BgSpot09Obj_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot09Obj_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, sDLists[thisx->params]);
 
     if (thisx->params == 3) {

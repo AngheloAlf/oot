@@ -11,10 +11,10 @@
 
 #define THIS ((EnDyExtra*)thisx)
 
-void EnDyExtra_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDyExtra_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDyExtra_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDyExtra_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDyExtra_Init(Actor* thisx, GameState* state);
+void EnDyExtra_Destroy(Actor* thisx, GameState* state);
+void EnDyExtra_Update(Actor* thisx, GameState* state);
+void EnDyExtra_Draw(Actor* thisx, GameState* state);
 
 void EnDyExtra_WaitForTrigger(EnDyExtra* this, GlobalContext* globalCtx);
 void EnDyExtra_FallAndKill(EnDyExtra* this, GlobalContext* globalCtx);
@@ -34,10 +34,10 @@ const ActorInit En_Dy_Extra_InitVars = {
 extern Vtx D_0601BFB0[];
 extern Gfx D_0601C160[];
 
-void EnDyExtra_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDyExtra_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnDyExtra_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDyExtra_Init(Actor* thisx, GameState* state) {
     EnDyExtra* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -77,7 +77,7 @@ void EnDyExtra_FallAndKill(EnDyExtra* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDyExtra_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDyExtra_Update(Actor* thisx, GameState* state) {
     EnDyExtra* this = THIS;
 
     if (this->timer != 0) {
@@ -91,7 +91,7 @@ void EnDyExtra_Update(Actor* thisx, GlobalContext* globalCtx) {
     Actor_MoveForward(&this->actor);
 }
 
-void EnDyExtra_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDyExtra_Draw(Actor* thisx, GameState* state) {
     static Color_RGBA8 primColors[] = { { 255, 255, 170, 255 }, { 255, 255, 170, 255 } };
     static Color_RGBA8 envColors[] = { { 255, 100, 255, 255 }, { 100, 255, 255, 255 } };
     static u8 D_809FFC50[] = { 0x02, 0x01, 0x01, 0x02, 0x00, 0x00, 0x02, 0x01, 0x00, 0x02, 0x01, 0x00, 0x02,

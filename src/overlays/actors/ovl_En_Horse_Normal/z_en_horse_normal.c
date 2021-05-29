@@ -30,10 +30,10 @@ typedef enum {
     /* 0x04 */ HORSE_FOLLOW_PATH
 } EnHorseNormalAction;
 
-void EnHorseNormal_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseNormal_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseNormal_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseNormal_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHorseNormal_Init(Actor* thisx, GameState* state);
+void EnHorseNormal_Destroy(Actor* thisx, GameState* state);
+void EnHorseNormal_Update(Actor* thisx, GameState* state);
+void EnHorseNormal_Draw(Actor* thisx, GameState* state);
 
 void func_80A6B91C(EnHorseNormal* this, GlobalContext* globalCtx);
 void func_80A6BC48(EnHorseNormal* this);
@@ -183,7 +183,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 300, ICHAIN_STOP),
 };
 
-void EnHorseNormal_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseNormal_Init(Actor* thisx, GameState* state) {
     EnHorseNormal* this = THIS;
     s32 pad;
 
@@ -268,7 +268,7 @@ void EnHorseNormal_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHorseNormal_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseNormal_Destroy(Actor* thisx, GameState* state) {
     EnHorseNormal* this = THIS;
 
     func_800A6888(globalCtx, &this->skin);
@@ -566,7 +566,7 @@ static EnHorseNormalActionFunc sActionFuncs[] = {
     EnHorseNormal_WaitClone,       EnHorseNormal_FollowPath,
 };
 
-void EnHorseNormal_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseNormal_Update(Actor* thisx, GameState* state) {
     EnHorseNormal* this = THIS;
     s32 pad;
 
@@ -633,7 +633,7 @@ void func_80A6CC88(GlobalContext* globalCtx, EnHorseNormal* this, Vec3f* arg2) {
     }
 }
 
-void EnHorseNormal_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseNormal_Draw(Actor* thisx, GameState* state) {
     EnHorseNormal* this = THIS;
     Mtx* mtx2;
 

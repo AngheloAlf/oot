@@ -10,10 +10,10 @@
 
 #define THIS ((EnBa*)thisx)
 
-void EnBa_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBa_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBa_Init(Actor* thisx, GameState* state);
+void EnBa_Destroy(Actor* thisx, GameState* state);
+void EnBa_Update(Actor* thisx, GameState* state);
+void EnBa_Draw(Actor* thisx, GameState* state);
 
 void EnBa_SetupIdle(EnBa* this);
 void EnBa_SetupFallAsBlob(EnBa* this);
@@ -92,7 +92,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 0, ICHAIN_STOP),
 };
 
-void EnBa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBa_Init(Actor* thisx, GameState* state) {
     EnBa* this = THIS;
     Vec3f sp38 = D_809B80E4;
     s32 pad;
@@ -129,7 +129,7 @@ void EnBa_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnBa_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBa_Destroy(Actor* thisx, GameState* state) {
     EnBa* this = THIS;
     Collider_DestroyJntSph(globalCtx, &this->collider);
 }
@@ -448,7 +448,7 @@ void EnBa_Die(EnBa* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBa_Update(Actor* thisx, GameState* state) {
     EnBa* this = THIS;
 
     if ((this->actor.params < EN_BA_DEAD_BLOB) && (this->collider.base.acFlags & 2)) {
@@ -471,7 +471,7 @@ void EnBa_Update(Actor* thisx, GlobalContext* globalCtx) {
 
 static Gfx* D_809B8118[] = { 0x060024F0, 0x060027F0, 0x060029F0 };
 
-void EnBa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBa_Draw(Actor* thisx, GameState* state) {
     EnBa* this = THIS;
     s32 pad;
     s16 i;

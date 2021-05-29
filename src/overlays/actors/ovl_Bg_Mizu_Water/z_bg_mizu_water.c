@@ -11,10 +11,10 @@
 
 #define THIS ((BgMizuWater*)thisx)
 
-void BgMizuWater_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuWater_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuWater_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuWater_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMizuWater_Init(Actor* thisx, GameState* state);
+void BgMizuWater_Destroy(Actor* thisx, GameState* state);
+void BgMizuWater_Update(Actor* thisx, GameState* state);
+void BgMizuWater_Draw(Actor* thisx, GameState* state);
 
 void BgMizuWater_WaitForAction(BgMizuWater* this, GlobalContext* globalCtx);
 void BgMizuWater_ChangeWaterLevel(BgMizuWater* this, GlobalContext* globalCtx);
@@ -90,7 +90,7 @@ void BgMizuWater_SetWaterBoxesHeight(WaterBox* waterBoxes, s16 height) {
     }
 }
 
-void BgMizuWater_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuWater_Init(Actor* thisx, GameState* state) {
     BgMizuWater* this = THIS;
     f32 initialActorY;
     WaterBox* waterBoxes;
@@ -162,7 +162,7 @@ void BgMizuWater_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgMizuWater_WaitForAction;
 }
 
-void BgMizuWater_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuWater_Destroy(Actor* thisx, GameState* state) {
 }
 
 void BgMizuWater_WaitForAction(BgMizuWater* this, GlobalContext* globalCtx) {
@@ -292,7 +292,7 @@ void BgMizuWater_ChangeWaterLevel(BgMizuWater* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgMizuWater_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuWater_Update(Actor* thisx, GameState* state) {
     BgMizuWater* this = THIS;
     s32 posY;
     s32 unk0;
@@ -326,7 +326,7 @@ void BgMizuWater_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgMizuWater_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuWater_Draw(Actor* thisx, GameState* state) {
     BgMizuWater* this = THIS;
     s32 gameplayFrames;
 

@@ -19,10 +19,10 @@
 
 #define DOOR_CHECK_RANGE 40.0f
 
-void EnDoor_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDoor_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDoor_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDoor_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDoor_Init(Actor* thisx, GameState* state);
+void EnDoor_Destroy(Actor* thisx, GameState* state);
+void EnDoor_Update(Actor* thisx, GameState* state);
+void EnDoor_Draw(Actor* thisx, GameState* state);
 
 void EnDoor_SetupType(EnDoor* this, GlobalContext* globalCtx);
 void EnDoor_Idle(EnDoor* this, GlobalContext* globalCtx);
@@ -77,7 +77,7 @@ static Gfx* D_809FCEE4[5][2] = {
     { gFieldDoor1DL, gFieldDoor2DL },
 };
 
-void EnDoor_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnDoor_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnDoor* this = THIS;
     EnDoorInfo* objectInfo;
@@ -132,7 +132,7 @@ void EnDoor_Init(Actor* thisx, GlobalContext* globalCtx2) {
     Actor_SetFocus(&this->actor, 70.0f);
 }
 
-void EnDoor_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDoor_Destroy(Actor* thisx, GameState* state) {
     TransitionActorEntry* transitionEntry;
     EnDoor* this = THIS;
 
@@ -291,7 +291,7 @@ void EnDoor_Open(EnDoor* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDoor_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDoor_Update(Actor* thisx, GameState* state) {
     EnDoor* this = THIS;
     this->actionFunc(this, globalCtx);
 }
@@ -325,7 +325,7 @@ s32 EnDoor_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
     return false;
 }
 
-void EnDoor_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDoor_Draw(Actor* thisx, GameState* state) {
     EnDoor* this = THIS;
 
     if (this->actor.objBankIndex == this->requiredObjBankIndex) {

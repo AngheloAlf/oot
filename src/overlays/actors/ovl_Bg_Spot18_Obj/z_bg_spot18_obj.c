@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot18Obj*)thisx)
 
-void BgSpot18Obj_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Obj_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Obj_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Obj_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot18Obj_Init(Actor* thisx, GameState* state);
+void BgSpot18Obj_Destroy(Actor* thisx, GameState* state);
+void BgSpot18Obj_Update(Actor* thisx, GameState* state);
+void BgSpot18Obj_Draw(Actor* thisx, GameState* state);
 
 s32 func_808B8910(BgSpot18Obj* this, GlobalContext* globalCtx);
 s32 func_808B8A5C(BgSpot18Obj* this, GlobalContext* globalCtx);
@@ -185,7 +185,7 @@ s32 func_808B8CC8(BgSpot18Obj* this, GlobalContext* globalCtx) {
     return 1;
 }
 
-void BgSpot18Obj_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Obj_Init(Actor* thisx, GameState* state) {
     BgSpot18Obj* this = THIS;
 
     osSyncPrintf("Spot18 Object [arg_data : 0x%04x]\n", this->dyna.actor.params);
@@ -196,7 +196,7 @@ void BgSpot18Obj_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot18Obj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Obj_Destroy(Actor* thisx, GameState* state) {
     BgSpot18Obj* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -278,7 +278,7 @@ void func_808B9040(BgSpot18Obj* this, GlobalContext* globalCtx) {
     func_808B8E20(this, globalCtx);
 }
 
-void BgSpot18Obj_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Obj_Update(Actor* thisx, GameState* state) {
     BgSpot18Obj* this = THIS;
 
     if (this->unk_168 > 0) {
@@ -287,6 +287,6 @@ void BgSpot18Obj_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot18Obj_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Obj_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, sDlists[thisx->params & 0xF]);
 }

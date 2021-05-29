@@ -11,10 +11,10 @@
 
 #define THIS ((EnTp*)thisx)
 
-void EnTp_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTp_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTp_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTp_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTp_Init(Actor* thisx, GameState* state);
+void EnTp_Destroy(Actor* thisx, GameState* state);
+void EnTp_Update(Actor* thisx, GameState* state);
+void EnTp_Draw(Actor* thisx, GameState* state);
 
 void EnTp_Tail_SetupFollowHead(EnTp* this);
 void EnTp_Tail_FollowHead(EnTp* this, GlobalContext* globalCtx);
@@ -132,7 +132,7 @@ void EnTp_SetupAction(EnTp* this, EnTpActionFunc actionFunc) {
 
 #ifdef NON_MATCHING
 // Regalloc, some stack, and compiler refuses to put zero in $s4 with temp_s4; all seems to be related
-void EnTp_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnTp_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnTp* this = THIS;
 
@@ -195,7 +195,7 @@ void EnTp_Init(Actor* thisx, GlobalContext* globalCtx2) {
 #pragma GLOBAL_ASM("asm/non_matchings/overlays/actors/ovl_En_Tp/EnTp_Init.s")
 #endif
 
-void EnTp_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTp_Destroy(Actor* thisx, GameState* state) {
     EnTp* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->collider);
@@ -652,7 +652,7 @@ void EnTp_UpdateDamage(EnTp* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnTp_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTp_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnTp* this = THIS;
     Vec3f kiraVelocity = { 0.0f, 0.0f, 0.0f };
@@ -734,7 +734,7 @@ void EnTp_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnTp_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTp_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnTp* this = THIS;
 

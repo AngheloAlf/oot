@@ -10,10 +10,10 @@
 
 #define THIS ((EnStream*)thisx)
 
-void EnStream_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnStream_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnStream_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnStream_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnStream_Init(Actor* thisx, GameState* state);
+void EnStream_Destroy(Actor* thisx, GameState* state);
+void EnStream_Update(Actor* thisx, GameState* state);
+void EnStream_Draw(Actor* thisx, GameState* state);
 void EnStream_WaitForPlayer(EnStream* this, GlobalContext* globalCtx);
 
 extern Gfx D_06000950[];
@@ -38,7 +38,7 @@ void EnStream_SetupAction(EnStream* this, EnStreamActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnStream_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnStream_Init(Actor* thisx, GameState* state) {
     EnStream* this = THIS;
 
     this->unk_150 = thisx->params & 0xFF;
@@ -49,7 +49,7 @@ void EnStream_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnStream_SetupAction(this, EnStream_WaitForPlayer);
 }
 
-void EnStream_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnStream_Destroy(Actor* thisx, GameState* state) {
 }
 
 // Checks if the player is in range of the vortex
@@ -123,14 +123,14 @@ void EnStream_WaitForPlayer(EnStream* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnStream_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnStream_Update(Actor* thisx, GameState* state) {
     EnStream* this = THIS;
 
     this->actionFunc(this, globalCtx);
     func_8002F948(thisx, NA_SE_EV_WHIRLPOOL - SFX_FLAG);
 }
 
-void EnStream_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnStream_Draw(Actor* thisx, GameState* state) {
     u32 multipliedFrames;
     u32 frames = globalCtx->gameplayFrames;
 

@@ -5,10 +5,10 @@
 
 #define THIS ((EnNy*)thisx)
 
-void EnNy_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnNy_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnNy_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnNy_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnNy_Init(Actor* thisx, GameState* state);
+void EnNy_Destroy(Actor* thisx, GameState* state);
+void EnNy_Update(Actor* thisx, GameState* state);
+void EnNy_Draw(Actor* thisx, GameState* state);
 
 void EnNy_UpdateUnused(Actor* thisx, GlobalContext* globalCtx);
 void EnNy_Move(EnNy* this, GlobalContext* globalCtx);
@@ -105,7 +105,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 30, ICHAIN_STOP),
 };
 
-void EnNy_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnNy_Init(Actor* thisx, GameState* state) {
     EnNy* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -146,7 +146,7 @@ void EnNy_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnNy_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnNy_Destroy(Actor* thisx, GameState* state) {
     EnNy* this = THIS;
     Collider_DestroyJntSph(globalCtx, &this->collider);
 }
@@ -365,7 +365,7 @@ void func_80ABD3B8(EnNy* this, f32 arg1, f32 arg2) {
     }
 }
 
-void EnNy_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnNy_Update(Actor* thisx, GameState* state) {
     EnNy* this = THIS;
     f32 temp_f20;
     f32 temp_f22;
@@ -521,7 +521,7 @@ static Vec3f sFireOffsets[] = {
     { 0.0f, 0.0f, -5.0f },
 };
 
-void EnNy_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnNy_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnNy* this = THIS;
 

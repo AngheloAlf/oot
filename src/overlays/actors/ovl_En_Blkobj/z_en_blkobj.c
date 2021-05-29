@@ -11,10 +11,10 @@
 
 #define THIS ((EnBlkobj*)thisx)
 
-void EnBlkobj_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBlkobj_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBlkobj_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBlkobj_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBlkobj_Init(Actor* thisx, GameState* state);
+void EnBlkobj_Destroy(Actor* thisx, GameState* state);
+void EnBlkobj_Update(Actor* thisx, GameState* state);
+void EnBlkobj_Draw(Actor* thisx, GameState* state);
 
 void EnBlkobj_Wait(EnBlkobj* this, GlobalContext* globalCtx);
 void EnBlkobj_SpawnDarkLink(EnBlkobj* this, GlobalContext* globalCtx);
@@ -55,7 +55,7 @@ void EnBlkobj_SetupAction(EnBlkobj* this, EnBlkobjActionFunc actionFunc) {
     this->timer = 0;
 }
 
-void EnBlkobj_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBlkobj_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnBlkobj* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -72,7 +72,7 @@ void EnBlkobj_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnBlkobj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBlkobj_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnBlkobj* this = THIS;
 
@@ -122,7 +122,7 @@ void EnBlkobj_DarkLinkFight(EnBlkobj* this, GlobalContext* globalCtx) {
 void EnBlkobj_DoNothing(EnBlkobj* this, GlobalContext* globalCtx) {
 }
 
-void EnBlkobj_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBlkobj_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnBlkobj* this = THIS;
 
@@ -147,7 +147,7 @@ void EnBlkobj_DrawAlpha(GlobalContext* globalCtx, Gfx* dList, s32 alpha) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_blkobj.c", 330);
 }
 
-void EnBlkobj_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBlkobj_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnBlkobj* this = THIS;
     s32 illusionAlpha;

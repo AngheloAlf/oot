@@ -10,10 +10,10 @@
 
 #define THIS ((EnBird*)thisx)
 
-void EnBird_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBird_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBird_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBird_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBird_Init(Actor* thisx, GameState* state);
+void EnBird_Destroy(Actor* thisx, GameState* state);
+void EnBird_Update(Actor* thisx, GameState* state);
+void EnBird_Draw(Actor* thisx, GameState* state);
 
 void func_809C1E00(EnBird* this, s16 params);
 void func_809C1E40(EnBird* this, GlobalContext* globalCtx);
@@ -43,7 +43,7 @@ void EnBird_SetupAction(EnBird* this, EnBirdActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnBird_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBird_Init(Actor* thisx, GameState* state) {
     EnBird* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -64,7 +64,7 @@ void EnBird_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_809C1CAC(this, this->actor.params);
 }
 
-void EnBird_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBird_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_809C1CAC(EnBird* this, s16 params) {
@@ -121,14 +121,14 @@ void func_809C1E40(EnBird* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBird_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBird_Update(Actor* thisx, GameState* state) {
     EnBird* this = THIS;
 
     this->unk_1B4 += this->unk_1B8;
     this->actionFunc(this, globalCtx);
 }
 
-void EnBird_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBird_Draw(Actor* thisx, GameState* state) {
     EnBird* this = THIS;
 
     SkelAnime_DrawOpa(globalCtx, this->skelAnime.skeleton, this->skelAnime.jointTable, NULL, NULL, NULL);

@@ -7334,7 +7334,7 @@ Vec3s Camera_Update(Camera* camera) {
         spAC = curPlayerPosRot.pos;
         spAC.y += Player_GetHeight(camera->player);
 
-        playerGroundY = BgCheck_EntityRaycastFloor5(camera->globalCtx, &camera->globalCtx->colCtx, &playerFloorPoly,
+        playerGroundY = BgCheck_EntityRaycastFloor5(&camera->globalCtx->state, &camera->globalCtx->colCtx, &playerFloorPoly,
                                                     &bgId, &camera->player->actor, &spAC);
         if (playerGroundY != BGCHECK_Y_MIN) {
             // player is above ground.

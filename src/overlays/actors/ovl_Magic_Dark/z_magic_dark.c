@@ -11,8 +11,8 @@
 
 #define THIS ((MagicDark*)thisx)
 
-void MagicDark_Init(Actor* thisx, GlobalContext* globalCtx);
-void MagicDark_Destroy(Actor* thisx, GlobalContext* globalCtx);
+void MagicDark_Init(Actor* thisx, GameState* state);
+void MagicDark_Destroy(Actor* thisx, GameState* state);
 void MagicDark_OrbUpdate(Actor* thisx, GlobalContext* globalCtx);
 void MagicDark_OrbDraw(Actor* thisx, GlobalContext* globalCtx);
 void MagicDark_DiamondUpdate(Actor* thisx, GlobalContext* globalCtx);
@@ -37,7 +37,7 @@ const ActorInit Magic_Dark_InitVars = {
 // unused
 static Color_RGBA8 D_80B88B10[] = { { 50, 100, 150, 200 }, { 255, 200, 150, 100 } };
 
-void MagicDark_Init(Actor* thisx, GlobalContext* globalCtx) {
+void MagicDark_Init(Actor* thisx, GameState* state) {
     MagicDark* this = THIS;
     Player* player = PLAYER;
 
@@ -64,7 +64,7 @@ void MagicDark_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void MagicDark_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void MagicDark_Destroy(Actor* thisx, GameState* state) {
     if (gSaveContext.nayrusLoveTimer == 0) {
         func_800876C8(globalCtx);
     }

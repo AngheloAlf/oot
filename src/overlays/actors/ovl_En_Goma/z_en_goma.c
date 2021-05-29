@@ -7,10 +7,10 @@
 
 #define THIS ((EnGoma*)thisx)
 
-void EnGoma_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGoma_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGoma_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGoma_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGoma_Init(Actor* thisx, GameState* state);
+void EnGoma_Destroy(Actor* thisx, GameState* state);
+void EnGoma_Update(Actor* thisx, GameState* state);
+void EnGoma_Draw(Actor* thisx, GameState* state);
 
 void EnGoma_Flee(EnGoma* this, GlobalContext* globalCtx);
 void EnGoma_EggFallToGround(EnGoma* this, GlobalContext* globalCtx);
@@ -116,7 +116,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 20, ICHAIN_STOP),
 };
 
-void EnGoma_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGoma_Init(Actor* thisx, GameState* state) {
     EnGoma* this = THIS;
     s16 params;
 
@@ -180,7 +180,7 @@ void EnGoma_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnGoma_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGoma_Destroy(Actor* thisx, GameState* state) {
     EnGoma* this = THIS;
 
     if (this->actor.params < 10) {
@@ -702,7 +702,7 @@ void EnGoma_SetFloorRot(EnGoma* this) {
     }
 }
 
-void EnGoma_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGoma_Update(Actor* thisx, GameState* state) {
     EnGoma* this = THIS;
     s32 pad;
     Player* player = PLAYER;
@@ -783,7 +783,7 @@ Gfx* EnGoma_NoBackfaceCullingDlist(GraphicsContext* gfxCtx) {
     return dList;
 }
 
-void EnGoma_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGoma_Draw(Actor* thisx, GameState* state) {
     EnGoma* this = THIS;
     s32 y;
     s32 pad;

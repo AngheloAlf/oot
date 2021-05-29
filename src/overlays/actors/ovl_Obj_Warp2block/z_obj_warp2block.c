@@ -11,10 +11,10 @@
 
 #define THIS ((ObjWarp2block*)thisx)
 
-void ObjWarp2block_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjWarp2block_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjWarp2block_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjWarp2block_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjWarp2block_Init(Actor* thisx, GameState* state);
+void ObjWarp2block_Destroy(Actor* thisx, GameState* state);
+void ObjWarp2block_Update(Actor* thisx, GameState* state);
+void ObjWarp2block_Draw(Actor* thisx, GameState* state);
 
 void ObjWarp2block_Spawn(ObjWarp2block* this, GlobalContext* globalCtx);
 s32 func_80BA1ECC(ObjWarp2block* this, GlobalContext* globalCtx);
@@ -198,7 +198,7 @@ s32 func_80BA2304(ObjWarp2block* this, GlobalContext* globalCtx) {
     return ret;
 }
 
-void ObjWarp2block_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void ObjWarp2block_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     ObjWarp2block* this = THIS;
     CollisionHeader* collisionHeader;
@@ -227,7 +227,7 @@ void ObjWarp2block_Init(Actor* thisx, GlobalContext* globalCtx2) {
                  this->dyna.actor.home.rot.z & 7, (this->dyna.actor.params >> 0xB) & 7);
 }
 
-void ObjWarp2block_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjWarp2block_Destroy(Actor* thisx, GameState* state) {
     ObjWarp2block* this = THIS;
     if ((this->dyna.actor.params >> 0xF) & 1) {
         DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -296,7 +296,7 @@ void func_80BA2610(ObjWarp2block* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjWarp2block_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjWarp2block_Update(Actor* thisx, GameState* state) {
     ObjWarp2block* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -305,7 +305,7 @@ void ObjWarp2block_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjWarp2block_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjWarp2block_Draw(Actor* thisx, GameState* state) {
     Color_RGB8* sp44;
 
     sp44 = &sColors[thisx->home.rot.z & 7];

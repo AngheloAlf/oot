@@ -18,10 +18,10 @@ typedef enum {
     /* 0x02 */ FLASH_SHRINK
 } FlashState;
 
-void BgGanonOtyuka_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgGanonOtyuka_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgGanonOtyuka_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgGanonOtyuka_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgGanonOtyuka_Init(Actor* thisx, GameState* state);
+void BgGanonOtyuka_Destroy(Actor* thisx, GameState* state);
+void BgGanonOtyuka_Update(Actor* thisx, GameState* state);
+void BgGanonOtyuka_Draw(Actor* thisx, GameState* state);
 
 void BgGanonOtyuka_WaitToFall(BgGanonOtyuka* this, GlobalContext* globalCtx);
 void BgGanonOtyuka_Fall(BgGanonOtyuka* this, GlobalContext* globalCtx);
@@ -97,7 +97,7 @@ static CollisionHeader sColHeader = {
     sPolyList,         sSurfaceTypeList, sCameraDataList,       0,        NULL,
 };
 
-void BgGanonOtyuka_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgGanonOtyuka_Init(Actor* thisx, GameState* state) {
     BgGanonOtyuka* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -115,7 +115,7 @@ void BgGanonOtyuka_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgGanonOtyuka_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgGanonOtyuka_Destroy(Actor* thisx, GameState* state) {
     BgGanonOtyuka* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -264,7 +264,7 @@ void BgGanonOtyuka_Fall(BgGanonOtyuka* this, GlobalContext* globalCtx) {
 void BgGanonOtyuka_DoNothing(Actor* thisx, GlobalContext* globalCtx) {
 }
 
-void BgGanonOtyuka_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgGanonOtyuka_Update(Actor* thisx, GameState* state) {
     BgGanonOtyuka* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -274,7 +274,7 @@ void BgGanonOtyuka_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgGanonOtyuka_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgGanonOtyuka_Draw(Actor* thisx, GameState* state) {
     BgGanonOtyuka* this = THIS;
     s16 i;
     Gfx* phi_s2;

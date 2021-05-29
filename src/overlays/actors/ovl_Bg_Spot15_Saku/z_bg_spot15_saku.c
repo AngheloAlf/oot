@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot15Saku*)thisx)
 
-void BgSpot15Saku_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot15Saku_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot15Saku_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot15Saku_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot15Saku_Init(Actor* thisx, GameState* state);
+void BgSpot15Saku_Destroy(Actor* thisx, GameState* state);
+void BgSpot15Saku_Update(Actor* thisx, GameState* state);
+void BgSpot15Saku_Draw(Actor* thisx, GameState* state);
 
 void func_808B4930(BgSpot15Saku* this, GlobalContext* globalCtx);
 void func_808B4978(BgSpot15Saku* this, GlobalContext* globalCtx);
@@ -34,7 +34,7 @@ const ActorInit Bg_Spot15_Saku_InitVars = {
 extern Gfx D_060003C0[];
 extern CollisionHeader D_060004D0;
 
-void BgSpot15Saku_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot15Saku_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgSpot15Saku* this = THIS;
     s32 pad2;
@@ -55,7 +55,7 @@ void BgSpot15Saku_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_808B4930;
 }
 
-void BgSpot15Saku_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot15Saku_Destroy(Actor* thisx, GameState* state) {
     BgSpot15Saku* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -87,7 +87,7 @@ void func_808B4A04(BgSpot15Saku* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot15Saku_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot15Saku_Update(Actor* thisx, GameState* state) {
     BgSpot15Saku* this = THIS;
 
     if (this->timer != 0) {
@@ -97,7 +97,7 @@ void BgSpot15Saku_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot15Saku_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot15Saku_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_spot15_saku.c", 259);
 
     func_80093D84(globalCtx->state.gfxCtx);

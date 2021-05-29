@@ -4,10 +4,10 @@
 
 #define THIS ((EnFz*)thisx)
 
-void EnFz_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFz_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFz_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFz_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFz_Init(Actor* thisx, GameState* state);
+void EnFz_Destroy(Actor* thisx, GameState* state);
+void EnFz_Update(Actor* thisx, GameState* state);
+void EnFz_Draw(Actor* thisx, GameState* state);
 
 void EnFz_UpdateTargetPos(EnFz* this, GlobalContext* globalCtx);
 
@@ -160,7 +160,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 30, ICHAIN_STOP),
 };
 
-void EnFz_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFz_Init(Actor* thisx, GameState* state) {
     EnFz* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -207,7 +207,7 @@ void EnFz_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnFz_UpdateTargetPos(this, globalCtx);
 }
 
-void EnFz_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFz_Destroy(Actor* thisx, GameState* state) {
     EnFz* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider1);
@@ -664,7 +664,7 @@ static EnFzSpawnIceSmokeFunc iceSmokeSpawnFuncs[] = {
     EnFz_SpawnIceSmokeActiveState,
 };
 
-void EnFz_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFz_Update(Actor* thisx, GameState* state) {
     EnFz* this = THIS;
     s32 pad;
 
@@ -708,7 +708,7 @@ void EnFz_Update(Actor* thisx, GlobalContext* globalCtx) {
     EnFz_UpdateIceSmoke(this, globalCtx);
 }
 
-void EnFz_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFz_Draw(Actor* thisx, GameState* state) {
     static Gfx* displayLists[] = {
         0x06001130, // Body fully intact           (5 or 6 health)
         0x060021A0, // Top right horn chipped off  (from Freezards perspective)   (3 or 4 health)

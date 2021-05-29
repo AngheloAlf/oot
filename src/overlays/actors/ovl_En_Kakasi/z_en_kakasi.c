@@ -11,10 +11,10 @@
 
 #define THIS ((EnKakasi*)thisx)
 
-void EnKakasi_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnKakasi_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnKakasi_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnKakasi_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnKakasi_Init(Actor* thisx, GameState* state);
+void EnKakasi_Destroy(Actor* thisx, GameState* state);
+void EnKakasi_Update(Actor* thisx, GameState* state);
+void EnKakasi_Draw(Actor* thisx, GameState* state);
 
 void func_80A8F660(EnKakasi* this, GlobalContext* globalCtx);
 void func_80A8F75C(EnKakasi* this, GlobalContext* globalCtx);
@@ -58,14 +58,14 @@ const ActorInit En_Kakasi_InitVars = {
     (ActorFunc)EnKakasi_Draw,
 };
 
-void EnKakasi_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnKakasi_Destroy(Actor* thisx, GameState* state) {
     EnKakasi* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
     //! @bug SkelAnime_Free is not called
 }
 
-void EnKakasi_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnKakasi_Init(Actor* thisx, GameState* state) {
     EnKakasi* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -319,7 +319,7 @@ void func_80A8FBB8(EnKakasi* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnKakasi_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnKakasi_Update(Actor* thisx, GameState* state) {
     EnKakasi* this = THIS;
     s32 pad;
     s32 i;
@@ -341,7 +341,7 @@ void EnKakasi_Update(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void EnKakasi_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnKakasi_Draw(Actor* thisx, GameState* state) {
     EnKakasi* this = THIS;
 
     if (BREG(3) != 0) {

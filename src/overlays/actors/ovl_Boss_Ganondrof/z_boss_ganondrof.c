@@ -48,10 +48,10 @@ typedef enum {
     /* 2 */ DEATH_HUNCHED
 } BossGanondrofDeathAction;
 
-void BossGanondrof_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossGanondrof_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossGanondrof_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossGanondrof_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossGanondrof_Init(Actor* thisx, GameState* state);
+void BossGanondrof_Destroy(Actor* thisx, GameState* state);
+void BossGanondrof_Update(Actor* thisx, GameState* state);
+void BossGanondrof_Draw(Actor* thisx, GameState* state);
 
 void BossGanondrof_SetupIntro(BossGanondrof* this, GlobalContext* globalCtx);
 void BossGanondrof_Intro(BossGanondrof* this, GlobalContext* globalCtx);
@@ -274,7 +274,7 @@ void BossGanondrof_SetColliderPos(Vec3f* pos, ColliderCylinder* collider) {
     collider->dim.pos.z = pos->z;
 }
 
-void BossGanondrof_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BossGanondrof_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BossGanondrof* this = THIS;
 
@@ -310,7 +310,7 @@ void BossGanondrof_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BossGanondrof_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BossGanondrof_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BossGanondrof* this = THIS;
 
@@ -1283,7 +1283,7 @@ void BossGanondrof_CollisionCheck(BossGanondrof* this, GlobalContext* globalCtx)
     }
 }
 
-void BossGanondrof_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BossGanondrof_Update(Actor* thisx, GameState* state) {
     f32 cs;
     f32 sn;
     f32 legRotTargetY;
@@ -1482,7 +1482,7 @@ Gfx* BossGanondrof_GetNullDList(GraphicsContext* gfxCtx) {
     return dList;
 }
 
-void BossGanondrof_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BossGanondrof_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BossGanondrof* this = THIS;
     EnfHG* horse;

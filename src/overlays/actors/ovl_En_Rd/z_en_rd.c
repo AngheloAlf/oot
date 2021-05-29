@@ -4,10 +4,10 @@
 
 #define THIS ((EnRd*)thisx)
 
-void EnRd_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnRd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnRd_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnRd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnRd_Init(Actor* thisx, GameState* state);
+void EnRd_Destroy(Actor* thisx, GameState* state);
+void EnRd_Update(Actor* thisx, GameState* state);
+void EnRd_Draw(Actor* thisx, GameState* state);
 
 void func_80AE269C(EnRd* this);
 void func_80AE2744(EnRd* this, GlobalContext* globalCtx);
@@ -135,7 +135,7 @@ void EnRd_SetupAction(EnRd* this, EnRdActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnRd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnRd_Init(Actor* thisx, GameState* state) {
     EnRd* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -182,7 +182,7 @@ void EnRd_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnRd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnRd_Destroy(Actor* thisx, GameState* state) {
     EnRd* this = THIS;
 
     if (gSaveContext.unk_1422 != 0) {
@@ -798,7 +798,7 @@ void func_80AE4114(EnRd* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnRd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnRd_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnRd* this = THIS;
     Player* player = PLAYER;
@@ -902,7 +902,7 @@ void EnRd_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnRd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnRd_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnRd* this = THIS;
     Vec3f thisPos = thisx->world.pos;

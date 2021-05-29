@@ -11,10 +11,10 @@
 
 #define THIS ((EnEg*)thisx)
 
-void EnEg_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnEg_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnEg_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnEg_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnEg_Init(Actor* thisx, GameState* state);
+void EnEg_Destroy(Actor* thisx, GameState* state);
+void EnEg_Update(Actor* thisx, GameState* state);
+void EnEg_Draw(Actor* thisx, GameState* state);
 
 void func_809FFDC8(EnEg* this, GlobalContext* globalCtx);
 
@@ -40,10 +40,10 @@ void EnEg_PlayVoidOutSFX() {
     func_800788CC(NA_SE_OC_ABYSS);
 }
 
-void EnEg_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnEg_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnEg_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnEg_Init(Actor* thisx, GameState* state) {
     EnEg* this = THIS;
 
     this->action = 0;
@@ -61,7 +61,7 @@ void func_809FFDC8(EnEg* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnEg_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnEg_Update(Actor* thisx, GameState* state) {
     EnEg* this = THIS;
     s32 action = this->action;
 
@@ -73,5 +73,5 @@ void EnEg_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnEg_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnEg_Draw(Actor* thisx, GameState* state) {
 }

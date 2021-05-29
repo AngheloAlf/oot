@@ -12,10 +12,10 @@
 
 #define THIS ((ArrowLight*)thisx)
 
-void ArrowLight_Init(Actor* thisx, GlobalContext* globalCtx);
-void ArrowLight_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ArrowLight_Update(Actor* thisx, GlobalContext* globalCtx);
-void ArrowLight_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ArrowLight_Init(Actor* thisx, GameState* state);
+void ArrowLight_Destroy(Actor* thisx, GameState* state);
+void ArrowLight_Update(Actor* thisx, GameState* state);
+void ArrowLight_Draw(Actor* thisx, GameState* state);
 
 void ArrowLight_Charge(ArrowLight* this, GlobalContext* globalCtx);
 void ArrowLight_Fly(ArrowLight* this, GlobalContext* globalCtx);
@@ -43,7 +43,7 @@ void ArrowLight_SetupAction(ArrowLight* this, ArrowLightActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void ArrowLight_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowLight_Init(Actor* thisx, GameState* state) {
     ArrowLight* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -56,7 +56,7 @@ void ArrowLight_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_164 = 0.0f;
 }
 
-void ArrowLight_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowLight_Destroy(Actor* thisx, GameState* state) {
     func_800876C8(globalCtx);
     // Translates to: "Disappearance"
     LOG_STRING("消滅", "../z_arrow_light.c", 403);
@@ -181,7 +181,7 @@ void ArrowLight_Fly(ArrowLight* this, GlobalContext* globalCtx) {
     }
 }
 
-void ArrowLight_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowLight_Update(Actor* thisx, GameState* state) {
     ArrowLight* this = THIS;
 
     if (globalCtx->msgCtx.msgMode == 0xD || globalCtx->msgCtx.msgMode == 0x11) {
@@ -191,7 +191,7 @@ void ArrowLight_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ArrowLight_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowLight_Draw(Actor* thisx, GameState* state) {
     ArrowLight* this = THIS;
     s32 pad;
     u32 stateFrames;

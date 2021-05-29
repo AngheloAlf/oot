@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot07Taki*)thisx)
 
-void BgSpot07Taki_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot07Taki_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot07Taki_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot07Taki_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot07Taki_Init(Actor* thisx, GameState* state);
+void BgSpot07Taki_Destroy(Actor* thisx, GameState* state);
+void BgSpot07Taki_Update(Actor* thisx, GameState* state);
+void BgSpot07Taki_Draw(Actor* thisx, GameState* state);
 
 void BgSpot07Taki_DoNothing(BgSpot07Taki* this, GlobalContext* globalCtx);
 
@@ -42,7 +42,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgSpot07Taki_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot07Taki_Init(Actor* thisx, GameState* state) {
     BgSpot07Taki* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -60,7 +60,7 @@ void BgSpot07Taki_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgSpot07Taki_DoNothing;
 }
 
-void BgSpot07Taki_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot07Taki_Destroy(Actor* thisx, GameState* state) {
     BgSpot07Taki* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -69,13 +69,13 @@ void BgSpot07Taki_Destroy(Actor* thisx, GlobalContext* globalCtx) {
 void BgSpot07Taki_DoNothing(BgSpot07Taki* this, GlobalContext* globalCtx) {
 }
 
-void BgSpot07Taki_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot07Taki_Update(Actor* thisx, GameState* state) {
     BgSpot07Taki* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot07Taki_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot07Taki_Draw(Actor* thisx, GameState* state) {
     BgSpot07Taki* this = THIS;
     u32 frames;
 

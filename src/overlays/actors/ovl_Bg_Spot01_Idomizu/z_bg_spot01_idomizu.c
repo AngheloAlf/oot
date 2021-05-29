@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot01Idomizu*)thisx)
 
-void BgSpot01Idomizu_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Idomizu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Idomizu_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot01Idomizu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot01Idomizu_Init(Actor* thisx, GameState* state);
+void BgSpot01Idomizu_Destroy(Actor* thisx, GameState* state);
+void BgSpot01Idomizu_Update(Actor* thisx, GameState* state);
+void BgSpot01Idomizu_Draw(Actor* thisx, GameState* state);
 
 void func_808ABB84(BgSpot01Idomizu* this, GlobalContext* globalCtx);
 
@@ -35,7 +35,7 @@ static InitChainEntry sInitChain[] = {
 
 extern Gfx D_060007D0[];
 
-void BgSpot01Idomizu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idomizu_Init(Actor* thisx, GameState* state) {
     BgSpot01Idomizu* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -48,7 +48,7 @@ void BgSpot01Idomizu_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.world.pos.y = this->waterHeight;
 }
 
-void BgSpot01Idomizu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idomizu_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_808ABB84(BgSpot01Idomizu* this, GlobalContext* globalCtx) {
@@ -63,13 +63,13 @@ void func_808ABB84(BgSpot01Idomizu* this, GlobalContext* globalCtx) {
     Math_ApproachF(&this->actor.world.pos.y, this->waterHeight, 1.0f, 2.0f);
 }
 
-void BgSpot01Idomizu_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idomizu_Update(Actor* thisx, GameState* state) {
     BgSpot01Idomizu* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot01Idomizu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot01Idomizu_Draw(Actor* thisx, GameState* state) {
     u32 frames;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_spot01_idomizu.c", 228);

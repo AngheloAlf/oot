@@ -6,10 +6,10 @@
 
 #define THIS ((EnDu*)thisx)
 
-void EnDu_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDu_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDu_Init(Actor* thisx, GameState* state);
+void EnDu_Destroy(Actor* thisx, GameState* state);
+void EnDu_Update(Actor* thisx, GameState* state);
+void EnDu_Draw(Actor* thisx, GameState* state);
 
 void func_809FE3B4(EnDu* this, GlobalContext* globalCtx);
 void func_809FE3C0(EnDu* this, GlobalContext* globalCtx);
@@ -253,7 +253,7 @@ void func_809FE104(EnDu* this) {
     }
 }
 
-void EnDu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDu_Init(Actor* thisx, GameState* state) {
     EnDu* this = THIS;
     s32 pad;
 
@@ -284,7 +284,7 @@ void EnDu_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDu_Destroy(Actor* thisx, GameState* state) {
     EnDu* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -524,7 +524,7 @@ void func_809FECE4(EnDu* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDu_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDu_Update(Actor* thisx, GameState* state) {
     EnDu* this = THIS;
     s32 pad;
 
@@ -586,7 +586,7 @@ void EnDu_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnDu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDu_Draw(Actor* thisx, GameState* state) {
     static u64* sEyeTextures[] = { gDaruniaEyeOpenTex, gDaruniaEyeOpeningTex, gDaruniaEyeShutTex,
                                    gDaruniaEyeClosingTex };
     static u64* sMouthTextures[] = { gDaruniaMouthSeriousTex, gDaruniaMouthGrinningTex, gDaruniaMouthOpenTex,

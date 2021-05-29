@@ -42,10 +42,10 @@ typedef enum {
     /* 3 */ ENDAIKU_STATE_NO_TALK
 } EnDaikuTalkState;
 
-void EnDaiku_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDaiku_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDaiku_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDaiku_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDaiku_Init(Actor* thisx, GameState* state);
+void EnDaiku_Destroy(Actor* thisx, GameState* state);
+void EnDaiku_Update(Actor* thisx, GameState* state);
+void EnDaiku_Draw(Actor* thisx, GameState* state);
 
 void EnDaiku_TentIdle(EnDaiku* this, GlobalContext* globalCtx);
 void EnDaiku_Jailed(EnDaiku* this, GlobalContext* globalCtx);
@@ -155,7 +155,7 @@ void EnDaiku_Change(EnDaiku* this, s32 animIndex, s32* currentAnimIndex) {
     *currentAnimIndex = animIndex;
 }
 
-void EnDaiku_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaiku_Init(Actor* thisx, GameState* state) {
     EnDaiku* this = THIS;
     s32 pad;
     s32 noKill = true;
@@ -221,7 +221,7 @@ void EnDaiku_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDaiku_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaiku_Destroy(Actor* thisx, GameState* state) {
     EnDaiku* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -579,7 +579,7 @@ void EnDaiku_EscapeRun(EnDaiku* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
 }
 
-void EnDaiku_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaiku_Update(Actor* thisx, GameState* state) {
     EnDaiku* this = THIS;
     s32 curFrame;
     Player* player = PLAYER;
@@ -609,7 +609,7 @@ void EnDaiku_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDaiku_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDaiku_Draw(Actor* thisx, GameState* state) {
     EnDaiku* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_daiku.c", 1227);

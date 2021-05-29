@@ -4,10 +4,10 @@
 
 #define THIS ((EnShopnuts*)thisx)
 
-void EnShopnuts_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnShopnuts_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnShopnuts_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnShopnuts_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnShopnuts_Init(Actor* thisx, GameState* state);
+void EnShopnuts_Destroy(Actor* thisx, GameState* state);
+void EnShopnuts_Update(Actor* thisx, GameState* state);
+void EnShopnuts_Draw(Actor* thisx, GameState* state);
 
 void EnShopnuts_SetupWait(EnShopnuts* this);
 void EnShopnuts_Wait(EnShopnuts* this, GlobalContext* globalCtx);
@@ -66,7 +66,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 2600, ICHAIN_STOP),
 };
 
-void EnShopnuts_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnShopnuts_Init(Actor* thisx, GameState* state) {
     EnShopnuts* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -86,7 +86,7 @@ void EnShopnuts_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnShopnuts_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnShopnuts_Destroy(Actor* thisx, GameState* state) {
     EnShopnuts* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -244,7 +244,7 @@ void EnShopnuts_ColliderCheck(EnShopnuts* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnShopnuts_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnShopnuts_Update(Actor* thisx, GameState* state) {
     EnShopnuts* this = THIS;
 
     EnShopnuts_ColliderCheck(this, globalCtx);
@@ -308,7 +308,7 @@ void EnShopnuts_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLis
     }
 }
 
-void EnShopnuts_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnShopnuts_Draw(Actor* thisx, GameState* state) {
     EnShopnuts* this = THIS;
 
     SkelAnime_DrawFlexOpa(globalCtx, this->skelAnime.skeleton, this->skelAnime.jointTable, this->skelAnime.dListCount,

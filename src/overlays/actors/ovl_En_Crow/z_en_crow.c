@@ -5,10 +5,10 @@
 
 #define THIS ((EnCrow*)thisx)
 
-void EnCrow_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnCrow_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnCrow_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnCrow_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnCrow_Init(Actor* thisx, GameState* state);
+void EnCrow_Destroy(Actor* thisx, GameState* state);
+void EnCrow_Update(Actor* thisx, GameState* state);
+void EnCrow_Draw(Actor* thisx, GameState* state);
 
 void EnCrow_SetupFlyIdle(EnCrow* this);
 void EnCrow_FlyIdle(EnCrow* this, GlobalContext* globalCtx);
@@ -107,7 +107,7 @@ static InitChainEntry sInitChain[] = {
 
 static Vec3f sHeadVec = { 2500.0f, 0.0f, 0.0f };
 
-void EnCrow_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnCrow_Init(Actor* thisx, GameState* state) {
     EnCrow* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -121,7 +121,7 @@ void EnCrow_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnCrow_SetupFlyIdle(this);
 }
 
-void EnCrow_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnCrow_Destroy(Actor* thisx, GameState* state) {
     EnCrow* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->collider);
@@ -427,7 +427,7 @@ void EnCrow_UpdateDamage(EnCrow* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnCrow_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnCrow_Update(Actor* thisx, GameState* state) {
     EnCrow* this = THIS;
     f32 pad;
     f32 height;
@@ -502,7 +502,7 @@ void EnCrow_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, V
     }
 }
 
-void EnCrow_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnCrow_Draw(Actor* thisx, GameState* state) {
     EnCrow* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

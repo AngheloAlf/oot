@@ -10,10 +10,10 @@
 
 #define THIS ((MagicFire*)thisx)
 
-void MagicFire_Init(Actor* thisx, GlobalContext* globalCtx);
-void MagicFire_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void MagicFire_Update(Actor* thisx, GlobalContext* globalCtx);
-void MagicFire_Draw(Actor* thisx, GlobalContext* globalCtx);
+void MagicFire_Init(Actor* thisx, GameState* state);
+void MagicFire_Destroy(Actor* thisx, GameState* state);
+void MagicFire_Update(Actor* thisx, GameState* state);
+void MagicFire_Draw(Actor* thisx, GameState* state);
 
 void MagicFire_UpdateBeforeCast(Actor* thisx, GlobalContext* globalCtx);
 
@@ -318,7 +318,7 @@ static u8 sVertexIndices[] = {
     14, 20, 21, 23, 28, 30, 33, 34, 40, 41, 43, 48, 50, 55, 57, 62, 64, 65, 73, 74,
 };
 
-void MagicFire_Init(Actor* thisx, GlobalContext* globalCtx) {
+void MagicFire_Init(Actor* thisx, GameState* state) {
     MagicFire* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -335,7 +335,7 @@ void MagicFire_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.room = -1;
 }
 
-void MagicFire_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void MagicFire_Destroy(Actor* thisx, GameState* state) {
     func_800876C8(globalCtx);
 }
 
@@ -356,7 +356,7 @@ void MagicFire_UpdateBeforeCast(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.world.pos = player->actor.world.pos;
 }
 
-void MagicFire_Update(Actor* thisx, GlobalContext* globalCtx) {
+void MagicFire_Update(Actor* thisx, GameState* state) {
     MagicFire* this = THIS;
     Player* player = PLAYER;
     s32 pad;
@@ -451,7 +451,7 @@ void MagicFire_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void MagicFire_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void MagicFire_Draw(Actor* thisx, GameState* state) {
     MagicFire* this = THIS;
     s32 pad1;
     u32 gameplayFrames = globalCtx->gameplayFrames;

@@ -11,10 +11,10 @@
 
 #define THIS ((EnGe3*)thisx)
 
-void EnGe3_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGe3_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGe3_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGe3_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGe3_Init(Actor* thisx, GameState* state);
+void EnGe3_Destroy(Actor* thisx, GameState* state);
+void EnGe3_Update(Actor* thisx, GameState* state);
+void EnGe3_Draw(Actor* thisx, GameState* state);
 
 void EnGe3_WaitLookAtPlayer(EnGe3* this, GlobalContext* globalCtx);
 void EnGe3_ForceTalk(EnGe3* this, GlobalContext* globalCtx);
@@ -65,7 +65,7 @@ void EnGe3_ChangeAction(EnGe3* this, s32 i) {
     this->unk_30C &= ~2;
 }
 
-void EnGe3_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnGe3_Init(Actor* thisx, GameState* state) {
     EnGe3* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
 
@@ -87,7 +87,7 @@ void EnGe3_Init(Actor* thisx, GlobalContext* globalCtx2) {
     this->actor.gravity = -1.0f;
 }
 
-void EnGe3_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe3_Destroy(Actor* thisx, GameState* state) {
     EnGe3* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -218,7 +218,7 @@ void EnGe3_UpdateWhenNotTalking(Actor* thisx, GlobalContext* globalCtx) {
     EnGe3_MoveAndBlink(this, globalCtx);
 }
 
-void EnGe3_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGe3_Update(Actor* thisx, GameState* state) {
     EnGe3* this = THIS;
 
     EnGe3_UpdateCollision(this, globalCtx);
@@ -282,7 +282,7 @@ static u64* sEyeTextures[] = {
     0x06006D28, // Closed
 };
 
-void EnGe3_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void EnGe3_Draw(Actor* thisx, GameState* state) {
     EnGe3* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
 

@@ -11,10 +11,10 @@
 
 #define THIS ((OceffWipe4*)thisx)
 
-void OceffWipe4_Init(Actor* thisx, GlobalContext* globalCtx);
-void OceffWipe4_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void OceffWipe4_Update(Actor* thisx, GlobalContext* globalCtx);
-void OceffWipe4_Draw(Actor* thisx, GlobalContext* globalCtx);
+void OceffWipe4_Init(Actor* thisx, GameState* state);
+void OceffWipe4_Destroy(Actor* thisx, GameState* state);
+void OceffWipe4_Update(Actor* thisx, GameState* state);
+void OceffWipe4_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Oceff_Wipe4_InitVars = {
     ACTOR_OCEFF_WIPE4,
@@ -30,7 +30,7 @@ const ActorInit Oceff_Wipe4_InitVars = {
 
 #include "z_oceff_wipe4_gfx.c"
 
-void OceffWipe4_Init(Actor* thisx, GlobalContext* globalCtx) {
+void OceffWipe4_Init(Actor* thisx, GameState* state) {
     OceffWipe4* this = THIS;
 
     Actor_SetScale(&this->actor, 0.1f);
@@ -39,13 +39,13 @@ void OceffWipe4_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf(VT_FGCOL(CYAN) " WIPE4 arg_data = %d\n" VT_RST, this->actor.params);
 }
 
-void OceffWipe4_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void OceffWipe4_Destroy(Actor* thisx, GameState* state) {
     OceffWipe4* this = THIS;
 
     func_800876C8(globalCtx);
 }
 
-void OceffWipe4_Update(Actor* thisx, GlobalContext* globalCtx) {
+void OceffWipe4_Update(Actor* thisx, GameState* state) {
     OceffWipe4* this = THIS;
 
     this->actor.world.pos = ACTIVE_CAM->eye;
@@ -56,7 +56,7 @@ void OceffWipe4_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void OceffWipe4_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void OceffWipe4_Draw(Actor* thisx, GameState* state) {
     u32 scroll = globalCtx->state.frames & 0xFFF;
     OceffWipe4* this = THIS;
     f32 z;

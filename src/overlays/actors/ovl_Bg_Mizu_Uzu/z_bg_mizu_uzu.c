@@ -11,10 +11,10 @@
 
 #define THIS ((BgMizuUzu*)thisx)
 
-void BgMizuUzu_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuUzu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuUzu_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuUzu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMizuUzu_Init(Actor* thisx, GameState* state);
+void BgMizuUzu_Destroy(Actor* thisx, GameState* state);
+void BgMizuUzu_Update(Actor* thisx, GameState* state);
+void BgMizuUzu_Draw(Actor* thisx, GameState* state);
 
 void func_8089F788(BgMizuUzu* this, GlobalContext* globalCtx);
 
@@ -36,7 +36,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgMizuUzu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuUzu_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMizuUzu* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -49,7 +49,7 @@ void BgMizuUzu_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_8089F788;
 }
 
-void BgMizuUzu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuUzu_Destroy(Actor* thisx, GameState* state) {
     BgMizuUzu* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -67,11 +67,11 @@ void func_8089F788(BgMizuUzu* this, GlobalContext* globalCtx) {
     thisx->shape.rot.y += 0x1C0;
 }
 
-void BgMizuUzu_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuUzu_Update(Actor* thisx, GameState* state) {
     BgMizuUzu* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgMizuUzu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuUzu_Draw(Actor* thisx, GameState* state) {
 }

@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot08Iceblock*)thisx)
 
-void BgSpot08Iceblock_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot08Iceblock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot08Iceblock_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot08Iceblock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot08Iceblock_Init(Actor* thisx, GameState* state);
+void BgSpot08Iceblock_Destroy(Actor* thisx, GameState* state);
+void BgSpot08Iceblock_Update(Actor* thisx, GameState* state);
+void BgSpot08Iceblock_Draw(Actor* thisx, GameState* state);
 
 void BgSpot08Iceblock_SetupFloatNonrotating(BgSpot08Iceblock* this);
 void BgSpot08Iceblock_FloatNonrotating(BgSpot08Iceblock* this, GlobalContext* globalCtx);
@@ -285,7 +285,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 2200, ICHAIN_STOP),
 };
 
-void BgSpot08Iceblock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Iceblock_Init(Actor* thisx, GameState* state) {
     BgSpot08Iceblock* this = THIS;
     CollisionHeader* colHeader;
 
@@ -353,7 +353,7 @@ void BgSpot08Iceblock_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot08Iceblock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Iceblock_Destroy(Actor* thisx, GameState* state) {
     BgSpot08Iceblock* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -419,7 +419,7 @@ void BgSpot08Iceblock_SetupNoAction(BgSpot08Iceblock* this) {
     BgSpot08Iceblock_SetupAction(this, NULL);
 }
 
-void BgSpot08Iceblock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Iceblock_Update(Actor* thisx, GameState* state) {
     BgSpot08Iceblock* this = THIS;
 
     if (Rand_ZeroOne() < 0.05f) {
@@ -434,7 +434,7 @@ void BgSpot08Iceblock_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot08Iceblock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot08Iceblock_Draw(Actor* thisx, GameState* state) {
     Gfx* dList;
     BgSpot08Iceblock* this = THIS;
 

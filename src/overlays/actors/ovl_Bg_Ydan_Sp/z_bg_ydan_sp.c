@@ -11,10 +11,10 @@
 
 #define THIS ((BgYdanSp*)thisx)
 
-void BgYdanSp_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanSp_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanSp_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanSp_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgYdanSp_Init(Actor* thisx, GameState* state);
+void BgYdanSp_Destroy(Actor* thisx, GameState* state);
+void BgYdanSp_Update(Actor* thisx, GameState* state);
+void BgYdanSp_Draw(Actor* thisx, GameState* state);
 
 void BgYdanSp_BurnFloorWeb(BgYdanSp* this, GlobalContext* globalCtx);
 void BgYdanSp_FloorWebIdle(BgYdanSp* this, GlobalContext* globalCtx);
@@ -82,7 +82,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgYdanSp_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanSp_Init(Actor* thisx, GameState* state) {
     BgYdanSp* this = THIS;
     ColliderTrisElementInit* ti0 = &sTrisItemsInit[0];
     Vec3f tri[3];
@@ -147,7 +147,7 @@ void BgYdanSp_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgYdanSp_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanSp_Destroy(Actor* thisx, GameState* state) {
     BgYdanSp* this = THIS;
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
     Collider_DestroyTris(globalCtx, &this->trisCollider);
@@ -414,12 +414,12 @@ void BgYdanSp_WallWebIdle(BgYdanSp* this, GlobalContext* globalCtx) {
     CollisionCheck_SetAC(globalCtx, &globalCtx->colChkCtx, &this->trisCollider.base);
 }
 
-void BgYdanSp_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanSp_Update(Actor* thisx, GameState* state) {
     BgYdanSp* this = THIS;
     this->actionFunc(this, globalCtx);
 }
 
-void BgYdanSp_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanSp_Draw(Actor* thisx, GameState* state) {
     BgYdanSp* this = THIS;
     s32 i;
     MtxF mtxF;

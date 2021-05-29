@@ -11,10 +11,10 @@
 
 #define THIS ((BgZg*)thisx)
 
-void BgZg_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgZg_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgZg_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgZg_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgZg_Init(Actor* thisx, GameState* state);
+void BgZg_Destroy(Actor* thisx, GameState* state);
+void BgZg_Update(Actor* thisx, GameState* state);
+void BgZg_Draw(Actor* thisx, GameState* state);
 
 void func_808C0C50(BgZg* this);
 s32 func_808C0C98(BgZg* this, GlobalContext* globalCtx);
@@ -51,7 +51,7 @@ const ActorInit Bg_Zg_InitVars = {
 extern Gfx D_06001080[];
 extern CollisionHeader D_060011D4;
 
-void BgZg_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgZg_Destroy(Actor* thisx, GameState* state) {
     BgZg* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -88,7 +88,7 @@ void func_808C0D08(BgZg* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgZg_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgZg_Update(Actor* thisx, GameState* state) {
     BgZg* this = THIS;
     s32 action = this->action;
 
@@ -100,7 +100,7 @@ void BgZg_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgZg_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgZg_Init(Actor* thisx, GameState* state) {
     s32 pad[2];
     BgZg* this = THIS;
     CollisionHeader* colHeader;
@@ -136,7 +136,7 @@ void func_808C0EEC(BgZg* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(localGfxCtx, "../z_bg_zg.c", 320);
 }
 
-void BgZg_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgZg_Draw(Actor* thisx, GameState* state) {
     BgZg* this = THIS;
     s32 drawConfig = this->drawConfig;
 

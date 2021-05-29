@@ -12,10 +12,10 @@
 
 #define THIS ((DemoGj*)thisx)
 
-void DemoGj_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoGj_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoGj_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoGj_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoGj_Init(Actor* thisx, GameState* state);
+void DemoGj_Destroy(Actor* thisx, GameState* state);
+void DemoGj_Update(Actor* thisx, GameState* state);
+void DemoGj_Draw(Actor* thisx, GameState* state);
 
 static ColliderCylinderInitType1 sCylinderInit1 = {
     {
@@ -131,7 +131,7 @@ void DemoGj_DestroyCylinder(DemoGj* this, GlobalContext* globalCtx) {
     }
 }
 
-void DemoGj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGj_Destroy(Actor* thisx, GameState* state) {
     DemoGj* this = THIS;
 
     DemoGj_DestroyCylinder(this, globalCtx);
@@ -1342,7 +1342,7 @@ static DemoGjUpdateFunc sUpdateFuncs[] = {
     DemoGj_Update20,
 };
 
-void DemoGj_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGj_Update(Actor* thisx, GameState* state) {
     DemoGj* this = THIS;
 
     if (this->updateMode < 0 || this->updateMode >= ARRAY_COUNT(sUpdateFuncs) ||
@@ -1355,7 +1355,7 @@ void DemoGj_Update(Actor* thisx, GlobalContext* globalCtx) {
     sUpdateFuncs[this->updateMode](this, globalCtx);
 }
 
-void DemoGj_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGj_Init(Actor* thisx, GameState* state) {
     DemoGj* this = THIS;
 
     switch (DemoGj_GetType(this)) {
@@ -1436,7 +1436,7 @@ static DemoGjDrawFunc sDrawFuncs[] = {
     DemoGj_DemoGj_InitDestructableRubbleTall,
 };
 
-void DemoGj_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGj_Draw(Actor* thisx, GameState* state) {
     DemoGj* this = THIS;
 
     if (this->drawConfig < 0 || this->drawConfig >= ARRAY_COUNT(sDrawFuncs) || sDrawFuncs[this->drawConfig] == NULL) {

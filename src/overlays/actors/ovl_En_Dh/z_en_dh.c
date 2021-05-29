@@ -15,9 +15,9 @@ typedef enum {
 } EnDhAction;
 
 void EnDh_Init(Actor* this, GlobalContext* globalCtx);
-void EnDh_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDh_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDh_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDh_Destroy(Actor* thisx, GameState* state);
+void EnDh_Update(Actor* thisx, GameState* state);
+void EnDh_Draw(Actor* thisx, GameState* state);
 
 void EnDh_SetupWait(EnDh* this);
 void EnDh_SetupWalk(EnDh* this);
@@ -148,7 +148,7 @@ void EnDh_SetupAction(EnDh* this, EnDhActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnDh_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDh_Init(Actor* thisx, GameState* state) {
     EnDh* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -167,7 +167,7 @@ void EnDh_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnDh_SetupWait(this);
 }
 
-void EnDh_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDh_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnDh* this = THIS;
 
@@ -508,7 +508,7 @@ void EnDh_CollisionCheck(EnDh* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDh_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDh_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnDh* this = THIS;
     Player* player = PLAYER;
@@ -552,7 +552,7 @@ void EnDh_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnDh_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDh_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnDh* this = THIS;
 

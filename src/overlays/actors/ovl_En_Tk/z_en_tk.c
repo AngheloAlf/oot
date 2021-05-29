@@ -12,10 +12,10 @@
 
 #define THIS ((EnTk*)thisx)
 
-void EnTk_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTk_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTk_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTk_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTk_Init(Actor* thisx, GameState* state);
+void EnTk_Destroy(Actor* thisx, GameState* state);
+void EnTk_Update(Actor* thisx, GameState* state);
+void EnTk_Draw(Actor* thisx, GameState* state);
 
 s32 EnTk_CheckNextSpot(EnTk* this, GlobalContext* globalCtx);
 void EnTk_Rest(EnTk* this, GlobalContext* globalCtx);
@@ -478,7 +478,7 @@ void EnTk_DigEff(EnTk* this) {
     }
 }
 
-void EnTk_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTk_Init(Actor* thisx, GameState* state) {
     EnTk* this = THIS;
     s32 pad;
 
@@ -508,7 +508,7 @@ void EnTk_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnTk_Rest;
 }
 
-void EnTk_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTk_Destroy(Actor* thisx, GameState* state) {
     EnTk* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -653,7 +653,7 @@ void EnTk_Dig(EnTk* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnTk_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTk_Update(Actor* thisx, GameState* state) {
     EnTk* this = THIS;
     s32 pad;
 
@@ -716,7 +716,7 @@ void EnTk_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnTk_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTk_Draw(Actor* thisx, GameState* state) {
     static u64* sEyesSegments[] = {
         gDampeEyeOpenTex,
         gDampeEyeHalfOpenTex,

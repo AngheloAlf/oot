@@ -11,10 +11,10 @@
 
 #define THIS ((ItemBHeart*)thisx)
 
-void ItemBHeart_Init(Actor* thisx, GlobalContext* globalCtx);
-void ItemBHeart_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ItemBHeart_Update(Actor* thisx, GlobalContext* globalCtx);
-void ItemBHeart_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ItemBHeart_Init(Actor* thisx, GameState* state);
+void ItemBHeart_Destroy(Actor* thisx, GameState* state);
+void ItemBHeart_Update(Actor* thisx, GameState* state);
+void ItemBHeart_Draw(Actor* thisx, GameState* state);
 
 void func_80B85264(ItemBHeart* this, GlobalContext* globalCtx);
 
@@ -37,7 +37,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 800, ICHAIN_STOP),
 };
 
-void ItemBHeart_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ItemBHeart_Init(Actor* thisx, GameState* state) {
     ItemBHeart* this = THIS;
 
     if (Flags_GetCollectible(globalCtx, 0x1F)) {
@@ -48,10 +48,10 @@ void ItemBHeart_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ItemBHeart_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ItemBHeart_Destroy(Actor* thisx, GameState* state) {
 }
 
-void ItemBHeart_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ItemBHeart_Update(Actor* thisx, GameState* state) {
     ItemBHeart* this = THIS;
 
     func_80B85264(this, globalCtx);
@@ -77,7 +77,7 @@ void func_80B85264(ItemBHeart* this, GlobalContext* globalCtx) {
     this->actor.scale.y = this->actor.scale.z = this->actor.scale.x;
 }
 
-void ItemBHeart_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ItemBHeart_Draw(Actor* thisx, GameState* state) {
     ItemBHeart* this = THIS;
     Actor* actorIt;
     u8 flag = false;

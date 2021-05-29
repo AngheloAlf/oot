@@ -6,8 +6,8 @@
 
 #define THIS ((EnEncount1*)thisx)
 
-void EnEncount1_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnEncount1_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnEncount1_Init(Actor* thisx, GameState* state);
+void EnEncount1_Update(Actor* thisx, GameState* state);
 
 void EnEncount1_SpawnLeevers(EnEncount1* this, GlobalContext* globalCtx);
 void EnEncount1_SpawnTektites(EnEncount1* this, GlobalContext* globalCtx);
@@ -28,7 +28,7 @@ const ActorInit En_Encount1_InitVars = {
     NULL,
 };
 
-void EnEncount1_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnEncount1_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnEncount1* this = THIS;
     f32 spawnRange;
@@ -314,7 +314,7 @@ void EnEncount1_SpawnStalchildOrWolfos(EnEncount1* this, GlobalContext* globalCt
     }
 }
 
-void EnEncount1_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnEncount1_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnEncount1* this = THIS;
 

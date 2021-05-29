@@ -11,10 +11,10 @@
 
 #define THIS ((EffDust*)thisx)
 
-void EffDust_Init(Actor* thisx, GlobalContext* globalCtx);
-void EffDust_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EffDust_Update(Actor* thisx, GlobalContext* globalCtx);
-void EffDust_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EffDust_Init(Actor* thisx, GameState* state);
+void EffDust_Destroy(Actor* thisx, GameState* state);
+void EffDust_Update(Actor* thisx, GameState* state);
+void EffDust_Draw(Actor* thisx, GameState* state);
 
 void EffDust_InitPosAndDistance(EffDust* this);
 
@@ -61,7 +61,7 @@ void EffDust_InitPosAndDistance(EffDust* this) {
     this->index = 0;
 }
 
-void EffDust_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EffDust_Init(Actor* thisx, GameState* state) {
     EffDust* this = THIS;
     EffDustType dustEffect = this->actor.params;
 
@@ -111,7 +111,7 @@ void EffDust_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->life = 10;
 }
 
-void EffDust_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EffDust_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EffDust_UpdateFunc_8099DB28(EffDust* this, GlobalContext* globalCtx) {
@@ -255,7 +255,7 @@ void EffDust_UpdateFunc_8099DFC0(EffDust* this, GlobalContext* globalCtx) {
     }
 }
 
-void EffDust_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EffDust_Update(Actor* thisx, GameState* state) {
     EffDust* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -369,7 +369,7 @@ void EffDust_DrawFunc_8099E784(Actor* thisx, GlobalContext* globalCtx) {
     CLOSE_DISPS(gfxCtx, "../z_eff_dust.c", 515);
 }
 
-void EffDust_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EffDust_Draw(Actor* thisx, GameState* state) {
     EffDust* this = THIS;
 
     this->drawFunc(thisx, globalCtx);

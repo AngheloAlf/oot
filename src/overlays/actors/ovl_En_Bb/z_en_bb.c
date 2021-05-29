@@ -54,8 +54,8 @@ typedef enum {
 
 // Main functions
 
-void EnBb_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBb_Destroy(Actor* thisx, GlobalContext* globalCtx);
+void EnBb_Init(Actor* thisx, GameState* state);
+void EnBb_Destroy(Actor* thisx, GameState* state);
 void EnBb_Update(Actor* this, GlobalContext* globalCtx);
 void EnBb_Draw(Actor* this, GlobalContext* globalCtx);
 
@@ -310,7 +310,7 @@ void EnBb_KillFlameTrail(EnBb* this) {
     this->actor.child = NULL;
 }
 
-void EnBb_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBb_Init(Actor* thisx, GameState* state) {
     EffectBlureInit1 blureInit;
     s32 pad;
     EnBb* this = THIS;
@@ -401,7 +401,7 @@ void EnBb_Init(Actor* thisx, GlobalContext* globalCtx) {
         this->collider.elements[0].dim.modelSphere.radius * this->collider.elements[0].dim.scale;
 }
 
-void EnBb_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBb_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnBb* this = THIS;
 
@@ -1221,7 +1221,7 @@ void EnBb_CollisionCheck(EnBb* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBb_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnBb_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnBb* this = THIS;
     Vec3f sp4C = { 0.0f, 0.0f, 0.0f };
@@ -1275,7 +1275,7 @@ static Vec3f sFireIceOffsets[] = {
     { 5.0f, 0.0f, -5.0f },  { 0.0f, 10.0f, 13.0f },  { -5.0f, 0.0f, 5.0f },   { -5.0f, 0.0f, -5.0f },
 };
 
-void EnBb_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBb_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnBb* this = THIS;
     Vec3f blureBase1 = { 0.0f, 5000.0f, 0.0f };

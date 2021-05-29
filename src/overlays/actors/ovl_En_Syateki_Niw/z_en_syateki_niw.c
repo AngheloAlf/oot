@@ -11,10 +11,10 @@
 
 #define THIS ((EnSyatekiNiw*)thisx)
 
-void EnSyatekiNiw_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiNiw_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiNiw_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiNiw_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSyatekiNiw_Init(Actor* thisx, GameState* state);
+void EnSyatekiNiw_Destroy(Actor* thisx, GameState* state);
+void EnSyatekiNiw_Update(Actor* thisx, GameState* state);
+void EnSyatekiNiw_Draw(Actor* thisx, GameState* state);
 
 void func_80B11DEC(EnSyatekiNiw* this, GlobalContext* globalCtx);
 void func_80B132A8(EnSyatekiNiw* this, GlobalContext* globalCtx);
@@ -70,7 +70,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 0, ICHAIN_STOP),
 };
 
-void EnSyatekiNiw_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiNiw_Init(Actor* thisx, GameState* state) {
     EnSyatekiNiw* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -103,7 +103,7 @@ void EnSyatekiNiw_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80B11DEC;
 }
 
-void EnSyatekiNiw_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiNiw_Destroy(Actor* thisx, GameState* state) {
     EnSyatekiNiw* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -577,7 +577,7 @@ void func_80B12BA4(EnSyatekiNiw* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSyatekiNiw_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiNiw_Update(Actor* thisx, GameState* state) {
     EnSyatekiNiw* this = THIS;
     s32 pad;
     s16 i;
@@ -699,7 +699,7 @@ s32 SyatekiNiw_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** d
     return false;
 }
 
-void EnSyatekiNiw_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiNiw_Draw(Actor* thisx, GameState* state) {
     EnSyatekiNiw* this = THIS;
     Color_RGBA8 sp30 = { 0, 0, 0, 255 };
 

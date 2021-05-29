@@ -19,10 +19,10 @@ typedef enum {
     /* 2 */ LARGE_BOMBABLE_WALL
 } FireTempleBombableObjectsType;
 
-void BgHidanKowarerukabe_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanKowarerukabe_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanKowarerukabe_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanKowarerukabe_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanKowarerukabe_Init(Actor* thisx, GameState* state);
+void BgHidanKowarerukabe_Destroy(Actor* thisx, GameState* state);
+void BgHidanKowarerukabe_Update(Actor* thisx, GameState* state);
+void BgHidanKowarerukabe_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Hidan_Kowarerukabe_InitVars = {
     ACTOR_BG_HIDAN_KOWARERUKABE,
@@ -112,7 +112,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_STOP),
 };
 
-void BgHidanKowarerukabe_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKowarerukabe_Init(Actor* thisx, GameState* state) {
     BgHidanKowarerukabe* this = THIS;
 
     BgHidanKowarerukabe_InitDynaPoly(this, globalCtx);
@@ -140,7 +140,7 @@ void BgHidanKowarerukabe_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(hidan 爆弾で壊れる 壁 床)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void BgHidanKowarerukabe_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKowarerukabe_Destroy(Actor* thisx, GameState* state) {
     BgHidanKowarerukabe* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -301,7 +301,7 @@ void BgHidanKowarerukabe_Break(BgHidanKowarerukabe* this, GlobalContext* globalC
     BgHidanKowarerukabe_SpawnDust(this, globalCtx);
 }
 
-void BgHidanKowarerukabe_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKowarerukabe_Update(Actor* thisx, GameState* state) {
     BgHidanKowarerukabe* this = THIS;
     s32 pad;
 
@@ -323,7 +323,7 @@ void BgHidanKowarerukabe_Update(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetAC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void BgHidanKowarerukabe_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanKowarerukabe_Draw(Actor* thisx, GameState* state) {
     BgHidanKowarerukabe* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_hidan_kowarerukabe.c", 565);

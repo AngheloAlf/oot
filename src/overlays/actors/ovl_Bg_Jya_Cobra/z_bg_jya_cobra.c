@@ -8,10 +8,10 @@
 
 #define THIS ((BgJyaCobra*)thisx)
 
-void BgJyaCobra_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaCobra_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaCobra_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaCobra_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaCobra_Init(Actor* thisx, GameState* state);
+void BgJyaCobra_Destroy(Actor* thisx, GameState* state);
+void BgJyaCobra_Update(Actor* thisx, GameState* state);
+void BgJyaCobra_Draw(Actor* thisx, GameState* state);
 
 void func_80896918(BgJyaCobra* this, GlobalContext* globalCtx);
 void func_80896950(BgJyaCobra* this, GlobalContext* globalCtx);
@@ -415,7 +415,7 @@ void BgJyaCobra_UpdateShadowFromTop(BgJyaCobra* this) {
     }
 }
 
-void BgJyaCobra_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaCobra_Init(Actor* thisx, GameState* state) {
     BgJyaCobra* this = THIS;
 
     BgJyaCobra_InitDynapoly(this, globalCtx, &gCobraCol, DPM_UNK);
@@ -443,7 +443,7 @@ void BgJyaCobra_Init(Actor* thisx, GlobalContext* globalCtx) {
                  &this->shadowTexture, ALIGN16((s32)(&this->shadowTexture)));
 }
 
-void BgJyaCobra_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaCobra_Destroy(Actor* thisx, GameState* state) {
     BgJyaCobra* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -531,7 +531,7 @@ void func_80896ABC(BgJyaCobra* this, GlobalContext* globalCtx) {
     func_8002F974(&this->dyna.actor, NA_SE_EV_ROCK_SLIDE - SFX_FLAG);
 }
 
-void BgJyaCobra_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaCobra_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgJyaCobra* this = THIS;
 
@@ -622,7 +622,7 @@ void BgJyaCobra_DrawShadow(BgJyaCobra* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_jya_cobra.c", 1006);
 }
 
-void BgJyaCobra_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaCobra_Draw(Actor* thisx, GameState* state) {
     BgJyaCobra* this = THIS;
 
     func_80896CB4(globalCtx);

@@ -10,10 +10,10 @@
 
 #define THIS ((EnMa3*)thisx)
 
-void EnMa3_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMa3_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMa3_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMa3_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMa3_Init(Actor* thisx, GameState* state);
+void EnMa3_Destroy(Actor* thisx, GameState* state);
+void EnMa3_Update(Actor* thisx, GameState* state);
+void EnMa3_Draw(Actor* thisx, GameState* state);
 
 u16 func_80AA2AA0(GlobalContext* globalCtx, Actor* this);
 s16 func_80AA2BD4(GlobalContext* globalCtx, Actor* this);
@@ -251,7 +251,7 @@ void func_80AA3004(EnMa3* this, s32 idx) {
                      D_80AA3848[idx].transitionRate);
 }
 
-void EnMa3_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa3_Init(Actor* thisx, GameState* state) {
     EnMa3* this = THIS;
     s32 pad;
 
@@ -280,7 +280,7 @@ void EnMa3_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_1E0.unk_00 = (u16)0;
 }
 
-void EnMa3_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa3_Destroy(Actor* thisx, GameState* state) {
     EnMa3* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -294,7 +294,7 @@ void func_80AA3200(EnMa3* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMa3_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa3_Update(Actor* thisx, GameState* state) {
     EnMa3* this = THIS;
     s32 pad;
 
@@ -359,7 +359,7 @@ void EnMa3_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_ma3.c", 950);
 }
 
-void EnMa3_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa3_Draw(Actor* thisx, GameState* state) {
     EnMa3* this = THIS;
     Camera* camera;
     f32 someFloat;

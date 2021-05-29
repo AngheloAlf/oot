@@ -34,10 +34,10 @@ typedef enum {
     /* 15 */ INTRO_READY = 15
 } EnfHGIntroState;
 
-void EnfHG_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnfHG_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnfHG_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnfHG_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnfHG_Init(Actor* thisx, GameState* state);
+void EnfHG_Destroy(Actor* thisx, GameState* state);
+void EnfHG_Update(Actor* thisx, GameState* state);
+void EnfHG_Draw(Actor* thisx, GameState* state);
 
 void EnfHG_SetupIntro(EnfHG* this, GlobalContext* globalCtx);
 void EnfHG_Intro(EnfHG* this, GlobalContext* globalCtx);
@@ -73,7 +73,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneScale, 1200, ICHAIN_STOP),
 };
 
-void EnfHG_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnfHG_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnfHG* this = THIS;
 
@@ -94,7 +94,7 @@ void EnfHG_Init(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void EnfHG_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnfHG_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnfHG* this = THIS;
 
@@ -680,7 +680,7 @@ void EnfHG_Done(EnfHG* this, GlobalContext* globalCtx) {
     this->bossGndInPainting = false;
 }
 
-void EnfHG_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnfHG_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnfHG* this = THIS;
     u8 i;
@@ -714,7 +714,7 @@ void EnfHG_Update(Actor* thisx, GlobalContext* globalCtx) {
 void EnfHG_Noop(Actor* thisx, GlobalContext* globalCtx, PSkinAwb* skin) {
 }
 
-void EnfHG_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnfHG_Draw(Actor* thisx, GameState* state) {
     EnfHG* this = THIS;
     BossGanondrof* bossGnd = (BossGanondrof*)this->actor.parent;
     s32 pad;

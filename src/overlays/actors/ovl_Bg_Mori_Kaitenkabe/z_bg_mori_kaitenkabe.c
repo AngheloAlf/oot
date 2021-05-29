@@ -11,10 +11,10 @@
 
 #define THIS ((BgMoriKaitenkabe*)thisx)
 
-void BgMoriKaitenkabe_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriKaitenkabe_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriKaitenkabe_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriKaitenkabe_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriKaitenkabe_Init(Actor* thisx, GameState* state);
+void BgMoriKaitenkabe_Destroy(Actor* thisx, GameState* state);
+void BgMoriKaitenkabe_Update(Actor* thisx, GameState* state);
+void BgMoriKaitenkabe_Draw(Actor* thisx, GameState* state);
 
 void BgMoriKaitenkabe_WaitForMoriTex(BgMoriKaitenkabe* this, GlobalContext* globalCtx);
 void BgMoriKaitenkabe_SetupWait(BgMoriKaitenkabe* this);
@@ -47,7 +47,7 @@ void BgMoriKaitenkabe_CrossProduct(Vec3f* dest, Vec3f* v1, Vec3f* v2) {
     dest->z = (v1->x * v2->y) - (v1->y * v2->x);
 }
 
-void BgMoriKaitenkabe_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriKaitenkabe_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriKaitenkabe* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -68,7 +68,7 @@ void BgMoriKaitenkabe_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriKaitenkabe_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriKaitenkabe_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriKaitenkabe* this = THIS;
 
@@ -151,14 +151,14 @@ void BgMoriKaitenkabe_Rotate(BgMoriKaitenkabe* this, GlobalContext* globalCtx) {
     Math_Vec3f_Copy(&player->actor.world.pos, &this->lockedPlayerPos);
 }
 
-void BgMoriKaitenkabe_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriKaitenkabe_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriKaitenkabe* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgMoriKaitenkabe_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriKaitenkabe_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriKaitenkabe* this = THIS;
 

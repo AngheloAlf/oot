@@ -12,10 +12,10 @@
 
 #define THIS ((EnVm*)thisx)
 
-void EnVm_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnVm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnVm_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnVm_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnVm_Init(Actor* thisx, GameState* state);
+void EnVm_Destroy(Actor* thisx, GameState* state);
+void EnVm_Update(Actor* thisx, GameState* state);
+void EnVm_Draw(Actor* thisx, GameState* state);
 
 void EnVm_SetupWait(EnVm* this);
 void EnVm_Wait(EnVm* this, GlobalContext* globalCtx);
@@ -136,7 +136,7 @@ void EnVm_SetupAction(EnVm* this, EnVmActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnVm_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnVm_Init(Actor* thisx, GameState* state) {
     EnVm* this = THIS;
 
     SkelAnime_Init(globalCtx, &this->skelAnime, &D_06003F60, &D_06000068, this->jointTable, this->morphTable, 11);
@@ -162,7 +162,7 @@ void EnVm_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnVm_SetupWait(this);
 }
 
-void EnVm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnVm_Destroy(Actor* thisx, GameState* state) {
     EnVm* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->colliderCylinder);
@@ -420,7 +420,7 @@ void EnVm_CheckHealth(EnVm* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnVm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnVm_Update(Actor* thisx, GameState* state) {
     EnVm* this = THIS;
     CollisionCheckContext* colChkCtx = &globalCtx->colChkCtx;
 
@@ -519,7 +519,7 @@ void EnVm_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnVm_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnVm_Draw(Actor* thisx, GameState* state) {
     EnVm* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
     Vec3f actorPos;

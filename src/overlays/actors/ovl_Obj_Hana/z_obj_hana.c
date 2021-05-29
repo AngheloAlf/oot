@@ -11,10 +11,10 @@
 
 #define THIS ((ObjHana*)thisx)
 
-void ObjHana_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjHana_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjHana_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjHana_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjHana_Init(Actor* thisx, GameState* state);
+void ObjHana_Destroy(Actor* thisx, GameState* state);
+void ObjHana_Update(Actor* thisx, GameState* state);
+void ObjHana_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Obj_Hana_InitVars = {
     ACTOR_OBJ_HANA,
@@ -71,7 +71,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 800, ICHAIN_STOP),
 };
 
-void ObjHana_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHana_Init(Actor* thisx, GameState* state) {
     ObjHana* this = THIS;
     s16 type = this->actor.params & 3;
     HanaParams* params = &sHanaParams[type];
@@ -93,7 +93,7 @@ void ObjHana_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjHana_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHana_Destroy(Actor* thisx, GameState* state) {
     ObjHana* this = THIS;
 
     if (sHanaParams[this->actor.params & 3].radius >= 0) {
@@ -101,7 +101,7 @@ void ObjHana_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjHana_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHana_Update(Actor* thisx, GameState* state) {
     ObjHana* this = THIS;
 
     if (sHanaParams[this->actor.params & 3].radius >= 0 && this->actor.xzDistToPlayer < 400.0f) {
@@ -109,6 +109,6 @@ void ObjHana_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjHana_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjHana_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, sHanaParams[thisx->params & 3].dList);
 }

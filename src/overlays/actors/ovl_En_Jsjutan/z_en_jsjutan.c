@@ -11,10 +11,10 @@
 
 #define THIS ((EnJsjutan*)thisx)
 
-void EnJsjutan_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnJsjutan_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnJsjutan_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnJsjutan_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnJsjutan_Init(Actor* thisx, GameState* state);
+void EnJsjutan_Destroy(Actor* thisx, GameState* state);
+void EnJsjutan_Update(Actor* thisx, GameState* state);
+void EnJsjutan_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Jsjutan_InitVars = {
     ACTOR_EN_JSJUTAN,
@@ -37,7 +37,7 @@ static s32 sUnused[2] = { 0, 0 };
 
 #include "overlays/ovl_En_Jsjutan/ovl_En_Jsjutan.c"
 
-void EnJsjutan_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnJsjutan_Init(Actor* thisx, GameState* state) {
     EnJsjutan* this = THIS;
     s32 pad;
     CollisionHeader* header = NULL;
@@ -51,7 +51,7 @@ void EnJsjutan_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->shadowAlpha = 100.0f;
 }
 
-void EnJsjutan_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnJsjutan_Destroy(Actor* thisx, GameState* state) {
     EnJsjutan* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -360,14 +360,14 @@ void func_80A89A6C(EnJsjutan* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnJsjutan_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnJsjutan_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
 
     thisx->shape.rot.x = Math_SinS(globalCtx->gameplayFrames * 3000) * 300.0f;
     thisx->shape.rot.z = Math_CosS(globalCtx->gameplayFrames * 3500) * 300.0f;
 }
 
-void EnJsjutan_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void EnJsjutan_Draw(Actor* thisx, GameState* state) {
     EnJsjutan* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
     s16 i;

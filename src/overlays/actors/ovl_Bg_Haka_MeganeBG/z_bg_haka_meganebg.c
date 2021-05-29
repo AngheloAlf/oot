@@ -10,10 +10,10 @@
 
 #define THIS ((BgHakaMeganeBG*)thisx)
 
-void BgHakaMeganeBG_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaMeganeBG_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaMeganeBG_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaMeganeBG_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaMeganeBG_Init(Actor* thisx, GameState* state);
+void BgHakaMeganeBG_Destroy(Actor* thisx, GameState* state);
+void BgHakaMeganeBG_Update(Actor* thisx, GameState* state);
+void BgHakaMeganeBG_Draw(Actor* thisx, GameState* state);
 
 void func_8087DFF8(BgHakaMeganeBG* this, GlobalContext* globalCtx);
 void func_8087E040(BgHakaMeganeBG* this, GlobalContext* globalCtx);
@@ -60,7 +60,7 @@ extern Gfx D_06008EB0[];
 extern CollisionHeader D_06009168;
 extern CollisionHeader D_0600A7F4;
 
-void BgHakaMeganeBG_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMeganeBG_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgHakaMeganeBG* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -105,7 +105,7 @@ void BgHakaMeganeBG_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, &this->dyna.actor, colHeader);
 }
 
-void BgHakaMeganeBG_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMeganeBG_Destroy(Actor* thisx, GameState* state) {
     BgHakaMeganeBG* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -209,13 +209,13 @@ void func_8087E2D8(BgHakaMeganeBG* this, GlobalContext* globalCtx) {
 void func_8087E34C(BgHakaMeganeBG* this, GlobalContext* globalCtx) {
 }
 
-void BgHakaMeganeBG_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMeganeBG_Update(Actor* thisx, GameState* state) {
     BgHakaMeganeBG* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHakaMeganeBG_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMeganeBG_Draw(Actor* thisx, GameState* state) {
     BgHakaMeganeBG* this = THIS;
     s16 params = this->dyna.actor.params;
 

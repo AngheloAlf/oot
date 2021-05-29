@@ -11,10 +11,10 @@
 
 #define THIS ((BgHakaTubo*)thisx)
 
-void BgHakaTubo_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaTubo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaTubo_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaTubo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaTubo_Init(Actor* thisx, GameState* state);
+void BgHakaTubo_Destroy(Actor* thisx, GameState* state);
+void BgHakaTubo_Update(Actor* thisx, GameState* state);
+void BgHakaTubo_Draw(Actor* thisx, GameState* state);
 
 void BgHakaTubo_Idle(BgHakaTubo* this, GlobalContext* globalCtx);
 void BgHakaTubo_DropCollectible(BgHakaTubo* this, GlobalContext* globalCtx);
@@ -80,7 +80,7 @@ static InitChainEntry sInitChain[] = {
 extern CollisionHeader D_060108B8;
 extern Gfx D_0600FE40[];
 
-void BgHakaTubo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTubo_Init(Actor* thisx, GameState* state) {
     BgHakaTubo* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -98,7 +98,7 @@ void BgHakaTubo_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgHakaTubo_Idle;
 }
 
-void BgHakaTubo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTubo_Destroy(Actor* thisx, GameState* state) {
     BgHakaTubo* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -215,7 +215,7 @@ void BgHakaTubo_DropCollectible(BgHakaTubo* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaTubo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTubo_Update(Actor* thisx, GameState* state) {
     BgHakaTubo* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -245,7 +245,7 @@ void BgHakaTubo_DrawFlameCircle(BgHakaTubo* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_haka_tubo.c", 501);
 }
 
-void BgHakaTubo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTubo_Draw(Actor* thisx, GameState* state) {
     BgHakaTubo* this = THIS;
 
     Gfx_DrawDListOpa(globalCtx, D_0600FE40);

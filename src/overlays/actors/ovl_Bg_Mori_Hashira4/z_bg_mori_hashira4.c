@@ -11,10 +11,10 @@
 
 #define THIS ((BgMoriHashira4*)thisx)
 
-void BgMoriHashira4_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHashira4_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHashira4_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHashira4_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriHashira4_Init(Actor* thisx, GameState* state);
+void BgMoriHashira4_Destroy(Actor* thisx, GameState* state);
+void BgMoriHashira4_Update(Actor* thisx, GameState* state);
+void BgMoriHashira4_Draw(Actor* thisx, GameState* state);
 
 void BgMoriHashira4_SetupWaitForMoriTex(BgMoriHashira4* this);
 void BgMoriHashira4_WaitForMoriTex(BgMoriHashira4* this, GlobalContext* globalCtx);
@@ -68,7 +68,7 @@ void BgMoriHashira4_InitDynaPoly(BgMoriHashira4* this, GlobalContext* globalCtx,
     }
 }
 
-void BgMoriHashira4_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashira4_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashira4* this = THIS;
 
@@ -100,7 +100,7 @@ void BgMoriHashira4_Init(Actor* thisx, GlobalContext* globalCtx) {
     sUnkTimer = 0;
 }
 
-void BgMoriHashira4_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashira4_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashira4* this = THIS;
 
@@ -150,7 +150,7 @@ void BgMoriHashira4_GateOpen(BgMoriHashira4* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriHashira4_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashira4_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashira4* this = THIS;
 
@@ -159,7 +159,7 @@ void BgMoriHashira4_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriHashira4_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHashira4_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriHashira4* this = THIS;
 

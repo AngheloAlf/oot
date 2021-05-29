@@ -4,10 +4,10 @@
 
 #define THIS ((ArmsHook*)thisx)
 
-void ArmsHook_Init(Actor* thisx, GlobalContext* globalCtx);
-void ArmsHook_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ArmsHook_Update(Actor* thisx, GlobalContext* globalCtx);
-void ArmsHook_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ArmsHook_Init(Actor* thisx, GameState* state);
+void ArmsHook_Destroy(Actor* thisx, GameState* state);
+void ArmsHook_Update(Actor* thisx, GameState* state);
+void ArmsHook_Draw(Actor* thisx, GameState* state);
 
 void ArmsHook_Wait(ArmsHook* this, GlobalContext* globalCtx);
 void ArmsHook_Shoot(ArmsHook* this, GlobalContext* globalCtx);
@@ -66,7 +66,7 @@ void ArmsHook_SetupAction(ArmsHook* this, ArmsHookActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void ArmsHook_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ArmsHook_Init(Actor* thisx, GameState* state) {
     ArmsHook* this = THIS;
 
     Collider_InitQuad(globalCtx, &this->collider);
@@ -75,7 +75,7 @@ void ArmsHook_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_1E8 = this->actor.world.pos;
 }
 
-void ArmsHook_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ArmsHook_Destroy(Actor* thisx, GameState* state) {
     ArmsHook* this = THIS;
 
     if (this->grabbed != NULL) {
@@ -291,14 +291,14 @@ void ArmsHook_Shoot(ArmsHook* this, GlobalContext* globalCtx) {
     }
 }
 
-void ArmsHook_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ArmsHook_Update(Actor* thisx, GameState* state) {
     ArmsHook* this = THIS;
 
     this->actionFunc(this, globalCtx);
     this->unk_1F4 = this->unk_1E8;
 }
 
-void ArmsHook_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ArmsHook_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     ArmsHook* this = THIS;
     Player* player = PLAYER;

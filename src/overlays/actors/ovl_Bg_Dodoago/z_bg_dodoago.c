@@ -11,10 +11,10 @@
 
 #define THIS ((BgDodoago*)thisx)
 
-void BgDodoago_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgDodoago_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgDodoago_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgDodoago_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgDodoago_Init(Actor* thisx, GameState* state);
+void BgDodoago_Destroy(Actor* thisx, GameState* state);
+void BgDodoago_Update(Actor* thisx, GameState* state);
+void BgDodoago_Draw(Actor* thisx, GameState* state);
 
 void func_80871CF4(BgDodoago* this, GlobalContext* globalCtx);
 void func_80871FB8(BgDodoago* this, GlobalContext* globalCtx);
@@ -109,7 +109,7 @@ static u8 D_808727C0[100];
 
 static s32 D_80872824;
 
-void BgDodoago_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgDodoago_Init(Actor* thisx, GameState* state) {
     BgDodoago* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -137,7 +137,7 @@ void BgDodoago_Init(Actor* thisx, GlobalContext* globalCtx) {
     D_808727C0[0] = 0;
 }
 
-void BgDodoago_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgDodoago_Destroy(Actor* thisx, GameState* state) {
     BgDodoago* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -262,7 +262,7 @@ void func_80872288(BgDodoago* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgDodoago_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgDodoago_Update(Actor* thisx, GameState* state) {
     BgDodoago* this = THIS;
     EnBom* bomb;
 
@@ -298,7 +298,7 @@ void BgDodoago_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgDodoago_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgDodoago_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_dodoago.c", 672);
 
     if (Flags_GetEventChkInf(0xB0)) {

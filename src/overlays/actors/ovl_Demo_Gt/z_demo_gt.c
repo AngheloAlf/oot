@@ -6,10 +6,10 @@
 
 #define THIS ((DemoGt*)thisx)
 
-void DemoGt_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoGt_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoGt_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoGt_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoGt_Init(Actor* thisx, GameState* state);
+void DemoGt_Destroy(Actor* thisx, GameState* state);
+void DemoGt_Update(Actor* thisx, GameState* state);
+void DemoGt_Draw(Actor* thisx, GameState* state);
 
 extern CollisionHeader D_06005CB8;
 extern CollisionHeader D_060091E4;
@@ -23,7 +23,7 @@ extern Gfx D_060041A0[];
 extern Gfx D_06009B08[];
 extern Gfx D_06000EA0[];
 
-void DemoGt_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGt_Destroy(Actor* thisx, GameState* state) {
     DemoGt* this = THIS;
 
     if ((this->dyna.actor.params == 1) || (this->dyna.actor.params == 2)) {
@@ -1712,7 +1712,7 @@ static DemoGtUpdateFunc sUpdateFuncs[] = {
     DemoGt_Update15, DemoGt_Update16, DemoGt_Update17, DemoGt_Update18,
 };
 
-void DemoGt_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGt_Update(Actor* thisx, GameState* state) {
     DemoGt* this = THIS;
     DemoGtUpdateFunc updateFunc;
 
@@ -1725,7 +1725,7 @@ void DemoGt_Update(Actor* thisx, GlobalContext* globalCtx) {
     updateFunc(this, globalCtx);
 }
 
-void DemoGt_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGt_Init(Actor* thisx, GameState* state) {
     DemoGt* this = THIS;
 
     switch (this->dyna.actor.params) {
@@ -1768,7 +1768,7 @@ static DemoGtDrawFunc sDrawFuncs[] = {
     DemoGt_Draw5, DemoGt_Draw6, DemoGt_Draw7, DemoGt_Draw8,
 };
 
-void DemoGt_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGt_Draw(Actor* thisx, GameState* state) {
     DemoGt* this = THIS;
     DemoGtDrawFunc drawFunc;
 

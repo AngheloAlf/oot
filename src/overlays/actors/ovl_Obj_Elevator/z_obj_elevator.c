@@ -10,10 +10,10 @@
 
 #define THIS ((ObjElevator*)thisx)
 
-void ObjElevator_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjElevator_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjElevator_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjElevator_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjElevator_Init(Actor* thisx, GameState* state);
+void ObjElevator_Destroy(Actor* thisx, GameState* state);
+void ObjElevator_Update(Actor* thisx, GameState* state);
+void ObjElevator_Draw(Actor* thisx, GameState* state);
 
 void func_80B92C5C(ObjElevator* this);
 void func_80B92C80(ObjElevator* this, GlobalContext* globalCtx);
@@ -62,7 +62,7 @@ void func_80B92B08(ObjElevator* this, GlobalContext* globalCtx, CollisionHeader*
     }
 }
 
-void ObjElevator_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjElevator_Init(Actor* thisx, GameState* state) {
     ObjElevator* this = THIS;
     f32 temp_f0;
 
@@ -75,7 +75,7 @@ void ObjElevator_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(Dungeon Elevator)(arg_data 0x%04x)\n", thisx->params);
 }
 
-void ObjElevator_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjElevator_Destroy(Actor* thisx, GameState* state) {
     ObjElevator* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -115,7 +115,7 @@ void func_80B92D44(ObjElevator* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjElevator_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjElevator_Update(Actor* thisx, GameState* state) {
     ObjElevator* this = THIS;
 
     if (this->actionFunc) {
@@ -124,6 +124,6 @@ void ObjElevator_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_170 = this->dyna.unk_160;
 }
 
-void ObjElevator_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjElevator_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06000180);
 }

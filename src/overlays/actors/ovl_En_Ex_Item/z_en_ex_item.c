@@ -13,10 +13,10 @@
 
 #define THIS ((EnExItem*)thisx)
 
-void EnExItem_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnExItem_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnExItem_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnExItem_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnExItem_Init(Actor* thisx, GameState* state);
+void EnExItem_Destroy(Actor* thisx, GameState* state);
+void EnExItem_Update(Actor* thisx, GameState* state);
+void EnExItem_Draw(Actor* thisx, GameState* state);
 
 void EnExItem_DrawItems(EnExItem* this, GlobalContext* globalCtx);
 void EnExItem_DrawHeartPiece(EnExItem* this, GlobalContext* globalCtx);
@@ -46,10 +46,10 @@ const ActorInit En_Ex_Item_InitVars = {
     (ActorFunc)EnExItem_Draw,
 };
 
-void EnExItem_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnExItem_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnExItem_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnExItem_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnExItem* this = THIS;
 
@@ -418,7 +418,7 @@ void EnExItem_TargetPrizeFinish(EnExItem* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnExItem_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnExItem_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnExItem* this = THIS;
 
@@ -434,7 +434,7 @@ void EnExItem_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void EnExItem_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnExItem_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnExItem* this = THIS;
     s32 magicType;

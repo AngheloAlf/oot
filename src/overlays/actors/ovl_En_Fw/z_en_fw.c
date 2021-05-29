@@ -12,10 +12,10 @@
 
 #define THIS ((EnFw*)thisx)
 
-void EnFw_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFw_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFw_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFw_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFw_Init(Actor* thisx, GameState* state);
+void EnFw_Destroy(Actor* thisx, GameState* state);
+void EnFw_Update(Actor* thisx, GameState* state);
+void EnFw_Draw(Actor* thisx, GameState* state);
 void EnFw_UpdateDust(EnFw* this);
 void EnFw_DrawDust(EnFw* this, GlobalContext* globalCtx);
 void EnFw_AddDust(EnFw* this, Vec3f* initialPos, Vec3f* initialSpeed, Vec3f* accel, u8 initialTimer, f32 scale,
@@ -187,7 +187,7 @@ s32 EnFw_SpawnDust(EnFw* this, u8 timer, f32 scale, f32 scaleStep, s32 dustCnt, 
     return 0;
 }
 
-void EnFw_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFw_Init(Actor* thisx, GameState* state) {
     EnFw* this = THIS;
 
     SkelAnime_InitFlex(globalCtx, &this->skelAnime, &D_06007C30, NULL, this->jointTable, this->morphTable, 11);
@@ -202,7 +202,7 @@ void EnFw_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.gravity = -1.0f;
 }
 
-void EnFw_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFw_Destroy(Actor* thisx, GameState* state) {
     EnFw* this = THIS;
     Collider_DestroyJntSph(globalCtx, &this->collider);
 }
@@ -356,7 +356,7 @@ void EnFw_JumpToParentInitPos(EnFw* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFw_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFw_Update(Actor* thisx, GameState* state) {
     EnFw* this = THIS;
     SkelAnime_Update(&this->skelAnime);
     if ((this->actor.flags & 0x2000) != 0x2000) {
@@ -393,7 +393,7 @@ void EnFw_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     Collider_UpdateSpheres(limbIndex, &this->collider);
 }
 
-void EnFw_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFw_Draw(Actor* thisx, GameState* state) {
     EnFw* this = THIS;
 
     EnFw_UpdateDust(this);

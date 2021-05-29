@@ -4,10 +4,10 @@
 
 #define THIS ((BossDodongo*)thisx)
 
-void BossDodongo_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossDodongo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossDodongo_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossDodongo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossDodongo_Init(Actor* thisx, GameState* state);
+void BossDodongo_Destroy(Actor* thisx, GameState* state);
+void BossDodongo_Update(Actor* thisx, GameState* state);
+void BossDodongo_Draw(Actor* thisx, GameState* state);
 
 void BossDodongo_SetupIntroCutscene(BossDodongo* this, GlobalContext* globalCtx);
 void BossDodongo_IntroCutscene(BossDodongo* this, GlobalContext* globalCtx);
@@ -206,7 +206,7 @@ s32 BossDodongo_AteExplosive(BossDodongo* this, GlobalContext* globalCtx) {
     return false;
 }
 
-void BossDodongo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BossDodongo_Init(Actor* thisx, GameState* state) {
     BossDodongo* this = THIS;
     s16 i;
     u16* temp_s1_3;
@@ -249,7 +249,7 @@ void BossDodongo_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.flags &= ~1;
 }
 
-void BossDodongo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BossDodongo_Destroy(Actor* thisx, GameState* state) {
     BossDodongo* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -839,7 +839,7 @@ void BossDodongo_Roll(BossDodongo* this, GlobalContext* globalCtx) {
     }
 }
 
-void BossDodongo_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void BossDodongo_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BossDodongo* this = THIS;
     f32 temp_f0;
@@ -1141,7 +1141,7 @@ void BossDodongo_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLi
     Collider_UpdateSpheres(limbIndex, &this->collider);
 }
 
-void BossDodongo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BossDodongo_Draw(Actor* thisx, GameState* state) {
     BossDodongo* this = THIS;
     s32 pad;
 

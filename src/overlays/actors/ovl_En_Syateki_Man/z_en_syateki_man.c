@@ -21,10 +21,10 @@ typedef enum {
     /* 3 */ SYATEKI_TEXT_REFUSE
 } EnSyatekiManTextIdx;
 
-void EnSyatekiMan_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiMan_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiMan_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiMan_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSyatekiMan_Init(Actor* thisx, GameState* state);
+void EnSyatekiMan_Destroy(Actor* thisx, GameState* state);
+void EnSyatekiMan_Update(Actor* thisx, GameState* state);
+void EnSyatekiMan_Draw(Actor* thisx, GameState* state);
 
 void EnSyatekiMan_Start(EnSyatekiMan* this, GlobalContext* globalCtx);
 void EnSyatekiMan_SetupIdle(EnSyatekiMan* this, GlobalContext* globalCtx);
@@ -70,7 +70,7 @@ static s16 sTextIds[] = { 0x2B, 0x2E, 0xC8, 0x2D };
 
 static s16 sTextBoxCount[] = { 4, 5, 5, 5 };
 
-void EnSyatekiMan_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiMan_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnSyatekiMan* this = THIS;
 
@@ -90,7 +90,7 @@ void EnSyatekiMan_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnSyatekiMan_Start;
 }
 
-void EnSyatekiMan_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiMan_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnSyatekiMan_Start(EnSyatekiMan* this, GlobalContext* globalCtx) {
@@ -379,7 +379,7 @@ void EnSyatekiMan_Blink(EnSyatekiMan* this) {
     }
 }
 
-void EnSyatekiMan_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiMan_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnSyatekiMan* this = THIS;
 
@@ -414,7 +414,7 @@ s32 EnSyatekiMan_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx**
     return 0;
 }
 
-void EnSyatekiMan_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiMan_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnSyatekiMan* this = THIS;
 

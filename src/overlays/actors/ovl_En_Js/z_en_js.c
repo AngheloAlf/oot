@@ -10,10 +10,10 @@
 
 #define THIS ((EnJs*)thisx)
 
-void EnJs_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnJs_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnJs_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnJs_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnJs_Init(Actor* thisx, GameState* state);
+void EnJs_Destroy(Actor* thisx, GameState* state);
+void EnJs_Update(Actor* thisx, GameState* state);
+void EnJs_Draw(Actor* thisx, GameState* state);
 
 void func_80A89304(EnJs* this, GlobalContext* globalCtx);
 
@@ -57,7 +57,7 @@ void En_Js_SetupAction(EnJs* this, EnJsActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnJs_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnJs_Init(Actor* thisx, GameState* state) {
     EnJs* this = THIS;
     s32 pad;
 
@@ -75,7 +75,7 @@ void EnJs_Init(Actor* thisx, GlobalContext* globalCtx) {
                        this->actor.world.pos.y, this->actor.world.pos.z, 0, 0, 0, 0);
 }
 
-void EnJs_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnJs_Destroy(Actor* thisx, GameState* state) {
     EnJs* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -167,7 +167,7 @@ void func_80A89304(EnJs* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnJs_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnJs_Update(Actor* thisx, GameState* state) {
     EnJs* this = THIS;
     s32 pad;
     s32 pad2;
@@ -226,7 +226,7 @@ void EnJs_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
         Matrix_MultVec3f(&D_80A896DC, &this->actor.focus.pos);
     }
 }
-void EnJs_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnJs_Draw(Actor* thisx, GameState* state) {
     EnJs* this = THIS;
 
     func_800943C8(globalCtx->state.gfxCtx);

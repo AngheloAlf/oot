@@ -10,10 +10,10 @@
 
 #define THIS ((EnSceneChange*)thisx)
 
-void EnSceneChange_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSceneChange_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSceneChange_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSceneChange_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSceneChange_Init(Actor* thisx, GameState* state);
+void EnSceneChange_Destroy(Actor* thisx, GameState* state);
+void EnSceneChange_Update(Actor* thisx, GameState* state);
+void EnSceneChange_Draw(Actor* thisx, GameState* state);
 
 void EnSceneChange_DoNothing(EnSceneChange* this, GlobalContext* globalCtx);
 
@@ -33,25 +33,25 @@ void EnSceneChange_SetupAction(EnSceneChange* this, EnSceneChangeActionFunc acti
     this->actionFunc = actionFunc;
 }
 
-void EnSceneChange_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSceneChange_Init(Actor* thisx, GameState* state) {
     EnSceneChange* this = THIS;
 
     EnSceneChange_SetupAction(this, EnSceneChange_DoNothing);
 }
 
-void EnSceneChange_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSceneChange_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnSceneChange_DoNothing(EnSceneChange* this, GlobalContext* globalCtx) {
 }
 
-void EnSceneChange_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSceneChange_Update(Actor* thisx, GameState* state) {
     EnSceneChange* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void EnSceneChange_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSceneChange_Draw(Actor* thisx, GameState* state) {
     s32 pad[2];
     Gfx* displayList;
     s32 pad2[2];

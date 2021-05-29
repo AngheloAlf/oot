@@ -21,10 +21,10 @@ extern AnimationHeader D_060015CC;
 extern AnimationHeader D_0600C8A0;
 extern AnimationHeader D_0600C684;
 
-void EnOwl_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnOwl_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnOwl_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnOwl_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnOwl_Init(Actor* thisx, GameState* state);
+void EnOwl_Destroy(Actor* thisx, GameState* state);
+void EnOwl_Update(Actor* thisx, GameState* state);
+void EnOwl_Draw(Actor* thisx, GameState* state);
 void EnOwl_ChangeMode(EnOwl* this, EnOwlActionFunc, OwlFunc, SkelAnime*, AnimationHeader*, f32);
 void EnOwl_WaitDefault(EnOwl* this, GlobalContext* globalCtx);
 void func_80ACC540(EnOwl* this);
@@ -113,7 +113,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 2400, ICHAIN_STOP),
 };
 
-void EnOwl_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnOwl_Init(Actor* thisx, GameState* state) {
     EnOwl* this = THIS;
     ColliderCylinder* collider;
     s32 owlType;
@@ -241,7 +241,7 @@ void EnOwl_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnOwl_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnOwl_Destroy(Actor* thisx, GameState* state) {
     EnOwl* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -1083,7 +1083,7 @@ s32 func_80ACC624(EnOwl* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnOwl_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnOwl_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnOwl* this = THIS;
     s16 phi_a1;
@@ -1319,7 +1319,7 @@ void EnOwl_PostLimbUpdate(GlobalContext* globalCtx, s32 limbIndex, Gfx** gfx, Ve
     }
 }
 
-void EnOwl_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnOwl_Draw(Actor* thisx, GameState* state) {
     static u64* eyeTextures[] = { 0x060089A8, 0x06008DA8, 0x060091A8 };
     EnOwl* this = THIS;
     s32 pad;

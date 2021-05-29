@@ -20,8 +20,8 @@ typedef enum {
     /* 2 */ DNT_LOVE
 } EnDntDemoResults;
 
-void EnDntDemo_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDntDemo_Destroy(Actor* thisx, GlobalContext* globalCtx);
+void EnDntDemo_Init(Actor* thisx, GameState* state);
+void EnDntDemo_Destroy(Actor* thisx, GameState* state);
 void EnDntDemo_Update(Actor* this, GlobalContext* globalCtx);
 
 void EnDntDemo_Judge(EnDntDemo* this, GlobalContext* globalCtx);
@@ -67,10 +67,10 @@ static Vec3f sScrubPos[] = {
     { 3710.0f, -20.0f, 840.0f },  { 3860.0f, -20.0f, 790.0f }, { 3750.0f, -20.0f, 750.0f },
 };
 
-void EnDntDemo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntDemo_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnDntDemo_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnDntDemo_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnDntDemo* this = THIS;
     s32 i;
@@ -313,7 +313,7 @@ void EnDntDemo_Prize(EnDntDemo* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDntDemo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntDemo_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnDntDemo* this = THIS;
 

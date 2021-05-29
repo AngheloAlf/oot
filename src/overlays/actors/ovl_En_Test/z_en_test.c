@@ -10,10 +10,10 @@
 
 #define THIS ((EnTest*)thisx)
 
-void EnTest_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTest_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTest_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTest_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTest_Init(Actor* thisx, GameState* state);
+void EnTest_Destroy(Actor* thisx, GameState* state);
+void EnTest_Update(Actor* thisx, GameState* state);
+void EnTest_Draw(Actor* thisx, GameState* state);
 
 void func_8085F938(EnTest* this, GlobalContext* globalCtx);
 void func_8085FAB0(EnTest* this, GlobalContext* globalCtx);

@@ -11,10 +11,10 @@
 
 #define THIS ((BgJyaLift*)thisx)
 
-void BgJyaLift_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaLift_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaLift_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaLift_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaLift_Init(Actor* thisx, GameState* state);
+void BgJyaLift_Destroy(Actor* thisx, GameState* state);
+void BgJyaLift_Update(Actor* thisx, GameState* state);
+void BgJyaLift_Draw(Actor* thisx, GameState* state);
 
 void BgJyaLift_InitDynapoly(BgJyaLift* this, GlobalContext* globalCtx, CollisionHeader* collisionHeader,
                             DynaPolyMoveFlag moveFlag);
@@ -55,7 +55,7 @@ void BgJyaLift_InitDynapoly(BgJyaLift* this, GlobalContext* globalCtx, Collision
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, &this->dyna.actor, colHeader);
 }
 
-void BgJyaLift_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaLift_Init(Actor* thisx, GameState* state) {
     BgJyaLift* this = THIS;
 
     this->isSpawned = false;
@@ -78,7 +78,7 @@ void BgJyaLift_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->isSpawned = true;
 }
 
-void BgJyaLift_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaLift_Destroy(Actor* thisx, GameState* state) {
     BgJyaLift* this = THIS;
 
     if (this->isSpawned) {
@@ -133,7 +133,7 @@ void BgJyaLift_SetFinalPosY(BgJyaLift* this) {
     this->dyna.actor.world.pos.y = 973.0f;
 }
 
-void BgJyaLift_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaLift_Update(Actor* thisx, GameState* state) {
     BgJyaLift* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
 
@@ -154,6 +154,6 @@ void BgJyaLift_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaLift_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaLift_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gLiftDL);
 }

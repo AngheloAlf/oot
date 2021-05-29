@@ -11,9 +11,9 @@
 
 #define THIS ((EnWeatherTag*)thisx)
 
-void EnWeatherTag_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWeatherTag_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWeatherTag_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnWeatherTag_Init(Actor* thisx, GameState* state);
+void EnWeatherTag_Destroy(Actor* thisx, GameState* state);
+void EnWeatherTag_Update(Actor* thisx, GameState* state);
 
 void EnWeatherTag_DisabledCloudyHyruleMarket(EnWeatherTag* this, GlobalContext* globalCtx);
 void EnWeatherTag_EnabledCloudyHyruleMarket(EnWeatherTag* this, GlobalContext* globalCtx);
@@ -49,10 +49,10 @@ void EnWeatherTag_SetupAction(EnWeatherTag* this, EnWeatherTagActionFunc actionF
     this->actionFunc = actionFunc;
 }
 
-void EnWeatherTag_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWeatherTag_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnWeatherTag_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnWeatherTag_Init(Actor* thisx, GameState* state) {
     EnWeatherTag* this = THIS;
 
     this->actor.flags &= ~1;
@@ -322,7 +322,7 @@ void EnWeatherTag_EnabledRainThunder(EnWeatherTag* this, GlobalContext* globalCt
     }
 }
 
-void EnWeatherTag_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnWeatherTag_Update(Actor* thisx, GameState* state) {
     EnWeatherTag* this = THIS;
 
     this->actionFunc(this, globalCtx);

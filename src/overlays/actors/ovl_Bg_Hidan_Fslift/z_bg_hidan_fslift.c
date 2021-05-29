@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanFslift*)thisx)
 
-void BgHidanFslift_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFslift_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFslift_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFslift_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanFslift_Init(Actor* thisx, GameState* state);
+void BgHidanFslift_Destroy(Actor* thisx, GameState* state);
+void BgHidanFslift_Update(Actor* thisx, GameState* state);
+void BgHidanFslift_Draw(Actor* thisx, GameState* state);
 
 void func_80886FCC(BgHidanFslift* this, GlobalContext* globalCtx);
 void func_8088706C(BgHidanFslift* this, GlobalContext* globalCtx);
@@ -39,7 +39,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneForward, 2000, ICHAIN_STOP),
 };
 
-void BgHidanFslift_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFslift_Init(Actor* thisx, GameState* state) {
     s32 pad1;
     BgHidanFslift* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -68,7 +68,7 @@ void func_80886F24(BgHidanFslift* this) {
     }
 }
 
-void BgHidanFslift_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFslift_Destroy(Actor* thisx, GameState* state) {
     BgHidanFslift* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -123,7 +123,7 @@ void func_808870D8(BgHidanFslift* this, GlobalContext* globalCtx) {
     func_80886F24(this);
 }
 
-void BgHidanFslift_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFslift_Update(Actor* thisx, GameState* state) {
     BgHidanFslift* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -140,6 +140,6 @@ void BgHidanFslift_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanFslift_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFslift_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gFireTempleHookshotElevatorDL);
 }

@@ -11,10 +11,10 @@
 
 #define THIS ((EnPubox*)thisx)
 
-void EnPubox_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPubox_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPubox_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnPubox_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnPubox_Init(Actor* thisx, GameState* state);
+void EnPubox_Destroy(Actor* thisx, GameState* state);
+void EnPubox_Update(Actor* thisx, GameState* state);
+void EnPubox_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Pu_box_InitVars = {
     ACTOR_EN_PU_BOX,
@@ -28,7 +28,7 @@ const ActorInit En_Pu_box_InitVars = {
     (ActorFunc)EnPubox_Draw,
 };
 
-void EnPubox_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPubox_Init(Actor* thisx, GameState* state) {
     CollisionHeader* colHeader = NULL;
     EnPubox* this = THIS;
 
@@ -61,13 +61,13 @@ void EnPubox_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, thisx, colHeader);
 }
 
-void EnPubox_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPubox_Destroy(Actor* thisx, GameState* state) {
     EnPubox* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void EnPubox_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPubox_Update(Actor* thisx, GameState* state) {
     EnPubox* this = THIS;
 
     thisx->speedXZ += this->dyna.unk_150;
@@ -86,6 +86,6 @@ void EnPubox_Update(Actor* thisx, GlobalContext* globalCtx) {
     thisx->focus.pos = thisx->world.pos;
 }
 
-void EnPubox_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnPubox_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gUnknownUnusedBox2DL);
 }

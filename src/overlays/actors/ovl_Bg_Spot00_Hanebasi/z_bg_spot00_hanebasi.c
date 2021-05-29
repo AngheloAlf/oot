@@ -17,10 +17,10 @@ typedef enum {
     /*  1 */ DT_CHAIN_2
 } DrawbridgeType;
 
-void BgSpot00Hanebasi_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot00Hanebasi_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot00Hanebasi_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot00Hanebasi_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot00Hanebasi_Init(Actor* thisx, GameState* state);
+void BgSpot00Hanebasi_Destroy(Actor* thisx, GameState* state);
+void BgSpot00Hanebasi_Update(Actor* thisx, GameState* state);
+void BgSpot00Hanebasi_Draw(Actor* thisx, GameState* state);
 
 void BgSpot00Hanebasi_DrawbridgeWait(BgSpot00Hanebasi* this, GlobalContext* globalCtx);
 void BgSpot00Hanebasi_DrawbridgeRiseAndFall(BgSpot00Hanebasi* this, GlobalContext* globalCtx);
@@ -52,7 +52,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
-void BgSpot00Hanebasi_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Hanebasi_Init(Actor* thisx, GameState* state) {
     BgSpot00Hanebasi* this = THIS;
     s32 pad;
     Vec3f chainPos;
@@ -131,7 +131,7 @@ void BgSpot00Hanebasi_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot00Hanebasi_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Hanebasi_Destroy(Actor* thisx, GameState* state) {
     BgSpot00Hanebasi* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -210,7 +210,7 @@ void BgSpot00Hanebasi_SetTorchLightInfo(BgSpot00Hanebasi* this, GlobalContext* g
                             sTorchFlameScale * 37500.0f);
 }
 
-void BgSpot00Hanebasi_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Hanebasi_Update(Actor* thisx, GameState* state) {
     BgSpot00Hanebasi* this = THIS;
     s32 pad;
 
@@ -299,7 +299,7 @@ void BgSpot00Hanebasi_DrawTorches(Actor* thisx, GlobalContext* globalCtx2) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_spot00_hanebasi.c", 681);
 }
 
-void BgSpot00Hanebasi_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot00Hanebasi_Draw(Actor* thisx, GameState* state) {
     Vec3f basePos = { 158.0f, 10.0f, 400.0f };
     Vec3f newPos;
 

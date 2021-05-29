@@ -11,11 +11,11 @@
 
 #define THIS ((ObjBombiwa*)thisx)
 
-void ObjBombiwa_Init(Actor* thisx, GlobalContext* globalCtx);
+void ObjBombiwa_Init(Actor* thisx, GameState* state);
 void ObjBombiwa_InitCollision(Actor* thisx, GlobalContext* globalCtx);
-void ObjBombiwa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjBombiwa_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjBombiwa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjBombiwa_Destroy(Actor* thisx, GameState* state);
+void ObjBombiwa_Update(Actor* thisx, GameState* state);
+void ObjBombiwa_Draw(Actor* thisx, GameState* state);
 
 void ObjBombiwa_Break(ObjBombiwa* this, GlobalContext* globalCtx);
 
@@ -74,7 +74,7 @@ void ObjBombiwa_InitCollision(Actor* thisx, GlobalContext* globalCtx) {
     Collider_UpdateCylinder(&this->actor, &this->collider);
 }
 
-void ObjBombiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjBombiwa_Init(Actor* thisx, GameState* state) {
     Actor_ProcessInitChain(thisx, sInitChain);
     ObjBombiwa_InitCollision(thisx, globalCtx);
     if ((Flags_GetSwitch(globalCtx, thisx->params & 0x3F) != 0)) {
@@ -91,7 +91,7 @@ void ObjBombiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjBombiwa_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void ObjBombiwa_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     ObjBombiwa* this = THIS;
 
@@ -122,7 +122,7 @@ void ObjBombiwa_Break(ObjBombiwa* this, GlobalContext* globalCtx) {
     func_80033480(globalCtx, &this->actor.world.pos, 60.0f, 8, 100, 160, 1);
 }
 
-void ObjBombiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjBombiwa_Update(Actor* thisx, GameState* state) {
     ObjBombiwa* this = THIS;
     s32 pad;
 
@@ -144,6 +144,6 @@ void ObjBombiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjBombiwa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjBombiwa_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_060009E0);
 }

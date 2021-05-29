@@ -11,10 +11,10 @@
 
 #define THIS ((EnMb*)thisx)
 
-void EnMb_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMb_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMb_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMb_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMb_Init(Actor* thisx, GameState* state);
+void EnMb_Destroy(Actor* thisx, GameState* state);
+void EnMb_Update(Actor* thisx, GameState* state);
+void EnMb_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Mb_InitVars = {
     ACTOR_EN_MB,
@@ -210,7 +210,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 5300, ICHAIN_STOP),
 };
 
-void EnMb_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMb_Init(Actor* thisx, GameState* state) {
     EnMb* this = THIS;
     s32 pad;
     Player* player = PLAYER;
@@ -280,7 +280,7 @@ void EnMb_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnMb_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMb_Destroy(Actor* thisx, GameState* state) {
     EnMb* this = THIS;
 
     Collider_DestroyTris(globalCtx, &this->collider3);
@@ -1354,7 +1354,7 @@ void func_80AA94D8(EnMb* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMb_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMb_Update(Actor* thisx, GameState* state) {
     EnMb* this = THIS;
     s32 pad;
 
@@ -1446,7 +1446,7 @@ void EnMb_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnMb_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMb_Draw(Actor* thisx, GameState* state) {
     static Vec3f D_80AA9E20[] = {
         { 4000.0f, 7000.0f, 3500.0f },
         { 4000.0f, 0.0f, 3500.0f },

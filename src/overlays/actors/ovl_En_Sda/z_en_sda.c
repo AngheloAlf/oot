@@ -10,10 +10,10 @@
 
 #define THIS ((EnSda*)thisx)
 
-void EnSda_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSda_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSda_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSda_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSda_Init(Actor* thisx, GameState* state);
+void EnSda_Destroy(Actor* thisx, GameState* state);
+void EnSda_Update(Actor* thisx, GameState* state);
+void EnSda_Draw(Actor* thisx, GameState* state);
 
 void func_80AF95C4(EnSda* this, u8* shadowTexture, Player* player, GlobalContext* globalCtx);
 void func_80AF9C70(u8* shadowTexture, Player* player, GlobalContext* globalCtx);
@@ -114,13 +114,13 @@ static Gfx D_80AFA3F8[] = {
 
 static Vec3f D_80AFA660[16];
 
-void EnSda_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSda_Init(Actor* thisx, GameState* state) {
 }
 
-void EnSda_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSda_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnSda_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSda_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnSda* this = THIS;
     Player* player;
@@ -138,7 +138,7 @@ void EnSda_Update(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("SDA MOVE END\n");
 }
 
-void EnSda_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSda_Draw(Actor* thisx, GameState* state) {
     EnSda* this = THIS;
     Player* player;
     u8* shadowTexture = Graph_Alloc(globalCtx->state.gfxCtx, 0x1000);

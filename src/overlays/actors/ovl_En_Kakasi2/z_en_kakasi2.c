@@ -31,9 +31,9 @@ static ColliderCylinderInit sCylinderInit = {
     { 20, 70, 0, { 0, 0, 0 } },
 };
 
-void EnKakasi2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnKakasi2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnKakasi2_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnKakasi2_Init(Actor* thisx, GameState* state);
+void EnKakasi2_Destroy(Actor* thisx, GameState* state);
+void EnKakasi2_Update(Actor* thisx, GameState* state);
 void func_80A90948(Actor* thisx, GlobalContext* globalCtx);
 
 void func_80A9062C(EnKakasi2* this, GlobalContext* globalCtx);
@@ -57,7 +57,7 @@ const ActorInit En_Kakasi2_InitVars = {
     NULL,
 };
 
-void EnKakasi2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnKakasi2_Init(Actor* thisx, GameState* state) {
     EnKakasi2* this = THIS;
     s32 pad;
     f32 spawnRangeY;
@@ -108,7 +108,7 @@ void EnKakasi2_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnKakasi2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnKakasi2_Destroy(Actor* thisx, GameState* state) {
     EnKakasi2* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -203,7 +203,7 @@ void func_80A906C4(EnKakasi2* this, GlobalContext* globalCtx) {
     SkelAnime_Update(&this->skelAnime);
 }
 
-void EnKakasi2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnKakasi2_Update(Actor* thisx, GameState* state) {
     EnKakasi2* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
 

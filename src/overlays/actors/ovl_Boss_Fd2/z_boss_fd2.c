@@ -28,10 +28,10 @@ typedef enum {
     /* 2 */ EYE_CLOSED
 } BossFd2EyeState;
 
-void BossFd2_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossFd2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossFd2_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossFd2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossFd2_Init(Actor* thisx, GameState* state);
+void BossFd2_Destroy(Actor* thisx, GameState* state);
+void BossFd2_Update(Actor* thisx, GameState* state);
+void BossFd2_Draw(Actor* thisx, GameState* state);
 
 void BossFd2_SetupEmerge(BossFd2* this, GlobalContext* globalCtx);
 void BossFd2_Emerge(BossFd2* this, GlobalContext* globalCtx);
@@ -169,7 +169,7 @@ void BossFd2_SpawnDust(BossFdEffect* effect, Vec3f* position, Vec3f* velocity, V
     }
 }
 
-void BossFd2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd2_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BossFd2* this = THIS;
 
@@ -187,7 +187,7 @@ void BossFd2_Init(Actor* thisx, GlobalContext* globalCtx) {
     Collider_SetJntSph(globalCtx, &this->collider, &this->actor, &sJntSphInit, this->elements);
 }
 
-void BossFd2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd2_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BossFd2* this = THIS;
 
@@ -951,7 +951,7 @@ void BossFd2_UpdateFace(BossFd2* this, GlobalContext* globalCtx) {
     }
 }
 
-void BossFd2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd2_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     BossFd2* this = THIS;
     s16 i;
@@ -1187,7 +1187,7 @@ void BossFd2_DrawMane(BossFd2* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_boss_fd2.c", 2601);
 }
 
-void BossFd2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BossFd2_Draw(Actor* thisx, GameState* state) {
     static u64* eyeTextures[] = { gHoleVolvagiaEyeOpenTex, gHoleVolvagiaEyeHalfTex, gHoleVolvagiaEyeClosedTex };
     s32 pad;
     BossFd2* this = THIS;

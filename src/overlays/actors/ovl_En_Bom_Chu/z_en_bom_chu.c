@@ -6,10 +6,10 @@
 
 #define THIS ((EnBomChu*)thisx)
 
-void EnBomChu_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBomChu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBomChu_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBomChu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBomChu_Init(Actor* thisx, GameState* state);
+void EnBomChu_Destroy(Actor* thisx, GameState* state);
+void EnBomChu_Update(Actor* thisx, GameState* state);
+void EnBomChu_Draw(Actor* thisx, GameState* state);
 
 void EnBomChu_WaitForRelease(EnBomChu* this, GlobalContext* globalCtx);
 void EnBomChu_Move(EnBomChu* this, GlobalContext* globalCtx);
@@ -59,7 +59,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 10, ICHAIN_STOP),
 };
 
-void EnBomChu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomChu_Init(Actor* thisx, GameState* state) {
     static u8 p1StartColor[] = { 250, 0, 0, 250 };
     static u8 p2StartColor[] = { 200, 0, 0, 130 };
     static u8 p1EndColor[] = { 150, 0, 0, 100 };
@@ -93,7 +93,7 @@ void EnBomChu_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnBomChu_WaitForRelease;
 }
 
-void EnBomChu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomChu_Destroy(Actor* thisx, GameState* state) {
     EnBomChu* this = THIS;
 
     Effect_Delete(globalCtx, this->blure1Index);
@@ -357,7 +357,7 @@ void EnBomChu_SpawnRipples(EnBomChu* this, GlobalContext* globalCtx, f32 height)
     EffectSsGRipple_Spawn(globalCtx, &pos, 70, 500, 8);
 }
 
-void EnBomChu_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnBomChu_Update(Actor* thisx, GameState* state) {
     static Vec3f D_809C6D7C = { 0.0f, 7.0f, -6.0f };
     static Vec3f D_809C6D88 = { 12.0f, 0.0f, -5.0f };
     static Vec3f D_809C6D94 = { -12.0f, 0.0f, -5.0f };
@@ -450,7 +450,7 @@ void EnBomChu_Update(Actor* thisx, GlobalContext* globalCtx2) {
         }
     }
 }
-void EnBomChu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomChu_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnBomChu* this = THIS;
     f32 colorIntensity;

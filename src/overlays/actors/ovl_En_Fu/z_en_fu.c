@@ -13,10 +13,10 @@
 #define FU_RESET_LOOK_ANGLE (1 << 0)
 #define FU_WAIT (1 << 1)
 
-void EnFu_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFu_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFu_Init(Actor* thisx, GameState* state);
+void EnFu_Destroy(Actor* thisx, GameState* state);
+void EnFu_Update(Actor* thisx, GameState* state);
+void EnFu_Draw(Actor* thisx, GameState* state);
 
 void EnFu_WaitChild(EnFu* this, GlobalContext* globalCtx);
 void func_80A1DA04(EnFu* this, GlobalContext* globalCtx);
@@ -86,7 +86,7 @@ typedef enum {
     /* 0x01 */ FU_FACE_MAD
 } EnFuFace;
 
-void EnFu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFu_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnFu* this = THIS;
 
@@ -109,7 +109,7 @@ void EnFu_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.targetMode = 6;
 }
 
-void EnFu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFu_Destroy(Actor* thisx, GameState* state) {
     EnFu* this = THIS;
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
@@ -250,7 +250,7 @@ void EnFu_WaitAdult(EnFu* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFu_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFu_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnFu* this = THIS;
 
@@ -309,7 +309,7 @@ void EnFu_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnFu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFu_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnFu* this = THIS;
 

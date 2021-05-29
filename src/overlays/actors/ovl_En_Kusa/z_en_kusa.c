@@ -14,10 +14,10 @@
 
 #define THIS ((EnKusa*)thisx)
 
-void EnKusa_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnKusa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnKusa_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnKusa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnKusa_Init(Actor* thisx, GameState* state);
+void EnKusa_Destroy(Actor* thisx, GameState* state);
+void EnKusa_Update(Actor* thisx, GameState* state);
+void EnKusa_Draw(Actor* thisx, GameState* state);
 
 void EnKusa_SetupLiftedUp(EnKusa* this);
 void func_80A9B7EC(EnKusa* this);
@@ -229,7 +229,7 @@ void EnKusa_InitCollider(Actor* thisx, GlobalContext* globalCtx) {
     Collider_UpdateCylinder(&this->actor, &this->collider);
 }
 
-void EnKusa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnKusa_Init(Actor* thisx, GameState* state) {
     EnKusa* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -266,7 +266,7 @@ void EnKusa_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_80A9B7EC(this);
 }
 
-void EnKusa_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void EnKusa_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnKusa* this = THIS;
 
@@ -476,7 +476,7 @@ void func_80A9C068(EnKusa* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnKusa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnKusa_Update(Actor* thisx, GameState* state) {
     EnKusa* this = THIS;
 
     this->timer++;
@@ -490,7 +490,7 @@ void EnKusa_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnKusa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnKusa_Draw(Actor* thisx, GameState* state) {
     static Gfx* dLists[] = { gFieldBushDL, 0x06000140, 0x06000140 };
     EnKusa* this = THIS;
 

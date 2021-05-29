@@ -12,10 +12,10 @@
 
 #define THIS ((ObjOshihiki*)thisx)
 
-void ObjOshihiki_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjOshihiki_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjOshihiki_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjOshihiki_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjOshihiki_Init(Actor* thisx, GameState* state);
+void ObjOshihiki_Destroy(Actor* thisx, GameState* state);
+void ObjOshihiki_Update(Actor* thisx, GameState* state);
+void ObjOshihiki_Draw(Actor* thisx, GameState* state);
 
 void ObjOshihiki_SetupOnScene(ObjOshihiki* this, GlobalContext* globalCtx);
 void ObjOshihiki_OnScene(ObjOshihiki* this, GlobalContext* globalCtx);
@@ -270,7 +270,7 @@ void ObjOshihiki_SetColor(ObjOshihiki* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjOshihiki_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void ObjOshihiki_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     ObjOshihiki* this = THIS;
 
@@ -309,7 +309,7 @@ void ObjOshihiki_Init(Actor* thisx, GlobalContext* globalCtx2) {
     osSyncPrintf("(dungeon keep 押し引きブロック)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void ObjOshihiki_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjOshihiki_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     ObjOshihiki* this = THIS;
 
@@ -629,7 +629,7 @@ void ObjOshihiki_Fall(ObjOshihiki* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjOshihiki_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjOshihiki_Update(Actor* thisx, GameState* state) {
     s32 pad;
     ObjOshihiki* this = THIS;
 
@@ -652,7 +652,7 @@ void ObjOshihiki_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjOshihiki_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjOshihiki_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     ObjOshihiki* this = THIS;
 

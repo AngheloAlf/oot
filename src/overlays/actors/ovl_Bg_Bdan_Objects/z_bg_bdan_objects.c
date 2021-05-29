@@ -10,10 +10,10 @@
 
 #define THIS ((BgBdanObjects*)thisx)
 
-void BgBdanObjects_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgBdanObjects_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgBdanObjects_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgBdanObjects_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgBdanObjects_Init(Actor* thisx, GameState* state);
+void BgBdanObjects_Destroy(Actor* thisx, GameState* state);
+void BgBdanObjects_Update(Actor* thisx, GameState* state);
+void BgBdanObjects_Draw(Actor* thisx, GameState* state);
 
 void func_8086C054(BgBdanObjects* this, GlobalContext* globalCtx);
 void func_8086C1A0(BgBdanObjects* this, GlobalContext* globalCtx);
@@ -110,7 +110,7 @@ void BgBdanObjects_SetContactRu1(BgBdanObjects* this, s32 arg1) {
     }
 }
 
-void BgBdanObjects_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanObjects_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgBdanObjects* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -168,7 +168,7 @@ void BgBdanObjects_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, thisx, colHeader);
 }
 
-void BgBdanObjects_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanObjects_Destroy(Actor* thisx, GameState* state) {
     BgBdanObjects* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -443,14 +443,14 @@ void func_8086CB8C(BgBdanObjects* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgBdanObjects_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanObjects_Update(Actor* thisx, GameState* state) {
     BgBdanObjects* this = THIS;
 
     Actor_SetFocus(thisx, 50.0f);
     this->actionFunc(this, globalCtx);
 }
 
-void BgBdanObjects_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanObjects_Draw(Actor* thisx, GameState* state) {
     BgBdanObjects* this = THIS;
 
     if (thisx->params == 0) {

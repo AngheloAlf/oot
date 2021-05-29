@@ -10,10 +10,10 @@
 
 #define THIS ((EnToryo*)thisx)
 
-void EnToryo_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnToryo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnToryo_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnToryo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnToryo_Init(Actor* thisx, GameState* state);
+void EnToryo_Destroy(Actor* thisx, GameState* state);
+void EnToryo_Update(Actor* thisx, GameState* state);
+void EnToryo_Draw(Actor* thisx, GameState* state);
 
 void func_80B20914(EnToryo* this, GlobalContext* globalCtx);
 s32 EnToryo_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3f* pos, Vec3s* rot, void* thisx);
@@ -101,7 +101,7 @@ static Vec3f sMultVec = { 800.0f, 1000.0f, 0.0f };
 
 extern FlexSkeletonHeader D_06007150;
 
-void EnToryo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnToryo_Init(Actor* thisx, GameState* state) {
     EnToryo* this = THIS;
     s32 pad;
 
@@ -141,7 +141,7 @@ void EnToryo_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80B20914;
 }
 
-void EnToryo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnToryo_Destroy(Actor* thisx, GameState* state) {
     EnToryo* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -355,7 +355,7 @@ void func_80B20914(EnToryo* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnToryo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnToryo_Update(Actor* thisx, GameState* state) {
     EnToryo* this = THIS;
     ColliderCylinder* collider = &this->collider;
     Player* player = PLAYER;
@@ -385,7 +385,7 @@ void EnToryo_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnToryo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnToryo_Draw(Actor* thisx, GameState* state) {
     EnToryo* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

@@ -17,8 +17,8 @@ typedef struct {
     s16 angle;
 } Mure2sScatteredShrubInfo;
 
-void ObjMure2_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjMure2_Update(Actor* thisx, GlobalContext* globalCtx);
+void ObjMure2_Init(Actor* thisx, GameState* state);
+void ObjMure2_Update(Actor* thisx, GameState* state);
 
 void ObjMure2_SetPosShrubCircle(Vec3f* vec, ObjMure2* this);
 void ObjMure2_SetPosShrubScattered(Vec3f* vec, ObjMure2* this);
@@ -167,7 +167,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 100, ICHAIN_STOP),
 };
 
-void ObjMure2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjMure2_Init(Actor* thisx, GameState* state) {
     ObjMure2* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -212,7 +212,7 @@ void func_80B9A6F8(ObjMure2* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjMure2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjMure2_Update(Actor* thisx, GameState* state) {
     ObjMure2* this = THIS;
 
     if (globalCtx->csCtx.state == CS_STATE_IDLE) {

@@ -10,10 +10,10 @@
 
 #define THIS ((EndTitle*)thisx)
 
-void EndTitle_Init(Actor* thisx, GlobalContext* globalCtx);
-void EndTitle_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EndTitle_Update(Actor* thisx, GlobalContext* globalCtx);
-void EndTitle_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EndTitle_Init(Actor* thisx, GameState* state);
+void EndTitle_Destroy(Actor* thisx, GameState* state);
+void EndTitle_Update(Actor* thisx, GameState* state);
+void EndTitle_Draw(Actor* thisx, GameState* state);
 void func_80B65DA8(Actor* thisx, GlobalContext* globalCtx);
 
 const ActorInit End_Title_InitVars = {
@@ -30,7 +30,7 @@ const ActorInit End_Title_InitVars = {
 
 #include "z_end_title_gfx.c"
 
-void EndTitle_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EndTitle_Init(Actor* thisx, GameState* state) {
     EndTitle* this = THIS;
 
     this->endAlpha = 0;
@@ -41,13 +41,13 @@ void EndTitle_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EndTitle_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EndTitle_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EndTitle_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EndTitle_Update(Actor* thisx, GameState* state) {
 }
 
-void EndTitle_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EndTitle_Draw(Actor* thisx, GameState* state) {
     MtxF* mf;
     EndTitle* this = THIS;
     s32 frameCount = globalCtx->csCtx.frames;

@@ -11,9 +11,9 @@
 
 #define THIS ((EnVase*)thisx)
 
-void EnVase_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnVase_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnVase_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnVase_Init(Actor* thisx, GameState* state);
+void EnVase_Destroy(Actor* thisx, GameState* state);
+void EnVase_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Vase_InitVars = {
     ACTOR_EN_VASE,
@@ -27,7 +27,7 @@ const ActorInit En_Vase_InitVars = {
     (ActorFunc)EnVase_Draw,
 };
 
-void EnVase_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnVase_Init(Actor* thisx, GameState* state) {
     EnVase* this = THIS;
 
     Actor_SetScale(&this->actor, 0.01f);
@@ -35,9 +35,9 @@ void EnVase_Init(Actor* thisx, GlobalContext* globalCtx) {
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 6.0f);
 }
 
-void EnVase_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnVase_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnVase_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnVase_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gUnusedVaseDL);
 }

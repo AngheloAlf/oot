@@ -11,11 +11,11 @@
 
 #define THIS ((EnSth*)thisx)
 
-void EnSth_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSth_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSth_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnSth_Init(Actor* thisx, GameState* state);
+void EnSth_Destroy(Actor* thisx, GameState* state);
+void EnSth_Update(Actor* thisx, GameState* state);
 void EnSth_Update2(Actor* thisx, GlobalContext* globalCtx);
-void EnSth_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSth_Draw(Actor* thisx, GameState* state);
 
 void EnSth_WaitForObjectLoaded(EnSth* this, GlobalContext* globalCtx);
 void EnSth_ParentRewardObtainedWait(EnSth* this, GlobalContext* globalCtx);
@@ -91,7 +91,7 @@ void EnSth_SetupAction(EnSth* this, EnSthActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnSth_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSth_Init(Actor* thisx, GameState* state) {
     EnSth* this = THIS;
 
     s16 objectId;
@@ -164,7 +164,7 @@ void EnSth_SetupAfterObjectLoaded(EnSth* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSth_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSth_Destroy(Actor* thisx, GameState* state) {
     EnSth* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -305,7 +305,7 @@ void EnSth_ChildRewardObtainedWait(EnSth* this, GlobalContext* globalCtx) {
     EnSth_LookAtPlayer(this, globalCtx);
 }
 
-void EnSth_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSth_Update(Actor* thisx, GameState* state) {
     EnSth* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -382,7 +382,7 @@ Gfx* EnSth_AllocColorDList(GraphicsContext* globalCtx, u8 envR, u8 envG, u8 envB
     return dList;
 }
 
-void EnSth_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSth_Draw(Actor* thisx, GameState* state) {
     EnSth* this = THIS;
     Color_RGB8* envColor1;
 

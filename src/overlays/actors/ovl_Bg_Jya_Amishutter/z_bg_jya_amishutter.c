@@ -11,10 +11,10 @@
 
 #define THIS ((BgJyaAmishutter*)thisx)
 
-void BgJyaAmishutter_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaAmishutter_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaAmishutter_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaAmishutter_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaAmishutter_Init(Actor* thisx, GameState* state);
+void BgJyaAmishutter_Destroy(Actor* thisx, GameState* state);
+void BgJyaAmishutter_Update(Actor* thisx, GameState* state);
+void BgJyaAmishutter_Draw(Actor* thisx, GameState* state);
 
 void BgJyaAmishutter_SetupWaitForPlayer(BgJyaAmishutter* this);
 void BgJyaAmishutter_WaitForPlayer(BgJyaAmishutter* this);
@@ -59,7 +59,7 @@ void BgJyaAmishutter_InitDynaPoly(BgJyaAmishutter* this, GlobalContext* globalCt
     }
 }
 
-void BgJyaAmishutter_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaAmishutter_Init(Actor* thisx, GameState* state) {
     BgJyaAmishutter* this = THIS;
 
     BgJyaAmishutter_InitDynaPoly(this, globalCtx, &gAmishutterCol, DPM_UNK);
@@ -67,7 +67,7 @@ void BgJyaAmishutter_Init(Actor* thisx, GlobalContext* globalCtx) {
     BgJyaAmishutter_SetupWaitForPlayer(this);
 }
 
-void BgJyaAmishutter_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaAmishutter_Destroy(Actor* thisx, GameState* state) {
     BgJyaAmishutter* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -119,12 +119,12 @@ void func_8089350C(BgJyaAmishutter* this) {
     }
 }
 
-void BgJyaAmishutter_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaAmishutter_Update(Actor* thisx, GameState* state) {
     BgJyaAmishutter* this = THIS;
 
     this->actionFunc(this);
 }
 
-void BgJyaAmishutter_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaAmishutter_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gAmishutterDL);
 }

@@ -10,10 +10,10 @@
 
 #define THIS ((EnSi*)thisx)
 
-void EnSi_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSi_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSi_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSi_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSi_Init(Actor* thisx, GameState* state);
+void EnSi_Destroy(Actor* thisx, GameState* state);
+void EnSi_Update(Actor* thisx, GameState* state);
+void EnSi_Draw(Actor* thisx, GameState* state);
 
 s32 func_80AFB748(EnSi* this, GlobalContext* globalCtx);
 void func_80AFB768(EnSi* this, GlobalContext* globalCtx);
@@ -54,7 +54,7 @@ const ActorInit En_Si_InitVars = {
     (ActorFunc)EnSi_Draw,
 };
 
-void EnSi_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSi_Init(Actor* thisx, GameState* state) {
     EnSi* this = THIS;
 
     Collider_InitCylinder(globalCtx, &this->collider);
@@ -66,7 +66,7 @@ void EnSi_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.shape.yOffset = 42.0f;
 }
 
-void EnSi_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSi_Destroy(Actor* thisx, GameState* state) {
     EnSi* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -135,7 +135,7 @@ void func_80AFB950(EnSi* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSi_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSi_Update(Actor* thisx, GameState* state) {
     EnSi* this = THIS;
 
     Actor_MoveForward(&this->actor);
@@ -144,7 +144,7 @@ void EnSi_Update(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetFocus(&this->actor, 16.0f);
 }
 
-void EnSi_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSi_Draw(Actor* thisx, GameState* state) {
     EnSi* this = THIS;
 
     if (this->actionFunc != func_80AFB950) {

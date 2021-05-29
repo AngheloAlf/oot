@@ -10,10 +10,10 @@
 
 #define THIS ((BgDdanJd*)thisx)
 
-void BgDdanJd_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgDdanJd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgDdanJd_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgDdanJd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgDdanJd_Init(Actor* thisx, GameState* state);
+void BgDdanJd_Destroy(Actor* thisx, GameState* state);
+void BgDdanJd_Update(Actor* thisx, GameState* state);
+void BgDdanJd_Draw(Actor* thisx, GameState* state);
 
 void BgDdanJd_Idle(BgDdanJd* this, GlobalContext* globalCtx);
 void BgDdanJd_Move(BgDdanJd* this, GlobalContext* globalCtx);
@@ -54,7 +54,7 @@ typedef enum {
 #define DEFAULT_Y_SPEED 1
 #define SHORTCUT_Y_SPEED 5
 
-void BgDdanJd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanJd_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgDdanJd* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -77,7 +77,7 @@ void BgDdanJd_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgDdanJd_Idle;
 }
 
-void BgDdanJd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanJd_Destroy(Actor* thisx, GameState* state) {
     BgDdanJd* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -172,12 +172,12 @@ void BgDdanJd_Move(BgDdanJd* this, GlobalContext* globalCtx) {
     BgDdanJd_MoveEffects(this, globalCtx);
 }
 
-void BgDdanJd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanJd_Update(Actor* thisx, GameState* state) {
     BgDdanJd* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgDdanJd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgDdanJd_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_060037B8);
 }

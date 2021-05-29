@@ -10,10 +10,10 @@
 
 #define THIS ((BgBdanSwitch*)thisx)
 
-void BgBdanSwitch_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgBdanSwitch_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgBdanSwitch_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgBdanSwitch_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgBdanSwitch_Init(Actor* thisx, GameState* state);
+void BgBdanSwitch_Destroy(Actor* thisx, GameState* state);
+void BgBdanSwitch_Update(Actor* thisx, GameState* state);
+void BgBdanSwitch_Draw(Actor* thisx, GameState* state);
 
 void func_8086D5C4(BgBdanSwitch* this);
 void func_8086D5E0(BgBdanSwitch* this, GlobalContext* globalCtx);
@@ -138,7 +138,7 @@ void func_8086D0EC(BgBdanSwitch* this) {
     this->dyna.actor.shape.yOffset = 1.2f / this->unk_1D0;
 }
 
-void BgBdanSwitch_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanSwitch_Init(Actor* thisx, GameState* state) {
     BgBdanSwitch* this = THIS;
     s32 pad;
     s16 type;
@@ -204,7 +204,7 @@ void BgBdanSwitch_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(巨大魚ダンジョン 専用スイッチ)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void BgBdanSwitch_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanSwitch_Destroy(Actor* thisx, GameState* state) {
     BgBdanSwitch* this = THIS;
 
     switch (this->dyna.actor.params & 0xFF) {
@@ -479,7 +479,7 @@ void func_8086DDC0(BgBdanSwitch* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgBdanSwitch_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanSwitch_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgBdanSwitch* this = THIS;
     s32 type;
@@ -512,7 +512,7 @@ void func_8086DF58(BgBdanSwitch* this, GlobalContext* globalCtx, Gfx* dlist) {
     Gfx_DrawDListOpa(globalCtx, dlist);
 }
 
-void BgBdanSwitch_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgBdanSwitch_Draw(Actor* thisx, GameState* state) {
     BgBdanSwitch* this = THIS;
 
     switch (this->dyna.actor.params & 0xFF) {

@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot12Gate*)thisx)
 
-void BgSpot12Gate_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot12Gate_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot12Gate_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot12Gate_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot12Gate_Init(Actor* thisx, GameState* state);
+void BgSpot12Gate_Destroy(Actor* thisx, GameState* state);
+void BgSpot12Gate_Update(Actor* thisx, GameState* state);
+void BgSpot12Gate_Draw(Actor* thisx, GameState* state);
 
 void func_808B30C0(BgSpot12Gate* this);
 void func_808B30D8(BgSpot12Gate* this, GlobalContext* globalCtx);
@@ -61,7 +61,7 @@ void BgSpot12Gate_InitDynaPoly(BgSpot12Gate* this, GlobalContext* globalCtx, Col
     }
 }
 
-void BgSpot12Gate_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Gate_Init(Actor* thisx, GameState* state) {
     BgSpot12Gate* this = THIS;
 
     BgSpot12Gate_InitDynaPoly(this, globalCtx, &D_060011EC, DPM_UNK);
@@ -74,7 +74,7 @@ void BgSpot12Gate_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot12Gate_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Gate_Destroy(Actor* thisx, GameState* state) {
     BgSpot12Gate* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -133,7 +133,7 @@ void func_808B3274(BgSpot12Gate* this) {
 void func_808B3298(BgSpot12Gate* this, GlobalContext* globalCtx) {
 }
 
-void BgSpot12Gate_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Gate_Update(Actor* thisx, GameState* state) {
     BgSpot12Gate* this = THIS;
 
     if (this->unk_168 > 0) {
@@ -142,6 +142,6 @@ void BgSpot12Gate_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot12Gate_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot12Gate_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06001080);
 }

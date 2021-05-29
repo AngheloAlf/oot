@@ -10,10 +10,10 @@
 
 #define THIS ((ObjTimeblock*)thisx)
 
-void ObjTimeblock_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjTimeblock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjTimeblock_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjTimeblock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjTimeblock_Init(Actor* thisx, GameState* state);
+void ObjTimeblock_Destroy(Actor* thisx, GameState* state);
+void ObjTimeblock_Update(Actor* thisx, GameState* state);
+void ObjTimeblock_Draw(Actor* thisx, GameState* state);
 
 void ObjTimeblock_SetupNormal(ObjTimeblock* this);
 void ObjTimeblock_SetupAltBehaviorVisible(ObjTimeblock* this);
@@ -98,7 +98,7 @@ void ObjTimeblock_ToggleSwitchFlag(GlobalContext* globalCtx, s32 flag) {
     }
 }
 
-void ObjTimeblock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjTimeblock_Init(Actor* thisx, GameState* state) {
     ObjTimeblock* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -141,7 +141,7 @@ void ObjTimeblock_Init(Actor* thisx, GlobalContext* globalCtx) {
                  (this->dyna.actor.params >> 10) & 1);
 }
 
-void ObjTimeblock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjTimeblock_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     ObjTimeblock* this = THIS;
 
@@ -315,7 +315,7 @@ void ObjTimeblock_AltBehaviourNotVisible(ObjTimeblock* this, GlobalContext* glob
     }
 }
 
-void ObjTimeblock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjTimeblock_Update(Actor* thisx, GameState* state) {
     ObjTimeblock* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -331,7 +331,7 @@ void ObjTimeblock_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjTimeblock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjTimeblock_Draw(Actor* thisx, GameState* state) {
     if (((ObjTimeblock*)thisx)->isVisible) {
         Color_RGB8* primColor = &sPrimColors[thisx->home.rot.z & 7];
 

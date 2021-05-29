@@ -10,10 +10,10 @@
 
 #define THIS ((EnMa1*)thisx)
 
-void EnMa1_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMa1_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMa1_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMa1_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMa1_Init(Actor* thisx, GameState* state);
+void EnMa1_Destroy(Actor* thisx, GameState* state);
+void EnMa1_Update(Actor* thisx, GameState* state);
+void EnMa1_Draw(Actor* thisx, GameState* state);
 
 u16 EnMa1_GetText(GlobalContext* globalCtx, Actor* this);
 s16 func_80AA0778(GlobalContext* globalCtx, Actor* this);
@@ -256,7 +256,7 @@ void func_80AA0B74(EnMa1* this) {
     }
 }
 
-void EnMa1_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa1_Init(Actor* thisx, GameState* state) {
     EnMa1* this = THIS;
     s32 pad;
 
@@ -285,7 +285,7 @@ void EnMa1_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnMa1_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa1_Destroy(Actor* thisx, GameState* state) {
     EnMa1* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -392,7 +392,7 @@ void func_80AA1150(EnMa1* this, GlobalContext* globalCtx) {
 void func_80AA11C8(EnMa1* this, GlobalContext* globalCtx) {
 }
 
-void EnMa1_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa1_Update(Actor* thisx, GameState* state) {
     EnMa1* this = THIS;
     s32 pad;
 
@@ -440,7 +440,7 @@ void EnMa1_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     }
 }
 
-void EnMa1_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa1_Draw(Actor* thisx, GameState* state) {
     EnMa1* this = THIS;
     Camera* camera;
     f32 someFloat;

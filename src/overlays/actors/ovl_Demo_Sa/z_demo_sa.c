@@ -14,10 +14,10 @@
 
 #define THIS ((DemoSa*)thisx)
 
-void DemoSa_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoSa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoSa_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoSa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoSa_Init(Actor* thisx, GameState* state);
+void DemoSa_Destroy(Actor* thisx, GameState* state);
+void DemoSa_Update(Actor* thisx, GameState* state);
+void DemoSa_Draw(Actor* thisx, GameState* state);
 
 void func_8098EBB8(DemoSa* this, GlobalContext* globalCtx);
 void func_8098EBD8(DemoSa* this, GlobalContext* globalCtx);
@@ -98,7 +98,7 @@ const ActorInit Demo_Sa_InitVars = {
     (ActorFunc)DemoSa_Draw,
 };
 
-void DemoSa_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoSa_Destroy(Actor* thisx, GameState* state) {
     DemoSa* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -747,7 +747,7 @@ void func_8098FD0C(DemoSa* this, GlobalContext* globalCtx) {
     func_8098FB68(this, globalCtx);
 }
 
-void DemoSa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoSa_Update(Actor* thisx, GameState* state) {
     DemoSa* this = THIS;
 
     if (this->action < 0 || this->action >= 21 || sActionFuncs[this->action] == NULL) {
@@ -757,7 +757,7 @@ void DemoSa_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void DemoSa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoSa_Init(Actor* thisx, GameState* state) {
     DemoSa* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
@@ -817,7 +817,7 @@ void DemoSa_DrawOpa(DemoSa* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_demo_sa.c", 626);
 }
 
-void DemoSa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoSa_Draw(Actor* thisx, GameState* state) {
     DemoSa* this = THIS;
 
     if (this->drawConfig < 0 || this->drawConfig >= 3 || sDrawFuncs[this->drawConfig] == NULL) {

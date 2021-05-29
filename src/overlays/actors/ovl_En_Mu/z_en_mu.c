@@ -10,10 +10,10 @@
 
 #define THIS ((EnMu*)thisx)
 
-void EnMu_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMu_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMu_Init(Actor* thisx, GameState* state);
+void EnMu_Destroy(Actor* thisx, GameState* state);
+void EnMu_Update(Actor* thisx, GameState* state);
+void EnMu_Draw(Actor* thisx, GameState* state);
 
 void EnMu_Pose(EnMu* this, GlobalContext* globalCtx);
 s16 EnMu_CheckDialogState(GlobalContext* globalCtx, Actor* thisx);
@@ -130,7 +130,7 @@ s16 EnMu_CheckDialogState(GlobalContext* globalCtx, Actor* thisx) {
     }
 }
 
-void EnMu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMu_Init(Actor* thisx, GameState* state) {
     EnMu* this = THIS;
     s32 pad;
 
@@ -145,7 +145,7 @@ void EnMu_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnMu_SetupAction(this, EnMu_Pose);
 }
 
-void EnMu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMu_Destroy(Actor* thisx, GameState* state) {
     EnMu* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -155,7 +155,7 @@ void EnMu_Pose(EnMu* this, GlobalContext* globalCtx) {
     func_80034F54(globalCtx, this->unk_20A, this->unk_22A, 16);
 }
 
-void EnMu_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMu_Update(Actor* thisx, GameState* state) {
     EnMu* this = THIS;
     s32 pad;
     f32 talkDist;
@@ -202,7 +202,7 @@ Gfx* EnMu_DisplayListSetColor(GraphicsContext* gfxCtx, u8 r, u8 g, u8 b, u8 a) {
     return dlist;
 }
 
-void EnMu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMu_Draw(Actor* thisx, GameState* state) {
     EnMu* this = THIS;
     Color_RGBA8 colors[2][5] = {
         { { 100, 130, 235, 0 }, { 160, 250, 60, 0 }, { 90, 60, 20, 0 }, { 30, 240, 200, 0 }, { 140, 70, 20, 0 } },

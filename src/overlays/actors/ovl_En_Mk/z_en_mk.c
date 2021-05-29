@@ -10,10 +10,10 @@
 
 #define THIS ((EnMk*)thisx)
 
-void EnMk_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMk_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMk_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMk_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMk_Init(Actor* thisx, GameState* state);
+void EnMk_Destroy(Actor* thisx, GameState* state);
+void EnMk_Update(Actor* thisx, GameState* state);
+void EnMk_Draw(Actor* thisx, GameState* state);
 
 void EnMk_Wait(EnMk* this, GlobalContext* globalCtx);
 
@@ -55,7 +55,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 30, 40, 0, { 0, 0, 0 } },
 };
 
-void EnMk_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMk_Init(Actor* thisx, GameState* state) {
     EnMk* this = THIS;
     s32 swimFlag;
 
@@ -79,7 +79,7 @@ void EnMk_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnMk_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMk_Destroy(Actor* thisx, GameState* state) {
     EnMk* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -285,7 +285,7 @@ void EnMk_Wait(EnMk* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMk_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMk_Update(Actor* thisx, GameState* state) {
     EnMk* this = THIS;
     s32 pad;
     Vec3s vec;
@@ -368,7 +368,7 @@ void EnMk_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnMk_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMk_Draw(Actor* thisx, GameState* state) {
     EnMk* this = THIS;
 
     func_800943C8(globalCtx->state.gfxCtx);

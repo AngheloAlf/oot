@@ -12,10 +12,10 @@
 
 #define THIS ((EnAm*)thisx)
 
-void EnAm_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnAm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnAm_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnAm_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnAm_Init(Actor* thisx, GameState* state);
+void EnAm_Destroy(Actor* thisx, GameState* state);
+void EnAm_Update(Actor* thisx, GameState* state);
+void EnAm_Draw(Actor* thisx, GameState* state);
 
 void EnAm_SetupStatue(EnAm* this);
 void EnAm_SetupSleep(EnAm* this);
@@ -205,7 +205,7 @@ s32 EnAm_CanMove(EnAm* this, GlobalContext* globalCtx, f32 distance, s16 yaw) {
     return ret;
 }
 
-void EnAm_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnAm_Init(Actor* thisx, GameState* state) {
     CollisionHeader* colHeader = NULL;
     s32 pad;
     EnAm* this = THIS;
@@ -242,7 +242,7 @@ void EnAm_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.actor.colChkInfo.mass = MASS_HEAVY;
 }
 
-void EnAm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnAm_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnAm* this = THIS;
 
@@ -829,7 +829,7 @@ void EnAm_UpdateDamage(EnAm* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnAm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnAm_Update(Actor* thisx, GameState* state) {
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };
     static Color_RGBA8 dustPrimColor = { 150, 150, 150, 255 };
     static Color_RGBA8 dustEnvColor = { 100, 100, 100, 150 };
@@ -942,7 +942,7 @@ Vec3f sIcePosOffsets[] = {
     { 10.0f, 20.0f, -10.0f }, { 0.0f, 40.0f, 20.0f },    { -10.0f, 20.0f, 10.0f }, { -10.0f, 20.0f, -10.0f },
 };
 
-void EnAm_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnAm_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     Vec3f sp68;
     EnAm* this = THIS;

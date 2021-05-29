@@ -4,10 +4,10 @@
 
 #define THIS ((DoorWarp1*)thisx)
 
-void DoorWarp1_Init(Actor* thisx, GlobalContext* globalCtx);
-void DoorWarp1_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DoorWarp1_Update(Actor* thisx, GlobalContext* globalCtx);
-void DoorWarp1_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DoorWarp1_Init(Actor* thisx, GameState* state);
+void DoorWarp1_Destroy(Actor* thisx, GameState* state);
+void DoorWarp1_Update(Actor* thisx, GameState* state);
+void DoorWarp1_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_060001A0;
 extern UNK_TYPE D_06001374;

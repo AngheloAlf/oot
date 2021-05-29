@@ -11,10 +11,10 @@
 
 #define THIS ((EnTakaraMan*)thisx)
 
-void EnTakaraMan_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTakaraMan_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTakaraMan_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTakaraMan_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTakaraMan_Init(Actor* thisx, GameState* state);
+void EnTakaraMan_Destroy(Actor* thisx, GameState* state);
+void EnTakaraMan_Update(Actor* thisx, GameState* state);
+void EnTakaraMan_Draw(Actor* thisx, GameState* state);
 
 void func_80B176E0(EnTakaraMan* this, GlobalContext* globalCtx);
 void func_80B1778C(EnTakaraMan* this, GlobalContext* globalCtx);
@@ -40,10 +40,10 @@ static u8 sTakaraIsInitialized = false;
 extern FlexSkeletonHeader D_06004FE0;
 extern AnimationHeader D_06000498;
 
-void EnTakaraMan_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTakaraMan_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnTakaraMan_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTakaraMan_Init(Actor* thisx, GameState* state) {
     EnTakaraMan* this = THIS;
 
     if (sTakaraIsInitialized) {
@@ -180,7 +180,7 @@ void func_80B17B14(EnTakaraMan* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnTakaraMan_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTakaraMan_Update(Actor* thisx, GameState* state) {
     EnTakaraMan* this = THIS;
 
     if (this->eyeTimer != 0) {
@@ -214,7 +214,7 @@ s32 EnTakaraMan_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** 
     return false;
 }
 
-void EnTakaraMan_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTakaraMan_Draw(Actor* thisx, GameState* state) {
     static UNK_PTR sTakaraEyeTextures[] = {
         0x06000970,
         0x06000D70,

@@ -13,10 +13,10 @@
 
 #define THIS ((DemoEc*)thisx)
 
-void DemoEc_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoEc_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoEc_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoEc_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoEc_Init(Actor* thisx, GameState* state);
+void DemoEc_Destroy(Actor* thisx, GameState* state);
+void DemoEc_Update(Actor* thisx, GameState* state);
+void DemoEc_Draw(Actor* thisx, GameState* state);
 
 typedef enum {
     /* 00 */ EC_UPDATE_COMMON,
@@ -171,13 +171,13 @@ extern Gfx D_06009430[];
 extern Gfx D_06009690[];
 extern Gfx D_060074C8[];
 
-void DemoEc_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoEc_Destroy(Actor* thisx, GameState* state) {
     DemoEc* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
 }
 
-void DemoEc_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoEc_Init(Actor* thisx, GameState* state) {
     DemoEc* this = THIS;
 
     if ((this->actor.params < 0) || (this->actor.params > 34)) {
@@ -1299,7 +1299,7 @@ static DemoEcUpdateFunc sUpdateFuncs[] = {
     DemoEc_UpdateMalon,
 };
 
-void DemoEc_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoEc_Update(Actor* thisx, GameState* state) {
     DemoEc* this = THIS;
     s32 updateMode = this->updateMode;
 
@@ -1332,7 +1332,7 @@ static DemoEcDrawFunc sDrawFuncs[] = {
     DemoEc_DrawGorons,          DemoEc_DrawMalon,
 };
 
-void DemoEc_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoEc_Draw(Actor* thisx, GameState* state) {
     DemoEc* this = THIS;
     s32 drawConfig = this->drawConfig;
 

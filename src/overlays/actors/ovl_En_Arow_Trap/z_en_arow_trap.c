@@ -10,9 +10,9 @@
 
 #define THIS ((EnArowTrap*)thisx)
 
-void EnArowTrap_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnArowTrap_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnArowTrap_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnArowTrap_Init(Actor* thisx, GameState* state);
+void EnArowTrap_Destroy(Actor* thisx, GameState* state);
+void EnArowTrap_Update(Actor* thisx, GameState* state);
 
 const ActorInit En_Arow_Trap_InitVars = {
     ACTOR_EN_AROW_TRAP,
@@ -26,7 +26,7 @@ const ActorInit En_Arow_Trap_InitVars = {
     NULL,
 };
 
-void EnArowTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnArowTrap_Init(Actor* thisx, GameState* state) {
     EnArowTrap* this = THIS;
 
     Actor_SetScale(&this->actor, 0.01);
@@ -35,10 +35,10 @@ void EnArowTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.focus.pos = this->actor.world.pos;
 }
 
-void EnArowTrap_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnArowTrap_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnArowTrap_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnArowTrap_Update(Actor* thisx, GameState* state) {
     EnArowTrap* this = THIS;
 
     if (this->actor.xzDistToPlayer <= 400) {

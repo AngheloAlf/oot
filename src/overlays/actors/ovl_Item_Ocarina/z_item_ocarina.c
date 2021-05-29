@@ -10,10 +10,10 @@
 
 #define THIS ((ItemOcarina*)thisx)
 
-void ItemOcarina_Init(Actor* thisx, GlobalContext* globalCtx);
-void ItemOcarina_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ItemOcarina_Update(Actor* thisx, GlobalContext* globalCtx);
-void ItemOcarina_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ItemOcarina_Init(Actor* thisx, GameState* state);
+void ItemOcarina_Destroy(Actor* thisx, GameState* state);
+void ItemOcarina_Update(Actor* thisx, GameState* state);
+void ItemOcarina_Draw(Actor* thisx, GameState* state);
 
 void ItemOcarina_GetThrown(ItemOcarina* this, GlobalContext* globalCtx);
 void ItemOcarina_Fly(ItemOcarina* this, GlobalContext* globalCtx);
@@ -41,7 +41,7 @@ void ItemOcarina_SetupAction(ItemOcarina* this, ItemOcarinaActionFunc actionFunc
     this->actionFunc = actionFunc;
 }
 
-void ItemOcarina_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ItemOcarina_Init(Actor* thisx, GameState* state) {
     ItemOcarina* this = THIS;
     s32 params = thisx->params;
 
@@ -76,7 +76,7 @@ void ItemOcarina_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->spinRotOffset = 0x400;
 }
 
-void ItemOcarina_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ItemOcarina_Destroy(Actor* thisx, GameState* state) {
 }
 
 void ItemOcarina_Fly(ItemOcarina* this, GlobalContext* globalCtx) {
@@ -191,13 +191,13 @@ void ItemOcarina_WaitInWater(ItemOcarina* this, GlobalContext* globalCtx) {
     }
 }
 
-void ItemOcarina_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ItemOcarina_Update(Actor* thisx, GameState* state) {
     ItemOcarina* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void ItemOcarina_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ItemOcarina_Draw(Actor* thisx, GameState* state) {
     ItemOcarina* this = THIS;
 
     func_8002EBCC(thisx, globalCtx, 0);

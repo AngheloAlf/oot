@@ -10,10 +10,10 @@
 
 #define THIS ((BgIngate*)thisx)
 
-void BgIngate_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgIngate_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgIngate_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgIngate_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgIngate_Init(Actor* thisx, GameState* state);
+void BgIngate_Destroy(Actor* thisx, GameState* state);
+void BgIngate_Update(Actor* thisx, GameState* state);
+void BgIngate_Draw(Actor* thisx, GameState* state);
 
 void func_80892890(BgIngate* this, GlobalContext* globalCtx);
 void BgIngate_DoNothing(BgIngate* this, GlobalContext* globalCtx);
@@ -37,7 +37,7 @@ void BgIngate_SetupAction(BgIngate* this, BgIngateActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void BgIngate_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgIngate_Init(Actor* thisx, GameState* state) {
     BgIngate* this = THIS;
 
     s32 pad;
@@ -63,7 +63,7 @@ void BgIngate_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgIngate_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgIngate_Destroy(Actor* thisx, GameState* state) {
     BgIngate* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -100,13 +100,13 @@ void func_80892890(BgIngate* this, GlobalContext* globalCtx) {
 void BgIngate_DoNothing(BgIngate* this, GlobalContext* globalCtx) {
 }
 
-void BgIngate_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgIngate_Update(Actor* thisx, GameState* state) {
     BgIngate* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgIngate_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgIngate_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_ingate.c", 240);
 
     func_80093D18(globalCtx->state.gfxCtx);

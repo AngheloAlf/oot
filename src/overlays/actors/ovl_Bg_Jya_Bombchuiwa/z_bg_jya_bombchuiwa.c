@@ -5,10 +5,10 @@
 
 #define THIS ((BgJyaBombchuiwa*)thisx)
 
-void BgJyaBombchuiwa_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBombchuiwa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBombchuiwa_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBombchuiwa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaBombchuiwa_Init(Actor* thisx, GameState* state);
+void BgJyaBombchuiwa_Destroy(Actor* thisx, GameState* state);
+void BgJyaBombchuiwa_Update(Actor* thisx, GameState* state);
+void BgJyaBombchuiwa_Draw(Actor* thisx, GameState* state);
 
 void BgJyaBombchuiwa_WaitForExplosion(BgJyaBombchuiwa* this, GlobalContext* globalCtx);
 void BgJyaBombchuiwa_SetupWaitForExplosion(BgJyaBombchuiwa* this, GlobalContext* globalCtx);
@@ -75,7 +75,7 @@ void BgJyaBombchuiwa_SetDrawFlags(BgJyaBombchuiwa* this, u8 drawFlags) {
     this->drawFlags |= drawFlags;
 }
 
-void BgJyaBombchuiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBombchuiwa_Init(Actor* thisx, GameState* state) {
     BgJyaBombchuiwa* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -88,7 +88,7 @@ void BgJyaBombchuiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetFocus(&this->actor, 0.0f);
 }
 
-void BgJyaBombchuiwa_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void BgJyaBombchuiwa_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BgJyaBombchuiwa* this = THIS;
 
@@ -189,7 +189,7 @@ void BgJyaBombchuiwa_SpawnLightRay(BgJyaBombchuiwa* this, GlobalContext* globalC
     }
 }
 
-void BgJyaBombchuiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBombchuiwa_Update(Actor* thisx, GameState* state) {
     BgJyaBombchuiwa* this = THIS;
 
     if (this->actionFunc != NULL) {
@@ -221,7 +221,7 @@ void BgJyaBombchuiwa_DrawLight(Actor* thisx, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_jya_bombchuiwa.c", 472);
 }
 
-void BgJyaBombchuiwa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBombchuiwa_Draw(Actor* thisx, GameState* state) {
     static Vec3f D_80894F88 = { -920.0f, 480.0f, -889.0f };
     static Vec3s D_80894F94 = { 0, 0, 0 };
     BgJyaBombchuiwa* this = THIS;

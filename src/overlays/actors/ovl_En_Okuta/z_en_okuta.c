@@ -5,10 +5,10 @@
 
 #define THIS ((EnOkuta*)thisx)
 
-void EnOkuta_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnOkuta_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnOkuta_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnOkuta_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnOkuta_Init(Actor* thisx, GameState* state);
+void EnOkuta_Destroy(Actor* thisx, GameState* state);
+void EnOkuta_Update(Actor* thisx, GameState* state);
+void EnOkuta_Draw(Actor* thisx, GameState* state);
 
 void EnOkuta_SetupWaitToAppear(EnOkuta* this);
 void EnOkuta_WaitToAppear(EnOkuta* this, GlobalContext* globalCtx);
@@ -115,7 +115,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 6500, ICHAIN_STOP),
 };
 
-void EnOkuta_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkuta_Init(Actor* thisx, GameState* state) {
     EnOkuta* this = THIS;
     s32 pad;
     WaterBox* outWaterBox;
@@ -159,7 +159,7 @@ void EnOkuta_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnOkuta_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkuta_Destroy(Actor* thisx, GameState* state) {
     EnOkuta* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -571,7 +571,7 @@ void EnOkuta_ColliderCheck(EnOkuta* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnOkuta_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkuta_Update(Actor* thisx, GameState* state) {
     EnOkuta* this = THIS;
     Player* player = PLAYER;
     GlobalContext* globalCtx2 = globalCtx;
@@ -702,7 +702,7 @@ s32 EnOkuta_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLis
     return false;
 }
 
-void EnOkuta_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnOkuta_Draw(Actor* thisx, GameState* state) {
     EnOkuta* this = THIS;
     s32 pad;
 

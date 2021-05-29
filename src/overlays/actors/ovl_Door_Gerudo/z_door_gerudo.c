@@ -10,10 +10,10 @@
 
 #define THIS ((DoorGerudo*)thisx)
 
-void DoorGerudo_Init(Actor* thisx, GlobalContext* globalCtx);
-void DoorGerudo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DoorGerudo_Update(Actor* thisx, GlobalContext* globalCtx);
-void DoorGerudo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DoorGerudo_Init(Actor* thisx, GameState* state);
+void DoorGerudo_Destroy(Actor* thisx, GameState* state);
+void DoorGerudo_Update(Actor* thisx, GameState* state);
+void DoorGerudo_Draw(Actor* thisx, GameState* state);
 
 void func_8099485C(DoorGerudo* this, GlobalContext* globalCtx);
 s32 func_80994750(DoorGerudo* this, GlobalContext* globalCtx);
@@ -40,7 +40,7 @@ extern Gfx D_06000040[];
 extern CollisionHeader D_06000170;
 extern UNK_TYPE D_80994B70;
 
-void DoorGerudo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DoorGerudo_Init(Actor* thisx, GameState* state) {
     s32 pad;
     DoorGerudo* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -58,7 +58,7 @@ void DoorGerudo_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void DoorGerudo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DoorGerudo_Destroy(Actor* thisx, GameState* state) {
     DoorGerudo* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -139,13 +139,13 @@ void func_809949C8(DoorGerudo* this, GlobalContext* globalCtx) {
     Math_StepToF(&this->dyna.actor.world.pos.y, this->dyna.actor.home.pos.y + 200.0f, this->dyna.actor.velocity.y);
 }
 
-void DoorGerudo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DoorGerudo_Update(Actor* thisx, GameState* state) {
     DoorGerudo* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void DoorGerudo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DoorGerudo_Draw(Actor* thisx, GameState* state) {
     DoorGerudo* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_door_gerudo.c", 361);

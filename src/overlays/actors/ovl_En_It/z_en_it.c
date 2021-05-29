@@ -10,9 +10,9 @@
 
 #define THIS ((EnIt*)thisx)
 
-void EnIt_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnIt_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnIt_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnIt_Init(Actor* thisx, GameState* state);
+void EnIt_Destroy(Actor* thisx, GameState* state);
+void EnIt_Update(Actor* thisx, GameState* state);
 
 static ColliderCylinderInit sCylinderInit = {
     {
@@ -48,7 +48,7 @@ const ActorInit En_It_InitVars = {
     (ActorFunc)NULL,
 };
 
-void EnIt_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnIt_Init(Actor* thisx, GameState* state) {
     EnIt* this = THIS;
 
     this->actor.params = 0x0D05;
@@ -57,13 +57,13 @@ void EnIt_Init(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetInfo2(&this->actor.colChkInfo, 0, &sColChkInfoInit);
 }
 
-void EnIt_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnIt_Destroy(Actor* thisx, GameState* state) {
     EnIt* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
 
-void EnIt_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnIt_Update(Actor* thisx, GameState* state) {
     EnIt* this = THIS;
     s32 pad;
 

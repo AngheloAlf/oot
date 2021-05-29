@@ -17,9 +17,9 @@
 
 #define THIS ((EnDntNomal*)thisx)
 
-void EnDntNomal_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDntNomal_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDntNomal_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnDntNomal_Init(Actor* thisx, GameState* state);
+void EnDntNomal_Destroy(Actor* thisx, GameState* state);
+void EnDntNomal_Update(Actor* thisx, GameState* state);
 void EnDntNomal_DrawTargetScrub(Actor* thisx, GlobalContext* globalCtx);
 void EnDntNomal_DrawStageScrub(Actor* thisx, GlobalContext* globalCtx);
 
@@ -116,7 +116,7 @@ static Color_RGBA8 sLeafColors[] = {
     { 255, 255, 255, 255 }, { 255, 195, 175, 255 }, { 210, 255, 0, 255 },
 };
 
-void EnDntNomal_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntNomal_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnDntNomal* this = THIS;
 
@@ -159,7 +159,7 @@ void EnDntNomal_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnDntNomal_WaitForObject;
 }
 
-void EnDntNomal_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntNomal_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnDntNomal* this = THIS;
 
@@ -737,7 +737,7 @@ void EnDntNomal_StageReturn(EnDntNomal* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDntNomal_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDntNomal_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnDntNomal* this = THIS;
 

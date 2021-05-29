@@ -11,10 +11,10 @@
 
 #define THIS ((BgMoriRakkatenjo*)thisx)
 
-void BgMoriRakkatenjo_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriRakkatenjo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriRakkatenjo_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriRakkatenjo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriRakkatenjo_Init(Actor* thisx, GameState* state);
+void BgMoriRakkatenjo_Destroy(Actor* thisx, GameState* state);
+void BgMoriRakkatenjo_Update(Actor* thisx, GameState* state);
+void BgMoriRakkatenjo_Draw(Actor* thisx, GameState* state);
 
 void BgMoriRakkatenjo_SetupWaitForMoriTex(BgMoriRakkatenjo* this);
 void BgMoriRakkatenjo_WaitForMoriTex(BgMoriRakkatenjo* this, GlobalContext* globalCtx);
@@ -47,7 +47,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
-void BgMoriRakkatenjo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriRakkatenjo_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriRakkatenjo* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -79,7 +79,7 @@ void BgMoriRakkatenjo_Init(Actor* thisx, GlobalContext* globalCtx) {
     sCamSetting = 0;
 }
 
-void BgMoriRakkatenjo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriRakkatenjo_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriRakkatenjo* this = THIS;
 
@@ -197,7 +197,7 @@ void BgMoriRakkatenjo_Rise(BgMoriRakkatenjo* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriRakkatenjo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriRakkatenjo_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriRakkatenjo* this = THIS;
 
@@ -219,7 +219,7 @@ void BgMoriRakkatenjo_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriRakkatenjo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriRakkatenjo_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriRakkatenjo* this = THIS;
 

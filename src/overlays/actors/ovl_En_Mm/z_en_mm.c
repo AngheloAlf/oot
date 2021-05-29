@@ -26,10 +26,10 @@ typedef enum {
     /* 1 */ RM_MOUTH_OPEN
 } RunningManMouthTex;
 
-void EnMm_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMm_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMm_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMm_Init(Actor* thisx, GameState* state);
+void EnMm_Destroy(Actor* thisx, GameState* state);
+void EnMm_Update(Actor* thisx, GameState* state);
+void EnMm_Draw(Actor* thisx, GameState* state);
 
 void func_80AAE598(EnMm* this, GlobalContext* globalCtx);
 void func_80AAE294(EnMm* this, GlobalContext* globalCtx);
@@ -165,7 +165,7 @@ void EnMm_ChangeAnimation(EnMm* this, s32 newAnimIndex, s32* curAnimIndex) {
     *curAnimIndex = newAnimIndex;
 }
 
-void EnMm_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMm_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnMm* this = THIS;
 
@@ -202,7 +202,7 @@ void EnMm_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnMm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMm_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnMm* this = THIS;
 
@@ -509,7 +509,7 @@ void func_80AAE598(EnMm* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMm_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnMm* this = THIS;
 
@@ -521,7 +521,7 @@ void EnMm_Update(Actor* thisx, GlobalContext* globalCtx) {
 
 extern Gfx D_0602CA38[]; // bunny hood dlist from object_link_child. replace with proper symbol later
 
-void EnMm_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMm_Draw(Actor* thisx, GameState* state) {
     static u64* mouthTextures[] = { gRunningManMouthOpenTex, gRunningManMouthClosedTex };
     s32 pad;
     EnMm* this = THIS;

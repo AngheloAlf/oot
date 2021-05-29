@@ -19,10 +19,10 @@ typedef enum {
     /* 2 */ FWBIG_KILL
 } HidanFwbigMoveState;
 
-void BgHidanFwbig_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFwbig_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFwbig_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFwbig_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanFwbig_Init(Actor* thisx, GameState* state);
+void BgHidanFwbig_Destroy(Actor* thisx, GameState* state);
+void BgHidanFwbig_Update(Actor* thisx, GameState* state);
+void BgHidanFwbig_Draw(Actor* thisx, GameState* state);
 
 void BgHidanFwbig_UpdatePosition(BgHidanFwbig* this);
 
@@ -69,7 +69,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneScale, 1000, ICHAIN_STOP),
 };
 
-void BgHidanFwbig_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void BgHidanFwbig_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BgHidanFwbig* this = THIS;
     Player* player = PLAYER;
@@ -106,7 +106,7 @@ void BgHidanFwbig_Init(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void BgHidanFwbig_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFwbig_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgHidanFwbig* this = THIS;
 
@@ -218,7 +218,7 @@ void BgHidanFwbig_MoveCollider(BgHidanFwbig* this, GlobalContext* globalCtx) {
     this->actor.world.rot.y = (projPos.z < 0.0f) ? this->actor.shape.rot.y : this->actor.shape.rot.y + 0x8000;
 }
 
-void BgHidanFwbig_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFwbig_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgHidanFwbig* this = THIS;
 
@@ -248,7 +248,7 @@ void BgHidanFwbig_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanFwbig_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFwbig_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     f32 height;
 

@@ -14,10 +14,10 @@
 #define FLG_COREDEAD (0x4000)
 #define FLG_COREDONE (0x8000)
 
-void EnFd_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFd_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFd_Init(Actor* thisx, GameState* state);
+void EnFd_Destroy(Actor* thisx, GameState* state);
+void EnFd_Update(Actor* thisx, GameState* state);
+void EnFd_Draw(Actor* thisx, GameState* state);
 void EnFd_Run(EnFd* this, GlobalContext* globalCtx);
 void EnFd_SpinAndSpawnFire(EnFd* this, GlobalContext* globalCtx);
 void EnFd_Reappear(EnFd* this, GlobalContext* globalCtx);
@@ -447,7 +447,7 @@ void EnFd_Fade(EnFd* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFd_Init(Actor* thisx, GameState* state) {
     EnFd* this = THIS;
 
     SkelAnime_InitFlex(globalCtx, &this->skelAnime, &D_06005810, NULL, this->jointTable, this->morphTable, 27);
@@ -465,7 +465,7 @@ void EnFd_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnFd_Reappear;
 }
 
-void EnFd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFd_Destroy(Actor* thisx, GameState* state) {
     EnFd* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->collider);
@@ -646,7 +646,7 @@ void EnFd_WaitForCore(EnFd* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFd_Update(Actor* thisx, GameState* state) {
     EnFd* this = THIS;
     s32 pad;
 
@@ -746,7 +746,7 @@ void EnFd_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     Collider_UpdateSpheres(limbIndex, &this->collider);
 }
 
-void EnFd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFd_Draw(Actor* thisx, GameState* state) {
     EnFd* this = THIS;
     s32 clampedHealth;
     Color_RGBA8 primColors[] = {

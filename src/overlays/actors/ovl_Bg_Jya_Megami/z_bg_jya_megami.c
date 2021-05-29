@@ -6,10 +6,10 @@
 
 #define THIS ((BgJyaMegami*)thisx)
 
-void BgJyaMegami_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaMegami_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaMegami_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaMegami_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaMegami_Init(Actor* thisx, GameState* state);
+void BgJyaMegami_Destroy(Actor* thisx, GameState* state);
+void BgJyaMegami_Update(Actor* thisx, GameState* state);
+void BgJyaMegami_Draw(Actor* thisx, GameState* state);
 
 void BgJyaMegami_SetupDetectLight(BgJyaMegami* this);
 void BgJyaMegami_DetectLight(BgJyaMegami* this, GlobalContext* globalCtx);
@@ -153,7 +153,7 @@ void BgJyaMegami_SetupSpawnEffect(BgJyaMegami* this, GlobalContext* globalCtx, f
     }
 }
 
-void BgJyaMegami_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaMegami_Init(Actor* thisx, GameState* state) {
     BgJyaMegami* this = THIS;
 
     BgJyaMegami_InitDynaPoly(this, globalCtx, &GMegamiCol, DPM_UNK);
@@ -167,7 +167,7 @@ void BgJyaMegami_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaMegami_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaMegami_Destroy(Actor* thisx, GameState* state) {
     BgJyaMegami* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -282,7 +282,7 @@ void BgJyaMegami_Explode(BgJyaMegami* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaMegami_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaMegami_Update(Actor* thisx, GameState* state) {
     BgJyaMegami* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -344,7 +344,7 @@ void BgJyaMegami_DrawExplode(BgJyaMegami* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_jya_megami.c", 783);
 }
 
-void BgJyaMegami_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaMegami_Draw(Actor* thisx, GameState* state) {
     BgJyaMegami* this = THIS;
 
     Collider_UpdateSpheres(0, &this->collider);

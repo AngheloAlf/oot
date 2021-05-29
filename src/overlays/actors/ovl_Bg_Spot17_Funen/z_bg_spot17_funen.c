@@ -11,9 +11,9 @@
 
 #define THIS ((BgSpot17Funen*)thisx)
 
-void BgSpot17Funen_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot17Funen_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot17Funen_Update(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot17Funen_Init(Actor* thisx, GameState* state);
+void BgSpot17Funen_Destroy(Actor* thisx, GameState* state);
+void BgSpot17Funen_Update(Actor* thisx, GameState* state);
 void func_808B746C(Actor* thisx, GlobalContext* globalCtx);
 void func_808B7478(Actor* thisx, GlobalContext* globalCtx);
 
@@ -33,17 +33,17 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgSpot17Funen_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot17Funen_Init(Actor* thisx, GameState* state) {
     BgSpot17Funen* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
     osSyncPrintf("spot17 obj. 噴煙 (arg_data 0x%04x)\n", this->actor.params);
 }
 
-void BgSpot17Funen_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot17Funen_Destroy(Actor* thisx, GameState* state) {
 }
 
-void BgSpot17Funen_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot17Funen_Update(Actor* thisx, GameState* state) {
     BgSpot17Funen* this = THIS;
 
     this->actor.draw = func_808B7478;

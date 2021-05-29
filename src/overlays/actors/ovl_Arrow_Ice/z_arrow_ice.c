@@ -12,10 +12,10 @@
 
 #define THIS ((ArrowIce*)thisx)
 
-void ArrowIce_Init(Actor* thisx, GlobalContext* globalCtx);
-void ArrowIce_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ArrowIce_Update(Actor* thisx, GlobalContext* globalCtx);
-void ArrowIce_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ArrowIce_Init(Actor* thisx, GameState* state);
+void ArrowIce_Destroy(Actor* thisx, GameState* state);
+void ArrowIce_Update(Actor* thisx, GameState* state);
+void ArrowIce_Draw(Actor* thisx, GameState* state);
 
 void ArrowIce_Charge(ArrowIce* this, GlobalContext* globalCtx);
 void ArrowIce_Fly(ArrowIce* this, GlobalContext* globalCtx);
@@ -43,7 +43,7 @@ void ArrowIce_SetupAction(ArrowIce* this, ArrowIceActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void ArrowIce_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowIce_Init(Actor* thisx, GameState* state) {
     ArrowIce* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -56,7 +56,7 @@ void ArrowIce_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_164 = 0.0f;
 }
 
-void ArrowIce_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowIce_Destroy(Actor* thisx, GameState* state) {
     func_800876C8(globalCtx);
     // Translates to: "Disappearance"
     LOG_STRING("消滅", "../z_arrow_ice.c", 415);
@@ -181,7 +181,7 @@ void ArrowIce_Fly(ArrowIce* this, GlobalContext* globalCtx) {
     }
 }
 
-void ArrowIce_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowIce_Update(Actor* thisx, GameState* state) {
     ArrowIce* this = THIS;
 
     if (globalCtx->msgCtx.msgMode == 0xD || globalCtx->msgCtx.msgMode == 0x11) {
@@ -191,7 +191,7 @@ void ArrowIce_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ArrowIce_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ArrowIce_Draw(Actor* thisx, GameState* state) {
     ArrowIce* this = THIS;
     s32 pad;
     Actor* tranform;

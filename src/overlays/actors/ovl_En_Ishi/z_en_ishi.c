@@ -14,10 +14,10 @@
 
 #define THIS ((EnIshi*)thisx)
 
-void EnIshi_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnIshi_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnIshi_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnIshi_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnIshi_Init(Actor* thisx, GameState* state);
+void EnIshi_Destroy(Actor* thisx, GameState* state);
+void EnIshi_Update(Actor* thisx, GameState* state);
+void EnIshi_Draw(Actor* thisx, GameState* state);
 
 void EnIshi_SetupWait(EnIshi* this);
 void EnIshi_Wait(EnIshi* this, GlobalContext* globalCtx);
@@ -306,7 +306,7 @@ static InitChainEntry sInitChains[][5] = {
     },
 };
 
-void EnIshi_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnIshi_Init(Actor* thisx, GameState* state) {
     EnIshi* this = THIS;
     s16 type = this->actor.params & 1;
 
@@ -333,7 +333,7 @@ void EnIshi_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnIshi_SetupWait(this);
 }
 
-void EnIshi_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void EnIshi_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnIshi* this = THIS;
 
@@ -470,7 +470,7 @@ void EnIshi_Fly(EnIshi* this, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void EnIshi_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnIshi_Update(Actor* thisx, GameState* state) {
     EnIshi* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -494,7 +494,7 @@ void EnIshi_DrawLarge(EnIshi* this, GlobalContext* globalCtx) {
 
 static EnIshiDrawFunc sDrawFuncs[] = { EnIshi_DrawSmall, EnIshi_DrawLarge };
 
-void EnIshi_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnIshi_Draw(Actor* thisx, GameState* state) {
     EnIshi* this = THIS;
 
     sDrawFuncs[this->actor.params & 1](this, globalCtx);

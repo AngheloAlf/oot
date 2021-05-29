@@ -24,10 +24,10 @@ typedef enum {
     VISUALSTATE_HIT          // main: greenish cyan, alternates with red; eye: greenish cyan
 } GohmaVisualState;
 
-void BossGoma_Init(Actor* thisx, GlobalContext* globalCtx);
-void BossGoma_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BossGoma_Update(Actor* thisx, GlobalContext* globalCtx);
-void BossGoma_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BossGoma_Init(Actor* thisx, GameState* state);
+void BossGoma_Destroy(Actor* thisx, GameState* state);
+void BossGoma_Update(Actor* thisx, GameState* state);
+void BossGoma_Draw(Actor* thisx, GameState* state);
 
 void BossGoma_SetupEncounter(BossGoma* this, GlobalContext* globalCtx);
 void BossGoma_Encounter(BossGoma* this, GlobalContext* globalCtx);
@@ -337,7 +337,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32_DIV1000(gravity, -2000, ICHAIN_STOP),
 };
 
-void BossGoma_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BossGoma_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BossGoma* this = THIS;
 
@@ -382,7 +382,7 @@ void BossGoma_PlayEffectsAndSfx(BossGoma* this, GlobalContext* globalCtx, s16 ar
     }
 }
 
-void BossGoma_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BossGoma_Destroy(Actor* thisx, GameState* state) {
     BossGoma* this = THIS;
 
     SkelAnime_Free(&this->skelanime, globalCtx);
@@ -1886,7 +1886,7 @@ void BossGoma_UpdateEyeEnvColor(BossGoma* this) {
     Math_ApproachF(&this->eyeEnvColor[2], targetEyeEnvColors[this->visualState][2], 0.5f, 20.0f);
 }
 
-void BossGoma_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BossGoma_Update(Actor* thisx, GameState* state) {
     BossGoma* this = THIS;
     s32 pad;
 
@@ -2107,7 +2107,7 @@ Gfx* BossGoma_NoBackfaceCullingDlist(GraphicsContext* gfxCtx) {
     return dList;
 }
 
-void BossGoma_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BossGoma_Draw(Actor* thisx, GameState* state) {
     BossGoma* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_boss_goma.c", 4991);

@@ -14,10 +14,10 @@
 
 typedef void (*BgJyaIronobjIkFunc)(BgJyaIronobj*, GlobalContext*, EnIk*);
 
-void BgJyaIronobj_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaIronobj_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaIronobj_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaIronobj_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaIronobj_Init(Actor* thisx, GameState* state);
+void BgJyaIronobj_Destroy(Actor* thisx, GameState* state);
+void BgJyaIronobj_Update(Actor* thisx, GameState* state);
+void BgJyaIronobj_Draw(Actor* thisx, GameState* state);
 void func_808992D8(BgJyaIronobj* this);
 void func_808992E8(BgJyaIronobj* this, GlobalContext* globalCtx);
 
@@ -213,7 +213,7 @@ void BgJyaIronobj_SpawnThoneParticles(BgJyaIronobj* this, GlobalContext* arg1, E
     }
 }
 
-void BgJyaIronobj_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaIronobj_Init(Actor* thisx, GameState* state) {
     BgJyaIronobj* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -226,7 +226,7 @@ void BgJyaIronobj_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_808992D8(this);
 }
 
-void BgJyaIronobj_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaIronobj_Destroy(Actor* thisx, GameState* state) {
     BgJyaIronobj* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->colCylinder);
@@ -264,12 +264,12 @@ void func_808992E8(BgJyaIronobj* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaIronobj_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaIronobj_Update(Actor* thisx, GameState* state) {
     BgJyaIronobj* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgJyaIronobj_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaIronobj_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, sOpaDL[thisx->params & 1]);
 }

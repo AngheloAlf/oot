@@ -23,10 +23,10 @@ typedef enum {
     /* 3 */ HONOTRAP_EYE_SHUT
 } EnHonotrapEyeState;
 
-void EnHonotrap_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHonotrap_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHonotrap_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHonotrap_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHonotrap_Init(Actor* thisx, GameState* state);
+void EnHonotrap_Destroy(Actor* thisx, GameState* state);
+void EnHonotrap_Update(Actor* thisx, GameState* state);
+void EnHonotrap_Draw(Actor* thisx, GameState* state);
 
 void EnHonotrap_SetupEyeIdle(EnHonotrap* this);
 void EnHonotrap_EyeIdle(EnHonotrap* this, GlobalContext* globalCtx);
@@ -210,7 +210,7 @@ void EnHonotrap_InitFlame(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHonotrap_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHonotrap_Init(Actor* thisx, GameState* state) {
     Actor_ProcessInitChain(thisx, sInitChain);
     if (thisx->params == HONOTRAP_EYE) {
         EnHonotrap_InitEye(thisx, globalCtx);
@@ -219,7 +219,7 @@ void EnHonotrap_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnHonotrap_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHonotrap_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnHonotrap* this = THIS;
 
@@ -454,7 +454,7 @@ void EnHonotrap_FlameVanish(EnHonotrap* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHonotrap_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHonotrap_Update(Actor* thisx, GameState* state) {
     static Vec3f velocity = { 0.0f, 0.0f, 0.0f };
     static Vec3f accel = { 0.0f, 0.1f, 0.0f };
     s32 pad;
@@ -528,7 +528,7 @@ void EnHonotrap_DrawFlame(Actor* thisx, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_honotrap.c", 1028);
 }
 
-void EnHonotrap_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHonotrap_Draw(Actor* thisx, GameState* state) {
     switch (thisx->params) {
         case HONOTRAP_EYE:
             EnHonotrap_DrawEye(thisx, globalCtx);

@@ -13,10 +13,10 @@
 
 #define THIS ((EnDivingGame*)thisx)
 
-void EnDivingGame_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDivingGame_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDivingGame_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDivingGame_Init(Actor* thisx, GameState* state);
+void EnDivingGame_Destroy(Actor* thisx, GameState* state);
+void EnDivingGame_Update(Actor* thisx, GameState* state);
+void EnDivingGame_Draw(Actor* thisx, GameState* state);
 
 void func_809EDCB0(EnDivingGame* this, GlobalContext* globalCtx);
 void EnDivingGame_Talk(EnDivingGame* this, GlobalContext* globalCtx);
@@ -76,7 +76,7 @@ static u64* sEyeTextures[] = {
     gZoraEyeClosedTex,
 };
 
-void EnDivingGame_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDivingGame_Init(Actor* thisx, GameState* state) {
     EnDivingGame* this = THIS;
 
     this->actor.gravity = -3.0f;
@@ -101,7 +101,7 @@ void EnDivingGame_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnDivingGame_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDivingGame_Destroy(Actor* thisx, GameState* state) {
     EnDivingGame* this = THIS;
 
     if (this->unk_31F == 0) {
@@ -479,7 +479,7 @@ void func_809EEAF8(EnDivingGame* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDivingGame_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnDivingGame_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnDivingGame* this = THIS;
     Player* player = PLAYER;
@@ -558,7 +558,7 @@ s32 EnDivingGame_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx**
     return 0;
 }
 
-void EnDivingGame_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDivingGame_Draw(Actor* thisx, GameState* state) {
     EnDivingGame* this = THIS;
     GraphicsContext* gfxCtx = globalCtx->state.gfxCtx;
 

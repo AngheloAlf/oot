@@ -14,10 +14,10 @@
 #define FAIRY_FLAG_TIMED (1 << 8)
 #define FAIRY_FLAG_BIG (1 << 9)
 
-void EnElf_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnElf_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnElf_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnElf_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnElf_Init(Actor* thisx, GameState* state);
+void EnElf_Destroy(Actor* thisx, GameState* state);
+void EnElf_Update(Actor* thisx, GameState* state);
+void EnElf_Draw(Actor* thisx, GameState* state);
 void func_80A053F0(Actor* thisx, GlobalContext* globalCtx);
 void func_80A052F4(Actor* thisx, GlobalContext* globalCtx);
 void func_80A05208(Actor* thisx, GlobalContext* globalCtx);
@@ -313,7 +313,7 @@ f32 EnElf_GetColorValue(s32 colorFlag) {
     }
 }
 
-void EnElf_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnElf_Init(Actor* thisx, GameState* state) {
     EnElf* this = THIS;
     s32 pad;
     Player* player = PLAYER;
@@ -432,7 +432,7 @@ void func_80A029A8(EnElf* this, s16 increment) {
     }
 }
 
-void EnElf_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnElf_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnElf* this = THIS;
 
@@ -1204,7 +1204,7 @@ void func_80A04D90(EnElf* this, GlobalContext* globalCtx) {
     s32 pad;
     s32 bgId;
 
-    this->actor.floorHeight = BgCheck_EntityRaycastFloor5(globalCtx, &globalCtx->colCtx, &this->actor.floorPoly, &bgId,
+    this->actor.floorHeight = BgCheck_EntityRaycastFloor5(&globalCtx->state, &globalCtx->colCtx, &this->actor.floorPoly, &bgId,
                                                           &this->actor, &this->actor.world.pos);
     this->actor.shape.shadowAlpha = 0x32;
 }
@@ -1445,7 +1445,7 @@ void func_80A053F0(Actor* thisx, GlobalContext* globalCtx) {
     func_80A04D90(this, globalCtx);
 }
 
-void EnElf_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnElf_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnElf* this = THIS;
 
@@ -1489,7 +1489,7 @@ s32 EnElf_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList,
     return false;
 }
 
-void EnElf_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnElf_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     f32 alphaScale;
     s32 envAlpha;

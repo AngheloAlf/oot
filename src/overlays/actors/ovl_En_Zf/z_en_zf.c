@@ -10,10 +10,10 @@
 
 #define THIS ((EnZf*)thisx)
 
-void EnZf_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnZf_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnZf_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnZf_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnZf_Init(Actor* thisx, GameState* state);
+void EnZf_Destroy(Actor* thisx, GameState* state);
+void EnZf_Update(Actor* thisx, GameState* state);
+void EnZf_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06006690;
 extern UNK_TYPE D_06008138;

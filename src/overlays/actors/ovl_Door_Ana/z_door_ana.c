@@ -11,10 +11,10 @@
 
 #define THIS ((DoorAna*)thisx)
 
-void DoorAna_Init(Actor* thisx, GlobalContext* globalCtx);
-void DoorAna_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DoorAna_Update(Actor* thisx, GlobalContext* globalCtx);
-void DoorAna_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DoorAna_Init(Actor* thisx, GameState* state);
+void DoorAna_Destroy(Actor* thisx, GameState* state);
+void DoorAna_Update(Actor* thisx, GameState* state);
+void DoorAna_Draw(Actor* thisx, GameState* state);
 
 void DoorAna_WaitClosed(DoorAna* this, GlobalContext* globalCtx);
 void DoorAna_WaitOpen(DoorAna* this, GlobalContext* globalCtx);
@@ -62,7 +62,7 @@ void DoorAna_SetupAction(DoorAna* this, DoorAnaActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void DoorAna_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DoorAna_Init(Actor* thisx, GameState* state) {
     DoorAna* this = THIS;
 
     this->actor.shape.rot.z = 0;
@@ -84,7 +84,7 @@ void DoorAna_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.targetMode = 0;
 }
 
-void DoorAna_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DoorAna_Destroy(Actor* thisx, GameState* state) {
     DoorAna* this = THIS;
 
     // free collider if it has one
@@ -165,7 +165,7 @@ void DoorAna_GrabPlayer(DoorAna* this, GlobalContext* globalCtx) {
     }
 }
 
-void DoorAna_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DoorAna_Update(Actor* thisx, GameState* state) {
     DoorAna* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -173,7 +173,7 @@ void DoorAna_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.shape.rot.y = Camera_GetCamDirYaw(ACTIVE_CAM) + 0x8000;
 }
 
-void DoorAna_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DoorAna_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_door_ana.c", 440);
 
     func_80093D84(globalCtx->state.gfxCtx);

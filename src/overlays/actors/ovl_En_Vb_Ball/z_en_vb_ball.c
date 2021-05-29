@@ -13,10 +13,10 @@
 
 #define THIS ((EnVbBall*)thisx)
 
-void EnVbBall_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnVbBall_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnVbBall_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnVbBall_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnVbBall_Init(Actor* thisx, GameState* state);
+void EnVbBall_Destroy(Actor* thisx, GameState* state);
+void EnVbBall_Update(Actor* thisx, GameState* state);
+void EnVbBall_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Vb_Ball_InitVars = {
     0,
@@ -50,7 +50,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 20, 30, 10, { 0, 0, 0 } },
 };
 
-void EnVbBall_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnVbBall_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnVbBall* this = THIS;
     s32 pad2;
@@ -77,7 +77,7 @@ void EnVbBall_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnVbBall_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnVbBall_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnVbBall* this = THIS;
 
@@ -164,7 +164,7 @@ void EnVbBall_UpdateBones(EnVbBall* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnVbBall_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnVbBall_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     EnVbBall* this = THIS;
     BossFd* bossFd = (BossFd*)this->actor.parent;
@@ -299,7 +299,7 @@ void EnVbBall_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnVbBall_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnVbBall_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnVbBall* this = THIS;
 

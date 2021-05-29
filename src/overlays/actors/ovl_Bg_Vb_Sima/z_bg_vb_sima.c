@@ -12,10 +12,10 @@
 
 #define THIS ((BgVbSima*)thisx)
 
-void BgVbSima_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgVbSima_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgVbSima_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgVbSima_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgVbSima_Init(Actor* thisx, GameState* state);
+void BgVbSima_Destroy(Actor* thisx, GameState* state);
+void BgVbSima_Update(Actor* thisx, GameState* state);
+void BgVbSima_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Vb_Sima_InitVars = {
     ACTOR_BG_VB_SIMA,
@@ -33,7 +33,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgVbSima_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgVbSima_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgVbSima* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -44,7 +44,7 @@ void BgVbSima_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, &this->dyna.actor, colHeader);
 }
 
-void BgVbSima_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgVbSima_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgVbSima* this = THIS;
 
@@ -68,7 +68,7 @@ void BgVbSima_SpawnEmber(BossFdEffect* effect, Vec3f* position, Vec3f* velocity,
     }
 }
 
-void BgVbSima_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgVbSima_Update(Actor* thisx, GameState* state) {
     static Color_RGBA8 colorYellow = { 255, 255, 0, 255 };
     static Color_RGBA8 colorRed = { 255, 10, 0, 255 };
     s32 pad;
@@ -151,7 +151,7 @@ void BgVbSima_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgVbSima_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgVbSima_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_vb_sima.c", 285);
     func_80093D18(globalCtx->state.gfxCtx);
     gSPMatrix(POLY_OPA_DISP++, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_bg_vb_sima.c", 291),

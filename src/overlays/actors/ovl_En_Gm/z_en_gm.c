@@ -11,10 +11,10 @@
 
 #define THIS ((EnGm*)thisx)
 
-void EnGm_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGm_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGm_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGm_Init(Actor* thisx, GameState* state);
+void EnGm_Destroy(Actor* thisx, GameState* state);
+void EnGm_Update(Actor* thisx, GameState* state);
+void EnGm_Draw(Actor* thisx, GameState* state);
 
 void func_80A3D838(EnGm* this, GlobalContext* globalCtx);
 void func_80A3DFBC(EnGm* this, GlobalContext* globalCtx);
@@ -66,7 +66,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 30, ICHAIN_STOP),
 };
 
-void EnGm_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGm_Init(Actor* thisx, GameState* state) {
     EnGm* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -87,7 +87,7 @@ void EnGm_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->updateFunc = func_80A3D838;
 }
 
-void EnGm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGm_Destroy(Actor* thisx, GameState* state) {
     EnGm* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -286,7 +286,7 @@ void func_80A3DFBC(EnGm* this, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void EnGm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGm_Update(Actor* thisx, GameState* state) {
     EnGm* this = THIS;
 
     this->updateFunc(this, globalCtx);
@@ -318,7 +318,7 @@ void func_80A3E090(EnGm* this) {
     this->actor.focus.pos.y += 100.0f;
 }
 
-void EnGm_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGm_Draw(Actor* thisx, GameState* state) {
     static UNK_PTR eyeTextures[] = { 0x0600CE80, 0x0600D280, 0x0600D680 };
     EnGm* this = THIS;
     s32 pad;

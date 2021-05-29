@@ -10,10 +10,10 @@
 
 #define THIS ((Fishing*)thisx)
 
-void Fishing_Init(Actor* thisx, GlobalContext* globalCtx);
-void Fishing_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void Fishing_Update(Actor* thisx, GlobalContext* globalCtx);
-void Fishing_Draw(Actor* thisx, GlobalContext* globalCtx);
+void Fishing_Init(Actor* thisx, GameState* state);
+void Fishing_Destroy(Actor* thisx, GameState* state);
+void Fishing_Update(Actor* thisx, GameState* state);
+void Fishing_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_0600007C;
 extern UNK_TYPE D_060029C0;

@@ -18,10 +18,10 @@ typedef enum {
     /* 0x02 */ FACE_EYES_OPEN_SMILING
 } FaceTextureIndex;
 
-void ObjLightswitch_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjLightswitch_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjLightswitch_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjLightswitch_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjLightswitch_Init(Actor* thisx, GameState* state);
+void ObjLightswitch_Destroy(Actor* thisx, GameState* state);
+void ObjLightswitch_Update(Actor* thisx, GameState* state);
+void ObjLightswitch_Draw(Actor* thisx, GameState* state);
 
 void ObjLightswitch_SetupOff(ObjLightswitch* this);
 void ObjLightswitch_Off(ObjLightswitch* this, GlobalContext* globalCtx);
@@ -166,7 +166,7 @@ void ObjLightswitch_SpawnDisappearEffects(ObjLightswitch* this, GlobalContext* g
     }
 }
 
-void ObjLightswitch_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjLightswitch_Init(Actor* thisx, GameState* state) {
     ObjLightswitch* this = THIS;
     s32 switchFlagSet = Flags_GetSwitch(globalCtx, this->actor.params >> 8 & 0x3F);
     s32 removeSelf = false;
@@ -212,7 +212,7 @@ void ObjLightswitch_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(光スイッチ)(arg_data 0x%04x)\n", this->actor.params);
 }
 
-void ObjLightswitch_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjLightswitch_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     ObjLightswitch* this = THIS;
 
@@ -375,7 +375,7 @@ void ObjLightswitch_Disappear(ObjLightswitch* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjLightswitch_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjLightswitch_Update(Actor* thisx, GameState* state) {
     ObjLightswitch* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
 
@@ -491,7 +491,7 @@ void ObjLightswitch_DrawXlu(ObjLightswitch* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_obj_lightswitch.c", 949);
 }
 
-void ObjLightswitch_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjLightswitch_Draw(Actor* thisx, GameState* state) {
     ObjLightswitch* this = THIS;
     s32 alpha = this->alpha >> 6 & 0xFF;
 

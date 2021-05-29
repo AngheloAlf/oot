@@ -12,10 +12,10 @@
 
 #define THIS ((EnKarebaba*)thisx)
 
-void EnKarebaba_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnKarebaba_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnKarebaba_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnKarebaba_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnKarebaba_Init(Actor* thisx, GameState* state);
+void EnKarebaba_Destroy(Actor* thisx, GameState* state);
+void EnKarebaba_Update(Actor* thisx, GameState* state);
+void EnKarebaba_Draw(Actor* thisx, GameState* state);
 
 void EnKarebaba_SetupGrow(EnKarebaba* this);
 void EnKarebaba_SetupIdle(EnKarebaba* this);
@@ -98,7 +98,7 @@ extern Gfx D_06001828[]; // upper third of stem
 extern Gfx D_06001330[]; // mid third of stem
 extern Gfx D_06001628[]; // lower third of stem
 
-void EnKarebaba_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnKarebaba_Init(Actor* thisx, GameState* state) {
     EnKarebaba* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -121,7 +121,7 @@ void EnKarebaba_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnKarebaba_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnKarebaba_Destroy(Actor* thisx, GameState* state) {
     EnKarebaba* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->bodyCollider);
@@ -415,7 +415,7 @@ void EnKarebaba_Regrow(EnKarebaba* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnKarebaba_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnKarebaba_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnKarebaba* this = THIS;
     f32 height;
@@ -465,7 +465,7 @@ void EnKarebaba_DrawCenterShadow(EnKarebaba* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_karebaba.c", 1034);
 }
 
-void EnKarebaba_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnKarebaba_Draw(Actor* thisx, GameState* state) {
     static Color_RGBA8 black = { 0, 0, 0, 0 };
     static Gfx* dLists[] = { D_06001330, D_06001628, D_06001828 };
     static Vec3f zeroVec = { 0.0f, 0.0f, 0.0f };

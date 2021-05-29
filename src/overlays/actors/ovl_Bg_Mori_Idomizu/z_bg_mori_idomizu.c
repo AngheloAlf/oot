@@ -11,10 +11,10 @@
 
 #define THIS ((BgMoriIdomizu*)thisx)
 
-void BgMoriIdomizu_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriIdomizu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriIdomizu_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriIdomizu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriIdomizu_Init(Actor* thisx, GameState* state);
+void BgMoriIdomizu_Destroy(Actor* thisx, GameState* state);
+void BgMoriIdomizu_Update(Actor* thisx, GameState* state);
+void BgMoriIdomizu_Draw(Actor* thisx, GameState* state);
 
 void BgMoriIdomizu_SetupWaitForMoriTex(BgMoriIdomizu* this);
 void BgMoriIdomizu_WaitForMoriTex(BgMoriIdomizu* this, GlobalContext* globalCtx);
@@ -47,7 +47,7 @@ void BgMoriIdomizu_SetWaterLevel(GlobalContext* globalCtx, s16 waterLevel) {
     waterBox[4].ySurface = waterLevel;
 }
 
-void BgMoriIdomizu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriIdomizu_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriIdomizu* this = THIS;
 
@@ -84,7 +84,7 @@ void BgMoriIdomizu_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(森の神殿 井戸水)(arg_data 0x%04x)\n", this->actor.params);
 }
 
-void BgMoriIdomizu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriIdomizu_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriIdomizu* this = THIS;
 
@@ -150,7 +150,7 @@ void BgMoriIdomizu_Main(BgMoriIdomizu* this, GlobalContext* globalCtx) {
     this->prevSwitchFlagSet = switchFlagSet;
 }
 
-void BgMoriIdomizu_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriIdomizu_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriIdomizu* this = THIS;
 
@@ -159,7 +159,7 @@ void BgMoriIdomizu_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriIdomizu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriIdomizu_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriIdomizu* this = THIS;
     u32 gameplayFrames = globalCtx->gameplayFrames;

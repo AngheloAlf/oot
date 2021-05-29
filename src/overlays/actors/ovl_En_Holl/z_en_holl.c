@@ -12,10 +12,10 @@
 #define PLANE_HALFWIDTH 100.0f
 #define PLANE_HALFWIDTH_2 200.0f
 
-void EnHoll_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHoll_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHoll_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHoll_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHoll_Init(Actor* thisx, GameState* state);
+void EnHoll_Destroy(Actor* thisx, GameState* state);
+void EnHoll_Update(Actor* thisx, GameState* state);
+void EnHoll_Draw(Actor* thisx, GameState* state);
 
 void EnHoll_NextAction(EnHoll* this, GlobalContext* globalCtx);
 void func_80A58DD4(EnHoll* this, GlobalContext* globalCtx);
@@ -108,7 +108,7 @@ void EnHoll_ChooseAction(EnHoll* this) {
     }
 }
 
-void EnHoll_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHoll_Init(Actor* thisx, GameState* state) {
     EnHoll* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -116,7 +116,7 @@ void EnHoll_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_14F = 0;
 }
 
-void EnHoll_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHoll_Destroy(Actor* thisx, GameState* state) {
     s32 transitionActorIdx = (u16)thisx->params >> 0xA;
     TransitionActorEntry* transitionEntry = &globalCtx->transitionActorList[transitionActorIdx];
 
@@ -336,12 +336,12 @@ void EnHoll_NextAction(EnHoll* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnHoll_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHoll_Update(Actor* thisx, GameState* state) {
     EnHoll* this = THIS;
     this->actionFunc(this, globalCtx);
 }
 
-void EnHoll_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHoll_Draw(Actor* thisx, GameState* state) {
     EnHoll* this = THIS;
     Gfx* gfxP;
     u32 setupDLIdx;

@@ -5,10 +5,10 @@
 
 #define THIS ((BgSpot18Basket*)thisx)
 
-void BgSpot18Basket_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Basket_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Basket_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Basket_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot18Basket_Init(Actor* thisx, GameState* state);
+void BgSpot18Basket_Destroy(Actor* thisx, GameState* state);
+void BgSpot18Basket_Update(Actor* thisx, GameState* state);
+void BgSpot18Basket_Draw(Actor* thisx, GameState* state);
 
 void func_808B7BCC(BgSpot18Basket* this, GlobalContext* globalCtx);
 void func_808B7AEC(BgSpot18Basket* this);
@@ -132,7 +132,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_STOP),
 };
 
-void BgSpot18Basket_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Basket_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgSpot18Basket* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -167,7 +167,7 @@ void BgSpot18Basket_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot18Basket_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Basket_Destroy(Actor* thisx, GameState* state) {
     BgSpot18Basket* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -429,7 +429,7 @@ void func_808B81A0(BgSpot18Basket* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot18Basket_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Basket_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgSpot18Basket* this = THIS;
     s32 bgId;
@@ -447,7 +447,7 @@ void BgSpot18Basket_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot18Basket_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Basket_Draw(Actor* thisx, GameState* state) {
     BgSpot18Basket* this = THIS;
 
     Collider_UpdateSpheres(0, &this->colliderJntSph);

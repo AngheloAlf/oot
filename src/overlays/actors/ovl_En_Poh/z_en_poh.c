@@ -12,9 +12,9 @@
 
 #define THIS ((EnPoh*)thisx)
 
-void EnPoh_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPoh_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPoh_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnPoh_Init(Actor* thisx, GameState* state);
+void EnPoh_Destroy(Actor* thisx, GameState* state);
+void EnPoh_Update(Actor* thisx, GameState* state);
 
 void EnPoh_UpdateLiving(Actor* thisx, GlobalContext* globalCtx);
 void EnPoh_UpdateDead(Actor* thisx, GlobalContext* globalCtx);
@@ -183,7 +183,7 @@ static InitChainEntry sInitChain[] = {
 static Vec3f D_80AE1B60 = { 0.0f, 3.0f, 0.0f };
 static Vec3f D_80AE1B6C = { 0.0f, 0.0f, 0.0f };
 
-void EnPoh_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoh_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnItem00* collectible;
     EnPoh* this = THIS;
@@ -246,7 +246,7 @@ void EnPoh_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnPoh_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoh_Destroy(Actor* thisx, GameState* state) {
     EnPoh* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -903,7 +903,7 @@ void EnPoh_UpdateVisibility(EnPoh* this) {
     }
 }
 
-void EnPoh_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoh_Update(Actor* thisx, GameState* state) {
     EnPoh* this = THIS;
 
     if (Object_IsLoaded(&globalCtx->objectCtx, this->objectIdx) != 0) {

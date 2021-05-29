@@ -13,9 +13,9 @@
 
 #define THIS ((Demo6K*)thisx)
 
-void Demo6K_Init(Actor* thisx, GlobalContext* globalCtx);
-void Demo6K_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void Demo6K_Update(Actor* thisx, GlobalContext* globalCtx);
+void Demo6K_Init(Actor* thisx, GameState* state);
+void Demo6K_Destroy(Actor* thisx, GameState* state);
+void Demo6K_Update(Actor* thisx, GameState* state);
 
 void func_80966DB0(Demo6K* this, GlobalContext* globalCtx);
 void func_80966E04(Demo6K* this, GlobalContext* globalCtx);
@@ -71,7 +71,7 @@ void Demo6K_SetupAction(Demo6K* this, Demo6KActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void Demo6K_Init(Actor* thisx, GlobalContext* globalCtx) {
+void Demo6K_Init(Actor* thisx, GameState* state) {
     Demo6K* this = THIS;
     s32 pad;
     s32 params = this->actor.params;
@@ -197,7 +197,7 @@ void Demo6K_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->lightNode = LightContext_InsertLight(globalCtx, &globalCtx->lightCtx, &this->lightInfo);
 }
 
-void Demo6K_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void Demo6K_Destroy(Actor* thisx, GameState* state) {
     Demo6K* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -556,7 +556,7 @@ void func_80967F10(Demo6K* this, GlobalContext* globalCtx) {
     Actor_SetScale(&this->actor, 0.05f - (this->timer2 * 0.00075f));
 }
 
-void Demo6K_Update(Actor* thisx, GlobalContext* globalCtx) {
+void Demo6K_Update(Actor* thisx, GameState* state) {
     Demo6K* this = THIS;
 
     this->actionFunc(this, globalCtx);

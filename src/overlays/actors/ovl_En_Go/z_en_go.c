@@ -6,10 +6,10 @@
 
 #define THIS ((EnGo*)thisx)
 
-void EnGo_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGo_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGo_Init(Actor* thisx, GameState* state);
+void EnGo_Destroy(Actor* thisx, GameState* state);
+void EnGo_Update(Actor* thisx, GameState* state);
+void EnGo_Draw(Actor* thisx, GameState* state);
 
 void func_80A3FEB4(EnGo* this, GlobalContext* globalCtx);
 void EnGo_StopRolling(EnGo* this, GlobalContext* globalCtx);
@@ -629,7 +629,7 @@ void func_80A3F908(EnGo* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo_Init(Actor* thisx, GameState* state) {
     EnGo* this = THIS;
     s32 pad;
     Vec3f D_80A41B9C = { 0.0f, 0.0f, 0.0f }; // unused
@@ -702,7 +702,7 @@ void EnGo_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnGo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo_Destroy(Actor* thisx, GameState* state) {
     EnGo* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -1026,7 +1026,7 @@ void func_80A40DCC(EnGo* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnGo* this = THIS;
 
@@ -1131,7 +1131,7 @@ void EnGo_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnGo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGo_Draw(Actor* thisx, GameState* state) {
     EnGo* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_go.c", 2479);

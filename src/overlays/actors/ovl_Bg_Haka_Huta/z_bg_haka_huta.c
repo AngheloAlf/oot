@@ -10,10 +10,10 @@
 
 #define THIS ((BgHakaHuta*)thisx)
 
-void BgHakaHuta_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaHuta_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaHuta_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaHuta_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaHuta_Init(Actor* thisx, GameState* state);
+void BgHakaHuta_Destroy(Actor* thisx, GameState* state);
+void BgHakaHuta_Update(Actor* thisx, GameState* state);
+void BgHakaHuta_Draw(Actor* thisx, GameState* state);
 
 void BgHakaHuta_SpawnDust(BgHakaHuta* this, GlobalContext* globalCtx);
 void func_8087D268(BgHakaHuta* this, GlobalContext* globalCtx, u16 sfx);
@@ -42,7 +42,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgHakaHuta_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaHuta_Init(Actor* thisx, GameState* state) {
     BgHakaHuta* this = THIS;
     s16 pad;
     CollisionHeader* colHeader;
@@ -62,7 +62,7 @@ void BgHakaHuta_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaHuta_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaHuta_Destroy(Actor* thisx, GameState* state) {
     BgHakaHuta* this = THIS;
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
@@ -209,11 +209,11 @@ void func_8087D720(BgHakaHuta* this, GlobalContext* globalCtx) {
 void func_8087D8C0(BgHakaHuta* this, GlobalContext* globalCtx) {
 }
 
-void BgHakaHuta_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaHuta_Update(Actor* thisx, GameState* state) {
     BgHakaHuta* this = THIS;
     this->actionFunc(this, globalCtx);
 }
 
-void BgHakaHuta_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaHuta_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_060006B0);
 }

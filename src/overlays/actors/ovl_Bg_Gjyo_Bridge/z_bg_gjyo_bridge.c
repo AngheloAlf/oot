@@ -10,10 +10,10 @@
 
 #define THIS ((BgGjyoBridge*)thisx)
 
-void BgGjyoBridge_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgGjyoBridge_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgGjyoBridge_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgGjyoBridge_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgGjyoBridge_Init(Actor* thisx, GameState* state);
+void BgGjyoBridge_Destroy(Actor* thisx, GameState* state);
+void BgGjyoBridge_Update(Actor* thisx, GameState* state);
+void BgGjyoBridge_Draw(Actor* thisx, GameState* state);
 
 void func_808787A4(BgGjyoBridge* this, GlobalContext* globalCtx);
 void BgGjyoBridge_TriggerCutscene(BgGjyoBridge* this, GlobalContext* globalCtx);
@@ -40,7 +40,7 @@ extern Gfx D_06000600[];
 extern CollisionHeader D_06000DB8;
 extern CutsceneData D_02002640[];
 
-void BgGjyoBridge_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgGjyoBridge_Init(Actor* thisx, GameState* state) {
     BgGjyoBridge* this = THIS;
     s32 pad;
     CollisionHeader* colHeader;
@@ -62,7 +62,7 @@ void BgGjyoBridge_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgGjyoBridge_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgGjyoBridge_Destroy(Actor* thisx, GameState* state) {
     BgGjyoBridge* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -94,13 +94,13 @@ void BgGjyoBridge_SpawnBridge(BgGjyoBridge* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgGjyoBridge_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgGjyoBridge_Update(Actor* thisx, GameState* state) {
     BgGjyoBridge* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgGjyoBridge_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgGjyoBridge_Draw(Actor* thisx, GameState* state) {
     BgGjyoBridge* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_gjyo_bridge.c", 260);

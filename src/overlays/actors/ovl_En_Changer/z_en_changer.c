@@ -18,9 +18,9 @@ typedef enum {
     /* 1 */ CHEST_RIGHT
 } ChangerChestSide;
 
-void EnChanger_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnChanger_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnChanger_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnChanger_Init(Actor* thisx, GameState* state);
+void EnChanger_Destroy(Actor* thisx, GameState* state);
+void EnChanger_Update(Actor* thisx, GameState* state);
 
 void EnChanger_Wait(EnChanger* this, GlobalContext* globalCtx);
 void EnChanger_OpenChests(EnChanger* this, GlobalContext* globalCtx);
@@ -63,10 +63,10 @@ static s32 sItemEtcTypes[] = {
 
 static s32 sTreasureFlags[] = { 0x0000, 0x0002, 0x0004, 0x0006, 0x0008, 0x000A };
 
-void EnChanger_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnChanger_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnChanger_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnChanger_Init(Actor* thisx, GameState* state) {
     EnChanger* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
     s16 leftChestParams;
@@ -285,7 +285,7 @@ void EnChanger_SetHeartPieceFlag(EnChanger* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnChanger_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnChanger_Update(Actor* thisx, GameState* state) {
     EnChanger* this = THIS;
 
     this->actionFunc(this, globalCtx);

@@ -6,10 +6,10 @@
 
 #define THIS ((DemoKankyo*)thisx)
 
-void DemoKankyo_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoKankyo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoKankyo_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoKankyo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoKankyo_Init(Actor* thisx, GameState* state);
+void DemoKankyo_Destroy(Actor* thisx, GameState* state);
+void DemoKankyo_Update(Actor* thisx, GameState* state);
+void DemoKankyo_Draw(Actor* thisx, GameState* state);
 
 void DemoKankyo_SetupType(DemoKankyo* this, GlobalContext* globalCtx);
 void DemoKankyo_UpdateClouds(DemoKankyo* this, GlobalContext* globalCtx);
@@ -186,7 +186,7 @@ void DemoKankyo_SetupAction(DemoKankyo* this, DemoKankyoActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void DemoKankyo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoKankyo_Init(Actor* thisx, GameState* state) {
     DemoKankyo* this = THIS;
     s16 i;
     s32 objBankIndex = Object_GetIndex(&globalCtx->objectCtx, sObjIds[this->actor.params]);
@@ -279,7 +279,7 @@ void DemoKankyo_Init(Actor* thisx, GlobalContext* globalCtx) {
     DemoKankyo_SetupAction(this, DemoKankyo_SetupType);
 }
 
-void DemoKankyo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoKankyo_Destroy(Actor* thisx, GameState* state) {
     if (thisx) {}
 }
 
@@ -428,12 +428,12 @@ void DemoKankyo_KillDoorOfTimeCollision(DemoKankyo* this, GlobalContext* globalC
     Actor_Kill(this->actor.child);
 }
 
-void DemoKankyo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoKankyo_Update(Actor* thisx, GameState* state) {
     DemoKankyo* this = THIS;
     this->actionFunc(this, globalCtx);
 }
 
-void DemoKankyo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoKankyo_Draw(Actor* thisx, GameState* state) {
     DemoKankyo* this = THIS;
 
     if (this->actor.objBankIndex == this->objBankIndex) {

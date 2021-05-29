@@ -12,10 +12,10 @@
 
 #define THIS ((EnBom*)thisx)
 
-void EnBom_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBom_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBom_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBom_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBom_Init(Actor* thisx, GameState* state);
+void EnBom_Destroy(Actor* thisx, GameState* state);
+void EnBom_Update(Actor* thisx, GameState* state);
+void EnBom_Draw(Actor* thisx, GameState* state);
 
 void EnBom_Move(EnBom* this, GlobalContext* globalCtx);
 void EnBom_WaitForRelease(EnBom* this, GlobalContext* globalCtx);
@@ -89,7 +89,7 @@ void EnBom_SetupAction(EnBom* this, EnBomActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnBom_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBom_Init(Actor* thisx, GameState* state) {
     EnBom* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -113,7 +113,7 @@ void EnBom_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnBom_SetupAction(this, EnBom_Move);
 }
 
-void EnBom_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBom_Destroy(Actor* thisx, GameState* state) {
     EnBom* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->explosionCollider);
@@ -219,7 +219,7 @@ void EnBom_Explode(EnBom* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBom_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBom_Update(Actor* thisx, GameState* state) {
     Vec3f effVelocity = { 0.0f, 0.0f, 0.0f };
     Vec3f bomb2Accel = { 0.0f, 0.1f, 0.0f };
     Vec3f effAccel = { 0.0f, 0.0f, 0.0f };
@@ -352,7 +352,7 @@ void EnBom_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnBom_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBom_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnBom* this = THIS;
 

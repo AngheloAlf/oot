@@ -12,10 +12,10 @@
 
 #define THIS ((BgMizuBwall*)thisx)
 
-void BgMizuBwall_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuBwall_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuBwall_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMizuBwall_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMizuBwall_Init(Actor* thisx, GameState* state);
+void BgMizuBwall_Destroy(Actor* thisx, GameState* state);
+void BgMizuBwall_Update(Actor* thisx, GameState* state);
+void BgMizuBwall_Draw(Actor* thisx, GameState* state);
 
 void BgMizuBwall_Idle(BgMizuBwall* this, GlobalContext* globalCtx);
 void BgMizuBwall_Break(BgMizuBwall* this, GlobalContext* globalCtx);
@@ -171,7 +171,7 @@ void BgMizuBwall_RotateVec3f(Vec3f* out, Vec3f* in, f32 sin, f32 cos) {
     out->z = (in->z * cos) - (in->x * sin);
 }
 
-void BgMizuBwall_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuBwall_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMizuBwall* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -372,7 +372,7 @@ void BgMizuBwall_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMizuBwall_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuBwall_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgMizuBwall* this = THIS;
 
@@ -494,14 +494,14 @@ void BgMizuBwall_Break(BgMizuBwall* this, GlobalContext* globalCtx) {
 void BgMizuBwall_DoNothing(BgMizuBwall* this, GlobalContext* globalCtx) {
 }
 
-void BgMizuBwall_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMizuBwall_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgMizuBwall* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgMizuBwall_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void BgMizuBwall_Draw(Actor* thisx, GameState* state) {
     BgMizuBwall* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
     u32 frames;

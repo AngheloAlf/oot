@@ -5,15 +5,15 @@
 
 #define THIS ((BgMoriElevator*)thisx)
 
-void BgMoriElevator_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriElevator_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriElevator_Update(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriElevator_Init(Actor* thisx, GameState* state);
+void BgMoriElevator_Destroy(Actor* thisx, GameState* state);
+void BgMoriElevator_Update(Actor* thisx, GameState* state);
 
 void BgMoriElevator_SetupWaitAfterInit(BgMoriElevator* this);
 void BgMoriElevator_WaitAfterInit(BgMoriElevator* this, GlobalContext* globalCtx);
 void BgMoriElevator_SetupSetPosition(BgMoriElevator* this);
 void BgMoriElevator_SetPosition(BgMoriElevator* this, GlobalContext* globalCtx);
-void BgMoriElevator_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriElevator_Draw(Actor* thisx, GameState* state);
 void BgMoriElevator_StopMovement(BgMoriElevator* this);
 void func_808A2008(BgMoriElevator* this, GlobalContext* globalCtx);
 void BgMoriElevator_MoveIntoGround(BgMoriElevator* this, GlobalContext* globalCtx);
@@ -83,7 +83,7 @@ void func_808A18FC(BgMoriElevator* this, f32 distTo) {
     func_800F436C(&this->dyna.actor.projectedPos, NA_SE_EV_ELEVATOR_MOVE2 - SFX_FLAG, CLAMP(temp, 0.0f, 1.0f));
 }
 
-void BgMoriElevator_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriElevator_Init(Actor* thisx, GameState* state) {
     BgMoriElevator* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -114,7 +114,7 @@ void BgMoriElevator_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriElevator_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriElevator_Destroy(Actor* thisx, GameState* state) {
     BgMoriElevator* this = THIS;
 
     if (this->unk_172 == 0) {
@@ -241,7 +241,7 @@ void func_808A2008(BgMoriElevator* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriElevator_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriElevator_Update(Actor* thisx, GameState* state) {
     BgMoriElevator* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -249,7 +249,7 @@ void BgMoriElevator_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_16C = Flags_GetSwitch(globalCtx, (thisx->params & 0x3F));
 }
 
-void BgMoriElevator_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriElevator_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriElevator* this = THIS;
 

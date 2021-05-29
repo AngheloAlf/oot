@@ -18,10 +18,10 @@
 
 #define THIS ((DoorShutter*)thisx)
 
-void DoorShutter_Init(Actor* thisx, GlobalContext* globalCtx);
-void DoorShutter_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DoorShutter_Update(Actor* thisx, GlobalContext* globalCtx);
-void DoorShutter_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DoorShutter_Init(Actor* thisx, GameState* state);
+void DoorShutter_Destroy(Actor* thisx, GameState* state);
+void DoorShutter_Update(Actor* thisx, GameState* state);
+void DoorShutter_Draw(Actor* thisx, GameState* state);
 
 void func_8099803C(GlobalContext* globalCtx, s16 y, s16 countdown, s16 arg3);
 void DoorShutter_SetupType(DoorShutter* this, GlobalContext* globalCtx);
@@ -208,7 +208,7 @@ s32 DoorShutter_SetupDoor(DoorShutter* this, GlobalContext* globalCtx) {
     return false;
 }
 
-void DoorShutter_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DoorShutter_Init(Actor* thisx, GameState* state) {
     DoorShutter* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
     s32 phi_a3;
@@ -264,7 +264,7 @@ void DoorShutter_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void DoorShutter_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DoorShutter_Destroy(Actor* thisx, GameState* state) {
     DoorShutter* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -621,7 +621,7 @@ void func_80997744(DoorShutter* this, GlobalContext* globalCtx) {
     osSyncPrintf("FHG SAKU END !!\n");
 }
 
-void DoorShutter_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DoorShutter_Update(Actor* thisx, GameState* state) {
     DoorShutter* this = THIS;
     Player* player = PLAYER;
 
@@ -675,7 +675,7 @@ s32 func_80997A34(DoorShutter* this, GlobalContext* globalCtx) {
     return true;
 }
 
-void DoorShutter_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DoorShutter_Draw(Actor* thisx, GameState* state) {
     DoorShutter* this = THIS;
 
     //! @bug This actor is not fully initialized until the required object dependency is loaded.

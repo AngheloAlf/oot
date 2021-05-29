@@ -10,10 +10,10 @@
 
 #define THIS ((BgHakaTrap*)thisx)
 
-void BgHakaTrap_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaTrap_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaTrap_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaTrap_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaTrap_Init(Actor* thisx, GameState* state);
+void BgHakaTrap_Destroy(Actor* thisx, GameState* state);
+void BgHakaTrap_Update(Actor* thisx, GameState* state);
+void BgHakaTrap_Draw(Actor* thisx, GameState* state);
 
 void func_8087FFC0(BgHakaTrap* this, GlobalContext* globalCtx);
 void func_808801B8(BgHakaTrap* this, GlobalContext* globalCtx);
@@ -110,7 +110,7 @@ extern CollisionHeader D_060081D0;
 extern CollisionHeader D_06008D10;
 extern CollisionHeader D_06009CD0;
 
-void BgHakaTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTrap_Init(Actor* thisx, GameState* state) {
     static UNK_TYPE D_80881014 = 0;
     BgHakaTrap* this = THIS;
     s32 pad;
@@ -188,7 +188,7 @@ void BgHakaTrap_Init(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetInfo(&thisx->colChkInfo, 0, &sColChkInfoInit);
 }
 
-void BgHakaTrap_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTrap_Destroy(Actor* thisx, GameState* state) {
     BgHakaTrap* this = THIS;
 
     if (this->dyna.actor.params != HAKA_TRAP_PROPELLER) {
@@ -483,7 +483,7 @@ void func_80880C0C(BgHakaTrap* this, GlobalContext* globalCtx) {
     func_808809E4(this, globalCtx, this->dyna.actor.world.rot.z);
 }
 
-void BgHakaTrap_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTrap_Update(Actor* thisx, GameState* state) {
     BgHakaTrap* this = THIS;
     Vec3f* actorPos = &this->dyna.actor.world.pos;
 
@@ -519,7 +519,7 @@ void func_80880D68(BgHakaTrap* this) {
     Collider_SetTrisVertices(&this->colliderSpikes, 1, &vec1, &vec3, &vec2);
 }
 
-void BgHakaTrap_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaTrap_Draw(Actor* thisx, GameState* state) {
     static Gfx* sDLists[5] = {
         0x06007610, 0x06009860, 0x06007EF0, 0x06008A20, 0x060072C0,
     };

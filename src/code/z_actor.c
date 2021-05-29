@@ -826,7 +826,7 @@ void Actor_Init(Actor* actor, GlobalContext* globalCtx) {
     ActorShape_Init(&actor->shape, 0.0f, NULL, 0.0f);
     if (Object_IsLoaded(&globalCtx->objectCtx, actor->objBankIndex)) {
         Actor_SetObjectDependency(globalCtx, actor);
-        actor->init(actor, globalCtx);
+        actor->init(actor, &globalCtx->state);
         actor->init = NULL;
     }
 }
@@ -836,7 +836,7 @@ void Actor_Destroy(Actor* actor, GlobalContext* globalCtx) {
     char* name;
 
     if (actor->destroy != NULL) {
-        actor->destroy(actor, globalCtx);
+        actor->destroy(actor, &globalCtx->state);
         actor->destroy = NULL;
     } else {
         overlayEntry = actor->overlayEntry;
@@ -1155,7 +1155,7 @@ s32 func_8002E2AC(GlobalContext* globalCtx, Actor* actor, Vec3f* arg2, s32 arg3)
     arg2->y += 50.0f;
 
     actor->floorHeight =
-        BgCheck_EntityRaycastFloor5(globalCtx, &globalCtx->colCtx, &actor->floorPoly, &floorBgId, actor, arg2);
+        BgCheck_EntityRaycastFloor5(&globalCtx->state, &globalCtx->colCtx, &actor->floorPoly, &floorBgId, actor, arg2);
     actor->bgCheckFlags &= ~0x0086;
 
     if (actor->floorHeight <= BGCHECK_Y_MIN) {
@@ -2047,7 +2047,7 @@ void Actor_UpdateAll(GlobalContext* globalCtx, ActorContext* actorCtx) {
             if (actor->init != NULL) {
                 if (Object_IsLoaded(&globalCtx->objectCtx, actor->objBankIndex)) {
                     Actor_SetObjectDependency(globalCtx, actor);
-                    actor->init(actor, globalCtx);
+                    actor->init(actor, &globalCtx->state);
                     actor->init = NULL;
                 }
                 actor = actor->next;
@@ -2090,7 +2090,7 @@ void Actor_UpdateAll(GlobalContext* globalCtx, ActorContext* actorCtx) {
                     if (actor->colorFilterTimer != 0) {
                         actor->colorFilterTimer--;
                     }
-                    actor->update(actor, globalCtx);
+                    actor->update(actor, &globalCtx->state);
                     func_8003F8EC(globalCtx, &globalCtx->colCtx.dyna, actor);
                 }
 
@@ -2196,7 +2196,7 @@ void Actor_Draw(GlobalContext* globalCtx, Actor* actor) {
         }
     }
 
-    actor->draw(actor, globalCtx);
+    actor->draw(actor, &globalCtx->state);
 
     if (actor->colorFilterTimer != 0) {
         if (actor->colorFilterParams & 0x2000) {

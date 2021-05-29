@@ -12,9 +12,9 @@
 
 #define THIS ((BgSpot11Oasis*)thisx)
 
-void BgSpot11Oasis_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot11Oasis_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot11Oasis_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot11Oasis_Init(Actor* thisx, GameState* state);
+void BgSpot11Oasis_Update(Actor* thisx, GameState* state);
+void BgSpot11Oasis_Draw(Actor* thisx, GameState* state);
 void func_808B2970(BgSpot11Oasis* this);
 void func_808B2980(BgSpot11Oasis* this, GlobalContext* globalCtx);
 void func_808B29E0(BgSpot11Oasis* this);
@@ -82,7 +82,7 @@ s32 func_808B280C(GlobalContext* globalCtx) {
     return 0;
 }
 
-void BgSpot11Oasis_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot11Oasis_Init(Actor* thisx, GameState* state) {
     BgSpot11Oasis* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -123,7 +123,7 @@ void func_808B2AA8(BgSpot11Oasis* this) {
 void func_808B2AB8(BgSpot11Oasis* this, GlobalContext* globalCtx) {
 }
 
-void BgSpot11Oasis_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot11Oasis_Update(Actor* thisx, GameState* state) {
     BgSpot11Oasis* this = THIS;
     s32 pad;
     u32 gameplayFrames;
@@ -149,7 +149,7 @@ void BgSpot11Oasis_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot11Oasis_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot11Oasis_Draw(Actor* thisx, GameState* state) {
     u32 gameplayFrames = globalCtx->gameplayFrames;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_spot11_oasis.c", 327);

@@ -10,10 +10,10 @@
 
 #define THIS ((BgIceShutter*)thisx)
 
-void BgIceShutter_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgIceShutter_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgIceShutter_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgIceShutter_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgIceShutter_Init(Actor* thisx, GameState* state);
+void BgIceShutter_Destroy(Actor* thisx, GameState* state);
+void BgIceShutter_Update(Actor* thisx, GameState* state);
+void BgIceShutter_Draw(Actor* thisx, GameState* state);
 
 void func_80891CF4(BgIceShutter* thisx, GlobalContext* globalCtx);
 void func_80891D6C(BgIceShutter* thisx, GlobalContext* globalCtx);
@@ -48,7 +48,7 @@ void func_80891AC0(BgIceShutter* this) {
     this->dyna.actor.world.pos.z = (Math_CosS(this->dyna.actor.shape.rot.y) * sp24) + this->dyna.actor.home.pos.z;
 }
 
-void BgIceShutter_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceShutter_Init(Actor* thisx, GameState* state) {
     BgIceShutter* this = THIS;
     f32 sp24;
     CollisionHeader* colHeader;
@@ -93,7 +93,7 @@ void BgIceShutter_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgIceShutter_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceShutter_Destroy(Actor* thisx, GameState* state) {
     BgIceShutter* this = THIS;
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
@@ -127,11 +127,11 @@ void func_80891DD4(BgIceShutter* this, GlobalContext* globalCtx) {
     func_80891AC0(this);
 }
 
-void BgIceShutter_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceShutter_Update(Actor* thisx, GameState* state) {
     BgIceShutter* this = THIS;
     this->actionFunc(this, globalCtx);
 }
 
-void BgIceShutter_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceShutter_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06002740);
 }

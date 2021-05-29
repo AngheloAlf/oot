@@ -12,9 +12,9 @@ typedef enum {
     /* 0x2 */ ENCOUNT2_ACTIVE_GANONS_TOWER
 } Encount2State;
 
-void EnEncount2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnEncount2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnEncount2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnEncount2_Init(Actor* thisx, GameState* state);
+void EnEncount2_Update(Actor* thisx, GameState* state);
+void EnEncount2_Draw(Actor* thisx, GameState* state);
 
 void EnEncount2_Wait(EnEncount2* this, GlobalContext* globalCtx);
 void EnEncount2_SpawnRocks(EnEncount2* this, GlobalContext* globalCtx);
@@ -37,7 +37,7 @@ const ActorInit En_Encount2_InitVars = {
     (ActorFunc)EnEncount2_Draw,
 };
 
-void EnEncount2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnEncount2_Init(Actor* thisx, GameState* state) {
     EnEncount2* this = THIS;
 
     if (globalCtx->sceneNum != SCENE_SPOT16) {
@@ -247,7 +247,7 @@ void EnEncount2_SpawnRocks(EnEncount2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnEncount2_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnEncount2_Update(Actor* thisx, GameState* state) {
     EnEncount2* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
 
@@ -283,7 +283,7 @@ void EnEncount2_Update(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void EnEncount2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnEncount2_Draw(Actor* thisx, GameState* state) {
     EnEncount2* this = THIS;
 
     EnEncount2_ParticleDraw(&this->actor, globalCtx);

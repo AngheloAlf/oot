@@ -11,9 +11,9 @@
 
 #define THIS ((BgMoriHineri*)thisx)
 
-void BgMoriHineri_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHineri_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriHineri_Update(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriHineri_Init(Actor* thisx, GameState* state);
+void BgMoriHineri_Destroy(Actor* thisx, GameState* state);
+void BgMoriHineri_Update(Actor* thisx, GameState* state);
 void BgMoriHineri_DrawHallAndRoom(Actor* thisx, GlobalContext* globalCtx);
 
 void func_808A39FC(BgMoriHineri* this, GlobalContext* globalCtx);
@@ -55,7 +55,7 @@ extern CollisionHeader D_06006078;
 extern Gfx D_06000AE8[];
 extern Gfx D_06001678[];
 
-void BgMoriHineri_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHineri_Init(Actor* thisx, GameState* state) {
     BgMoriHineri* this = THIS;
     s8 moriHineriObjIdx;
     u32 switchFlagParam;
@@ -108,7 +108,7 @@ void BgMoriHineri_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriHineri_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHineri_Destroy(Actor* thisx, GameState* state) {
     BgMoriHineri* this = THIS;
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
@@ -220,7 +220,7 @@ void func_808A3E54(BgMoriHineri* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriHineri_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriHineri_Update(Actor* thisx, GameState* state) {
     BgMoriHineri* this = THIS;
 
     this->actionFunc(this, globalCtx);

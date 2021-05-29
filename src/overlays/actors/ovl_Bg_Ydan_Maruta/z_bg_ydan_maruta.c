@@ -11,10 +11,10 @@
 
 #define THIS ((BgYdanMaruta*)thisx)
 
-void BgYdanMaruta_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanMaruta_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanMaruta_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanMaruta_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgYdanMaruta_Init(Actor* thisx, GameState* state);
+void BgYdanMaruta_Destroy(Actor* thisx, GameState* state);
+void BgYdanMaruta_Update(Actor* thisx, GameState* state);
+void BgYdanMaruta_Draw(Actor* thisx, GameState* state);
 
 void func_808BEFF4(BgYdanMaruta* this, GlobalContext* globalCtx);
 void BgYdanMaruta_DoNothing(BgYdanMaruta* this, GlobalContext* globalCtx);
@@ -76,7 +76,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgYdanMaruta_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanMaruta_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgYdanMaruta* this = THIS;
     Vec3f sp4C[3];
@@ -128,7 +128,7 @@ void BgYdanMaruta_Init(Actor* thisx, GlobalContext* globalCtx) {
     Collider_SetTrisVertices(&this->collider, 1, &sp4C[0], &sp4C[2], &sp4C[1]);
 }
 
-void BgYdanMaruta_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanMaruta_Destroy(Actor* thisx, GameState* state) {
     BgYdanMaruta* this = THIS;
 
     Collider_DestroyTris(globalCtx, &this->collider);
@@ -194,13 +194,13 @@ void func_808BF1EC(BgYdanMaruta* this, GlobalContext* globalCtx) {
 void BgYdanMaruta_DoNothing(BgYdanMaruta* this, GlobalContext* globalCtx) {
 }
 
-void BgYdanMaruta_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanMaruta_Update(Actor* thisx, GameState* state) {
     BgYdanMaruta* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgYdanMaruta_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanMaruta_Draw(Actor* thisx, GameState* state) {
     BgYdanMaruta* this = THIS;
 
     if (this->dyna.actor.params == 0) {

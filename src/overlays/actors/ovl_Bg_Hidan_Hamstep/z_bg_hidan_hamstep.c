@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanHamstep*)thisx)
 
-void BgHidanHamstep_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanHamstep_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanHamstep_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanHamstep_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanHamstep_Init(Actor* thisx, GameState* state);
+void BgHidanHamstep_Destroy(Actor* thisx, GameState* state);
+void BgHidanHamstep_Update(Actor* thisx, GameState* state);
+void BgHidanHamstep_Draw(Actor* thisx, GameState* state);
 
 void func_808887C4(BgHidanHamstep* this, GlobalContext* globalCtx);
 void func_80888860(BgHidanHamstep* this, GlobalContext* globalCtx);
@@ -127,7 +127,7 @@ s32 BgHidanHamstep_SpawnChildren(BgHidanHamstep* this, GlobalContext* globalCtx)
     return 1;
 }
 
-void BgHidanHamstep_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHamstep_Init(Actor* thisx, GameState* state) {
     BgHidanHamstep* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -197,7 +197,7 @@ void BgHidanHamstep_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanHamstep_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHamstep_Destroy(Actor* thisx, GameState* state) {
     BgHidanHamstep* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -391,13 +391,13 @@ void func_80888A58(BgHidanHamstep* this, GlobalContext* globalCtx) {
 void BgHidanHamstep_DoNothing(BgHidanHamstep* this, GlobalContext* globalCtx) {
 }
 
-void BgHidanHamstep_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHamstep_Update(Actor* thisx, GameState* state) {
     BgHidanHamstep* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHidanHamstep_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHamstep_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_hidan_hamstep.c", 782);
 
     func_80093D18(globalCtx->state.gfxCtx);

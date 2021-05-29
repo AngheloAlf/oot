@@ -33,10 +33,10 @@ typedef enum {
     /* 2 */ BALL_IMPACT
 } BallKillMode;
 
-void EnFhgFire_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFhgFire_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFhgFire_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFhgFire_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFhgFire_Init(Actor* thisx, GameState* state);
+void EnFhgFire_Destroy(Actor* thisx, GameState* state);
+void EnFhgFire_Update(Actor* thisx, GameState* state);
+void EnFhgFire_Draw(Actor* thisx, GameState* state);
 
 void EnFhgFire_LightningStrike(EnFhgFire* this, GlobalContext* globalCtx);
 void EnFhgFire_LightningTrail(EnFhgFire* this, GlobalContext* globalCtx);
@@ -82,7 +82,7 @@ void EnFhgFire_SetUpdate(EnFhgFire* this, EnFhgFireUpdateFunc updateFunc) {
     this->updateFunc = updateFunc;
 }
 
-void EnFhgFire_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFhgFire_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnFhgFire* this = THIS;
     Player* player = PLAYER;
@@ -165,7 +165,7 @@ void EnFhgFire_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnFhgFire_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFhgFire_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnFhgFire* this = THIS;
 
@@ -677,7 +677,7 @@ void EnFhgFire_PhantomWarp(EnFhgFire* this, GlobalContext* globalCtx) {
     osSyncPrintf("EFC 2\n");
 }
 
-void EnFhgFire_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnFhgFire_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnFhgFire* this = THIS;
 
@@ -697,7 +697,7 @@ static u64* sDustTextures[] = {
     gDust1Tex, gDust2Tex, gDust3Tex, gDust4Tex, gDust5Tex, gDust6Tex, gDust7Tex, gDust8Tex,
 };
 
-void EnFhgFire_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFhgFire_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnFhgFire* this = THIS;
 

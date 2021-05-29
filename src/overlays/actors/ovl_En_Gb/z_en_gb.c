@@ -11,10 +11,10 @@
 
 #define THIS ((EnGb*)thisx)
 
-void EnGb_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGb_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGb_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGb_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGb_Init(Actor* thisx, GameState* state);
+void EnGb_Destroy(Actor* thisx, GameState* state);
+void EnGb_Update(Actor* thisx, GameState* state);
+void EnGb_Draw(Actor* thisx, GameState* state);
 
 void func_80A2F83C(EnGb* this, GlobalContext* globalCtx);
 void func_80A2FC70(EnGb* this, GlobalContext* globalCtx);
@@ -150,7 +150,7 @@ void func_80A2F180(EnGb* this) {
     }
 }
 
-void EnGb_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGb_Init(Actor* thisx, GameState* state) {
     EnGb* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -217,7 +217,7 @@ void EnGb_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80A2F83C;
 }
 
-void EnGb_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGb_Destroy(Actor* thisx, GameState* state) {
     EnGb* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -395,7 +395,7 @@ void func_80A2FC70(EnGb* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGb_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGb_Update(Actor* thisx, GameState* state) {
     EnGb* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
     s32 i;
@@ -420,7 +420,7 @@ void EnGb_Update(Actor* thisx, GlobalContext* globalCtx) {
     EnGb_UpdateCagedSouls(this, globalCtx2);
 }
 
-void EnGb_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGb_Draw(Actor* thisx, GameState* state) {
     EnGb* this = THIS;
     s32 pad;
 

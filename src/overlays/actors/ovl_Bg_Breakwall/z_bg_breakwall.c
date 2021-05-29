@@ -16,10 +16,10 @@ typedef struct {
     /* 0x08 */ s8 colType;
 } BombableWallInfo;
 
-void BgBreakwall_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgBreakwall_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgBreakwall_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgBreakwall_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgBreakwall_Init(Actor* thisx, GameState* state);
+void BgBreakwall_Destroy(Actor* thisx, GameState* state);
+void BgBreakwall_Update(Actor* thisx, GameState* state);
+void BgBreakwall_Draw(Actor* thisx, GameState* state);
 
 void BgBreakwall_WaitForObject(BgBreakwall* this, GlobalContext* globalCtx);
 void BgBreakwall_Wait(BgBreakwall* this, GlobalContext* globalCtx);
@@ -77,7 +77,7 @@ void BgBreakwall_SetupAction(BgBreakwall* this, BgBreakwallActionFunc actionFunc
     this->actionFunc = actionFunc;
 }
 
-void BgBreakwall_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgBreakwall_Init(Actor* thisx, GameState* state) {
     BgBreakwall* this = THIS;
     s32 pad;
     s32 wallType = ((this->dyna.actor.params >> 13) & 3) & 0xFF;
@@ -114,7 +114,7 @@ void BgBreakwall_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgBreakwall_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgBreakwall_Destroy(Actor* thisx, GameState* state) {
     BgBreakwall* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -274,7 +274,7 @@ void BgBreakwall_LavaCoverMove(BgBreakwall* this, GlobalContext* globalCtx) {
     Math_StepToF(&this->dyna.actor.world.pos.y, KREG(80) + this->dyna.actor.home.pos.y, 1.0f);
 }
 
-void BgBreakwall_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgBreakwall_Update(Actor* thisx, GameState* state) {
     BgBreakwall* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -289,7 +289,7 @@ static Vec3f sColQuadList[][4] = {
     { { 10.0f, 0.0f, 10.0f }, { -10.0f, 0.0f, 10.0f }, { 10.0f, 0.0f, -10.0f }, { -10.0f, 0.0f, -10.0f } },
 };
 
-void BgBreakwall_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgBreakwall_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgBreakwall* this = THIS;
 

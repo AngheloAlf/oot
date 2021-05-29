@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot18Shutter*)thisx)
 
-void BgSpot18Shutter_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Shutter_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Shutter_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot18Shutter_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot18Shutter_Init(Actor* thisx, GameState* state);
+void BgSpot18Shutter_Destroy(Actor* thisx, GameState* state);
+void BgSpot18Shutter_Update(Actor* thisx, GameState* state);
+void BgSpot18Shutter_Draw(Actor* thisx, GameState* state);
 
 void func_808B95AC(BgSpot18Shutter* this, GlobalContext* globalCtx);
 void func_808B95B8(BgSpot18Shutter* this, GlobalContext* globalCtx);
@@ -40,7 +40,7 @@ static InitChainEntry sInitChain[] = {
 extern Gfx D_06000420[];
 extern CollisionHeader D_06000534;
 
-void BgSpot18Shutter_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Shutter_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgSpot18Shutter* this = THIS;
     s32 param = (this->dyna.actor.params >> 8) & 1;
@@ -79,7 +79,7 @@ void BgSpot18Shutter_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, &this->dyna.actor, colHeader);
 }
 
-void BgSpot18Shutter_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Shutter_Destroy(Actor* thisx, GameState* state) {
     BgSpot18Shutter* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -132,12 +132,12 @@ void func_808B971C(BgSpot18Shutter* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot18Shutter_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Shutter_Update(Actor* thisx, GameState* state) {
     BgSpot18Shutter* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot18Shutter_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot18Shutter_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06000420);
 }

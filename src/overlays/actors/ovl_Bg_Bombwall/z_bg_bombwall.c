@@ -11,10 +11,10 @@
 
 #define THIS ((BgBombwall*)thisx)
 
-void BgBombwall_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgBombwall_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgBombwall_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgBombwall_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgBombwall_Init(Actor* thisx, GameState* state);
+void BgBombwall_Destroy(Actor* thisx, GameState* state);
+void BgBombwall_Update(Actor* thisx, GameState* state);
+void BgBombwall_Draw(Actor* thisx, GameState* state);
 
 void func_8086ED50(BgBombwall* this, GlobalContext* globalCtx);
 void func_8086ED70(BgBombwall* this, GlobalContext* globalCtx);
@@ -111,7 +111,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_STOP),
 };
 
-void BgBombwall_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgBombwall_Init(Actor* thisx, GameState* state) {
     s32 i;
     s32 j;
     Vec3f vecs[3];
@@ -167,7 +167,7 @@ void BgBombwall_DestroyCollision(BgBombwall* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgBombwall_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgBombwall_Destroy(Actor* thisx, GameState* state) {
     BgBombwall* this = THIS;
 
     BgBombwall_DestroyCollision(this, globalCtx);
@@ -246,7 +246,7 @@ void func_8086EE94(BgBombwall* this, GlobalContext* globalCtx) {
     this->actionFunc = NULL;
 }
 
-void BgBombwall_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgBombwall_Update(Actor* thisx, GameState* state) {
     BgBombwall* this = THIS;
 
     if (this->actionFunc != NULL) {
@@ -254,7 +254,7 @@ void BgBombwall_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgBombwall_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgBombwall_Draw(Actor* thisx, GameState* state) {
     BgBombwall* this = THIS;
 
     Gfx_DrawDListOpa(globalCtx, this->dList);

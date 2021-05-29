@@ -14,9 +14,9 @@
 
 #define THIS ((EnWallTubo*)thisx)
 
-void EnWallTubo_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWallTubo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWallTubo_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnWallTubo_Init(Actor* thisx, GameState* state);
+void EnWallTubo_Destroy(Actor* thisx, GameState* state);
+void EnWallTubo_Update(Actor* thisx, GameState* state);
 
 void EnWallTubo_FindGirl(EnWallTubo* this, GlobalContext* globalCtx);
 void EnWallTubo_DetectChu(EnWallTubo* this, GlobalContext* globalCtx);
@@ -34,7 +34,7 @@ const ActorInit En_Wall_Tubo_InitVars = {
     NULL,
 };
 
-void EnWallTubo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnWallTubo_Init(Actor* thisx, GameState* state) {
     EnWallTubo* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -44,7 +44,7 @@ void EnWallTubo_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnWallTubo_FindGirl;
 }
 
-void EnWallTubo_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWallTubo_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnWallTubo_FindGirl(EnWallTubo* this, GlobalContext* globalCtx) {
@@ -139,7 +139,7 @@ void EnWallTubo_SetWallFall(EnWallTubo* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnWallTubo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnWallTubo_Update(Actor* thisx, GameState* state) {
     EnWallTubo* this = THIS;
 
     if (this->timer != 0) {

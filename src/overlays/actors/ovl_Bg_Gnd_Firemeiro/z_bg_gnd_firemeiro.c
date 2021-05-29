@@ -11,10 +11,10 @@
 
 #define THIS ((BgGndFiremeiro*)thisx)
 
-void BgGndFiremeiro_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgGndFiremeiro_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgGndFiremeiro_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgGndFiremeiro_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgGndFiremeiro_Init(Actor* thisx, GameState* state);
+void BgGndFiremeiro_Destroy(Actor* thisx, GameState* state);
+void BgGndFiremeiro_Update(Actor* thisx, GameState* state);
+void BgGndFiremeiro_Draw(Actor* thisx, GameState* state);
 
 void func_808795AC(BgGndFiremeiro* this, GlobalContext* globalCtx);
 void func_80879668(BgGndFiremeiro* this, GlobalContext* globalCtx);

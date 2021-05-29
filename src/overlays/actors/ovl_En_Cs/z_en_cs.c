@@ -5,10 +5,10 @@
 
 #define THIS ((EnCs*)thisx)
 
-void EnCs_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnCs_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnCs_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnCs_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnCs_Init(Actor* thisx, GameState* state);
+void EnCs_Destroy(Actor* thisx, GameState* state);
+void EnCs_Update(Actor* thisx, GameState* state);
+void EnCs_Draw(Actor* thisx, GameState* state);
 
 void EnCs_Walk(EnCs* this, GlobalContext* globalCtx);
 void EnCs_Talk(EnCs* this, GlobalContext* globalCtx);
@@ -83,7 +83,7 @@ void EnCs_SetAnimFromIndex(EnCs* this, s32 animIndex, s32* currentAnimIndex) {
     *currentAnimIndex = animIndex;
 }
 
-void EnCs_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnCs_Init(Actor* thisx, GameState* state) {
     EnCs* this = THIS;
     s32 pad;
 
@@ -119,7 +119,7 @@ void EnCs_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->walkSpeed = 1.0f;
 }
 
-void EnCs_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnCs_Destroy(Actor* thisx, GameState* state) {
     EnCs* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -378,7 +378,7 @@ void EnCs_Talk(EnCs* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnCs_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnCs_Update(Actor* thisx, GameState* state) {
     static s32 eyeBlinkFrames[] = { 70, 1, 1 };
     EnCs* this = THIS;
     s32 pad;
@@ -415,7 +415,7 @@ void EnCs_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnCs_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnCs_Draw(Actor* thisx, GameState* state) {
     static u64* eyeTextures[] = { 0x06002130, 0x06002930, 0x06003130 };
     EnCs* this = THIS;
     s32 pad;

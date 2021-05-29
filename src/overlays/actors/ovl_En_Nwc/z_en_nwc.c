@@ -10,10 +10,10 @@
 
 #define THIS ((EnNwc*)thisx)
 
-void EnNwc_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnNwc_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnNwc_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnNwc_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnNwc_Init(Actor* thisx, GameState* state);
+void EnNwc_Destroy(Actor* thisx, GameState* state);
+void EnNwc_Update(Actor* thisx, GameState* state);
+void EnNwc_Draw(Actor* thisx, GameState* state);
 
 void EnNwc_SetUpdate(EnNwc* this, EnNwcUpdateFunc updateFunc);
 void EnNwc_ChickNoop(EnNwcChick* chick, EnNwc* this, GlobalContext* globalCtx);
@@ -211,7 +211,7 @@ void EnNwc_DrawChicks(EnNwc* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_nwc.c", 395);
 }
 
-void EnNwc_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnNwc_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnNwc* this = THIS;
     ColliderJntSphElementInit elementInits[16];
@@ -238,7 +238,7 @@ void EnNwc_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnNwc_SetUpdate(this, EnNwc_Idle);
 }
 
-void EnNwc_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnNwc_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnNwc* this = THIS;
 
@@ -249,7 +249,7 @@ void EnNwc_Idle(EnNwc* this, GlobalContext* globalCtx) {
     EnNwc_UpdateChicks(this, globalCtx);
 }
 
-void EnNwc_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnNwc_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnNwc* this = THIS;
 
@@ -257,7 +257,7 @@ void EnNwc_Update(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetAC(globalCtx, &globalCtx->colChkCtx, &this->collider.base);
 }
 
-void EnNwc_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnNwc_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnNwc* this = THIS;
 

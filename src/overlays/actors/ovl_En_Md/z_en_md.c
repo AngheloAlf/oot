@@ -11,10 +11,10 @@
 
 #define THIS ((EnMd*)thisx)
 
-void EnMd_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMd_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMd_Init(Actor* thisx, GameState* state);
+void EnMd_Destroy(Actor* thisx, GameState* state);
+void EnMd_Update(Actor* thisx, GameState* state);
+void EnMd_Draw(Actor* thisx, GameState* state);
 
 void func_80AAB874(EnMd* this, GlobalContext* globalCtx);
 void func_80AAB8F8(EnMd* this, GlobalContext* globalCtx);
@@ -603,7 +603,7 @@ void func_80AAB5A4(EnMd* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMd_Init(Actor* thisx, GameState* state) {
     EnMd* this = THIS;
     s32 pad;
 
@@ -641,7 +641,7 @@ void EnMd_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80AAB874;
 }
 
-void EnMd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMd_Destroy(Actor* thisx, GameState* state) {
     EnMd* this = THIS;
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
@@ -771,7 +771,7 @@ void func_80AABD0C(EnMd* this, GlobalContext* globalCtx) {
     this->actionFunc = func_80AAB8F8;
 }
 
-void EnMd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMd_Update(Actor* thisx, GameState* state) {
     EnMd* this = THIS;
     s32 pad;
 
@@ -821,7 +821,7 @@ void EnMd_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnMd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMd_Draw(Actor* thisx, GameState* state) {
     static UNK_PTR sEyesSegments[] = {
         0x06004FF0,
         0x06005930,

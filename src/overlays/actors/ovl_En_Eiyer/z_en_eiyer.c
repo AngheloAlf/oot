@@ -4,10 +4,10 @@
 
 #define THIS ((EnEiyer*)thisx)
 
-void EnEiyer_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnEiyer_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnEiyer_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnEiyer_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnEiyer_Init(Actor* thisx, GameState* state);
+void EnEiyer_Destroy(Actor* thisx, GameState* state);
+void EnEiyer_Update(Actor* thisx, GameState* state);
+void EnEiyer_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000288;
 extern UNK_TYPE D_060004C4;

@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanFirewall*)thisx)
 
-void BgHidanFirewall_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFirewall_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFirewall_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanFirewall_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanFirewall_Init(Actor* thisx, GameState* state);
+void BgHidanFirewall_Destroy(Actor* thisx, GameState* state);
+void BgHidanFirewall_Update(Actor* thisx, GameState* state);
+void BgHidanFirewall_Draw(Actor* thisx, GameState* state);
 
 s32 BgHidanFirewall_CheckProximity(BgHidanFirewall* this, GlobalContext* globalCtx);
 void BgHidanFirewall_Wait(BgHidanFirewall* this, GlobalContext* globalCtx);
@@ -57,7 +57,7 @@ static ColliderCylinderInit sCylinderInit = {
 
 static CollisionCheckInfoInit sColChkInfoInit = { 1, 80, 100, MASS_IMMOVABLE };
 
-void BgHidanFirewall_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFirewall_Init(Actor* thisx, GameState* state) {
     BgHidanFirewall* this = THIS;
 
     this->actor.scale.x = 0.12f;
@@ -76,7 +76,7 @@ void BgHidanFirewall_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgHidanFirewall_Wait;
 }
 
-void BgHidanFirewall_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFirewall_Destroy(Actor* thisx, GameState* state) {
     BgHidanFirewall* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -174,7 +174,7 @@ void BgHidanFirewall_ColliderFollowPlayer(BgHidanFirewall* this, GlobalContext* 
     this->collider.dim.pos.z = this->actor.world.pos.z - sp30.x * sp28 + sp30.z * temp_ret;
 }
 
-void BgHidanFirewall_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFirewall_Update(Actor* thisx, GameState* state) {
     BgHidanFirewall* this = THIS;
     s32 pad;
 
@@ -199,7 +199,7 @@ static u64* sFireballTexs[] = {
     gFireTempleFireball4Tex, gFireTempleFireball5Tex, gFireTempleFireball6Tex, gFireTempleFireball7Tex,
 };
 
-void BgHidanFirewall_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanFirewall_Draw(Actor* thisx, GameState* state) {
     BgHidanFirewall* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_hidan_firewall.c", 448);

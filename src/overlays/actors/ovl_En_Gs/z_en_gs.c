@@ -12,10 +12,10 @@
 
 #define THIS ((EnGs*)thisx)
 
-void EnGs_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGs_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGs_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGs_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGs_Init(Actor* thisx, GameState* state);
+void EnGs_Destroy(Actor* thisx, GameState* state);
+void EnGs_Update(Actor* thisx, GameState* state);
+void EnGs_Draw(Actor* thisx, GameState* state);
 
 void func_80A4F734(EnGs* this, GlobalContext* globalCtx);
 void func_80A4F700(EnGs* this, GlobalContext* globalCtx);
@@ -99,7 +99,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void EnGs_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGs_Init(Actor* thisx, GameState* state) {
     EnGs* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -118,7 +118,7 @@ void EnGs_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_1B4[1].z = 1.0f;
 }
 
-void EnGs_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGs_Destroy(Actor* thisx, GameState* state) {
 }
 
 s32 func_80A4E3EC(EnGs* this, GlobalContext* globalCtx) {
@@ -516,7 +516,7 @@ void func_80A4F77C(EnGs* this) {
     this->unk_19C = 3;
 }
 
-void EnGs_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGs_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnGs* this = THIS;
 
@@ -564,7 +564,7 @@ void EnGs_Update(Actor* thisx, GlobalContext* globalCtx) {
     func_80A4E648(this, globalCtx);
 }
 
-void EnGs_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGs_Draw(Actor* thisx, GameState* state) {
     EnGs* this = THIS;
     s32 tmp;
     u32 frames;

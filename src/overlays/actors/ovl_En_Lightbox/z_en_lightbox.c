@@ -10,10 +10,10 @@
 
 #define THIS ((EnLightbox*)thisx)
 
-void EnLightbox_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnLightbox_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnLightbox_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnLightbox_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnLightbox_Init(Actor* thisx, GameState* state);
+void EnLightbox_Destroy(Actor* thisx, GameState* state);
+void EnLightbox_Update(Actor* thisx, GameState* state);
+void EnLightbox_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Lightbox_InitVars = {
     ACTOR_EN_LIGHTBOX,
@@ -30,7 +30,7 @@ const ActorInit En_Lightbox_InitVars = {
 extern Gfx D_06000B70[];
 extern CollisionHeader D_06001F10;
 
-void EnLightbox_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnLightbox_Init(Actor* thisx, GameState* state) {
     CollisionHeader* colHeader = NULL;
     EnLightbox* this = THIS;
     s32 pad[4];
@@ -63,13 +63,13 @@ void EnLightbox_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, thisx, colHeader);
 }
 
-void EnLightbox_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnLightbox_Destroy(Actor* thisx, GameState* state) {
     EnLightbox* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void EnLightbox_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnLightbox_Update(Actor* thisx, GameState* state) {
     EnLightbox* this = THIS;
 
     if (this->dyna.unk_162 != 0) {
@@ -111,6 +111,6 @@ void EnLightbox_Update(Actor* thisx, GlobalContext* globalCtx) {
     thisx->focus.pos = thisx->world.pos;
 }
 
-void EnLightbox_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnLightbox_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06000B70);
 }

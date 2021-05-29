@@ -17,10 +17,10 @@
 typedef void (*EnHorseCsFunc)(EnHorse*, GlobalContext*, CsCmdActorAction*);
 typedef void (*EnHorseActionFunc)(EnHorse*, GlobalContext*);
 
-void EnHorse_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHorse_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHorse_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHorse_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHorse_Init(Actor* thisx, GameState* state);
+void EnHorse_Destroy(Actor* thisx, GameState* state);
+void EnHorse_Update(Actor* thisx, GameState* state);
+void EnHorse_Draw(Actor* thisx, GameState* state);
 
 void EnHorse_InitCutscene(EnHorse* this, GlobalContext* globalCtx);
 void EnHorse_InitHorsebackArchery(EnHorse* this);
@@ -740,7 +740,7 @@ void EnHorse_ClearDustFlags(u16* dustFlags) {
     *dustFlags = 0;
 }
 
-void EnHorse_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnHorse_Init(Actor* thisx, GameState* state) {
     EnHorse* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
 
@@ -895,7 +895,7 @@ void EnHorse_Init(Actor* thisx, GlobalContext* globalCtx2) {
     this->actor.home.rot.z = this->actor.world.rot.z = this->actor.shape.rot.z = 0;
 }
 
-void EnHorse_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorse_Destroy(Actor* thisx, GameState* state) {
     EnHorse* this = THIS;
 
     if (this->stateFlags & ENHORSE_DRAW) {
@@ -3457,7 +3457,7 @@ s32 EnHorse_RandInt(f32 range) {
     return Rand_ZeroOne() * range;
 }
 
-void EnHorse_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorse_Update(Actor* thisx, GameState* state) {
     EnHorse* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
     Vec3f dustAcc = { 0.0f, 0.0f, 0.0f };
@@ -3812,7 +3812,7 @@ s32 EnHorse_SkinCallback2(Actor* thisx, GlobalContext* globalCtx, s32 limbIndex,
     return drawOriginalLimb;
 }
 
-void EnHorse_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorse_Draw(Actor* thisx, GameState* state) {
     EnHorse* this = THIS;
 
     if (!(this->stateFlags & ENHORSE_INACTIVE)) {

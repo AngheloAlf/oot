@@ -11,10 +11,10 @@
 
 #define THIS ((EnTa*)thisx)
 
-void EnTa_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTa_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTa_Init(Actor* thisx, GameState* state);
+void EnTa_Destroy(Actor* thisx, GameState* state);
+void EnTa_Update(Actor* thisx, GameState* state);
+void EnTa_Draw(Actor* thisx, GameState* state);
 
 void func_80B14634(EnTa* this, GlobalContext* globalCtx);
 void func_80B146F8(EnTa* this, GlobalContext* globalCtx);
@@ -121,7 +121,7 @@ void func_80B13AAC(EnTa* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnTa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTa_Init(Actor* thisx, GameState* state) {
     EnTa* this = THIS;
     GlobalContext* globalCtx2 = globalCtx;
 
@@ -253,7 +253,7 @@ void func_80B14248(EnTa* this) {
     }
 }
 
-void EnTa_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTa_Destroy(Actor* thisx, GameState* state) {
     EnTa* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -1150,7 +1150,7 @@ void func_80B16938(EnTa* this) {
     }
 }
 
-void EnTa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTa_Update(Actor* thisx, GameState* state) {
     EnTa* this = THIS;
     s32 pad;
 
@@ -1214,7 +1214,7 @@ void EnTa_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnTa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTa_Draw(Actor* thisx, GameState* state) {
     EnTa* this = THIS;
     s32 pad;
 

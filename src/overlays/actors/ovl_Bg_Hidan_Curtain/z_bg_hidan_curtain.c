@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanCurtain*)thisx)
 
-void BgHidanCurtain_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanCurtain_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanCurtain_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanCurtain_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanCurtain_Init(Actor* thisx, GameState* state);
+void BgHidanCurtain_Destroy(Actor* thisx, GameState* state);
+void BgHidanCurtain_Update(Actor* thisx, GameState* state);
+void BgHidanCurtain_Draw(Actor* thisx, GameState* state);
 
 void BgHidanCurtain_WaitForSwitchOn(BgHidanCurtain* this, GlobalContext* globalCtx);
 void BgHidanCurtain_WaitForCutscene(BgHidanCurtain* this, GlobalContext* globalCtx);
@@ -67,7 +67,7 @@ const ActorInit Bg_Hidan_Curtain_InitVars = {
     (ActorFunc)BgHidanCurtain_Draw,
 };
 
-void BgHidanCurtain_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanCurtain_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgHidanCurtain* this = THIS;
     BgHidanCurtainParams* hcParams;
@@ -118,7 +118,7 @@ void BgHidanCurtain_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->texScroll = Rand_ZeroOne() * 15.0f;
 }
 
-void BgHidanCurtain_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanCurtain_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgHidanCurtain* this = THIS;
 
@@ -201,7 +201,7 @@ void BgHidanCurtain_WaitForTimer(BgHidanCurtain* this, GlobalContext* globalCtx)
     }
 }
 
-void BgHidanCurtain_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void BgHidanCurtain_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BgHidanCurtain* this = THIS;
     BgHidanCurtainParams* hcParams = &sHCParams[this->size];
@@ -240,7 +240,7 @@ void BgHidanCurtain_Update(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void BgHidanCurtain_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanCurtain_Draw(Actor* thisx, GameState* state) {
     BgHidanCurtain* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_hidan_curtain.c", 685);

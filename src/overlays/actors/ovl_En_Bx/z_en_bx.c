@@ -10,10 +10,10 @@
 
 #define THIS ((EnBx*)thisx)
 
-void EnBx_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBx_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBx_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBx_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBx_Init(Actor* thisx, GameState* state);
+void EnBx_Destroy(Actor* thisx, GameState* state);
+void EnBx_Update(Actor* thisx, GameState* state);
+void EnBx_Draw(Actor* thisx, GameState* state);
 
 extern Gfx D_060022F0[];
 
@@ -69,7 +69,7 @@ static ColliderQuadInit sQuadInit = {
     { { { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f } } },
 };
 
-void EnBx_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBx_Init(Actor* thisx, GameState* state) {
     EnBx* this = THIS;
     Vec3f sp48 = { 0.015f, 0.015f, 0.015f };
     Vec3f sp3C = { 0.0f, 0.0f, 0.0f };
@@ -107,7 +107,7 @@ void EnBx_Init(Actor* thisx, GlobalContext* globalCtx) {
     thisx->params &= 0xFF;
 }
 
-void EnBx_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBx_Destroy(Actor* thisx, GameState* state) {
     EnBx* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -130,7 +130,7 @@ void func_809D1D0C(Actor* thisx, GlobalContext* globalCtx) {
                              &this->colliderQuad.dim.quad[1]);
 }
 
-void EnBx_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBx_Update(Actor* thisx, GameState* state) {
     EnBx* this = THIS;
     Player* player = PLAYER;
     s32 i;
@@ -197,7 +197,7 @@ void EnBx_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnBx_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBx_Draw(Actor* thisx, GameState* state) {
     static UNK_PTR D_809D2560[] = { 0x060024F0, 0x060027F0, 0x060029F0 };
     EnBx* this = THIS;
     s32 pad;

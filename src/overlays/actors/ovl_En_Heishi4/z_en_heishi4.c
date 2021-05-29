@@ -6,10 +6,10 @@
 
 #define THIS ((EnHeishi4*)thisx)
 
-void EnHeishi4_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi4_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi4_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHeishi4_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHeishi4_Init(Actor* thisx, GameState* state);
+void EnHeishi4_Destroy(Actor* thisx, GameState* state);
+void EnHeishi4_Update(Actor* thisx, GameState* state);
+void EnHeishi4_Draw(Actor* thisx, GameState* state);
 
 void func_80A56544(EnHeishi4* this, GlobalContext* globalCtx);
 void func_80A5673C(EnHeishi4* this, GlobalContext* globalCtx);
@@ -57,7 +57,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 33, 40, 0, { 0, 0, 0 } },
 };
 
-void EnHeishi4_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi4_Init(Actor* thisx, GameState* state) {
     EnHeishi4* this = THIS;
 
     Actor_SetScale(thisx, 0.01f);
@@ -103,7 +103,7 @@ void EnHeishi4_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("\n\n");
 }
 
-void EnHeishi4_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi4_Destroy(Actor* thisx, GameState* state) {
     EnHeishi4* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -340,7 +340,7 @@ void func_80A56B40(EnHeishi4* this, GlobalContext* globalCtx) {
     func_8002F2F4(&this->actor, globalCtx);
 }
 
-void EnHeishi4_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi4_Update(Actor* thisx, GameState* state) {
     EnHeishi4* this = THIS;
     s32 pad;
     Player* player = PLAYER;
@@ -380,7 +380,7 @@ s32 EnHeishi_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dLi
     return false;
 }
 
-void EnHeishi4_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHeishi4_Draw(Actor* thisx, GameState* state) {
     EnHeishi4* this = THIS;
 
     func_80093D18(globalCtx->state.gfxCtx);

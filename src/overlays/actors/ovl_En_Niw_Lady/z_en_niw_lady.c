@@ -6,12 +6,12 @@
 
 #define THIS ((EnNiwLady*)thisx)
 
-void EnNiwLady_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnNiwLady_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnNiwLady_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnNiwLady_Init(Actor* thisx, GameState* state);
+void EnNiwLady_Destroy(Actor* thisx, GameState* state);
+void EnNiwLady_Update(Actor* thisx, GameState* state);
 
 void func_80AB9F24(EnNiwLady* this, GlobalContext* globalCtx);
-void EnNiwLady_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnNiwLady_Draw(Actor* thisx, GameState* state);
 void func_80ABA21C(EnNiwLady* this, GlobalContext* globalCtx);
 void func_80ABAD38(EnNiwLady* this, GlobalContext* globalCtx);
 void func_80ABA778(EnNiwLady* this, GlobalContext* globalCtx);
@@ -71,7 +71,7 @@ extern AnimationHeader D_060007D0;
 extern AnimationHeader D_06009F94;
 extern AnimationHeader D_0600A630;
 
-void EnNiwLady_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwLady_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnNiwLady* this = THIS;
 
@@ -95,7 +95,7 @@ void EnNiwLady_Init(Actor* thisx, GlobalContext* globalCtx) {
     thisx->uncullZoneForward = 600.0f;
 }
 
-void EnNiwLady_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwLady_Destroy(Actor* thisx, GameState* state) {
     EnNiwLady* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -489,7 +489,7 @@ void func_80ABAD7C(EnNiwLady* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnNiwLady_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwLady_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnNiwLady* this = THIS;
     Player* player = PLAYER;
@@ -569,7 +569,7 @@ s32 EnNiwLady_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dL
     return false;
 }
 
-void EnNiwLady_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnNiwLady_Draw(Actor* thisx, GameState* state) {
     static Gfx* D_80ABB408[] = { 0x060008C8, 0x060010C8, 0x060018C8 };
     EnNiwLady* this = THIS;
     s32 pad;

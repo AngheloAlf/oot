@@ -11,10 +11,10 @@
 
 #define THIS ((EnGanonOrgan*)thisx)
 
-void EnGanonOrgan_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGanonOrgan_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGanonOrgan_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGanonOrgan_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGanonOrgan_Init(Actor* thisx, GameState* state);
+void EnGanonOrgan_Destroy(Actor* thisx, GameState* state);
+void EnGanonOrgan_Update(Actor* thisx, GameState* state);
+void EnGanonOrgan_Draw(Actor* thisx, GameState* state);
 
 const ActorInit En_Ganon_Organ_InitVars = {
     ACTOR_EN_GANON_ORGAN,
@@ -31,14 +31,14 @@ const ActorInit En_Ganon_Organ_InitVars = {
 extern Gfx D_80A2CCA8[];
 extern Gfx D_80A2EAB0[];
 
-void EnGanonOrgan_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGanonOrgan_Init(Actor* thisx, GameState* state) {
     thisx->flags &= ~1;
 }
 
-void EnGanonOrgan_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGanonOrgan_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnGanonOrgan_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGanonOrgan_Update(Actor* thisx, GameState* state) {
     BossGanon* dorf;
 
     osSyncPrintf("ORGAN MOVE 1\n");
@@ -92,7 +92,7 @@ Gfx* func_80A28148(GraphicsContext* gfxCtx, BossGanon* dorf) {
     return displayList;
 }
 
-void EnGanonOrgan_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGanonOrgan_Draw(Actor* thisx, GameState* state) {
     BossGanon* dorf = (BossGanon*)thisx->parent;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_ganon_organ.c", 205);

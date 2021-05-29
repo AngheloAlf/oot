@@ -11,10 +11,10 @@
 
 #define THIS ((ElfMsg2*)thisx)
 
-void ElfMsg2_Init(Actor* thisx, GlobalContext* globalCtx);
-void ElfMsg2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ElfMsg2_Update(Actor* thisx, GlobalContext* globalCtx);
-void ElfMsg2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ElfMsg2_Init(Actor* thisx, GameState* state);
+void ElfMsg2_Destroy(Actor* thisx, GameState* state);
+void ElfMsg2_Update(Actor* thisx, GameState* state);
+void ElfMsg2_Draw(Actor* thisx, GameState* state);
 
 s32 ElfMsg2_GetMessageId(ElfMsg2* this);
 void ElfMsg2_WaitUntilActivated(ElfMsg2* this, GlobalContext* globalCtx);
@@ -102,7 +102,7 @@ s32 ElfMsg2_KillCheck(ElfMsg2* this, GlobalContext* globalCtx) {
     return 0;
 }
 
-void ElfMsg2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg2_Init(Actor* thisx, GameState* state) {
     ElfMsg2* this = THIS;
 
     osSyncPrintf(VT_FGCOL(CYAN) " Elf_Msg2_Actor_ct %04x\n\n" VT_RST, this->actor.params);
@@ -122,7 +122,7 @@ void ElfMsg2_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ElfMsg2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg2_Destroy(Actor* thisx, GameState* state) {
 }
 
 s32 ElfMsg2_GetMessageId(ElfMsg2* this) {
@@ -172,14 +172,14 @@ void ElfMsg2_WaitUntilActivated(ElfMsg2* this, GlobalContext* globalCtx) {
     }
 }
 
-void ElfMsg2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg2_Update(Actor* thisx, GameState* state) {
     ElfMsg2* this = THIS;
     if (!ElfMsg2_KillCheck(this, globalCtx)) {
         this->actionFunc(this, globalCtx);
     }
 }
 
-void ElfMsg2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg2_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_elf_msg2.c", 355);
 
     if (R_NAVI_MSG_REGION_ALPHA == 0) {

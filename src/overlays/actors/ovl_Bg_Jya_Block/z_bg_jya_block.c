@@ -11,10 +11,10 @@
 
 #define THIS ((BgJyaBlock*)thisx)
 
-void BgJyaBlock_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBlock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBlock_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaBlock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaBlock_Init(Actor* thisx, GameState* state);
+void BgJyaBlock_Destroy(Actor* thisx, GameState* state);
+void BgJyaBlock_Update(Actor* thisx, GameState* state);
+void BgJyaBlock_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Jya_Block_InitVars = {
     ACTOR_BG_JYA_BLOCK,
@@ -35,7 +35,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 1500, ICHAIN_STOP),
 };
 
-void BgJyaBlock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBlock_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgJyaBlock* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -50,13 +50,13 @@ void BgJyaBlock_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaBlock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBlock_Destroy(Actor* thisx, GameState* state) {
     BgJyaBlock* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void BgJyaBlock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBlock_Update(Actor* thisx, GameState* state) {
     BgJyaBlock* this = THIS;
     Player* player = PLAYER;
 
@@ -64,7 +64,7 @@ void BgJyaBlock_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.unk_150 = 0.0f;
 }
 
-void BgJyaBlock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaBlock_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_jya_block.c", 145);
 
     func_80093D18(globalCtx->state.gfxCtx);

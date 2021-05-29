@@ -12,10 +12,10 @@
 
 #define THIS ((ObjKibako*)thisx)
 
-void ObjKibako_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjKibako_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjKibako_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjKibako_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjKibako_Init(Actor* thisx, GameState* state);
+void ObjKibako_Destroy(Actor* thisx, GameState* state);
+void ObjKibako_Update(Actor* thisx, GameState* state);
+void ObjKibako_Draw(Actor* thisx, GameState* state);
 
 void ObjKibako_SetupIdle(ObjKibako* this);
 void ObjKibako_Idle(ObjKibako* this, GlobalContext* globalCtx);
@@ -90,7 +90,7 @@ void ObjKibako_InitCollider(Actor* thisx, GlobalContext* globalCtx) {
     Collider_UpdateCylinder(&this->actor, &this->collider);
 }
 
-void ObjKibako_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjKibako_Init(Actor* thisx, GameState* state) {
     s32 pad;
     ObjKibako* this = THIS;
 
@@ -104,7 +104,7 @@ void ObjKibako_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(dungeon keep 木箱)(arg_data 0x%04x)\n", this->actor.params);
 }
 
-void ObjKibako_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void ObjKibako_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     ObjKibako* this = THIS;
 
@@ -274,14 +274,14 @@ void ObjKibako_Thrown(ObjKibako* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjKibako_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjKibako_Update(Actor* thisx, GameState* state) {
     s32 pad;
     ObjKibako* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void ObjKibako_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjKibako_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     ObjKibako* this = THIS;
 

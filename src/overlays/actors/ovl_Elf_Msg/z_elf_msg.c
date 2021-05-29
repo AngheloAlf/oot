@@ -12,10 +12,10 @@
 
 #define THIS ((ElfMsg*)thisx)
 
-void ElfMsg_Init(Actor* thisx, GlobalContext* globalCtx);
-void ElfMsg_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ElfMsg_Update(Actor* thisx, GlobalContext* globalCtx);
-void ElfMsg_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ElfMsg_Init(Actor* thisx, GameState* state);
+void ElfMsg_Destroy(Actor* thisx, GameState* state);
+void ElfMsg_Update(Actor* thisx, GameState* state);
+void ElfMsg_Draw(Actor* thisx, GameState* state);
 
 void ElfMsg_CallNaviCuboid(ElfMsg* this, GlobalContext* globalCtx);
 void ElfMsg_CallNaviCylinder(ElfMsg* this, GlobalContext* globalCtx);
@@ -123,7 +123,7 @@ s32 ElfMsg_KillCheck(ElfMsg* this, GlobalContext* globalCtx) {
     return 0;
 }
 
-void ElfMsg_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg_Init(Actor* thisx, GameState* state) {
     ElfMsg* this = THIS;
 
     // "Conditions for Elf Tag disappearing"
@@ -159,7 +159,7 @@ void ElfMsg_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ElfMsg_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg_Destroy(Actor* thisx, GameState* state) {
 }
 
 s32 ElfMsg_GetMessageId(ElfMsg* this) {
@@ -200,7 +200,7 @@ void ElfMsg_CallNaviCylinder(ElfMsg* this, GlobalContext* globalCtx) {
     }
 }
 
-void ElfMsg_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg_Update(Actor* thisx, GameState* state) {
     ElfMsg* this = THIS;
 
     if (!ElfMsg_KillCheck(this, globalCtx)) {
@@ -218,7 +218,7 @@ void ElfMsg_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ElfMsg_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ElfMsg_Draw(Actor* thisx, GameState* state) {
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_elf_msg.c", 436);
 
     if (R_NAVI_MSG_REGION_ALPHA == 0) {

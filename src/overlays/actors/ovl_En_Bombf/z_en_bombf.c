@@ -11,10 +11,10 @@
 
 #define THIS ((EnBombf*)thisx)
 
-void EnBombf_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBombf_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBombf_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBombf_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBombf_Init(Actor* thisx, GameState* state);
+void EnBombf_Destroy(Actor* thisx, GameState* state);
+void EnBombf_Update(Actor* thisx, GameState* state);
+void EnBombf_Draw(Actor* thisx, GameState* state);
 
 void EnBombf_Move(EnBombf* this, GlobalContext* globalCtx);
 void EnBombf_GrowBomb(EnBombf* this, GlobalContext* globalCtx);
@@ -89,7 +89,7 @@ void EnBombf_SetupAction(EnBombf* this, EnBombfActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnBombf_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBombf_Init(Actor* thisx, GameState* state) {
     f32 shapeUnk10 = 0.0f;
     s32 pad;
     EnBombf* this = THIS;
@@ -135,7 +135,7 @@ void EnBombf_Init(Actor* thisx, GlobalContext* globalCtx) {
     thisx->uncullZoneForward += 31000.0f;
 }
 
-void EnBombf_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBombf_Destroy(Actor* thisx, GameState* state) {
     EnBombf* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->bombCollider);
@@ -317,7 +317,7 @@ void EnBombf_Explode(EnBombf* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBombf_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBombf_Update(Actor* thisx, GameState* state) {
     Vec3f effVelocity = { 0.0f, 0.0f, 0.0f };
     Vec3f bomb2Accel = { 0.0f, 0.1f, 0.0f };
     Vec3f effAccel = { 0.0f, 0.0f, 0.0f };
@@ -480,7 +480,7 @@ Gfx* EnBombf_NewMtxDList(GraphicsContext* gfxCtx, GlobalContext* globalCtx) {
     return displayList;
 }
 
-void EnBombf_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBombf_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnBombf* this = THIS;
 

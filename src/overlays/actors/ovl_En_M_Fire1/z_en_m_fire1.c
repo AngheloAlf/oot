@@ -10,9 +10,9 @@
 
 #define THIS ((EnMFire1*)thisx)
 
-void EnMFire1_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMFire1_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMFire1_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnMFire1_Init(Actor* thisx, GameState* state);
+void EnMFire1_Destroy(Actor* thisx, GameState* state);
+void EnMFire1_Update(Actor* thisx, GameState* state);
 
 const ActorInit En_M_Fire1_InitVars = {
     ACTOR_EN_M_FIRE1,
@@ -46,7 +46,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 200, 200, 0, { 0 } },
 };
 
-void EnMFire1_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMFire1_Init(Actor* thisx, GameState* state) {
     EnMFire1* this = THIS;
     s32 pad;
 
@@ -58,13 +58,13 @@ void EnMFire1_Init(Actor* thisx, GlobalContext* globalCtx) {
     Collider_SetCylinder(globalCtx, &this->collider, &this->actor, &sCylinderInit);
 }
 
-void EnMFire1_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMFire1_Destroy(Actor* thisx, GameState* state) {
     EnMFire1* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
 
-void EnMFire1_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMFire1_Update(Actor* thisx, GameState* state) {
     EnMFire1* this = THIS;
     s32 pad;
 

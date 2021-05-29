@@ -17,10 +17,10 @@
 
 #define THIS ((EnXc*)thisx)
 
-void EnXc_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnXc_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnXc_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnXc_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnXc_Init(Actor* thisx, GameState* state);
+void EnXc_Destroy(Actor* thisx, GameState* state);
+void EnXc_Update(Actor* thisx, GameState* state);
+void EnXc_Draw(Actor* thisx, GameState* state);
 
 void EnXc_DrawNothing(Actor* thisx, GlobalContext* globalCtx);
 void EnXc_DrawDefault(Actor* thisx, GlobalContext* globalCtx);
@@ -70,7 +70,7 @@ void EnXc_UpdateCollider(Actor* thisx, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, colliderBase);
 }
 
-void EnXc_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnXc_Destroy(Actor* thisx, GameState* state) {
     EnXc* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -2281,7 +2281,7 @@ static EnXcActionFunc sActionFuncs[] = {
     EnXc_ActionFunc80,
 };
 
-void EnXc_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnXc_Update(Actor* thisx, GameState* state) {
     EnXc* this = THIS;
     s32 action = this->action;
 
@@ -2292,7 +2292,7 @@ void EnXc_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnXc_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnXc_Init(Actor* thisx, GameState* state) {
     EnXc* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
@@ -2395,7 +2395,7 @@ static EnXcDrawFunc sDrawFuncs[] = {
     EnXc_DrawHarp,    EnXc_DrawTriforce, EnXc_DrawSquintingEyes,
 };
 
-void EnXc_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnXc_Draw(Actor* thisx, GameState* state) {
     EnXc* this = THIS;
 
     if (this->drawMode < 0 || this->drawMode > 5 || sDrawFuncs[this->drawMode] == NULL) {

@@ -11,9 +11,9 @@
 
 #define THIS ((EnWonderTalk*)thisx)
 
-void EnWonderTalk_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWonderTalk_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWonderTalk_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnWonderTalk_Init(Actor* thisx, GameState* state);
+void EnWonderTalk_Destroy(Actor* thisx, GameState* state);
+void EnWonderTalk_Update(Actor* thisx, GameState* state);
 
 void func_80B391CC(EnWonderTalk* this, GlobalContext* globalCtx);
 void func_80B395F0(EnWonderTalk* this, GlobalContext* globalCtx);
@@ -31,10 +31,10 @@ const ActorInit En_Wonder_Talk_InitVars = {
     NULL,
 };
 
-void EnWonderTalk_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderTalk_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnWonderTalk_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderTalk_Init(Actor* thisx, GameState* state) {
     EnWonderTalk* this = THIS;
 
     osSyncPrintf("\n\n");
@@ -234,7 +234,7 @@ void func_80B395F0(EnWonderTalk* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnWonderTalk_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderTalk_Update(Actor* thisx, GameState* state) {
     EnWonderTalk* this = THIS;
 
     if (this->unk_158 != 0) {

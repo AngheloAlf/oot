@@ -12,10 +12,10 @@
 
 #define THIS ((ObjComb*)thisx)
 
-void ObjComb_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjComb_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjComb_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjComb_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjComb_Init(Actor* thisx, GameState* state);
+void ObjComb_Destroy(Actor* thisx, GameState* state);
+void ObjComb_Update(Actor* thisx, GameState* state);
+void ObjComb_Draw(Actor* thisx, GameState* state);
 
 void ObjComb_Break(ObjComb* this, GlobalContext* globalCtx);
 void ObjComb_ChooseItemDrop(ObjComb* this, GlobalContext* globalCtx);
@@ -148,7 +148,7 @@ void ObjComb_ChooseItemDrop(ObjComb* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjComb_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjComb_Init(Actor* thisx, GameState* state) {
     ObjComb* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -157,7 +157,7 @@ void ObjComb_Init(Actor* thisx, GlobalContext* globalCtx) {
     ObjComb_SetupWait(this);
 }
 
-void ObjComb_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void ObjComb_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     ObjComb* this = THIS;
 
@@ -195,7 +195,7 @@ void ObjComb_Wait(ObjComb* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjComb_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjComb_Update(Actor* thisx, GameState* state) {
     ObjComb* this = THIS;
 
     this->unk_1B2 += 0x2EE0;
@@ -203,7 +203,7 @@ void ObjComb_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.shape.rot.x = Math_SinS(this->unk_1B2) * this->unk_1B0 + this->actor.home.rot.x;
 }
 
-void ObjComb_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjComb_Draw(Actor* thisx, GameState* state) {
     ObjComb* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_obj_comb.c", 369);

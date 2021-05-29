@@ -11,10 +11,10 @@
 
 #define THIS ((BgTreemouth*)thisx)
 
-void BgTreemouth_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgTreemouth_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgTreemouth_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgTreemouth_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgTreemouth_Init(Actor* thisx, GameState* state);
+void BgTreemouth_Destroy(Actor* thisx, GameState* state);
+void BgTreemouth_Update(Actor* thisx, GameState* state);
+void BgTreemouth_Draw(Actor* thisx, GameState* state);
 
 void func_808BC65C(BgTreemouth* this, GlobalContext* globalCtx);
 void func_808BC6F8(BgTreemouth* this, GlobalContext* globalCtx);
@@ -59,7 +59,7 @@ void BgTreemouth_SetupAction(BgTreemouth* this, BgTreemouthActionFunc actionFunc
     this->actionFunc = actionFunc;
 }
 
-void BgTreemouth_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgTreemouth_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgTreemouth* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -84,7 +84,7 @@ void BgTreemouth_Init(Actor* thisx, GlobalContext* globalCtx) {
     thisx->textId = 0x905;
 }
 
-void BgTreemouth_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgTreemouth_Destroy(Actor* thisx, GameState* state) {
     BgTreemouth* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -213,7 +213,7 @@ void func_808BCAF0(BgTreemouth* this, GlobalContext* globalCtx) {
 void BgTreemouth_DoNothing(BgTreemouth* this, GlobalContext* globalCtx) {
 }
 
-void BgTreemouth_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgTreemouth_Update(Actor* thisx, GameState* state) {
     BgTreemouth* this = THIS;
     f32 unk_168;
 
@@ -224,7 +224,7 @@ void BgTreemouth_Update(Actor* thisx, GlobalContext* globalCtx) {
     thisx->world.pos.z = (unk_168 * 92.0f) + -1255.0f;
 }
 
-void BgTreemouth_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgTreemouth_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     u16 alpha = 500;
 

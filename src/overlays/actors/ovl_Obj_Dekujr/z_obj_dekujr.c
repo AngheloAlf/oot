@@ -10,10 +10,10 @@
 
 #define THIS ((ObjDekujr*)thisx)
 
-void ObjDekujr_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjDekujr_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjDekujr_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjDekujr_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjDekujr_Init(Actor* thisx, GameState* state);
+void ObjDekujr_Destroy(Actor* thisx, GameState* state);
+void ObjDekujr_Update(Actor* thisx, GameState* state);
+void ObjDekujr_Draw(Actor* thisx, GameState* state);
 
 void ObjDekujr_ComeUp(ObjDekujr* this, GlobalContext* globalCtx);
 
@@ -44,7 +44,7 @@ static ColliderCylinderInitToActor sCylinderInit = {
 extern Gfx D_060030D0[]; // Display list for dekujr body
 extern Gfx D_060032D8[]; // Display list for dekujr face and shadow
 
-void ObjDekujr_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjDekujr_Init(Actor* thisx, GameState* state) {
     ObjDekujr* this = THIS;
     s32 pad;
 
@@ -72,7 +72,7 @@ void ObjDekujr_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjDekujr_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjDekujr_Destroy(Actor* thisx, GameState* state) {
 }
 
 void ObjDekujr_SetInitialPos(CsCmdActorAction* npcAction, Vec3f* initPos) {
@@ -129,7 +129,7 @@ void ObjDekujr_ComeUp(ObjDekujr* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjDekujr_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjDekujr_Update(Actor* thisx, GameState* state) {
     ObjDekujr* this = THIS;
     s32 pad;
 
@@ -150,7 +150,7 @@ void ObjDekujr_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjDekujr_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjDekujr_Draw(Actor* thisx, GameState* state) {
     u32 frameCount;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_obj_dekujr.c", 370);

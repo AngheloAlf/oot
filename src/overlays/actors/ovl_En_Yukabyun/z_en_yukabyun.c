@@ -10,10 +10,10 @@
 
 #define THIS ((EnYukabyun*)thisx)
 
-void EnYukabyun_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnYukabyun_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnYukabyun_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnYukabyun_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnYukabyun_Init(Actor* thisx, GameState* state);
+void EnYukabyun_Destroy(Actor* thisx, GameState* state);
+void EnYukabyun_Update(Actor* thisx, GameState* state);
+void EnYukabyun_Draw(Actor* thisx, GameState* state);
 
 void func_80B43A94(EnYukabyun* this, GlobalContext* globalCtx);
 void func_80B43AD4(EnYukabyun* this, GlobalContext* globalCtx);
@@ -61,7 +61,7 @@ static UNK_PTR D_80B43F64[] = { 0x06000AF0, 0x06000000 };
 extern Gfx D_06000A60[];
 extern Gfx D_06000970[];
 
-void EnYukabyun_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnYukabyun_Init(Actor* thisx, GameState* state) {
     EnYukabyun* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -74,7 +74,7 @@ void EnYukabyun_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionfunc = func_80B43A94;
 }
 
-void EnYukabyun_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnYukabyun_Destroy(Actor* thisx, GameState* state) {
     EnYukabyun* this = THIS;
     Collider_DestroyCylinder(globalCtx, &this->collider);
 }
@@ -116,7 +116,7 @@ void EnYukabyun_Break(EnYukabyun* this, GlobalContext* globalCtx) {
     Actor_Kill(&this->actor);
 }
 
-void EnYukabyun_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnYukabyun_Update(Actor* thisx, GameState* state) {
     EnYukabyun* this = THIS;
     s32 pad;
 
@@ -147,7 +147,7 @@ void EnYukabyun_Update(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetFocus(&this->actor, 4.0f);
 }
 
-void EnYukabyun_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnYukabyun_Draw(Actor* thisx, GameState* state) {
     EnYukabyun* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_yukabyun.c", 366);

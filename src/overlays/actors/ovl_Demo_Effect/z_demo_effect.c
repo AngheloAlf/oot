@@ -14,9 +14,9 @@
 
 #define THIS ((DemoEffect*)thisx)
 
-void DemoEffect_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoEffect_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoEffect_Update(Actor* thisx, GlobalContext* globalCtx);
+void DemoEffect_Init(Actor* thisx, GameState* state);
+void DemoEffect_Destroy(Actor* thisx, GameState* state);
+void DemoEffect_Update(Actor* thisx, GameState* state);
 
 void DemoEffect_DrawCrystalLight(Actor* thisx, GlobalContext* globalCtx);
 void DemoEffect_DrawFireBall(Actor* thisx, GlobalContext* globalCtx);
@@ -175,7 +175,7 @@ void DemoEffect_InitGetItem(DemoEffect* this) {
 /**
  * Main Actor Init function
  */
-void DemoEffect_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoEffect_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     DemoEffect* this = THIS;
     s32 effectType;
@@ -517,7 +517,7 @@ void DemoEffect_Init(Actor* thisx, GlobalContext* globalCtx) {
 /**
  * Main Actor Destroy function
  */
-void DemoEffect_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoEffect_Destroy(Actor* thisx, GameState* state) {
     DemoEffect* this = THIS;
     s32 effectType = (this->actor.params & 0x00FF);
 
@@ -1645,7 +1645,7 @@ void DemoEffect_UpdateDust(DemoEffect* this, GlobalContext* globalCtx) {
 /**
  * This is the main Actor Update Function.
  */
-void DemoEffect_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoEffect_Update(Actor* thisx, GameState* state) {
     DemoEffect* this = THIS;
     this->updateFunc(this, globalCtx);
 }

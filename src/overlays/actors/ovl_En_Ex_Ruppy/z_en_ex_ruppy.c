@@ -7,10 +7,10 @@
 
 #define THIS ((EnExRuppy*)thisx)
 
-void EnExRuppy_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnExRuppy_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnExRuppy_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnExRuppy_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnExRuppy_Init(Actor* thisx, GameState* state);
+void EnExRuppy_Destroy(Actor* thisx, GameState* state);
+void EnExRuppy_Update(Actor* thisx, GameState* state);
+void EnExRuppy_Draw(Actor* thisx, GameState* state);
 
 void EnExRuppy_DropIntoWater(EnExRuppy* this, GlobalContext* globalCtx);
 void EnExRuppy_WaitToBlowUp(EnExRuppy* this, GlobalContext* globalCtx);
@@ -42,7 +42,7 @@ const ActorInit En_Ex_Ruppy_InitVars = {
     (ActorFunc)EnExRuppy_Draw,
 };
 
-void EnExRuppy_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnExRuppy_Init(Actor* thisx, GameState* state) {
     EnExRuppy* this = THIS;
     EnDivingGame* divingGame;
     f32 temp1;
@@ -162,7 +162,7 @@ void EnExRuppy_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnExRuppy_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnExRuppy_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnExRuppy_SpawnSparkles(EnExRuppy* this, GlobalContext* globalCtx, s16 numSparkles, s32 movementType) {
@@ -365,7 +365,7 @@ void EnExRuppy_GalleryTarget(EnExRuppy* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnExRuppy_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnExRuppy_Update(Actor* thisx, GameState* state) {
     EnExRuppy* this = THIS;
 
     this->actor.shape.rot.y += 1960;
@@ -381,7 +381,7 @@ UNK_PTR D_80A0B3B8[] = {
     gRupeeGreenTex, gRupeeBlueTex, gRupeeRedTex, gRupeePinkTex, gRupeeOrangeTex,
 };
 
-void EnExRuppy_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnExRuppy_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnExRuppy* this = THIS;
 

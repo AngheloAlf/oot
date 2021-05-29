@@ -11,10 +11,10 @@
 
 #define THIS ((ObjIcePoly*)thisx)
 
-void ObjIcePoly_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjIcePoly_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjIcePoly_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjIcePoly_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjIcePoly_Init(Actor* thisx, GameState* state);
+void ObjIcePoly_Destroy(Actor* thisx, GameState* state);
+void ObjIcePoly_Update(Actor* thisx, GameState* state);
+void ObjIcePoly_Draw(Actor* thisx, GameState* state);
 
 void ObjIcePoly_Idle(ObjIcePoly* this, GlobalContext* globalCtx);
 void ObjIcePoly_Melt(ObjIcePoly* this, GlobalContext* globalCtx);
@@ -76,7 +76,7 @@ static s16 sOffsetY[] = { -25, 0, -20 };
 static Color_RGBA8 sColorWhite = { 250, 250, 250, 255 };
 static Color_RGBA8 sColorGray = { 180, 180, 180, 255 };
 
-void ObjIcePoly_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjIcePoly_Init(Actor* thisx, GameState* state) {
     ObjIcePoly* this = THIS;
 
     this->unk_151 = (thisx->params >> 8) & 0xFF;
@@ -103,7 +103,7 @@ void ObjIcePoly_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = ObjIcePoly_Idle;
 }
 
-void ObjIcePoly_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ObjIcePoly_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     ObjIcePoly* this = THIS;
 
@@ -183,14 +183,14 @@ void ObjIcePoly_Melt(ObjIcePoly* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjIcePoly_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjIcePoly_Update(Actor* thisx, GameState* state) {
     s32 pad;
     ObjIcePoly* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void ObjIcePoly_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjIcePoly_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     ObjIcePoly* this = THIS;
 

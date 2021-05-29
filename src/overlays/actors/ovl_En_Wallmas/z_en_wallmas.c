@@ -20,10 +20,10 @@
 #define DAMAGE_EFFECT_STUN_WHITE 4
 #define DAMAGE_EFFECT_STUN_BLUE 1
 
-void EnWallmas_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWallmas_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWallmas_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnWallmas_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnWallmas_Init(Actor* thisx, GameState* state);
+void EnWallmas_Destroy(Actor* thisx, GameState* state);
+void EnWallmas_Update(Actor* thisx, GameState* state);
+void EnWallmas_Draw(Actor* thisx, GameState* state);
 
 void EnWallmas_TimerInit(EnWallmas* this, GlobalContext* globalCtx);
 void EnWallmas_ProximityOrSwitchInit(EnWallmas* this);
@@ -117,7 +117,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32_DIV1000(gravity, -1500, 0),
 };
 
-void EnWallmas_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnWallmas_Init(Actor* thisx, GameState* state) {
     EnWallmas* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -145,7 +145,7 @@ void EnWallmas_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnWallmas_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWallmas_Destroy(Actor* thisx, GameState* state) {
     EnWallmas* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -534,7 +534,7 @@ void EnWallmas_ColUpdate(EnWallmas* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnWallmas_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnWallmas_Update(Actor* thisx, GameState* state) {
     EnWallmas* this = THIS;
     char pad[4];
 
@@ -642,7 +642,7 @@ void EnWallMas_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
     }
 }
 
-void EnWallmas_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnWallmas_Draw(Actor* thisx, GameState* state) {
     EnWallmas* this = THIS;
 
     if (this->actionFunc != EnWallmas_WaitToDrop) {

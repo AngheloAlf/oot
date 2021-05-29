@@ -5,10 +5,10 @@
 
 #define THIS ((EnIn*)thisx)
 
-void EnIn_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnIn_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnIn_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnIn_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnIn_Init(Actor* thisx, GameState* state);
+void EnIn_Destroy(Actor* thisx, GameState* state);
+void EnIn_Update(Actor* thisx, GameState* state);
+void EnIn_Draw(Actor* thisx, GameState* state);
 
 void func_80A79FB0(EnIn* this, GlobalContext* globalCtx);
 void func_80A7A304(EnIn* this, GlobalContext* globalCtx);
@@ -463,7 +463,7 @@ void func_80A79C78(EnIn* this, GlobalContext* globalCtx) {
 
 s32 D_80A7B998 = 0;
 
-void EnIn_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnIn_Init(Actor* thisx, GameState* state) {
     EnIn* this = THIS;
     RespawnData* respawn = &gSaveContext.respawn[RESPAWN_MODE_DOWN];
     Vec3f respawnPos;
@@ -483,7 +483,7 @@ void EnIn_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_80A79FB0;
 }
 
-void EnIn_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnIn_Destroy(Actor* thisx, GameState* state) {
     EnIn* this = THIS;
 
     if (this->actionFunc != NULL && this->actionFunc != func_80A79FB0) {
@@ -887,7 +887,7 @@ void func_80A7B024(EnIn* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnIn_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnIn_Update(Actor* thisx, GameState* state) {
     ColliderCylinder* collider;
     EnIn* this = THIS;
 
@@ -970,7 +970,7 @@ void EnIn_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_in.c", 2365);
 }
 
-void EnIn_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnIn_Draw(Actor* thisx, GameState* state) {
     static UNK_TYPE* D_80A7B9B4[] = { 0x06003590, 0x060047D0, 0x06004BD0, 0x06004390 };
     EnIn* this = THIS;
 

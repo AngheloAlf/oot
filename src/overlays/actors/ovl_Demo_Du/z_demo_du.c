@@ -10,10 +10,10 @@
 typedef void (*DemoDuActionFunc)(DemoDu*, GlobalContext*);
 typedef void (*DemoDuDrawFunc)(Actor*, GlobalContext*);
 
-void DemoDu_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoDu_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoDu_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoDu_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoDu_Init(Actor* thisx, GameState* state);
+void DemoDu_Destroy(Actor* thisx, GameState* state);
+void DemoDu_Update(Actor* thisx, GameState* state);
+void DemoDu_Draw(Actor* thisx, GameState* state);
 
 static s32 sUnused = 0;
 
@@ -39,7 +39,7 @@ static u64* sMouthTextures[] = { gDaruniaMouthSeriousTex, gDaruniaMouthGrinningT
 #define CS_CHAMBERAFTERGANON_SUBSCENE(x) (21 + (x)) // DEMO_DU_CS_CHAMBER_AFTER_GANON
 #define CS_CREDITS_SUBSCENE(x) (24 + (x))           // DEMO_DU_CS_CREDITS
 
-void DemoDu_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoDu_Destroy(Actor* thisx, GameState* state) {
     DemoDu* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -951,7 +951,7 @@ static DemoDuActionFunc sUpdateFuncs[] = {
     DemoDu_UpdateCs_CR_01, DemoDu_UpdateCs_CR_02, DemoDu_UpdateCs_CR_03, DemoDu_UpdateCs_CR_04,
 };
 
-void DemoDu_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoDu_Update(Actor* thisx, GameState* state) {
     DemoDu* this = THIS;
 
     if (this->updateIndex < 0 || this->updateIndex >= 29 || sUpdateFuncs[this->updateIndex] == NULL) {
@@ -962,7 +962,7 @@ void DemoDu_Update(Actor* thisx, GlobalContext* globalCtx) {
     sUpdateFuncs[this->updateIndex](this, globalCtx);
 }
 
-void DemoDu_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoDu_Init(Actor* thisx, GameState* state) {
     DemoDu* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
@@ -1023,7 +1023,7 @@ static DemoDuDrawFunc sDrawFuncs[] = {
     DemoDu_Draw_02,
 };
 
-void DemoDu_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoDu_Draw(Actor* thisx, GameState* state) {
     DemoDu* this = THIS;
 
     if (this->drawIndex < 0 || this->drawIndex >= 3 || sDrawFuncs[this->drawIndex] == NULL) {

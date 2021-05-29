@@ -16,10 +16,10 @@
 typedef s32 (*EnGoroiwaUnkFunc1)(EnGoroiwa* this, GlobalContext* globalCtx);
 typedef void (*EnGoroiwaUnkFunc2)(EnGoroiwa* this);
 
-void EnGoroiwa_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGoroiwa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGoroiwa_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnGoroiwa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnGoroiwa_Init(Actor* thisx, GameState* state);
+void EnGoroiwa_Destroy(Actor* thisx, GameState* state);
+void EnGoroiwa_Update(Actor* thisx, GameState* state);
+void EnGoroiwa_Draw(Actor* thisx, GameState* state);
 
 void func_80A4D5E0(EnGoroiwa* this);
 void func_80A4D624(EnGoroiwa* this, GlobalContext* globalCtx);
@@ -381,7 +381,7 @@ s32 func_80A4CB78(EnGoroiwa* this, GlobalContext* globalCtx) {
                 sp5C.y = this->actor.world.pos.y + 50.0f;
                 sp5C.z = this->actor.world.pos.z;
                 temp_f0_2 =
-                    BgCheck_EntityRaycastFloor5(globalCtx, &globalCtx->colCtx, &sp68, &sp50, &this->actor, &sp5C);
+                    BgCheck_EntityRaycastFloor5(&globalCtx->state, &globalCtx->colCtx, &sp68, &sp50, &this->actor, &sp5C);
                 // temp needed to match
                 temp = temp_f0_2 - (this->actor.world.pos.y - 59.5f);
                 if (fabsf(temp) < 15.0f) {
@@ -516,7 +516,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneScale, 150, ICHAIN_CONTINUE),  ICHAIN_F32(uncullZoneDownward, 1500, ICHAIN_STOP),
 };
 
-void EnGoroiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGoroiwa_Init(Actor* thisx, GameState* state) {
     static f32 D_80A4DF10[] = { 0.0f, 595.0f };
     EnGoroiwa* this = THIS;
     s32 pathIdx;
@@ -552,7 +552,7 @@ void EnGoroiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
                  this->actor.home.rot.z & 1);
 }
 
-void EnGoroiwa_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void EnGoroiwa_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnGoroiwa* this = THIS;
 
@@ -709,7 +709,7 @@ void func_80A4DC00(EnGoroiwa* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGoroiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGoroiwa_Update(Actor* thisx, GameState* state) {
     EnGoroiwa* this = THIS;
     Player* player = PLAYER;
     s32 pad;
@@ -742,6 +742,6 @@ void EnGoroiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnGoroiwa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnGoroiwa_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_060006B0);
 }

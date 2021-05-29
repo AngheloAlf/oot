@@ -24,10 +24,10 @@ typedef enum {
     /* 2 */ FAIRY_SPELL_NAYRUS_LOVE
 } BgDyYoseizoSpellType;
 
-void BgDyYoseizo_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgDyYoseizo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgDyYoseizo_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgDyYoseizo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgDyYoseizo_Init(Actor* thisx, GameState* state);
+void BgDyYoseizo_Destroy(Actor* thisx, GameState* state);
+void BgDyYoseizo_Update(Actor* thisx, GameState* state);
+void BgDyYoseizo_Draw(Actor* thisx, GameState* state);
 
 void BgDyYoseizo_CheckMagicAcquired(BgDyYoseizo* this, GlobalContext* globalCtx);
 void BgDyYoseizo_ChooseType(BgDyYoseizo* this, GlobalContext* globalCtx);
@@ -86,7 +86,7 @@ extern AnimationHeader D_06008698; // Spin-grow to cross-legged
 extern FlexSkeletonHeader D_0601C450;
 extern AnimationHeader D_0601D514; // Cross-legged, resting on right arm
 
-void BgDyYoseizo_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void BgDyYoseizo_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BgDyYoseizo* this = THIS;
 
@@ -802,7 +802,7 @@ void BgDyYoseizo_Give_Reward(BgDyYoseizo* this, GlobalContext* globalCtx) {
     BgDyYoseizo_Bob(this, globalCtx);
 }
 
-void BgDyYoseizo_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void BgDyYoseizo_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     BgDyYoseizo* this = THIS;
     s32 phi_v1;
@@ -892,7 +892,7 @@ static u64* sMouthTextures[] = {
     0x0601A130, // Open
 };
 
-void BgDyYoseizo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgDyYoseizo_Draw(Actor* thisx, GameState* state) {
     BgDyYoseizo* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_bg_dy_yoseizo.c", 1609);

@@ -12,10 +12,10 @@
 
 #define THIS ((BgGndSoulmeiro*)thisx)
 
-void BgGndSoulmeiro_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgGndSoulmeiro_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgGndSoulmeiro_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgGndSoulmeiro_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgGndSoulmeiro_Init(Actor* thisx, GameState* state);
+void BgGndSoulmeiro_Destroy(Actor* thisx, GameState* state);
+void BgGndSoulmeiro_Update(Actor* thisx, GameState* state);
+void BgGndSoulmeiro_Draw(Actor* thisx, GameState* state);
 
 void func_8087AF38(BgGndSoulmeiro* this, GlobalContext* globalCtx);
 void func_8087B284(BgGndSoulmeiro* this, GlobalContext* globalCtx);
@@ -60,7 +60,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(uncullZoneDownward, 1000, ICHAIN_STOP),
 };
 
-void BgGndSoulmeiro_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndSoulmeiro_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgGndSoulmeiro* this = THIS;
 
@@ -95,7 +95,7 @@ void BgGndSoulmeiro_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgGndSoulmeiro_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndSoulmeiro_Destroy(Actor* thisx, GameState* state) {
     BgGndSoulmeiro* this = THIS;
 
     if ((this->actor.params & 0xFF) == 0) {
@@ -182,7 +182,7 @@ void func_8087B350(BgGndSoulmeiro* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgGndSoulmeiro_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndSoulmeiro_Update(Actor* thisx, GameState* state) {
     BgGndSoulmeiro* this = THIS;
 
     if (this->actionFunc != NULL) {
@@ -190,7 +190,7 @@ void BgGndSoulmeiro_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgGndSoulmeiro_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgGndSoulmeiro_Draw(Actor* thisx, GameState* state) {
     static Gfx* dLists[] = {
         gSpiritTrialWebDL,
         gSpiritTrialLightSourceDL,

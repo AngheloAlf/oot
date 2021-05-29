@@ -11,10 +11,10 @@
 
 #define THIS ((BgJyaHaheniron*)thisx)
 
-void BgJyaHaheniron_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaHaheniron_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaHaheniron_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaHaheniron_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaHaheniron_Init(Actor* thisx, GameState* state);
+void BgJyaHaheniron_Destroy(Actor* thisx, GameState* state);
+void BgJyaHaheniron_Update(Actor* thisx, GameState* state);
+void BgJyaHaheniron_Draw(Actor* thisx, GameState* state);
 
 void BgJyaHaheniron_SetupChairCrumble(BgJyaHaheniron* this);
 void BgJyaHaheniron_ChairCrumble(BgJyaHaheniron* this, GlobalContext* globalCtx);
@@ -118,7 +118,7 @@ void BgJyaHaheniron_SpawnFragments(GlobalContext* globalCtx, Vec3f* vec1, Vec3f*
     func_80033480(globalCtx, &pos, 100.0f, 4, 100, 160, 1);
 }
 
-void BgJyaHaheniron_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaHaheniron_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgJyaHaheniron* this = THIS;
 
@@ -135,7 +135,7 @@ void BgJyaHaheniron_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaHaheniron_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaHaheniron_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgJyaHaheniron* this = THIS;
 
@@ -196,7 +196,7 @@ void BgJyaHaheniron_RubbleCollide(BgJyaHaheniron* this, GlobalContext* globalCtx
     }
 }
 
-void BgJyaHaheniron_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaHaheniron_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgJyaHaheniron* this = THIS;
 
@@ -204,7 +204,7 @@ void BgJyaHaheniron_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc(this, globalCtx);
 }
 
-void BgJyaHaheniron_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaHaheniron_Draw(Actor* thisx, GameState* state) {
     static Gfx* dLists[] = { 0x06000880, 0x06000AE0, 0x06000600 };
     s32 pad;
     BgJyaHaheniron* this = THIS;

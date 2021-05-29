@@ -17,10 +17,10 @@ typedef enum {
 
 #define THIS ((BgHakaZou*)thisx)
 
-void BgHakaZou_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaZou_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaZou_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaZou_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaZou_Init(Actor* thisx, GameState* state);
+void BgHakaZou_Destroy(Actor* thisx, GameState* state);
+void BgHakaZou_Update(Actor* thisx, GameState* state);
+void BgHakaZou_Draw(Actor* thisx, GameState* state);
 
 void BgHakaZou_Wait(BgHakaZou* this, GlobalContext* globalCtx);
 void func_80882BDC(BgHakaZou* this, GlobalContext* globalCtx);
@@ -76,7 +76,7 @@ extern CollisionHeader D_06005E30;
 extern CollisionHeader D_06006F70;
 extern CollisionHeader D_06000C2C;
 
-void BgHakaZou_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaZou_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgHakaZou* this = THIS;
 
@@ -126,7 +126,7 @@ void BgHakaZou_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = BgHakaZou_Wait;
 }
 
-void BgHakaZou_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaZou_Destroy(Actor* thisx, GameState* state) {
     BgHakaZou* this = THIS;
 
     if (this->dyna.actor.params != STA_UNKNOWN) {
@@ -394,7 +394,7 @@ void func_808834D8(BgHakaZou* this, GlobalContext* globalCtx) {
 void BgHakaZou_DoNothing(BgHakaZou* this, GlobalContext* globalCtx) {
 }
 
-void BgHakaZou_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaZou_Update(Actor* thisx, GameState* state) {
     BgHakaZou* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -404,7 +404,7 @@ void BgHakaZou_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaZou_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaZou_Draw(Actor* thisx, GameState* state) {
     static Gfx* dLists[] = { 0x060064E0, 0x06005CE0, 0x06000A10, 0x06005CE0 };
 
     Gfx_DrawDListOpa(globalCtx, dLists[thisx->params]);

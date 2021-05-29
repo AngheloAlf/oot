@@ -10,11 +10,11 @@
 
 #define THIS ((ItemEtcetera*)thisx)
 
-void ItemEtcetera_Init(Actor* thisx, GlobalContext* globalCtx);
-void ItemEtcetera_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ItemEtcetera_Update(Actor* thisx, GlobalContext* globalCtx);
+void ItemEtcetera_Init(Actor* thisx, GameState* state);
+void ItemEtcetera_Destroy(Actor* thisx, GameState* state);
+void ItemEtcetera_Update(Actor* thisx, GameState* state);
 void ItemEtcetera_DrawThroughLens(Actor* thisx, GlobalContext* globalCtx);
-void ItemEtcetera_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ItemEtcetera_Draw(Actor* thisx, GameState* state);
 
 void func_80B857D0(ItemEtcetera* this, GlobalContext* globalCtx);
 void func_80B85824(ItemEtcetera* this, GlobalContext* globalCtx);
@@ -58,7 +58,7 @@ void ItemEtcetera_SetupAction(ItemEtcetera* this, ItemEtceteraActionFunc actionF
     this->actionFunc = actionFunc;
 }
 
-void ItemEtcetera_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ItemEtcetera_Init(Actor* thisx, GameState* state) {
     ItemEtcetera* this = THIS;
     s32 pad;
     s32 type;
@@ -107,7 +107,7 @@ void ItemEtcetera_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ItemEtcetera_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ItemEtcetera_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_80B857D0(ItemEtcetera* this, GlobalContext* globalCtx) {
@@ -196,7 +196,7 @@ void ItemEtcetera_UpdateFireArrow(ItemEtcetera* this, GlobalContext* globalCtx) 
     }
 }
 
-void ItemEtcetera_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ItemEtcetera_Update(Actor* thisx, GameState* state) {
     ItemEtcetera* this = THIS;
     this->actionFunc(this, globalCtx);
 }
@@ -210,7 +210,7 @@ void ItemEtcetera_DrawThroughLens(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ItemEtcetera_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ItemEtcetera_Draw(Actor* thisx, GameState* state) {
     ItemEtcetera* this = THIS;
 
     func_8002EBCC(&this->actor, globalCtx, 0);

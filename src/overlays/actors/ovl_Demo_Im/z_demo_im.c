@@ -12,10 +12,10 @@
 
 #define THIS ((DemoIm*)thisx)
 
-void DemoIm_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoIm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoIm_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoIm_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoIm_Init(Actor* thisx, GameState* state);
+void DemoIm_Destroy(Actor* thisx, GameState* state);
+void DemoIm_Update(Actor* thisx, GameState* state);
+void DemoIm_Draw(Actor* thisx, GameState* state);
 void func_809856F8(DemoIm* this, GlobalContext* globalCtx);
 void func_80985718(DemoIm* this, GlobalContext* globalCtx);
 void func_80985738(DemoIm* this, GlobalContext* globalCtx);
@@ -1097,7 +1097,7 @@ void func_80987330(DemoIm* this, GlobalContext* globalCtx) {
     func_809871B4(this, sp1C);
 }
 
-void DemoIm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIm_Update(Actor* thisx, GameState* state) {
     DemoIm* this = THIS;
 
     if ((this->action < 0) || (this->action >= 31) || (sActionFuncs[this->action] == NULL)) {
@@ -1107,7 +1107,7 @@ void DemoIm_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void DemoIm_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIm_Init(Actor* thisx, GameState* state) {
     DemoIm* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
@@ -1136,7 +1136,7 @@ void DemoIm_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void DemoIm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIm_Destroy(Actor* thisx, GameState* state) {
     func_80984D4C(thisx, globalCtx);
 }
 
@@ -1208,7 +1208,7 @@ void func_80987658(DemoIm* this, GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_demo_im.c", 925);
 }
 
-void DemoIm_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoIm_Draw(Actor* thisx, GameState* state) {
     DemoIm* this = THIS;
 
     if ((this->drawConfig < 0) || (this->drawConfig >= 3) || (sDrawFuncs[this->drawConfig] == NULL)) {

@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanHrock*)thisx)
 
-void BgHidanHrock_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanHrock_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanHrock_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanHrock_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanHrock_Init(Actor* thisx, GameState* state);
+void BgHidanHrock_Destroy(Actor* thisx, GameState* state);
+void BgHidanHrock_Update(Actor* thisx, GameState* state);
+void BgHidanHrock_Draw(Actor* thisx, GameState* state);
 
 void func_8088960C(BgHidanHrock* this, GlobalContext* globalCtx);
 void func_808896B8(BgHidanHrock* this, GlobalContext* globalCtx);
@@ -75,7 +75,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(gravity, -1, ICHAIN_STOP),
 };
 
-void BgHidanHrock_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHrock_Init(Actor* thisx, GameState* state) {
     BgHidanHrock* this = THIS;
     ColliderTrisElementInit* colliderElementInit;
     Vec3f vertices[3];
@@ -142,7 +142,7 @@ void BgHidanHrock_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, thisx, collisionHeader);
 }
 
-void BgHidanHrock_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHrock_Destroy(Actor* thisx, GameState* state) {
     BgHidanHrock* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -224,13 +224,13 @@ void func_808896B8(BgHidanHrock* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanHrock_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHrock_Update(Actor* thisx, GameState* state) {
     BgHidanHrock* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHidanHrock_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanHrock_Draw(Actor* thisx, GameState* state) {
     static Gfx* dlists[] = {
         gFireTempleTallestPillarAboveRoomBeforeBossDL,
         gFireTemplePillarInsertedInGroundDL,

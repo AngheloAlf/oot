@@ -10,10 +10,10 @@
 
 #define THIS ((BgIceObjects*)thisx)
 
-void BgIceObjects_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgIceObjects_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgIceObjects_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgIceObjects_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgIceObjects_Init(Actor* thisx, GameState* state);
+void BgIceObjects_Destroy(Actor* thisx, GameState* state);
+void BgIceObjects_Update(Actor* thisx, GameState* state);
+void BgIceObjects_Draw(Actor* thisx, GameState* state);
 
 void BgIceObjects_Idle(BgIceObjects* this, GlobalContext* globalCtx);
 void BgIceObjects_Slide(BgIceObjects* this, GlobalContext* globalCtx);
@@ -43,7 +43,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgIceObjects_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceObjects_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgIceObjects* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -57,7 +57,7 @@ void BgIceObjects_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.actor.params = 0;
 }
 
-void BgIceObjects_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceObjects_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgIceObjects* this = THIS;
 
@@ -226,14 +226,14 @@ void BgIceObjects_Stuck(BgIceObjects* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgIceObjects_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceObjects_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgIceObjects* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgIceObjects_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceObjects_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgIceObjects* this = THIS;
 

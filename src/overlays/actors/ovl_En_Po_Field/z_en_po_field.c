@@ -12,10 +12,10 @@
 
 #define THIS ((EnPoField*)thisx)
 
-void EnPoField_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPoField_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPoField_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnPoField_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnPoField_Init(Actor* thisx, GameState* state);
+void EnPoField_Destroy(Actor* thisx, GameState* state);
+void EnPoField_Update(Actor* thisx, GameState* state);
+void EnPoField_Draw(Actor* thisx, GameState* state);
 
 void EnPoField_UpdateDead(Actor* thisx, GlobalContext* globalCtx);
 void EnPoField_DrawSoul(Actor* thisx, GlobalContext* globalCtx);
@@ -147,7 +147,7 @@ static Vec3s sSpawnPositions[10];
 static u8 sSpawnSwitchFlags[10];
 static MtxF sLimb7Mtx;
 
-void EnPoField_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoField_Init(Actor* thisx, GameState* state) {
     EnPoField* this = THIS;
     s32 pad;
 
@@ -178,7 +178,7 @@ void EnPoField_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnPoField_SetupWaitForSpawn(this, globalCtx);
 }
 
-void EnPoField_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoField_Destroy(Actor* thisx, GameState* state) {
     EnPoField* this = THIS;
 
     if (this->actor.params != 0xFF) {
@@ -847,7 +847,7 @@ void func_80AD6330(EnPoField* this) {
     }
 }
 
-void EnPoField_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoField_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnPoField* this = THIS;
 
@@ -918,7 +918,7 @@ void EnPoField_PostLimDraw2(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
     }
 }
 
-void EnPoField_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnPoField_Draw(Actor* thisx, GameState* state) {
     EnPoField* this = THIS;
     EnPoFieldInfo* info = &sPoFieldInfo[this->actor.params];
 

@@ -10,9 +10,9 @@
 
 #define THIS ((DoorToki*)thisx)
 
-void DoorToki_Init(Actor* thisx, GlobalContext* globalCtx);
-void DoorToki_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DoorToki_Update(Actor* thisx, GlobalContext* globalCtx);
+void DoorToki_Init(Actor* thisx, GameState* state);
+void DoorToki_Destroy(Actor* thisx, GameState* state);
+void DoorToki_Update(Actor* thisx, GameState* state);
 
 const ActorInit Door_Toki_InitVars = {
     ACTOR_DOOR_TOKI,
@@ -32,7 +32,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
-void DoorToki_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DoorToki_Init(Actor* thisx, GameState* state) {
     s32 pad;
     DoorToki* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -43,13 +43,13 @@ void DoorToki_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.bgId = DynaPoly_SetBgActor(globalCtx, &globalCtx->colCtx.dyna, &this->dyna.actor, colHeader);
 }
 
-void DoorToki_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DoorToki_Destroy(Actor* thisx, GameState* state) {
     DoorToki* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void DoorToki_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DoorToki_Update(Actor* thisx, GameState* state) {
     DoorToki* this = THIS;
 
     if (gSaveContext.eventChkInf[4] & 0x800) {

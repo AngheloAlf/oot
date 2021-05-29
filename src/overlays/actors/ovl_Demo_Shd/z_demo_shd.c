@@ -10,10 +10,10 @@
 
 #define THIS ((DemoShd*)thisx)
 
-void DemoShd_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoShd_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoShd_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoShd_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoShd_Init(Actor* thisx, GameState* state);
+void DemoShd_Destroy(Actor* thisx, GameState* state);
+void DemoShd_Update(Actor* thisx, GameState* state);
+void DemoShd_Draw(Actor* thisx, GameState* state);
 
 void func_80991298(DemoShd* this, GlobalContext* globalCtx);
 
@@ -35,7 +35,7 @@ void DemoShd_SetupAction(DemoShd* this, DemoShdActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void DemoShd_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoShd_Init(Actor* thisx, GameState* state) {
     DemoShd* this = THIS;
 
     this->unk_14C = 0;
@@ -45,7 +45,7 @@ void DemoShd_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actor.world.pos.x = 0.0f;
 }
 
-void DemoShd_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoShd_Destroy(Actor* thisx, GameState* state) {
 }
 
 void func_80991298(DemoShd* this, GlobalContext* globalCtx) {
@@ -92,13 +92,13 @@ void func_80991298(DemoShd* this, GlobalContext* globalCtx) {
     this->unk_14E++;
 }
 
-void DemoShd_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoShd_Update(Actor* thisx, GameState* state) {
     DemoShd* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void DemoShd_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoShd_Draw(Actor* thisx, GameState* state) {
     DemoShd* this = THIS;
     s32 pad;
     u32 unk_14E = this->unk_14E;

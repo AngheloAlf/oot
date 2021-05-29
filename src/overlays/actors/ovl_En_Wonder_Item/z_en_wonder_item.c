@@ -11,9 +11,9 @@
 
 #define THIS ((EnWonderItem*)thisx)
 
-void EnWonderItem_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnWonderItem_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnWonderItem_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnWonderItem_Init(Actor* thisx, GameState* state);
+void EnWonderItem_Destroy(Actor* thisx, GameState* state);
+void EnWonderItem_Update(Actor* thisx, GameState* state);
 
 void EnWonderItem_MultitagFree(EnWonderItem* this, GlobalContext* globalCtx);
 void EnWonderItem_ProximityDrop(EnWonderItem* this, GlobalContext* globalCtx);
@@ -58,7 +58,7 @@ const ActorInit En_Wonder_Item_InitVars = {
 static Vec3f sTagPointsFree[9];
 static Vec3f sTagPointsOrdered[9];
 
-void EnWonderItem_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderItem_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnWonderItem* this = THIS;
 
@@ -103,7 +103,7 @@ void EnWonderItem_DropCollectible(EnWonderItem* this, GlobalContext* globalCtx, 
     Actor_Kill(&this->actor);
 }
 
-void EnWonderItem_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderItem_Init(Actor* thisx, GameState* state) {
     static u32 collisionTypes[] = {
         0x00000702 /* sword slash */, 0x0001F820 /* arrow */,     0x00000040 /* hammer */,   0x00000008 /* bomb */,
         0x00000004 /* slingshot */,   0x00000010 /* boomerang */, 0x00000080 /* hookshot */,
@@ -330,7 +330,7 @@ void EnWonderItem_RollDrop(EnWonderItem* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnWonderItem_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnWonderItem_Update(Actor* thisx, GameState* state) {
     static s16 debugArrowColors[] = {
         255, 255, 0,   255, 0,   255, 0,   255, 255, 255, 0,   0, 0, 255, 0,   0, 0, 255, 128, 128,
         128, 128, 128, 0,   128, 0,   128, 0,   128, 0,   128, 0, 0, 0,   128, 0, 0, 0,   128,

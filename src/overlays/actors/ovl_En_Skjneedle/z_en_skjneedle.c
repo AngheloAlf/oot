@@ -11,10 +11,10 @@
 
 #define THIS ((EnSkjneedle*)thisx)
 
-void EnSkjneedle_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSkjneedle_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSkjneedle_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSkjneedle_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSkjneedle_Init(Actor* thisx, GameState* state);
+void EnSkjneedle_Destroy(Actor* thisx, GameState* state);
+void EnSkjneedle_Update(Actor* thisx, GameState* state);
+void EnSkjneedle_Draw(Actor* thisx, GameState* state);
 
 s32 EnSkjNeedle_CollisionCheck(EnSkjneedle* this);
 
@@ -54,7 +54,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_F32(targetArrowOffset, 30, ICHAIN_STOP),
 };
 
-void EnSkjneedle_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkjneedle_Init(Actor* thisx, GameState* state) {
     EnSkjneedle* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -65,7 +65,7 @@ void EnSkjneedle_Init(Actor* thisx, GlobalContext* globalCtx) {
     Actor_SetScale(&this->actor, 0.01f);
 }
 
-void EnSkjneedle_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkjneedle_Destroy(Actor* thisx, GameState* state) {
     EnSkjneedle* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -79,7 +79,7 @@ s32 EnSkjNeedle_CollisionCheck(EnSkjneedle* this) {
     return 0;
 }
 
-void EnSkjneedle_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnSkjneedle_Update(Actor* thisx, GameState* state) {
     EnSkjneedle* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
 
@@ -99,7 +99,7 @@ void EnSkjneedle_Update(Actor* thisx, GlobalContext* globalCtx2) {
     }
 }
 
-void EnSkjneedle_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSkjneedle_Draw(Actor* thisx, GameState* state) {
     s32 pad;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_skj_needle.c", 200);

@@ -54,10 +54,10 @@ typedef enum {
     /* 0x04 */ NB_DRAW_LOOK_DIRECTION
 } EnNbDrawMode;
 
-void EnNb_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnNb_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnNb_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnNb_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnNb_Init(Actor* thisx, GameState* state);
+void EnNb_Destroy(Actor* thisx, GameState* state);
+void EnNb_Update(Actor* thisx, GameState* state);
+void EnNb_Draw(Actor* thisx, GameState* state);
 
 static ColliderCylinderInitType1 sCylinderInit = {
     {
@@ -143,7 +143,7 @@ void EnNb_UpdateCollider(EnNb* this, GlobalContext* globalCtx) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &collider->base);
 }
 
-void EnNb_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnNb_Destroy(Actor* thisx, GameState* state) {
     EnNb* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -1406,7 +1406,7 @@ static EnNbActionFunc sActionFuncs[] = {
     func_80AB3E10,
 };
 
-void EnNb_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnNb_Update(Actor* thisx, GameState* state) {
     EnNb* this = THIS;
 
     if (this->action < 0 || this->action > 30 || sActionFuncs[this->action] == NULL) {
@@ -1418,7 +1418,7 @@ void EnNb_Update(Actor* thisx, GlobalContext* globalCtx) {
     sActionFuncs[this->action](this, globalCtx);
 }
 
-void EnNb_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnNb_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnNb* this = THIS;
 
@@ -1513,7 +1513,7 @@ static EnNbDrawFunc sDrawFuncs[] = {
     EnNb_DrawNothing, EnNb_DrawDefault, EnNb_DrawTransparency, func_80AB2E70, func_80AB2FE4,
 };
 
-void EnNb_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnNb_Draw(Actor* thisx, GameState* state) {
     EnNb* this = THIS;
 
     if (this->drawMode < 0 || this->drawMode >= 5 || sDrawFuncs[this->drawMode] == NULL) {

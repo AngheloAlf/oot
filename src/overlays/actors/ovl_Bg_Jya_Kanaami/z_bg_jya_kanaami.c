@@ -11,10 +11,10 @@
 
 #define THIS ((BgJyaKanaami*)thisx)
 
-void BgJyaKanaami_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaKanaami_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaKanaami_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaKanaami_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaKanaami_Init(Actor* thisx, GameState* state);
+void BgJyaKanaami_Destroy(Actor* thisx, GameState* state);
+void BgJyaKanaami_Update(Actor* thisx, GameState* state);
+void BgJyaKanaami_Draw(Actor* thisx, GameState* state);
 
 void func_80899880(BgJyaKanaami* this);
 void func_80899894(BgJyaKanaami* this, GlobalContext* globalCtx);
@@ -56,7 +56,7 @@ void BgJyaKanaami_InitDynaPoly(BgJyaKanaami* this, GlobalContext* globalCtx, Col
     }
 }
 
-void BgJyaKanaami_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaKanaami_Init(Actor* thisx, GameState* state) {
     BgJyaKanaami* this = THIS;
 
     BgJyaKanaami_InitDynaPoly(this, globalCtx, &gKanaamiCol, DPM_UNK);
@@ -69,7 +69,7 @@ void BgJyaKanaami_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("(jya 金網)(arg_data 0x%04x)\n", this->dyna.actor.params);
 }
 
-void BgJyaKanaami_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaKanaami_Destroy(Actor* thisx, GameState* state) {
     BgJyaKanaami* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -117,7 +117,7 @@ void func_80899A08(BgJyaKanaami* this) {
     this->dyna.actor.world.rot.x = 0x4000;
 }
 
-void BgJyaKanaami_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaKanaami_Update(Actor* thisx, GameState* state) {
     BgJyaKanaami* this = THIS;
 
     if (this->actionFunc != NULL) {
@@ -126,6 +126,6 @@ void BgJyaKanaami_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.actor.shape.rot.x = this->dyna.actor.world.rot.x;
 }
 
-void BgJyaKanaami_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaKanaami_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gKanaamiDL);
 }

@@ -10,10 +10,10 @@
 
 #define THIS ((ObjLift*)thisx)
 
-void ObjLift_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjLift_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjLift_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjLift_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjLift_Init(Actor* thisx, GameState* state);
+void ObjLift_Destroy(Actor* thisx, GameState* state);
+void ObjLift_Update(Actor* thisx, GameState* state);
+void ObjLift_Draw(Actor* thisx, GameState* state);
 
 extern UNK_TYPE D_06000140;
 extern UNK_TYPE D_060003D0;

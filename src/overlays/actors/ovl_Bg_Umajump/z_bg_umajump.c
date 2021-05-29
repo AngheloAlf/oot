@@ -10,10 +10,10 @@
 
 #define THIS ((BgUmaJump*)thisx)
 
-void BgUmaJump_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgUmaJump_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgUmaJump_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgUmaJump_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgUmaJump_Init(Actor* thisx, GameState* state);
+void BgUmaJump_Destroy(Actor* thisx, GameState* state);
+void BgUmaJump_Update(Actor* thisx, GameState* state);
+void BgUmaJump_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Umajump_InitVars = {
     ACTOR_BG_UMAJUMP,
@@ -34,7 +34,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgUmaJump_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgUmaJump_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgUmaJump* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -53,15 +53,15 @@ void BgUmaJump_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgUmaJump_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgUmaJump_Destroy(Actor* thisx, GameState* state) {
     BgUmaJump* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
 }
 
-void BgUmaJump_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgUmaJump_Update(Actor* thisx, GameState* state) {
 }
 
-void BgUmaJump_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgUmaJump_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_06001220);
 }

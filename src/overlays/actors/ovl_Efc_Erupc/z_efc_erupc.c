@@ -4,10 +4,10 @@
 
 #define THIS ((EfcErupc*)thisx)
 
-void EfcErupc_Init(Actor* thisx, GlobalContext* globalCtx);
-void EfcErupc_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EfcErupc_Update(Actor* thisx, GlobalContext* globalCtx);
-void EfcErupc_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EfcErupc_Init(Actor* thisx, GameState* state);
+void EfcErupc_Destroy(Actor* thisx, GameState* state);
+void EfcErupc_Update(Actor* thisx, GameState* state);
+void EfcErupc_Draw(Actor* thisx, GameState* state);
 
 void EfcErupc_UpdateAction(EfcErupc* this, GlobalContext* globalCtx);
 void EfcErupc_DrawParticles(EfcErupcParticles* particles, GlobalContext* globalCtx);
@@ -36,7 +36,7 @@ void EfcErupc_SetupAction(EfcErupc* this, EfcErupcActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EfcErupc_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EfcErupc_Init(Actor* thisx, GameState* state) {
     EfcErupc* this = THIS;
 
     EfcErupc_SetupAction(this, EfcErupc_UpdateAction);
@@ -47,7 +47,7 @@ void EfcErupc_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk154 = -100;
 }
 
-void EfcErupc_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EfcErupc_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EfcErupc_UpdateAction(EfcErupc* this, GlobalContext* globalCtx) {
@@ -109,14 +109,14 @@ void EfcErupc_UpdateAction(EfcErupc* this, GlobalContext* globalCtx) {
     }
 }
 
-void EfcErupc_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EfcErupc_Update(Actor* thisx, GameState* state) {
     EfcErupc* this = THIS;
 
     this->actionFunc(this, globalCtx);
     EfcErupc_UpdateParticles(this, globalCtx);
 }
 
-void EfcErupc_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EfcErupc_Draw(Actor* thisx, GameState* state) {
     EfcErupc* this = THIS;
     u16 csAction;
 

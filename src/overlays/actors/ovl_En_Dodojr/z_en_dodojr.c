@@ -11,10 +11,10 @@
 
 #define THIS ((EnDodojr*)thisx)
 
-void EnDodojr_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnDodojr_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnDodojr_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnDodojr_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnDodojr_Init(Actor* thisx, GameState* state);
+void EnDodojr_Destroy(Actor* thisx, GameState* state);
+void EnDodojr_Update(Actor* thisx, GameState* state);
+void EnDodojr_Draw(Actor* thisx, GameState* state);
 
 void func_809F73AC(EnDodojr* this, GlobalContext* globalCtx);
 void func_809F7BE4(EnDodojr* this, GlobalContext* globalCtx);
@@ -73,7 +73,7 @@ static ColliderCylinderInit sCylinderInit = {
 
 static CollisionCheckInfoInit2 sColChkInit = { 1, 2, 25, 25, 0xFF };
 
-void EnDodojr_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnDodojr_Init(Actor* thisx, GameState* state) {
     EnDodojr* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, NULL, 18.0f);
@@ -90,7 +90,7 @@ void EnDodojr_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_809F73AC;
 }
 
-void EnDodojr_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnDodojr_Destroy(Actor* thisx, GameState* state) {
     EnDodojr* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -609,7 +609,7 @@ void func_809F7C48(EnDodojr* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnDodojr_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnDodojr_Update(Actor* thisx, GameState* state) {
     EnDodojr* this = THIS;
 
     SkelAnime_Update(&this->skelAnime);
@@ -643,7 +643,7 @@ s32 func_809F7D50(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3f* p
 void func_809F7DFC(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3s* rot, void* thisx) {
 }
 
-void EnDodojr_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnDodojr_Draw(Actor* thisx, GameState* state) {
     EnDodojr* this = THIS;
 
     if ((this->actionFunc != func_809F73AC) && (this->actionFunc != func_809F7BE4)) {

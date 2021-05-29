@@ -18,9 +18,9 @@ typedef enum {
     SYATEKI_ROUND_MAX
 } EnSyatekItemRound;
 
-void EnSyatekiItm_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiItm_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSyatekiItm_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnSyatekiItm_Init(Actor* thisx, GameState* state);
+void EnSyatekiItm_Destroy(Actor* thisx, GameState* state);
+void EnSyatekiItm_Update(Actor* thisx, GameState* state);
 
 void EnSyatekiItm_Idle(EnSyatekiItm* this, GlobalContext* globalCtx);
 void EnSyatekiItm_StartRound(EnSyatekiItm* this, GlobalContext* globalCtx);
@@ -69,7 +69,7 @@ static Vec3f sRupeePos[] = {
     { 20.0f, 0.0f, -60.0f },  { 40.0f, 0.0f, -60.0f },
 };
 
-void EnSyatekiItm_Init(Actor* thisx, GlobalContext* globalCtx2) {
+void EnSyatekiItm_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnSyatekiItm* this = THIS;
     s32 i;
@@ -97,7 +97,7 @@ void EnSyatekiItm_Init(Actor* thisx, GlobalContext* globalCtx2) {
     this->actionFunc = EnSyatekiItm_Idle;
 }
 
-void EnSyatekiItm_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiItm_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnSyatekiItm_Idle(EnSyatekiItm* this, GlobalContext* globalCtx) {
@@ -333,7 +333,7 @@ void EnSyatekiItm_EndGame(EnSyatekiItm* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSyatekiItm_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSyatekiItm_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnSyatekiItm* this = THIS;
 

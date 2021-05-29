@@ -10,10 +10,10 @@
 
 #define THIS ((EnTr*)thisx)
 
-void EnTr_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnTr_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnTr_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnTr_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnTr_Init(Actor* thisx, GameState* state);
+void EnTr_Destroy(Actor* thisx, GameState* state);
+void EnTr_Update(Actor* thisx, GameState* state);
+void EnTr_Draw(Actor* thisx, GameState* state);
 
 void EnTr_DoNothing(EnTr* this, GlobalContext* globalCtx);
 void EnTr_ShrinkVanish(EnTr* this, GlobalContext* globalCtx);
@@ -93,7 +93,7 @@ void EnTr_SetupAction(EnTr* this, EnTrActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnTr_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnTr_Init(Actor* thisx, GameState* state) {
     EnTr* this = THIS;
 
     ActorShape_Init(&this->actor.shape, 0.0f, ActorShadow_DrawCircle, 30.0f);
@@ -127,7 +127,7 @@ void EnTr_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnTr_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnTr_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnTr_CrySpellcast(EnTr* this, GlobalContext* globalCtx) {
@@ -380,7 +380,7 @@ void EnTr_ChooseAction1(EnTr* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnTr_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnTr_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnTr* this = THIS;
 
@@ -434,7 +434,7 @@ s32 EnTr_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, 
     return 0;
 }
 
-void EnTr_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnTr_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     EnTr* this = THIS;
 

@@ -12,9 +12,9 @@
 
 #define THIS ((ShotSun*)thisx)
 
-void ShotSun_Init(Actor* thisx, GlobalContext* globalCtx);
-void ShotSun_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ShotSun_Update(Actor* thisx, GlobalContext* globalCtx);
+void ShotSun_Init(Actor* thisx, GameState* state);
+void ShotSun_Destroy(Actor* thisx, GameState* state);
+void ShotSun_Update(Actor* thisx, GameState* state);
 
 void ShotSun_SpawnFairy(ShotSun* this, GlobalContext* globalCtx);
 void ShotSun_TriggerFairy(ShotSun* this, GlobalContext* globalCtx);
@@ -55,7 +55,7 @@ static ColliderCylinderInit sCylinderInit = {
     { 30, 60, 0, { 0, 0, 0 } },
 };
 
-void ShotSun_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ShotSun_Init(Actor* thisx, GameState* state) {
     ShotSun* this = THIS;
     s32 params;
 
@@ -76,7 +76,7 @@ void ShotSun_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ShotSun_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ShotSun_Destroy(Actor* thisx, GameState* state) {
     ShotSun* this = THIS;
     s32 params = this->actor.params & 0xFF;
 
@@ -195,7 +195,7 @@ void ShotSun_UpdateHyliaSun(ShotSun* this, GlobalContext* globalCtx) {
     }
 }
 
-void ShotSun_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ShotSun_Update(Actor* thisx, GameState* state) {
     ShotSun* this = THIS;
 
     this->actionFunc(this, globalCtx);

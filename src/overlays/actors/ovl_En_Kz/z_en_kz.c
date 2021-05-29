@@ -10,10 +10,10 @@
 
 #define THIS ((EnKz*)thisx)
 
-void EnKz_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnKz_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnKz_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnKz_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnKz_Init(Actor* thisx, GameState* state);
+void EnKz_Destroy(Actor* thisx, GameState* state);
+void EnKz_Update(Actor* thisx, GameState* state);
+void EnKz_Draw(Actor* thisx, GameState* state);
 
 void EnKz_PreMweepWait(EnKz* this, GlobalContext* globalCtx);
 void EnKz_SetupMweep(EnKz* this, GlobalContext* globalCtx);
@@ -312,7 +312,7 @@ s32 EnKz_SetMovedPos(EnKz* this, GlobalContext* globalCtx) {
     return 1;
 }
 
-void EnKz_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnKz_Init(Actor* thisx, GameState* state) {
     EnKz* this = THIS;
     s32 pad;
 
@@ -342,7 +342,7 @@ void EnKz_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnKz_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnKz_Destroy(Actor* thisx, GameState* state) {
     EnKz* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -446,7 +446,7 @@ void EnKz_StartTimer(EnKz* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnKz_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnKz_Update(Actor* thisx, GameState* state) {
     EnKz* this = THIS;
     s32 pad;
 
@@ -484,7 +484,7 @@ void EnKz_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec
     }
 }
 
-void EnKz_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnKz_Draw(Actor* thisx, GameState* state) {
     static UNK_PTR sEyeSegments[] = {
         0x06001470,
         0x06001870,

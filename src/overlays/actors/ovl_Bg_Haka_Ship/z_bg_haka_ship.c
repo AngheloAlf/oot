@@ -10,10 +10,10 @@
 
 #define THIS ((BgHakaShip*)thisx)
 
-void BgHakaShip_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaShip_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaShip_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaShip_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaShip_Init(Actor* thisx, GameState* state);
+void BgHakaShip_Destroy(Actor* thisx, GameState* state);
+void BgHakaShip_Update(Actor* thisx, GameState* state);
+void BgHakaShip_Draw(Actor* thisx, GameState* state);
 void BgHakaShip_ChildUpdatePosition(BgHakaShip* this, GlobalContext* globalCtx);
 void BgHakaShip_WaitForSong(BgHakaShip* this, GlobalContext* globalCtx);
 void BgHakaShip_CutsceneStationary(BgHakaShip* this, GlobalContext* globalCtx);
@@ -44,7 +44,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgHakaShip_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaShip_Init(Actor* thisx, GameState* state) {
     BgHakaShip* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -73,7 +73,7 @@ void BgHakaShip_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaShip_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaShip_Destroy(Actor* thisx, GameState* state) {
     BgHakaShip* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -191,7 +191,7 @@ void BgHakaShip_CrashFall(BgHakaShip* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaShip_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaShip_Update(Actor* thisx, GameState* state) {
     BgHakaShip* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -200,7 +200,7 @@ void BgHakaShip_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaShip_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaShip_Draw(Actor* thisx, GameState* state) {
     BgHakaShip* this = THIS;
     f32 angleTemp;
 

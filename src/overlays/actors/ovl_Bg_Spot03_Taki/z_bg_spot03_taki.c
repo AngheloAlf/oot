@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot03Taki*)thisx)
 
-void BgSpot03Taki_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot03Taki_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot03Taki_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot03Taki_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot03Taki_Init(Actor* thisx, GameState* state);
+void BgSpot03Taki_Destroy(Actor* thisx, GameState* state);
+void BgSpot03Taki_Update(Actor* thisx, GameState* state);
+void BgSpot03Taki_Draw(Actor* thisx, GameState* state);
 
 void func_808ADEF0(BgSpot03Taki* this, GlobalContext* globalCtx);
 
@@ -52,7 +52,7 @@ void BgSpot03Taki_ApplyOpeningAlpha(BgSpot03Taki* this, s32 bufferIndex) {
     }
 }
 
-void BgSpot03Taki_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot03Taki_Init(Actor* thisx, GameState* state) {
     BgSpot03Taki* this = THIS;
     s16 pad;
     CollisionHeader* colHeader = NULL;
@@ -69,7 +69,7 @@ void BgSpot03Taki_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = func_808ADEF0;
 }
 
-void BgSpot03Taki_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot03Taki_Destroy(Actor* thisx, GameState* state) {
     BgSpot03Taki* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -117,13 +117,13 @@ void func_808ADEF0(BgSpot03Taki* this, GlobalContext* globalCtx) {
     BgSpot03Taki_ApplyOpeningAlpha(this, this->bufferIndex);
 }
 
-void BgSpot03Taki_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot03Taki_Update(Actor* thisx, GameState* state) {
     BgSpot03Taki* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot03Taki_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot03Taki_Draw(Actor* thisx, GameState* state) {
     BgSpot03Taki* this = THIS;
     s32 pad;
     u32 gameplayFrames;

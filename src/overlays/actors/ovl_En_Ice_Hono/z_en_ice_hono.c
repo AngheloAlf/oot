@@ -11,10 +11,10 @@
 
 #define THIS ((EnIceHono*)thisx)
 
-void EnIceHono_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnIceHono_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnIceHono_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnIceHono_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnIceHono_Init(Actor* thisx, GameState* state);
+void EnIceHono_Destroy(Actor* thisx, GameState* state);
+void EnIceHono_Update(Actor* thisx, GameState* state);
+void EnIceHono_Draw(Actor* thisx, GameState* state);
 
 void EnIceHono_CapturableFlame(EnIceHono* this, GlobalContext* globalCtx);
 void EnIceHono_DropFlame(EnIceHono* this, GlobalContext* globalCtx);
@@ -151,7 +151,7 @@ void EnIceHono_InitSmallFlame(Actor* thisx, GlobalContext* globalCtx) {
     EnIceHono_SetupActionSmallFlame(this);
 }
 
-void EnIceHono_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnIceHono_Init(Actor* thisx, GameState* state) {
     EnIceHono* this = THIS;
     s16 params = this->actor.params;
 
@@ -179,7 +179,7 @@ void EnIceHono_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnIceHono_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnIceHono_Destroy(Actor* thisx, GameState* state) {
     EnIceHono* this = THIS;
 
     if ((this->actor.params == -1) || (this->actor.params == 0)) {
@@ -340,7 +340,7 @@ void EnIceHono_SmallFlameMove(EnIceHono* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnIceHono_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnIceHono_Update(Actor* thisx, GameState* state) {
     EnIceHono* this = THIS;
     s32 pad1;
     f32 intensity;
@@ -374,7 +374,7 @@ void EnIceHono_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnIceHono_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnIceHono_Draw(Actor* thisx, GameState* state) {
     EnIceHono* this = THIS;
     u32 pad;
 

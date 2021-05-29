@@ -30,10 +30,10 @@ typedef enum {
 #define WATER_LEVEL_LOWERED (WATER_LEVEL_RAISED - 680)
 #define WATER_LEVEL_RIVER_LOWERED (WATER_LEVEL_RIVER_RAISED - 80)
 
-void BgSpot06Objects_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot06Objects_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot06Objects_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot06Objects_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot06Objects_Init(Actor* thisx, GameState* state);
+void BgSpot06Objects_Destroy(Actor* thisx, GameState* state);
+void BgSpot06Objects_Update(Actor* thisx, GameState* state);
+void BgSpot06Objects_Draw(Actor* thisx, GameState* state);
 void BgSpot06Objects_GateWaitForSwitch(BgSpot06Objects* this, GlobalContext* globalCtx);
 void BgSpot06Objects_GateWaitToOpen(BgSpot06Objects* this, GlobalContext* globalCtx);
 void BgSpot06Objects_GateOpen(BgSpot06Objects* this, GlobalContext* globalCtx);
@@ -100,7 +100,7 @@ static InitChainEntry sInitChainWaterPlane[] = {
     ICHAIN_VEC3F_DIV1000(scale, 1000, ICHAIN_STOP),
 };
 
-void BgSpot06Objects_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot06Objects_Init(Actor* thisx, GameState* state) {
     BgSpot06Objects* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -191,7 +191,7 @@ void BgSpot06Objects_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot06Objects_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot06Objects_Destroy(Actor* thisx, GameState* state) {
     BgSpot06Objects* this = THIS;
 
     switch (this->dyna.actor.params) {
@@ -419,7 +419,7 @@ void BgSpot06Objects_LockFloat(BgSpot06Objects* this, GlobalContext* globalCtx) 
     }
 }
 
-void BgSpot06Objects_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot06Objects_Update(Actor* thisx, GameState* state) {
     BgSpot06Objects* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -463,7 +463,7 @@ void BgSpot06Objects_DrawLakeHyliaWater(BgSpot06Objects* this, GlobalContext* gl
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_bg_spot06_objects.c", 879);
 }
 
-void BgSpot06Objects_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot06Objects_Draw(Actor* thisx, GameState* state) {
     BgSpot06Objects* this = THIS;
 
     switch (this->dyna.actor.params) {

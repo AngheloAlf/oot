@@ -4,10 +4,10 @@
 
 #define THIS ((EnSw*)thisx)
 
-void EnSw_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSw_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSw_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSw_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSw_Init(Actor* thisx, GameState* state);
+void EnSw_Destroy(Actor* thisx, GameState* state);
+void EnSw_Update(Actor* thisx, GameState* state);
+void EnSw_Draw(Actor* thisx, GameState* state);
 s32 func_80B0DFFC(EnSw* this, GlobalContext* globalCtx);
 void func_80B0D364(EnSw* this, GlobalContext* globalCtx);
 void func_80B0E5E0(EnSw* this, GlobalContext* globalCtx);
@@ -220,7 +220,7 @@ s32 func_80B0C0CC(EnSw* this, GlobalContext* globalCtx, s32 arg2) {
     return sp64;
 }
 
-void EnSw_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSw_Init(Actor* thisx, GameState* state) {
     EnSw* this = THIS;
     s32 phi_v0;
     Vec3f sp4C = { 0.0f, 0.0f, 0.0f };
@@ -313,7 +313,7 @@ void EnSw_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnSw_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSw_Destroy(Actor* thisx, GameState* state) {
     EnSw* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->collider);
@@ -894,7 +894,7 @@ void func_80B0E9BC(EnSw* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSw_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSw_Update(Actor* thisx, GameState* state) {
     EnSw* this = THIS;
 
     SkelAnime_Update(&this->skelAnime);
@@ -1001,7 +1001,7 @@ void func_80B0EEA4(GlobalContext* globalCtx) {
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_sw.c", 2207);
 }
 
-void EnSw_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSw_Draw(Actor* thisx, GameState* state) {
     EnSw* this = THIS;
     Color_RGBA8 sp30 = { 184, 0, 228, 255 };
 

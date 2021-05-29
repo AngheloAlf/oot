@@ -10,10 +10,10 @@
 
 #define THIS ((EnCow*)thisx)
 
-void EnCow_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnCow_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnCow_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnCow_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnCow_Init(Actor* thisx, GameState* state);
+void EnCow_Destroy(Actor* thisx, GameState* state);
+void EnCow_Update(Actor* thisx, GameState* state);
+void EnCow_Draw(Actor* thisx, GameState* state);
 void func_809DFE98(Actor* thisx, GlobalContext* globalCtx);
 void func_809E0070(Actor* thisx, GlobalContext* globalCtx);
 
@@ -109,7 +109,7 @@ void func_809DEF94(EnCow* this) {
     this->actor.world.pos.z += vec.z;
 }
 
-void EnCow_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnCow_Init(Actor* thisx, GameState* state) {
     EnCow* this = THIS;
     s32 pad;
 
@@ -157,7 +157,7 @@ void EnCow_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_276 = 0;
 }
 
-void EnCow_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnCow_Destroy(Actor* thisx, GameState* state) {
     EnCow* this = THIS;
 
     if (this->actor.params == 0) {
@@ -300,7 +300,7 @@ void func_809DFA84(EnCow* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnCow_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnCow_Update(Actor* thisx, GameState* state) {
     EnCow* this = THIS;
     s32 pad;
     s16 targetX;
@@ -385,7 +385,7 @@ void EnCow_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     }
 }
 
-void EnCow_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnCow_Draw(Actor* thisx, GameState* state) {
     EnCow* this = THIS;
 
     func_800943C8(globalCtx->state.gfxCtx);

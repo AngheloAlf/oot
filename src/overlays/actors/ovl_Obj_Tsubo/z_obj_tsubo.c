@@ -12,10 +12,10 @@
 
 #define THIS ((ObjTsubo*)thisx)
 
-void ObjTsubo_Init(Actor* thisx, GlobalContext* globalCtx);
-void ObjTsubo_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ObjTsubo_Update(Actor* thisx, GlobalContext* globalCtx);
-void ObjTsubo_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ObjTsubo_Init(Actor* thisx, GameState* state);
+void ObjTsubo_Destroy(Actor* thisx, GameState* state);
+void ObjTsubo_Update(Actor* thisx, GameState* state);
+void ObjTsubo_Draw(Actor* thisx, GameState* state);
 
 void ObjTsubo_SpawnCollectible(ObjTsubo* this, GlobalContext* globalCtx);
 void ObjTsubo_ApplyGravity(ObjTsubo* this);
@@ -127,7 +127,7 @@ void ObjTsubo_InitCollider(Actor* thisx, GlobalContext* globalCtx) {
     Collider_UpdateCylinder(&this->actor, &this->collider);
 }
 
-void ObjTsubo_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ObjTsubo_Init(Actor* thisx, GameState* state) {
     ObjTsubo* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -147,7 +147,7 @@ void ObjTsubo_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void ObjTsubo_Destroy(Actor* thisx, GlobalContext* globalCtx2) {
+void ObjTsubo_Destroy(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     ObjTsubo* this = THIS;
 
@@ -328,12 +328,12 @@ void ObjTsubo_Thrown(ObjTsubo* this, GlobalContext* globalCtx) {
     }
 }
 
-void ObjTsubo_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ObjTsubo_Update(Actor* thisx, GameState* state) {
     ObjTsubo* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void ObjTsubo_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ObjTsubo_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_80BA1B84[(thisx->params >> 8) & 1]);
 }

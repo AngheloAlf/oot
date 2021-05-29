@@ -15,10 +15,10 @@ typedef enum {
     /* 3 */ CHU_GIRL_EYES_AWAKE
 } BombchuGirlEyeMode;
 
-void EnBomBowlMan_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBomBowlMan_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBomBowlMan_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBomBowlMan_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBomBowlMan_Init(Actor* thisx, GameState* state);
+void EnBomBowlMan_Destroy(Actor* thisx, GameState* state);
+void EnBomBowlMan_Update(Actor* thisx, GameState* state);
+void EnBomBowlMan_Draw(Actor* thisx, GameState* state);
 
 void EnBomBowMan_SetupWaitAsleep(EnBomBowlMan* this, GlobalContext* globalCtx);
 void EnBomBowMan_WaitAsleep(EnBomBowlMan* this, GlobalContext* globalCtx);
@@ -48,7 +48,7 @@ const ActorInit En_Bom_Bowl_Man_InitVars = {
     (ActorFunc)EnBomBowlMan_Draw,
 };
 
-void EnBomBowlMan_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomBowlMan_Init(Actor* thisx, GameState* state) {
     static f32 cuccoColliderDims[][3] = { { 16.0f, 46.0f, 0.0f }, { 36.0f, 56.0f, 0.0f } };
     static Vec3f cuccoSpawnPos[] = { { 60, -60, -430 }, { 0, -120, -620 } };
     static f32 cuccoScales[] = { 0.01f, 0.03f };
@@ -85,7 +85,7 @@ void EnBomBowlMan_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->actionFunc = EnBomBowMan_SetupWaitAsleep;
 }
 
-void EnBomBowlMan_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomBowlMan_Destroy(Actor* thisx, GameState* state) {
 }
 
 void EnBomBowMan_SetupWaitAsleep(EnBomBowlMan* this, GlobalContext* globalCtx) {
@@ -468,7 +468,7 @@ void EnBomBowlMan_BeginPlayGame(EnBomBowlMan* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBomBowlMan_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomBowlMan_Update(Actor* thisx, GameState* state) {
     EnBomBowlMan* this = THIS;
 
     this->timer++;
@@ -525,7 +525,7 @@ s32 EnBomBowlMan_OverrideLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx**
 
 static u64* eyeTextures[3] = { gChuGirlEyeOpenTex, gChuGirlEyeHalfTex, gChuGirlEyeClosedTex };
 
-void EnBomBowlMan_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnBomBowlMan_Draw(Actor* thisx, GameState* state) {
     EnBomBowlMan* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_bom_bowl_man.c", 907);

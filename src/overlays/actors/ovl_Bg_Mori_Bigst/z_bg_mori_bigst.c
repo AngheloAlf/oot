@@ -11,10 +11,10 @@
 
 #define THIS ((BgMoriBigst*)thisx)
 
-void BgMoriBigst_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriBigst_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriBigst_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgMoriBigst_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgMoriBigst_Init(Actor* thisx, GameState* state);
+void BgMoriBigst_Destroy(Actor* thisx, GameState* state);
+void BgMoriBigst_Update(Actor* thisx, GameState* state);
+void BgMoriBigst_Draw(Actor* thisx, GameState* state);
 
 void BgMoriBigst_SetupWaitForMoriTex(BgMoriBigst* this, GlobalContext* globalCtx);
 void BgMoriBigst_WaitForMoriTex(BgMoriBigst* this, GlobalContext* globalCtx);
@@ -67,7 +67,7 @@ void BgMoriBigst_InitDynapoly(BgMoriBigst* this, GlobalContext* globalCtx, Colli
     }
 }
 
-void BgMoriBigst_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriBigst_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriBigst* this = THIS;
 
@@ -95,7 +95,7 @@ void BgMoriBigst_Init(Actor* thisx, GlobalContext* globalCtx) {
     BgMoriBigst_SetupWaitForMoriTex(this, globalCtx);
 }
 
-void BgMoriBigst_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriBigst_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriBigst* this = THIS;
 
@@ -224,7 +224,7 @@ void BgMoriBigst_SetupDone(BgMoriBigst* this, GlobalContext* globalCtx) {
     BgMoriBigst_SetupAction(this, NULL);
 }
 
-void BgMoriBigst_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriBigst_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriBigst* this = THIS;
 
@@ -240,7 +240,7 @@ void BgMoriBigst_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgMoriBigst_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgMoriBigst_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     BgMoriBigst* this = THIS;
 

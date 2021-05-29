@@ -11,10 +11,10 @@
 
 #define THIS ((BgJyaGoroiwa*)thisx)
 
-void BgJyaGoroiwa_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaGoroiwa_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaGoroiwa_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgJyaGoroiwa_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgJyaGoroiwa_Init(Actor* thisx, GameState* state);
+void BgJyaGoroiwa_Destroy(Actor* thisx, GameState* state);
+void BgJyaGoroiwa_Update(Actor* thisx, GameState* state);
+void BgJyaGoroiwa_Draw(Actor* thisx, GameState* state);
 
 void func_80897DF0(BgJyaGoroiwa* this, GlobalContext* globalCtx);
 void func_80897B48(BgJyaGoroiwa* this, GlobalContext* globalCtx);
@@ -96,7 +96,7 @@ void func_80897A2C(BgJyaGoroiwa* this) {
     this->actor.shape.rot.z -= 0x10000 / (119 * M_PI) * posDiff;
 }
 
-void BgJyaGoroiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaGoroiwa_Init(Actor* thisx, GameState* state) {
     BgJyaGoroiwa* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -108,7 +108,7 @@ void BgJyaGoroiwa_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_80897B1C(this);
 }
 
-void BgJyaGoroiwa_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaGoroiwa_Destroy(Actor* thisx, GameState* state) {
     BgJyaGoroiwa* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->collider);
@@ -196,7 +196,7 @@ void func_80897DF0(BgJyaGoroiwa* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaGoroiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaGoroiwa_Update(Actor* thisx, GameState* state) {
     s32 pad;
     BgJyaGoroiwa* this = THIS;
     Player* player = PLAYER;
@@ -219,7 +219,7 @@ void BgJyaGoroiwa_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgJyaGoroiwa_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgJyaGoroiwa_Draw(Actor* thisx, GameState* state) {
     BgJyaGoroiwa* this = THIS;
 
     Gfx_DrawDListOpa(globalCtx, D_060006B0);

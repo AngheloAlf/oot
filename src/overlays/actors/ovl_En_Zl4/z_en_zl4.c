@@ -51,10 +51,10 @@ typedef enum {
     /* 6 */ ZL4_EYE_LOOK_IN
 } EnZl4EyeState;
 
-void EnZl4_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnZl4_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnZl4_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnZl4_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnZl4_Init(Actor* thisx, GameState* state);
+void EnZl4_Destroy(Actor* thisx, GameState* state);
+void EnZl4_Update(Actor* thisx, GameState* state);
+void EnZl4_Draw(Actor* thisx, GameState* state);
 
 void EnZl4_Cutscene(EnZl4* this, GlobalContext* globalCtx);
 void EnZl4_Idle(EnZl4* this, GlobalContext* globalCtx);
@@ -358,7 +358,7 @@ s32 EnZl4_InMovingAnim(EnZl4* this) {
     return false;
 }
 
-void EnZl4_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl4_Init(Actor* thisx, GameState* state) {
     s32 pad;
     EnZl4* this = THIS;
 
@@ -394,7 +394,7 @@ void EnZl4_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnZl4_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl4_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnZl4* this = THIS;
 
@@ -1236,7 +1236,7 @@ void EnZl4_TheEnd(EnZl4* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnZl4_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl4_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnZl4* this = THIS;
 
@@ -1281,7 +1281,7 @@ void EnZl4_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     }
 }
 
-void EnZl4_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnZl4_Draw(Actor* thisx, GameState* state) {
     EnZl4* this = THIS;
     u64* mouthTex[] = { gChildZeldaMouthNeutralTex, gChildZeldaMouthHappyTex, gChildZeldaMouthWorriedTex,
                         gChildZeldaMouthSurprisedTex };

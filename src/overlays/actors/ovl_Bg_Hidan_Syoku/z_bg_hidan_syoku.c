@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanSyoku*)thisx)
 
-void BgHidanSyoku_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanSyoku_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanSyoku_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanSyoku_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanSyoku_Init(Actor* thisx, GameState* state);
+void BgHidanSyoku_Destroy(Actor* thisx, GameState* state);
+void BgHidanSyoku_Update(Actor* thisx, GameState* state);
+void BgHidanSyoku_Draw(Actor* thisx, GameState* state);
 
 void func_8088F4B8(BgHidanSyoku* this, GlobalContext* globalCtx);
 void func_8088F514(BgHidanSyoku* this, GlobalContext* globalCtx);
@@ -36,7 +36,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgHidanSyoku_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanSyoku_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgHidanSyoku* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -49,7 +49,7 @@ void BgHidanSyoku_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->dyna.actor.home.pos.y += 540.0f;
 }
 
-void BgHidanSyoku_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanSyoku_Destroy(Actor* thisx, GameState* state) {
     BgHidanSyoku* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -106,7 +106,7 @@ void func_8088F62C(BgHidanSyoku* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanSyoku_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanSyoku_Update(Actor* thisx, GameState* state) {
     BgHidanSyoku* this = THIS;
 
     this->actionFunc(this, globalCtx);
@@ -123,6 +123,6 @@ void BgHidanSyoku_Update(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHidanSyoku_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanSyoku_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, gFireTempleFlareDancerPlatformDL);
 }

@@ -10,10 +10,10 @@
 
 #define THIS ((EnMag*)thisx)
 
-void EnMag_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMag_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMag_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMag_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMag_Init(Actor* thisx, GameState* state);
+void EnMag_Destroy(Actor* thisx, GameState* state);
+void EnMag_Update(Actor* thisx, GameState* state);
+void EnMag_Draw(Actor* thisx, GameState* state);
 
 extern u8 D_06000000[]; // Main Logo
 extern u8 D_06019A00[]; // Copyright Notice
@@ -36,7 +36,7 @@ const ActorInit En_Mag_InitVars = {
 
 static s16 sDelayTimer = 0;
 
-void EnMag_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMag_Init(Actor* thisx, GameState* state) {
     EnMag* this = THIS;
 
     YREG(1) = 63;
@@ -106,10 +106,10 @@ void EnMag_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_E320 = 0;
 }
 
-void EnMag_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMag_Destroy(Actor* thisx, GameState* state) {
 }
 
-void EnMag_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMag_Update(Actor* thisx, GameState* state) {
     s32 pad[2];
     EnMag* this = THIS;
 
@@ -567,7 +567,7 @@ void EnMag_DrawInner(Actor* thisx, GlobalContext* globalCtx, Gfx** gfxp) {
     *gfxp = gfx;
 }
 
-void EnMag_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMag_Draw(Actor* thisx, GameState* state) {
     s32 pad;
     Gfx* gfx;
     Gfx* gfxRef;

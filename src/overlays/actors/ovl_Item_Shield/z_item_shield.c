@@ -11,10 +11,10 @@
 
 #define THIS ((ItemShield*)thisx)
 
-void ItemShield_Init(Actor* thisx, GlobalContext* globalCtx);
-void ItemShield_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void ItemShield_Update(Actor* thisx, GlobalContext* globalCtx);
-void ItemShield_Draw(Actor* thisx, GlobalContext* globalCtx);
+void ItemShield_Init(Actor* thisx, GameState* state);
+void ItemShield_Destroy(Actor* thisx, GameState* state);
+void ItemShield_Update(Actor* thisx, GameState* state);
+void ItemShield_Draw(Actor* thisx, GameState* state);
 
 void func_80B86F68(ItemShield* this, GlobalContext* globalCtx);
 void func_80B86BC8(ItemShield* this, GlobalContext* globalCtx);
@@ -60,7 +60,7 @@ void ItemShield_SetupAction(ItemShield* this, ItemShieldActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void ItemShield_Init(Actor* thisx, GlobalContext* globalCtx) {
+void ItemShield_Init(Actor* thisx, GameState* state) {
     ItemShield* this = THIS;
     s32 i;
 
@@ -93,7 +93,7 @@ void ItemShield_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf(VT_FGCOL(GREEN) "Item_Shild %d \n" VT_RST, this->actor.params);
 }
 
-void ItemShield_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void ItemShield_Destroy(Actor* thisx, GameState* state) {
     ItemShield* this = THIS;
 
     Collider_DestroyCylinder(globalCtx, &this->collider);
@@ -212,13 +212,13 @@ void func_80B86F68(ItemShield* this, GlobalContext* globalCtx) {
     this->actor.speedXZ = 0;
 }
 
-void ItemShield_Update(Actor* thisx, GlobalContext* globalCtx) {
+void ItemShield_Update(Actor* thisx, GameState* state) {
     ItemShield* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void ItemShield_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void ItemShield_Draw(Actor* thisx, GameState* state) {
     ItemShield* this = THIS;
 
     if (!(this->unk_19C & 2)) {

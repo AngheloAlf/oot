@@ -10,10 +10,10 @@
 
 #define THIS ((BgHakaMegane*)thisx)
 
-void BgHakaMegane_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaMegane_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaMegane_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHakaMegane_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHakaMegane_Init(Actor* thisx, GameState* state);
+void BgHakaMegane_Destroy(Actor* thisx, GameState* state);
+void BgHakaMegane_Update(Actor* thisx, GameState* state);
+void BgHakaMegane_Draw(Actor* thisx, GameState* state);
 
 void func_8087DB24(BgHakaMegane* this, GlobalContext* globalCtx);
 void func_8087DBF0(BgHakaMegane* this, GlobalContext* globalCtx);
@@ -49,7 +49,7 @@ static Gfx* sDLists[] = {
 
 extern Gfx D_06001250[];
 
-void BgHakaMegane_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMegane_Init(Actor* thisx, GameState* state) {
     BgHakaMegane* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -68,7 +68,7 @@ void BgHakaMegane_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgHakaMegane_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMegane_Destroy(Actor* thisx, GameState* state) {
     BgHakaMegane* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -110,13 +110,13 @@ void func_8087DBF0(BgHakaMegane* this, GlobalContext* globalCtx) {
 void BgHakaMegane_DoNothing(BgHakaMegane* this, GlobalContext* globalCtx) {
 }
 
-void BgHakaMegane_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMegane_Update(Actor* thisx, GameState* state) {
     BgHakaMegane* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgHakaMegane_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHakaMegane_Draw(Actor* thisx, GameState* state) {
     BgHakaMegane* this = THIS;
 
     if ((thisx->flags & 0x80) == 0x80) {

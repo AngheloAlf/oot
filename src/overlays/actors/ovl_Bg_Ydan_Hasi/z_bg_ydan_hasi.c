@@ -11,10 +11,10 @@
 
 #define THIS ((BgYdanHasi*)thisx)
 
-void BgYdanHasi_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanHasi_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanHasi_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgYdanHasi_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgYdanHasi_Init(Actor* thisx, GameState* state);
+void BgYdanHasi_Destroy(Actor* thisx, GameState* state);
+void BgYdanHasi_Update(Actor* thisx, GameState* state);
+void BgYdanHasi_Draw(Actor* thisx, GameState* state);
 
 void BgYdanHasi_InitWater(BgYdanHasi* this, GlobalContext* globalCtx);
 void BgYdanHasi_UpdateFloatingBlock(BgYdanHasi* this, GlobalContext* globalCtx);
@@ -39,7 +39,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgYdanHasi_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanHasi_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgYdanHasi* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -74,7 +74,7 @@ void BgYdanHasi_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->timer = 0;
 }
 
-void BgYdanHasi_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanHasi_Destroy(Actor* thisx, GameState* state) {
     BgYdanHasi* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -165,13 +165,13 @@ void BgYdanHasi_UpdateThreeBlocks(BgYdanHasi* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgYdanHasi_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanHasi_Update(Actor* thisx, GameState* state) {
     BgYdanHasi* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgYdanHasi_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgYdanHasi_Draw(Actor* thisx, GameState* state) {
     static Gfx* dLists[] = { gDTSlidingPlatformDL, gDTWaterPlaneDL, gDTRisingPlatformsDL };
     BgYdanHasi* this = THIS;
 

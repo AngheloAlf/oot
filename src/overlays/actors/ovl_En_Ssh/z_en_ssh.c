@@ -19,10 +19,10 @@ typedef enum {
     SSH_ANIM_UNK6  // Faster repeating version of ANIM_UNK0
 } EnSshAnimation;
 
-void EnSsh_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnSsh_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnSsh_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnSsh_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnSsh_Init(Actor* thisx, GameState* state);
+void EnSsh_Destroy(Actor* thisx, GameState* state);
+void EnSsh_Update(Actor* thisx, GameState* state);
+void EnSsh_Draw(Actor* thisx, GameState* state);
 
 void EnSsh_Idle(EnSsh* this, GlobalContext* globalCtx);
 void EnSsh_Drop(EnSsh* this, GlobalContext* globalCtx);
@@ -623,7 +623,7 @@ void EnSsh_SetColliders(EnSsh* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSsh_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnSsh_Init(Actor* thisx, GameState* state) {
     f32 frameCount;
     s32 pad;
     EnSsh* this = THIS;
@@ -656,7 +656,7 @@ void EnSsh_Init(Actor* thisx, GlobalContext* globalCtx) {
     EnSsh_SetupAction(this, EnSsh_Start);
 }
 
-void EnSsh_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnSsh_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnSsh* this = THIS;
     s32 i;
@@ -824,7 +824,7 @@ void EnSsh_Start(EnSsh* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnSsh_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnSsh_Update(Actor* thisx, GameState* state) {
     s32 pad;
     EnSsh* this = THIS;
 
@@ -890,7 +890,7 @@ void EnSsh_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     Collider_UpdateSpheres(limbIndex, &this->colSph);
 }
 
-void EnSsh_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnSsh_Draw(Actor* thisx, GameState* state) {
     static u32* blinkTex[] = { 0x060007E0, 0x06000C60, 0x06001060 };
     s32 pad;
     EnSsh* this = THIS;

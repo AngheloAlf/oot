@@ -10,10 +10,10 @@
 
 #define THIS ((BgIceTurara*)thisx)
 
-void BgIceTurara_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgIceTurara_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgIceTurara_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgIceTurara_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgIceTurara_Init(Actor* thisx, GameState* state);
+void BgIceTurara_Destroy(Actor* thisx, GameState* state);
+void BgIceTurara_Update(Actor* thisx, GameState* state);
+void BgIceTurara_Draw(Actor* thisx, GameState* state);
 
 void BgIceTurara_Stalagmite(BgIceTurara* this, GlobalContext* globalCtx);
 void BgIceTurara_Wait(BgIceTurara* this, GlobalContext* globalCtx);
@@ -63,7 +63,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgIceTurara_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceTurara_Init(Actor* thisx, GameState* state) {
     BgIceTurara* this = THIS;
     s32 pad;
     CollisionHeader* colHeader = NULL;
@@ -84,7 +84,7 @@ void BgIceTurara_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgIceTurara_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceTurara_Destroy(Actor* thisx, GameState* state) {
     BgIceTurara* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -194,12 +194,12 @@ void BgIceTurara_Regrow(BgIceTurara* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgIceTurara_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceTurara_Update(Actor* thisx, GameState* state) {
     BgIceTurara* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgIceTurara_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgIceTurara_Draw(Actor* thisx, GameState* state) {
     Gfx_DrawDListOpa(globalCtx, D_060023D0);
 }

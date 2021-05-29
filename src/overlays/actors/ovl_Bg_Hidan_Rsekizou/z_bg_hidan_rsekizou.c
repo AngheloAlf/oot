@@ -11,10 +11,10 @@
 
 #define THIS ((BgHidanRsekizou*)thisx)
 
-void BgHidanRsekizou_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanRsekizou_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanRsekizou_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgHidanRsekizou_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgHidanRsekizou_Init(Actor* thisx, GameState* state);
+void BgHidanRsekizou_Destroy(Actor* thisx, GameState* state);
+void BgHidanRsekizou_Update(Actor* thisx, GameState* state);
+void BgHidanRsekizou_Draw(Actor* thisx, GameState* state);
 
 const ActorInit Bg_Hidan_Rsekizou_InitVars = {
     ACTOR_BG_HIDAN_RSEKIZOU,
@@ -121,7 +121,7 @@ static u64* sFireballsTexs[] = {
     gFireTempleFireball4Tex, gFireTempleFireball5Tex, gFireTempleFireball6Tex, gFireTempleFireball7Tex,
 };
 
-void BgHidanRsekizou_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRsekizou_Init(Actor* thisx, GameState* state) {
     BgHidanRsekizou* this = THIS;
     s32 i;
     s32 pad;
@@ -141,14 +141,14 @@ void BgHidanRsekizou_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->bendFrame = 0;
 }
 
-void BgHidanRsekizou_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRsekizou_Destroy(Actor* thisx, GameState* state) {
     BgHidanRsekizou* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
     Collider_DestroyJntSph(globalCtx, &this->collider);
 }
 
-void BgHidanRsekizou_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRsekizou_Update(Actor* thisx, GameState* state) {
     BgHidanRsekizou* this = THIS;
     s32 i;
     ColliderJntSphElement* sphere;
@@ -224,7 +224,7 @@ Gfx* BgHidanRsekizou_DrawFireball(GlobalContext* globalCtx, BgHidanRsekizou* thi
     return displayList;
 }
 
-void BgHidanRsekizou_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgHidanRsekizou_Draw(Actor* thisx, GameState* state) {
     BgHidanRsekizou* this = THIS;
     s32 i;
     s32 pad;

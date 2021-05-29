@@ -11,10 +11,10 @@
 
 #define THIS ((EnBw*)thisx)
 
-void EnBw_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnBw_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnBw_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnBw_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnBw_Init(Actor* thisx, GameState* state);
+void EnBw_Destroy(Actor* thisx, GameState* state);
+void EnBw_Update(Actor* thisx, GameState* state);
+void EnBw_Draw(Actor* thisx, GameState* state);
 
 void func_809CE884(EnBw* this, GlobalContext* globalCtx);
 void func_809CE9A8(EnBw* this);
@@ -132,7 +132,7 @@ void EnBw_SetupAction(EnBw* this, EnBwActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnBw_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnBw_Init(Actor* thisx, GameState* state) {
     EnBw* this = THIS;
 
     Actor_SetScale(&this->actor, 0.012999999f);
@@ -158,7 +158,7 @@ void EnBw_Init(Actor* thisx, GlobalContext* globalCtx) {
     sSlugGroup = (sSlugGroup + 1) & 3;
 }
 
-void EnBw_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnBw_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     EnBw* this = THIS;
 
@@ -738,7 +738,7 @@ void func_809D0584(EnBw* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnBw_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnBw_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     EnBw* this = THIS;
     Vec3f velocity = { 0.0f, 0.0f, 0.0f };
@@ -840,7 +840,7 @@ static Vec3f sIceOffsets[] = {
     { 10.0f, 0.0f, -15.0f }, { 0.0f, 10.0f, 25.0f },  { -10.0f, 0.0f, 15.0f }, { -10.0f, 0.0f, -15.0f },
 };
 
-void EnBw_Draw(Actor* thisx, GlobalContext* globalCtx2) {
+void EnBw_Draw(Actor* thisx, GameState* state) {
     Vec3f spAC = { 0.0f, 0.0f, 0.0f };
     GlobalContext* globalCtx = globalCtx2;
     EnBw* this = THIS;

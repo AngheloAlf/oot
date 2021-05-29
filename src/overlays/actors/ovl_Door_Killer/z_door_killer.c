@@ -20,9 +20,9 @@ typedef enum {
     /* 4 */ DOOR_KILLER_RUBBLE_PIECE_4
 } DoorKillerBehaviour;
 
-void DoorKiller_Init(Actor* thisx, GlobalContext* globalCtx);
-void DoorKiller_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DoorKiller_Update(Actor* thisx, GlobalContext* globalCtx);
+void DoorKiller_Init(Actor* thisx, GameState* state);
+void DoorKiller_Destroy(Actor* thisx, GameState* state);
+void DoorKiller_Update(Actor* thisx, GameState* state);
 void DoorKiller_Wait(DoorKiller* this, GlobalContext* globalCtx);
 void DoorKiller_SetProperties(DoorKiller* this, GlobalContext* globalCtx);
 void DoorKiller_DrawDoor(Actor* thisx, GlobalContext* globalCtx);
@@ -96,7 +96,7 @@ static DoorKillerTextureEntry sDoorTextures[4] = {
     { OBJECT_GAMEPLAY_KEEP, gWoodenDoorTex },
 };
 
-void DoorKiller_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DoorKiller_Init(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx2 = globalCtx;
     f32 randF;
     DoorKiller* this = THIS;
@@ -177,7 +177,7 @@ void DoorKiller_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void DoorKiller_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DoorKiller_Destroy(Actor* thisx, GameState* state) {
     DoorKiller* this = THIS;
 
     if ((thisx->params & 0xFF) == DOOR_KILLER_DOOR) {
@@ -488,7 +488,7 @@ void DoorKiller_SetProperties(DoorKiller* this, GlobalContext* globalCtx) {
     }
 }
 
-void DoorKiller_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DoorKiller_Update(Actor* thisx, GameState* state) {
     DoorKiller* this = THIS;
 
     this->actionFunc(this, globalCtx);

@@ -16,10 +16,10 @@ typedef struct {
     /* 0x6 */ u8 unk_6;
 } unk_D_80A69248; // size = 0x8
 
-void EnHorseGanon_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseGanon_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseGanon_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnHorseGanon_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnHorseGanon_Init(Actor* thisx, GameState* state);
+void EnHorseGanon_Destroy(Actor* thisx, GameState* state);
+void EnHorseGanon_Update(Actor* thisx, GameState* state);
+void EnHorseGanon_Draw(Actor* thisx, GameState* state);
 
 void func_80A68AC4(EnHorseGanon* this);
 void func_80A68AF0(EnHorseGanon* this, GlobalContext* globalCtx);
@@ -166,7 +166,7 @@ void func_80A68870(EnHorseGanon* this) {
     }
 }
 
-void EnHorseGanon_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGanon_Init(Actor* thisx, GameState* state) {
     EnHorseGanon* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -192,7 +192,7 @@ void EnHorseGanon_Init(Actor* thisx, GlobalContext* globalCtx) {
     func_80A68AC4(this);
 }
 
-void EnHorseGanon_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGanon_Destroy(Actor* thisx, GameState* state) {
     EnHorseGanon* this = THIS;
 
     func_800A6888(globalCtx, &this->skin);
@@ -285,7 +285,7 @@ void func_80A68E14(EnHorseGanon* this, GlobalContext* globalCtx) {
     this->actor.shape.rot.x = (0x8000 / M_PI) * Math_FAtan2F(this->actor.world.pos.y - temp_ret, 30.0f);
 }
 
-void EnHorseGanon_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGanon_Update(Actor* thisx, GameState* state) {
     EnHorseGanon* this = THIS;
     s32 pad;
 
@@ -321,7 +321,7 @@ void func_80A68FA8(Actor* thisx, GlobalContext* globalCtx, PSkinAwb* skin) {
     CollisionCheck_SetOC(globalCtx, &globalCtx->colChkCtx, &this->colliderHead.base);
 }
 
-void EnHorseGanon_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnHorseGanon_Draw(Actor* thisx, GameState* state) {
     EnHorseGanon* this = THIS;
 
     func_80A68E14(this, globalCtx);

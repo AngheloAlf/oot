@@ -10,10 +10,10 @@
 
 #define THIS ((BgSpot02Objects*)thisx)
 
-void BgSpot02Objects_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot02Objects_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot02Objects_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgSpot02Objects_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgSpot02Objects_Init(Actor* thisx, GameState* state);
+void BgSpot02Objects_Destroy(Actor* thisx, GameState* state);
+void BgSpot02Objects_Update(Actor* thisx, GameState* state);
+void BgSpot02Objects_Draw(Actor* thisx, GameState* state);
 void func_808ACCB8(Actor* thisx, GlobalContext* globalCtx);
 void func_808AD450(Actor* thisx, GlobalContext* globalCtx);
 
@@ -53,7 +53,7 @@ static InitChainEntry sInitChain[] = {
     ICHAIN_VEC3F_DIV1000(scale, 100, ICHAIN_STOP),
 };
 
-void BgSpot02Objects_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot02Objects_Init(Actor* thisx, GameState* state) {
     s32 pad;
     BgSpot02Objects* this = THIS;
     CollisionHeader* colHeader = NULL;
@@ -121,7 +121,7 @@ void BgSpot02Objects_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot02Objects_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot02Objects_Destroy(Actor* thisx, GameState* state) {
     BgSpot02Objects* this = THIS;
 
     DynaPoly_DeleteBgActor(globalCtx, &globalCtx->colCtx.dyna, this->dyna.bgId);
@@ -189,13 +189,13 @@ void func_808ACB58(BgSpot02Objects* this, GlobalContext* globalCtx) {
     }
 }
 
-void BgSpot02Objects_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot02Objects_Update(Actor* thisx, GameState* state) {
     BgSpot02Objects* this = THIS;
 
     this->actionFunc(this, globalCtx);
 }
 
-void BgSpot02Objects_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgSpot02Objects_Draw(Actor* thisx, GameState* state) {
     static Gfx* dLists[] = { 0x06012A50, 0x060127C0, 0x060130B0 };
 
     Gfx_DrawDListOpa(globalCtx, dLists[thisx->params]);

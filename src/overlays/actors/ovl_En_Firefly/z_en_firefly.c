@@ -12,10 +12,10 @@
 
 #define THIS ((EnFirefly*)thisx)
 
-void EnFirefly_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnFirefly_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnFirefly_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnFirefly_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnFirefly_Init(Actor* thisx, GameState* state);
+void EnFirefly_Destroy(Actor* thisx, GameState* state);
+void EnFirefly_Update(Actor* thisx, GameState* state);
+void EnFirefly_Draw(Actor* thisx, GameState* state);
 
 void EnFirefly_DrawInvisible(Actor* thisx, GlobalContext* globalCtx);
 
@@ -138,7 +138,7 @@ void EnFirefly_Ignite(EnFirefly* this) {
     this->actor.naviEnemyId = 0x11; // Fire Keese
 }
 
-void EnFirefly_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnFirefly_Init(Actor* thisx, GameState* state) {
     EnFirefly* this = THIS;
 
     Actor_ProcessInitChain(&this->actor, sInitChain);
@@ -196,7 +196,7 @@ void EnFirefly_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->collider.elements[0].dim.worldSphere.radius = sJntSphInit.elements[0].dim.modelSphere.radius;
 }
 
-void EnFirefly_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnFirefly_Destroy(Actor* thisx, GameState* state) {
     EnFirefly* this = THIS;
 
     Collider_DestroyJntSph(globalCtx, &this->collider);
@@ -665,7 +665,7 @@ void EnFirefly_UpdateDamage(EnFirefly* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnFirefly_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void EnFirefly_Update(Actor* thisx, GameState* state) {
     EnFirefly* this = THIS;
     GlobalContext* globalCtx = globalCtx2;
 
@@ -802,7 +802,7 @@ void EnFirefly_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList
     }
 }
 
-void EnFirefly_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnFirefly_Draw(Actor* thisx, GameState* state) {
     EnFirefly* this = THIS;
 
     OPEN_DISPS(globalCtx->state.gfxCtx, "../z_en_firefly.c", 1733);

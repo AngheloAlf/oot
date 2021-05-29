@@ -14,10 +14,10 @@
 
 typedef void (*EnIkDrawFunc)(struct EnIk*, GlobalContext*);
 
-void EnIk_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnIk_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnIk_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnIk_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnIk_Init(Actor* thisx, GameState* state);
+void EnIk_Destroy(Actor* thisx, GameState* state);
+void EnIk_Update(Actor* thisx, GameState* state);
+void EnIk_Draw(Actor* thisx, GameState* state);
 
 void func_80A74714(EnIk* this);
 void func_80A747C0(EnIk* this, GlobalContext* globalCtx);
@@ -193,7 +193,7 @@ static DamageTable sDamageTable = {
     /* Unknown 2     */ DMG_ENTRY(0, 0x0),
 };
 
-void EnIk_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnIk_Destroy(Actor* thisx, GameState* state) {
     EnIk* this = THIS;
 
     if (Actor_FindNearby(globalCtx, &this->actor, ACTOR_EN_IK, ACTORCAT_ENEMY, 8000.0f) == NULL) {
@@ -1318,7 +1318,7 @@ static EnIkActionFunc sActionFuncs[] = {
     func_80A77AEC, func_80A77B0C, func_80A77B3C, func_80A7748C, func_80A774BC, func_80A774F8,
 };
 
-void EnIk_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnIk_Update(Actor* thisx, GameState* state) {
     EnIk* this = THIS;
 
     if (this->action < 0 || this->action >= ARRAY_COUNT(sActionFuncs) || sActionFuncs[this->action] == NULL) {
@@ -1411,7 +1411,7 @@ void func_80A77EDC(EnIk* this, GlobalContext* globalCtx) {
 
 static EnIkDrawFunc sDrawFuncs[] = { func_80A77ED0, func_80A77EDC, func_80A77844 };
 
-void EnIk_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnIk_Draw(Actor* thisx, GameState* state) {
     EnIk* this = THIS;
 
     if (this->drawMode < 0 || this->drawMode >= ARRAY_COUNT(sDrawFuncs) || sDrawFuncs[this->drawMode] == NULL) {
@@ -1459,7 +1459,7 @@ void func_80A781CC(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnIk_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnIk_Init(Actor* thisx, GameState* state) {
     EnIk* this = THIS;
     s32 flag = this->actor.params & 0xFF00;
 

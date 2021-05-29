@@ -4,10 +4,10 @@
 
 #define THIS ((EnMa2*)thisx)
 
-void EnMa2_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnMa2_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnMa2_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnMa2_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnMa2_Init(Actor* thisx, GameState* state);
+void EnMa2_Destroy(Actor* thisx, GameState* state);
+void EnMa2_Update(Actor* thisx, GameState* state);
+void EnMa2_Draw(Actor* thisx, GameState* state);
 
 u16 func_80AA19A0(GlobalContext* globalCtx, Actor* this);
 s16 func_80AA1A38(GlobalContext* globalCtx, Actor* this);
@@ -220,7 +220,7 @@ void func_80AA1DB4(EnMa2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMa2_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa2_Init(Actor* thisx, GameState* state) {
     EnMa2* this = THIS;
     s32 pad;
 
@@ -258,7 +258,7 @@ void EnMa2_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->unk_1E0.unk_00 = 0;
 }
 
-void EnMa2_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa2_Destroy(Actor* thisx, GameState* state) {
     EnMa2* this = THIS;
 
     SkelAnime_Free(&this->skelAnime, globalCtx);
@@ -318,7 +318,7 @@ void func_80AA21C8(EnMa2* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnMa2_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa2_Update(Actor* thisx, GameState* state) {
     EnMa2* this = THIS;
     s32 pad;
 
@@ -377,7 +377,7 @@ void EnMa2_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Ve
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_ma2.c", 927);
 }
 
-void EnMa2_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnMa2_Draw(Actor* thisx, GameState* state) {
     EnMa2* this = THIS;
     Camera* camera;
     f32 someFloat;

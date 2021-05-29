@@ -11,9 +11,9 @@
 
 #define THIS ((EnGirlA*)thisx)
 
-void EnGirlA_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnGirlA_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnGirlA_Update(Actor* thisx, GlobalContext* globalCtx);
+void EnGirlA_Init(Actor* thisx, GameState* state);
+void EnGirlA_Destroy(Actor* thisx, GameState* state);
+void EnGirlA_Update(Actor* thisx, GameState* state);
 
 void func_80A3BEAC(GlobalContext* globalCtx, EnGirlA* this);
 void func_80A3BEE0(GlobalContext* globalCtx, EnGirlA* this);
@@ -310,7 +310,7 @@ void func_80A3A8D0(EnGirlA* this, GlobalContext* globalCtx) {
     this->unk_198 = func_80A3BFE4;
 }
 
-void EnGirlA_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnGirlA_Init(Actor* thisx, GameState* state) {
     EnGirlA* this = THIS;
 
     func_80A3A758(this);
@@ -318,7 +318,7 @@ void EnGirlA_Init(Actor* thisx, GlobalContext* globalCtx) {
     osSyncPrintf("%s(%2d)初期設定\n", D_80A3C590[this->actor.params], this->actor.params);
 }
 
-void EnGirlA_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnGirlA_Destroy(Actor* thisx, GameState* state) {
     EnGirlA* this = THIS;
 
     if (this->unk_19C != 0) {
@@ -998,7 +998,7 @@ void func_80A3C3BC(EnGirlA* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnGirlA_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnGirlA_Update(Actor* thisx, GameState* state) {
     EnGirlA* this = THIS;
 
     this->unk_198(this, globalCtx);

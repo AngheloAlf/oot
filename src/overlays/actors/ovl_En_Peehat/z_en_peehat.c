@@ -9,10 +9,10 @@
 #define GROUND_HOVER_HEIGHT 75.0f
 #define MAX_LARVA 3
 
-void EnPeehat_Init(Actor* thisx, GlobalContext* globalCtx);
-void EnPeehat_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void EnPeehat_Update(Actor* thisx, GlobalContext* globalCtx);
-void EnPeehat_Draw(Actor* thisx, GlobalContext* globalCtx);
+void EnPeehat_Init(Actor* thisx, GameState* state);
+void EnPeehat_Destroy(Actor* thisx, GameState* state);
+void EnPeehat_Update(Actor* thisx, GameState* state);
+void EnPeehat_Draw(Actor* thisx, GameState* state);
 
 void EnPeehat_Ground_SetStateGround(EnPeehat* this);
 void EnPeehat_Flying_SetStateGround(EnPeehat* this);
@@ -194,7 +194,7 @@ void EnPeehat_SetupAction(EnPeehat* this, EnPeehatActionFunc actionFunc) {
     this->actionFunc = actionFunc;
 }
 
-void EnPeehat_Init(Actor* thisx, GlobalContext* globalCtx) {
+void EnPeehat_Init(Actor* thisx, GameState* state) {
     EnPeehat* this = THIS;
 
     Actor_ProcessInitChain(thisx, sInitChain);
@@ -247,7 +247,7 @@ void EnPeehat_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void EnPeehat_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void EnPeehat_Destroy(Actor* thisx, GameState* state) {
     EnPeehat* this = THIS;
     EnPeehat* parent;
 
@@ -923,7 +923,7 @@ void EnPeehat_Adult_CollisionCheck(EnPeehat* this, GlobalContext* globalCtx) {
     }
 }
 
-void EnPeehat_Update(Actor* thisx, GlobalContext* globalCtx) {
+void EnPeehat_Update(Actor* thisx, GameState* state) {
     EnPeehat* this = THIS;
     s32 i;
     Player* player = PLAYER;
@@ -1067,7 +1067,7 @@ void EnPeehat_PostLimbDraw(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList,
     }
 }
 
-void EnPeehat_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void EnPeehat_Draw(Actor* thisx, GameState* state) {
     static Vec3f D_80AD285C[] = {
         { 0.0f, 0.0f, -4500.0f }, { -4500.0f, 0.0f, 0.0f }, { 4500.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 4500.0f }
     };

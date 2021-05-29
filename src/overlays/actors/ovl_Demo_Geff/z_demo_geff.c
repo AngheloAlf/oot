@@ -11,10 +11,10 @@
 
 #define THIS ((DemoGeff*)thisx)
 
-void DemoGeff_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoGeff_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoGeff_Update(Actor* thisx, GlobalContext* globalCtx);
-void DemoGeff_Draw(Actor* thisx, GlobalContext* globalCtx);
+void DemoGeff_Init(Actor* thisx, GameState* state);
+void DemoGeff_Destroy(Actor* thisx, GameState* state);
+void DemoGeff_Update(Actor* thisx, GameState* state);
+void DemoGeff_Draw(Actor* thisx, GameState* state);
 
 void func_80978030(DemoGeff* this, GlobalContext* globalCtx);
 
@@ -57,10 +57,10 @@ const ActorInit Demo_Geff_InitVars = {
 
 extern Gfx D_06000EA0[];
 
-void DemoGeff_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGeff_Destroy(Actor* thisx, GameState* state) {
 }
 
-void DemoGeff_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGeff_Init(Actor* thisx, GameState* state) {
     DemoGeff* this = THIS;
 
     if (this->actor.params < 0 || this->actor.params >= 9) {
@@ -205,7 +205,7 @@ void func_809783D4(DemoGeff* this, GlobalContext* globalCtx) {
     }
 }
 
-void DemoGeff_Update(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGeff_Update(Actor* thisx, GameState* state) {
     DemoGeff* this = THIS;
 
     if (this->action < 0 || this->action >= 2 || sActionFuncs[this->action] == NULL) {
@@ -218,7 +218,7 @@ void DemoGeff_Update(Actor* thisx, GlobalContext* globalCtx) {
 void func_809784D4(DemoGeff* this, GlobalContext* globalCtx) {
 }
 
-void DemoGeff_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void DemoGeff_Draw(Actor* thisx, GameState* state) {
     DemoGeff* this = THIS;
     s32 drawConfig = this->drawConfig;
 

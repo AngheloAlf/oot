@@ -20,10 +20,10 @@ typedef enum {
 
 #define POE_TORCH_FLAG 0x1C
 
-void BgPoSyokudai_Init(Actor* thisx, GlobalContext* globalCtx);
-void BgPoSyokudai_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void BgPoSyokudai_Update(Actor* thisx, GlobalContext* globalCtx);
-void BgPoSyokudai_Draw(Actor* thisx, GlobalContext* globalCtx);
+void BgPoSyokudai_Init(Actor* thisx, GameState* state);
+void BgPoSyokudai_Destroy(Actor* thisx, GameState* state);
+void BgPoSyokudai_Update(Actor* thisx, GameState* state);
+void BgPoSyokudai_Draw(Actor* thisx, GameState* state);
 
 static ColliderCylinderInit sCylinderInit = {
     {
@@ -77,7 +77,7 @@ static InitChainEntry sInitChain[] = {
 
 extern Gfx D_060003A0[];
 
-void BgPoSyokudai_Init(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoSyokudai_Init(Actor* thisx, GameState* state) {
     BgPoSyokudai* this = THIS;
     s32 pad;
 
@@ -122,7 +122,7 @@ void BgPoSyokudai_Init(Actor* thisx, GlobalContext* globalCtx) {
     this->flameTextureScroll = (s16)(Rand_ZeroOne() * 20.0f);
 }
 
-void BgPoSyokudai_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoSyokudai_Destroy(Actor* thisx, GameState* state) {
     BgPoSyokudai* this = THIS;
 
     LightContext_RemoveLight(globalCtx, &globalCtx->lightCtx, this->lightNode);
@@ -133,7 +133,7 @@ void BgPoSyokudai_Destroy(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void BgPoSyokudai_Update(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoSyokudai_Update(Actor* thisx, GameState* state) {
     BgPoSyokudai* this = THIS;
     s32 pad;
 
@@ -145,7 +145,7 @@ void BgPoSyokudai_Update(Actor* thisx, GlobalContext* globalCtx) {
     this->flameTextureScroll++;
 }
 
-void BgPoSyokudai_Draw(Actor* thisx, GlobalContext* globalCtx) {
+void BgPoSyokudai_Draw(Actor* thisx, GameState* state) {
     BgPoSyokudai* this = THIS;
     f32 lightBrightness;
     u8 red;

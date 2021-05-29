@@ -12,9 +12,9 @@
 
 #define THIS ((DemoKekkai*)thisx)
 
-void DemoKekkai_Init(Actor* thisx, GlobalContext* globalCtx);
-void DemoKekkai_Destroy(Actor* thisx, GlobalContext* globalCtx);
-void DemoKekkai_Update(Actor* thisx, GlobalContext* globalCtx);
+void DemoKekkai_Init(Actor* thisx, GameState* state);
+void DemoKekkai_Destroy(Actor* thisx, GameState* state);
+void DemoKekkai_Update(Actor* thisx, GameState* state);
 void DemoKekkai_DrawTowerBarrier(Actor* thisx, GlobalContext* globalCtx);
 
 void DemoKekkai_TrialBarrierDispel(Actor* thisx, GlobalContext* globalCtx);
@@ -73,7 +73,7 @@ s32 DemoKekkai_CheckEventFlag(s32 params) {
     return Flags_GetEventChkInf(eventFlags[params]);
 }
 
-void DemoKekkai_Init(Actor* thisx, GlobalContext* globalCtx) {
+void DemoKekkai_Init(Actor* thisx, GameState* state) {
     s32 pad;
     DemoKekkai* this = THIS;
 
@@ -124,7 +124,7 @@ void DemoKekkai_Init(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-void DemoKekkai_Destroy(Actor* thisx, GlobalContext* globalCtx) {
+void DemoKekkai_Destroy(Actor* thisx, GameState* state) {
     s32 pad;
     DemoKekkai* this = THIS;
 
@@ -182,7 +182,7 @@ void DemoKekkai_TowerBarrier(DemoKekkai* this, GlobalContext* globalCtx) {
     }
 }
 
-void DemoKekkai_Update(Actor* thisx, GlobalContext* globalCtx2) {
+void DemoKekkai_Update(Actor* thisx, GameState* state) {
     GlobalContext* globalCtx = globalCtx2;
     DemoKekkai* this = THIS;
 
