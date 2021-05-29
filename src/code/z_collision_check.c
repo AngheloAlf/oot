@@ -2,11 +2,11 @@
 #include "vt.h"
 #include "overlays/effects/ovl_Effect_Ss_HitMark/z_eff_ss_hitmark.h"
 
-typedef s32 (*ColChkResetFunc)(GlobalContext*, Collider*);
-typedef void (*ColChkBloodFunc)(GlobalContext*, Collider*, Vec3f*);
-typedef void (*ColChkApplyFunc)(GlobalContext*, CollisionCheckContext*, Collider*);
-typedef void (*ColChkVsFunc)(GlobalContext*, CollisionCheckContext*, Collider*, Collider*);
-typedef s32 (*ColChkLineFunc)(GlobalContext*, CollisionCheckContext*, Collider*, Vec3f*, Vec3f*);
+typedef s32 (*ColChkResetFunc)(GameState*, Collider*);
+typedef void (*ColChkBloodFunc)(GameState*, Collider*, Vec3f*);
+typedef void (*ColChkApplyFunc)(GameState*, CollisionCheckContext*, Collider*);
+typedef void (*ColChkVsFunc)(GameState*, CollisionCheckContext*, Collider*, Collider*);
+typedef s32 (*ColChkLineFunc)(GameState*, CollisionCheckContext*, Collider*, Vec3f*, Vec3f*);
 
 typedef struct {
     /* 0 */ u8 blood;
@@ -100,7 +100,7 @@ void Collider_DrawPoly(GraphicsContext* gfxCtx, Vec3f* vA, Vec3f* vB, Vec3f* vC,
     CLOSE_DISPS(gfxCtx, "../z_collision_check.c", 757);
 }
 
-s32 Collider_InitBase(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_InitBase(GameState* state, Collider* collider) {
     static Collider init = {
         NULL, NULL, NULL, NULL, AT_NONE, AC_NONE, OC1_NONE, OC2_NONE, COLTYPE_HIT3, COLSHAPE_INVALID,
     };
@@ -109,14 +109,14 @@ s32 Collider_InitBase(GlobalContext* globalCtx, Collider* collider) {
     return 1;
 }
 
-s32 Collider_DestroyBase(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_DestroyBase(GameState* state, Collider* collider) {
     return 1;
 }
 
 /**
  * Uses default OC2_TYPE_1 and COLTYPE_HIT0
  */
-s32 Collider_SetBaseToActor(GlobalContext* globalCtx, Collider* collider, ColliderInitToActor* src) {
+s32 Collider_SetBaseToActor(GameState* state, Collider* collider, ColliderInitToActor* src) {
     collider->actor = src->actor;
     collider->atFlags = src->atFlags;
     collider->acFlags = src->acFlags;
@@ -129,7 +129,7 @@ s32 Collider_SetBaseToActor(GlobalContext* globalCtx, Collider* collider, Collid
 /**
  * Uses default OC2_TYPE_1
  */
-s32 Collider_SetBaseType1(GlobalContext* globalCtx, Collider* collider, Actor* actor, ColliderInitType1* src) {
+s32 Collider_SetBaseType1(GameState* state, Collider* collider, Actor* actor, ColliderInitType1* src) {
     collider->actor = actor;
     collider->colType = src->colType;
     collider->atFlags = src->atFlags;
@@ -140,7 +140,7 @@ s32 Collider_SetBaseType1(GlobalContext* globalCtx, Collider* collider, Actor* a
     return 1;
 }
 
-s32 Collider_SetBase(GlobalContext* globalCtx, Collider* collider, Actor* actor, ColliderInit* src) {
+s32 Collider_SetBase(GameState* state, Collider* collider, Actor* actor, ColliderInit* src) {
     collider->actor = actor;
     collider->colType = src->colType;
     collider->atFlags = src->atFlags;
@@ -151,62 +151,62 @@ s32 Collider_SetBase(GlobalContext* globalCtx, Collider* collider, Actor* actor,
     return 1;
 }
 
-void Collider_ResetATBase(GlobalContext* globalCtx, Collider* collider) {
+void Collider_ResetATBase(GameState* state, Collider* collider) {
     collider->at = NULL;
     collider->atFlags &= ~(AT_HIT | AT_BOUNCED);
 }
 
-void Collider_ResetACBase(GlobalContext* globalCtx, Collider* collider) {
+void Collider_ResetACBase(GameState* state, Collider* collider) {
     collider->ac = NULL;
     collider->acFlags &= ~(AC_HIT | AC_BOUNCED);
 }
 
-void Collider_ResetOCBase(GlobalContext* globalCtx, Collider* collider) {
+void Collider_ResetOCBase(GameState* state, Collider* collider) {
     collider->oc = NULL;
     collider->ocFlags1 &= ~OC1_HIT;
     collider->ocFlags2 &= ~OC2_HIT_PLAYER;
 }
 
-s32 Collider_InitTouch(GlobalContext* globalCtx, ColliderTouch* touch) {
+s32 Collider_InitTouch(GameState* state, ColliderTouch* touch) {
     static ColliderTouch init = { 0x00000000, 0, 0 };
 
     *touch = init;
     return 1;
 }
 
-s32 Collider_DestroyTouch(GlobalContext* globalCtx, ColliderTouch* touch) {
+s32 Collider_DestroyTouch(GameState* state, ColliderTouch* touch) {
     return 1;
 }
 
-s32 Collider_SetTouch(GlobalContext* globalCtx, ColliderTouch* dest, ColliderTouch* src) {
+s32 Collider_SetTouch(GameState* state, ColliderTouch* dest, ColliderTouch* src) {
     dest->dmgFlags = src->dmgFlags;
     dest->effect = src->effect;
     dest->damage = src->damage;
     return 1;
 }
 
-void Collider_ResetATInfo_Unk(GlobalContext* globalCtx, ColliderInfo* info) {
+void Collider_ResetATInfo_Unk(GameState* state, ColliderInfo* info) {
 }
 
-s32 Collider_InitBump(GlobalContext* globalCtx, ColliderBump* bump) {
+s32 Collider_InitBump(GameState* state, ColliderBump* bump) {
     static ColliderBump init = { 0xFFCFFFFF, 0, 0, { 0, 0, 0 } };
 
     *bump = init;
     return 1;
 }
 
-s32 Collider_DestroyBump(GlobalContext* globalCtx, ColliderBump* bump) {
+s32 Collider_DestroyBump(GameState* state, ColliderBump* bump) {
     return 1;
 }
 
-s32 Collider_SetBump(GlobalContext* globalCtx, ColliderBump* bump, ColliderBumpInit* init) {
+s32 Collider_SetBump(GameState* state, ColliderBump* bump, ColliderBumpInit* init) {
     bump->dmgFlags = init->dmgFlags;
     bump->effect = init->effect;
     bump->defense = init->defense;
     return 1;
 }
 
-s32 Collider_InitInfo(GlobalContext* globalCtx, ColliderInfo* info) {
+s32 Collider_InitInfo(GameState* state, ColliderInfo* info) {
     static ColliderInfo init = {
         { 0, 0, 0 },   { 0xFFCFFFFF, 0, 0, { 0, 0, 0 } },
         ELEMTYPE_UNK0, TOUCH_NONE,
@@ -216,36 +216,36 @@ s32 Collider_InitInfo(GlobalContext* globalCtx, ColliderInfo* info) {
     };
 
     *info = init;
-    Collider_InitTouch(globalCtx, &info->toucher);
-    Collider_InitBump(globalCtx, &info->bumper);
+    Collider_InitTouch(state, &info->toucher);
+    Collider_InitBump(state, &info->bumper);
     return 1;
 }
 
-s32 Collider_DestroyInfo(GlobalContext* globalCtx, ColliderInfo* info) {
-    Collider_DestroyTouch(globalCtx, &info->toucher);
-    Collider_DestroyBump(globalCtx, &info->bumper);
+s32 Collider_DestroyInfo(GameState* state, ColliderInfo* info) {
+    Collider_DestroyTouch(state, &info->toucher);
+    Collider_DestroyBump(state, &info->bumper);
     return 1;
 }
 
-s32 Collider_SetInfo(GlobalContext* globalCtx, ColliderInfo* info, ColliderInfoInit* infoInit) {
+s32 Collider_SetInfo(GameState* state, ColliderInfo* info, ColliderInfoInit* infoInit) {
     info->elemType = infoInit->elemType;
-    Collider_SetTouch(globalCtx, &info->toucher, &infoInit->toucher);
-    Collider_SetBump(globalCtx, &info->bumper, &infoInit->bumper);
+    Collider_SetTouch(state, &info->toucher, &infoInit->toucher);
+    Collider_SetBump(state, &info->bumper, &infoInit->bumper);
     info->toucherFlags = infoInit->toucherFlags;
     info->bumperFlags = infoInit->bumperFlags;
     info->ocElemFlags = infoInit->ocElemFlags;
     return 1;
 }
 
-void Collider_ResetATInfo(GlobalContext* globalCtx, ColliderInfo* info) {
+void Collider_ResetATInfo(GameState* state, ColliderInfo* info) {
     info->atHit = NULL;
     info->atHitInfo = NULL;
     info->toucherFlags &= ~TOUCH_HIT;
     info->toucherFlags &= ~TOUCH_DREW_HITMARK;
-    Collider_ResetATInfo_Unk(globalCtx, info);
+    Collider_ResetATInfo_Unk(state, info);
 }
 
-void Collider_ResetACInfo(GlobalContext* globalCtx, ColliderInfo* info) {
+void Collider_ResetACInfo(GameState* state, ColliderInfo* info) {
     info->bumper.hitPos.x = info->bumper.hitPos.y = info->bumper.hitPos.z = 0;
     info->bumperFlags &= ~BUMP_HIT;
     info->bumperFlags &= ~BUMP_DRAW_HITMARK;
@@ -253,11 +253,11 @@ void Collider_ResetACInfo(GlobalContext* globalCtx, ColliderInfo* info) {
     info->acHitInfo = NULL;
 }
 
-void Collider_ResetOCInfo(GlobalContext* globalCtx, ColliderInfo* info) {
+void Collider_ResetOCInfo(GameState* state, ColliderInfo* info) {
     info->ocElemFlags &= ~OCELEM_HIT;
 }
 
-s32 Collider_InitJntSphElementDim(GlobalContext* globalCtx, ColliderJntSphElementDim* dim) {
+s32 Collider_InitJntSphElementDim(GameState* state, ColliderJntSphElementDim* dim) {
     static ColliderJntSphElementDim init = {
         { { 0, 0, 0 }, 0 },
         { { 0, 0, 0 }, 0 },
@@ -268,11 +268,11 @@ s32 Collider_InitJntSphElementDim(GlobalContext* globalCtx, ColliderJntSphElemen
     return 1;
 }
 
-s32 Collider_DestroyJntSphElementDim(GlobalContext* globalCtx, ColliderJntSphElementDim* element) {
+s32 Collider_DestroyJntSphElementDim(GameState* state, ColliderJntSphElementDim* element) {
     return 1;
 }
 
-s32 Collider_SetJntSphElementDim(GlobalContext* globalCtx, ColliderJntSphElementDim* dest,
+s32 Collider_SetJntSphElementDim(GameState* state, ColliderJntSphElementDim* dest,
                                  ColliderJntSphElementDimInit* src) {
     dest->limb = src->limb;
     dest->modelSphere = src->modelSphere;
@@ -280,44 +280,44 @@ s32 Collider_SetJntSphElementDim(GlobalContext* globalCtx, ColliderJntSphElement
     return 1;
 }
 
-s32 Collider_InitJntSphElement(GlobalContext* globalCtx, ColliderJntSphElement* element) {
-    Collider_InitInfo(globalCtx, &element->info);
-    Collider_InitJntSphElementDim(globalCtx, &element->dim);
+s32 Collider_InitJntSphElement(GameState* state, ColliderJntSphElement* element) {
+    Collider_InitInfo(state, &element->info);
+    Collider_InitJntSphElementDim(state, &element->dim);
     return 1;
 }
 
-s32 Collider_DestroyJntSphElement(GlobalContext* globalCtx, ColliderJntSphElement* element) {
-    Collider_DestroyInfo(globalCtx, &element->info);
-    Collider_DestroyJntSphElementDim(globalCtx, &element->dim);
+s32 Collider_DestroyJntSphElement(GameState* state, ColliderJntSphElement* element) {
+    Collider_DestroyInfo(state, &element->info);
+    Collider_DestroyJntSphElementDim(state, &element->dim);
     return 1;
 }
 
-s32 Collider_SetJntSphElement(GlobalContext* globalCtx, ColliderJntSphElement* dest, ColliderJntSphElementInit* src) {
-    Collider_SetInfo(globalCtx, &dest->info, &src->info);
-    Collider_SetJntSphElementDim(globalCtx, &dest->dim, &src->dim);
+s32 Collider_SetJntSphElement(GameState* state, ColliderJntSphElement* dest, ColliderJntSphElementInit* src) {
+    Collider_SetInfo(state, &dest->info, &src->info);
+    Collider_SetJntSphElementDim(state, &dest->dim, &src->dim);
     return 1;
 }
 
-s32 Collider_ResetJntSphElementAT(GlobalContext* globalCtx, ColliderJntSphElement* collider) {
-    Collider_ResetATInfo(globalCtx, &collider->info);
+s32 Collider_ResetJntSphElementAT(GameState* state, ColliderJntSphElement* collider) {
+    Collider_ResetATInfo(state, &collider->info);
     return 1;
 }
 
-s32 Collider_ResetJntSphElementAC(GlobalContext* globalCtx, ColliderJntSphElement* collider) {
-    Collider_ResetACInfo(globalCtx, &collider->info);
+s32 Collider_ResetJntSphElementAC(GameState* state, ColliderJntSphElement* collider) {
+    Collider_ResetACInfo(state, &collider->info);
     return 1;
 }
 
-s32 Collider_ResetJntSphElementOC(GlobalContext* globalCtx, ColliderJntSphElement* collider) {
-    Collider_ResetOCInfo(globalCtx, &collider->info);
+s32 Collider_ResetJntSphElementOC(GameState* state, ColliderJntSphElement* collider) {
+    Collider_ResetOCInfo(state, &collider->info);
     return 1;
 }
 
 /**
  * Initializes a ColliderJntSph to default values
  */
-s32 Collider_InitJntSph(GlobalContext* globalCtx, ColliderJntSph* collider) {
-    Collider_InitBase(globalCtx, &collider->base);
+s32 Collider_InitJntSph(GameState* state, ColliderJntSph* collider) {
+    Collider_InitBase(state, &collider->base);
     collider->count = 0;
     collider->elements = NULL;
     return 1;
@@ -326,12 +326,12 @@ s32 Collider_InitJntSph(GlobalContext* globalCtx, ColliderJntSph* collider) {
 /**
  * Destroys a dynamically allocated ColliderJntSph
  */
-s32 Collider_FreeJntSph(GlobalContext* globalCtx, ColliderJntSph* collider) {
+s32 Collider_FreeJntSph(GameState* state, ColliderJntSph* collider) {
     ColliderJntSphElement* element;
 
-    Collider_DestroyBase(globalCtx, &collider->base);
+    Collider_DestroyBase(state, &collider->base);
     for (element = collider->elements; element < collider->elements + collider->count; element++) {
-        Collider_DestroyJntSphElement(globalCtx, element);
+        Collider_DestroyJntSphElement(state, element);
     }
 
     collider->count = 0;
@@ -345,12 +345,12 @@ s32 Collider_FreeJntSph(GlobalContext* globalCtx, ColliderJntSph* collider) {
 /**
  * Destroys a preallocated ColliderJntSph
  */
-s32 Collider_DestroyJntSph(GlobalContext* globalCtx, ColliderJntSph* collider) {
+s32 Collider_DestroyJntSph(GameState* state, ColliderJntSph* collider) {
     ColliderJntSphElement* element;
 
-    Collider_DestroyBase(globalCtx, &collider->base);
+    Collider_DestroyBase(state, &collider->base);
     for (element = collider->elements; element < collider->elements + collider->count; element++) {
-        Collider_DestroyJntSphElement(globalCtx, element);
+        Collider_DestroyJntSphElement(state, element);
     }
     collider->count = 0;
     collider->elements = NULL;
@@ -361,11 +361,11 @@ s32 Collider_DestroyJntSph(GlobalContext* globalCtx, ColliderJntSph* collider) {
  * Sets up the ColliderJntSph using the values in src, sets it to the actor specified in src, and dynamically allocates
  * the element array. Uses default OC2_TYPE_1 and COLTYPE_HIT0. Unused.
  */
-s32 Collider_SetJntSphToActor(GlobalContext* globalCtx, ColliderJntSph* dest, ColliderJntSphInitToActor* src) {
+s32 Collider_SetJntSphToActor(GameState* state, ColliderJntSph* dest, ColliderJntSphInitToActor* src) {
     ColliderJntSphElement* destElem;
     ColliderJntSphElementInit* srcElem;
 
-    Collider_SetBaseToActor(globalCtx, &dest->base, &src->base);
+    Collider_SetBaseToActor(state, &dest->base, &src->base);
     dest->count = src->count;
     dest->elements = ZeldaArena_MallocDebug(src->count * sizeof(ColliderJntSphElement), "../z_collision_check.c", 1443);
 
@@ -380,8 +380,8 @@ s32 Collider_SetJntSphToActor(GlobalContext* globalCtx, ColliderJntSph* dest, Co
 
     for (destElem = dest->elements, srcElem = src->elements; destElem < dest->elements + dest->count;
          destElem++, srcElem++) {
-        Collider_InitJntSphElement(globalCtx, destElem);
-        Collider_SetJntSphElement(globalCtx, destElem, srcElem);
+        Collider_InitJntSphElement(state, destElem);
+        Collider_SetJntSphElement(state, destElem, srcElem);
     }
     return 1;
 }
@@ -390,12 +390,12 @@ s32 Collider_SetJntSphToActor(GlobalContext* globalCtx, ColliderJntSph* dest, Co
  * Sets up the ColliderJntSph using the values in src and dynamically allocates the element array. Uses default
  * OC2_TYPE_1. Only used by En_Nwc, an unused and unfinished actor.
  */
-s32 Collider_SetJntSphAllocType1(GlobalContext* globalCtx, ColliderJntSph* dest, Actor* actor,
+s32 Collider_SetJntSphAllocType1(GameState* state, ColliderJntSph* dest, Actor* actor,
                                  ColliderJntSphInitType1* src) {
     ColliderJntSphElement* destElem;
     ColliderJntSphElementInit* srcElem;
 
-    Collider_SetBaseType1(globalCtx, &dest->base, actor, &src->base);
+    Collider_SetBaseType1(state, &dest->base, actor, &src->base);
     dest->count = src->count;
     dest->elements = ZeldaArena_MallocDebug(src->count * sizeof(ColliderJntSphElement), "../z_collision_check.c", 1490);
 
@@ -410,8 +410,8 @@ s32 Collider_SetJntSphAllocType1(GlobalContext* globalCtx, ColliderJntSph* dest,
 
     for (destElem = dest->elements, srcElem = src->elements; destElem < dest->elements + dest->count;
          destElem++, srcElem++) {
-        Collider_InitJntSphElement(globalCtx, destElem);
-        Collider_SetJntSphElement(globalCtx, destElem, srcElem);
+        Collider_InitJntSphElement(state, destElem);
+        Collider_SetJntSphElement(state, destElem, srcElem);
     }
     return 1;
 }
@@ -420,11 +420,11 @@ s32 Collider_SetJntSphAllocType1(GlobalContext* globalCtx, ColliderJntSph* dest,
  * Sets up the ColliderJntSph using the values in src and dynamically allocates the element array.
  * Unused.
  */
-s32 Collider_SetJntSphAlloc(GlobalContext* globalCtx, ColliderJntSph* dest, Actor* actor, ColliderJntSphInit* src) {
+s32 Collider_SetJntSphAlloc(GameState* state, ColliderJntSph* dest, Actor* actor, ColliderJntSphInit* src) {
     ColliderJntSphElement* destElem;
     ColliderJntSphElementInit* srcElem;
 
-    Collider_SetBase(globalCtx, &dest->base, actor, &src->base);
+    Collider_SetBase(state, &dest->base, actor, &src->base);
     dest->count = src->count;
     dest->elements = ZeldaArena_MallocDebug(src->count * sizeof(ColliderJntSphElement), "../z_collision_check.c", 1551);
 
@@ -438,8 +438,8 @@ s32 Collider_SetJntSphAlloc(GlobalContext* globalCtx, ColliderJntSph* dest, Acto
     }
     for (destElem = dest->elements, srcElem = src->elements; destElem < dest->elements + dest->count;
          destElem++, srcElem++) {
-        Collider_InitJntSphElement(globalCtx, destElem);
-        Collider_SetJntSphElement(globalCtx, destElem, srcElem);
+        Collider_InitJntSphElement(state, destElem);
+        Collider_SetJntSphElement(state, destElem, srcElem);
     }
     return 1;
 }
@@ -447,20 +447,20 @@ s32 Collider_SetJntSphAlloc(GlobalContext* globalCtx, ColliderJntSph* dest, Acto
 /**
  * Sets up the ColliderJntSph using the values in src, placing the element array in elements.
  */
-s32 Collider_SetJntSph(GlobalContext* globalCtx, ColliderJntSph* dest, Actor* actor, ColliderJntSphInit* src,
+s32 Collider_SetJntSph(GameState* state, ColliderJntSph* dest, Actor* actor, ColliderJntSphInit* src,
                        ColliderJntSphElement* elements) {
     ColliderJntSphElement* destElem;
     ColliderJntSphElementInit* srcElem;
 
-    Collider_SetBase(globalCtx, &dest->base, actor, &src->base);
+    Collider_SetBase(state, &dest->base, actor, &src->base);
     dest->count = src->count;
     dest->elements = elements;
     ASSERT(dest->elements != NULL, "pclobj_jntsph->elem_tbl != NULL", "../z_collision_check.c", 1603);
 
     for (destElem = dest->elements, srcElem = src->elements; destElem < dest->elements + dest->count;
          destElem++, srcElem++) {
-        Collider_InitJntSphElement(globalCtx, destElem);
-        Collider_SetJntSphElement(globalCtx, destElem, srcElem);
+        Collider_InitJntSphElement(state, destElem);
+        Collider_SetJntSphElement(state, destElem, srcElem);
     }
     return 1;
 }
@@ -468,14 +468,14 @@ s32 Collider_SetJntSph(GlobalContext* globalCtx, ColliderJntSph* dest, Actor* ac
 /**
  * Resets the collider's AT collision flags.
  */
-s32 Collider_ResetJntSphAT(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetJntSphAT(GameState* state, Collider* collider) {
     ColliderJntSphElement* element;
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
 
-    Collider_ResetATBase(globalCtx, &jntSph->base);
+    Collider_ResetATBase(state, &jntSph->base);
 
     for (element = jntSph->elements; element < jntSph->elements + jntSph->count; element++) {
-        Collider_ResetJntSphElementAT(globalCtx, element);
+        Collider_ResetJntSphElementAT(state, element);
     }
     return 1;
 }
@@ -483,14 +483,14 @@ s32 Collider_ResetJntSphAT(GlobalContext* globalCtx, Collider* collider) {
 /**
  * Resets the collider's AC collision flags.
  */
-s32 Collider_ResetJntSphAC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetJntSphAC(GameState* state, Collider* collider) {
     ColliderJntSphElement* element;
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
 
-    Collider_ResetACBase(globalCtx, &jntSph->base);
+    Collider_ResetACBase(state, &jntSph->base);
 
     for (element = jntSph->elements; element < jntSph->elements + jntSph->count; element++) {
-        Collider_ResetJntSphElementAC(globalCtx, element);
+        Collider_ResetJntSphElementAC(state, element);
     }
     return 1;
 }
@@ -498,30 +498,30 @@ s32 Collider_ResetJntSphAC(GlobalContext* globalCtx, Collider* collider) {
 /**
  * Resets the collider's OC collision flags.
  */
-s32 Collider_ResetJntSphOC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetJntSphOC(GameState* state, Collider* collider) {
     ColliderJntSphElement* element;
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
 
-    Collider_ResetOCBase(globalCtx, &jntSph->base);
+    Collider_ResetOCBase(state, &jntSph->base);
 
     for (element = jntSph->elements; element < jntSph->elements + jntSph->count; element++) {
-        Collider_ResetJntSphElementOC(globalCtx, element);
+        Collider_ResetJntSphElementOC(state, element);
     }
     return 1;
 }
 
-s32 Collider_InitCylinderDim(GlobalContext* globalCtx, Cylinder16* dim) {
+s32 Collider_InitCylinderDim(GameState* state, Cylinder16* dim) {
     Cylinder16 init = { 0, 0, 0, { 0, 0, 0 } };
 
     *dim = init;
     return 1;
 }
 
-s32 Collider_DestroyCylinderDim(GlobalContext* globalCtx, Cylinder16* dim) {
+s32 Collider_DestroyCylinderDim(GameState* state, Cylinder16* dim) {
     return 1;
 }
 
-s32 Collider_SetCylinderDim(GlobalContext* globalCtx, Cylinder16* dest, Cylinder16* src) {
+s32 Collider_SetCylinderDim(GameState* state, Cylinder16* dest, Cylinder16* src) {
     *dest = *src;
     return 1;
 }
@@ -529,20 +529,20 @@ s32 Collider_SetCylinderDim(GlobalContext* globalCtx, Cylinder16* dest, Cylinder
 /**
  * Initializes a ColliderCylinder to default values
  */
-s32 Collider_InitCylinder(GlobalContext* globalCtx, ColliderCylinder* collider) {
-    Collider_InitBase(globalCtx, &collider->base);
-    Collider_InitInfo(globalCtx, &collider->info);
-    Collider_InitCylinderDim(globalCtx, &collider->dim);
+s32 Collider_InitCylinder(GameState* state, ColliderCylinder* collider) {
+    Collider_InitBase(state, &collider->base);
+    Collider_InitInfo(state, &collider->info);
+    Collider_InitCylinderDim(state, &collider->dim);
     return 1;
 }
 
 /**
  * Destroys a ColliderCylinder
  */
-s32 Collider_DestroyCylinder(GlobalContext* globalCtx, ColliderCylinder* collider) {
-    Collider_DestroyBase(globalCtx, &collider->base);
-    Collider_DestroyInfo(globalCtx, &collider->info);
-    Collider_DestroyCylinderDim(globalCtx, &collider->dim);
+s32 Collider_DestroyCylinder(GameState* state, ColliderCylinder* collider) {
+    Collider_DestroyBase(state, &collider->base);
+    Collider_DestroyInfo(state, &collider->info);
+    Collider_DestroyCylinderDim(state, &collider->dim);
     return 1;
 }
 
@@ -550,70 +550,70 @@ s32 Collider_DestroyCylinder(GlobalContext* globalCtx, ColliderCylinder* collide
  * Sets up the ColliderCylinder using the values in src and sets it to the actor specified in src. Uses default
  * OC2_TYPE_1 and COLTYPE_0. Used only by DekuJr, who sets it to himself anyways.
  */
-s32 Collider_SetCylinderToActor(GlobalContext* globalCtx, ColliderCylinder* collider,
+s32 Collider_SetCylinderToActor(GameState* state, ColliderCylinder* collider,
                                 ColliderCylinderInitToActor* src) {
-    Collider_SetBaseToActor(globalCtx, &collider->base, &src->base);
-    Collider_SetInfo(globalCtx, &collider->info, &src->info);
-    Collider_SetCylinderDim(globalCtx, &collider->dim, &src->dim);
+    Collider_SetBaseToActor(state, &collider->base, &src->base);
+    Collider_SetInfo(state, &collider->info, &src->info);
+    Collider_SetCylinderDim(state, &collider->dim, &src->dim);
     return 1;
 }
 
 /**
  * Sets up the ColliderCylinder using the values in src. Uses default OC2_TYPE_1
  */
-s32 Collider_SetCylinderType1(GlobalContext* globalCtx, ColliderCylinder* collider, Actor* actor,
+s32 Collider_SetCylinderType1(GameState* state, ColliderCylinder* collider, Actor* actor,
                               ColliderCylinderInitType1* src) {
-    Collider_SetBaseType1(globalCtx, &collider->base, actor, &src->base);
-    Collider_SetInfo(globalCtx, &collider->info, &src->info);
-    Collider_SetCylinderDim(globalCtx, &collider->dim, &src->dim);
+    Collider_SetBaseType1(state, &collider->base, actor, &src->base);
+    Collider_SetInfo(state, &collider->info, &src->info);
+    Collider_SetCylinderDim(state, &collider->dim, &src->dim);
     return 1;
 }
 
 /**
  * Sets up the ColliderCylinder using the values in src.
  */
-s32 Collider_SetCylinder(GlobalContext* globalCtx, ColliderCylinder* collider, Actor* actor,
+s32 Collider_SetCylinder(GameState* state, ColliderCylinder* collider, Actor* actor,
                          ColliderCylinderInit* src) {
-    Collider_SetBase(globalCtx, &collider->base, actor, &src->base);
-    Collider_SetInfo(globalCtx, &collider->info, &src->info);
-    Collider_SetCylinderDim(globalCtx, &collider->dim, &src->dim);
+    Collider_SetBase(state, &collider->base, actor, &src->base);
+    Collider_SetInfo(state, &collider->info, &src->info);
+    Collider_SetCylinderDim(state, &collider->dim, &src->dim);
     return 1;
 }
 
 /**
  * Resets the collider's AT collision flags.
  */
-s32 Collider_ResetCylinderAT(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetCylinderAT(GameState* state, Collider* collider) {
     ColliderCylinder* cylinder = (ColliderCylinder*)collider;
 
-    Collider_ResetATBase(globalCtx, &cylinder->base);
-    Collider_ResetATInfo(globalCtx, &cylinder->info);
+    Collider_ResetATBase(state, &cylinder->base);
+    Collider_ResetATInfo(state, &cylinder->info);
     return 1;
 }
 
 /**
  * Resets the collider's AC collision flags.
  */
-s32 Collider_ResetCylinderAC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetCylinderAC(GameState* state, Collider* collider) {
     ColliderCylinder* cylinder = (ColliderCylinder*)collider;
 
-    Collider_ResetACBase(globalCtx, &cylinder->base);
-    Collider_ResetACInfo(globalCtx, &cylinder->info);
+    Collider_ResetACBase(state, &cylinder->base);
+    Collider_ResetACInfo(state, &cylinder->info);
     return 1;
 }
 
 /**
  * Resets the collider's OC collision flags.
  */
-s32 Collider_ResetCylinderOC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetCylinderOC(GameState* state, Collider* collider) {
     ColliderCylinder* cylinder = (ColliderCylinder*)collider;
 
-    Collider_ResetOCBase(globalCtx, &cylinder->base);
-    Collider_ResetOCInfo(globalCtx, &cylinder->info);
+    Collider_ResetOCBase(state, &cylinder->base);
+    Collider_ResetOCInfo(state, &cylinder->info);
     return 1;
 }
 
-s32 Collider_InitTrisElementDim(GlobalContext* globalCtx, TriNorm* dim) {
+s32 Collider_InitTrisElementDim(GameState* state, TriNorm* dim) {
     static TriNorm init = {
         { { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f } },
         { { 0.0f, 0.0f, 0.0f }, 0.0f },
@@ -623,11 +623,11 @@ s32 Collider_InitTrisElementDim(GlobalContext* globalCtx, TriNorm* dim) {
     return 1;
 }
 
-s32 Collider_DestroyTrisElementDim(GlobalContext* globalCtx, TriNorm* dim) {
+s32 Collider_DestroyTrisElementDim(GameState* state, TriNorm* dim) {
     return 1;
 }
 
-s32 Collider_SetTrisElementDim(GlobalContext* globalCtx, TriNorm* dest, ColliderTrisElementDimInit* src) {
+s32 Collider_SetTrisElementDim(GameState* state, TriNorm* dest, ColliderTrisElementDimInit* src) {
     Vec3f* destVtx;
     Vec3f* srcVtx;
     f32 nx;
@@ -648,44 +648,44 @@ s32 Collider_SetTrisElementDim(GlobalContext* globalCtx, TriNorm* dest, Collider
     return 1;
 }
 
-s32 Collider_InitTrisElement(GlobalContext* globalCtx, ColliderTrisElement* collider) {
-    Collider_InitInfo(globalCtx, &collider->info);
-    Collider_InitTrisElementDim(globalCtx, &collider->dim);
+s32 Collider_InitTrisElement(GameState* state, ColliderTrisElement* collider) {
+    Collider_InitInfo(state, &collider->info);
+    Collider_InitTrisElementDim(state, &collider->dim);
     return 1;
 }
 
-s32 Collider_DestroyTrisElement(GlobalContext* globalCtx, ColliderTrisElement* collider) {
-    Collider_DestroyInfo(globalCtx, &collider->info);
-    Collider_DestroyTrisElementDim(globalCtx, &collider->dim);
+s32 Collider_DestroyTrisElement(GameState* state, ColliderTrisElement* collider) {
+    Collider_DestroyInfo(state, &collider->info);
+    Collider_DestroyTrisElementDim(state, &collider->dim);
     return 1;
 }
 
-s32 Collider_SetTrisElement(GlobalContext* globalCtx, ColliderTrisElement* dest, ColliderTrisElementInit* src) {
-    Collider_SetInfo(globalCtx, &dest->info, &src->info);
-    Collider_SetTrisElementDim(globalCtx, &dest->dim, &src->dim);
+s32 Collider_SetTrisElement(GameState* state, ColliderTrisElement* dest, ColliderTrisElementInit* src) {
+    Collider_SetInfo(state, &dest->info, &src->info);
+    Collider_SetTrisElementDim(state, &dest->dim, &src->dim);
     return 1;
 }
 
-s32 Collider_ResetTrisElementAT(GlobalContext* globalCtx, ColliderTrisElement* element) {
-    Collider_ResetATInfo(globalCtx, &element->info);
+s32 Collider_ResetTrisElementAT(GameState* state, ColliderTrisElement* element) {
+    Collider_ResetATInfo(state, &element->info);
     return 1;
 }
 
-s32 Collider_ResetTrisElementAC(GlobalContext* globalCtx, ColliderTrisElement* element) {
-    Collider_ResetACInfo(globalCtx, &element->info);
+s32 Collider_ResetTrisElementAC(GameState* state, ColliderTrisElement* element) {
+    Collider_ResetACInfo(state, &element->info);
     return 1;
 }
 
-s32 Collider_ResetTrisElementOC(GlobalContext* globalCtx, ColliderTrisElement* element) {
-    Collider_ResetOCInfo(globalCtx, &element->info);
+s32 Collider_ResetTrisElementOC(GameState* state, ColliderTrisElement* element) {
+    Collider_ResetOCInfo(state, &element->info);
     return 1;
 }
 
 /**
  * Initializes a ColliderTris to default values
  */
-s32 Collider_InitTris(GlobalContext* globalCtx, ColliderTris* tris) {
-    Collider_InitBase(globalCtx, &tris->base);
+s32 Collider_InitTris(GameState* state, ColliderTris* tris) {
+    Collider_InitBase(state, &tris->base);
     tris->count = 0;
     tris->elements = 0;
     return 1;
@@ -695,12 +695,12 @@ s32 Collider_InitTris(GlobalContext* globalCtx, ColliderTris* tris) {
  * Destroys a dynamically allocated ColliderTris
  * Unused
  */
-s32 Collider_FreeTris(GlobalContext* globalCtx, ColliderTris* tris) {
+s32 Collider_FreeTris(GameState* state, ColliderTris* tris) {
     ColliderTrisElement* element;
 
-    Collider_DestroyBase(globalCtx, &tris->base);
+    Collider_DestroyBase(state, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
-        Collider_DestroyTrisElement(globalCtx, element);
+        Collider_DestroyTrisElement(state, element);
     }
 
     tris->count = 0;
@@ -714,12 +714,12 @@ s32 Collider_FreeTris(GlobalContext* globalCtx, ColliderTris* tris) {
 /**
  * Destroys a preallocated ColliderTris
  */
-s32 Collider_DestroyTris(GlobalContext* globalCtx, ColliderTris* tris) {
+s32 Collider_DestroyTris(GameState* state, ColliderTris* tris) {
     ColliderTrisElement* element;
 
-    Collider_DestroyBase(globalCtx, &tris->base);
+    Collider_DestroyBase(state, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
-        Collider_DestroyTrisElement(globalCtx, element);
+        Collider_DestroyTrisElement(state, element);
     }
 
     tris->count = 0;
@@ -731,11 +731,11 @@ s32 Collider_DestroyTris(GlobalContext* globalCtx, ColliderTris* tris) {
  * Sets up the ColliderTris using the values in src and dynamically allocates the element array. Uses default OC2_TYPE_1
  * Unused.
  */
-s32 Collider_SetTrisAllocType1(GlobalContext* globalCtx, ColliderTris* dest, Actor* actor, ColliderTrisInitType1* src) {
+s32 Collider_SetTrisAllocType1(GameState* state, ColliderTris* dest, Actor* actor, ColliderTrisInitType1* src) {
     ColliderTrisElement* destElem;
     ColliderTrisElementInit* srcElem;
 
-    Collider_SetBaseType1(globalCtx, &dest->base, actor, &src->base);
+    Collider_SetBaseType1(state, &dest->base, actor, &src->base);
     dest->count = src->count;
     dest->elements = ZeldaArena_MallocDebug(dest->count * sizeof(ColliderTrisElement), "../z_collision_check.c", 2156);
     if (dest->elements == NULL) {
@@ -748,8 +748,8 @@ s32 Collider_SetTrisAllocType1(GlobalContext* globalCtx, ColliderTris* dest, Act
     }
     for (destElem = dest->elements, srcElem = src->elements; destElem < dest->elements + dest->count;
          destElem++, srcElem++) {
-        Collider_InitTrisElement(globalCtx, destElem);
-        Collider_SetTrisElement(globalCtx, destElem, srcElem);
+        Collider_InitTrisElement(state, destElem);
+        Collider_SetTrisElement(state, destElem, srcElem);
     }
     return 1;
 }
@@ -758,11 +758,11 @@ s32 Collider_SetTrisAllocType1(GlobalContext* globalCtx, ColliderTris* dest, Act
  * Sets up the ColliderTris using the values in src and dynamically allocates the element array.
  * Unused
  */
-s32 Collider_SetTrisAlloc(GlobalContext* globalCtx, ColliderTris* dest, Actor* actor, ColliderTrisInit* src) {
+s32 Collider_SetTrisAlloc(GameState* state, ColliderTris* dest, Actor* actor, ColliderTrisInit* src) {
     ColliderTrisElement* destElem;
     ColliderTrisElementInit* srcElem;
 
-    Collider_SetBase(globalCtx, &dest->base, actor, &src->base);
+    Collider_SetBase(state, &dest->base, actor, &src->base);
     dest->count = src->count;
     dest->elements = ZeldaArena_MallocDebug(dest->count * sizeof(ColliderTrisElement), "../z_collision_check.c", 2207);
 
@@ -777,8 +777,8 @@ s32 Collider_SetTrisAlloc(GlobalContext* globalCtx, ColliderTris* dest, Actor* a
 
     for (destElem = dest->elements, srcElem = src->elements; destElem < dest->elements + dest->count;
          destElem++, srcElem++) {
-        Collider_InitTrisElement(globalCtx, destElem);
-        Collider_SetTrisElement(globalCtx, destElem, srcElem);
+        Collider_InitTrisElement(state, destElem);
+        Collider_SetTrisElement(state, destElem, srcElem);
     }
     return 1;
 }
@@ -786,20 +786,20 @@ s32 Collider_SetTrisAlloc(GlobalContext* globalCtx, ColliderTris* dest, Actor* a
 /**
  * Sets up the ColliderTris using the values in src, placing the element array in elements.
  */
-s32 Collider_SetTris(GlobalContext* globalCtx, ColliderTris* dest, Actor* actor, ColliderTrisInit* src,
+s32 Collider_SetTris(GameState* state, ColliderTris* dest, Actor* actor, ColliderTrisInit* src,
                      ColliderTrisElement* elements) {
     ColliderTrisElement* destElem;
     ColliderTrisElementInit* srcElem;
 
-    Collider_SetBase(globalCtx, &dest->base, actor, &src->base);
+    Collider_SetBase(state, &dest->base, actor, &src->base);
     dest->count = src->count;
     dest->elements = elements;
     ASSERT(dest->elements != NULL, "pclobj_tris->elem_tbl != NULL", "../z_collision_check.c", 2258);
 
     for (destElem = dest->elements, srcElem = src->elements; destElem < dest->elements + dest->count;
          destElem++, srcElem++) {
-        Collider_InitTrisElement(globalCtx, destElem);
-        Collider_SetTrisElement(globalCtx, destElem, srcElem);
+        Collider_InitTrisElement(state, destElem);
+        Collider_SetTrisElement(state, destElem, srcElem);
     }
     return 1;
 }
@@ -807,13 +807,13 @@ s32 Collider_SetTris(GlobalContext* globalCtx, ColliderTris* dest, Actor* actor,
 /**
  * Resets the collider's AT collision flags.
  */
-s32 Collider_ResetTrisAT(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetTrisAT(GameState* state, Collider* collider) {
     ColliderTrisElement* element;
     ColliderTris* tris = (ColliderTris*)collider;
 
-    Collider_ResetATBase(globalCtx, &tris->base);
+    Collider_ResetATBase(state, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
-        Collider_ResetTrisElementAT(globalCtx, element);
+        Collider_ResetTrisElementAT(state, element);
     }
     return 1;
 }
@@ -821,13 +821,13 @@ s32 Collider_ResetTrisAT(GlobalContext* globalCtx, Collider* collider) {
 /**
  * Resets the collider's AC collision flags.
  */
-s32 Collider_ResetTrisAC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetTrisAC(GameState* state, Collider* collider) {
     ColliderTrisElement* element;
     ColliderTris* tris = (ColliderTris*)collider;
 
-    Collider_ResetACBase(globalCtx, &tris->base);
+    Collider_ResetACBase(state, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
-        Collider_ResetTrisElementAC(globalCtx, element);
+        Collider_ResetTrisElementAC(state, element);
     }
     return 1;
 }
@@ -835,18 +835,18 @@ s32 Collider_ResetTrisAC(GlobalContext* globalCtx, Collider* collider) {
 /**
  * Resets the collider's OC collision flags.
  */
-s32 Collider_ResetTrisOC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetTrisOC(GameState* state, Collider* collider) {
     ColliderTrisElement* element;
     ColliderTris* tris = (ColliderTris*)collider;
 
-    Collider_ResetOCBase(globalCtx, &tris->base);
+    Collider_ResetOCBase(state, &tris->base);
     for (element = tris->elements; element < tris->elements + tris->count; element++) {
-        Collider_ResetTrisElementOC(globalCtx, element);
+        Collider_ResetTrisElementOC(state, element);
     }
     return 1;
 }
 
-s32 Collider_InitQuadDim(GlobalContext* globalCtx, ColliderQuadDim* dim) {
+s32 Collider_InitQuadDim(GameState* state, ColliderQuadDim* dim) {
     static ColliderQuadDim init = {
         { { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 0.0f } },
         { 0, 0, 0 },
@@ -858,11 +858,11 @@ s32 Collider_InitQuadDim(GlobalContext* globalCtx, ColliderQuadDim* dim) {
     return 1;
 }
 
-s32 Collider_DestroyQuadDim(GlobalContext* globalCtx, ColliderQuadDim* dim) {
+s32 Collider_DestroyQuadDim(GameState* state, ColliderQuadDim* dim) {
     return 1;
 }
 
-s32 Collider_ResetQuadACDist(GlobalContext* globalCtx, ColliderQuadDim* dim) {
+s32 Collider_ResetQuadACDist(GameState* state, ColliderQuadDim* dim) {
     dim->acDist = 1.0E38f;
     return 1;
 }
@@ -876,7 +876,7 @@ void Collider_SetQuadMidpoints(ColliderQuadDim* dim) {
     dim->baMid.z = (dim->quad[1].z + dim->quad[0].z) * 0.5f;
 }
 
-s32 Collider_SetQuadDim(GlobalContext* globalCtx, ColliderQuadDim* dest, ColliderQuadDimInit* src) {
+s32 Collider_SetQuadDim(GameState* state, ColliderQuadDim* dest, ColliderQuadDimInit* src) {
     dest->quad[0] = src->quad[0];
     dest->quad[1] = src->quad[1];
     dest->quad[2] = src->quad[2];
@@ -888,74 +888,74 @@ s32 Collider_SetQuadDim(GlobalContext* globalCtx, ColliderQuadDim* dest, Collide
 /**
  * Initializes a ColliderQuad to default values.
  */
-s32 Collider_InitQuad(GlobalContext* globalCtx, ColliderQuad* collider) {
-    Collider_InitBase(globalCtx, &collider->base);
-    Collider_InitInfo(globalCtx, &collider->info);
-    Collider_InitQuadDim(globalCtx, &collider->dim);
+s32 Collider_InitQuad(GameState* state, ColliderQuad* collider) {
+    Collider_InitBase(state, &collider->base);
+    Collider_InitInfo(state, &collider->info);
+    Collider_InitQuadDim(state, &collider->dim);
     return 1;
 }
 
 /**
  * Destroys a ColliderQuad.
  */
-s32 Collider_DestroyQuad(GlobalContext* globalCtx, ColliderQuad* collider) {
-    Collider_DestroyBase(globalCtx, &collider->base);
-    Collider_DestroyInfo(globalCtx, &collider->info);
-    Collider_DestroyQuadDim(globalCtx, &collider->dim);
+s32 Collider_DestroyQuad(GameState* state, ColliderQuad* collider) {
+    Collider_DestroyBase(state, &collider->base);
+    Collider_DestroyInfo(state, &collider->info);
+    Collider_DestroyQuadDim(state, &collider->dim);
     return 1;
 }
 
 /**
  * Sets up the ColliderQuad using the values in src. Uses the default OC2_TYPE_1
  */
-s32 Collider_SetQuadType1(GlobalContext* globalCtx, ColliderQuad* collider, Actor* actor, ColliderQuadInitType1* src) {
-    Collider_SetBaseType1(globalCtx, &collider->base, actor, &src->base);
-    Collider_SetInfo(globalCtx, &collider->info, &src->info);
-    Collider_SetQuadDim(globalCtx, &collider->dim, &src->dim);
+s32 Collider_SetQuadType1(GameState* state, ColliderQuad* collider, Actor* actor, ColliderQuadInitType1* src) {
+    Collider_SetBaseType1(state, &collider->base, actor, &src->base);
+    Collider_SetInfo(state, &collider->info, &src->info);
+    Collider_SetQuadDim(state, &collider->dim, &src->dim);
     return 1;
 }
 
 /**
  * Sets up the ColliderQuad using the values in src.
  */
-s32 Collider_SetQuad(GlobalContext* globalCtx, ColliderQuad* collider, Actor* actor, ColliderQuadInit* src) {
-    Collider_SetBase(globalCtx, &collider->base, actor, &src->base);
-    Collider_SetInfo(globalCtx, &collider->info, &src->info);
-    Collider_SetQuadDim(globalCtx, &collider->dim, &src->dim);
+s32 Collider_SetQuad(GameState* state, ColliderQuad* collider, Actor* actor, ColliderQuadInit* src) {
+    Collider_SetBase(state, &collider->base, actor, &src->base);
+    Collider_SetInfo(state, &collider->info, &src->info);
+    Collider_SetQuadDim(state, &collider->dim, &src->dim);
     return 1;
 }
 
 /**
  * Resets the collider's AT collision flags.
  */
-s32 Collider_ResetQuadAT(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetQuadAT(GameState* state, Collider* collider) {
     ColliderQuad* quad = (ColliderQuad*)collider;
 
-    Collider_ResetATBase(globalCtx, &quad->base);
-    Collider_ResetATInfo(globalCtx, &quad->info);
-    Collider_ResetQuadACDist(globalCtx, &quad->dim);
+    Collider_ResetATBase(state, &quad->base);
+    Collider_ResetATInfo(state, &quad->info);
+    Collider_ResetQuadACDist(state, &quad->dim);
     return 1;
 }
 
 /**
  * Resets the collider's AC collision flags.
  */
-s32 Collider_ResetQuadAC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetQuadAC(GameState* state, Collider* collider) {
     ColliderQuad* quad = (ColliderQuad*)collider;
 
-    Collider_ResetACBase(globalCtx, &quad->base);
-    Collider_ResetACInfo(globalCtx, &quad->info);
+    Collider_ResetACBase(state, &quad->base);
+    Collider_ResetACInfo(state, &quad->info);
     return 1;
 }
 
 /**
  * Resets the collider's OC collision flags.
  */
-s32 Collider_ResetQuadOC(GlobalContext* globalCtx, Collider* collider) {
+s32 Collider_ResetQuadOC(GameState* state, Collider* collider) {
     ColliderQuad* quad = (ColliderQuad*)collider;
 
-    Collider_ResetOCBase(globalCtx, &quad->base);
-    Collider_ResetOCInfo(globalCtx, &quad->info);
+    Collider_ResetOCBase(state, &quad->base);
+    Collider_ResetOCInfo(state, &quad->info);
     return 1;
 }
 
@@ -963,7 +963,7 @@ s32 Collider_ResetQuadOC(GlobalContext* globalCtx, Collider* collider) {
  * For quad colliders with AT_NEAREST, resets the previous AC collider it hit if the current element is closer,
  * otherwise returns false. Used on player AT colliders to prevent multiple collisions from registering.
  */
-s32 Collider_QuadSetNearestAC(GlobalContext* globalCtx, ColliderQuad* quad, Vec3f* hitPos) {
+s32 Collider_QuadSetNearestAC(GameState* state, ColliderQuad* quad, Vec3f* hitPos) {
     f32 acDist;
     Vec3f dcMid;
 
@@ -975,10 +975,10 @@ s32 Collider_QuadSetNearestAC(GlobalContext* globalCtx, ColliderQuad* quad, Vec3
     if (acDist < quad->dim.acDist) {
         quad->dim.acDist = acDist;
         if (quad->info.atHit != NULL) {
-            Collider_ResetACBase(globalCtx, quad->info.atHit);
+            Collider_ResetACBase(state, quad->info.atHit);
         }
         if (quad->info.atHitInfo != NULL) {
-            Collider_ResetACInfo(globalCtx, quad->info.atHitInfo);
+            Collider_ResetACInfo(state, quad->info.atHitInfo);
         }
         return true;
     }
@@ -989,7 +989,7 @@ s32 Collider_QuadSetNearestAC(GlobalContext* globalCtx, ColliderQuad* quad, Vec3
  * Initializes an OcLine to default values
  * OcLines are entirely unused.
  */
-s32 Collider_InitLine(GlobalContext* globalCtx, OcLine* line) {
+s32 Collider_InitLine(GameState* state, OcLine* line) {
     Vec3f init = { 0.0f, 0.0f, 0.0f };
 
     Math_Vec3f_Copy(&line->line.a, &init);
@@ -1001,7 +1001,7 @@ s32 Collider_InitLine(GlobalContext* globalCtx, OcLine* line) {
  * Destroys an OcLine
  * OcLines are entirely unused.
  */
-s32 Collider_DestroyLine(GlobalContext* globalCtx, OcLine* line) {
+s32 Collider_DestroyLine(GameState* state, OcLine* line) {
     return 1;
 }
 
@@ -1009,7 +1009,7 @@ s32 Collider_DestroyLine(GlobalContext* globalCtx, OcLine* line) {
  * Sets up an OcLine with endpoints a and b.
  * OcLines are entirely unused.
  */
-s32 Collider_SetLinePoints(GlobalContext* GlobalContext, OcLine* ocLine, Vec3f* a, Vec3f* b) {
+s32 Collider_SetLinePoints(GameState* state, OcLine* ocLine, Vec3f* a, Vec3f* b) {
     Math_Vec3f_Copy(&ocLine->line.a, a);
     Math_Vec3f_Copy(&ocLine->line.b, b);
     return 1;
@@ -1019,9 +1019,9 @@ s32 Collider_SetLinePoints(GlobalContext* GlobalContext, OcLine* ocLine, Vec3f* 
  * Sets up an OcLine using the values in src.
  * OcLines are entirely unused.
  */
-s32 Collider_SetLine(GlobalContext* globalCtx, OcLine* dest, OcLine* src) {
+s32 Collider_SetLine(GameState* state, OcLine* dest, OcLine* src) {
     dest->ocFlags = src->ocFlags;
-    Collider_SetLinePoints(globalCtx, dest, &src->line.a, &src->line.b);
+    Collider_SetLinePoints(state, dest, &src->line.a, &src->line.b);
     return 1;
 }
 
@@ -1029,7 +1029,7 @@ s32 Collider_SetLine(GlobalContext* globalCtx, OcLine* dest, OcLine* src) {
  * Resets the OcLine's collision flags.
  * OcLines are entirely unused.
  */
-s32 Collider_ResetLineOC(GlobalContext* globalCtx, OcLine* line) {
+s32 Collider_ResetLineOC(GameState* state, OcLine* line) {
     line->ocFlags &= ~OCLINE_HIT;
     return 1;
 }
@@ -1037,21 +1037,21 @@ s32 Collider_ResetLineOC(GlobalContext* globalCtx, OcLine* line) {
 /**
  * Initializes CollisionCheckContext. Clears all collider arrays, disables SAC, and sets flags for drawing colliders.
  */
-void CollisionCheck_InitContext(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_InitContext(GameState* state, CollisionCheckContext* colChkCtx) {
     colChkCtx->sacFlags = 0;
-    CollisionCheck_ClearContext(globalCtx, colChkCtx);
+    CollisionCheck_ClearContext(state, colChkCtx);
     AREG(21) = true;
     AREG(22) = true;
     AREG(23) = true;
 }
 
-void CollisionCheck_DestroyContext(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_DestroyContext(GameState* state, CollisionCheckContext* colChkCtx) {
 }
 
 /**
  * Clears all collider lists in CollisionCheckContext when not in SAC mode.
  */
-void CollisionCheck_ClearContext(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_ClearContext(GameState* state, CollisionCheckContext* colChkCtx) {
     Collider** col;
     OcLine** line;
 
@@ -1081,14 +1081,14 @@ void CollisionCheck_ClearContext(GlobalContext* globalCtx, CollisionCheckContext
 /**
  * Enables SAC, an alternate collision check mode that allows direct management of collider lists. Unused.
  */
-void CollisionCheck_EnableSAC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_EnableSAC(GameState* state, CollisionCheckContext* colChkCtx) {
     colChkCtx->sacFlags |= AC_ON;
 }
 
 /**
  * Disables SAC, an alternate collision check mode that allows direct management of collider lists. Unused.
  */
-void CollisionCheck_DisableSAC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_DisableSAC(GameState* state, CollisionCheckContext* colChkCtx) {
     colChkCtx->sacFlags &= ~AC_ON;
 }
 
@@ -1096,7 +1096,7 @@ void CollisionCheck_DisableSAC(GlobalContext* globalCtx, CollisionCheckContext* 
  * Draws a collider of any shape.
  * Math3D_DrawSphere and Math3D_DrawCylinder are noops, so JntSph and Cylinder are not drawn.
  */
-void Collider_Draw(GlobalContext* globalCtx, Collider* collider) {
+void Collider_Draw(GameState* state, Collider* collider) {
     ColliderJntSph* jntSph;
     ColliderCylinder* cylinder;
     ColliderTris* tris;
@@ -1110,24 +1110,24 @@ void Collider_Draw(GlobalContext* globalCtx, Collider* collider) {
         case COLSHAPE_JNTSPH:
             jntSph = (ColliderJntSph*)collider;
             for (i = 0; i < jntSph->count; i++) {
-                Math3D_DrawSphere(globalCtx, &jntSph->elements[i].dim.worldSphere);
+                Math3D_DrawSphere(state, &jntSph->elements[i].dim.worldSphere);
             }
             break;
         case COLSHAPE_CYLINDER:
             cylinder = (ColliderCylinder*)collider;
-            Math3D_DrawCylinder(globalCtx, &cylinder->dim);
+            Math3D_DrawCylinder(state, &cylinder->dim);
             break;
         case COLSHAPE_TRIS:
             tris = (ColliderTris*)collider;
             for (i = 0; i < tris->count; i++) {
-                Collider_DrawRedPoly(globalCtx->state.gfxCtx, &tris->elements[i].dim.vtx[0],
+                Collider_DrawRedPoly(state->gfxCtx, &tris->elements[i].dim.vtx[0],
                                      &tris->elements[i].dim.vtx[1], &tris->elements[i].dim.vtx[2]);
             }
             break;
         case COLSHAPE_QUAD:
             quad = (ColliderQuad*)collider;
-            Collider_DrawRedPoly(globalCtx->state.gfxCtx, &quad->dim.quad[2], &quad->dim.quad[3], &quad->dim.quad[1]);
-            Collider_DrawRedPoly(globalCtx->state.gfxCtx, &quad->dim.quad[1], &quad->dim.quad[0], &quad->dim.quad[2]);
+            Collider_DrawRedPoly(state->gfxCtx, &quad->dim.quad[2], &quad->dim.quad[3], &quad->dim.quad[1]);
+            Collider_DrawRedPoly(state->gfxCtx, &quad->dim.quad[1], &quad->dim.quad[0], &quad->dim.quad[2]);
             break;
     }
 }
@@ -1136,34 +1136,35 @@ void Collider_Draw(GlobalContext* globalCtx, Collider* collider) {
  * Draws collision if AREG(15) and other AREGs are set. AREG(21) draws AT colliders, AREG(22) draws AC colliders,
  * AREG(23) draws OC colliders, AREG(24) draws dynapolys, and AREG(25) draws bg polys
  */
-void CollisionCheck_DrawCollision(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_DrawCollision(GameState* state, CollisionCheckContext* colChkCtx) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
     Collider* collider;
     s32 i;
 
     if (AREG(15)) {
         if (AREG(21)) {
             for (i = 0; i < colChkCtx->colATCount; i++) {
-                Collider_Draw(globalCtx, colChkCtx->colAT[i]);
+                Collider_Draw(state, colChkCtx->colAT[i]);
             }
         }
         if (AREG(22)) {
             for (i = 0; i < colChkCtx->colACCount; i++) {
-                Collider_Draw(globalCtx, colChkCtx->colAC[i]);
+                Collider_Draw(state, colChkCtx->colAC[i]);
             }
         }
         if (AREG(23)) {
             for (i = 0; i < colChkCtx->colOCCount; i++) {
                 collider = colChkCtx->colOC[i];
                 if (collider->ocFlags1 & OC1_ON) {
-                    Collider_Draw(globalCtx, collider);
+                    Collider_Draw(state, collider);
                 }
             }
         }
         if (AREG(24)) {
-            BgCheck_DrawDynaCollision(globalCtx, &globalCtx->colCtx);
+            BgCheck_DrawDynaCollision(state, &globalCtx->colCtx);
         }
         if (AREG(25)) {
-            BgCheck_DrawStaticCollision(globalCtx, &globalCtx->colCtx);
+            BgCheck_DrawStaticCollision(state, &globalCtx->colCtx);
         }
     }
 }
@@ -1179,14 +1180,14 @@ static ColChkResetFunc sATResetFuncs[] = {
  * Sets collider as an AT (attack) for the current frame, which will be checked against ACs (attack colliders)
  * The last argument takes a Collider, so pass collider.base rather than the raw collider.
  */
-s32 CollisionCheck_SetAT(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+s32 CollisionCheck_SetAT(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     s32 index;
 
-    if (FrameAdvance_IsEnabled(globalCtx) == true) {
+    if (FrameAdvance_IsEnabled(state) == true) {
         return -1;
     }
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 2997);
-    sATResetFuncs[collider->shape](globalCtx, collider);
+    sATResetFuncs[collider->shape](state, collider);
     if (collider->actor != NULL && collider->actor->update == NULL) {
         return -1;
     }
@@ -1208,13 +1209,13 @@ s32 CollisionCheck_SetAT(GlobalContext* globalCtx, CollisionCheckContext* colChk
  * If CollisionCheck_SAC is enabled, the collider will be inserted into the list at the specified index, otherwise it
  * will be inserted into the next slot
  */
-s32 CollisionCheck_SetAT_SAC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider,
+s32 CollisionCheck_SetAT_SAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                              s32 index) {
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3037);
-    if (FrameAdvance_IsEnabled(globalCtx) == true) {
+    if (FrameAdvance_IsEnabled(state) == true) {
         return -1;
     }
-    sATResetFuncs[collider->shape](globalCtx, collider);
+    sATResetFuncs[collider->shape](state, collider);
     if (collider->actor != NULL && collider->actor->update == NULL) {
         return -1;
     }
@@ -1248,14 +1249,14 @@ static ColChkResetFunc sACResetFuncs[] = {
  * Sets collider as an AC (attack collider) for the current frame, allowing it to detect ATs (attacks)
  * The last argument takes a Collider, so pass collider.base rather than the raw collider.
  */
-s32 CollisionCheck_SetAC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+s32 CollisionCheck_SetAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     s32 index;
 
-    if (FrameAdvance_IsEnabled(globalCtx) == true) {
+    if (FrameAdvance_IsEnabled(state) == true) {
         return -1;
     }
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3114);
-    sACResetFuncs[collider->shape](globalCtx, collider);
+    sACResetFuncs[collider->shape](state, collider);
     if (collider->actor != NULL && collider->actor->update == NULL) {
         return -1;
     }
@@ -1277,13 +1278,13 @@ s32 CollisionCheck_SetAC(GlobalContext* globalCtx, CollisionCheckContext* colChk
  * If CollisionCheck_SAC is enabled, the collider will be inserted into the list at the specified index, otherwise it
  * will be inserted into the next slot
  */
-s32 CollisionCheck_SetAC_SAC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider,
+s32 CollisionCheck_SetAC_SAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                              s32 index) {
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3153);
-    if (FrameAdvance_IsEnabled(globalCtx) == true) {
+    if (FrameAdvance_IsEnabled(state) == true) {
         return -1;
     }
-    sACResetFuncs[collider->shape](globalCtx, collider);
+    sACResetFuncs[collider->shape](state, collider);
     if (collider->actor != NULL && collider->actor->update == NULL) {
         return -1;
     }
@@ -1317,16 +1318,16 @@ static ColChkResetFunc sOCResetFuncs[] = {
  * Sets collider as an OC (object collider) for the current frame, allowing it to detect other OCs
  * The last argument takes a Collider, so pass collider.base rather than the raw collider.
  */
-s32 CollisionCheck_SetOC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+s32 CollisionCheck_SetOC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     s32 index;
 
-    if (FrameAdvance_IsEnabled(globalCtx) == true) {
+    if (FrameAdvance_IsEnabled(state) == true) {
         return -1;
     }
 
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3229);
 
-    sOCResetFuncs[collider->shape](globalCtx, collider);
+    sOCResetFuncs[collider->shape](state, collider);
     if (collider->actor != NULL && collider->actor->update == NULL) {
         return -1;
     }
@@ -1348,13 +1349,13 @@ s32 CollisionCheck_SetOC(GlobalContext* globalCtx, CollisionCheckContext* colChk
  * If CollisionCheck_SAC is enabled, the collider will be inserted into the list at the specified index, otherwise it
  * will be inserted into the next slot
  */
-s32 CollisionCheck_SetOC_SAC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider,
+s32 CollisionCheck_SetOC_SAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                              s32 index) {
-    if (FrameAdvance_IsEnabled(globalCtx) == true) {
+    if (FrameAdvance_IsEnabled(state) == true) {
         return -1;
     }
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3274);
-    sOCResetFuncs[collider->shape](globalCtx, collider);
+    sOCResetFuncs[collider->shape](state, collider);
     if (collider->actor != NULL && collider->actor->update == NULL) {
         return -1;
     }
@@ -1382,13 +1383,13 @@ s32 CollisionCheck_SetOC_SAC(GlobalContext* globalCtx, CollisionCheckContext* co
  * Sets a line as an OC collider for this frame.
  * OC lines are entirely unused, and do not even have collision check functions.
  */
-s32 CollisionCheck_SetOCLine(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, OcLine* collider) {
+s32 CollisionCheck_SetOCLine(GameState* state, CollisionCheckContext* colChkCtx, OcLine* collider) {
     s32 index;
 
-    if (FrameAdvance_IsEnabled(globalCtx) == true) {
+    if (FrameAdvance_IsEnabled(state) == true) {
         return -1;
     }
-    Collider_ResetLineOC(globalCtx, collider);
+    Collider_ResetLineOC(state, collider);
     if (!(colChkCtx->colLineCount < COLLISION_CHECK_OC_LINE_MAX)) {
         // Index exceeded and cannot add more
         osSyncPrintf("CollisionCheck_setOCLine():インデックスがオーバして追加不能\n");
@@ -1433,14 +1434,14 @@ s32 CollisionCheck_NoSharedFlags(ColliderInfo* atInfo, ColliderInfo* acInfo) {
  * Spawns no blood drops.
  * Used by collider types HIT1, HIT3, HIT5, METAL, NONE, WOOD, HARD, and TREE
  */
-void CollisionCheck_NoBlood(GlobalContext* globalCtx, Collider* collider, Vec3f* v) {
+void CollisionCheck_NoBlood(GameState* state, Collider* collider, Vec3f* v) {
 }
 
 /**
  * Spawns blue blood drops.
  * Used by collider types HIT0 and HIT8.
  */
-void CollisionCheck_BlueBlood(GlobalContext* globalCtx, Collider* collider, Vec3f* v) {
+void CollisionCheck_BlueBlood(GameState* state, Collider* collider, Vec3f* v) {
     static EffectSparkInit D_8015D8A0;
     s32 effectIndex;
 
@@ -1486,14 +1487,14 @@ void CollisionCheck_BlueBlood(GlobalContext* globalCtx, Collider* collider, Vec3
     D_8015D8A0.speed = 8.0f;
     D_8015D8A0.gravity = -1.0f;
 
-    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D8A0);
+    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D8A0);
 }
 
 /**
  * Spawns green blood drops.
  * Used by collider types HIT2 and HIT6. No actor has type HIT2.
  */
-void CollisionCheck_GreenBlood(GlobalContext* globalCtx, Collider* collider, Vec3f* v) {
+void CollisionCheck_GreenBlood(GameState* state, Collider* collider, Vec3f* v) {
     static EffectSparkInit D_8015DD68;
     s32 effectIndex;
 
@@ -1539,42 +1540,42 @@ void CollisionCheck_GreenBlood(GlobalContext* globalCtx, Collider* collider, Vec
     D_8015DD68.speed = 8.0f;
     D_8015DD68.gravity = -1.0f;
 
-    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015DD68);
+    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015DD68);
 }
 
 /**
  * Spawns a burst of water.
  * Used by collider type HIT4, which no actor has.
  */
-void CollisionCheck_WaterBurst(GlobalContext* globalCtx, Collider* collider, Vec3f* pos) {
-    EffectSsSibuki_SpawnBurst(globalCtx, pos);
-    CollisionCheck_SpawnWaterDroplets(globalCtx, pos);
+void CollisionCheck_WaterBurst(GameState* state, Collider* collider, Vec3f* pos) {
+    EffectSsSibuki_SpawnBurst(state, pos);
+    CollisionCheck_SpawnWaterDroplets(state, pos);
 }
 
 /**
  * Spawns red blood drops.
  * Used by collider type HIT7, which no actor has.
  */
-void CollisionCheck_RedBlood(GlobalContext* globalCtx, Collider* collider, Vec3f* v) {
-    CollisionCheck_SpawnRedBlood(globalCtx, v);
+void CollisionCheck_RedBlood(GameState* state, Collider* collider, Vec3f* v) {
+    CollisionCheck_SpawnRedBlood(state, v);
 }
 
 /**
  * Spawns red blood drops.
  * Unused.
  */
-void CollisionCheck_RedBloodUnused(GlobalContext* globalCtx, Collider* collider, Vec3f* v) {
-    CollisionCheck_SpawnRedBlood(globalCtx, v);
+void CollisionCheck_RedBloodUnused(GameState* state, Collider* collider, Vec3f* v) {
+    CollisionCheck_SpawnRedBlood(state, v);
 }
 
 /**
  * Plays sound effects and displays hitmarks for solid-type AC colliders (METAL, WOOD, HARD, and TREE)
  */
-void CollisionCheck_HitSolid(GlobalContext* globalCtx, ColliderInfo* info, Collider* collider, Vec3f* hitPos) {
+void CollisionCheck_HitSolid(GameState* state, ColliderInfo* info, Collider* collider, Vec3f* hitPos) {
     s32 flags = info->toucherFlags & TOUCH_SFX_NONE;
 
     if (flags == TOUCH_SFX_NORMAL && collider->colType != COLTYPE_METAL) {
-        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_WHITE, hitPos);
+        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_WHITE, hitPos);
         if (collider->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_BOUND, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -1582,14 +1583,14 @@ void CollisionCheck_HitSolid(GlobalContext* globalCtx, ColliderInfo* info, Colli
                                    &D_801333E8);
         }
     } else if (flags == TOUCH_SFX_NORMAL) { // collider->colType == COLTYPE_METAL
-        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_METAL, hitPos);
+        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_METAL, hitPos);
         if (collider->actor == NULL) {
-            CollisionCheck_SpawnShieldParticlesMetal(globalCtx, hitPos);
+            CollisionCheck_SpawnShieldParticlesMetal(state, hitPos);
         } else {
-            CollisionCheck_SpawnShieldParticlesMetalSound(globalCtx, hitPos, &collider->actor->projectedPos);
+            CollisionCheck_SpawnShieldParticlesMetalSound(state, hitPos, &collider->actor->projectedPos);
         }
     } else if (flags == TOUCH_SFX_HARD) {
-        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_WHITE, hitPos);
+        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_WHITE, hitPos);
         if (collider->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_BOUND, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -1597,7 +1598,7 @@ void CollisionCheck_HitSolid(GlobalContext* globalCtx, ColliderInfo* info, Colli
                                    &D_801333E8);
         }
     } else if (flags == TOUCH_SFX_WOOD) {
-        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_DUST, hitPos);
+        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_DUST, hitPos);
         if (collider->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_REFLECTION_WOOD, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -1643,7 +1644,7 @@ static HitInfo sHitInfo[] = {
 /**
  * Handles hitmarks, blood, and sound effects for each AC collision, determined by the AC collider's colType
  */
-void CollisionCheck_HitEffects(GlobalContext* globalCtx, Collider* at, ColliderInfo* atInfo, Collider* ac,
+void CollisionCheck_HitEffects(GameState* state, Collider* at, ColliderInfo* atInfo, Collider* ac,
                                ColliderInfo* acInfo, Vec3f* hitPos) {
     if (acInfo->bumperFlags & BUMP_NO_HITMARK) {
         return;
@@ -1652,26 +1653,26 @@ void CollisionCheck_HitEffects(GlobalContext* globalCtx, Collider* at, ColliderI
         return;
     }
     if (ac->actor != NULL) {
-        sBloodFuncs[sHitInfo[ac->colType].blood](globalCtx, ac, hitPos);
+        sBloodFuncs[sHitInfo[ac->colType].blood](state, ac, hitPos);
     }
     if (ac->actor != NULL) {
         if (sHitInfo[ac->colType].effect == HIT_SOLID) {
-            CollisionCheck_HitSolid(globalCtx, atInfo, ac, hitPos);
+            CollisionCheck_HitSolid(state, atInfo, ac, hitPos);
         } else if (sHitInfo[ac->colType].effect == HIT_WOOD) {
             if (at->actor == NULL) {
-                CollisionCheck_SpawnShieldParticles(globalCtx, hitPos);
+                CollisionCheck_SpawnShieldParticles(state, hitPos);
                 Audio_PlaySoundGeneral(NA_SE_IT_REFLECTION_WOOD, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
             } else {
-                CollisionCheck_SpawnShieldParticlesWood(globalCtx, hitPos, &at->actor->projectedPos);
+                CollisionCheck_SpawnShieldParticlesWood(state, hitPos, &at->actor->projectedPos);
             }
         } else if (sHitInfo[ac->colType].effect != HIT_NONE) {
-            EffectSsHitMark_SpawnFixedScale(globalCtx, sHitInfo[ac->colType].effect, hitPos);
+            EffectSsHitMark_SpawnFixedScale(state, sHitInfo[ac->colType].effect, hitPos);
             if (!(acInfo->bumperFlags & BUMP_NO_SWORD_SFX)) {
                 CollisionCheck_SwordHitAudio(at, acInfo);
             }
         }
     } else {
-        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_WHITE, hitPos);
+        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_WHITE, hitPos);
         if (ac->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_BOUND, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -1692,7 +1693,7 @@ void CollisionCheck_SetBounce(Collider* at, Collider* ac) {
 /**
  * Performs the AC collision between the AT element and AC element that collided.
  */
-s32 CollisionCheck_SetATvsAC(GlobalContext* globalCtx, Collider* at, ColliderInfo* atInfo, Vec3f* atPos, Collider* ac,
+s32 CollisionCheck_SetATvsAC(GameState* state, Collider* at, ColliderInfo* atInfo, Vec3f* atPos, Collider* ac,
                              ColliderInfo* acInfo, Vec3f* acPos, Vec3f* hitPos) {
     if (ac->acFlags & AC_HARD && at->actor != NULL && ac->actor != NULL) {
         CollisionCheck_SetBounce(at, ac);
@@ -1722,7 +1723,7 @@ s32 CollisionCheck_SetATvsAC(GlobalContext* globalCtx, Collider* at, ColliderInf
         ac->colType != COLTYPE_HARD) {
         acInfo->bumperFlags |= BUMP_DRAW_HITMARK;
     } else {
-        CollisionCheck_HitEffects(globalCtx, at, atInfo, ac, acInfo, hitPos);
+        CollisionCheck_HitEffects(state, at, atInfo, ac, acInfo, hitPos);
         atInfo->toucherFlags |= TOUCH_DREW_HITMARK;
     }
     return 1;
@@ -1731,7 +1732,7 @@ s32 CollisionCheck_SetATvsAC(GlobalContext* globalCtx, Collider* at, ColliderInf
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_JntSphVsJntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_JntSphVsJntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                       Collider* colAC) {
     ColliderJntSph* at = (ColliderJntSph*)colAT;
     ColliderJntSphElement* atItem;
@@ -1773,7 +1774,7 @@ void CollisionCheck_AC_JntSphVsJntSph(GlobalContext* globalCtx, CollisionCheckCo
                     } else {
                         Math_Vec3f_Copy(&hitPos, &atPos);
                     }
-                    CollisionCheck_SetATvsAC(globalCtx, &at->base, &atItem->info, &atPos, &ac->base, &acElem->info,
+                    CollisionCheck_SetATvsAC(state, &at->base, &atItem->info, &atPos, &ac->base, &acElem->info,
                                              &acPos, &hitPos);
                     if (!(ac->base.ocFlags2 & OC2_FIRST_ONLY)) {
                         return;
@@ -1787,7 +1788,7 @@ void CollisionCheck_AC_JntSphVsJntSph(GlobalContext* globalCtx, CollisionCheckCo
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_JntSphVsCyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_JntSphVsCyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                    Collider* colAC) {
     ColliderJntSph* at = (ColliderJntSph*)colAT;
     ColliderJntSphElement* atItem;
@@ -1830,7 +1831,7 @@ void CollisionCheck_AC_JntSphVsCyl(GlobalContext* globalCtx, CollisionCheckConte
                 } else {
                     Math_Vec3f_Copy(&hitPos, &atPos);
                 }
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
+                CollisionCheck_SetATvsAC(state, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
                                          &hitPos);
                 return;
             }
@@ -1841,7 +1842,7 @@ void CollisionCheck_AC_JntSphVsCyl(GlobalContext* globalCtx, CollisionCheckConte
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_CylVsJntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_CylVsJntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                    Collider* colAC) {
     ColliderCylinder* at = (ColliderCylinder*)colAT;
     ColliderJntSph* ac = (ColliderJntSph*)colAC;
@@ -1884,7 +1885,7 @@ void CollisionCheck_AC_CylVsJntSph(GlobalContext* globalCtx, CollisionCheckConte
                 } else {
                     Math_Vec3f_Copy(&hitPos, &atPos);
                 }
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos, &ac->base, &acElem->info, &acPos,
+                CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos, &ac->base, &acElem->info, &acPos,
                                          &hitPos);
                 if (!(ac->base.ocFlags2 & OC2_FIRST_ONLY)) {
                     break;
@@ -1897,7 +1898,7 @@ void CollisionCheck_AC_CylVsJntSph(GlobalContext* globalCtx, CollisionCheckConte
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_JntSphVsTris(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_JntSphVsTris(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
     ColliderJntSph* at = (ColliderJntSph*)colAT;
     ColliderJntSphElement* atSph;
@@ -1927,7 +1928,7 @@ void CollisionCheck_AC_JntSphVsTris(GlobalContext* globalCtx, CollisionCheckCont
                     acPos.x = (acTri->dim.vtx[0].x + acTri->dim.vtx[1].x + acTri->dim.vtx[2].x) * (1.0f / 3);
                     acPos.y = (acTri->dim.vtx[0].y + acTri->dim.vtx[1].y + acTri->dim.vtx[2].y) * (1.0f / 3);
                     acPos.z = (acTri->dim.vtx[0].z + acTri->dim.vtx[1].z + acTri->dim.vtx[2].z) * (1.0f / 3);
-                    CollisionCheck_SetATvsAC(globalCtx, &at->base, &atSph->info, &atPos, &ac->base, &acTri->info,
+                    CollisionCheck_SetATvsAC(state, &at->base, &atSph->info, &atPos, &ac->base, &acTri->info,
                                              &acPos, &hitPos);
                     return;
                 }
@@ -1939,7 +1940,7 @@ void CollisionCheck_AC_JntSphVsTris(GlobalContext* globalCtx, CollisionCheckCont
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_TrisVsJntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_TrisVsJntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
     ColliderTris* at = (ColliderTris*)colAT;
     ColliderTrisElement* atItem;
@@ -1967,7 +1968,7 @@ void CollisionCheck_AC_TrisVsJntSph(GlobalContext* globalCtx, CollisionCheckCont
                     atPos.x = (atItem->dim.vtx[0].x + atItem->dim.vtx[1].x + atItem->dim.vtx[2].x) * (1.0f / 3);
                     atPos.y = (atItem->dim.vtx[0].y + atItem->dim.vtx[1].y + atItem->dim.vtx[2].y) * (1.0f / 3);
                     atPos.z = (atItem->dim.vtx[0].z + atItem->dim.vtx[1].z + atItem->dim.vtx[2].z) * (1.0f / 3);
-                    CollisionCheck_SetATvsAC(globalCtx, &at->base, &atItem->info, &atPos, &ac->base, &acElem->info,
+                    CollisionCheck_SetATvsAC(state, &at->base, &atItem->info, &atPos, &ac->base, &acElem->info,
                                              &acPos, &hitPos);
                     if (!(ac->base.ocFlags2 & OC2_FIRST_ONLY)) {
                         return;
@@ -1981,7 +1982,7 @@ void CollisionCheck_AC_TrisVsJntSph(GlobalContext* globalCtx, CollisionCheckCont
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_JntSphVsQuad(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_JntSphVsQuad(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
     static TriNorm D_8015E230;
     static TriNorm D_8015E268;
@@ -2014,7 +2015,7 @@ void CollisionCheck_AC_JntSphVsQuad(GlobalContext* globalCtx, CollisionCheckCont
                 acPos.y = (ac->dim.quad[0].y + (ac->dim.quad[1].y + (ac->dim.quad[3].y + ac->dim.quad[2].y))) / 4.0f;
                 acPos.z = (ac->dim.quad[0].z + (ac->dim.quad[1].z + (ac->dim.quad[3].z + ac->dim.quad[2].z))) / 4.0f;
 
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
+                CollisionCheck_SetATvsAC(state, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
                                          &hitPos);
                 return;
             }
@@ -2025,7 +2026,7 @@ void CollisionCheck_AC_JntSphVsQuad(GlobalContext* globalCtx, CollisionCheckCont
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_QuadVsJntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_QuadVsJntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                     Collider* colAC) {
     static TriNorm D_8015E2A0;
     static TriNorm D_8015E2D8;
@@ -2049,7 +2050,7 @@ void CollisionCheck_AC_QuadVsJntSph(GlobalContext* globalCtx, CollisionCheckCont
             }
             if (Math3D_TriVsSphIntersect(&acElem->dim.worldSphere, &D_8015E2A0, &hitPos) == 1 ||
                 Math3D_TriVsSphIntersect(&acElem->dim.worldSphere, &D_8015E2D8, &hitPos) == 1) {
-                if (Collider_QuadSetNearestAC(globalCtx, at, &hitPos)) {
+                if (Collider_QuadSetNearestAC(state, at, &hitPos)) {
                     Vec3f atPos;
                     Vec3f acPos;
 
@@ -2063,7 +2064,7 @@ void CollisionCheck_AC_QuadVsJntSph(GlobalContext* globalCtx, CollisionCheckCont
                         (at->dim.quad[0].y + (at->dim.quad[1].y + (at->dim.quad[3].y + at->dim.quad[2].y))) / 4.0f;
                     atPos.z =
                         (at->dim.quad[0].z + (at->dim.quad[1].z + (at->dim.quad[3].z + at->dim.quad[2].z))) / 4.0f;
-                    CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos, &ac->base, &acElem->info, &acPos,
+                    CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos, &ac->base, &acElem->info, &acPos,
                                              &hitPos);
                     if (!(ac->base.ocFlags2 & OC2_FIRST_ONLY)) {
                         return;
@@ -2077,7 +2078,7 @@ void CollisionCheck_AC_QuadVsJntSph(GlobalContext* globalCtx, CollisionCheckCont
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_CylVsCyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_CylVsCyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                 Collider* colAC) {
     ColliderCylinder* at = (ColliderCylinder*)colAT;
     ColliderCylinder* ac = (ColliderCylinder*)colAC;
@@ -2110,7 +2111,7 @@ void CollisionCheck_AC_CylVsCyl(GlobalContext* globalCtx, CollisionCheckContext*
             } else {
                 Math_Vec3s_ToVec3f(&hitPos, &ac->dim.pos);
             }
-            CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos, &ac->base, &ac->info, &acPos, &hitPos);
+            CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos, &ac->base, &ac->info, &acPos, &hitPos);
         }
     }
 }
@@ -2118,7 +2119,7 @@ void CollisionCheck_AC_CylVsCyl(GlobalContext* globalCtx, CollisionCheckContext*
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_CylVsTris(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_CylVsTris(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
     ColliderCylinder* at = (ColliderCylinder*)colAT;
     ColliderTris* ac = (ColliderTris*)colAC;
@@ -2145,7 +2146,7 @@ void CollisionCheck_AC_CylVsTris(GlobalContext* globalCtx, CollisionCheckContext
                 acPos.x = (acElem->dim.vtx[0].x + acElem->dim.vtx[1].x + acElem->dim.vtx[2].x) * (1.0f / 3);
                 acPos.y = (acElem->dim.vtx[0].y + acElem->dim.vtx[1].y + acElem->dim.vtx[2].y) * (1.0f / 3);
                 acPos.z = (acElem->dim.vtx[0].z + acElem->dim.vtx[1].z + acElem->dim.vtx[2].z) * (1.0f / 3);
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atpos, &ac->base, &acElem->info, &acPos,
+                CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atpos, &ac->base, &acElem->info, &acPos,
                                          &hitPos);
                 return;
             }
@@ -2156,7 +2157,7 @@ void CollisionCheck_AC_CylVsTris(GlobalContext* globalCtx, CollisionCheckContext
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_TrisVsCyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_TrisVsCyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
     static Vec3f D_8015E310;
     ColliderTris* at = (ColliderTris*)colAT;
@@ -2182,7 +2183,7 @@ void CollisionCheck_AC_TrisVsCyl(GlobalContext* globalCtx, CollisionCheckContext
                 atPos.y = (atItem->dim.vtx[0].y + atItem->dim.vtx[1].y + atItem->dim.vtx[2].y) * (1.0f / 3);
                 atPos.z = (atItem->dim.vtx[0].z + atItem->dim.vtx[1].z + atItem->dim.vtx[2].z) * (1.0f / 3);
                 Math_Vec3s_ToVec3f(&acPos, &ac->dim.pos);
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
+                CollisionCheck_SetATvsAC(state, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
                                          &D_8015E310);
                 return;
             }
@@ -2193,7 +2194,7 @@ void CollisionCheck_AC_TrisVsCyl(GlobalContext* globalCtx, CollisionCheckContext
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_CylVsQuad(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_CylVsQuad(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
     static TriNorm D_8015E320;
     static TriNorm D_8015E358;
@@ -2218,7 +2219,7 @@ void CollisionCheck_AC_CylVsQuad(GlobalContext* globalCtx, CollisionCheckContext
             acPos1.x = (ac->dim.quad[0].x + (ac->dim.quad[1].x + (ac->dim.quad[3].x + ac->dim.quad[2].x))) / 4.0f;
             acPos1.y = (ac->dim.quad[0].y + (ac->dim.quad[1].y + (ac->dim.quad[3].y + ac->dim.quad[2].y))) / 4.0f;
             acPos1.z = (ac->dim.quad[0].z + (ac->dim.quad[1].z + (ac->dim.quad[3].z + ac->dim.quad[2].z))) / 4.0f;
-            CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos1, &ac->base, &ac->info, &acPos1,
+            CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos1, &ac->base, &ac->info, &acPos1,
                                      &D_8015E390);
         } else if (Math3D_CylTriVsIntersect(&at->dim, &D_8015E358, &D_8015E390) == 1) {
             Vec3f atPos2;
@@ -2228,7 +2229,7 @@ void CollisionCheck_AC_CylVsQuad(GlobalContext* globalCtx, CollisionCheckContext
             acPos2.x = (ac->dim.quad[0].x + (ac->dim.quad[1].x + (ac->dim.quad[3].x + ac->dim.quad[2].x))) / 4.0f;
             acPos2.y = (ac->dim.quad[0].y + (ac->dim.quad[1].y + (ac->dim.quad[3].y + ac->dim.quad[2].y))) / 4.0f;
             acPos2.z = (ac->dim.quad[0].z + (ac->dim.quad[1].z + (ac->dim.quad[3].z + ac->dim.quad[2].z))) / 4.0f;
-            CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos2, &ac->base, &ac->info, &acPos2,
+            CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos2, &ac->base, &ac->info, &acPos2,
                                      &D_8015E390);
         }
     }
@@ -2240,7 +2241,7 @@ static s8 sBssDummy1;
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_QuadVsCyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_QuadVsCyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                  Collider* colAC) {
     static TriNorm D_8015E3A0;
     static TriNorm D_8015E3D8;
@@ -2258,7 +2259,7 @@ void CollisionCheck_AC_QuadVsCyl(GlobalContext* globalCtx, CollisionCheckContext
         Math3D_TriNorm(&D_8015E3A0, &at->dim.quad[2], &at->dim.quad[3], &at->dim.quad[1]);
         Math3D_TriNorm(&D_8015E3D8, &at->dim.quad[2], &at->dim.quad[1], &at->dim.quad[0]);
         if (Math3D_CylTriVsIntersect(&ac->dim, &D_8015E3A0, &D_8015E410) == 1) {
-            if (Collider_QuadSetNearestAC(globalCtx, at, &D_8015E410)) {
+            if (Collider_QuadSetNearestAC(state, at, &D_8015E410)) {
                 Vec3f atPos1;
                 Vec3f acPos1;
 
@@ -2266,13 +2267,13 @@ void CollisionCheck_AC_QuadVsCyl(GlobalContext* globalCtx, CollisionCheckContext
                 atPos1.y = (at->dim.quad[0].y + (at->dim.quad[1].y + (at->dim.quad[3].y + at->dim.quad[2].y))) / 4.0f;
                 atPos1.z = (at->dim.quad[0].z + (at->dim.quad[1].z + (at->dim.quad[3].z + at->dim.quad[2].z))) / 4.0f;
                 Math_Vec3s_ToVec3f(&acPos1, &ac->dim.pos);
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos1, &ac->base, &ac->info, &acPos1,
+                CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos1, &ac->base, &ac->info, &acPos1,
                                          &D_8015E410);
                 return;
             }
         }
         if (Math3D_CylTriVsIntersect(&ac->dim, &D_8015E3D8, &D_8015E410) == 1) {
-            if (Collider_QuadSetNearestAC(globalCtx, at, &D_8015E410)) {
+            if (Collider_QuadSetNearestAC(state, at, &D_8015E410)) {
                 Vec3f atPos2;
                 Vec3f acPos2;
 
@@ -2280,7 +2281,7 @@ void CollisionCheck_AC_QuadVsCyl(GlobalContext* globalCtx, CollisionCheckContext
                 atPos2.y = (at->dim.quad[0].y + (at->dim.quad[1].y + (at->dim.quad[3].y + at->dim.quad[2].y))) / 4.0f;
                 atPos2.z = (at->dim.quad[0].z + (at->dim.quad[1].z + (at->dim.quad[3].z + at->dim.quad[2].z))) / 4.0f;
                 Math_Vec3s_ToVec3f(&acPos2, &ac->dim.pos);
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos2, &ac->base, &ac->info, &acPos2,
+                CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos2, &ac->base, &ac->info, &acPos2,
                                          &D_8015E410);
             }
         }
@@ -2295,7 +2296,7 @@ static s8 sBssDummy6;
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_TrisVsTris(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_TrisVsTris(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
     static Vec3f D_8015E420;
     ColliderTris* at = (ColliderTris*)colAT;
@@ -2325,7 +2326,7 @@ void CollisionCheck_AC_TrisVsTris(GlobalContext* globalCtx, CollisionCheckContex
                     acPos.x = (acElem->dim.vtx[0].x + acElem->dim.vtx[1].x + acElem->dim.vtx[2].x) * (1.0f / 3);
                     acPos.y = (acElem->dim.vtx[0].y + acElem->dim.vtx[1].y + acElem->dim.vtx[2].y) * (1.0f / 3);
                     acPos.z = (acElem->dim.vtx[0].z + acElem->dim.vtx[1].z + acElem->dim.vtx[2].z) * (1.0f / 3);
-                    CollisionCheck_SetATvsAC(globalCtx, &at->base, &atItem->info, &atPos, &ac->base, &acElem->info,
+                    CollisionCheck_SetATvsAC(state, &at->base, &atItem->info, &atPos, &ac->base, &acElem->info,
                                              &acPos, &D_8015E420);
                     return;
                 }
@@ -2342,7 +2343,7 @@ static s8 sBssDummy10;
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_TrisVsQuad(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_TrisVsQuad(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
     static Vec3f D_8015E430;
     static TriNorm D_8015E440;
@@ -2375,7 +2376,7 @@ void CollisionCheck_AC_TrisVsQuad(GlobalContext* globalCtx, CollisionCheckContex
                 acPos.x = (ac->dim.quad[0].x + (ac->dim.quad[1].x + (ac->dim.quad[3].x + ac->dim.quad[2].x))) / 4.0f;
                 acPos.y = (ac->dim.quad[0].y + (ac->dim.quad[1].y + (ac->dim.quad[3].y + ac->dim.quad[2].y))) / 4.0f;
                 acPos.z = (ac->dim.quad[0].z + (ac->dim.quad[1].z + (ac->dim.quad[3].z + ac->dim.quad[2].z))) / 4.0f;
-                CollisionCheck_SetATvsAC(globalCtx, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
+                CollisionCheck_SetATvsAC(state, &at->base, &atItem->info, &atPos, &ac->base, &ac->info, &acPos,
                                          &D_8015E430);
                 return;
             }
@@ -2386,7 +2387,7 @@ void CollisionCheck_AC_TrisVsQuad(GlobalContext* globalCtx, CollisionCheckContex
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_QuadVsTris(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_QuadVsTris(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
     static Vec3f D_8015E4B0;
     static TriNorm D_8015E4C0;
@@ -2410,7 +2411,7 @@ void CollisionCheck_AC_QuadVsTris(GlobalContext* globalCtx, CollisionCheckContex
             }
             if (Math3D_TriVsTriIntersect(&D_8015E4C0, &acElem->dim, &D_8015E4B0) == 1 ||
                 Math3D_TriVsTriIntersect(&D_8015E4F8, &acElem->dim, &D_8015E4B0) == 1) {
-                if (Collider_QuadSetNearestAC(globalCtx, at, &D_8015E4B0)) {
+                if (Collider_QuadSetNearestAC(state, at, &D_8015E4B0)) {
                     Vec3f atPos;
                     Vec3f acPos;
 
@@ -2423,7 +2424,7 @@ void CollisionCheck_AC_QuadVsTris(GlobalContext* globalCtx, CollisionCheckContex
                         (at->dim.quad[0].y + (at->dim.quad[1].y + (at->dim.quad[3].y + at->dim.quad[2].y))) / 4.0f;
                     atPos.z =
                         (at->dim.quad[0].z + (at->dim.quad[1].z + (at->dim.quad[3].z + at->dim.quad[2].z))) / 4.0f;
-                    CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos, &ac->base, &acElem->info, &acPos,
+                    CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos, &ac->base, &acElem->info, &acPos,
                                              &D_8015E4B0);
                     return;
                 }
@@ -2435,7 +2436,7 @@ void CollisionCheck_AC_QuadVsTris(GlobalContext* globalCtx, CollisionCheckContex
 /**
  * AC overlap check. Calculates the center of each collider element and the point of contact.
  */
-void CollisionCheck_AC_QuadVsQuad(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT,
+void CollisionCheck_AC_QuadVsQuad(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT,
                                   Collider* colAC) {
     static TriNorm D_8015E530[2];
     static Vec3f D_8015E598;
@@ -2463,7 +2464,7 @@ void CollisionCheck_AC_QuadVsQuad(GlobalContext* globalCtx, CollisionCheckContex
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 2; j++) {
             if (Math3D_TriVsTriIntersect(&D_8015E5A8[j], &D_8015E530[i], &D_8015E598) == 1) {
-                if (Collider_QuadSetNearestAC(globalCtx, at, &D_8015E598)) {
+                if (Collider_QuadSetNearestAC(state, at, &D_8015E598)) {
                     Vec3f atPos;
                     Vec3f acPos;
 
@@ -2479,7 +2480,7 @@ void CollisionCheck_AC_QuadVsQuad(GlobalContext* globalCtx, CollisionCheckContex
                         (ac->dim.quad[0].y + (ac->dim.quad[1].y + (ac->dim.quad[3].y + ac->dim.quad[2].y))) / 4.0f;
                     acPos.z =
                         (ac->dim.quad[0].z + (ac->dim.quad[1].z + (ac->dim.quad[3].z + ac->dim.quad[2].z))) / 4.0f;
-                    CollisionCheck_SetATvsAC(globalCtx, &at->base, &at->info, &atPos, &ac->base, &ac->info, &acPos,
+                    CollisionCheck_SetATvsAC(state, &at->base, &at->info, &atPos, &ac->base, &ac->info, &acPos,
                                              &D_8015E598);
                     return;
                 }
@@ -2491,7 +2492,7 @@ void CollisionCheck_AC_QuadVsQuad(GlobalContext* globalCtx, CollisionCheckContex
 /**
  * Sets a ColliderJntSph's hit effects
  */
-void CollisionCheck_SetJntSphHitFX(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_SetJntSphHitFX(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
     ColliderJntSphElement* element;
     Vec3f hitPos;
@@ -2500,7 +2501,7 @@ void CollisionCheck_SetJntSphHitFX(GlobalContext* globalCtx, CollisionCheckConte
         if ((element->info.bumperFlags & BUMP_DRAW_HITMARK) && (element->info.acHitInfo != NULL) &&
             !(element->info.acHitInfo->toucherFlags & TOUCH_DREW_HITMARK)) {
             Math_Vec3s_ToVec3f(&hitPos, &element->info.bumper.hitPos);
-            CollisionCheck_HitEffects(globalCtx, element->info.acHit, element->info.acHitInfo, &jntSph->base,
+            CollisionCheck_HitEffects(state, element->info.acHit, element->info.acHitInfo, &jntSph->base,
                                       &element->info, &hitPos);
             element->info.acHitInfo->toucherFlags |= TOUCH_DREW_HITMARK;
             return;
@@ -2511,14 +2512,14 @@ void CollisionCheck_SetJntSphHitFX(GlobalContext* globalCtx, CollisionCheckConte
 /**
  * Sets a ColliderCylinder's hit effects
  */
-void CollisionCheck_SetCylHitFX(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_SetCylHitFX(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderCylinder* cylinder = (ColliderCylinder*)collider;
     Vec3f hitPos;
 
     if ((cylinder->info.bumperFlags & BUMP_DRAW_HITMARK) && (cylinder->info.acHitInfo != NULL) &&
         !(cylinder->info.acHitInfo->toucherFlags & TOUCH_DREW_HITMARK)) {
         Math_Vec3s_ToVec3f(&hitPos, &cylinder->info.bumper.hitPos);
-        CollisionCheck_HitEffects(globalCtx, cylinder->info.acHit, cylinder->info.acHitInfo, &cylinder->base,
+        CollisionCheck_HitEffects(state, cylinder->info.acHit, cylinder->info.acHitInfo, &cylinder->base,
                                   &cylinder->info, &hitPos);
         cylinder->info.acHitInfo->toucherFlags |= TOUCH_DREW_HITMARK;
     }
@@ -2527,7 +2528,7 @@ void CollisionCheck_SetCylHitFX(GlobalContext* globalCtx, CollisionCheckContext*
 /**
  * Sets a ColliderTris's hit effects
  */
-void CollisionCheck_SetTrisHitFX(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_SetTrisHitFX(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderTris* tris = (ColliderTris*)collider;
     ColliderTrisElement* element;
     Vec3f hitPos;
@@ -2536,7 +2537,7 @@ void CollisionCheck_SetTrisHitFX(GlobalContext* globalCtx, CollisionCheckContext
         if ((element->info.bumperFlags & BUMP_DRAW_HITMARK) && (element->info.acHitInfo != NULL) &&
             !(element->info.acHitInfo->toucherFlags & TOUCH_DREW_HITMARK)) {
             Math_Vec3s_ToVec3f(&hitPos, &element->info.bumper.hitPos);
-            CollisionCheck_HitEffects(globalCtx, element->info.acHit, element->info.acHitInfo, &tris->base,
+            CollisionCheck_HitEffects(state, element->info.acHit, element->info.acHitInfo, &tris->base,
                                       &element->info, &hitPos);
             element->info.acHitInfo->toucherFlags |= TOUCH_DREW_HITMARK;
             return;
@@ -2547,14 +2548,14 @@ void CollisionCheck_SetTrisHitFX(GlobalContext* globalCtx, CollisionCheckContext
 /**
  * Sets a ColliderQuad's hit effects
  */
-void CollisionCheck_SetQuadHitFX(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_SetQuadHitFX(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderQuad* quad = (ColliderQuad*)collider;
     Vec3f hitPos;
 
     if ((quad->info.bumperFlags & BUMP_DRAW_HITMARK) && (quad->info.acHitInfo != NULL) &&
         !(quad->info.acHitInfo->toucherFlags & TOUCH_DREW_HITMARK)) {
         Math_Vec3s_ToVec3f(&hitPos, &quad->info.bumper.hitPos);
-        CollisionCheck_HitEffects(globalCtx, quad->info.acHit, quad->info.acHitInfo, &quad->base, &quad->info, &hitPos);
+        CollisionCheck_HitEffects(state, quad->info.acHit, quad->info.acHitInfo, &quad->base, &quad->info, &hitPos);
         quad->info.acHitInfo->toucherFlags |= TOUCH_DREW_HITMARK;
     }
 }
@@ -2569,7 +2570,7 @@ static ColChkApplyFunc sColChkApplyFuncs[] = {
 /**
  * Handles hit effects for each AC collider that had an AC collision. Spawns hitmarks and plays sound effects.
  */
-void CollisionCheck_SetHitEffects(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_SetHitEffects(GameState* state, CollisionCheckContext* colChkCtx) {
     Collider** col;
 
     for (col = colChkCtx->colAC; col < colChkCtx->colAC + colChkCtx->colACCount; col++) {
@@ -2579,7 +2580,7 @@ void CollisionCheck_SetHitEffects(GlobalContext* globalCtx, CollisionCheckContex
             if (colAC->actor != NULL && colAC->actor->update == NULL) {
                 continue;
             }
-            sColChkApplyFuncs[colAC->shape](globalCtx, colChkCtx, colAC);
+            sColChkApplyFuncs[colAC->shape](state, colChkCtx, colAC);
         }
     }
 }
@@ -2598,7 +2599,7 @@ static ColChkVsFunc sACVsFuncs[4][4] = {
 /**
  * Iterates through all AC colliders, performing AC collisions with the AT collider.
  */
-void CollisionCheck_AC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* colAT) {
+void CollisionCheck_AC(GameState* state, CollisionCheckContext* colChkCtx, Collider* colAT) {
     Collider** col;
 
     for (col = colChkCtx->colAC; col < colChkCtx->colAC + colChkCtx->colACCount; col++) {
@@ -2612,7 +2613,7 @@ void CollisionCheck_AC(GlobalContext* globalCtx, CollisionCheckContext* colChkCt
                 if (!(colAT->atFlags & AT_SELF) && colAT->actor != NULL && colAC->actor == colAT->actor) {
                     continue;
                 }
-                sACVsFuncs[colAT->shape][colAC->shape](globalCtx, colChkCtx, colAT, colAC);
+                sACVsFuncs[colAT->shape][colAC->shape](state, colChkCtx, colAT, colAC);
             }
         }
     }
@@ -2624,7 +2625,7 @@ void CollisionCheck_AC(GlobalContext* globalCtx, CollisionCheckContext* colChkCt
  * successful collision. To collide, an AT collider must share a type (PLAYER, ENEMY, or BOMB) with the AC collider and
  * the toucher and bumper elements that overlapped must share a dmgFlag.
  */
-void CollisionCheck_AT(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_AT(GameState* state, CollisionCheckContext* colChkCtx) {
     Collider** col;
 
     if (colChkCtx->colATCount == 0 || colChkCtx->colACCount == 0) {
@@ -2637,10 +2638,10 @@ void CollisionCheck_AT(GlobalContext* globalCtx, CollisionCheckContext* colChkCt
             if (colAT->actor != NULL && colAT->actor->update == NULL) {
                 continue;
             }
-            CollisionCheck_AC(globalCtx, colChkCtx, colAT);
+            CollisionCheck_AC(state, colChkCtx, colAT);
         }
     }
-    CollisionCheck_SetHitEffects(globalCtx, colChkCtx);
+    CollisionCheck_SetHitEffects(state, colChkCtx);
 }
 
 /**
@@ -2754,7 +2755,7 @@ void CollisionCheck_SetOCvsOC(Collider* left, ColliderInfo* leftInfo, Vec3f* lef
 /**
  * OC overlap check for two JntSphs
  */
-void CollisionCheck_OC_JntSphVsJntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* l,
+void CollisionCheck_OC_JntSphVsJntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* l,
                                       Collider* r) {
     ColliderJntSph* left = (ColliderJntSph*)l;
     ColliderJntSphElement* leftElem;
@@ -2788,7 +2789,7 @@ void CollisionCheck_OC_JntSphVsJntSph(GlobalContext* globalCtx, CollisionCheckCo
 /**
  * OC overlap check for a JntSph and Cylinder
  */
-void CollisionCheck_OC_JntSphVsCyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* l,
+void CollisionCheck_OC_JntSphVsCyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* l,
                                    Collider* r) {
     ColliderJntSph* left = (ColliderJntSph*)l;
     ColliderJntSphElement* leftElem;
@@ -2818,15 +2819,15 @@ void CollisionCheck_OC_JntSphVsCyl(GlobalContext* globalCtx, CollisionCheckConte
 /**
  * OC overlap check for a Cylinder and JntSph
  */
-void CollisionCheck_OC_CylVsJntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* l,
+void CollisionCheck_OC_CylVsJntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* l,
                                    Collider* r) {
-    CollisionCheck_OC_JntSphVsCyl(globalCtx, colChkCtx, r, l);
+    CollisionCheck_OC_JntSphVsCyl(state, colChkCtx, r, l);
 }
 
 /**
  * OC overlap check for two Cylinders
  */
-void CollisionCheck_OC_CylVsCyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* l, Collider* r) {
+void CollisionCheck_OC_CylVsCyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* l, Collider* r) {
     ColliderCylinder* left = (ColliderCylinder*)l;
     ColliderCylinder* right = (ColliderCylinder*)r;
     f32 deadSpace;
@@ -2888,7 +2889,7 @@ static ColChkVsFunc sOCVsFuncs[4][4] = {
  * can collide, and each collider must have the OC flag corresponding to the other's OC type. Additionally, OC2_UNK1
  * cannot collide with OC2_UNK2, nor can two colliders that share an actor.
  */
-void CollisionCheck_OC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_OC(GameState* state, CollisionCheckContext* colChkCtx) {
     Collider** left;
     Collider** right;
     ColChkVsFunc vsFunc;
@@ -2908,7 +2909,7 @@ void CollisionCheck_OC(GlobalContext* globalCtx, CollisionCheckContext* colChkCt
                 osSyncPrintf("CollisionCheck_OC():未対応 %d, %d\n", (*left)->shape, (*right)->shape);
                 continue;
             }
-            vsFunc(globalCtx, colChkCtx, *left, *right);
+            vsFunc(state, colChkCtx, *left, *right);
         }
     }
 }
@@ -2980,7 +2981,7 @@ void CollisionCheck_SetInfoGetDamageTable(CollisionCheckInfo* info, s32 index, C
 /**
  * Apply AC damage effect
  */
-void CollisionCheck_ApplyDamage(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider,
+void CollisionCheck_ApplyDamage(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                                 ColliderInfo* info) {
     DamageTable* tbl;
     f32 damage;
@@ -3020,13 +3021,13 @@ void CollisionCheck_ApplyDamage(GlobalContext* globalCtx, CollisionCheckContext*
 /**
  * Apply ColliderJntSph AC damage effect
  */
-void CollisionCheck_ApplyDamageJntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_ApplyDamageJntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
     s32 i;
 
     if (jntSph->count > 0 && jntSph->elements != NULL) {
         for (i = 0; i < jntSph->count; i++) {
-            CollisionCheck_ApplyDamage(globalCtx, colChkCtx, &jntSph->base, &jntSph->elements[i].info);
+            CollisionCheck_ApplyDamage(state, colChkCtx, &jntSph->base, &jntSph->elements[i].info);
         }
     }
 }
@@ -3034,29 +3035,29 @@ void CollisionCheck_ApplyDamageJntSph(GlobalContext* globalCtx, CollisionCheckCo
 /**
  * Apply ColliderCylinder AC damage effect
  */
-void CollisionCheck_ApplyDamageCyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_ApplyDamageCyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderCylinder* cylinder = (ColliderCylinder*)collider;
-    CollisionCheck_ApplyDamage(globalCtx, colChkCtx, &cylinder->base, &cylinder->info);
+    CollisionCheck_ApplyDamage(state, colChkCtx, &cylinder->base, &cylinder->info);
 }
 
 /**
  * Apply ColliderTris AC damage effect
  */
-void CollisionCheck_ApplyDamageTris(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_ApplyDamageTris(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderTris* tris = (ColliderTris*)collider;
     s32 i;
 
     for (i = 0; i < tris->count; i++) {
-        CollisionCheck_ApplyDamage(globalCtx, colChkCtx, collider, &tris->elements[i].info);
+        CollisionCheck_ApplyDamage(state, colChkCtx, collider, &tris->elements[i].info);
     }
 }
 
 /**
  *  Apply ColliderQuad AC damage effect
  */
-void CollisionCheck_ApplyDamageQuad(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider) {
+void CollisionCheck_ApplyDamageQuad(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
     ColliderQuad* quad = (ColliderQuad*)collider;
-    CollisionCheck_ApplyDamage(globalCtx, colChkCtx, &quad->base, &quad->info);
+    CollisionCheck_ApplyDamage(state, colChkCtx, &quad->base, &quad->info);
 }
 
 static ColChkApplyFunc sApplyDamageFuncs[4] = {
@@ -3070,7 +3071,7 @@ static ColChkApplyFunc sApplyDamageFuncs[4] = {
  * For all AC colliders, sets any damage effects from collisions with AT colliders to their corresponding actor's
  * CollisionCheckInfo.
  */
-void CollisionCheck_Damage(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx) {
+void CollisionCheck_Damage(GameState* state, CollisionCheckContext* colChkCtx) {
     s32 i;
 
     for (i = 0; i < colChkCtx->colACCount; i++) {
@@ -3082,14 +3083,14 @@ void CollisionCheck_Damage(GlobalContext* globalCtx, CollisionCheckContext* colC
         if (collider->acFlags & AC_NO_DAMAGE) {
             continue;
         }
-        sApplyDamageFuncs[collider->shape](globalCtx, colChkCtx, collider);
+        sApplyDamageFuncs[collider->shape](state, colChkCtx, collider);
     }
 }
 
 /**
  * Checks if the line ab intersects any of the ColliderJntSph's elements
  */
-s32 CollisionCheck_LineOC_JntSph(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider,
+s32 CollisionCheck_LineOC_JntSph(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                                  Vec3f* a, Vec3f* b) {
     static Linef D_8015E610;
     ColliderJntSph* jntSph = (ColliderJntSph*)collider;
@@ -3113,7 +3114,7 @@ s32 CollisionCheck_LineOC_JntSph(GlobalContext* globalCtx, CollisionCheckContext
 /**
  * Checks if the line segment ab intersects the ColliderCylinder
  */
-s32 CollisionCheck_LineOC_Cyl(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Collider* collider, Vec3f* a,
+s32 CollisionCheck_LineOC_Cyl(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider, Vec3f* a,
                               Vec3f* b) {
     static Vec3f D_8015E628;
     static Vec3f D_8015E638;
@@ -3139,7 +3140,7 @@ static ColChkLineFunc sOCLineCheckFuncs[4] = {
  * Checks if the line segment ab intersects any OC colliders, excluding those attached to actors
  * on the exclusion list. Returns true if there are any intersections and false otherwise.
  */
-s32 CollisionCheck_LineOC(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Vec3f* a, Vec3f* b,
+s32 CollisionCheck_LineOC(GameState* state, CollisionCheckContext* colChkCtx, Vec3f* a, Vec3f* b,
                           Actor** exclusions, s32 numExclusions) {
     ColChkLineFunc lineCheck;
     Collider** col;
@@ -3166,7 +3167,7 @@ s32 CollisionCheck_LineOC(GlobalContext* globalCtx, CollisionCheckContext* colCh
             // type %d not supported
             osSyncPrintf("CollisionCheck_generalLineOcCheck():未対応 %dタイプ\n", (*col)->shape);
         } else {
-            result = lineCheck(globalCtx, colChkCtx, (*col), a, b);
+            result = lineCheck(state, colChkCtx, (*col), a, b);
             if (result) {
                 break;
             }
@@ -3179,17 +3180,17 @@ s32 CollisionCheck_LineOC(GlobalContext* globalCtx, CollisionCheckContext* colCh
  * Checks if the line segment ab intersects any OC colliders. Returns true if there are any intersections and false
  * otherwise. Unused.
  */
-s32 CollisionCheck_LineOCCheckAll(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Vec3f* a, Vec3f* b) {
-    CollisionCheck_LineOC(globalCtx, colChkCtx, a, b, NULL, 0);
+s32 CollisionCheck_LineOCCheckAll(GameState* state, CollisionCheckContext* colChkCtx, Vec3f* a, Vec3f* b) {
+    CollisionCheck_LineOC(state, colChkCtx, a, b, NULL, 0);
 }
 
 /**
  * Checks if the line segment ab intersects any OC colliders, excluding those attached to actors on the exclusion list.
  * Returns true if there are any intersections and false otherwise.
  */
-s32 CollisionCheck_LineOCCheck(GlobalContext* globalCtx, CollisionCheckContext* colChkCtx, Vec3f* a, Vec3f* b,
+s32 CollisionCheck_LineOCCheck(GameState* state, CollisionCheckContext* colChkCtx, Vec3f* a, Vec3f* b,
                                Actor** exclusions, s32 numExclusions) {
-    CollisionCheck_LineOC(globalCtx, colChkCtx, a, b, exclusions, numExclusions);
+    CollisionCheck_LineOC(state, colChkCtx, a, b, exclusions, numExclusions);
 }
 
 /**
@@ -3244,10 +3245,10 @@ void Collider_SetTrisVertices(ColliderTris* collider, s32 index, Vec3f* a, Vec3f
 /**
  * Sets the specified ColliderTrisElement's dim using the values in src
  */
-void Collider_SetTrisDim(GlobalContext* globalCtx, ColliderTris* collider, s32 index, ColliderTrisElementDimInit* src) {
+void Collider_SetTrisDim(GameState* state, ColliderTris* collider, s32 index, ColliderTrisElementDimInit* src) {
     ColliderTrisElement* element = &collider->elements[index];
 
-    Collider_SetTrisElementDim(globalCtx, &element->dim, src);
+    Collider_SetTrisElementDim(state, &element->dim, src);
 }
 
 // Due to an unknown reason, bss ordering changed between the 2 static Vec3f variables in the function below.
@@ -3286,7 +3287,7 @@ void Collider_UpdateSpheres(s32 limb, ColliderJntSph* collider) {
  * Spawns red blood droplets.
  * No actor has a collision type that spawns red blood.
  */
-void CollisionCheck_SpawnRedBlood(GlobalContext* globalCtx, Vec3f* v) {
+void CollisionCheck_SpawnRedBlood(GameState* state, Vec3f* v) {
     static EffectSparkInit D_8015CF10;
     s32 effectIndex;
 
@@ -3332,14 +3333,14 @@ void CollisionCheck_SpawnRedBlood(GlobalContext* globalCtx, Vec3f* v) {
     D_8015CF10.speed = 8.0f;
     D_8015CF10.gravity = -1.0f;
 
-    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015CF10);
+    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015CF10);
 }
 
 /**
  * Spawns water droplets.
  * No actor has a collision type that spawns water droplets.
  */
-void CollisionCheck_SpawnWaterDroplets(GlobalContext* globalCtx, Vec3f* v) {
+void CollisionCheck_SpawnWaterDroplets(GameState* state, Vec3f* v) {
     static EffectSparkInit D_8015D3D8;
     s32 effectIndex;
 
@@ -3385,13 +3386,13 @@ void CollisionCheck_SpawnWaterDroplets(GlobalContext* globalCtx, Vec3f* v) {
     D_8015D3D8.speed = 8.0f;
     D_8015D3D8.gravity = -1.0f;
 
-    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D3D8);
+    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D3D8);
 }
 
 /**
  * Spawns streaks of light from hits against solid objects
  */
-void CollisionCheck_SpawnShieldParticles(GlobalContext* globalCtx, Vec3f* v) {
+void CollisionCheck_SpawnShieldParticles(GameState* state, Vec3f* v) {
     static EffectShieldParticleInit initMetal = {
         16,
         { 0, 0, 0 },
@@ -3417,36 +3418,36 @@ void CollisionCheck_SpawnShieldParticles(GlobalContext* globalCtx, Vec3f* v) {
     initMetal.lightPoint.y = initMetal.position.y;
     initMetal.lightPoint.z = initMetal.position.z;
 
-    Effect_Add(globalCtx, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initMetal);
+    Effect_Add(state, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initMetal);
 }
 
 /**
  * Spawns streaks of light and makes a metallic sound
  */
-void CollisionCheck_SpawnShieldParticlesMetal(GlobalContext* globalCtx, Vec3f* v) {
-    CollisionCheck_SpawnShieldParticles(globalCtx, v);
+void CollisionCheck_SpawnShieldParticlesMetal(GameState* state, Vec3f* v) {
+    CollisionCheck_SpawnShieldParticles(state, v);
     Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_REFLECT_SW, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
 }
 
 /**
  * Spawns streaks of light and makes a metallic sound at the specified position
  */
-void CollisionCheck_SpawnShieldParticlesMetalSound(GlobalContext* globalCtx, Vec3f* v, Vec3f* pos) {
-    CollisionCheck_SpawnShieldParticles(globalCtx, v);
+void CollisionCheck_SpawnShieldParticlesMetalSound(GameState* state, Vec3f* v, Vec3f* pos) {
+    CollisionCheck_SpawnShieldParticles(state, v);
     Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_REFLECT_SW, pos, 4, &D_801333E0, &D_801333E0, &D_801333E8);
 }
 
 /**
  * Spawns streaks of light and makes a metallic sound
  */
-void CollisionCheck_SpawnShieldParticlesMetal2(GlobalContext* globalCtx, Vec3f* v) {
-    CollisionCheck_SpawnShieldParticlesMetal(globalCtx, v);
+void CollisionCheck_SpawnShieldParticlesMetal2(GameState* state, Vec3f* v) {
+    CollisionCheck_SpawnShieldParticlesMetal(state, v);
 }
 
 /**
  * Spawns streaks of light and makes a wooden sound
  */
-void CollisionCheck_SpawnShieldParticlesWood(GlobalContext* globalCtx, Vec3f* v, Vec3f* actorPos) {
+void CollisionCheck_SpawnShieldParticlesWood(GameState* state, Vec3f* v, Vec3f* actorPos) {
     static EffectShieldParticleInit initWood = {
         16,
         { 0, 0, 0 },
@@ -3472,7 +3473,7 @@ void CollisionCheck_SpawnShieldParticlesWood(GlobalContext* globalCtx, Vec3f* v,
     initWood.lightPoint.y = initWood.position.y;
     initWood.lightPoint.z = initWood.position.z;
 
-    Effect_Add(globalCtx, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initWood);
+    Effect_Add(state, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initWood);
     Audio_PlaySoundGeneral(NA_SE_IT_REFLECTION_WOOD, actorPos, 4, &D_801333E0, &D_801333E0, &D_801333E8);
 }
 
