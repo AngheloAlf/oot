@@ -552,12 +552,12 @@ void BgCheck_GetStaticLookupIndicesFromPos(CollisionContext* colCtx, Vec3f* pos,
 void BgCheck_Allocate(CollisionContext* colCtx, GlobalContext* globalCtx, CollisionHeader* colHeader);
 s32 BgCheck_PosInStaticBoundingBox(CollisionContext* colCtx, Vec3f* pos);
 f32 BgCheck_EntityRaycastFloor1(CollisionContext* colCtx, CollisionPoly** outPoly, Vec3f* pos);
-f32 BgCheck_EntityRaycastFloor2(GlobalContext* globalCtx, CollisionContext* colCtx, CollisionPoly** outPoly,
+f32 BgCheck_EntityRaycastFloor2(GameState* state, CollisionContext* colCtx, CollisionPoly** outPoly,
                                 Vec3f* pos);
 f32 BgCheck_EntityRaycastFloor3(CollisionContext* colCtx, CollisionPoly** outPoly, s32* bgId, Vec3f* pos);
 f32 BgCheck_EntityRaycastFloor4(CollisionContext* colCtx, CollisionPoly** outPoly, s32* bgId, Actor* actor,
                                 Vec3f* arg4);
-f32 BgCheck_EntityRaycastFloor5(GlobalContext* globalCtx, CollisionContext* colCtx, CollisionPoly** outPoly, s32* bgId,
+f32 BgCheck_EntityRaycastFloor5(GameState* state, CollisionContext* colCtx, CollisionPoly** outPoly, s32* bgId,
                                 Actor* actor, Vec3f* pos);
 f32 BgCheck_EntityRaycastFloor6(CollisionContext* colCtx, CollisionPoly** outPoly, s32* bgId, Actor* actor, Vec3f* pos,
                                 f32 chkDist);
@@ -605,7 +605,7 @@ s32 BgCheck_AnyLineTest3(CollisionContext* colCtx, Vec3f* posA, Vec3f* posB, Vec
                          s32 chkWall, s32 chkFloor, s32 chkCeil, s32 chkOneFace, s32* bgId);
 s32 BgCheck_SphVsFirstPoly(CollisionContext* colCtx, Vec3f* center, f32 radius);
 void SSNodeList_Initialize(SSNodeList*);
-void SSNodeList_Alloc(GlobalContext* globalCtx, SSNodeList* this, s32 tblMax, s32 numPolys);
+void SSNodeList_Alloc(GameState* state, SSNodeList* this, s32 tblMax, s32 numPolys);
 u16 SSNodeList_GetNextNodeIdx(SSNodeList* this);
 s32 DynaPoly_IsBgIdBgActor(s32 bgId);
 void DynaPoly_Init(GlobalContext* globalCtx, DynaCollisionContext* dyna);
@@ -671,8 +671,8 @@ u16 WaterBox_GetCameraSType(CollisionContext* colCtx, WaterBox* waterBox);
 u32 WaterBox_GetLightSettingIndex(CollisionContext* colCtx, WaterBox* waterBox);
 s32 func_80042708(CollisionPoly* polyA, CollisionPoly* polyB, Vec3f* point, Vec3f* closestPoint);
 s32 func_800427B4(CollisionPoly* polyA, CollisionPoly* polyB, Vec3f* pointA, Vec3f* pointB, Vec3f* closestPoint);
-void BgCheck_DrawDynaCollision(GlobalContext*, CollisionContext*);
-void BgCheck_DrawStaticCollision(GlobalContext*, CollisionContext*);
+void BgCheck_DrawDynaCollision(GameState*, CollisionContext*);
+void BgCheck_DrawStaticCollision(GameState*, CollisionContext*);
 void func_80043334(CollisionContext* colCtx, Actor* actor, s32 bgId);
 s32 func_800433A4(CollisionContext* colCtx, s32 bgId, Actor* actor);
 void DynaPolyActor_Init(DynaPolyActor* dynaActor, DynaPolyMoveFlag flags);

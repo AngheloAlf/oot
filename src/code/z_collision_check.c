@@ -1181,9 +1181,10 @@ static ColChkResetFunc sATResetFuncs[] = {
  * The last argument takes a Collider, so pass collider.base rather than the raw collider.
  */
 s32 CollisionCheck_SetAT(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
     s32 index;
 
-    if (FrameAdvance_IsEnabled(state) == true) {
+    if (FrameAdvance_IsEnabled(globalCtx) == true) {
         return -1;
     }
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 2997);
@@ -1211,8 +1212,10 @@ s32 CollisionCheck_SetAT(GameState* state, CollisionCheckContext* colChkCtx, Col
  */
 s32 CollisionCheck_SetAT_SAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                              s32 index) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
+
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3037);
-    if (FrameAdvance_IsEnabled(state) == true) {
+    if (FrameAdvance_IsEnabled(globalCtx) == true) {
         return -1;
     }
     sATResetFuncs[collider->shape](state, collider);
@@ -1250,9 +1253,10 @@ static ColChkResetFunc sACResetFuncs[] = {
  * The last argument takes a Collider, so pass collider.base rather than the raw collider.
  */
 s32 CollisionCheck_SetAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
     s32 index;
 
-    if (FrameAdvance_IsEnabled(state) == true) {
+    if (FrameAdvance_IsEnabled(globalCtx) == true) {
         return -1;
     }
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3114);
@@ -1280,8 +1284,10 @@ s32 CollisionCheck_SetAC(GameState* state, CollisionCheckContext* colChkCtx, Col
  */
 s32 CollisionCheck_SetAC_SAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                              s32 index) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
+
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3153);
-    if (FrameAdvance_IsEnabled(state) == true) {
+    if (FrameAdvance_IsEnabled(globalCtx) == true) {
         return -1;
     }
     sACResetFuncs[collider->shape](state, collider);
@@ -1319,9 +1325,10 @@ static ColChkResetFunc sOCResetFuncs[] = {
  * The last argument takes a Collider, so pass collider.base rather than the raw collider.
  */
 s32 CollisionCheck_SetOC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
     s32 index;
 
-    if (FrameAdvance_IsEnabled(state) == true) {
+    if (FrameAdvance_IsEnabled(globalCtx) == true) {
         return -1;
     }
 
@@ -1351,7 +1358,9 @@ s32 CollisionCheck_SetOC(GameState* state, CollisionCheckContext* colChkCtx, Col
  */
 s32 CollisionCheck_SetOC_SAC(GameState* state, CollisionCheckContext* colChkCtx, Collider* collider,
                              s32 index) {
-    if (FrameAdvance_IsEnabled(state) == true) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
+
+    if (FrameAdvance_IsEnabled(globalCtx) == true) {
         return -1;
     }
     ASSERT(collider->shape <= COLSHAPE_QUAD, "pcl_obj->data_type <= CL_DATA_LBL_SWRD", "../z_collision_check.c", 3274);
@@ -1384,9 +1393,10 @@ s32 CollisionCheck_SetOC_SAC(GameState* state, CollisionCheckContext* colChkCtx,
  * OC lines are entirely unused, and do not even have collision check functions.
  */
 s32 CollisionCheck_SetOCLine(GameState* state, CollisionCheckContext* colChkCtx, OcLine* collider) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
     s32 index;
 
-    if (FrameAdvance_IsEnabled(state) == true) {
+    if (FrameAdvance_IsEnabled(globalCtx) == true) {
         return -1;
     }
     Collider_ResetLineOC(state, collider);
@@ -1444,6 +1454,7 @@ void CollisionCheck_NoBlood(GameState* state, Collider* collider, Vec3f* v) {
 void CollisionCheck_BlueBlood(GameState* state, Collider* collider, Vec3f* v) {
     static EffectSparkInit D_8015D8A0;
     s32 effectIndex;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
     D_8015D8A0.position.x = v->x;
     D_8015D8A0.position.y = v->y;
@@ -1487,7 +1498,7 @@ void CollisionCheck_BlueBlood(GameState* state, Collider* collider, Vec3f* v) {
     D_8015D8A0.speed = 8.0f;
     D_8015D8A0.gravity = -1.0f;
 
-    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D8A0);
+    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D8A0);
 }
 
 /**
@@ -1497,6 +1508,7 @@ void CollisionCheck_BlueBlood(GameState* state, Collider* collider, Vec3f* v) {
 void CollisionCheck_GreenBlood(GameState* state, Collider* collider, Vec3f* v) {
     static EffectSparkInit D_8015DD68;
     s32 effectIndex;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
     D_8015DD68.position.x = v->x;
     D_8015DD68.position.y = v->y;
@@ -1540,7 +1552,7 @@ void CollisionCheck_GreenBlood(GameState* state, Collider* collider, Vec3f* v) {
     D_8015DD68.speed = 8.0f;
     D_8015DD68.gravity = -1.0f;
 
-    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015DD68);
+    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015DD68);
 }
 
 /**
@@ -1548,7 +1560,9 @@ void CollisionCheck_GreenBlood(GameState* state, Collider* collider, Vec3f* v) {
  * Used by collider type HIT4, which no actor has.
  */
 void CollisionCheck_WaterBurst(GameState* state, Collider* collider, Vec3f* pos) {
-    EffectSsSibuki_SpawnBurst(state, pos);
+    GlobalContext* globalCtx = (GlobalContext*)state;
+
+    EffectSsSibuki_SpawnBurst(globalCtx, pos);
     CollisionCheck_SpawnWaterDroplets(state, pos);
 }
 
@@ -1573,9 +1587,10 @@ void CollisionCheck_RedBloodUnused(GameState* state, Collider* collider, Vec3f* 
  */
 void CollisionCheck_HitSolid(GameState* state, ColliderInfo* info, Collider* collider, Vec3f* hitPos) {
     s32 flags = info->toucherFlags & TOUCH_SFX_NONE;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
     if (flags == TOUCH_SFX_NORMAL && collider->colType != COLTYPE_METAL) {
-        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_WHITE, hitPos);
+        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_WHITE, hitPos);
         if (collider->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_BOUND, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -1583,14 +1598,14 @@ void CollisionCheck_HitSolid(GameState* state, ColliderInfo* info, Collider* col
                                    &D_801333E8);
         }
     } else if (flags == TOUCH_SFX_NORMAL) { // collider->colType == COLTYPE_METAL
-        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_METAL, hitPos);
+        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_METAL, hitPos);
         if (collider->actor == NULL) {
             CollisionCheck_SpawnShieldParticlesMetal(state, hitPos);
         } else {
             CollisionCheck_SpawnShieldParticlesMetalSound(state, hitPos, &collider->actor->projectedPos);
         }
     } else if (flags == TOUCH_SFX_HARD) {
-        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_WHITE, hitPos);
+        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_WHITE, hitPos);
         if (collider->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_BOUND, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -1598,7 +1613,7 @@ void CollisionCheck_HitSolid(GameState* state, ColliderInfo* info, Collider* col
                                    &D_801333E8);
         }
     } else if (flags == TOUCH_SFX_WOOD) {
-        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_DUST, hitPos);
+        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_DUST, hitPos);
         if (collider->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_REFLECTION_WOOD, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -1646,6 +1661,7 @@ static HitInfo sHitInfo[] = {
  */
 void CollisionCheck_HitEffects(GameState* state, Collider* at, ColliderInfo* atInfo, Collider* ac,
                                ColliderInfo* acInfo, Vec3f* hitPos) {
+    GlobalContext* globalCtx = (GlobalContext*)state;
     if (acInfo->bumperFlags & BUMP_NO_HITMARK) {
         return;
     }
@@ -1666,13 +1682,13 @@ void CollisionCheck_HitEffects(GameState* state, Collider* at, ColliderInfo* atI
                 CollisionCheck_SpawnShieldParticlesWood(state, hitPos, &at->actor->projectedPos);
             }
         } else if (sHitInfo[ac->colType].effect != HIT_NONE) {
-            EffectSsHitMark_SpawnFixedScale(state, sHitInfo[ac->colType].effect, hitPos);
+            EffectSsHitMark_SpawnFixedScale(globalCtx, sHitInfo[ac->colType].effect, hitPos);
             if (!(acInfo->bumperFlags & BUMP_NO_SWORD_SFX)) {
                 CollisionCheck_SwordHitAudio(at, acInfo);
             }
         }
     } else {
-        EffectSsHitMark_SpawnFixedScale(state, EFFECT_HITMARK_WHITE, hitPos);
+        EffectSsHitMark_SpawnFixedScale(globalCtx, EFFECT_HITMARK_WHITE, hitPos);
         if (ac->actor == NULL) {
             Audio_PlaySoundGeneral(NA_SE_IT_SHIELD_BOUND, &D_801333D4, 4, &D_801333E0, &D_801333E0, &D_801333E8);
         } else {
@@ -3290,6 +3306,7 @@ void Collider_UpdateSpheres(s32 limb, ColliderJntSph* collider) {
 void CollisionCheck_SpawnRedBlood(GameState* state, Vec3f* v) {
     static EffectSparkInit D_8015CF10;
     s32 effectIndex;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
     D_8015CF10.position.x = v->x;
     D_8015CF10.position.y = v->y;
@@ -3333,7 +3350,7 @@ void CollisionCheck_SpawnRedBlood(GameState* state, Vec3f* v) {
     D_8015CF10.speed = 8.0f;
     D_8015CF10.gravity = -1.0f;
 
-    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015CF10);
+    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015CF10);
 }
 
 /**
@@ -3343,6 +3360,7 @@ void CollisionCheck_SpawnRedBlood(GameState* state, Vec3f* v) {
 void CollisionCheck_SpawnWaterDroplets(GameState* state, Vec3f* v) {
     static EffectSparkInit D_8015D3D8;
     s32 effectIndex;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
     D_8015D3D8.position.x = v->x;
     D_8015D3D8.position.y = v->y;
@@ -3386,7 +3404,7 @@ void CollisionCheck_SpawnWaterDroplets(GameState* state, Vec3f* v) {
     D_8015D3D8.speed = 8.0f;
     D_8015D3D8.gravity = -1.0f;
 
-    Effect_Add(state, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D3D8);
+    Effect_Add(globalCtx, &effectIndex, EFFECT_SPARK, 0, 1, &D_8015D3D8);
 }
 
 /**
@@ -3410,6 +3428,7 @@ void CollisionCheck_SpawnShieldParticles(GameState* state, Vec3f* v) {
         true,
     };
     s32 effectIndex;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
     initMetal.position.x = v->x;
     initMetal.position.y = v->y;
@@ -3418,7 +3437,7 @@ void CollisionCheck_SpawnShieldParticles(GameState* state, Vec3f* v) {
     initMetal.lightPoint.y = initMetal.position.y;
     initMetal.lightPoint.z = initMetal.position.z;
 
-    Effect_Add(state, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initMetal);
+    Effect_Add(globalCtx, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initMetal);
 }
 
 /**
@@ -3465,6 +3484,7 @@ void CollisionCheck_SpawnShieldParticlesWood(GameState* state, Vec3f* v, Vec3f* 
         false,
     };
     s32 effectIndex;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
     initWood.position.x = v->x;
     initWood.position.y = v->y;
@@ -3473,7 +3493,7 @@ void CollisionCheck_SpawnShieldParticlesWood(GameState* state, Vec3f* v, Vec3f* 
     initWood.lightPoint.y = initWood.position.y;
     initWood.lightPoint.z = initWood.position.z;
 
-    Effect_Add(state, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initWood);
+    Effect_Add(globalCtx, &effectIndex, EFFECT_SHIELD_PARTICLE, 0, 1, &initWood);
     Audio_PlaySoundGeneral(NA_SE_IT_REFLECTION_WOOD, actorPos, 4, &D_801333E0, &D_801333E0, &D_801333E8);
 }
 

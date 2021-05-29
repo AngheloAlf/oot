@@ -93,7 +93,7 @@ void DynaSSNodeList_SetSSListHead(DynaSSNodeList* nodeList, SSList* ssList, s16*
 /**
  * Initialize DynaSSNodeList
  */
-void DynaSSNodeList_Initialize(GlobalContext* globalCtx, DynaSSNodeList* nodeList) {
+void DynaSSNodeList_Initialize(GameState* state, DynaSSNodeList* nodeList) {
     nodeList->tbl = NULL;
     nodeList->count = 0;
 }
@@ -101,8 +101,8 @@ void DynaSSNodeList_Initialize(GlobalContext* globalCtx, DynaSSNodeList* nodeLis
 /**
  * Initialize DynaSSNodeList tbl
  */
-void DynaSSNodeList_Alloc(GlobalContext* globalCtx, DynaSSNodeList* nodeList, s32 max) {
-    nodeList->tbl = THA_AllocEndAlign(&globalCtx->state.tha, max * sizeof(SSNode), -2);
+void DynaSSNodeList_Alloc(GameState* state, DynaSSNodeList* nodeList, s32 max) {
+    nodeList->tbl = THA_AllocEndAlign(&state->tha, max * sizeof(SSNode), -2);
 
     ASSERT(nodeList->tbl != NULL, "psst->tbl != NULL", "../z_bgcheck.c", 1811);
 
@@ -1342,7 +1342,7 @@ s32 BgCheck_PolyIntersectsSubdivision(Vec3f* min, Vec3f* max, CollisionPoly* pol
  * Initialize StaticLookup Table
  * returns size of table, in bytes
  */
-u32 BgCheck_InitializeStaticLookup(CollisionContext* colCtx, GlobalContext* globalCtx, StaticLookup* lookupTbl) {
+u32 BgCheck_InitializeStaticLookup(CollisionContext* colCtx, GameState* state, StaticLookup* lookupTbl) {
     Vec3s* vtxList;
     CollisionPoly* polyList;
     s32 polyMax;
@@ -1596,9 +1596,9 @@ void BgCheck_Allocate(CollisionContext* colCtx, GlobalContext* globalCtx, Collis
     }
 
     SSNodeList_Initialize(&colCtx->polyNodes);
-    SSNodeList_Alloc(globalCtx, &colCtx->polyNodes, tblMax, colCtx->colHeader->nbPolygons);
+    SSNodeList_Alloc(&globalCtx->state, &colCtx->polyNodes, tblMax, colCtx->colHeader->nbPolygons);
 
-    lookupTblMemSize = BgCheck_InitializeStaticLookup(colCtx, globalCtx, colCtx->lookupTbl);
+    lookupTblMemSize = BgCheck_InitializeStaticLookup(colCtx, &globalCtx->state, colCtx->lookupTbl);
     osSyncPrintf(VT_FGCOL(GREEN));
     osSyncPrintf("/*---結局 BG使用サイズ %dbyte---*/\n", memSize + lookupTblMemSize);
     osSyncPrintf(VT_RST);
@@ -1647,7 +1647,7 @@ s32 BgCheck_PosInStaticBoundingBox(CollisionContext* colCtx, Vec3f* pos) {
  * returns the yIntersect of the nearest poly found directly below `pos`, or BGCHECK_Y_MIN if no floor detected
  * returns the poly found in `outPoly`, and the bgId of the entity in `outBgId`
  */
-f32 BgCheck_RaycastFloorImpl(GlobalContext* globalCtx, CollisionContext* colCtx, u16 xpFlags, CollisionPoly** outPoly,
+f32 BgCheck_RaycastFloorImpl(GameState* state, CollisionContext* colCtx, u16 xpFlags, CollisionPoly** outPoly,
                              s32* outBgId, Vec3f* pos, Actor* actor, u32 arg7, f32 chkDist) {
 
     f32 yIntersectDyna;
@@ -1692,7 +1692,7 @@ f32 BgCheck_RaycastFloorImpl(GlobalContext* globalCtx, CollisionContext* colCtx,
     dynaRaycast.actor = actor;
     dynaRaycast.unk_20 = arg7;
     dynaRaycast.chkDist = chkDist;
-    dynaRaycast.globalCtx = globalCtx;
+    dynaRaycast.globalCtx = (GlobalContext*)state;
     dynaRaycast.resultPoly = outPoly;
     dynaRaycast.bgId = outBgId;
 
@@ -1732,11 +1732,11 @@ f32 BgCheck_EntityRaycastFloor1(CollisionContext* colCtx, CollisionPoly** outPol
  * Public raycast toward floor
  * returns yIntersect of the poly found, or BGCHECK_Y_MIN if no poly detected
  */
-f32 BgCheck_EntityRaycastFloor2(GlobalContext* globalCtx, CollisionContext* colCtx, CollisionPoly** outPoly,
+f32 BgCheck_EntityRaycastFloor2(GameState* state, CollisionContext* colCtx, CollisionPoly** outPoly,
                                 Vec3f* pos) {
     s32 bgId;
 
-    return BgCheck_RaycastFloorImpl(globalCtx, colCtx, COLPOLY_IGNORE_ENTITY, outPoly, &bgId, pos, NULL, 0x1C, 1.0f);
+    return BgCheck_RaycastFloorImpl(state, colCtx, COLPOLY_IGNORE_ENTITY, outPoly, &bgId, pos, NULL, 0x1C, 1.0f);
 }
 
 /**
@@ -1760,9 +1760,9 @@ f32 BgCheck_EntityRaycastFloor4(CollisionContext* colCtx, CollisionPoly** outPol
  * Public raycast toward floor
  * returns yIntersect of the poly found, or BGCHECK_Y_MIN if no poly detected
  */
-f32 BgCheck_EntityRaycastFloor5(GlobalContext* globalCtx, CollisionContext* colCtx, CollisionPoly** outPoly, s32* bgId,
+f32 BgCheck_EntityRaycastFloor5(GameState* state, CollisionContext* colCtx, CollisionPoly** outPoly, s32* bgId,
                                 Actor* actor, Vec3f* pos) {
-    return BgCheck_RaycastFloorImpl(globalCtx, colCtx, COLPOLY_IGNORE_ENTITY, outPoly, bgId, pos, actor, 0x1C, 1.0f);
+    return BgCheck_RaycastFloorImpl(state, colCtx, COLPOLY_IGNORE_ENTITY, outPoly, bgId, pos, actor, 0x1C, 1.0f);
 }
 
 /**
@@ -2409,14 +2409,14 @@ void SSNodeList_Initialize(SSNodeList* this) {
  * tblMax is the number of SSNode records to allocate
  * numPolys is the number of polygons defined within the CollisionHeader
  */
-void SSNodeList_Alloc(GlobalContext* globalCtx, SSNodeList* this, s32 tblMax, s32 numPolys) {
+void SSNodeList_Alloc(GameState* state, SSNodeList* this, s32 tblMax, s32 numPolys) {
     this->max = tblMax;
     this->count = 0;
-    this->tbl = THA_AllocEndAlign(&globalCtx->state.tha, tblMax * sizeof(SSNode), -2);
+    this->tbl = THA_AllocEndAlign(&state->tha, tblMax * sizeof(SSNode), -2);
 
     ASSERT(this->tbl != NULL, "this->short_slist_node_tbl != NULL", "../z_bgcheck.c", 5975);
 
-    this->polyCheckTbl = GameState_Alloc(&globalCtx->state, numPolys, "../z_bgcheck.c", 5979);
+    this->polyCheckTbl = GameState_Alloc(state, numPolys, "../z_bgcheck.c", 5979);
 
     ASSERT(this->polyCheckTbl != NULL, "this->polygon_check != NULL", "../z_bgcheck.c", 5981);
 }
@@ -2503,7 +2503,7 @@ void DynaLookup_ResetVtxStartIndex(u16* vtxStartIndex) {
 /**
  * Initialize BgActor
  */
-void BgActor_Initialize(GlobalContext* globalCtx, BgActor* bgActor) {
+void BgActor_Initialize(GameState* state, BgActor* bgActor) {
     bgActor->actor = NULL;
     bgActor->colHeader = NULL;
     ScaleRotPos_Initialize(&bgActor->prevTransform);
@@ -2590,7 +2590,7 @@ void DynaPoly_Init(GlobalContext* globalCtx, DynaCollisionContext* dyna) {
     dyna->bitFlag = DYNAPOLY_INVALIDATE_LOOKUP;
     DynaPoly_NullPolyList(&dyna->polyList);
     DynaPoly_NullVtxList(&dyna->vtxList);
-    DynaSSNodeList_Initialize(globalCtx, &dyna->polyNodes);
+    DynaSSNodeList_Initialize(&globalCtx->state, &dyna->polyNodes);
 }
 
 /**
@@ -2600,7 +2600,7 @@ void DynaPoly_Alloc(GlobalContext* globalCtx, DynaCollisionContext* dyna) {
     s32 i;
 
     for (i = 0; i < BG_ACTOR_MAX; i++) {
-        BgActor_Initialize(globalCtx, &dyna->bgActors[i]);
+        BgActor_Initialize(&globalCtx->state, &dyna->bgActors[i]);
         dyna->bgActorFlags[i] = 0;
     }
     DynaPoly_NullPolyList(&dyna->polyList);
@@ -2609,8 +2609,8 @@ void DynaPoly_Alloc(GlobalContext* globalCtx, DynaCollisionContext* dyna) {
     DynaPoly_NullVtxList(&dyna->vtxList);
     DynaPoly_AllocVtxList(globalCtx, &dyna->vtxList, dyna->vtxListMax);
 
-    DynaSSNodeList_Initialize(globalCtx, &dyna->polyNodes);
-    DynaSSNodeList_Alloc(globalCtx, &dyna->polyNodes, dyna->polyNodesMax);
+    DynaSSNodeList_Initialize(&globalCtx->state, &dyna->polyNodes);
+    DynaSSNodeList_Alloc(&globalCtx->state, &dyna->polyNodes, dyna->polyNodesMax);
 }
 
 /**
@@ -2948,7 +2948,7 @@ void DynaPoly_Setup(GlobalContext* globalCtx, DynaCollisionContext* dyna) {
             osSyncPrintf(VT_RST);
 
             dyna->bgActorFlags[i] = 0;
-            BgActor_Initialize(globalCtx, &dyna->bgActors[i]);
+            BgActor_Initialize(&globalCtx->state, &dyna->bgActors[i]);
             dyna->bitFlag |= DYNAPOLY_INVALIDATE_LOOKUP;
         }
         if (dyna->bgActors[i].actor != NULL && dyna->bgActors[i].actor->update == NULL) {
@@ -2963,7 +2963,7 @@ void DynaPoly_Setup(GlobalContext* globalCtx, DynaCollisionContext* dyna) {
             actor->bgId = BGACTOR_NEG_ONE;
             dyna->bgActorFlags[i] = 0;
 
-            BgActor_Initialize(globalCtx, &dyna->bgActors[i]);
+            BgActor_Initialize(&globalCtx->state, &dyna->bgActors[i]);
             dyna->bitFlag |= DYNAPOLY_INVALIDATE_LOOKUP;
         }
     }
@@ -4360,7 +4360,7 @@ s32 func_800427B4(CollisionPoly* polyA, CollisionPoly* polyB, Vec3f* pointA, Vec
 /**
  * Draw a list of dyna polys, specified by `ssList`
  */
-void BgCheck_DrawDynaPolyList(GlobalContext* globalCtx, CollisionContext* colCtx, DynaCollisionContext* dyna,
+void BgCheck_DrawDynaPolyList(GameState* state, CollisionContext* colCtx, DynaCollisionContext* dyna,
                               SSList* ssList, u8 r, u8 g, u8 b) {
     s16 curPolyId;
     CollisionPoly* poly;
@@ -4394,7 +4394,7 @@ void BgCheck_DrawDynaPolyList(GlobalContext* globalCtx, CollisionContext* colCtx
                 vC.y += AREG(26) * ny;
                 vC.z += AREG(26) * nz;
             }
-            Collider_DrawPoly(globalCtx->state.gfxCtx, &vA, &vB, &vC, r, g, b);
+            Collider_DrawPoly(state->gfxCtx, &vA, &vB, &vC, r, g, b);
             if (curNode->next == SS_NULL) {
                 break;
             }
@@ -4407,17 +4407,17 @@ void BgCheck_DrawDynaPolyList(GlobalContext* globalCtx, CollisionContext* colCtx
  * Draw a BgActor's dyna polys
  * `bgId` is the BgActor index that should be drawn
  */
-void BgCheck_DrawBgActor(GlobalContext* globalCtx, CollisionContext* colCtx, s32 bgId) {
+void BgCheck_DrawBgActor(GameState* state, CollisionContext* colCtx, s32 bgId) {
     if (AREG(21)) {
-        BgCheck_DrawDynaPolyList(globalCtx, colCtx, &colCtx->dyna, &colCtx->dyna.bgActors[bgId].dynaLookup.ceiling, 255,
+        BgCheck_DrawDynaPolyList(state, colCtx, &colCtx->dyna, &colCtx->dyna.bgActors[bgId].dynaLookup.ceiling, 255,
                                  0, 0);
     }
     if (AREG(22)) {
-        BgCheck_DrawDynaPolyList(globalCtx, colCtx, &colCtx->dyna, &colCtx->dyna.bgActors[bgId].dynaLookup.wall, 0, 255,
+        BgCheck_DrawDynaPolyList(state, colCtx, &colCtx->dyna, &colCtx->dyna.bgActors[bgId].dynaLookup.wall, 0, 255,
                                  0);
     }
     if (AREG(23)) {
-        BgCheck_DrawDynaPolyList(globalCtx, colCtx, &colCtx->dyna, &colCtx->dyna.bgActors[bgId].dynaLookup.floor, 0, 0,
+        BgCheck_DrawDynaPolyList(state, colCtx, &colCtx->dyna, &colCtx->dyna.bgActors[bgId].dynaLookup.floor, 0, 0,
                                  255);
     }
 }
@@ -4425,7 +4425,7 @@ void BgCheck_DrawBgActor(GlobalContext* globalCtx, CollisionContext* colCtx, s32
 /**
  * Draw all dyna polys
  */
-void BgCheck_DrawDynaCollision(GlobalContext* globalCtx, CollisionContext* colCtx) {
+void BgCheck_DrawDynaCollision(GameState* state, CollisionContext* colCtx) {
     s32 bgId;
 
     for (bgId = 0; bgId < BG_ACTOR_MAX; bgId++) {
@@ -4433,14 +4433,14 @@ void BgCheck_DrawDynaCollision(GlobalContext* globalCtx, CollisionContext* colCt
         if (!(colCtx->dyna.bgActorFlags[bgId] & 1)) {
             continue;
         }
-        BgCheck_DrawBgActor(globalCtx, colCtx, bgId);
+        BgCheck_DrawBgActor(state, colCtx, bgId);
     }
 }
 
 /**
  * Draw a static poly
  */
-void BgCheck_DrawStaticPoly(GlobalContext* globalCtx, CollisionContext* colCtx, CollisionPoly* poly, u8 r, u8 g, u8 b) {
+void BgCheck_DrawStaticPoly(GameState* state, CollisionContext* colCtx, CollisionPoly* poly, u8 r, u8 g, u8 b) {
     Vec3f vA;
     Vec3f vB;
     Vec3f vC;
@@ -4465,13 +4465,13 @@ void BgCheck_DrawStaticPoly(GlobalContext* globalCtx, CollisionContext* colCtx, 
         vC.y += AREG(26) * ny;
         vC.z += AREG(26) * nz;
     }
-    Collider_DrawPoly(globalCtx->state.gfxCtx, &vA, &vB, &vC, r, g, b);
+    Collider_DrawPoly(state->gfxCtx, &vA, &vB, &vC, r, g, b);
 }
 
 /**
  * Draw a list of static polys, specified by `ssList`
  */
-void BgCheck_DrawStaticPolyList(GlobalContext* globalCtx, CollisionContext* colCtx, SSList* ssList, u8 r, u8 g, u8 b) {
+void BgCheck_DrawStaticPolyList(GameState* state, CollisionContext* colCtx, SSList* ssList, u8 r, u8 g, u8 b) {
     SSNode* curNode;
     CollisionPoly* polyList = colCtx->colHeader->polyList;
     s16 curPolyId;
@@ -4480,7 +4480,7 @@ void BgCheck_DrawStaticPolyList(GlobalContext* globalCtx, CollisionContext* colC
         curNode = &colCtx->polyNodes.tbl[ssList->head];
         while (true) {
             curPolyId = curNode->polyId;
-            BgCheck_DrawStaticPoly(globalCtx, colCtx, &polyList[curPolyId], r, g, b);
+            BgCheck_DrawStaticPoly(state, colCtx, &polyList[curPolyId], r, g, b);
             if (curNode->next == SS_NULL) {
                 break;
             }
@@ -4492,17 +4492,20 @@ void BgCheck_DrawStaticPolyList(GlobalContext* globalCtx, CollisionContext* colC
 /**
  * Draw scene collision
  */
-void BgCheck_DrawStaticCollision(GlobalContext* globalCtx, CollisionContext* colCtx) {
-    Player* player = PLAYER;
-    StaticLookup* lookup = BgCheck_GetNearestStaticLookup(colCtx, colCtx->lookupTbl, &player->actor.world.pos);
+void BgCheck_DrawStaticCollision(GameState* state, CollisionContext* colCtx) {
+    Player* player;
+    StaticLookup* lookup;
+    GlobalContext* globalCtx = (GlobalContext*)state;
 
+    player = PLAYER;
+    lookup = BgCheck_GetNearestStaticLookup(colCtx, colCtx->lookupTbl, &player->actor.world.pos);
     if (AREG(23) != 0) {
-        BgCheck_DrawStaticPolyList(globalCtx, colCtx, &lookup->floor, 0, 0, 255);
+        BgCheck_DrawStaticPolyList(state, colCtx, &lookup->floor, 0, 0, 255);
     }
     if (AREG(22) != 0) {
-        BgCheck_DrawStaticPolyList(globalCtx, colCtx, &lookup->wall, 0, 255, 0);
+        BgCheck_DrawStaticPolyList(state, colCtx, &lookup->wall, 0, 255, 0);
     }
     if (AREG(21) != 0) {
-        BgCheck_DrawStaticPolyList(globalCtx, colCtx, &lookup->ceiling, 255, 0, 0);
+        BgCheck_DrawStaticPolyList(state, colCtx, &lookup->ceiling, 255, 0, 0);
     }
 }
