@@ -21,6 +21,7 @@ beginseg
     include "build/src/boot/assert.o"
     include "build/src/boot/is_debug.o"
     include "build/src/boot/ed64_v3.o"
+    include "build/src/boot/ed64_x.o"
     include "build/src/libultra_boot_O2/osDriveRomInit.o"
     include "build/asm/mio0.o"
     include "build/src/boot/stackcheck.o"

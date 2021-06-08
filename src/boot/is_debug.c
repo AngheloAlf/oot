@@ -1,5 +1,14 @@
 #include "global.h"
+
 #include "ed64_v3.h"
+#include "ed64_x.h"
+
+#define V3 3
+#define X  7
+
+#define ISDEBUG_PRINT_MODE X
+//#define ISDEBUG_PRINT_MODE V3
+//#define ISDEBUG_PRINT_MODE 
 
 OSPiHandle* sISVHandle; // official name : is_Handle
 
@@ -17,14 +26,32 @@ void osSyncPrintfUnused(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
 
+    _Printf(ed64_x_proutSyncPrintf, NULL, fmt, args);
+    /*
+#if ISDEBUG_PRINT_MODE == X
+    _Printf(ed64_x_proutSyncPrintf, NULL, fmt, args);
+#elif ISDEBUG_PRINT_MODE == V3
     _Printf(ed64_v3_proutSyncPrintf, NULL, fmt, args);
+#else
+    _Printf(is_proutSyncPrintf, NULL, fmt, args);
+#endif
+    */
 }
 
 void osSyncPrintf(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
 
+    _Printf(ed64_x_proutSyncPrintf, NULL, fmt, args);
+    /*
+#if ISDEBUG_PRINT_MODE == X
+    _Printf(ed64_x_proutSyncPrintf, NULL, fmt, args);
+#elif ISDEBUG_PRINT_MODE == V3
     _Printf(ed64_v3_proutSyncPrintf, NULL, fmt, args);
+#else
+    _Printf(is_proutSyncPrintf, NULL, fmt, args);
+#endif
+    */
 }
 
 // assumption
@@ -32,7 +59,16 @@ void rmonPrintf(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
 
+    _Printf(ed64_x_proutSyncPrintf, NULL, fmt, args);
+    /*
+#if ISDEBUG_PRINT_MODE == X
+    _Printf(ed64_x_proutSyncPrintf, NULL, fmt, args);
+#elif ISDEBUG_PRINT_MODE == V3
     _Printf(ed64_v3_proutSyncPrintf, NULL, fmt, args);
+#else
+    _Printf(is_proutSyncPrintf, NULL, fmt, args);
+#endif
+    */
 }
 
 void* is_proutSyncPrintf(void* arg, const char* str, u32 count) {
