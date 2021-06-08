@@ -108,7 +108,7 @@ static void cart_lock(void)
 	HW_REG(PI_BSD_DOM2_LAT_REG, u32) = 4;
 	HW_REG(PI_BSD_DOM2_PWD_REG, u32) = 12;
 
-	REG_WR(REG_KEY, 0x1234);
+	REG_WR(REG_KEY, 0xAA55);
 }
 
 static void cart_unlock(void)
@@ -130,8 +130,8 @@ int ed64_x_fifo_write(const void *src, u32 n_blocks)
 
     while (n_blocks != 0) {
         /* wait for power on and tx buffer empty (PWR high, TXE low) */
-        /*while ((REG_RD(REG_USB_CFG) & (USB_STA_PWR | USB_STA_TXE)) != USB_STA_PWR)
-        ;*/
+        while ((REG_RD(REG_USB_CFG) & (USB_STA_PWR | USB_STA_TXE)) != USB_STA_PWR)
+        ;
 
         /* copy to tx buffer */
         REG_WR(REG_USB_CFG, USB_LE_CFG | USB_LE_CTR | USB_CFG_WR);
