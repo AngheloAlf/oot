@@ -53,6 +53,8 @@ address_Graph_OpenDisps = {
     "jp_gc_ce" : 0x001F78A,
 }
 
+ENTRYPOINT = 0x80000400
+
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
@@ -96,6 +98,14 @@ def beWordsToBytes(words_list: List[int], buffer: bytearray) -> bytearray:
     struct.pack_into(big_endian_format, buffer, 0, *words_list)
     return buffer
 
+def toHex(number: int, digits: int) -> str:
+    return "0x" + hex(number)[2:].zfill(digits).upper()
+
+def from2Complement(number: int, bits: int) -> int:
+    isNegative = number & (1 << (bits - 1))
+    if isNegative:
+        return -((~number + 1) & ((1 << bits) - 1))
+    return number
 
 
 class File:
@@ -183,6 +193,8 @@ class File:
         self.bytes = self.bytes[:self.sizew*4]
 
     def saveToFile(self, filepath: str):
+        if self.size == 0:
+            return
         writeBytearrayToFile(filepath, self.bytes)
 
 
@@ -390,7 +402,7 @@ class Instruction:
         self.function = 0
 
     def getOpcodeName(self) -> str:
-        opcode = "0x" + hex(self.opcode).strip("0x").zfill(2)
+        opcode = toHex(self.opcode, 2)
         return Instruction.NormalOpcodes.get(self.opcode, f"({opcode})")
 
     def getRegisterName(self, register: int) -> str:
@@ -429,15 +441,16 @@ class Instruction:
         opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
         rt = self.getRegisterName(self.rt)
-        immediate = "0x" + hex(self.immediate)[2:].zfill(4).upper()
+        immediate = toHex(self.immediate, 4)
 
         if "COP" in self.getOpcodeName(): # Hack until I implement COPz instructions
-            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
+            instr_index = toHex(self.instr_index, 7)
             return f"{opcode} {instr_index}"
 
         if self.getOpcodeName() == "NOP":
             return "nop"
         if self.isIType():
+            # TODO: use float registers
             result = f"{opcode} {rt},"
             result = result.ljust(14, ' ')
             return f"{result} {immediate}({rs})"
@@ -462,8 +475,11 @@ class Instruction:
             result = result.ljust(14, ' ')
             return f"{result} {immediate}"
         elif self.isJType():
-            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
-            return f"{opcode} {instr_index}"
+            # instr_index = toHex(self.instr_index, 7)
+            # return f"{opcode} {instr_index}"
+            instrIndexHex = toHex(self.instr_index<<2, 6)[2:]
+            label = f"func_80{instrIndexHex}"
+            return f"{opcode} {label}"
         elif self.isRType():
             rd = self.getRegisterName(self.rd)
             result = f"{opcode} {rd},"
@@ -611,7 +627,7 @@ class InstructionSpecial(Instruction):
     def getOpcodeName(self) -> str:
         if self.instr == 0:
             return "NOP"
-        opcode = "0x" + hex(self.function).strip("0x").zfill(2)
+        opcode = toHex(self.function, 2)
         name = InstructionSpecial.SpecialOpcodes.get(self.function, f"SPECIAL({opcode})")
         if name == "OR":
             if self.rt == 0:
@@ -623,7 +639,7 @@ class InstructionSpecial(Instruction):
         formated_opcode = opcode.lower().ljust(7, ' ')
 
         if opcode == "MOVCI": # Hack until I implement MOVCI instructions
-            instr_index = "0x" + hex(self.instr_index).strip("0x").zfill(7).upper()
+            instr_index = toHex(self.instr_index, 7)
             return f"{formated_opcode} {instr_index}"
 
         if opcode in ("JR", "MTHI", "MTLO"):
@@ -648,7 +664,9 @@ class InstructionSpecial(Instruction):
             result = f"{formated_opcode} {rs},".ljust(14, ' ')
             return f"{result} {rt}"
         elif opcode in ("SYSCALL", "BREAK", "SYNC"):
-            return opcode
+            code = (self.instr_index) >> 6
+            result = f"{formated_opcode} {code}"
+            return result
         return super().__str__()
 
 class InstructionRegimm(Instruction):
@@ -691,13 +709,13 @@ class InstructionRegimm(Instruction):
         return False
 
     def getOpcodeName(self) -> str:
-        opcode = "0x" + hex(self.rt).strip("0x").zfill(2)
+        opcode = toHex(self.rt, 2)
         return InstructionRegimm.RegimmOpcodes.get(self.rt, f"REGIMM({opcode})")
 
     def __str__(self) -> str:
         opcode = self.getOpcodeName().lower().ljust(7, ' ')
         rs = self.getRegisterName(self.rs)
-        immediate = "0x" + hex(self.immediate).strip("0x").zfill(4).upper()
+        immediate = toHex(self.immediate, 4)
 
         result = f"{opcode} {rs},"
         result = result.ljust(14, ' ')
@@ -927,9 +945,48 @@ class Text(File):
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".text")
 
+        processed = []
+        jrRaFound = False
+        offset = 0
+        offsetsBranches = set()
+        for instr in self.instructions:
+            offsetHex = toHex(offset, 5)[2:]
+            # vramHex = toHex(ENTRYPOINT + offset + 0x60, 8)[2:]
+            instrHex = toHex(instr.instr, 8)[2:]
+
+            comment = f"/* {offsetHex} {instrHex} */"
+
+            line = str(instr)
+            if instr.isBranch():
+                if not instr.isJType():
+                    #line += " HERE"
+                    line = line[:-6]
+                    addr = from2Complement(instr.immediate, 16)
+                    branch = offset + 1*4 + addr*4
+                    offsetsBranches.add(branch)
+                    line += ".L" + toHex(branch, 5)[2:]
+
+            data = {"comment": comment, "instr": instr, "endLine":"", "line": line}
+            processed.append(data)
+
+            if jrRaFound:
+                data["endLine"] += "\n"
+                jrRaFound = False
+            if instr.getOpcodeName() == "JR" and instr.getRegisterName(instr.rs) == "$ra":
+                jrRaFound = True
+
+            offset += 4
+
         with open(filepath + ".text.asm", "w") as f:
-            for instr in self.instructions:
-                f.write(str(instr) + "\n")
+            jrRaFound = False
+            offset = 0
+            for data in processed:
+                line = data["comment"] + "  " + data["line"] + data["endLine"]
+                if offset in offsetsBranches:
+                    line = ".L" + toHex(offset, 5)[2:] + ":\n" + line
+                f.write(line + "\n")
+
+                offset += 4
 
 
 class Data(File):
@@ -954,6 +1011,20 @@ class Data(File):
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".data")
 
+        if self.size == 0:
+            return
+
+        with open(filepath + ".data.asm", "w") as f:
+            # f.write(".section .data\n\n.balign 16\n\n")
+            offset = 0
+            for w in self.words:
+                offsetHex = toHex(offset, 5)[2:]
+                dataHex = toHex(w, 8)[2:]
+                line = toHex(w, 8)
+
+                f.write(f"/* {offsetHex} {dataHex} */  .word  {line}\n")
+                offset += 4
+
 
 class Rodata(File):
     def removePointers(self, args):
@@ -977,6 +1048,20 @@ class Rodata(File):
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".rodata")
 
+        if self.size == 0:
+            return
+
+        with open(filepath + ".rodata.asm", "w") as f:
+            # f.write(".section .rodata\n\n.balign 16\n\n")
+            offset = 0
+            for w in self.words:
+                offsetHex = toHex(offset, 5)[2:]
+                rodataHex = toHex(w, 8)[2:]
+                line = toHex(w, 8)
+
+                f.write(f"/* {offsetHex} {rodataHex} */  .word  {line}\n")
+                offset += 4
+
 
 class Bss(File):
     def removePointers(self, args):
@@ -987,6 +1072,20 @@ class Bss(File):
 
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".bss")
+
+        if self.size == 0:
+            return
+
+        with open(filepath + ".bss.asm", "w") as f:
+            # f.write(".section .bss\n\n.balign 16\n\n")
+            offset = 0
+            for w in self.words:
+                offsetHex = toHex(offset, 5)[2:]
+                bssHex = toHex(w, 8)[2:]
+                line = toHex(w, 8)
+
+                f.write(f"/* {offsetHex} {bssHex} */  .word  {line}\n")
+                offset += 4
 
 
 class RelocEntry:
@@ -1051,6 +1150,21 @@ class Reloc(File):
 
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".reloc")
+
+        if self.size == 0:
+            return
+
+        with open(filepath + ".reloc.asm", "w") as f:
+            # f.write(".section .rodata\n\n.balign 16\n\n")
+            offset = 0
+            for r in self.entries:
+                offsetHex = toHex(offset, 5)[2:]
+                relocHex = toHex(r.reloc, 8)[2:]
+                line = str(r)
+
+                f.write(f"/* {offsetHex} {relocHex} */  {line}\n")
+                offset += 4
+
 
 class Overlay(File):
     def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
