@@ -297,8 +297,6 @@ class Instruction:
 
     def isBranch(self) -> bool:
         opcode = self.getOpcodeName()
-        if opcode == "J" or opcode == "JAL":
-            return True
         if opcode == "BEQ" or opcode == "BEQL":
             return True
         if opcode == "BLEZ" or opcode == "BLEZL":
@@ -459,6 +457,9 @@ class Instruction:
             result = result.ljust(14, ' ')
             result += f" {rt},"
             result = result.ljust(19, ' ')
+            if self.getOpcodeName() == "BEQ":
+                if self.rs == 0 and self.rt == 0:
+                    result = "b".ljust(7, ' ')
             return f"{result} {immediate}"
         elif self.isIType3():
             result = f"{opcode} {rt},"
@@ -479,6 +480,8 @@ class Instruction:
             # return f"{opcode} {instr_index}"
             instrIndexHex = toHex(self.instr_index<<2, 6)[2:]
             label = f"func_80{instrIndexHex}"
+            #if (self.instr_index<<2) % 16 == 0 and (self.instr_index<<2) & 0x800000:
+                #print(label)
             return f"{opcode} {label}"
         elif self.isRType():
             rd = self.getRegisterName(self.rd)
@@ -690,6 +693,13 @@ class InstructionRegimm(Instruction):
         0b01_110: "TNEI",
     }
 
+    def isBranch(self) -> bool:
+        opcode = self.getOpcodeName()
+        if opcode in ("BLTZ", "BGEZ", "BLTZL", "BGEZL"):
+            return True
+        if opcode in ("BLTZAL", "BGEZAL", "BLTZALL", "BGEZALL"):
+            return True
+        return False
     def isTrap(self) -> bool:
         opcode = self.getOpcodeName()
         return opcode in ("TGEI", "TGEIU", "TLTI", "TLTIU", "TEQI", "TNEI")
@@ -738,9 +748,37 @@ class Text(File):
         for word in self.words:
             self.instructions.append(wordToInstruction(word))
 
+        # TODO: make this a class?
+        self.functions: List[List[Instruction]] = list()
+
     @property
     def nInstr(self):
         return len(self.instructions)
+
+    def findFunctions(self):
+        functionEnded = False
+        func = list()
+        offset = 0
+        farthestBranch = 0
+        for instr in self.instructions:
+            func.append(instr)
+            if functionEnded:
+                self.functions.append(func)
+                func = list()
+                functionEnded = False
+
+            if instr.isBranch():
+                branch = from2Complement(instr.immediate, 16) + 1
+                if branch > farthestBranch:
+                    farthestBranch = branch
+
+            if instr.getOpcodeName() == "JR" and instr.getRegisterName(instr.rs) == "$ra" and not farthestBranch > 0:
+                functionEnded = True
+
+            offset += 4
+            farthestBranch -= 1
+        if len(func) > 0:
+            self.functions.append(func)
 
     def compareToFile(self, other: File):
         result = super().compareToFile(other)
@@ -787,10 +825,15 @@ class Text(File):
             instr1 = self.instructions[i]
             instr2 = other_file.instructions[i]
             if self.args is not None and self.args.ignore_branches:
-                if instr1.isBranch() and instr2.isBranch() and instr1.sameOpcode(instr2):
-                    instr1.blankOut()
-                    instr2.blankOut()
-                    was_updated = True
+                if instr1.sameOpcode(instr2):
+                    if instr1.isBranch() and instr2.isBranch():
+                        instr1.blankOut()
+                        instr2.blankOut()
+                        was_updated = True
+                    elif instr1.isJType():
+                        instr1.blankOut()
+                        instr2.blankOut()
+                        was_updated = True
 
             #if (instr1.isADDIU() or instr1.isSB() or instr1.isSW() or instr1.isLWCz() 
             #    or instr1.isLBU() or instr1.isLH() or instr1.isLW() or instr1.isSWCz() 
@@ -945,48 +988,46 @@ class Text(File):
     def saveToFile(self, filepath: str):
         super().saveToFile(filepath + ".text")
 
-        processed = []
-        jrRaFound = False
-        offset = 0
-        offsetsBranches = set()
-        for instr in self.instructions:
-            offsetHex = toHex(offset, 5)[2:]
-            # vramHex = toHex(ENTRYPOINT + offset + 0x60, 8)[2:]
-            instrHex = toHex(instr.instr, 8)[2:]
-
-            comment = f"/* {offsetHex} {instrHex} */"
-
-            line = str(instr)
-            if instr.isBranch():
-                if not instr.isJType():
-                    #line += " HERE"
-                    line = line[:-6]
-                    addr = from2Complement(instr.immediate, 16)
-                    branch = offset + 1*4 + addr*4
-                    offsetsBranches.add(branch)
-                    line += ".L" + toHex(branch, 5)[2:]
-
-            data = {"comment": comment, "instr": instr, "endLine":"", "line": line}
-            processed.append(data)
-
-            if jrRaFound:
-                data["endLine"] += "\n"
-                jrRaFound = False
-            if instr.getOpcodeName() == "JR" and instr.getRegisterName(instr.rs) == "$ra":
-                jrRaFound = True
-
-            offset += 4
-
         with open(filepath + ".text.asm", "w") as f:
-            jrRaFound = False
+            i = 0
             offset = 0
-            for data in processed:
-                line = data["comment"] + "  " + data["line"] + data["endLine"]
-                if offset in offsetsBranches:
-                    line = ".L" + toHex(offset, 5)[2:] + ":\n" + line
-                f.write(line + "\n")
+            for func in self.functions:
+                f.write(f"glabel func_{i}\n")
+                functionOffset = offset
+                processed = []
+                offsetsBranches = set()
+                for instr in func:
+                    offsetHex = toHex(offset, 5)[2:]
+                    # vramHex = toHex(ENTRYPOINT + offset + 0x60, 8)[2:]
+                    instrHex = toHex(instr.instr, 8)[2:]
 
-                offset += 4
+                    comment = f"/* {offsetHex} {instrHex} */"
+
+                    line = str(instr)
+                    if instr.isBranch():
+                        #line += " HERE"
+                        line = line[:-6]
+                        addr = from2Complement(instr.immediate, 16)
+                        branch = offset + 1*4 + addr*4
+                        offsetsBranches.add(branch)
+                        line += ".L" + toHex(branch, 5)[2:]
+
+                    data = {"comment": comment, "instr": instr, "line": line}
+                    processed.append(data)
+
+                    offset += 4
+
+                auxOffset = functionOffset
+                for data in processed:
+                    line = data["comment"] + "  " + data["line"]
+                    if auxOffset in offsetsBranches:
+                        line = ".L" + toHex(auxOffset, 5)[2:] + ":\n" + line
+                    f.write(line + "\n")
+
+                    auxOffset += 4
+
+                f.write("\n")
+                i += 1
 
 
 class Data(File):
@@ -1162,7 +1203,7 @@ class Reloc(File):
                 relocHex = toHex(r.reloc, 8)[2:]
                 line = str(r)
 
-                f.write(f"/* {offsetHex} {relocHex} */  .reloc {line}\n")
+                f.write(f"/* {offsetHex} {relocHex} */  {line}\n")
                 offset += 4
 
 
@@ -1193,11 +1234,14 @@ class Overlay(File):
         end += rodata_size
         self.rodata = Rodata(self.bytes[start:end], filename, version, args)
 
-        start += rodata_size
-        end += bss_size
-        self.bss = Bss(self.bytes[start:end], filename, version, args)
+        #start += rodata_size
+        #end += bss_size
+        #self.bss = Bss(self.bytes[start:end], filename, version, args)
+        # TODO
+        self.bss = Bss(self.bytes[0:0], filename, version, args)
 
-        start += bss_size
+        #start += bss_size
+        start += rodata_size
         end += header_size
         self.header = bytesToBEWords(self.bytes[start:end])
 
@@ -1206,6 +1250,28 @@ class Overlay(File):
         self.reloc = Reloc(self.bytes[start:end], filename, version, args)
 
         self.tail = bytesToBEWords(self.bytes[end:])
+
+        """
+        functions = set()
+        lastHigh = 0
+        for relocEntry in self.reloc.entries:
+            if relocEntry.getSectionName() == ".text":
+                relocType = relocEntry.getTypeName()
+                offset = relocEntry.offset >> 2
+                if relocType == "R_MIPS_26":
+                    # print(self.text.instructions[offset])
+                    functions.add(self.text.instructions[offset].instr_index<<2)
+                elif relocType == "R_MIPS_HI16":
+                    lastHigh = self.text.instructions[offset].immediate
+                elif relocType == "R_MIPS_LO16":
+                    low = self.text.instructions[offset].immediate
+                    # print (toHex((lastHigh << 16) | low, 8)[2:])
+        #print(len(functions))
+        #for f in sorted(functions):
+        #    print("func_80"+toHex(f, 6)[2:])
+        """
+
+        self.text.findFunctions()
 
 
     def compareToFile(self, other_file: File):
