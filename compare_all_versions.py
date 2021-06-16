@@ -109,7 +109,7 @@ def from2Complement(number: int, bits: int) -> int:
 
 
 class File:
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
         self.bytes: bytearray = array_of_bytes
         self.words: List[int] = bytesToBEWords(self.bytes)
         self.filename: str = filename
@@ -126,7 +126,7 @@ class File:
     def getHash(self):
         return getStrHash(self.bytes)
 
-    def compareToFile(self, other_file: File, args):
+    def compareToFile(self, other_file: File):
         hash_one = self.getHash()
         hash_two = other_file.getHash()
 
@@ -158,24 +158,24 @@ class File:
 
         return result
 
-    def blankOutDifferences(self, other: File, args):
-        if args.dont_remove_ptrs:
+    def blankOutDifferences(self, other: File):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
         was_updated = False
-        if args.ignore80 or args.ignore06 or args.ignore04:
+        if self.args is not None and (self.args.ignore80 or self.args.ignore06 or self.args.ignore04):
             min_len = min(self.sizew, other.sizew)
             for i in range(min_len):
-                if args.ignore80:
+                if self.args.ignore80:
                     if ((self.words[i] >> 24) & 0xFF) == 0x80 and ((other.words[i] >> 24) & 0xFF) == 0x80:
                         self.words[i] = 0x80000000
                         other.words[i] = 0x80000000
                         was_updated = True
-                if args.ignore06:
+                if self.args.ignore06:
                     if ((self.words[i] >> 24) & 0xFF) == 0x06 and ((other.words[i] >> 24) & 0xFF) == 0x06:
                         self.words[i] = 0x06000000
                         other.words[i] = 0x06000000
                         was_updated = True
-                if args.ignore04:
+                if self.args.ignore04:
                     if ((self.words[i] >> 24) & 0xFF) == 0x04 and ((other.words[i] >> 24) & 0xFF) == 0x04:
                         self.words[i] = 0x04000000
                         other.words[i] = 0x04000000
@@ -184,7 +184,7 @@ class File:
             self.updateBytes()
             other.updateBytes()
 
-    def removePointers(self, args):
+    def removePointers(self):
         pass
 
     def updateBytes(self):
@@ -731,7 +731,7 @@ def wordToInstruction(word: int) -> Instruction:
 
 
 class Text(File):
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
         super().__init__(array_of_bytes, filename, version, args)
 
         self.instructions: List[Instruction] = list()
@@ -742,8 +742,8 @@ class Text(File):
     def nInstr(self):
         return len(self.instructions)
 
-    def compareToFile(self, other: File, args):
-        result = super().compareToFile(other, args)
+    def compareToFile(self, other: File):
+        result = super().compareToFile(other)
 
         if isinstance(other, Text):
             result["text"] = {
@@ -769,10 +769,10 @@ class Text(File):
                 result += 1
         return result
 
-    def blankOutDifferences(self, other_file: File, args):
-        if args.dont_remove_ptrs:
+    def blankOutDifferences(self, other_file: File):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
-        super().blankOutDifferences(other_file, args)
+        super().blankOutDifferences(other_file)
         if not isinstance(other_file, Text):
             return
 
@@ -786,7 +786,7 @@ class Text(File):
         for i in range(min(self.nInstr, other_file.nInstr)):
             instr1 = self.instructions[i]
             instr2 = other_file.instructions[i]
-            if args.ignore_branches:
+            if self.args is not None and self.args.ignore_branches:
                 if instr1.isBranch() and instr2.isBranch() and instr1.sameOpcode(instr2):
                     instr1.blankOut()
                     instr2.blankOut()
@@ -850,18 +850,18 @@ class Text(File):
             self.updateWords()
             other_file.updateWords()
 
-    def removePointers(self, args):
-        if args.dont_remove_ptrs:
+    def removePointers(self):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
 
         was_updated = False
 
-        if self.args.delete_opendisps:
+        if self.args is not None and self.args.delete_opendisps:
             was_updated = self.deleteCallers_Graph_OpenDisps()
 
         was_updated = self.removeTrailingNops() or was_updated
 
-        super().removePointers(args)
+        super().removePointers()
 
         lui_registers = dict()
         for i in range(len(self.instructions)):
@@ -990,10 +990,10 @@ class Text(File):
 
 
 class Data(File):
-    def removePointers(self, args):
-        if args.dont_remove_ptrs:
+    def removePointers(self):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
-        super().removePointers(args)
+        super().removePointers()
 
         was_updated = False
         for i in range(self.sizew):
@@ -1027,10 +1027,10 @@ class Data(File):
 
 
 class Rodata(File):
-    def removePointers(self, args):
-        if args.dont_remove_ptrs:
+    def removePointers(self):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
-        super().removePointers(args)
+        super().removePointers()
 
         was_updated = False
         for i in range(self.sizew):
@@ -1064,10 +1064,10 @@ class Rodata(File):
 
 
 class Bss(File):
-    def removePointers(self, args):
-        if args.dont_remove_ptrs:
+    def removePointers(self):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
-        super().removePointers(args)
+        super().removePointers()
         self.updateBytes()
 
     def saveToFile(self, filepath: str):
@@ -1126,7 +1126,7 @@ class RelocEntry:
         return self.__str__()
 
 class Reloc(File):
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
         super().__init__(array_of_bytes, filename, version, args)
 
         self.entries: List[RelocEntry] = list()
@@ -1137,15 +1137,15 @@ class Reloc(File):
     def nRelocs(self):
         return len(self.entries)
 
-    def compareToFile(self, other_file: File, args):
-        result = super().compareToFile(other_file, args)
+    def compareToFile(self, other_file: File):
+        result = super().compareToFile(other_file)
         # TODO
         return result
 
-    def removePointers(self, args):
-        if args.dont_remove_ptrs:
+    def removePointers(self):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
-        super().removePointers(args)
+        super().removePointers()
         self.updateBytes()
 
     def saveToFile(self, filepath: str):
@@ -1162,12 +1162,12 @@ class Reloc(File):
                 relocHex = toHex(r.reloc, 8)[2:]
                 line = str(r)
 
-                f.write(f"/* {offsetHex} {relocHex} */  {line}\n")
+                f.write(f"/* {offsetHex} {relocHex} */  .reloc {line}\n")
                 offset += 4
 
 
 class Overlay(File):
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args):
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
         super().__init__(array_of_bytes, filename, version, args)
 
         seekup = self.words[-1]
@@ -1208,28 +1208,28 @@ class Overlay(File):
         self.tail = bytesToBEWords(self.bytes[end:])
 
 
-    def compareToFile(self, other_file: File, args):
-        result = super().compareToFile(other_file, args)
+    def compareToFile(self, other_file: File):
+        result = super().compareToFile(other_file)
 
         if isinstance(other_file, Overlay):
             result["ovl"] = {
-                "text": self.text.compareToFile(other_file.text, args),
-                "data": self.data.compareToFile(other_file.data, args),
-                "rodata": self.rodata.compareToFile(other_file.rodata, args),
-                "bss": self.bss.compareToFile(other_file.bss, args),
-                "reloc": self.reloc.compareToFile(other_file.reloc, args),
+                "text": self.text.compareToFile(other_file.text),
+                "data": self.data.compareToFile(other_file.data),
+                "rodata": self.rodata.compareToFile(other_file.rodata),
+                "bss": self.bss.compareToFile(other_file.bss),
+                "reloc": self.reloc.compareToFile(other_file.reloc),
             }
 
         return result
 
-    def blankOutDifferences(self, other_file: File, args):
-        if args.dont_remove_ptrs:
+    def blankOutDifferences(self, other_file: File):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
-        super().blankOutDifferences(other_file, args)
+        super().blankOutDifferences(other_file)
         if not isinstance(other_file, Overlay):
             return
 
-        self.text.blankOutDifferences(other_file.text, args)
+        self.text.blankOutDifferences(other_file.text)
 
         self.words = self.text.words + self.data.words + self.rodata.words + self.bss.words + self.header + self.reloc.words + self.tail
         self.updateBytes()
@@ -1237,10 +1237,10 @@ class Overlay(File):
         other_file.words = other_file.text.words + other_file.data.words  + other_file.rodata.words + other_file.bss.words + other_file.header + other_file.reloc.words + other_file.tail
         other_file.updateBytes()
 
-    def removePointers(self, args):
-        if args.dont_remove_ptrs:
+    def removePointers(self):
+        if self.args is not None and self.args.dont_remove_ptrs:
             return
-        super().removePointers(args)
+        super().removePointers()
 
         for entry in self.reloc.entries:
             section = entry.getSectionName()
@@ -1291,11 +1291,11 @@ class Overlay(File):
                 #raise RuntimeError(f"Invalid reloc section <{section}> in file '{self.version}/{self.filename}'. Reloc: {entry}")
 
 
-        self.text.removePointers(args)
-        self.data.removePointers(args)
-        self.rodata.removePointers(args)
-        self.bss.removePointers(args)
-        self.reloc.removePointers(args)
+        self.text.removePointers()
+        self.data.removePointers()
+        self.rodata.removePointers()
+        self.bss.removePointers()
+        self.reloc.removePointers()
 
         self.updateBytes()
 
@@ -1393,6 +1393,9 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
     filesHashes = dict() # "filename": {"NN0": hash}
     firstFilePerHash = dict() # "filename": {hash: "NN0"}
 
+    if filename.startswith("#"):
+        return column
+
     is_overlay = filename.startswith("ovl_")
 
     for version in versionsList:
@@ -1406,7 +1409,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
             f = Overlay(array_of_bytes, filename, version, args)
         else:
             f = File(array_of_bytes, filename, version, args)
-        f.removePointers(args)
+        f.removePointers()
         if args.savetofile:
             new_file_path = os.path.join(args.savetofile, version, filename)
             f.saveToFile(new_file_path)
