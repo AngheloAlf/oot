@@ -6,7 +6,7 @@ import argparse
 import os
 import hashlib
 import struct
-from typing import List
+from typing import List, Dict
 import sys
 import subprocess
 from multiprocessing import Pool, cpu_count
@@ -14,7 +14,7 @@ from functools import partial
 
 
 versions = {
-    "ntsc_0.9" : "NNR",
+    "ntsc_1.0_rc" : "NNR",
     "ntsc_1.0" : "NN0",
     "ntsc_1.1" : "NN1",
     "pal_1.0" : "NP0",
@@ -30,12 +30,14 @@ versions = {
     "pal_mq" : "GPM",
     "pal_mq_dbg" : "GPMD",
     "jp_gc_ce" : "GJC",
+    "cn_ique" : "IC",
+    "tw_ique" : "IT",
 }
 
 
 # in JAL format. # Real address would be (address << 2)
 address_Graph_OpenDisps = {
-    "ntsc_0.9" : 0x001F856,
+    "ntsc_1.0_rc" : 0x001F856,
     "ntsc_1.0" : 0x001F8A6,
     "ntsc_1.1" : 0x001F8A6,
     "pal_1.0" : 0x001FA2A,
@@ -51,10 +53,35 @@ address_Graph_OpenDisps = {
     "pal_mq" : 0x001F77E,
     "pal_mq_dbg" : 0x0031AB1,
     "jp_gc_ce" : 0x001F78A,
+    "cn_ique" : 0x0,
+    "tw_ique" : 0x0,
 }
 
 ENTRYPOINT = 0x80000400
 
+ACTOR_ID_MAX = 0x01D7
+
+# The offset of the overlay table in file `code`.
+offset_OverlayTable = {
+    "ntsc_1.0_rc" : 0x0,
+    "ntsc_1.0" : 0x0D7490,
+    "ntsc_1.1" : 0x0,
+    "pal_1.0" : 0x0,
+    "ntsc_1.2" : 0x0,
+    "pal_1.1" : 0x0,
+    "jp_gc" : 0x0,
+    "jp_mq" : 0x0,
+    "usa_gc" : 0x0,
+    "usa_mq" : 0x0,
+    "pal_gc" : 0x0,
+    "pal_gc_dbg" : 0x0,
+    "pal_gc_dbg2" : 0x0,
+    "pal_mq" : 0x0D4480,
+    "pal_mq_dbg" : 0x0F9440,
+    "jp_gc_ce" : 0x0,
+    "cn_ique" : 0x0,
+    "tw_ique" : 0x0,
+}
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
@@ -109,12 +136,17 @@ def from2Complement(number: int, bits: int) -> int:
 
 
 class File:
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, tableEntry: OverlayTableEntry=None, args=None):
         self.bytes: bytearray = array_of_bytes
         self.words: List[int] = bytesToBEWords(self.bytes)
         self.filename: str = filename
         self.version: str = version
         self.args = args
+        self.vRamStart: int = -1
+        self.initVarsAddress: int = -1
+        if tableEntry is not None:
+            self.vRamStart = tableEntry.vramStart
+            self.initVarsAddress = tableEntry.initVars
 
     @property
     def size(self):
@@ -737,12 +769,15 @@ def wordToInstruction(word: int) -> Instruction:
         return InstructionSpecial(word)
     if ((word >> 26) & 0xFF) == 0x01:
         return InstructionRegimm(word)
+    if ((word >> 26) & 0xFF) == 0x11:
+        # COP1
+        pass
     return Instruction(word)
 
 
 class Text(File):
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
-        super().__init__(array_of_bytes, filename, version, args)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, tableEntry: OverlayTableEntry=None, args=None):
+        super().__init__(array_of_bytes, filename, version, tableEntry=tableEntry, args=args)
 
         self.instructions: List[Instruction] = list()
         for word in self.words:
@@ -992,16 +1027,21 @@ class Text(File):
             i = 0
             offset = 0
             for func in self.functions:
-                f.write(f"glabel func_{i}\n")
+                funcName = f"func_{i}"
+                if self.vRamStart != -1:
+                    funcName = "func_" + toHex(self.vRamStart + offset, 6)[2:]
+                f.write(f"glabel {funcName}\n")
                 functionOffset = offset
                 processed = []
                 offsetsBranches = set()
                 for instr in func:
                     offsetHex = toHex(offset, 5)[2:]
-                    # vramHex = toHex(ENTRYPOINT + offset + 0x60, 8)[2:]
+                    vramHex = ""
+                    if self.vRamStart != -1:
+                        vramHex = toHex(self.vRamStart + offset, 6)[2:]
                     instrHex = toHex(instr.instr, 8)[2:]
 
-                    comment = f"/* {offsetHex} {instrHex} */"
+                    comment = f"/* {offsetHex} {vramHex} {instrHex} */"
 
                     line = str(instr)
                     if instr.isBranch():
@@ -1010,7 +1050,10 @@ class Text(File):
                         addr = from2Complement(instr.immediate, 16)
                         branch = offset + 1*4 + addr*4
                         offsetsBranches.add(branch)
-                        line += ".L" + toHex(branch, 5)[2:]
+                        if self.vRamStart != -1:
+                            line += ".L" + toHex(self.vRamStart + branch, 5)[2:]
+                        else:
+                            line += ".L" + toHex(branch, 5)[2:]
 
                     data = {"comment": comment, "instr": instr, "line": line}
                     processed.append(data)
@@ -1021,7 +1064,10 @@ class Text(File):
                 for data in processed:
                     line = data["comment"] + "  " + data["line"]
                     if auxOffset in offsetsBranches:
-                        line = ".L" + toHex(auxOffset, 5)[2:] + ":\n" + line
+                        if self.vRamStart != -1:
+                            line = ".L" + toHex(self.vRamStart + auxOffset, 5)[2:] + ":\n" + line
+                        else:
+                            line = ".L" + toHex(auxOffset, 5)[2:] + ":\n" + line
                     f.write(line + "\n")
 
                     auxOffset += 4
@@ -1167,8 +1213,8 @@ class RelocEntry:
         return self.__str__()
 
 class Reloc(File):
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
-        super().__init__(array_of_bytes, filename, version, args)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, tableEntry: OverlayTableEntry=None, args=None):
+        super().__init__(array_of_bytes, filename, version, tableEntry=tableEntry, args=args)
 
         self.entries: List[RelocEntry] = list()
         for word in self.words:
@@ -1208,8 +1254,8 @@ class Reloc(File):
 
 
 class Overlay(File):
-    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, args=None):
-        super().__init__(array_of_bytes, filename, version, args)
+    def __init__(self, array_of_bytes: bytearray, filename: str, version: str, tableEntry: OverlayTableEntry=None, args=None):
+        super().__init__(array_of_bytes, filename, version, tableEntry=tableEntry, args=args)
 
         seekup = self.words[-1]
         self.headerBPos = self.size - seekup
@@ -1224,21 +1270,21 @@ class Overlay(File):
 
         start = 0
         end = text_size
-        self.text = Text(self.bytes[start:end], filename, version, args)
+        self.text = Text(self.bytes[start:end], filename, version, tableEntry=tableEntry, args=args)
 
         start += text_size
         end += data_size
-        self.data = Data(self.bytes[start:end], filename, version, args)
+        self.data = Data(self.bytes[start:end], filename, version, tableEntry=tableEntry, args=args)
 
         start += data_size
         end += rodata_size
-        self.rodata = Rodata(self.bytes[start:end], filename, version, args)
+        self.rodata = Rodata(self.bytes[start:end], filename, version, tableEntry=tableEntry, args=args)
 
         #start += rodata_size
         #end += bss_size
-        #self.bss = Bss(self.bytes[start:end], filename, version, args)
+        #self.bss = Bss(self.bytes[start:end], filename, version, tableEntry=tableEntry, args=args)
         # TODO
-        self.bss = Bss(self.bytes[0:0], filename, version, args)
+        self.bss = Bss(self.bytes[0:0], filename, version, tableEntry=tableEntry, args=args)
 
         #start += bss_size
         start += rodata_size
@@ -1247,7 +1293,7 @@ class Overlay(File):
 
         start += header_size
         end += reloc_size
-        self.reloc = Reloc(self.bytes[start:end], filename, version, args)
+        self.reloc = Reloc(self.bytes[start:end], filename, version, tableEntry=tableEntry, args=args)
 
         self.tail = bytesToBEWords(self.bytes[end:])
 
@@ -1376,6 +1422,18 @@ class Overlay(File):
         self.bss.saveToFile(filepath)
         self.reloc.saveToFile(filepath)
 
+class OverlayTableEntry:
+    def __init__(self, array_of_bytes: bytearray):
+        wordsArray = bytesToBEWords(array_of_bytes)
+        self.vromStart = wordsArray[0]
+        self.vromEnd = wordsArray[1]
+        self.vramStart = wordsArray[2]
+        self.vramEnd = wordsArray[3]
+        self.ramAddress = wordsArray[4]
+        self.initVars = wordsArray[5]
+        self.filenameAddres = wordsArray[6]
+        self.allocationType = (wordsArray[7] > 16) & 0xFFFF
+        self.instancesNum = (wordsArray[7] > 8) & 0xFF
 
 def getVersionAbbr(filename: str) -> str:
     for ver in versions:
@@ -1416,7 +1474,7 @@ def getHashesOfFiles(args, filesPath: List[str]) -> List[str]:
             hashList.append(line)
     return hashList
 
-def compareFileAcrossVersions(filename: str, versionsList: List[str], args) -> List[List[str]]:
+def compareFileAcrossVersions(filename: str, versionsList: List[str], dmaAddresses: dict, actorOverlayTable: Dict[str, List[OverlayTableEntry]], args) -> List[List[str]]:
     md5arglist = list(map(lambda orig_string: "baserom_" + orig_string + "/" + filename, versionsList))
     # os.system( "md5sum " + " ".join(filesPath) )
 
@@ -1454,7 +1512,7 @@ def compareFileAcrossVersions(filename: str, versionsList: List[str], args) -> L
             row.append("")
     return [row]
 
-def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -> List[List[str]]:
+def compareOverlayAcrossVersions(filename: str, versionsList: List[str], dmaAddresses: dict, actorOverlayTable: Dict[str, List[OverlayTableEntry]], args) -> List[List[str]]:
     column = []
     filesHashes = dict() # "filename": {"NN0": hash}
     firstFilePerHash = dict() # "filename": {hash: "NN0"}
@@ -1472,9 +1530,22 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
             continue
 
         if is_overlay:
-            f = Overlay(array_of_bytes, filename, version, args)
+            virtStart, virtEnd, physStart, physEnd = -1, -1, -1, -1
+            tableEntry = None
+            if version in dmaAddresses:
+                versionData = dmaAddresses[version]
+                if filename in versionData:
+                    dmaData = versionData[filename]
+                    virtStart, virtEnd, physStart, physEnd = dmaData
+            if virtStart != -1 and version in actorOverlayTable:
+                for entry in actorOverlayTable[version]:
+                    if entry.vromStart == virtStart:
+                        tableEntry = entry
+                        break
+
+            f = Overlay(array_of_bytes, filename, version, tableEntry=tableEntry, args=args)
         else:
-            f = File(array_of_bytes, filename, version, args)
+            f = File(array_of_bytes, filename, version, args=args)
         f.removePointers()
         if args.savetofile:
             new_file_path = os.path.join(args.savetofile, version, filename)
@@ -1487,7 +1558,7 @@ def compareOverlayAcrossVersions(filename: str, versionsList: List[str], args) -
                 ".text" : f.text,
                 ".data" : f.data,
                 ".rodata" : f.rodata,
-                ".bss" : f.bss,
+                #".bss" : f.bss,
                 #".reloc" : f.reloc,
             }
         else:
@@ -1537,12 +1608,40 @@ def main():
     parser.add_argument("--dont-remove-ptrs", help="Disable the pointer removal feature.", action="store_true")
     args = parser.parse_args()
 
-    versionsList = open(args.versionlist).read().splitlines()
+    versionsList = []
+    with open(args.versionlist) as f:
+        for version in f:
+            if version.startswith("#"):
+                continue
+            versionsList.append(version.strip())
     filesList = readFile(args.filelist)
 
     if args.savetofile is not None:
         for ver in versionsList:
             os.makedirs(os.path.join(args.savetofile, ver), exist_ok=True)
+
+    dmaAddresses = dict()
+    actorOverlayTable: Dict[str, List[OverlayTableEntry]] = dict()
+    for version in versionsList:
+        filetable = f'baserom_{version}/dma_addresses.txt'
+        if os.path.exists(filetable):
+            dmaAddresses[version] = dict()
+            with open(filetable) as f:
+                for line in f:
+                    filename, *data = line.strip().split(",")
+                    dmaAddresses[version][filename] = list(map(int, data))
+
+        codePath = os.path.join("baserom_" + version, "code")
+        tableOffset = offset_OverlayTable[version]
+        if os.path.exists(codePath) and tableOffset != 0x0:
+            codeData = readFileAsBytearray(codePath)
+            i = 0
+            table = list()
+            while i < ACTOR_ID_MAX:
+                entry = OverlayTableEntry(codeData[tableOffset + i*0x20 : tableOffset + (i+1)*0x20])
+                table.append(entry)
+                i += 1
+            actorOverlayTable[version] = table
 
     if not args.noheader:
         # Print csv header
@@ -1558,7 +1657,7 @@ def main():
 
     numCores = cpu_count() + 1
     p = Pool(numCores)
-    for column in p.imap(partial(compareFunction, versionsList=versionsList, args=args), filesList):
+    for column in p.imap(partial(compareFunction, versionsList=versionsList, dmaAddresses=dmaAddresses, actorOverlayTable=actorOverlayTable, args=args), filesList):
         for row in column:
             # Print csv row
             for cell in row:

@@ -6,7 +6,7 @@ import argparse
 import os
 import sys
 import struct
-from multiprocessing import Pool, cpu_count
+from multiprocessing import Pool, cpu_count, Manager
 from typing import Dict, List
 import zlib
 
@@ -108,9 +108,11 @@ def readFilelists():
     FILE_NAMES["NTSC J 1.2"]     = FILE_NAMES["NTSC 1.2"]
     FILE_NAMES["PAL WII 1.1"]    = FILE_NAMES["PAL 1.1"]
 
-def initialize_worker(rom_data):
+def initialize_worker(rom_data, dmaTable):
     global romData
+    global globalDmaTable
     romData = rom_data
+    globalDmaTable = dmaTable
 
 def read_uint32_be(offset):
     return struct.unpack('>I', romData[offset:offset+4])[0]
@@ -145,10 +147,11 @@ def readFileAsBytearray(filepath: str) -> bytearray:
 
 
 def ExtractFunc(i):
-    if FILE_NAMES[Version][i] == "":
+    versionName = FILE_NAMES[Version][i]
+    if versionName == "":
         print(f"Skipping {i} because it doesn't have a name.")
         return
-    filename = f'baserom_{Edition}/' + FILE_NAMES[Version][i]
+    filename = f'baserom_{Edition}/' + versionName
     entryOffset = FILE_TABLE_OFFSET[Version] + 16 * i
 
     virtStart = read_uint32_be(entryOffset + 0)
@@ -162,6 +165,11 @@ def ExtractFunc(i):
     else:             # compressed
         compressed = True
         size = physEnd - physStart
+
+    globalDmaTable[versionName].append(virtStart)
+    globalDmaTable[versionName].append(virtEnd)
+    globalDmaTable[versionName].append(physStart)
+    globalDmaTable[versionName].append(physEnd)
 
     print('extracting ' + filename + " (0x%08X, 0x%08X)" % (virtStart, virtEnd))
     write_output_file(filename, physStart, size)
@@ -205,16 +213,26 @@ def extract_rom(j):
         print('Failed to read file ' + filename)
         sys.exit(1)
 
+    manager = Manager()
+    dmaTable = manager.dict()
+    for name in file_names_table:
+        dmaTable[name] = manager.list()
+
     # extract files
     if j:
         num_cores = cpu_count()
         print("Extracting baserom with " + str(num_cores) + " CPU cores.")
-        with Pool(num_cores, initialize_worker, (rom_data,)) as p:
+        with Pool(num_cores, initialize_worker, (rom_data, dmaTable)) as p:
             p.map(ExtractFunc, range(len(file_names_table)))
     else:
-        initialize_worker(rom_data)
+        initialize_worker(rom_data, dmaTable)
         for i in range(len(file_names_table)):
             ExtractFunc(i)
+
+    filetable = f'baserom_{Edition}/dma_addresses.txt'
+    with open(filetable, "w") as f:
+        for filename, data in dmaTable.items():
+            f.write(",".join([filename] + list(map(str, data))) + "\n")
 
 def main():
     description = "Extracts files from the rom. Will try to read the rom 'baserom_version.z64', or 'baserom.z64' if that doesn't exists."
