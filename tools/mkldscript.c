@@ -61,6 +61,7 @@ static void write_ld_script(FILE *fout)
         for (j = 0; j < seg->includesCount; j++)
         {
             fprintf(fout, "            %s (.text)\n", seg->includes[j].fpath);
+            fprintf(fout, "        . = ALIGN(0x10);\n");
             if (seg->includes[j].linkerPadding != 0)
                 fprintf(fout, "            . += 0x%X;\n", seg->includes[j].linkerPadding);
         }
@@ -73,8 +74,10 @@ static void write_ld_script(FILE *fout)
 
         for (j = 0; j < seg->includesCount; j++)
         {
-            if (!seg->includes[j].dataWithRodata)
+            if (!seg->includes[j].dataWithRodata) {
                 fprintf(fout, "            %s (.data)\n", seg->includes[j].fpath);
+                fprintf(fout, "        . = ALIGN(0x10);\n");
+            }
         }
 
         /*
@@ -94,9 +97,12 @@ static void write_ld_script(FILE *fout)
 
         for (j = 0; j < seg->includesCount; j++)
         {
-            if (seg->includes[j].dataWithRodata)
+            if (seg->includes[j].dataWithRodata) {
                 fprintf(fout, "            %s (.data)\n", seg->includes[j].fpath);
+                fprintf(fout, "        . = ALIGN(0x10);\n");
+            }
             fprintf(fout, "            %s (.rodata)\n", seg->includes[j].fpath);
+            fprintf(fout, "        . = ALIGN(0x10);\n");
             // Compilers other than IDO, such as GCC, produce different sections such as
             // the ones named directly below. These sections do not contain values that
             // need relocating, but we need to ensure that the base .rodata section
@@ -106,8 +112,11 @@ static void write_ld_script(FILE *fout)
             // Inconsistencies will lead to various .rodata reloc crashes as a result of
             // either missing relocs or wrong relocs.
             fprintf(fout, "            %s (.rodata.str1.4)\n", seg->includes[j].fpath);
+            fprintf(fout, "        . = ALIGN(0x10);\n");
             fprintf(fout, "            %s (.rodata.cst4)\n", seg->includes[j].fpath);
+            fprintf(fout, "        . = ALIGN(0x10);\n");
             fprintf(fout, "            %s (.rodata.cst8)\n", seg->includes[j].fpath);
+            fprintf(fout, "        . = ALIGN(0x10);\n");
         }
 
          //fprintf(fout, "        . = ALIGN(0x10);\n");

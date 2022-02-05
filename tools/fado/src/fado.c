@@ -247,8 +247,9 @@ void Fado_Relocs(FILE* outputFile, int inputFilesCount, FILE** inputFiles, const
             }
 
             #define ALIGN4(val) (((val) + 0x3) & ~0x3)
+            #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
-            sectionOffset[section] += ALIGN4(fileInfos[currentFile].progBitsSizes[section]);
+            sectionOffset[section] += ALIGN16(fileInfos[currentFile].progBitsSizes[section]);
             FAIRY_INFO_PRINTF("section offset: %d\n", sectionOffset[section]);
         }
     }
