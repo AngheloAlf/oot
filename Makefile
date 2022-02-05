@@ -52,6 +52,8 @@ else
     endif
 endif
 
+N_THREADS ?= $(shell nproc)
+
 #### Tools ####
 ifeq ($(shell type mips64-ld >/dev/null 2>/dev/null; echo $$?), 0)
   MIPS_BINUTILS_PREFIX := mips64-
