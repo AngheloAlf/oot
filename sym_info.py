@@ -58,6 +58,7 @@ def search_address(target_addr):
                 or "=" in line
                 or "*fill*" in line
                 or " 0x" not in line
+                or "(size before relaxing)" in line
             ):
                 continue
 
