@@ -4,6 +4,7 @@
 
 beginseg
     name "makerom"
+    address 0x7FFFF400
     include "build/asm/rom_header.o"
     include "build/asm/ipl3.o"
     include "build/asm/entry.o"
