@@ -246,7 +246,9 @@ void Fado_Relocs(FILE* outputFile, int inputFilesCount, FILE** inputFiles, const
                 FAIRY_INFO_PRINTF("%s", "Ignoring empty reloc section\n");
             }
 
-            sectionOffset[section] += fileInfos[currentFile].progBitsSizes[section];
+            #define ALIGN4(val) (((val) + 0x3) & ~0x3)
+
+            sectionOffset[section] += ALIGN4(fileInfos[currentFile].progBitsSizes[section]);
             FAIRY_INFO_PRINTF("section offset: %d\n", sectionOffset[section]);
         }
     }

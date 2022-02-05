@@ -61,7 +61,7 @@ ifeq ($(ORIG_COMPILER),1)
 endif
 
 AS         := $(MIPS_BINUTILS_PREFIX)as
-LD         := $(MIPS_BINUTILS_PREFIX)ld
+LD         := mips64-ld
 OBJCOPY    := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP    := $(MIPS_BINUTILS_PREFIX)objdump
 EMULATOR = mupen64plus
@@ -264,7 +264,8 @@ build/src/boot/z_std_dma.o: build/dmadata_table_spec.h
 build/src/dmadata/dmadata.o: build/dmadata_table_spec.h
 
 build/src/%.o: src/%.c
-	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
+#	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
+	mips64-gcc -fexec-charset=euc-jp -c -DNON_MATCHING -G 0 -nostdinc -Iinclude -Isrc -Iassets -Ibuild -I. -DNON_MATCHING=1 -DAVOID_UB=1 -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mno-check-zero-division -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -mno-explicit-relocs -mno-split-addresses -Wall -Wextra -Wno-format-security -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-variable -Wno-missing-braces -Wno-int-conversion -funsigned-char -mips3 -Os -ffast-math -o $@ $<
 	$(CC_CHECK) $<
 	@$(OBJDUMP) -d $@ > $(@:.o=.s)
 
