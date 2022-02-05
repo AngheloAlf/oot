@@ -305,20 +305,20 @@ build/src/dmadata/dmadata.o: build/dmadata_table_spec.h
 
 build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
-	$(CC_CHECK) $<
-	@$(OBJDUMP) -d $@ > $(@:.o=.s)
+# 	$(CC_CHECK) $<
+	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
 
 build/src/libultra/libc/ll.o: src/libultra/libc/ll.c
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
-	$(CC_CHECK) $<
+# 	$(CC_CHECK) $<
 	python3 tools/set_o32abi_bit.py $@
-	@$(OBJDUMP) -d $@ > $(@:.o=.s)
+	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
 
 build/src/libultra/libc/llcvt.o: src/libultra/libc/llcvt.c
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
-	$(CC_CHECK) $<
+# 	$(CC_CHECK) $<
 	python3 tools/set_o32abi_bit.py $@
-	@$(OBJDUMP) -d $@ > $(@:.o=.s)
+	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
 
 build/src/overlays/%_reloc.o: build/$(SPEC)
 	$(FADO) $$(tools/reloc_prereq $< $(notdir $*)) -n $(notdir $*) -o $(@:.o=.s) -M $(@:.o=.d)
