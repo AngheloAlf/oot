@@ -8,14 +8,28 @@ COMPARE ?= 1
 NON_MATCHING ?= 0
 # If ORIG_COMPILER is 1, compile with QEMU_IRIX and the original compiler
 ORIG_COMPILER ?= 0
+# If COMPILER is GCC, compile with GCC instead of IDO.
+COMPILER ?= gcc
+# Declare CPPFLAGS used for the preprocessor.
+CPPFLAGS ?=
 
-# Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
-# In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
-MIPS_BINUTILS_PREFIX ?= mips-linux-gnu-
+# ORIG_COMPILER cannot be combined with a non-IDO compiler. Check for this case and error out if found.
+ifneq ($(COMPILER),ido)
+  ifeq ($(ORIG_COMPILER),1)
+    $(error ORIG_COMPILER can only be used with the IDO compiler. Please check your Makefile variables and try again)
+  endif
+endif
+
+# If gcc is used, define the NON_MATCHING flag respectively so the files that
+# are safe to be used can avoid using GLOBAL_ASM which doesn't work with gcc.
+ifeq ($(COMPILER),gcc)
+  CPPFLAGS += -DCOMPILER_GCC
+  NON_MATCHING := 1
+endif
 
 ifeq ($(NON_MATCHING),1)
-  CFLAGS := -DNON_MATCHING
-  CPPFLAGS := -DNON_MATCHING
+  CFLAGS += -DNON_MATCHING
+  CPPFLAGS += -DNON_MATCHING
   COMPARE := 0
 endif
 
@@ -38,15 +52,25 @@ else
     endif
 endif
 
-N_THREADS ?= $(shell nproc)
-
 #### Tools ####
-ifneq ($(shell type $(MIPS_BINUTILS_PREFIX)ld >/dev/null 2>/dev/null; echo $$?), 0)
-  $(error Please install or build $(MIPS_BINUTILS_PREFIX))
+ifeq ($(shell type mips64-ld >/dev/null 2>/dev/null; echo $$?), 0)
+  MIPS_BINUTILS_PREFIX := mips64-
+else
+  $(error Please install or build glankk/n64)
 endif
 
-CC       := tools/ido_recomp/$(DETECTED_OS)/7.1/cc
-CC_OLD   := tools/ido_recomp/$(DETECTED_OS)/5.3/cc
+# Detect compiler and set variables appropriately.
+ifeq ($(COMPILER),gcc)
+  CC       := $(MIPS_BINUTILS_PREFIX)gcc
+  CC_OLD   := $(CC)
+else 
+ifeq ($(COMPILER),ido)
+  CC       := tools/ido_recomp/$(DETECTED_OS)/7.1/cc
+  CC_OLD   := tools/ido_recomp/$(DETECTED_OS)/5.3/cc
+else
+$(error Unsupported compiler. Please use either ido or gcc as the COMPILER variable.)
+endif
+endif
 
 # if ORIG_COMPILER is 1, check that either QEMU_IRIX is set or qemu-irix package installed
 ifeq ($(ORIG_COMPILER),1)
@@ -61,7 +85,7 @@ ifeq ($(ORIG_COMPILER),1)
 endif
 
 AS         := $(MIPS_BINUTILS_PREFIX)as
-LD         := mips64-ld
+LD         := $(MIPS_BINUTILS_PREFIX)ld
 OBJCOPY    := $(MIPS_BINUTILS_PREFIX)objcopy
 OBJDUMP    := $(MIPS_BINUTILS_PREFIX)objdump
 EMULATOR = mupen64plus
@@ -80,12 +104,21 @@ ELF2ROM    := tools/elf2rom
 ZAPD       := tools/ZAPD/ZAPD.out
 FADO       := tools/fado/fado.elf
 
-OPTFLAGS := -O2
+ifeq ($(COMPILER),gcc)
+  OPTFLAGS := -Os -ffast-math
+else
+  OPTFLAGS := -O2
+endif
 ASFLAGS := -march=vr4300 -32 -Iinclude
-MIPS_VERSION := -mips2
 
-# we support Microsoft extensions such as anonymous structs, which the compiler does support but warns for their usage. Surpress the warnings with -woff.
-CFLAGS += -G 0 -non_shared -Xfullwarn -Xcpluscomm $(INC) -Wab,-r4300_mul -woff 649,838,712
+ifeq ($(COMPILER),gcc)
+  CFLAGS += -G 0 -nostdinc $(INC) -D AVOID_UB -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mno-check-zero-division -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -mno-explicit-relocs -mno-split-addresses $(CHECK_WARNINGS) -funsigned-char
+  MIPS_VERSION := -mips3
+else 
+  # we support Microsoft extensions such as anonymous structs, which the compiler does support but warns for their usage. Surpress the warnings with -woff.
+  CFLAGS += -G 0 -non_shared -Xfullwarn -Xcpluscomm $(INC) -Wab,-r4300_mul -woff 649,838,712 
+  MIPS_VERSION := -mips2
+endif
 
 ifeq ($(shell getconf LONG_BIT), 32)
   # Work around memory allocation bug in QEMU
@@ -134,6 +167,7 @@ TEXTURE_FILES_OUT := $(foreach f,$(TEXTURE_FILES_PNG:.png=.inc.c),build/$f) \
 # create build directories
 $(shell mkdir -p build/baserom build/assets/text $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(ASSET_BIN_DIRS),build/$(dir)))
 
+ifeq ($(COMPILER),ido)
 build/src/code/fault.o: CFLAGS += -trapuv
 build/src/code/fault.o: OPTFLAGS := -O2 -g3
 build/src/code/fault_drawer.o: CFLAGS += -trapuv
@@ -172,6 +206,10 @@ build/src/code/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(
 build/src/overlays/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 
 build/assets/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
+else
+build/src/libultra/libc/ll.o: OPTFLAGS := -Ofast -ffast-math
+build/src/%.o: CC := $(CC) -fexec-charset=euc-jp
+endif
 
 #### Main Targets ###
 
@@ -264,8 +302,7 @@ build/src/boot/z_std_dma.o: build/dmadata_table_spec.h
 build/src/dmadata/dmadata.o: build/dmadata_table_spec.h
 
 build/src/%.o: src/%.c
-#	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
-	mips64-gcc -fexec-charset=euc-jp -c -DNON_MATCHING -G 0 -nostdinc -Iinclude -Isrc -Iassets -Ibuild -I. -DNON_MATCHING=1 -DAVOID_UB=1 -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mno-check-zero-division -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -mno-explicit-relocs -mno-split-addresses -Wall -Wextra -Wno-format-security -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-variable -Wno-missing-braces -Wno-int-conversion -funsigned-char -mips3 -Os -ffast-math -o $@ $<
+	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
 	$(CC_CHECK) $<
 	@$(OBJDUMP) -d $@ > $(@:.o=.s)
 
