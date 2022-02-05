@@ -114,7 +114,7 @@ endif
 ASFLAGS := -march=vr4300 -32 -Iinclude
 
 ifeq ($(COMPILER),gcc)
-  CFLAGS += -G 0 -nostdinc $(INC) -D AVOID_UB -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mno-check-zero-division -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -mno-explicit-relocs -mno-split-addresses $(CHECK_WARNINGS) -funsigned-char
+  CFLAGS += -G 0 -nostdinc $(INC) -D AVOID_UB -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -mno-explicit-relocs -mno-split-addresses $(CHECK_WARNINGS) -funsigned-char
   MIPS_VERSION := -mips3
 else 
   # we support Microsoft extensions such as anonymous structs, which the compiler does support but warns for their usage. Surpress the warnings with -woff.
@@ -209,7 +209,7 @@ build/src/overlays/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS
 
 build/assets/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 else
-build/src/libultra/libc/ll.o: OPTFLAGS := -Ofast -ffast-math
+build/src/libultra/libc/ll.o: OPTFLAGS := -Ofast
 build/src/%.o: CC := $(CC) -fexec-charset=euc-jp
 endif
 
