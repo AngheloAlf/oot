@@ -243,17 +243,19 @@ void Fairy_InitFile(FairyFileInfo* fileInfo, FILE* file) {
         for (currentIndex = 0; currentIndex < fileHeader.e_shnum; currentIndex++) {
             currentSection = sectionTable[currentIndex];
 
+            #define ALIGN16(val) (((val) + 0xF) & ~0xF)
+
             switch (currentSection.sh_type) {
                 case SHT_PROGBITS:
                     assert(vc_vector_push_back(fileInfo->progBitsSections, &currentIndex));
                     if (strcmp(&shstrtab[currentSection.sh_name + 1], "text") == 0) {
-                        fileInfo->progBitsSizes[FAIRY_SECTION_TEXT] += currentSection.sh_size;
+                        fileInfo->progBitsSizes[FAIRY_SECTION_TEXT] += ALIGN16(currentSection.sh_size);
                         FAIRY_DEBUG_PRINTF("text section size: 0x%X\n", fileInfo->progBitsSizes[FAIRY_SECTION_TEXT]);
                     } else if (strcmp(&shstrtab[currentSection.sh_name + 1], "data") == 0) {
-                        fileInfo->progBitsSizes[FAIRY_SECTION_DATA] += currentSection.sh_size;
+                        fileInfo->progBitsSizes[FAIRY_SECTION_DATA] += ALIGN16(currentSection.sh_size);
                         FAIRY_DEBUG_PRINTF("data section size: 0x%X\n", fileInfo->progBitsSizes[FAIRY_SECTION_DATA]);
                     } else if (Fairy_StartsWith(&shstrtab[currentSection.sh_name + 1], "rodata")) { /* May be several */
-                        fileInfo->progBitsSizes[FAIRY_SECTION_RODATA] += currentSection.sh_size;
+                        fileInfo->progBitsSizes[FAIRY_SECTION_RODATA] += ALIGN16(currentSection.sh_size);
                         FAIRY_DEBUG_PRINTF("rodata section size: 0x%X\n", fileInfo->progBitsSizes[FAIRY_SECTION_RODATA]);
                     }
                     break;
