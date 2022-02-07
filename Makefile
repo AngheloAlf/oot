@@ -149,9 +149,11 @@ ASSET_FILES_OUT := $(foreach f,$(ASSET_FILES_XML:.xml=.c),$f) \
 
 # source files
 C_FILES       := $(foreach dir,$(SRC_DIRS) $(ASSET_BIN_DIRS),$(wildcard $(dir)/*.c))
+CPP_FILES     := $(foreach dir,$(SRC_DIRS) $(ASSET_BIN_DIRS),$(wildcard $(dir)/*.cpp))
 S_FILES       := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 O_FILES       := $(foreach f,$(S_FILES:.s=.o),build/$f) \
                  $(foreach f,$(C_FILES:.c=.o),build/$f) \
+                 $(foreach f,$(CPP_FILES:.cpp=.o),build/$f) \
                  $(foreach f,$(wildcard baserom/*),build/$f.o)
 
 OVL_RELOC_FILES := $(shell $(CPP) $(CPPFLAGS) $(SPEC) | grep -o '[^"]*_reloc.o' )
@@ -305,6 +307,11 @@ build/src/dmadata/dmadata.o: build/dmadata_table_spec.h
 
 build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
+# 	$(CC_CHECK) $<
+	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
+
+build/src/%.o: src/%.cpp
+	mips-linux-gnu-g++ -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -std=gnu++17 -fno-exceptions -o $@ $<
 # 	$(CC_CHECK) $<
 	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
 

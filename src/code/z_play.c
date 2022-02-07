@@ -406,6 +406,8 @@ void Gameplay_Init(GameState* thisx) {
     }
 }
 
+#include "cpp_test.h"
+
 void Gameplay_Update(GlobalContext* globalCtx) {
     s32 pad1;
     s32 sp80;
@@ -414,6 +416,10 @@ void Gameplay_Update(GlobalContext* globalCtx) {
     s32 pad2;
 
     input = globalCtx->state.input;
+
+    if (CHECK_BTN_ALL(input[0].press.button, BTN_L)) {
+        Test_Vector();
+    }
 
     if ((SREG(1) < 0) || (DREG(0) != 0)) {
         SREG(1) = 0;
