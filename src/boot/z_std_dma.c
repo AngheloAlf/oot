@@ -172,8 +172,8 @@ void DmaMgr_Error(DmaRequest* req, const char* file, const char* errorName, cons
 
     osSyncPrintf("%c", 7);
     osSyncPrintf(VT_FGCOL(RED));
-    osSyncPrintf("DMA致命的エラー(%s)\nROM:%X RAM:%X SIZE:%X %s\n",
-                 errorDesc != NULL ? errorDesc : (errorName != NULL ? errorName : "???"), vrom, ram, size,
+    osSyncPrintf("DMA致命的エラー(%s)(%s)\nROM:%X RAM:%X SIZE:%X %s\n",
+                 errorName == NULL ? "???" : errorName, errorDesc != NULL ? errorDesc : (errorName != NULL ? errorName : "???"), vrom, ram, size,
                  file != NULL ? file : "???");
 
     if (req->filename) {
@@ -336,11 +336,29 @@ void DmaMgr_ThreadEntry(void* arg0) {
     osSyncPrintf("ＤＭＡマネージャスレッド実行終了\n");
 }
 
+#ifdef __GNUC__
+#define LOG_HEX_AUX(value) LOG_HEX(#value, value, __func__, __LINE__)
+#else
+#define LOG_HEX_AUX(value) LOG_HEX(#value, value, __FILE__, __LINE__)
+#endif
+
 s32 DmaMgr_SendRequestImpl(DmaRequest* req, u32 ram, u32 vrom, u32 size, u32 unk, OSMesgQueue* queue, OSMesg msg) {
     static s32 sDmaMgrQueueFullLogged = 0;
 
     if ((1 && (ram == 0)) || (osMemSize < ram + size + 0x80000000) || (vrom & 1) || (vrom > 0x4000000) || (size == 0) ||
         (size & 1)) {
+        LOG_HEX_AUX(ram);
+        LOG_HEX_AUX(osMemSize);
+        LOG_HEX_AUX(ram + size + 0x80000000);
+        LOG_HEX_AUX(vrom);
+        LOG_HEX_AUX(vrom > 0x4000000);
+        LOG_HEX_AUX(size);
+        LOG_HEX_AUX(size == 0);
+
+
+
+
+
         //! @bug `req` is passed to `DmaMgr_Error` without rom, ram and size being set
         DmaMgr_Error(req, NULL, "ILLIGAL DMA-FUNCTION CALL", "パラメータ異常です");
     }
@@ -403,10 +421,10 @@ void DmaMgr_Init(void) {
             sDmaMgrIsRomCompressed = true;
         }
 
-        osSyncPrintf(
-            "%3d %08x %08x %08x %08x %08x %c %s\n", idx, iter->vromStart, iter->vromEnd, iter->romStart, iter->romEnd,
-            (iter->romEnd != 0) ? iter->romEnd - iter->romStart : iter->vromEnd - iter->vromStart,
-            (((iter->romEnd != 0) ? iter->romEnd - iter->romStart : 0) > 0x10000) ? '*' : ' ', name ? *name : "");
+        //osSyncPrintf(
+        //    "%3d %08x %08x %08x %08x %08x %c %s\n", idx, iter->vromStart, iter->vromEnd, iter->romStart, iter->romEnd,
+        //    (iter->romEnd != 0) ? iter->romEnd - iter->romStart : iter->vromEnd - iter->vromStart,
+        //    (((iter->romEnd != 0) ? iter->romEnd - iter->romStart : 0) > 0x10000) ? '*' : ' ', name ? *name : "");
 
         idx++;
         iter++;

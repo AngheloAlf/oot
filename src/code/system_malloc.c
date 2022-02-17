@@ -4,20 +4,20 @@
 #define LOG_SEVERITY_ERROR 2
 #define LOG_SEVERITY_VERBOSE 3
 
-s32 gSystemArenaLogSeverity = LOG_SEVERITY_NOLOG;
+s32 gSystemArenaLogSeverity = LOG_SEVERITY_VERBOSE;
 Arena gSystemArena;
 
 void SystemArena_CheckPointer(void* ptr, u32 size, const char* name, const char* action) {
     if (ptr == NULL) {
         if (gSystemArenaLogSeverity >= LOG_SEVERITY_ERROR) {
             // "%s: %u bytes %s failed\n"
-            osSyncPrintf("%s: %u バイトの%sに失敗しました\n", name, size, action);
+            osSyncPrintf("%s: %u bytes %s failed\n", name, size, action);
             __osDisplayArena(&gSystemArena);
             return;
         }
     } else if (gSystemArenaLogSeverity >= LOG_SEVERITY_VERBOSE) {
         // "%s: %u bytes %s succeeded\n"
-        osSyncPrintf("%s: %u バイトの%sに成功しました\n", name, size, action);
+        osSyncPrintf("%s: %u bytes %s succeeded\n", name, size, action);
     }
 }
 
@@ -96,12 +96,12 @@ void SystemArena_Check(void) {
 }
 
 void SystemArena_Init(void* start, u32 size) {
-    gSystemArenaLogSeverity = LOG_SEVERITY_NOLOG;
+    gSystemArenaLogSeverity = LOG_SEVERITY_VERBOSE;
     __osMallocInit(&gSystemArena, start, size);
 }
 
 void SystemArena_Cleanup(void) {
-    gSystemArenaLogSeverity = LOG_SEVERITY_NOLOG;
+    gSystemArenaLogSeverity = LOG_SEVERITY_VERBOSE;
     __osMallocCleanup(&gSystemArena);
 }
 

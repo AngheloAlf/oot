@@ -22,12 +22,14 @@ void osSyncPrintfUnused(const char* fmt, ...) {
 }
 
 void osSyncPrintf(const char* fmt, ...) {
+    #if 1
     va_list args;
     va_start(args, fmt);
 
     _Printf(is_proutSyncPrintf, NULL, fmt, args);
 
     va_end(args);
+    #endif
 }
 
 // assumption

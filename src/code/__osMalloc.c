@@ -15,7 +15,7 @@
 #define BLOCK_FREE_MAGIC_32 (0xEFEFEFEF)
 
 OSMesg sArenaLockMsg;
-u32 __osMalloc_FreeBlockTest_Enable;
+u32 __osMalloc_FreeBlockTest_Enable = true;
 
 u32 ArenaImpl_GetFillAllocBlock(Arena* arena) {
     return (arena->flag & FILL_ALLOCBLOCK) != 0;
@@ -103,10 +103,20 @@ ArenaNode* ArenaImpl_GetLastBlock(Arena* arena) {
     return last;
 }
 
+
 void __osMallocInit(Arena* arena, void* start, u32 size) {
+    ASSERT(size < osMemSize, "size < osMemSize", __FILE__, __LINE__);
+
+    osSyncPrintf("%s: bzero(%X, %X)\n", FUNCTION_WRAPPER, arena, sizeof(Arena));
     bzero(arena, sizeof(Arena));
+
+    osSyncPrintf("%s: ArenaImpl_LockInit(%X)\n", FUNCTION_WRAPPER, arena);
     ArenaImpl_LockInit(arena);
+
+    osSyncPrintf("%s: __osMallocAddBlock(%X, %X, %X)\n", FUNCTION_WRAPPER, arena, start, size);
     __osMallocAddBlock(arena, start, size);
+
+    osSyncPrintf("%s: arena->isInit = true\n", FUNCTION_WRAPPER);
     arena->isInit = true;
 }
 
@@ -181,7 +191,7 @@ void __osMalloc_FreeBlockTest(Arena* arena, ArenaNode* node) {
         while (iter < end) {
             if (*iter != BLOCK_UNINIT_MAGIC_32 && *iter != BLOCK_FREE_MAGIC_32) {
                 osSyncPrintf(
-                    VT_COL(RED, WHITE) "緊急事態！メモリリーク検出！ (block=%08x s=%08x e=%08x p=%08x)\n" VT_RST, node,
+                    VT_COL(RED, WHITE) "Emergency! Memory leak detection!  (block=%08x s=%08x e=%08x p=%08x)\n" VT_RST, node,
                     start, end, iter);
                 __osDisplayArena(arena);
                 return;
@@ -683,7 +693,7 @@ void __osDisplayArena(Arena* arena) {
     ArenaNode* next;
 
     if (!__osMallocIsInitalized(arena)) {
-        osSyncPrintf("アリーナは初期化されていません\n"); // "Arena is not initalized"
+        osSyncPrintf("Arena is not initalized\n"); // "Arena is not initalized"
         return;
     }
 
@@ -693,9 +703,9 @@ void __osDisplayArena(Arena* arena) {
     freeSize = 0;
     allocatedSize = 0;
 
-    osSyncPrintf("アリーナの内容 (0x%08x)\n", arena); // "Arena contents (0x%08x)"
+    osSyncPrintf("Arena contents (0x%08x)\n", arena); // "Arena contents (0x%08x)"
     // "Memory node range status size [time s ms us ns: TID: src: line]"
-    osSyncPrintf("メモリブロック範囲 status サイズ  [時刻  s ms us ns: TID:src:行]\n");
+    osSyncPrintf("Memory node range status size [time s ms us ns: TID: src: line]\n");
 
     iter = arena->head;
     while (iter != NULL) {
@@ -703,7 +713,7 @@ void __osDisplayArena(Arena* arena) {
             next = iter->next;
             osSyncPrintf("%08x-%08x%c %s %08x", iter, ((u32)iter + sizeof(ArenaNode) + iter->size),
                          (next == NULL) ? '$' : (iter != next->prev ? '!' : ' '),
-                         iter->isFree ? "空き" : "確保", //? "Free" : "Secure"
+                         iter->isFree ? "Free" : "Secure", //? "Free" : "Secure"
                          iter->size);
 
             if (!iter->isFree) {
@@ -729,11 +739,11 @@ void __osDisplayArena(Arena* arena) {
     }
 
     // "Total reserved node size 0x%08x bytes"
-    osSyncPrintf("確保ブロックサイズの合計 0x%08x バイト\n", allocatedSize);
+    osSyncPrintf("Total reserved node size 0x%08x bytes\n", allocatedSize);
     // "Total free node size 0x%08x bytes"
-    osSyncPrintf("空きブロックサイズの合計 0x%08x バイト\n", freeSize);
+    osSyncPrintf("Total free node size 0x%08x bytes\n", freeSize);
     // "Maximum free node size 0x%08x bytes"
-    osSyncPrintf("最大空きブロックサイズ   0x%08x バイト\n", maxFree);
+    osSyncPrintf("Maximum free node size   0x%08x bytes\n", maxFree);
 
     ArenaImpl_Unlock(arena);
 }

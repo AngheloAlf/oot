@@ -54,11 +54,12 @@ void Main(void* arg) {
     fb = SysCfb_GetFbPtr(0);
     gSystemHeapSize = (fb - sysHeap);
     // "System heap initalization"
-    osSyncPrintf("システムヒープ初期化 %08x-%08x %08x\n", sysHeap, fb, gSystemHeapSize);
+    osSyncPrintf("System heap initalization %08x-%08x %08x\n", sysHeap, fb, gSystemHeapSize);
+    ASSERT(fb > sysHeap, "fb > sysHeap", __FILE__, __LINE__);
     SystemHeap_Init(sysHeap, gSystemHeapSize); // initializes the system heap
     if (osMemSize >= 0x800000) {
         debugHeap = SysCfb_GetFbEnd();
-        debugHeapSize = (s32)(0x80600000 - debugHeap);
+        debugHeapSize = (s32)(0x80800000 - debugHeap);
     } else {
         debugHeapSize = 0x400;
         debugHeap = SystemArena_MallocDebug(debugHeapSize, "../main.c", 565);

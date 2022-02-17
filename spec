@@ -111,6 +111,11 @@ beginseg
     include "build/data/rsp_boot.text.o"
 #ifdef COMPILER_GCC
     include "build/src/gcc_fix/missing_gcc_functions.o"
+
+    //include "lib/libn64_asan.a"
+    include "lib/libn64_ubsan.a"
+    include "lib/libn64_wrapper.a"
+
 #endif
 endseg
 

@@ -12,6 +12,7 @@ ORIG_COMPILER ?= 0
 COMPILER ?= ido
 
 CFLAGS ?=
+CXXFLAGS ?=
 CPPFLAGS ?=
 
 # ORIG_COMPILER cannot be combined with a non-IDO compiler. Check for this case and error out if found.
@@ -62,6 +63,8 @@ ifneq ($(shell type $(MIPS_BINUTILS_PREFIX)ld >/dev/null 2>/dev/null; echo $$?),
   $(error Please install or build $(MIPS_BINUTILS_PREFIX))
 endif
 
+CXX      :=  $(MIPS_BINUTILS_PREFIX)g++
+
 # Detect compiler and set variables appropriately.
 ifeq ($(COMPILER),gcc)
   CC       := $(MIPS_BINUTILS_PREFIX)gcc
@@ -96,7 +99,10 @@ EMU_FLAGS = --noosd
 INC        := -Iinclude -Isrc -Iassets -Ibuild -I.
 
 # Check code syntax with host compiler
-CHECK_WARNINGS := -Wall -Wextra -Wno-format-security -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-variable -Wno-missing-braces -Wno-int-conversion
+CHECK_WARNINGS := -Wall -Wextra -Wno-format-security -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-variable -Wno-missing-braces
+C_WARNINGS     := $(CHECK_WARNINGS) -Wno-int-conversion
+CXX_WARNINGS   := $(CHECK_WARNINGS)
+
 
 CPP        := cpp
 MKLDSCRIPT := tools/mkldscript
@@ -114,7 +120,13 @@ endif
 ASFLAGS := -march=vr4300 -32 -Iinclude
 
 ifeq ($(COMPILER),gcc)
-  CFLAGS += -G 0 -nostdinc $(INC) -DAVOID_UB -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mdivide-breaks -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -fno-merge-constants -mno-explicit-relocs -mno-split-addresses $(CHECK_WARNINGS) -funsigned-char
+  EXTRA_DEFINES := -DREAL_ASSERT_MACRO -DTARGET_N64=1
+  COMMON_FLAGS := -g -G 0 -nostdinc $(INC) -DAVOID_UB $(EXTRA_DEFINES) -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mdivide-breaks -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -fno-merge-constants -mno-explicit-relocs -mno-split-addresses -funsigned-char -fno-omit-frame-pointer
+# TODO: test -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow
+#  SANITIZER_FLAGS := -fsanitize=undefined -fno-sanitize=shift -fno-sanitize=shift-exponent -fno-sanitize=shift-base
+  SANITIZER_FLAGS := -fsanitize=undefined -fno-sanitize=shift -fno-sanitize=alignment
+  CFLAGS += $(COMMON_FLAGS) $(SANITIZER_FLAGS) $(C_WARNINGS)
+  CXXFLAGS += $(COMMON_FLAGS) -fno-builtin -std=c++17 -nostdinc++ -fno-exceptions -fno-rtti -fno-lto -fvisibility=hidden -fno-unwind-tables -fno-stack-protector $(CXX_WARNINGS)
   MIPS_VERSION := -mips3
 else 
   # we support Microsoft extensions such as anonymous structs, which the compiler does support but warns for their usage. Surpress the warnings with -woff.
@@ -144,7 +156,7 @@ ELF := $(ROM:.z64=.elf)
 SPEC := spec
 
 ifeq ($(COMPILER),ido)
-SRC_DIRS := $(shell find src -type d -not -path src/gcc_fix)
+SRC_DIRS := $(shell find src -type d -not -path src/gcc_fix -not -path src/n64san)
 else
 SRC_DIRS := $(shell find src -type d)
 endif
@@ -159,9 +171,11 @@ ASSET_FILES_OUT := $(foreach f,$(ASSET_FILES_XML:.xml=.c),$f) \
 
 # source files
 C_FILES       := $(foreach dir,$(SRC_DIRS) $(ASSET_BIN_DIRS),$(wildcard $(dir)/*.c))
+CXX_FILES     := $(foreach dir,$(SRC_DIRS) $(ASSET_BIN_DIRS),$(wildcard $(dir)/*.cpp))
 S_FILES       := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
 O_FILES       := $(foreach f,$(S_FILES:.s=.o),build/$f) \
                  $(foreach f,$(C_FILES:.c=.o),build/$f) \
+                 $(foreach f,$(CXX_FILES:.cpp=.o),build/$f) \
                  $(foreach f,$(wildcard baserom/*),build/$f.o)
 
 OVL_RELOC_FILES := $(shell $(CPP) $(CPPFLAGS) $(SPEC) | grep -o '[^"]*_reloc.o' )
@@ -221,6 +235,13 @@ build/assets/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(AS
 else
 build/src/libultra/libc/ll.o: OPTFLAGS := -Ofast
 build/src/%.o: CC := $(CC) -fexec-charset=euc-jp
+build/src/boot/%.o: CFLAGS += -fno-sanitize=all
+build/src/libultra/%.o: CFLAGS += -fno-sanitize=all
+build/src/gcc_fix/%.o: CFLAGS += -fno-sanitize=all
+build/src/code/fault.o: CFLAGS += -fno-sanitize=all
+build/src/code/fault_drawer.o: CFLAGS += -fno-sanitize=all
+# build/src/code/z_bgcheck.o: CFLAGS += -fno-sanitize=all
+# build/src/code/sys_math3d.o: CFLAGS += -fno-sanitize=all
 endif
 
 #### Main Targets ###
@@ -262,7 +283,7 @@ $(ROM): $(ELF)
 	$(ELF2ROM) -cic 6105 $< $@
 
 $(ELF): $(TEXTURE_FILES_OUT) $(ASSET_FILES_OUT) $(O_FILES) $(OVL_RELOC_FILES) build/ldscript.txt build/undefined_syms.txt
-	$(LD) -T build/undefined_syms.txt -T build/ldscript.txt --no-check-sections --accept-unknown-input-arch --emit-relocs -Map build/z64.map -o $@
+	$(LD) --whole-archive -T build/undefined_syms.txt -T build/ldscript.txt --no-check-sections --accept-unknown-input-arch --emit-relocs -Map build/z64.map -o $@
 
 ## Order-only prerequisites 
 # These ensure e.g. the O_FILES are built before the OVL_RELOC_FILES.
@@ -316,13 +337,17 @@ build/src/dmadata/dmadata.o: build/dmadata_table_spec.h
 build/src/%.o: src/%.c
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
 	$(CC_CHECK) $<
-	@$(OBJDUMP) -d $@ > $(@:.o=.s)
+	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
+
+build/src/%.o: src/%.cpp
+	$(CXX) -c $(CXXFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
+	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
 
 build/src/libultra/libc/ll.o: src/libultra/libc/ll.c
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
 	$(CC_CHECK) $<
 	python3 tools/set_o32abi_bit.py $@
-	@$(OBJDUMP) -d $@ > $(@:.o=.s)
+	@$(OBJDUMP) -dlr $@ > $(@:.o=.s)
 
 build/src/libultra/libc/llcvt.o: src/libultra/libc/llcvt.c
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<

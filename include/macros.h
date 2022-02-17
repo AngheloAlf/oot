@@ -161,4 +161,10 @@ extern GraphicsContext* __gfxCtx;
                        ((height)-1) << G_TEXTURE_IMAGE_FRAC);                                                          \
     } while (0)
 
+#ifdef __GNUC__
+#define FUNCTION_WRAPPER __PRETTY_FUNCTION__
+#else
+#define FUNCTION_WRAPPER __FILE__
+#endif
+
 #endif

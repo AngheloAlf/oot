@@ -97,12 +97,12 @@ void DebugArena_Check(void) {
 }
 
 void DebugArena_Init(void* start, u32 size) {
-    gDebugArenaLogSeverity = LOG_SEVERITY_NOLOG;
+    gDebugArenaLogSeverity = LOG_SEVERITY_ERROR;
     __osMallocInit(&sDebugArena, start, size);
 }
 
 void DebugArena_Cleanup(void) {
-    gDebugArenaLogSeverity = LOG_SEVERITY_NOLOG;
+    gDebugArenaLogSeverity = LOG_SEVERITY_ERROR;
     __osMallocCleanup(&sDebugArena);
 }
 
