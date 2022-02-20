@@ -21,8 +21,10 @@ void osSyncPrintfUnused(const char* fmt, ...) {
     va_end(args);
 }
 
+//#define ENABLE_NORMAL_PRINTS
+
 void osSyncPrintf(const char* fmt, ...) {
-    #if 1
+    #ifdef ENABLE_NORMAL_PRINTS
     va_list args;
     va_start(args, fmt);
 

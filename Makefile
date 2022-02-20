@@ -9,7 +9,7 @@ NON_MATCHING ?= 0
 # If ORIG_COMPILER is 1, compile with QEMU_IRIX and the original compiler
 ORIG_COMPILER ?= 0
 # If COMPILER is "gcc", compile with GCC instead of IDO.
-COMPILER ?= ido
+COMPILER ?= gcc
 
 CFLAGS ?=
 CXXFLAGS ?=
@@ -124,7 +124,7 @@ ifeq ($(COMPILER),gcc)
   COMMON_FLAGS := -g -G 0 -nostdinc $(INC) -DAVOID_UB $(EXTRA_DEFINES) -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mdivide-breaks -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -fno-merge-constants -mno-explicit-relocs -mno-split-addresses -funsigned-char -fno-omit-frame-pointer
 # TODO: test -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow
 #  SANITIZER_FLAGS := -fsanitize=undefined -fno-sanitize=shift -fno-sanitize=shift-exponent -fno-sanitize=shift-base
-  SANITIZER_FLAGS := -fsanitize=undefined -fno-sanitize=shift -fno-sanitize=alignment
+  SANITIZER_FLAGS := -fsanitize=undefined -fno-sanitize=shift -fno-sanitize=alignment -fno-sanitize=pointer-overflow -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow
   CFLAGS += $(COMMON_FLAGS) $(SANITIZER_FLAGS) $(C_WARNINGS)
   CXXFLAGS += $(COMMON_FLAGS) -fno-builtin -std=c++17 -nostdinc++ -fno-exceptions -fno-rtti -fno-lto -fvisibility=hidden -fno-unwind-tables -fno-stack-protector $(CXX_WARNINGS)
   MIPS_VERSION := -mips3
@@ -242,6 +242,7 @@ build/src/code/fault.o: CFLAGS += -fno-sanitize=all
 build/src/code/fault_drawer.o: CFLAGS += -fno-sanitize=all
 # build/src/code/z_bgcheck.o: CFLAGS += -fno-sanitize=all
 # build/src/code/sys_math3d.o: CFLAGS += -fno-sanitize=all
+# build/src/overlays/%.o: CFLAGS += -fno-sanitize=all
 endif
 
 #### Main Targets ###

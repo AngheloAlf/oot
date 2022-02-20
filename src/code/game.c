@@ -173,9 +173,13 @@ void GameState_Draw(GameState* gameState, GraphicsContext* gfxCtx) {
 
         DebugArena_Display();
         SystemArena_Display();
+        ZeldaArena_Display();
         // "%08x bytes left until the death of Hyrule (game_alloc)"
-        osSyncPrintf("ハイラル滅亡まであと %08x バイト(game_alloc)\n", THA_GetSize(&gameState->tha));
-        R_ENABLE_ARENA_DBG = 0;
+        osSyncPrintf("%08x bytes left until the death of Hyrule (game_alloc)\n", THA_GetSize(&gameState->tha));
+        osSyncPrintf("game_alloc total size: %08X bytes\n", gameState->tha.size);
+        osSyncPrintf("game_alloc usage     : %f %% \n", 100.0f * (gameState->tha.size - THA_GetSize(&gameState->tha)) / gameState->tha.size);
+        osSyncPrintf("\n");
+        R_ENABLE_ARENA_DBG = 4;
     }
 
     gSPEndDisplayList(newDList++);
@@ -189,7 +193,7 @@ void GameState_Draw(GameState* gameState, GraphicsContext* gfxCtx) {
     func_80063D7C(gfxCtx);
 
     if (R_ENABLE_ARENA_DBG != 0) {
-        SpeedMeter_DrawTimeEntries(&D_801664D0, gfxCtx);
+        //SpeedMeter_DrawTimeEntries(&D_801664D0, gfxCtx);
         SpeedMeter_DrawAllocEntries(&D_801664D0, gfxCtx, gameState);
     }
 }
@@ -236,6 +240,10 @@ void GameState_ReqPadData(GameState* gameState) {
 
 void GameState_Update(GameState* gameState) {
     GraphicsContext* gfxCtx = gameState->gfxCtx;
+
+    if (CHECK_BTN_ALL(gameState->input[0].cur.button, BTN_L)) {
+        R_ENABLE_ARENA_DBG = -1;
+    }
 
     GameState_SetFrameBuffer(gfxCtx);
 
@@ -406,7 +414,7 @@ void GameState_Init(GameState* gameState, GameStateFunc init, GraphicsContext* g
     osSyncPrintf("gamealloc_init processing time %d us\n", OS_CYCLES_TO_USEC(endTime - startTime));
 
     startTime = endTime;
-    GameState_InitArena(gameState, 0x120000 + 49152 + 49152);
+    GameState_InitArena(gameState, 0x400000);
     R_UPDATE_RATE = 3;
     init(gameState);
 
@@ -477,8 +485,8 @@ void* GameState_Alloc(GameState* gameState, size_t size, char* file, s32 line) {
 
     osSyncPrintf(VT_BGCOL(MAGENTA));
 
-    osSyncPrintf("%s: GameState_Alloc(%X, %X, %s, %i)\n", FUNCTION_WRAPPER, gameState, size, file, line);
-    osSyncPrintf("%s: Current size before allocation: %X\n", FUNCTION_WRAPPER, THA_GetSize(&gameState->tha));
+    osSyncPrintf("%s: GameState_Alloc(0x%X, 0x%X, %s, %i)\n", FUNCTION_WRAPPER, gameState, size, file, line);
+    osSyncPrintf("%s: Current size before allocation: 0x%X (%i)\n", FUNCTION_WRAPPER, THA_GetSize(&gameState->tha), THA_GetSize(&gameState->tha));
 
     if (THA_IsCrash(&gameState->tha)) {
         osSyncPrintf("Hyrule is ruined\n");
@@ -501,7 +509,7 @@ void* GameState_Alloc(GameState* gameState, size_t size, char* file, s32 line) {
         osSyncPrintf(VT_RST);
     }
 
-    osSyncPrintf("%s: Size after allocation: %X\n", FUNCTION_WRAPPER, THA_GetSize(&gameState->tha));
+    osSyncPrintf("%s: Size after allocation: 0x%X (%i)\n", FUNCTION_WRAPPER, THA_GetSize(&gameState->tha), THA_GetSize(&gameState->tha));
 
     osSyncPrintf("\n");
     osSyncPrintf(VT_RST);

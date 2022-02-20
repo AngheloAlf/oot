@@ -166,7 +166,8 @@ void SpeedMeter_DrawAllocEntries(SpeedMeter* meter, GraphicsContext* gfxCtx, Gam
     s32 sysAlloc;
 
     y = 212;
-    if (SREG(0) > 2) {
+
+    if (R_ENABLE_ARENA_DBG > 2 || true) {
         if (ZeldaArena_IsInitalized()) {
             ZeldaArena_GetSizes(&zeldaFreeMax, &zeldaFree, &zeldaAlloc);
             SpeedMeter_InitAllocEntry(&entry, zeldaFree + zeldaAlloc, zeldaAlloc, GPACK_RGBA5551(0, 0, 255, 1),
@@ -177,9 +178,10 @@ void SpeedMeter_DrawAllocEntries(SpeedMeter* meter, GraphicsContext* gfxCtx, Gam
         }
     }
 
-    if (SREG(0) > 1) {
+#if 1
+    if (R_ENABLE_ARENA_DBG > 1 || true) {
         SystemArena_GetSizes((u32*)&sysFreeMax, (u32*)&sysFree, (u32*)&sysAlloc);
-        SpeedMeter_InitAllocEntry(&entry, sysFree + sysAlloc - state->tha.size, sysAlloc - state->tha.size,
+        SpeedMeter_InitAllocEntry(&entry, sysFree + sysAlloc , sysAlloc,
                                   GPACK_RGBA5551(0, 0, 255, 1), GPACK_RGBA5551(255, 128, 128, 1), ulx, lrx, y, y);
         SpeedMeter_DrawAllocEntry(&entry, gfxCtx);
         y++;
@@ -190,7 +192,9 @@ void SpeedMeter_DrawAllocEntries(SpeedMeter* meter, GraphicsContext* gfxCtx, Gam
                               GPACK_RGBA5551(0, 0, 255, 1), GPACK_RGBA5551(0, 255, 0, 1), ulx, lrx, y, y);
     SpeedMeter_DrawAllocEntry(&entry, gfxCtx);
     y++;
+#endif
 
+#if 0
     thga = &gfxCtx->polyOpa;
     SpeedMeter_InitAllocEntry(&entry, thga->size, thga->size - THGA_GetSize(thga), GPACK_RGBA5551(0, 0, 255, 1),
                               GPACK_RGBA5551(255, 0, 255, 1), ulx, lrx, y, y);
@@ -208,4 +212,5 @@ void SpeedMeter_DrawAllocEntries(SpeedMeter* meter, GraphicsContext* gfxCtx, Gam
                               GPACK_RGBA5551(255, 0, 0, 1), ulx, lrx, y, y);
     SpeedMeter_DrawAllocEntry(&entry, gfxCtx);
     y++;
+#endif
 }

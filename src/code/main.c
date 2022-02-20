@@ -68,7 +68,7 @@ void Main(void* arg) {
     DebugArena_Init(debugHeap, debugHeapSize);
     func_800636C0();
 
-    R_ENABLE_ARENA_DBG = 0;
+    R_ENABLE_ARENA_DBG = 4;
 
     osCreateMesgQueue(&sSiIntMsgQ, sSiIntMsgBuf, 1);
     osSetEventMesg(5, &sSiIntMsgQ, 0);

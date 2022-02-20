@@ -83,7 +83,7 @@ void* SystemArena_Calloc(u32 num, u32 size) {
 }
 
 void SystemArena_Display(void) {
-    osSyncPrintf("システムヒープ表示\n"); // "System heap display"
+    osSyncPrintf("SystemArena heap display\n"); // "System heap display"
     __osDisplayArena(&gSystemArena);
 }
 

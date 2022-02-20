@@ -1870,14 +1870,14 @@ void func_80902524(BossGanon2* this, GlobalContext* globalCtx) {
     s16 i;
     u8 phi_v1_2;
 
-    osSyncPrintf("this->no_hit_time %d\n", this->unk_316);
+    //osSyncPrintf("this->no_hit_time %d\n", this->unk_316);
     if (this->unk_316 != 0 || ((this->unk_334 == 0) && (this->actionFunc == func_80900890))) {
         for (i = 0; i < ARRAY_COUNT(this->unk_464); i++) {
             this->unk_424.elements[i].info.bumperFlags &= ~2;
         }
     }
 
-    osSyncPrintf("this->look_on %d\n", this->unk_313);
+    //osSyncPrintf("this->look_on %d\n", this->unk_313);
     if (this->unk_313) {
         if (this->actionFunc != func_808FFFE0) {
             if (this->unk_424.elements[0].info.bumperFlags & 2) {

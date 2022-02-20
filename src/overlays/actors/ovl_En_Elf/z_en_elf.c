@@ -1404,7 +1404,7 @@ void func_80A053F0(Actor* thisx, GlobalContext* globalCtx) {
     } else {
         this->actionFunc(this, globalCtx);
         thisx->shape.rot.y = this->unk_2BC;
-        nREG(80) = gSaveContext.sceneFlags[127].chest;
+        //nREG(80) = gSaveContext.sceneFlags[127].chest;
 
         if (nREG(81) != 0) {
             if (gSaveContext.sceneFlags[127].chest) {

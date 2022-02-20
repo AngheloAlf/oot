@@ -905,7 +905,7 @@ void Environment_Update(GlobalContext* globalCtx, EnvironmentContext* envCtx, Li
             gSaveContext.nightFlag = 0;
         }
 
-        if (SREG(0) != 0 || CREG(2) != 0) {
+        if (R_ENABLE_ARENA_DBG != 0 || CREG(2) != 0) {
             Gfx* displayList;
             Gfx* prevDisplayList;
 
@@ -914,7 +914,7 @@ void Environment_Update(GlobalContext* globalCtx, EnvironmentContext* envCtx, Li
             prevDisplayList = POLY_OPA_DISP;
             displayList = Graph_GfxPlusOne(POLY_OPA_DISP);
             gSPDisplayList(OVERLAY_DISP++, displayList);
-            Environment_PrintDebugInfo(globalCtx, &displayList);
+            //Environment_PrintDebugInfo(globalCtx, &displayList);
             gSPEndDisplayList(displayList++);
             Graph_BranchDlist(prevDisplayList, displayList);
             POLY_OPA_DISP = displayList;

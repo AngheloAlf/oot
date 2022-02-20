@@ -247,6 +247,12 @@ void* __osMalloc_NoLockDebug(Arena* arena, u32 size, const char* file, s32 line)
         iter = ArenaImpl_GetNextBlock(iter);
     }
 
+    if (alloc == NULL) {
+        osSyncPrintf("\n");
+        osSyncPrintf(VT_FGCOL(RED) "%s: Failed to allocate 0x%X (%i) bytes requested by %s:%i \n" VT_RST, FUNCTION_WRAPPER, size, size, file, line);
+        osSyncPrintf("\n");
+    }
+
     return alloc;
 }
 
@@ -307,6 +313,12 @@ void* __osMallocRDebug(Arena* arena, u32 size, const char* file, s32 line) {
         iter = ArenaImpl_GetPrevBlock(iter);
     }
     ArenaImpl_Unlock(arena);
+
+    if (allocR == NULL) {
+        osSyncPrintf("\n");
+        osSyncPrintf(VT_FGCOL(RED) "%s: Failed to allocate 0x%X (%i) bytes requested by %s:%i \n" VT_RST, FUNCTION_WRAPPER, size, size, file, line);
+        osSyncPrintf("\n");
+    }
 
     return allocR;
 }
@@ -656,7 +668,17 @@ void* __osRealloc(Arena* arena, void* ptr, u32 newSize) {
 }
 
 void* __osReallocDebug(Arena* arena, void* ptr, u32 newSize, const char* file, s32 line) {
-    return __osRealloc(arena, ptr, newSize);
+    void* newptr;
+
+    newptr = __osRealloc(arena, ptr, newSize);
+
+    if (newptr == NULL) {
+        osSyncPrintf("\n");
+        osSyncPrintf(VT_FGCOL(RED) "%s: Failed to re-allocate 0x%X (%i) bytes requested by %s:%i \n" VT_RST, FUNCTION_WRAPPER, newSize, newSize, file, line);
+        osSyncPrintf("\n");
+    }
+
+    return newptr;
 }
 
 void ArenaImpl_GetSizes(Arena* arena, u32* outMaxFree, u32* outFree, u32* outAlloc) {
@@ -697,6 +719,10 @@ void __osDisplayArena(Arena* arena) {
         return;
     }
 
+    osSyncPrintf("\n");
+
+    osSyncPrintf(VT_COL(WHITE, BLACK));
+
     ArenaImpl_Lock(arena);
 
     maxFree = 0;
@@ -705,7 +731,7 @@ void __osDisplayArena(Arena* arena) {
 
     osSyncPrintf("Arena contents (0x%08x)\n", arena); // "Arena contents (0x%08x)"
     // "Memory node range status size [time s ms us ns: TID: src: line]"
-    osSyncPrintf("Memory node range status size [time s ms us ns: TID: src: line]\n");
+    osSyncPrintf("RAM block range    status   size     [time         ns : TID: src:line]\n");
 
     iter = arena->head;
     while (iter != NULL) {
@@ -713,11 +739,11 @@ void __osDisplayArena(Arena* arena) {
             next = iter->next;
             osSyncPrintf("%08x-%08x%c %s %08x", iter, ((u32)iter + sizeof(ArenaNode) + iter->size),
                          (next == NULL) ? '$' : (iter != next->prev ? '!' : ' '),
-                         iter->isFree ? "Free" : "Secure", //? "Free" : "Secure"
+                         iter->isFree ? "Free    " : "Secure  ", //? "Free" : "Secure"
                          iter->size);
 
             if (!iter->isFree) {
-                osSyncPrintf(" [%016llu:%2d:%s:%d]", OS_CYCLES_TO_NSEC(iter->time), iter->threadId,
+                osSyncPrintf(" [%016llu:  %2d:%s:%d]", OS_CYCLES_TO_NSEC(iter->time), iter->threadId,
                              iter->filename != NULL ? iter->filename : "**NULL**", iter->line);
             }
 
@@ -738,12 +764,20 @@ void __osDisplayArena(Arena* arena) {
         iter = next;
     }
 
+    osSyncPrintf("\n");
+
+    osSyncPrintf("Total size               0x%08x bytes\n", allocatedSize + freeSize);
+
     // "Total reserved node size 0x%08x bytes"
-    osSyncPrintf("Total reserved node size 0x%08x bytes\n", allocatedSize);
+    osSyncPrintf("Total allocated          0x%08x bytes\n", allocatedSize);
     // "Total free node size 0x%08x bytes"
-    osSyncPrintf("Total free node size 0x%08x bytes\n", freeSize);
+    osSyncPrintf("Total free               0x%08x bytes\n", freeSize);
     // "Maximum free node size 0x%08x bytes"
     osSyncPrintf("Maximum free node size   0x%08x bytes\n", maxFree);
+
+    osSyncPrintf(VT_RST);
+
+    osSyncPrintf("\n");
 
     ArenaImpl_Unlock(arena);
 }

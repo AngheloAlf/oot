@@ -202,7 +202,7 @@ void Gameplay_Init(GameState* thisx) {
     }
 
     SystemArena_Display();
-    GameState_Realloc(&globalCtx->state, 0x1D4790);
+    GameState_Realloc(&globalCtx->state, 0x400000 + 0x080000);
     KaleidoManager_Init(globalCtx);
     View_Init(&globalCtx->view, gfxCtx);
     Audio_SetExtraFilter(0);
@@ -296,7 +296,7 @@ void Gameplay_Init(GameState* thisx) {
     if ((gEntranceTable[((void)0, gSaveContext.entranceIndex)].scene == SCENE_SPOT09) &&
         gSaveContext.sceneSetupIndex == 6) {
         osSyncPrintf("エンディングはじまるよー\n"); // "The ending starts"
-        ((void (*)())0x81000000)();
+        //((void (*)())0x81000000)();
         osSyncPrintf("出戻り？\n"); // "Return?"
     }
 
@@ -363,7 +363,7 @@ void Gameplay_Init(GameState* thisx) {
     zAllocAligned = (zAlloc + 8) & ~0xF;
     ZeldaArena_Init(zAllocAligned, zAllocSize - zAllocAligned + zAlloc);
     // "Zelda Heap"
-    osSyncPrintf("ゼルダヒープ %08x-%08x\n", zAllocAligned,
+    osSyncPrintf("Zelda Heap %08x-%08x\n", zAllocAligned,
                  (s32)(zAllocAligned + zAllocSize) - (s32)(zAllocAligned - zAlloc));
 
     Fault_AddClient(&D_801614B8, ZeldaArena_Display, NULL, NULL);

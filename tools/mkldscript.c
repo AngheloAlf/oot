@@ -151,6 +151,8 @@ static void write_ld_script(FILE *fout)
 
         fputs("    }\n", fout);
 
+        fprintf(fout, "    _%sSegmentRomSize = ABSOLUTE( _%sSegmentOvlEnd - _%sSegmentTextStart );\n", seg->name, seg->name, seg->name);
+
         fprintf(fout, "    _RomSize += ( _%sSegmentOvlEnd - _%sSegmentTextStart );\n", seg->name, seg->name);
 
         fprintf(fout, "    _%sSegmentRomEndTemp = _RomSize;\n"
