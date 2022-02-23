@@ -125,6 +125,8 @@ static void write_ld_script(FILE *fout)
                           "        . = ALIGN(0x10);\n", seg->includes[j].fpath);
             fprintf(fout, "            %s (.rodata.cst8)\n"
                           "        . = ALIGN(0x10);\n", seg->includes[j].fpath);
+            fprintf(fout, "            %s (.rodata.*)\n"
+                          "        . = ALIGN(0x10);\n", seg->includes[j].fpath);
         }
 
         fprintf(fout, "        _%sSegmentRoDataEnd = .;\n", seg->name);

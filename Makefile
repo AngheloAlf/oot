@@ -26,6 +26,12 @@ ifeq ($(COMPILER),gcc)
   CPPFLAGS += -DCOMPILER_GCC
   NON_MATCHING := 1
 endif
+# I don't know how to write an `or` in Makefile...
+ifeq ($(COMPILER),clang)
+  CFLAGS += -DCOMPILER_GCC
+  CPPFLAGS += -DCOMPILER_GCC
+  NON_MATCHING := 1
+endif
 
 # Set prefix to mips binutils binaries (mips-linux-gnu-ld => 'mips-linux-gnu-') - Change at your own risk!
 # In nearly all cases, not having 'mips-linux-gnu-*' binaries on the PATH is indicative of missing dependencies
@@ -66,12 +72,16 @@ endif
 # Detect compiler and set variables appropriately.
 ifeq ($(COMPILER),gcc)
   CC       := $(MIPS_BINUTILS_PREFIX)gcc
-else 
+else
+ifeq ($(COMPILER),clang)
+  CC       := clang -target mips
+else
 ifeq ($(COMPILER),ido)
   CC       := tools/ido_recomp/$(DETECTED_OS)/7.1/cc
   CC_OLD   := tools/ido_recomp/$(DETECTED_OS)/5.3/cc
 else
 $(error Unsupported compiler. Please use either ido or gcc as the COMPILER variable.)
+endif
 endif
 endif
 
@@ -109,7 +119,11 @@ FADO       := tools/fado/fado.elf
 ifeq ($(COMPILER),gcc)
   OPTFLAGS := -Os -ffast-math -fno-unsafe-math-optimizations
 else
+ifeq ($(COMPILER),clang)
+  OPTFLAGS := -Os
+else
   OPTFLAGS := -O2
+endif
 endif
 
 ASFLAGS := -march=vr4300 -32 -Iinclude
@@ -117,10 +131,16 @@ ASFLAGS := -march=vr4300 -32 -Iinclude
 ifeq ($(COMPILER),gcc)
   CFLAGS += -G 0 -nostdinc $(INC) -DAVOID_UB -march=vr4300 -mfix4300 -mabi=32 -mno-abicalls -mdivide-breaks -fno-zero-initialized-in-bss -fno-toplevel-reorder -ffreestanding -fno-common -fno-merge-constants -mno-explicit-relocs -mno-split-addresses $(CHECK_WARNINGS) -funsigned-char
   MIPS_VERSION := -mips3
+else
+ifeq ($(COMPILER),clang)
+  CFLAGS += -G 0 -nostdinc $(INC) -DAVOID_UB -mcpu=vr4300           -mabi=o32 -mno-abicalls                 -fno-zero-initialized-in-bss                       -ffreestanding -fno-common                                                                $(CHECK_WARNINGS) -funsigned-char -fno-PIC -D_LANGUAGE_C -Wno-invalid-source-encoding
+  MIPS_VERSION := -mips2
+#  clang -target mips  -mcpu=vr4300  -mabi=o32 -G 0 -mno-abicalls -fno-PIC -mips2  -D_LANGUAGE_C  -DAVOID_UB  -c -Iinclude -Isrc -Iassets -Ibuild -I. -nostdinc -ffreestanding -fno-common  -mno-abicalls    -funsigned-char -Os    -fno-zero-initialized-in-bss   -o build/src/code/__osMalloc.o src/code/__osMalloc.c 
 else 
   # we support Microsoft extensions such as anonymous structs, which the compiler does support but warns for their usage. Surpress the warnings with -woff.
   CFLAGS += -G 0 -non_shared -Xfullwarn -Xcpluscomm $(INC) -Wab,-r4300_mul -woff 649,838,712 
   MIPS_VERSION := -mips2
+endif
 endif
 
 ifeq ($(COMPILER),ido)
@@ -220,8 +240,13 @@ build/src/overlays/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS
 
 build/assets/%.o: CC := python3 tools/asm_processor/build.py $(CC) -- $(AS) $(ASFLAGS) --
 else
+ifeq ($(COMPILER),gcc)
 build/src/libultra/libc/ll.o: OPTFLAGS := -Ofast
 build/src/%.o: CC := $(CC) -fexec-charset=euc-jp
+else
+build/src/libultra/libc/ll.o: OPTFLAGS := -Ofast
+# build/src/%.o: CC := iconv -f "utf-8" -t "euc-jp" $< | $(CC)
+endif
 endif
 
 #### Main Targets ###
@@ -315,7 +340,11 @@ build/src/boot/z_std_dma.o: build/dmadata_table_spec.h
 build/src/dmadata/dmadata.o: build/dmadata_table_spec.h
 
 build/src/%.o: src/%.c
+ifeq ($(COMPILER),clang)
+	iconv -f "utf-8" -t "euc-jp" $< | $(CC) -xc - -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -I src/code/ -o $@
+else
 	$(CC) -c $(CFLAGS) $(MIPS_VERSION) $(OPTFLAGS) -o $@ $<
+endif
 	$(CC_CHECK) $<
 	@$(OBJDUMP) -d $@ > $(@:.o=.s)
 
