@@ -275,8 +275,7 @@ test: $(ROM)
 #### Various Recipes ####
 
 $(ROM): $(ELF)
-	$(OBJCOPY) -O binary $< $@
-	python3 tools/pad_rom.py $@
+	$(OBJCOPY) -O binary --pad-to=0x3600000 --gap-fill=0x00 $< $@
 	tools/n64checksum_6105 --fix $@
 
 $(ELF): $(ASSETS_ZAPD_FILES_OUT) $(O_FILES) $(OVL_RELOC_FILES) build/ldscript.txt build/undefined_syms.txt

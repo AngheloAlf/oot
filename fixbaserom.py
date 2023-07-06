@@ -12,7 +12,7 @@ def get_str_hash(byte_array):
 if path.exists("baserom.z64"):
     with open("baserom.z64", mode="rb") as file:
         fileContent = bytearray(file.read())
-        if get_str_hash(fileContent) == "f0b7f35375f9cc8ca1b2d59d78e35405":
+        if get_str_hash(fileContent) == "68d6beaabfba1609e3587d2a4819eb7e":
             print("Found valid baserom - exiting early")
             sys.exit(0)
 
@@ -74,12 +74,12 @@ print("Patching header...")
 fileContent[0x3E] = 0x50
 
 for i in range(0x35CF000, len(fileContent)):
-    fileContent[i] = 0xFF
+    fileContent[i] = 0
 
 # Check to see if the ROM is a "vanilla" Debug ROM
 str_hash = get_str_hash(bytearray(fileContent))
-if str_hash != "f0b7f35375f9cc8ca1b2d59d78e35405":
-    print("Error: Expected a hash of f0b7f35375f9cc8ca1b2d59d78e35405 but got " + str_hash + ". " +
+if str_hash != "68d6beaabfba1609e3587d2a4819eb7e":
+    print("Error: Expected a hash of 68d6beaabfba1609e3587d2a4819eb7e but got " + str_hash + ". " +
           "The baserom has probably been tampered, find a new one")
 
     if str_hash == "32fe2770c0f9b1a9cd2a4d449348c1cb":
