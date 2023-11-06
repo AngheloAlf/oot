@@ -1,0 +1,79 @@
+mips-linux-gnu-ld: build/src/boot/z_std_dma.o: in function `DmaMgr_DmaRomToRam':
+z_std_dma.c:(.text+0x120): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_std_dma.c:(.text+0x1bc): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_std_dma.c:(.text+0x254): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_std_dma.c:(.text+0x2d8): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_std_dma.c:(.text+0x338): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/boot/z_std_dma.o:z_std_dma.c:(.text+0x410): more undefined references to `__udivdi3' follow
+mips-linux-gnu-ld: build/src/libultra/libc/ll.o: in function `__ull_rem':
+ll.c:(.text+0x40): undefined reference to `__umoddi3'
+mips-linux-gnu-ld: build/src/libultra/libc/ll.o: in function `__ull_div':
+ll.c:(.text+0x5c): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/libultra/libc/ll.o: in function `__ll_rem':
+ll.c:(.text+0xb0): undefined reference to `__umoddi3'
+mips-linux-gnu-ld: build/src/libultra/libc/ll.o: in function `__ll_div':
+ll.c:(.text+0xcc): undefined reference to `__divdi3'
+mips-linux-gnu-ld: build/src/libultra/libc/ll.o: in function `__ull_divremi':
+ll.c:(.text+0x14c): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: ll.c:(.text+0x168): undefined reference to `__umoddi3'
+mips-linux-gnu-ld: build/src/libultra/libc/ll.o: in function `__ll_mod':
+ll.c:(.text+0x1a8): undefined reference to `__moddi3'
+mips-linux-gnu-ld: build/src/libultra/libc/xlitob.o: in function `_Litob':
+xlitob.c:(.text+0xd4): undefined reference to `__umoddi3'
+mips-linux-gnu-ld: xlitob.c:(.text+0xf8): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/libultra/libc/ldiv.o: in function `lldiv':
+ldiv.c:(.text+0x7c): undefined reference to `__divdi3'
+mips-linux-gnu-ld: ldiv.c:(.text+0x9c): undefined reference to `__moddi3'
+mips-linux-gnu-ld: build/src/code/flg_set.o: in function `FlagSet_Update':
+flg_set.c:(.text+0x30): undefined reference to `memset'
+mips-linux-gnu-ld: build/src/code/z_jpeg.o: in function `Jpeg_Decode':
+z_jpeg.c:(.text+0x558): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x564): undefined reference to `__floatundisf'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x5d8): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x5e4): undefined reference to `__floatundisf'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x6a8): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x6b4): undefined reference to `__floatundisf'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x86c): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x878): undefined reference to `__floatundisf'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x974): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_jpeg.c:(.text+0x980): undefined reference to `__floatundisf'
+mips-linux-gnu-ld: build/src/code/z_room.o: in function `Room_DecodeJpeg':
+z_room.c:(.text+0x68c): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: z_room.c:(.text+0x698): undefined reference to `__floatundisf'
+mips-linux-gnu-ld: build/src/code/game.o: in function `GameState_Init':
+game.c:(.text+0xe20): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: game.c:(.text+0xe78): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: game.c:(.text+0xeec): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: game.c:(.text+0xfbc): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/code/padmgr.o: in function `PadMgr_ThreadEntry':
+padmgr.c:(.text+0xc78): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/code/padmgr.o:padmgr.c:(.text+0xd08): more undefined references to `__udivdi3' follow
+mips-linux-gnu-ld: build/src/code/speed_meter.o: in function `SpeedMeter_DrawTimeEntries':
+speed_meter.c:(.text+0x10c): undefined reference to `__floatundidf'
+mips-linux-gnu-ld: speed_meter.c:(.text+0x11c): undefined reference to `__floatundidf'
+mips-linux-gnu-ld: build/src/code/fault.o: in function `Fault_SleepImpl':
+fault.c:(.text+0x20): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/audio/general.o: in function `AudioDebug_Draw':
+general.c:(.text+0x444c): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: general.c:(.text+0x4458): undefined reference to `__floatundisf'
+mips-linux-gnu-ld: build/src/code/__osMalloc.o: in function `__osDisplayArena':
+__osMalloc.c:(.text+0x1400): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/code/sleep.o: in function `Sleep_Msec':
+sleep.c:(.text+0xe4): undefined reference to `__udivdi3'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__d_to_ll':
+llcvt.c:(.text+0x8): undefined reference to `__fixdfdi'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__f_to_ll':
+llcvt.c:(.text+0x24): undefined reference to `__fixsfdi'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__d_to_ull':
+llcvt.c:(.text+0x40): undefined reference to `__fixunsdfdi'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__f_to_ull':
+llcvt.c:(.text+0x5c): undefined reference to `__fixunssfdi'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__ll_to_d':
+llcvt.c:(.text+0x78): undefined reference to `__floatdidf'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__ll_to_f':
+llcvt.c:(.text+0x94): undefined reference to `__floatdisf'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__ull_to_d':
+llcvt.c:(.text+0xb0): undefined reference to `__floatundidf'
+mips-linux-gnu-ld: build/src/libultra/libc/llcvt.o: in function `__ull_to_f':
+llcvt.c:(.text+0xcc): undefined reference to `__floatundisf'
+make: *** [Makefile:287: zelda_ocarina_mq_dbg.elf] Error 1
