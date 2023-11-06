@@ -31,6 +31,7 @@ enum {
 struct Include {
     char* fpath;
     int linkerPadding;
+    bool isLib;
     uint8_t dataWithRodata;
 };
 

@@ -111,7 +111,7 @@ beginseg
     include "build/src/libultra/os/setwatchlo.o"
     include "build/data/rsp_boot.text.o"
 #ifdef COMPILER_GCC
-    include "tools/libgcc_vr4300.a"
+    include "lib/libgcc_vr4300.a"
     include "build/src/gcc_fix/missing_gcc_functions.o"
 #endif
 endseg
